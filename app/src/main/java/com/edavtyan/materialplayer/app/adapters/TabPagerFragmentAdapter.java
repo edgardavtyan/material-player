@@ -3,11 +3,13 @@ package com.edavtyan.materialplayer.app.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.edavtyan.materialplayer.app.fragments.AlbumsListFragment;
 import com.edavtyan.materialplayer.app.fragments.ArtistsListFragment;
 
 public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
     String[] tabNames = {
-            "Artists"
+            "Artists",
+            "Albums"
     };
 
     public TabPagerFragmentAdapter(FragmentManager fm) {
@@ -24,6 +26,8 @@ public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new ArtistsListFragment();
+            case 1:
+                return new AlbumsListFragment();
             default:
                 return null;
 

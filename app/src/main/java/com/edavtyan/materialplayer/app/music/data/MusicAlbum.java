@@ -25,6 +25,9 @@ public class MusicAlbum {
 
 
     public MusicAlbum(long id, String title, String artist, int tracksCount) {
-
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+        this.tracksCount = tracksCount;
     }
 }
