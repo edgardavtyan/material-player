@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import com.edavtyan.materialplayer.app.adapters.TabPagerFragmentAdapter;
-import com.edavtyan.materialplayer.app.music.MusicLibrary;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;

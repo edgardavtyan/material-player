@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="?attr/listPreferredItemHeight"
               android:clickable="true"
               android:focusable="true"
-              android:background="?attr/selectableItemBackground"
-              android:paddingLeft="?attr/listPreferredItemPaddingLeft"
-              android:paddingRight="?attr/listPreferredItemPaddingRight">
+              android:background="?attr/selectableItemBackground">
+
+    <ImageView
+            android:id="@+id/album_art"
+            android:layout_width="?attr/listPreferredItemHeight"
+            android:layout_height="?attr/listPreferredItemHeight"/>
 
     <TextView
             android:id="@+id/album_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+            android:paddingRight="?attr/listPreferredItemPaddingRight"/>
 
 </LinearLayout>

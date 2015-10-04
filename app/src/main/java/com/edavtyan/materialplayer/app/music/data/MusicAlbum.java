@@ -5,6 +5,7 @@ public class MusicAlbum {
     private String title;
     private String artist;
     private int tracksCount;
+    private String art;
 
 
     public long getId() {
@@ -23,11 +24,16 @@ public class MusicAlbum {
         return tracksCount;
     }
 
+    public String getArt() {
+        return art;
+    }
 
-    public MusicAlbum(long id, String title, String artist, int tracksCount) {
+
+    public MusicAlbum(long id, String title, String artist, int tracksCount, String art) {
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.tracksCount = tracksCount;
+        this.art = art;
     }
 }

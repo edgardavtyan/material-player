@@ -34,6 +34,7 @@ public class AlbumsProvider {
                 MediaStore.Audio.Albums.ALBUM,
                 MediaStore.Audio.Albums.ARTIST,
                 MediaStore.Audio.Albums.NUMBER_OF_SONGS,
+                MediaStore.Audio.Albums.ALBUM_ART
         };
         String sortOrder = MediaStore.Audio.Albums.ALBUM + " ASC";
 
@@ -44,7 +45,8 @@ public class AlbumsProvider {
             String title = cursor.getString(1);
             String artist = cursor.getString(2);
             int tracksCount = cursor.getInt(3);
-            MusicAlbum album = new MusicAlbum(id, title, artist, tracksCount);
+            String art = cursor.getString(4);
+            MusicAlbum album = new MusicAlbum(id, title, artist, tracksCount, art);
             albums.add(album);
         }
 
