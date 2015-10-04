@@ -35,8 +35,9 @@ public class AlbumsProvider {
                 MediaStore.Audio.Albums.ARTIST,
                 MediaStore.Audio.Albums.NUMBER_OF_SONGS,
         };
+        String sortOrder = MediaStore.Audio.Albums.ALBUM + " ASC";
 
-        Cursor cursor = contentResolver.query(albumsUri, projection, null, null, null);
+        Cursor cursor = contentResolver.query(albumsUri, projection, null, null, sortOrder);
 
         while (cursor.moveToNext()) {
             long id = cursor.getLong(0);
