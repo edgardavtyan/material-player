@@ -1,10 +1,6 @@
 package com.edavtyan.materialplayer.app.adapters;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +13,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private ArrayList<MusicAlbum> albums;
@@ -39,7 +34,17 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     @Override
     public void onBindViewHolder(AlbumViewHolder albumViewHolder, int i) {
-        albumViewHolder.titleTextView.setText(albums.get(i).getTitle());
+        MusicAlbum album = albums.get(i);
+
+        albumViewHolder.titleTextView.setText(album.getTitle());
+
+        Resources res = albumViewHolder.itemView.getContext().getResources();
+        String tracksCount = res.getQuantityString(R.plurals.tracks,
+                album.getTracksCount(), album.getTracksCount());
+        String albumInfo = res.getString(R.string.two_strings_with_bar, album.getArtist(), tracksCount);
+        albumViewHolder.countsTextView.setText(albumInfo);
+
+
         Picasso.with(albumViewHolder.itemView.getContext())
                 .load(new File(albums.get(i).getArt()))
                 .resize(100, 100)
@@ -53,11 +58,13 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     public class AlbumViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
+        TextView countsTextView;
         ImageView artImageView;
 
         public AlbumViewHolder(View itemView) {
             super(itemView);
             titleTextView = (TextView) itemView.findViewById(R.id.album_title);
+            countsTextView = (TextView) itemView.findViewById(R.id.album_counts);
             artImageView = (ImageView) itemView.findViewById(R.id.album_art);
         }
     }

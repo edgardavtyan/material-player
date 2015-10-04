@@ -2,7 +2,7 @@
     <string name="app_name">MaterialPlayer</string>
     <string name="search_title">Search</string>
 
-    <string name="artist_listitem_counts">%1$s | %2$s</string>
+    <string name="two_strings_with_bar">%1$s | %2$s</string>
 
     <plurals name="albums">
         <item quantity="zero">No Albums</item>

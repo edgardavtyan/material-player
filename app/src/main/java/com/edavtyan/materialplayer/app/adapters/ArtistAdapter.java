@@ -40,7 +40,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
                 artist.getAlbumsCount(), artist.getAlbumsCount());
         String tracksCount = res.getQuantityString(R.plurals.tracks,
                 artist.getTracksCount(), artist.getTracksCount());
-        String counts = res.getString(R.string.artist_listitem_counts, albumsCount, tracksCount);
+        String counts = res.getString(R.string.two_strings_with_bar, albumsCount, tracksCount);
         artistViewHolder.countsTextView.setText(counts);
     }
 
