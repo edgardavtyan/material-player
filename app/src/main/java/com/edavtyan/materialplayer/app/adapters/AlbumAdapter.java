@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.data.MusicAlbum;
-import com.edavtyan.materialplayer.app.music.data.MusicArtist;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     public AlbumViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater
                 .from(viewGroup.getContext())
-                .inflate(R.layout.album_listitem, viewGroup, false);
+                .inflate(R.layout.listitem_album, viewGroup, false);
 
         return new AlbumViewHolder(view);
     }

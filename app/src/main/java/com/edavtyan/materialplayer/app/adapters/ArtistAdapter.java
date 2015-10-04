@@ -23,7 +23,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     public ArtistViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater
                 .from(viewGroup.getContext())
-                .inflate(R.layout.artist_listitem, viewGroup, false);
+                .inflate(R.layout.listitem_artist, viewGroup, false);
 
         return new ArtistViewHolder(view);
     }
