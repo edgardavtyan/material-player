@@ -1,11 +1,13 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.edavtyan.materialplayer.app.ArtistActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.data.MusicArtist;
 
@@ -49,14 +51,22 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         return artists.size();
     }
 
-    public class ArtistViewHolder extends RecyclerView.ViewHolder {
+    public class ArtistViewHolder extends RecyclerView.ViewHolder
+    implements View.OnClickListener{
         TextView titleTextView;
         TextView countsTextView;
 
         public ArtistViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_artist_title);
             countsTextView = (TextView) itemView.findViewById(R.id.listitem_artist_counts);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
+            itemView.getContext().startActivity(i);
         }
     }
 }

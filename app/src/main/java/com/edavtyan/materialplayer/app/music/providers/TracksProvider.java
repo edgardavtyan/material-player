@@ -29,6 +29,7 @@ public class TracksProvider {
 
     private void loadTracks() {
         Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
         String[] projection = {
                 MediaStore.Audio.Media.TRACK,
                 MediaStore.Audio.Media.TITLE,
@@ -37,7 +38,7 @@ public class TracksProvider {
                 MediaStore.Audio.Media.DURATION
         };
 
-        Cursor cursor = contentResolver.query(musicUri, projection, null, null, null);
+        Cursor cursor = contentResolver.query(musicUri, projection, null, null, sortOrder);
 
         while (cursor.moveToNext()) {
             long index = cursor.getLong(0);
