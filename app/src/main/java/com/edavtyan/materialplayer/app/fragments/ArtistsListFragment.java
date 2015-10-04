@@ -29,7 +29,7 @@ public class ArtistsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_artists_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_artists, container, false);
 
         RecyclerView artistsRecyclerView = (RecyclerView) view.findViewById(R.id.artists_listview);
         artistsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

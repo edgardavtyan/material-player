@@ -10,9 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.AlbumAdapter;
-import com.edavtyan.materialplayer.app.adapters.ArtistAdapter;
 import com.edavtyan.materialplayer.app.music.providers.AlbumsProvider;
-import com.edavtyan.materialplayer.app.music.providers.ArtistsProvider;
 
 public class AlbumsListFragment extends Fragment {
     private AlbumsProvider albumsProvider;
@@ -31,7 +29,7 @@ public class AlbumsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_albums_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_albums, container, false);
 
         RecyclerView albumsRecyclerView = (RecyclerView) view.findViewById(R.id.albums_listview);
         albumsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
