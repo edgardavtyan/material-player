@@ -18,6 +18,8 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textAppearance="?attr/textAppearanceListItem"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:paddingLeft="?attr/listPreferredItemPaddingLeft"
             android:paddingRight="?attr/listPreferredItemPaddingRight"/>
 
