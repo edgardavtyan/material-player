@@ -10,18 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.ArtistAdapter;
-import com.edavtyan.materialplayer.app.music.MusicLibrary;
+import com.edavtyan.materialplayer.app.music.providers.ArtistsProvider;
 
 public class ArtistsListFragment extends Fragment {
-    private MusicLibrary library;
+    private ArtistsProvider artistsProvider;
     private ArtistAdapter artistAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        library = new MusicLibrary(getActivity());
-        artistAdapter = new ArtistAdapter(library.getArtists());
+        artistsProvider = new ArtistsProvider(getActivity());
+        artistAdapter = new ArtistAdapter(artistsProvider.getArtists());
     }
 
     @Nullable

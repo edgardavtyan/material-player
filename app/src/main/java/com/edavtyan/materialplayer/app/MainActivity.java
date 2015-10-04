@@ -4,11 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.ViewPropertyAnimator;
-import com.edavtyan.materialplayer.app.adapters.ArtistAdapter;
 import com.edavtyan.materialplayer.app.adapters.TabPagerFragmentAdapter;
 import com.edavtyan.materialplayer.app.music.MusicLibrary;
 
@@ -16,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
-    MusicLibrary library;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
