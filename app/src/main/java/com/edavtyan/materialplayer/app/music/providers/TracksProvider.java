@@ -33,7 +33,8 @@ public class TracksProvider {
                 MediaStore.Audio.Media.TRACK,
                 MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.ALBUM
+                MediaStore.Audio.Media.ALBUM,
+                MediaStore.Audio.Media.DURATION
         };
 
         Cursor cursor = contentResolver.query(musicUri, projection, null, null, null);
@@ -43,7 +44,8 @@ public class TracksProvider {
             String title = cursor.getString(1);
             String artist = cursor.getString(2);
             String album = cursor.getString(3);
-            MusicTrack track = new MusicTrack(index, title, artist, album);
+            long duration = cursor.getLong(4);
+            MusicTrack track = new MusicTrack(index, title, artist, album, duration);
             tracks.add(track);
         }
 

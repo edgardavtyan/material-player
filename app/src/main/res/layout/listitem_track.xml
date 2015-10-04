@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="?attr/listPreferredItemHeight"
+              android:gravity="center_vertical"
               android:clickable="true"
               android:focusable="true"
               android:background="?attr/selectableItemBackground"
@@ -12,8 +13,14 @@
     <TextView
             android:id="@+id/listitem_track_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItem"/>
+
+    <TextView
+            android:id="@+id/listitem_track_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"/>
 
 </LinearLayout>

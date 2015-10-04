@@ -1,31 +1,37 @@
 package com.edavtyan.materialplayer.app.music.data;
 
 public class MusicTrack {
-    public long Index;
-    public String Title;
-    public String Artist;
-    public String Album;
+    private long index;
+    private String title;
+    private String artist;
+    private String album;
+    private long duration;
 
     public long getIndex() {
-        return Index;
+        return index;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public String getArtist() {
-        return Artist;
+        return artist;
     }
 
     public String getAlbum() {
-        return Album;
+        return album;
     }
 
-    public MusicTrack(long index, String title, String artist, String album) {
-        Index = index;
-        Title = title;
-        Artist = artist;
-        Album = album;
+    public long getDuration() {
+        return duration;
+    }
+
+    public MusicTrack(long index, String title, String artist, String album, long duration) {
+        this.index = index;
+        this.title = title;
+        this.artist = artist;
+        this.album = album;
+        this.duration = duration;
     }
 }
