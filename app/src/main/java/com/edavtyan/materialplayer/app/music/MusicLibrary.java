@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import com.edavtyan.materialplayer.app.music.data.MusicAlbum;
+import com.edavtyan.materialplayer.app.music.data.MusicArtist;
+import com.edavtyan.materialplayer.app.music.data.MusicTrack;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MusicLibrary {
     /*

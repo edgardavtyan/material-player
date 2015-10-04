@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app.music;
+package com.edavtyan.materialplayer.app.music.data;
 
 public class MusicArtist {
     private long id;

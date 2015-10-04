@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.MusicArtist;
+import com.edavtyan.materialplayer.app.music.data.MusicArtist;
 
 import java.util.ArrayList;
 
