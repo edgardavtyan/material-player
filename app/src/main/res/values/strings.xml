@@ -1,4 +1,33 @@
 <resources>
     <string name="app_name">MaterialPlayer</string>
     <string name="search_title">Search</string>
+
+    <string name="artist_listitem_counts">%1$s | %2$s</string>
+
+    <plurals name="albums">
+        <item quantity="zero">No Albums</item>
+        <item quantity="one">%d Album</item>
+        <item quantity="two">%d Albums</item>
+        <item quantity="few">%d Albums</item>
+        <item quantity="many">%d Albums</item>
+        <item quantity="other">%d Albums</item>
+    </plurals>
+
+    <plurals name="artists">
+        <item quantity="zero">No Artists</item>
+        <item quantity="one">%d Artist</item>
+        <item quantity="two">%d Artists</item>
+        <item quantity="few">%d Artists</item>
+        <item quantity="many">%d Artists</item>
+        <item quantity="other">%d Artists</item>
+    </plurals>
+
+    <plurals name="tracks">
+        <item quantity="zero">No Tracks</item>
+        <item quantity="one">%d Track</item>
+        <item quantity="two">%d Tracks</item>
+        <item quantity="few">%d Tracks</item>
+        <item quantity="many">%d Tracks</item>
+        <item quantity="other">%d Tracks</item>
+    </plurals>
 </resources>

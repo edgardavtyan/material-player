@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.adapters;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,17 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
     @Override
     public void onBindViewHolder(ArtistViewHolder artistViewHolder, int i) {
-        artistViewHolder.titleTextView.setText(artists.get(i).getTitle());
+        MusicArtist artist = artists.get(i);
+        artistViewHolder.titleTextView.setText(artist.getTitle());
+
+        Resources res = artistViewHolder.itemView.getContext().getResources();
+
+        String albumsCount = res.getQuantityString(R.plurals.albums,
+                artist.getAlbumsCount(), artist.getAlbumsCount());
+        String tracksCount = res.getQuantityString(R.plurals.tracks,
+                artist.getTracksCount(), artist.getTracksCount());
+        String counts = res.getString(R.string.artist_listitem_counts, albumsCount, tracksCount);
+        artistViewHolder.countsTextView.setText(counts);
     }
 
     @Override
@@ -40,10 +51,12 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
+        TextView countsTextView;
 
         public ArtistViewHolder(View itemView) {
             super(itemView);
             titleTextView = (TextView) itemView.findViewById(R.id.artist_title);
+            countsTextView = (TextView) itemView.findViewById(R.id.artist_counts);
         }
     }
 }
