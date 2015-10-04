@@ -55,8 +55,8 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
         public ArtistViewHolder(View itemView) {
             super(itemView);
-            titleTextView = (TextView) itemView.findViewById(R.id.artist_title);
-            countsTextView = (TextView) itemView.findViewById(R.id.artist_counts);
+            titleTextView = (TextView) itemView.findViewById(R.id.listitem_artist_title);
+            countsTextView = (TextView) itemView.findViewById(R.id.listitem_artist_counts);
         }
     }
 }

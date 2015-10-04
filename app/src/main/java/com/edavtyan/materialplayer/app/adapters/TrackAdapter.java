@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.data.MusicArtist;
 import com.edavtyan.materialplayer.app.music.data.MusicTrack;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
 
         public TrackViewHolder(View itemView) {
             super(itemView);
-            titleTextView = (TextView) itemView.findViewById(R.id.track_title);
+            titleTextView = (TextView) itemView.findViewById(R.id.listitem_track_title);
         }
     }
 }

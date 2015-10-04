@@ -11,13 +11,13 @@
               android:paddingRight="?attr/listPreferredItemPaddingRight">
 
     <TextView
-            android:id="@+id/artist_title"
+            android:id="@+id/listitem_artist_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItem"/>
 
     <TextView
-            android:id="@+id/artist_counts"
+            android:id="@+id/listitem_artist_counts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
