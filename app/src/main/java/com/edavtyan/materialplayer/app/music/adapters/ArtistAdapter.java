@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app.adapters;
+package com.edavtyan.materialplayer.app.music.adapters;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;

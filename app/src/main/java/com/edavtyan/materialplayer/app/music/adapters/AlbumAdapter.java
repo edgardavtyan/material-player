@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app.adapters;
+package com.edavtyan.materialplayer.app.music.adapters;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
@@ -47,6 +47,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         Picasso.with(albumViewHolder.itemView.getContext())
                 .load(new File(albums.get(i).getArt()))
+                .placeholder(R.drawable.ic_albumart_placeholder)
                 .resize(100, 100)
                 .into(albumViewHolder.artImageView);
     }
