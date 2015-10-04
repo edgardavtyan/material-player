@@ -2,8 +2,9 @@ package com.edavtyan.materialplayer.app;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
 import com.edavtyan.materialplayer.app.adapters.ArtistAdapter;
 import com.edavtyan.materialplayer.app.music.MusicLibrary;
 
@@ -19,10 +20,11 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         library = new MusicLibrary(this);
 
-        ArtistAdapter artistAdapter = new ArtistAdapter(this, library.getArtists());
+        ArtistAdapter artistAdapter = new ArtistAdapter(library.getArtists());
 
-        ListView artistsListView = (ListView) findViewById(R.id.artists_listview);
-        artistsListView.setAdapter(artistAdapter);
+        RecyclerView artistsRecyclerView = (RecyclerView) findViewById(R.id.artists_listview);
+        artistsRecyclerView.setAdapter(artistAdapter);
+        artistsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void initToolbar() {

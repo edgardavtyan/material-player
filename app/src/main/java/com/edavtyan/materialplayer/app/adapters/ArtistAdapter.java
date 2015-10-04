@@ -1,35 +1,49 @@
 package com.edavtyan.materialplayer.app.adapters;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.MusicArtist;
 
 import java.util.ArrayList;
 
-public class ArtistAdapter extends ArrayAdapter<MusicArtist> {
-    public ArtistAdapter(Context context, ArrayList<MusicArtist> artists) {
-        super(context, 0, artists);
+public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
+    private ArrayList<MusicArtist> artists;
+
+
+    public ArtistAdapter(ArrayList<MusicArtist> artists) {
+        this.artists = artists;
+    }
+
+
+    @Override
+    public ArtistViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater
+                .from(viewGroup.getContext())
+                .inflate(R.layout.artist_listitem, viewGroup, false);
+
+        return new ArtistViewHolder(view);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        MusicArtist artist = getItem(position);
+    public void onBindViewHolder(ArtistViewHolder artistViewHolder, int i) {
+        artistViewHolder.titleTextView.setText(artists.get(i).getTitle());
+    }
 
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.artist_listitem, parent, false);
+    @Override
+    public int getItemCount() {
+        return artists.size();
+    }
 
+    public class ArtistViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView;
+
+        public ArtistViewHolder(View itemView) {
+            super(itemView);
+            titleTextView = (TextView) itemView.findViewById(R.id.artist_title);
         }
-
-        TextView artistTitle = (TextView) convertView.findViewById(R.id.artist_title);
-
-        artistTitle.setText(artist.getTitle());
-
-        return convertView;
     }
 }
