@@ -1,14 +1,20 @@
 package com.edavtyan.materialplayer.app.music.data;
 
 public class MusicTrack {
-    private long index;
-    private String title;
-    private String artist;
-    private String album;
-    private long duration;
+    private final long index;
+    private final long duration;
+    private final String title;
+    private final String artist;
+    private final String album;
+
+
 
     public long getIndex() {
         return index;
+    }
+
+    public long getDuration() {
+        return duration;
     }
 
     public String getTitle() {
@@ -23,9 +29,7 @@ public class MusicTrack {
         return album;
     }
 
-    public long getDuration() {
-        return duration;
-    }
+
 
     public MusicTrack(long index, String title, String artist, String album, long duration) {
         this.index = index;

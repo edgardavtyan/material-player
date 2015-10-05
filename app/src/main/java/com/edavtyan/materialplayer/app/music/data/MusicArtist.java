@@ -1,10 +1,11 @@
 package com.edavtyan.materialplayer.app.music.data;
 
 public class MusicArtist {
-    private long id;
-    private String title;
-    private int albumsCount;
-    private int tracksCount;
+    private final long id;
+    private final String title;
+    private final int albumsCount;
+    private final int tracksCount;
+
 
 
     public long getId() {
@@ -22,6 +23,7 @@ public class MusicArtist {
     public int getTracksCount() {
         return tracksCount;
     }
+
 
 
     public MusicArtist(long id, String title, int albumsCount, int tracksCount) {

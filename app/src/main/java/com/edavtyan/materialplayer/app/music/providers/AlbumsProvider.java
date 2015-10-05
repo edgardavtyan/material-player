@@ -15,9 +15,11 @@ public class AlbumsProvider {
     private ArrayList<MusicAlbum> albums;
 
 
+
     public ArrayList<MusicAlbum> getAlbums() {
         return albums;
     }
+
 
 
     public AlbumsProvider(Context context) {
@@ -25,6 +27,7 @@ public class AlbumsProvider {
         albums = new ArrayList<>();
         loadAlbums();
     }
+
 
 
     private void loadAlbums() {

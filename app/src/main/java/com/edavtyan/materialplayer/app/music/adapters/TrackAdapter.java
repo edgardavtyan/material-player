@@ -16,9 +16,11 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
     private ArrayList<MusicTrack> tracks;
 
 
+
     public TrackAdapter(ArrayList<MusicTrack> tracks) {
         this.tracks = tracks;
     }
+
 
 
     @Override
@@ -44,19 +46,6 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         trackViewHolder.infoTextView.setText(info);
     }
 
-    private String getDurationStr(long duration) {
-        long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-        long seconds = totalSeconds % 60;
-        long minutes = totalSeconds / 60;
-        long hours = minutes / 60;
-
-        if (hours == 0) {
-            return String.format("%02d:%02d", minutes, seconds);
-        } else {
-            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
-        }
-    }
-
     @Override
     public int getItemCount() {
         return tracks.size();
@@ -71,5 +60,21 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_track_title);
             infoTextView = (TextView) itemView.findViewById(R.id.listitem_track_info);
         }
+    }
+
+
+
+    private String getDurationStr(long duration) {
+        long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+        long seconds = totalSeconds % 60;
+        long minutes = totalSeconds / 60;
+        long hours = minutes / 60;
+
+        if (hours == 0) {
+            return String.format("%02d:%02d", minutes, seconds);
+        } else {
+            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        }
+
     }
 }

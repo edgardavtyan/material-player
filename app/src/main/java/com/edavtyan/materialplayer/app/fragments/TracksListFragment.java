@@ -13,14 +13,15 @@ import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 
 public class TracksListFragment extends Fragment {
-    private TracksProvider tracksProvider;
     private TrackAdapter trackAdapter;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        tracksProvider = new TracksProvider(getActivity());
+        TracksProvider tracksProvider = new TracksProvider(getActivity());
         trackAdapter = new TrackAdapter(tracksProvider.getTracks());
     }
 

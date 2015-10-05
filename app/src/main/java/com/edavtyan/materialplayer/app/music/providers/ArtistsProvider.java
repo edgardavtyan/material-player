@@ -14,9 +14,11 @@ public class ArtistsProvider {
     private ArrayList<MusicArtist> artists;
 
 
+
     public ArrayList<MusicArtist> getArtists() {
         return artists;
     }
+
 
 
     public ArtistsProvider(Context context) {
@@ -24,6 +26,7 @@ public class ArtistsProvider {
         artists = new ArrayList<>();
         loadArtists();
     }
+
 
 
     private void loadArtists() {

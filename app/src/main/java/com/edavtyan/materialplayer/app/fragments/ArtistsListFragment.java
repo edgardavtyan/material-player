@@ -13,14 +13,15 @@ import com.edavtyan.materialplayer.app.music.adapters.ArtistAdapter;
 import com.edavtyan.materialplayer.app.music.providers.ArtistsProvider;
 
 public class ArtistsListFragment extends Fragment {
-    private ArtistsProvider artistsProvider;
     private ArtistAdapter artistAdapter;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        artistsProvider = new ArtistsProvider(getActivity());
+        ArtistsProvider artistsProvider = new ArtistsProvider(getActivity());
         artistAdapter = new ArtistAdapter(artistsProvider.getArtists());
     }
 

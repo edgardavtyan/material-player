@@ -18,9 +18,11 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     private ArrayList<MusicAlbum> albums;
 
 
+
     public AlbumAdapter(ArrayList<MusicAlbum> albums) {
         this.albums = albums;
     }
+
 
 
     @Override

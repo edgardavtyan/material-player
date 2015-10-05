@@ -8,15 +8,19 @@ import com.edavtyan.materialplayer.app.fragments.ArtistsListFragment;
 import com.edavtyan.materialplayer.app.fragments.TracksListFragment;
 
 public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
-    String[] tabNames = {
+    private String[] tabNames = {
             "Artists",
             "Albums",
             "Tracks"
     };
 
+
+
     public TabPagerFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
+
+
 
     @Override
     public CharSequence getPageTitle(int position) {

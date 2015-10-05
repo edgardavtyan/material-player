@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initTabs();
     }
+
+
 
     private void initTabs() {
         TabPagerFragmentAdapter adapter = new TabPagerFragmentAdapter(getSupportFragmentManager());

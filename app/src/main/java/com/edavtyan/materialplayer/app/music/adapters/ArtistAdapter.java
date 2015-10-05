@@ -17,9 +17,11 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     private ArrayList<MusicArtist> artists;
 
 
+
     public ArtistAdapter(ArrayList<MusicArtist> artists) {
         this.artists = artists;
     }
+
 
 
     @Override
@@ -51,8 +53,9 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         return artists.size();
     }
 
-    public class ArtistViewHolder extends RecyclerView.ViewHolder
-    implements View.OnClickListener{
+    public class ArtistViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener{
         TextView titleTextView;
         TextView countsTextView;
 

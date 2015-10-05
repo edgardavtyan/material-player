@@ -15,9 +15,11 @@ public class TracksProvider {
     private ArrayList<MusicTrack> tracks;
 
 
+
     public ArrayList<MusicTrack> getTracks() {
         return tracks;
     }
+
 
 
     public TracksProvider(Context context) {
@@ -25,6 +27,7 @@ public class TracksProvider {
         tracks = new ArrayList<>();
         loadTracks();
     }
+
 
 
     private void loadTracks() {

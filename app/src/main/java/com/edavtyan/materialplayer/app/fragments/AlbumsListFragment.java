@@ -13,14 +13,15 @@ import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
 import com.edavtyan.materialplayer.app.music.providers.AlbumsProvider;
 
 public class AlbumsListFragment extends Fragment {
-    private AlbumsProvider albumsProvider;
     private AlbumAdapter albumAdapter;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        albumsProvider = new AlbumsProvider(getActivity());
+        AlbumsProvider albumsProvider = new AlbumsProvider(getActivity());
         albumAdapter = new AlbumAdapter(albumsProvider.getAlbums());
     }
 
