@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 public class ArtistActivity extends AppCompatActivity {
+    public static final String EXTRA_ARTIST_TITLE = "artist_title";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +20,7 @@ public class ArtistActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
-        collapsingToolbar.setTitle("Acoustic Alchemy");
+
+        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_TITLE));
     }
 }
