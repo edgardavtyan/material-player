@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters2.TrackAdapter;
 
+// TODO: Implement CursorLoader
 public class TracksListFragment extends Fragment {
     private TrackAdapter trackAdapter;
 
