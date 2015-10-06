@@ -18,9 +18,6 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
-    // Constants
-    // ============================================================================================
-
     public static final Uri URI = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
 
     public static final String SORT_ORDER = MediaStore.Audio.Albums.ALBUM + " ASC";
@@ -39,25 +36,13 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     public static final int COLUMN_SONGS_COUNT = 3;
     public static final int COLUMN_ART = 4;
 
-    // ============================================================================================
-    // ============================================================================================
 
-
-
-    // Fields
-    // ============================================================================================
 
     private CursorAdapter cursorAdapter;
 
     private Context context;
 
-    // ============================================================================================
-    // ============================================================================================
 
-
-
-    // Constructors
-    // ============================================================================================
 
     public AlbumAdapter(Context context, Cursor cursor) {
         this.context = context;
@@ -89,13 +74,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         };
     }
 
-    // ============================================================================================
-    // ============================================================================================
 
-
-
-    // RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> implementation
-    // ============================================================================================
 
     @Override
     public AlbumViewHolder onCreateViewHolder(ViewGroup parent, int i) {
@@ -128,13 +107,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     }
 
-    // ============================================================================================
-    // ============================================================================================
 
-
-
-    // Private methods
-    // ============================================================================================
 
     private String getAdditionalInfo(Cursor cursor) {
         Resources res = context.getResources();
@@ -149,7 +122,4 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
                 cursor.getString(COLUMN_ARTIST),
                 tracksCount);
     }
-
-    // ============================================================================================
-    // ============================================================================================
 }

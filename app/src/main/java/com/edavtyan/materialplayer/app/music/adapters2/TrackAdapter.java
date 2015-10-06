@@ -29,6 +29,13 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
             MediaStore.Audio.Media.DURATION
     };
 
+    public static final int COLUMN_ID = 0;
+    public static final int COLUMN_TRACK = 1;
+    public static final int COLUMN_TITLE = 2;
+    public static final int COLUMN_ARTIST = 3;
+    public static final int COLUMN_ALBUM = 4;
+    public static final int COLUMN_DURATION = 5;
+
 
 
     private CursorAdapter cursorAdapter;
@@ -39,26 +46,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
 
     public TrackAdapter(Context context, Cursor cursor) {
         this.context = context;
-
-        cursorAdapter = new CursorAdapter(context, cursor, 0) {
-            @Override
-            public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                View view =  LayoutInflater
-                        .from(parent.getContext())
-                        .inflate(R.layout.listitem_track, parent, false);
-
-                TrackViewHolder viewHolder = new TrackViewHolder(view);
-                view.setTag(viewHolder);
-                return view;
-            }
-
-            @Override
-            public void bindView(View view, Context context, Cursor cursor) {
-                TrackViewHolder vh = (TrackViewHolder) view.getTag();
-                vh.titleTextView.setText(cursor.getString(2));
-                vh.infoTextView.setText(getInfo(cursor, vh));
-            }
-        };
+        createCursorAdapter(context, cursor);
     }
 
 
@@ -106,10 +94,37 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         }
     }
 
-    private String getInfo(Cursor cursor, TrackViewHolder vh) {
-        String durationStr = getDurationStr(cursor.getLong(5));
-        Resources res = vh.itemView.getContext().getResources();
-        return res.getString(R.string.listitem_track_info,
-                durationStr, cursor.getString(3), cursor.getString(4));
+    private String getInfo(Cursor cursor) {
+        String durationStr = getDurationStr(cursor.getLong(COLUMN_DURATION));
+
+        Resources res = context.getResources();
+
+        return res.getString(
+                R.string.listitem_track_info,
+                durationStr,
+                cursor.getString(COLUMN_ARTIST),
+                cursor.getString(COLUMN_ALBUM));
+    }
+
+    private void createCursorAdapter(Context context, Cursor cursor) {
+        cursorAdapter = new CursorAdapter(context, cursor, 0) {
+            @Override
+            public View newView(Context context, Cursor cursor, ViewGroup parent) {
+                View view =  LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.listitem_track, parent, false);
+
+                TrackViewHolder viewHolder = new TrackViewHolder(view);
+                view.setTag(viewHolder);
+                return view;
+            }
+
+            @Override
+            public void bindView(View view, Context context, Cursor cursor) {
+                TrackViewHolder vh = (TrackViewHolder) view.getTag();
+                vh.titleTextView.setText(cursor.getString(COLUMN_TITLE));
+                vh.infoTextView.setText(getInfo(cursor));
+            }
+        };
     }
 }

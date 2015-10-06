@@ -16,15 +16,12 @@ import com.edavtyan.materialplayer.app.music.adapters2.TrackAdapter;
 public class TracksListFragment extends Fragment {
     private TrackAdapter trackAdapter;
 
-    private Cursor cursor;
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        cursor = getContext().getContentResolver().query(
+        Cursor cursor = getContext().getContentResolver().query(
                 TrackAdapter.URI, TrackAdapter.PROJECTION,
                 null, null, TrackAdapter.SORT_ORDER);
 

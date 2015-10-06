@@ -22,7 +22,7 @@ public class AlbumsListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Cursor cursor = getContext().getContentResolver().query(
-                  AlbumAdapter.URI, AlbumAdapter.PROJECTION,
+                AlbumAdapter.URI, AlbumAdapter.PROJECTION,
                 null, null, AlbumAdapter.SORT_ORDER);
 
         albumAdapter = new AlbumAdapter(getContext(), cursor);
