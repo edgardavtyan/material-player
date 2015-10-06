@@ -67,7 +67,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         public AlbumViewHolder(View itemView) {
             super(itemView);
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_album_title);
-            countsTextView = (TextView) itemView.findViewById(R.id.listitem_album_counts);
+            countsTextView = (TextView) itemView.findViewById(R.id.listitem_album_info);
             artImageView = (ImageView) itemView.findViewById(R.id.listitem_album_art);
         }
     }

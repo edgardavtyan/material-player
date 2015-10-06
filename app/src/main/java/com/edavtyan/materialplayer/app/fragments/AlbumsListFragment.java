@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
-import com.edavtyan.materialplayer.app.music.providers.AlbumsProvider;
+import com.edavtyan.materialplayer.app.music.adapters2.AlbumAdapter;
 
 public class AlbumsListFragment extends Fragment {
     private AlbumAdapter albumAdapter;
@@ -21,8 +21,11 @@ public class AlbumsListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AlbumsProvider albumsProvider = new AlbumsProvider(getActivity());
-        albumAdapter = new AlbumAdapter(albumsProvider.getAlbums());
+        Cursor cursor = getContext().getContentResolver().query(
+                  AlbumAdapter.URI, AlbumAdapter.PROJECTION,
+                null, null, AlbumAdapter.SORT_ORDER);
+
+        albumAdapter = new AlbumAdapter(getContext(), cursor);
     }
 
     @Nullable

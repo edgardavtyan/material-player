@@ -29,7 +29,7 @@
                 android:ellipsize="end"/>
 
         <TextView
-                android:id="@+id/listitem_album_counts"
+                android:id="@+id/listitem_album_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
