@@ -33,18 +33,15 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     public static final int COLUMN_TRACKS_COUNT = 3;
 
 
-
     private CursorAdapter cursorAdapter;
 
     private Context context;
-
 
 
     public ArtistAdapter(Context context, Cursor cursor) {
         this.context = context;
         createCursorAdapter(cursor);
     }
-
 
 
     public void swapCursor(Cursor cursor) {

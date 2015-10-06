@@ -20,7 +20,6 @@ public class ArtistsListFragment extends Fragment implements LoaderManager.Loade
     private static final int LOADER_ID = 0;
 
 
-
     private ArtistAdapter artistAdapter;
 
 
@@ -52,13 +51,13 @@ public class ArtistsListFragment extends Fragment implements LoaderManager.Loade
         getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
+
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new ArtistLoader(getContext());
     }
 
-
-    
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         artistAdapter.swapCursor(data);
