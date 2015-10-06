@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.widget.CursorAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.ArtistActivity;
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 
-public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
+public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.ArtistViewHolder> {
     public static final Uri URI = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
 
     public static final String SORT_ORDER = MediaStore.Audio.Artists.ARTIST + " ASC";
@@ -27,45 +27,39 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             MediaStore.Audio.Artists.NUMBER_OF_TRACKS,
     };
 
-    public static final int COLUMN_ID = 0;
     public static final int COLUMN_ARTIST = 1;
     public static final int COLUMN_ALBUMS_COUNT = 2;
     public static final int COLUMN_TRACKS_COUNT = 3;
 
 
-    private CursorAdapter cursorAdapter;
-
-    private Context context;
-
 
     public ArtistAdapter(Context context, Cursor cursor) {
-        this.context = context;
-        createCursorAdapter(cursor);
-    }
-
-
-    public void swapCursor(Cursor cursor) {
-        cursorAdapter.swapCursor(cursor);
-        notifyDataSetChanged();
+        super(context, cursor);
     }
 
 
 
     @Override
-    public ArtistViewHolder onCreateViewHolder(ViewGroup parent, int position) {
-        View v = cursorAdapter.newView(context, cursorAdapter.getCursor(), parent);
-        return new ArtistViewHolder(v);
+    protected View newView(Context context, Cursor cursor, ViewGroup parent) {
+        View view = LayoutInflater
+                .from(context)
+                .inflate(R.layout.listitem_artist, parent, false);
+
+        ArtistViewHolder vh = new ArtistViewHolder(view);
+        view.setTag(vh);
+        return view;
     }
 
     @Override
-    public void onBindViewHolder(ArtistViewHolder holder, int position) {
-        cursorAdapter.getCursor().moveToPosition(position);
-        cursorAdapter.bindView(holder.itemView, context, cursorAdapter.getCursor());
+    protected void bindView(View view, Context context, Cursor cursor) {
+        ArtistViewHolder vh = (ArtistViewHolder) view.getTag();
+        vh.titleTextView.setText(cursor.getString(COLUMN_ARTIST));
+        vh.countsTextView.setText(getArtistCounts(cursor));
     }
 
     @Override
-    public int getItemCount() {
-        return cursorAdapter.getCount();
+    protected ArtistViewHolder createViewHolder(View view, ViewGroup parent, int position) {
+        return new ArtistViewHolder(view);
     }
 
     public class ArtistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -83,8 +77,8 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         public void onClick(View view) {
             Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
 
-            cursorAdapter.getCursor().moveToPosition(getAdapterPosition());
-            String artistTitle = cursorAdapter.getCursor().getString(COLUMN_ARTIST);
+            getCursor().moveToPosition(getAdapterPosition());
+            String artistTitle = getCursor().getString(COLUMN_ARTIST);
             i.putExtra(ArtistActivity.EXTRA_ARTIST_TITLE, artistTitle);
 
             itemView.getContext().startActivity(i);
@@ -92,28 +86,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     }
 
 
-
-    private void createCursorAdapter(Cursor cursor) {
-        cursorAdapter = new CursorAdapter(context, cursor, 0) {
-            @Override
-            public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                View view = LayoutInflater
-                        .from(context)
-                        .inflate(R.layout.listitem_artist, parent, false);
-
-                ArtistViewHolder vh = new ArtistViewHolder(view);
-                view.setTag(vh);
-                return view;
-            }
-
-            @Override
-            public void bindView(View view, Context context, Cursor cursor) {
-                ArtistViewHolder vh = (ArtistViewHolder) view.getTag();
-                vh.titleTextView.setText(cursor.getString(COLUMN_ARTIST));
-                vh.countsTextView.setText(getArtistCounts(cursor));
-            }
-        };
-    }
 
     private String getArtistCounts(Cursor cursor) {
         Resources res = context.getResources();

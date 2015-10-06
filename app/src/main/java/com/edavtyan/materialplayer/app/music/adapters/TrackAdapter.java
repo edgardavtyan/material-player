@@ -5,17 +5,17 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.widget.CursorAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 
 import java.util.concurrent.TimeUnit;
 
-public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHolder> {
+public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> {
     public static final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
     public static final String SORT_ORDER = MediaStore.Audio.Media.TITLE + " ASC";
@@ -29,8 +29,6 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
             MediaStore.Audio.Media.DURATION
     };
 
-    public static final int COLUMN_ID = 0;
-    public static final int COLUMN_TRACK = 1;
     public static final int COLUMN_TITLE = 2;
     public static final int COLUMN_ARTIST = 3;
     public static final int COLUMN_ALBUM = 4;
@@ -38,34 +36,33 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
 
 
 
-    private CursorAdapter cursorAdapter;
-
-    private Context context;
-
-
-
     public TrackAdapter(Context context, Cursor cursor) {
-        this.context = context;
-        createCursorAdapter(context, cursor);
+        super(context, cursor);
     }
 
 
 
     @Override
-    public TrackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = cursorAdapter.newView(context, cursorAdapter.getCursor(), parent);
-        return new TrackViewHolder(v);
+    protected View newView(Context context, Cursor cursor, ViewGroup parent) {
+        View view = LayoutInflater
+                .from(context)
+                .inflate(R.layout.listitem_track, parent, false);
+
+        TrackViewHolder vh = new TrackViewHolder(view);
+        view.setTag(vh);
+        return view;
     }
 
     @Override
-    public void onBindViewHolder(TrackViewHolder holder, int position) {
-        cursorAdapter.getCursor().moveToPosition(position);
-        cursorAdapter.bindView(holder.itemView, context, cursorAdapter.getCursor());
+    protected void bindView(View view, Context context, Cursor cursor) {
+        TrackViewHolder vh = (TrackViewHolder) view.getTag();
+        vh.titleTextView.setText(cursor.getString(COLUMN_TITLE));
+        vh.infoTextView.setText(getInfo(cursor));
     }
 
     @Override
-    public int getItemCount() {
-        return cursorAdapter.getCount();
+    protected TrackViewHolder createViewHolder(View view, ViewGroup parent, int position) {
+        return new TrackViewHolder(view);
     }
 
     public class TrackViewHolder extends RecyclerView.ViewHolder {
@@ -104,27 +101,5 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
                 durationStr,
                 cursor.getString(COLUMN_ARTIST),
                 cursor.getString(COLUMN_ALBUM));
-    }
-
-    private void createCursorAdapter(Context context, Cursor cursor) {
-        cursorAdapter = new CursorAdapter(context, cursor, 0) {
-            @Override
-            public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                View view =  LayoutInflater
-                        .from(parent.getContext())
-                        .inflate(R.layout.listitem_track, parent, false);
-
-                TrackViewHolder viewHolder = new TrackViewHolder(view);
-                view.setTag(viewHolder);
-                return view;
-            }
-
-            @Override
-            public void bindView(View view, Context context, Cursor cursor) {
-                TrackViewHolder vh = (TrackViewHolder) view.getTag();
-                vh.titleTextView.setText(cursor.getString(COLUMN_TITLE));
-                vh.infoTextView.setText(getInfo(cursor));
-            }
-        };
     }
 }
