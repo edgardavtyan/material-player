@@ -47,6 +47,13 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
 
 
+    public void swapCursor(Cursor cursor) {
+        cursorAdapter.swapCursor(cursor);
+        notifyDataSetChanged();
+    }
+
+
+
     @Override
     public ArtistViewHolder onCreateViewHolder(ViewGroup parent, int position) {
         View v = cursorAdapter.newView(context, cursorAdapter.getCursor(), parent);

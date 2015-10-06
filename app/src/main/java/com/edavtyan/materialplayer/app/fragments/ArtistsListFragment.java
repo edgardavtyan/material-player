@@ -1,9 +1,13 @@
 package com.edavtyan.materialplayer.app.fragments;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +16,11 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.ArtistAdapter;
 
-public class ArtistsListFragment extends Fragment {
+public class ArtistsListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+    private static final int LOADER_ID = 0;
+
+
+
     private ArtistAdapter artistAdapter;
 
 
@@ -21,13 +29,7 @@ public class ArtistsListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Cursor cursor = getContext().getContentResolver().query(
-                ArtistAdapter.URI,
-                ArtistAdapter.PROJECTION,
-                null, null,
-                ArtistAdapter.SORT_ORDER);
-
-        artistAdapter = new ArtistAdapter(getContext(), cursor);
+        artistAdapter = new ArtistAdapter(getContext(), null);
     }
 
     @Nullable
@@ -42,5 +44,43 @@ public class ArtistsListFragment extends Fragment {
         artistsRecyclerView.setAdapter(artistAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getLoaderManager().initLoader(LOADER_ID, null, this);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new ArtistLoader(getContext());
+    }
+
+
+    
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        artistAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        artistAdapter.swapCursor(null);
+    }
+
+    private static class ArtistLoader extends CursorLoader {
+        public ArtistLoader(Context context) {
+            super(context);
+        }
+
+        @Override
+        public Cursor loadInBackground() {
+            return getContext().getContentResolver().query(
+                    ArtistAdapter.URI,
+                    ArtistAdapter.PROJECTION,
+                    null, null,
+                    ArtistAdapter.SORT_ORDER);
+        }
     }
 }
