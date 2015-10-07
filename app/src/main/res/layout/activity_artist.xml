@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/artist_appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -38,8 +39,19 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin"/>
 
+            <TextView
+                android:id="@+id/artist_title_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/artist_tracks_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>
