@@ -9,12 +9,6 @@ import android.view.WindowManager;
 import com.edavtyan.materialplayer.app.adapters.TabPagerFragmentAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolbar;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTabs() {
         TabPagerFragmentAdapter adapter = new TabPagerFragmentAdapter(getSupportFragmentManager());
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
     }
 
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
         toolbar.inflateMenu(R.menu.menu);
     }
