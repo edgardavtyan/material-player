@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.edavtyan.materialplayer.app.AlbumActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.squareup.picasso.Picasso;
@@ -30,6 +32,7 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
             MediaStore.Audio.Albums.ALBUM_ART
     };
 
+    public static final int COLUMN_ID = 0;
     public static final int COLUMN_TITLE = 1;
     public static final int COLUMN_ARTIST = 2;
     public static final int COLUMN_SONGS_COUNT = 3;
@@ -79,6 +82,18 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
 
         public AlbumViewHolder(View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getCursor().moveToPosition(getAdapterPosition());
+
+                    Intent i = new Intent(context, AlbumActivity.class);
+                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_ID));
+                    context.startActivity(i);
+                }
+            });
+
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_album_title);
             infoTextView = (TextView) itemView.findViewById(R.id.listitem_album_info);
             artImageView = (ImageView) itemView.findViewById(R.id.listitem_album_art);

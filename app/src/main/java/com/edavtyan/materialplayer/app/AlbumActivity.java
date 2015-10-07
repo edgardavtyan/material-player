@@ -8,18 +8,21 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 
-public class ArtistActivity
+public class AlbumActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
-    public static final String EXTRA_ARTIST_TITLE = "artist_title";
-    private static final int LOADER_ID = 1;
+
+    public static final String EXTRA_ALBUM_TITLE = "album_title";
+    public static final String EXTRA_ALBUM_ART = "album_art";
+    public static final String EXTRA_ALBUM_ID = "album_id";
+
+    public static final int LOADER_ID = 2;
+
 
 
     private TrackAdapter trackAdapter;
@@ -29,22 +32,19 @@ public class ArtistActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artist);
-
-        getLoaderManager().initLoader(LOADER_ID, null, this);
-
+        setContentView(R.layout.activity_album);
+        getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
         trackAdapter = new TrackAdapter(this, null);
 
-        initToolbar();
-        initCollapsingToolbar();
-        initTracksView();
+        initRecyclerView();
     }
+
+
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new TracksLoader(this, getIntent().getStringExtra(EXTRA_ARTIST_TITLE));
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return new TracksLoader(this, getIntent().getIntExtra(EXTRA_ALBUM_ID, 0));
     }
-
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
@@ -57,11 +57,11 @@ public class ArtistActivity
     }
 
     private static class TracksLoader extends CursorLoader {
-        String artistTitle;
+        private final int albumId;
 
-        public TracksLoader(Context context, String artistTitle) {
+        public TracksLoader(Context context, int albumId) {
             super(context);
-            this.artistTitle = artistTitle;
+            this.albumId = albumId;
         }
 
         @Override
@@ -69,32 +69,17 @@ public class ArtistActivity
             return getContext().getContentResolver().query(
                     TrackAdapter.URI,
                     TrackAdapter.PROJECTION,
-                    MediaStore.Audio.Media.ARTIST + "='" + artistTitle + "'",
+                    MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
                     null,
                     TrackAdapter.SORT_ORDER);
         }
-
     }
 
 
 
-    private void initTracksView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.artist_tracks_listview);
-        recyclerView.setAdapter(trackAdapter);
+    private void initRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    private void initCollapsingToolbar() {
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
-
-        collapsingToolbar.setTitleEnabled(true);
-        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_TITLE));
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        recyclerView.setAdapter(trackAdapter);
     }
 }

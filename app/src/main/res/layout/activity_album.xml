@@ -8,14 +8,14 @@
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/artist_appbarlayout"
+        android:id="@+id/album_appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/artist_collapsingToolbar"
+            android:id="@+id/album_collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -33,7 +33,7 @@
                 app:layout_collapseMode="parallax"/>
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/artist_toolbar"
+                android:id="@+id/album_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -44,7 +44,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/artist_tracks_listview"
+        android:id="@+id/album_tracks_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
