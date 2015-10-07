@@ -9,18 +9,29 @@ import android.support.v7.widget.Toolbar;
 public class ArtistActivity extends AppCompatActivity {
     public static final String EXTRA_ARTIST_TITLE = "artist_title";
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        initToolbar();
+        initCollapsingToolbar();
+    }
 
+
+
+    private void initCollapsingToolbar() {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
 
         collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_TITLE));
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
