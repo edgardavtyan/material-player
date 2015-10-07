@@ -90,6 +90,8 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
 
                     Intent i = new Intent(context, AlbumActivity.class);
                     i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_ID));
+                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ART, getCursor().getString(COLUMN_ART));
+                    i.putExtra(AlbumActivity.EXTRA_ALBUM_TITLE, getCursor().getString(COLUMN_TITLE));
                     context.startActivity(i);
                 }
             });

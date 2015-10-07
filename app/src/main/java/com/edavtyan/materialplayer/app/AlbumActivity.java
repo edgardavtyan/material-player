@@ -8,10 +8,15 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 public class AlbumActivity
         extends AppCompatActivity
@@ -37,6 +42,7 @@ public class AlbumActivity
         trackAdapter = new TrackAdapter(this, null);
 
         initRecyclerView();
+        initCollapsingToolbar();
     }
 
 
@@ -76,6 +82,18 @@ public class AlbumActivity
     }
 
 
+
+    private void initCollapsingToolbar() {
+        CollapsingToolbarLayout toolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.album_collapsingToolbar);
+        toolbar.setTitleEnabled(true);
+        toolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
+
+        ImageView artView = (ImageView) findViewById(R.id.album_art);
+        Picasso.with(this)
+                .load(new File(getIntent().getStringExtra(EXTRA_ALBUM_ART)))
+                .into(artView);
+    }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
