@@ -12,6 +12,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.squareup.picasso.Picasso;
@@ -42,6 +43,7 @@ public class AlbumActivity
         trackAdapter = new TrackAdapter(this, null);
 
         initRecyclerView();
+        initToolbar();
         initCollapsingToolbar();
     }
 
@@ -82,6 +84,11 @@ public class AlbumActivity
     }
 
 
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.album_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     private void initCollapsingToolbar() {
         CollapsingToolbarLayout toolbar =
