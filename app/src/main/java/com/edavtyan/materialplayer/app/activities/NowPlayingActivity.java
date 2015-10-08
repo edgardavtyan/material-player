@@ -1,10 +1,11 @@
-package com.edavtyan.materialplayer.app;
+package com.edavtyan.materialplayer.app.activities;
 
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import com.edavtyan.materialplayer.app.R;
 
 public class NowPlayingActivity extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app;
+package com.edavtyan.materialplayer.app.activities;
 
 import android.app.LoaderManager;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.squareup.picasso.Picasso;
 

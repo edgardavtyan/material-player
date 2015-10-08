@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.edavtyan.materialplayer.app.ArtistActivity;
+import com.edavtyan.materialplayer.app.activities.ArtistActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 
@@ -77,7 +77,7 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
 
                 itemView.getContext().startActivity(i);
             });
-            
+
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_artist_title);
             countsTextView = (TextView) itemView.findViewById(R.id.listitem_artist_counts);
         }

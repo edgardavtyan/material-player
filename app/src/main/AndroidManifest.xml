@@ -9,7 +9,7 @@
                  android:icon="@mipmap/ic_launcher"
                  android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER"></category>
@@ -17,27 +17,27 @@
         </activity>
 
         <activity
-                android:name=".ArtistActivity"
+                android:name=".activities.ArtistActivity"
                 android:theme="@style/WindowTransparentStatus">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity" />
+                       android:value=".activities.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".AlbumActivity"
+        <activity android:name=".activities.AlbumActivity"
                   android:theme="@style/WindowTransparentStatus">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity" />
+                       android:value=".activities.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".NowPlayingActivity">
+        <activity android:name=".activities.NowPlayingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
