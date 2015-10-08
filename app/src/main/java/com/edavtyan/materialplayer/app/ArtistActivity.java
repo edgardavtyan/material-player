@@ -6,7 +6,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,8 @@ import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 public class ArtistActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
-    public static final String EXTRA_ARTIST_TITLE = "artist_title";
+    public static final String EXTRA_ARTIST_ID = "artist_id";
+    public static final String EXTRA_ARTIST_NAME = "artist_name";
 
     private static final int LOADER_ID = 1;
 
@@ -44,7 +44,7 @@ public class ArtistActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new TracksLoader(this, getIntent().getStringExtra(EXTRA_ARTIST_TITLE));
+        return new TracksLoader(this, getIntent().getIntExtra(EXTRA_ARTIST_ID, 0));
     }
 
 
@@ -59,11 +59,11 @@ public class ArtistActivity
     }
 
     private static class TracksLoader extends CursorLoader {
-        String artistTitle;
+        private int artistId;
 
-        public TracksLoader(Context context, String artistTitle) {
+        public TracksLoader(Context context, int artistId) {
             super(context);
-            this.artistTitle = artistTitle;
+            this.artistId = artistId;
         }
 
         @Override
@@ -71,7 +71,7 @@ public class ArtistActivity
             return getContext().getContentResolver().query(
                     TrackAdapter.URI,
                     TrackAdapter.PROJECTION,
-                    TrackAdapter.COLUMN_NAME_ARTIST_TITLE + "='" + artistTitle + "'",
+                    TrackAdapter.COLUMN_NAME_ARTIST_ID + "=" + artistId,
                     null,
                     TrackAdapter.SORT_ORDER);
         }
@@ -91,7 +91,7 @@ public class ArtistActivity
                 (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
 
         collapsingToolbar.setTitleEnabled(true);
-        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_TITLE));
+        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
     }
 
     private void initToolbar() {

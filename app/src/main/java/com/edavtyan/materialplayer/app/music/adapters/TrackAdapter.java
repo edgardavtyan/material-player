@@ -35,6 +35,7 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
 
     public static final String COLUMN_NAME_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
     public static final String COLUMN_NAME_ARTIST_TITLE = MediaStore.Audio.Media.ARTIST;
+    public static final String COLUMN_NAME_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
 
 
     private TrackInfoAmount infoAmount;
