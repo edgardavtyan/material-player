@@ -32,4 +32,13 @@
         <item quantity="many">%d Tracks</item>
         <item quantity="other">%d Tracks</item>
     </plurals>
+
+
+    <!-- Now playing controls descriptions -->
+    <string name="nowplaying_shuffle_description">Toggle shuffle</string>
+    <string name="nowplaying_rewind_description">Rewind</string>
+    <string name="nowplaying_playPause_description">Play/Pause</string>
+    <string name="nowplaying_fastForward_description">Fast forward</string>
+    <string name="nowplaying_repeat_description">Repeat</string>
+    <string name="nowplaying_albumArt_description">Album art</string>
 </resources>
