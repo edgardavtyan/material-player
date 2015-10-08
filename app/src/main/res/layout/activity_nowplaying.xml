@@ -49,35 +49,40 @@
         android:orientation="horizontal"
         android:background="@color/colorPrimaryDark">
 
-        <ImageView
+        <ImageButton
             android:src="@drawable/ic_shuffle_white_36dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
-        <ImageView
+        <ImageButton
             android:src="@drawable/ic_rewind_white_36dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
-        <ImageView
+        <ImageButton
             android:src="@drawable/ic_play_white_36dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
-        <ImageView
+        <ImageButton
             android:src="@drawable/ic_fast_forward_white_36dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
-        <ImageView
+        <ImageButton
             android:src="@drawable/ic_repeat_white_36dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
     </LinearLayout>
 
