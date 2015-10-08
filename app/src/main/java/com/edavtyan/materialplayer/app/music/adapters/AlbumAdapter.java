@@ -38,6 +38,8 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
     public static final int COLUMN_INDEX_SONGS_COUNT = 3;
     public static final int COLUMN_INDEX_ART = 4;
 
+    public static final String COLUMN_NAME_ID = MediaStore.Audio.Albums._ID;
+
 
     public AlbumAdapter(Context context, Cursor cursor) {
         super(context, cursor);
