@@ -30,9 +30,7 @@ public class AlbumActivity
     public static final int LOADER_ID = 2;
 
 
-
     private TrackAdapter trackAdapter;
-
 
 
     @Override
@@ -46,7 +44,6 @@ public class AlbumActivity
         initToolbar();
         initCollapsingToolbar();
     }
-
 
 
     @Override

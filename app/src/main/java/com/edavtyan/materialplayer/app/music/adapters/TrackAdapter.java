@@ -41,7 +41,6 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
     private TrackInfoAmount infoAmount;
 
 
-
     public TrackAdapter(Context context, Cursor cursor) {
         super(context, cursor);
         infoAmount = TrackInfoAmount.FULL;
@@ -53,13 +52,11 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
     }
 
 
-
     public enum TrackInfoAmount {
         TIME_ONLY,
         TIME_AND_ALBUM,
         FULL
     }
-
 
 
     @Override
@@ -95,7 +92,6 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
             infoTextView = (TextView) itemView.findViewById(R.id.listitem_track_info);
         }
     }
-
 
 
     private String getSelectedInfo() {

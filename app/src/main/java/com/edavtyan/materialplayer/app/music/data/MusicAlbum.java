@@ -8,7 +8,6 @@ public class MusicAlbum {
     private final String art;
 
 
-
     public long getId() {
         return id;
     }
@@ -28,7 +27,6 @@ public class MusicAlbum {
     public String getArt() {
         return art;
     }
-
 
 
     public MusicAlbum(long id, String title, String artist, int tracksCount, String art) {

@@ -7,7 +7,6 @@ public class MusicArtist {
     private final int tracksCount;
 
 
-
     public long getId() {
         return id;
     }
@@ -23,7 +22,6 @@ public class MusicArtist {
     public int getTracksCount() {
         return tracksCount;
     }
-
 
 
     public MusicArtist(long id, String title, int albumsCount, int tracksCount) {

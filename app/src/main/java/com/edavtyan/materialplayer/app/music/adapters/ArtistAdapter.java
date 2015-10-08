@@ -33,11 +33,9 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
     public static final int COLUMN_TRACKS_COUNT = 3;
 
 
-
     public ArtistAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
-
 
 
     @Override
@@ -85,7 +83,6 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
             itemView.getContext().startActivity(i);
         }
     }
-
 
 
     private String getArtistCounts(Cursor cursor) {

@@ -8,7 +8,6 @@ public class MusicTrack {
     private final String album;
 
 
-
     public long getIndex() {
         return index;
     }
@@ -28,7 +27,6 @@ public class MusicTrack {
     public String getAlbum() {
         return album;
     }
-
 
 
     public MusicTrack(long index, String title, String artist, String album, long duration) {

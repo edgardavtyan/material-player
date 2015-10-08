@@ -23,9 +23,7 @@ public class ArtistActivity
     private static final int LOADER_ID = 1;
 
 
-
     private TrackAdapter trackAdapter;
-
 
 
     @Override
@@ -77,7 +75,6 @@ public class ArtistActivity
         }
 
     }
-
 
 
     private void initTracksView() {

@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void initTabs() {
         TabPagerFragmentAdapter adapter = new TabPagerFragmentAdapter(getSupportFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);

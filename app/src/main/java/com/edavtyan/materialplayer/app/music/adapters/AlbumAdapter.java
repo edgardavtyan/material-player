@@ -39,13 +39,9 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
     public static final int COLUMN_INDEX_ART = 4;
 
 
-
-
-
     public AlbumAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
-
 
 
     @Override
@@ -104,7 +100,6 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
         }
 
     }
-
 
 
     private String getAdditionalInfo(Cursor cursor) {
