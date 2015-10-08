@@ -32,11 +32,13 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
             MediaStore.Audio.Albums.ALBUM_ART
     };
 
-    public static final int COLUMN_ID = 0;
-    public static final int COLUMN_TITLE = 1;
-    public static final int COLUMN_ARTIST = 2;
-    public static final int COLUMN_SONGS_COUNT = 3;
-    public static final int COLUMN_ART = 4;
+    public static final int COLUMN_INDEX_ID = 0;
+    public static final int COLUMN_INDEX_TITLE = 1;
+    public static final int COLUMN_INDEX_ARTIST = 2;
+    public static final int COLUMN_INDEX_SONGS_COUNT = 3;
+    public static final int COLUMN_INDEX_ART = 4;
+
+
 
 
 
@@ -60,11 +62,11 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
     @Override
     protected void bindView(View view, Context context, Cursor cursor) {
         AlbumViewHolder vh = (AlbumViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(COLUMN_TITLE));
+        vh.titleTextView.setText(cursor.getString(COLUMN_INDEX_TITLE));
         vh.infoTextView.setText(getAdditionalInfo(cursor));
 
         Picasso.with(context)
-                .load(new File(cursor.getString(COLUMN_ART)))
+                .load(new File(cursor.getString(COLUMN_INDEX_ART)))
                 .placeholder(R.drawable.ic_albumart_placeholder)
                 .resize(100, 100)
                 .into(vh.artImageView);
@@ -89,9 +91,9 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
                     getCursor().moveToPosition(getAdapterPosition());
 
                     Intent i = new Intent(context, AlbumActivity.class);
-                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_ID));
-                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ART, getCursor().getString(COLUMN_ART));
-                    i.putExtra(AlbumActivity.EXTRA_ALBUM_TITLE, getCursor().getString(COLUMN_TITLE));
+                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_INDEX_ID));
+                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ART, getCursor().getString(COLUMN_INDEX_ART));
+                    i.putExtra(AlbumActivity.EXTRA_ALBUM_TITLE, getCursor().getString(COLUMN_INDEX_TITLE));
                     context.startActivity(i);
                 }
             });
@@ -110,12 +112,12 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
 
         String tracksCount = res.getQuantityString(
                 R.plurals.tracks,
-                cursor.getInt(COLUMN_SONGS_COUNT),
-                cursor.getInt(COLUMN_SONGS_COUNT));
+                cursor.getInt(COLUMN_INDEX_SONGS_COUNT),
+                cursor.getInt(COLUMN_INDEX_SONGS_COUNT));
 
         return res.getString(
                 R.string.two_strings_with_bar,
-                cursor.getString(COLUMN_ARTIST),
+                cursor.getString(COLUMN_INDEX_ARTIST),
                 tracksCount);
     }
 }

@@ -77,7 +77,7 @@ public class AlbumActivity
             return getContext().getContentResolver().query(
                     TrackAdapter.URI,
                     TrackAdapter.PROJECTION,
-                    MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
+                    TrackAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
                     null,
                     TrackAdapter.SORT_ORDER);
         }

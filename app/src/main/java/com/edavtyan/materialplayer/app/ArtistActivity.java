@@ -71,7 +71,7 @@ public class ArtistActivity
             return getContext().getContentResolver().query(
                     TrackAdapter.URI,
                     TrackAdapter.PROJECTION,
-                    MediaStore.Audio.Media.ARTIST + "='" + artistTitle + "'",
+                    TrackAdapter.COLUMN_NAME_ARTIST_TITLE + "='" + artistTitle + "'",
                     null,
                     TrackAdapter.SORT_ORDER);
         }
