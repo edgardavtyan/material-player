@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.edavtyan.materialplayer.app.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 
@@ -90,6 +92,14 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
             super(itemView);
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_track_title);
             infoTextView = (TextView) itemView.findViewById(R.id.listitem_track_info);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, NowPlayingActivity.class);
+                    context.startActivity(i);
+                }
+            });
         }
     }
 

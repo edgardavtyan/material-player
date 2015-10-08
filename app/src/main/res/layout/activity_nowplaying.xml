@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/nowplaying_art"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:src="@drawable/cover"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Stompin' at the Savoy"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="Bob James - All Around the Town"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:src="@drawable/ic_shuffle_white_36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:src="@drawable/ic_rewind_white_36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:src="@drawable/ic_play_white_36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:src="@drawable/ic_fast_forward_white_36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:src="@drawable/ic_repeat_white_36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>
