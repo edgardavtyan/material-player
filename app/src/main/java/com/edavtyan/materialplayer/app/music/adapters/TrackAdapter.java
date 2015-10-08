@@ -93,12 +93,9 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_track_title);
             infoTextView = (TextView) itemView.findViewById(R.id.listitem_track_info);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(context, NowPlayingActivity.class);
-                    context.startActivity(i);
-                }
+            itemView.setOnClickListener(view -> {
+                Intent i = new Intent(context, NowPlayingActivity.class);
+                context.startActivity(i);
             });
         }
     }

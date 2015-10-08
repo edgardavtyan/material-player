@@ -81,17 +81,14 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
         public AlbumViewHolder(View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    getCursor().moveToPosition(getAdapterPosition());
+            itemView.setOnClickListener(view -> {
+                getCursor().moveToPosition(getAdapterPosition());
 
-                    Intent i = new Intent(context, AlbumActivity.class);
-                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_INDEX_ID));
-                    i.putExtra(AlbumActivity.EXTRA_ALBUM_ART, getCursor().getString(COLUMN_INDEX_ART));
-                    i.putExtra(AlbumActivity.EXTRA_ALBUM_TITLE, getCursor().getString(COLUMN_INDEX_TITLE));
-                    context.startActivity(i);
-                }
+                Intent i = new Intent(context, AlbumActivity.class);
+                i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_INDEX_ID));
+                i.putExtra(AlbumActivity.EXTRA_ALBUM_ART, getCursor().getString(COLUMN_INDEX_ART));
+                i.putExtra(AlbumActivity.EXTRA_ALBUM_TITLE, getCursor().getString(COLUMN_INDEX_TITLE));
+                context.startActivity(i);
             });
 
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_album_title);

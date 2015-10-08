@@ -61,26 +61,25 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
         return new ArtistViewHolder(view);
     }
 
-    public class ArtistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ArtistViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView countsTextView;
 
         public ArtistViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
+
+            itemView.setOnClickListener(view -> {
+                Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
+
+                getCursor().moveToPosition(getAdapterPosition());
+                i.putExtra(ArtistActivity.EXTRA_ARTIST_ID, getCursor().getInt(COLUMN_ID));
+                i.putExtra(ArtistActivity.EXTRA_ARTIST_NAME, getCursor().getString(COLUMN_ARTIST));
+
+                itemView.getContext().startActivity(i);
+            });
+            
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_artist_title);
             countsTextView = (TextView) itemView.findViewById(R.id.listitem_artist_counts);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
-
-            getCursor().moveToPosition(getAdapterPosition());
-            i.putExtra(ArtistActivity.EXTRA_ARTIST_ID, getCursor().getInt(COLUMN_ID));
-            i.putExtra(ArtistActivity.EXTRA_ARTIST_NAME, getCursor().getString(COLUMN_ARTIST));
-
-            itemView.getContext().startActivity(i);
         }
     }
 
