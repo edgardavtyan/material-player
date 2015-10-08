@@ -19,7 +19,9 @@ public class ArtistActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final String EXTRA_ARTIST_TITLE = "artist_title";
+
     private static final int LOADER_ID = 1;
+
 
 
     private TrackAdapter trackAdapter;
@@ -33,7 +35,7 @@ public class ArtistActivity
 
         getLoaderManager().initLoader(LOADER_ID, null, this);
 
-        trackAdapter = new TrackAdapter(this, null);
+        trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_AND_ALBUM);
 
         initToolbar();
         initCollapsingToolbar();

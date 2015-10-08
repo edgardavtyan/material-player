@@ -40,7 +40,7 @@ public class AlbumActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
-        trackAdapter = new TrackAdapter(this, null);
+        trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_ONLY);
 
         initRecyclerView();
         initToolbar();

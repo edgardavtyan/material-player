@@ -36,8 +36,26 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
 
 
 
+    private TrackInfoAmount infoAmount;
+
+
+
     public TrackAdapter(Context context, Cursor cursor) {
         super(context, cursor);
+        infoAmount = TrackInfoAmount.FULL;
+    }
+
+    public TrackAdapter(Context context, Cursor cursor, TrackInfoAmount infoAmount) {
+        super(context, cursor);
+        this.infoAmount = infoAmount;
+    }
+
+
+
+    public enum TrackInfoAmount {
+        TIME_ONLY,
+        TIME_AND_ALBUM,
+        FULL
     }
 
 
@@ -57,7 +75,16 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
     protected void bindView(View view, Context context, Cursor cursor) {
         TrackViewHolder vh = (TrackViewHolder) view.getTag();
         vh.titleTextView.setText(cursor.getString(COLUMN_TITLE));
-        vh.infoTextView.setText(getInfo(cursor));
+
+        String info = "";
+        if (infoAmount == TrackInfoAmount.FULL) {
+            info = getFullInfo();
+        } else if (infoAmount == TrackInfoAmount.TIME_AND_ALBUM) {
+            info = getDurationStr() + " | " + getCursor().getString(COLUMN_ALBUM);
+        } else if (infoAmount == TrackInfoAmount.TIME_ONLY) {
+            info = getDurationStr();
+        }
+        vh.infoTextView.setText(info);
     }
 
     @Override
@@ -78,7 +105,8 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
 
 
 
-    private String getDurationStr(long duration) {
+    private String getDurationStr() {
+        long duration = getCursor().getLong(COLUMN_DURATION);
         long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
         long seconds = totalSeconds % 60;
         long minutes = totalSeconds / 60;
@@ -91,15 +119,11 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
         }
     }
 
-    private String getInfo(Cursor cursor) {
-        String durationStr = getDurationStr(cursor.getLong(COLUMN_DURATION));
-
-        Resources res = context.getResources();
-
-        return res.getString(
+    private String getFullInfo() {
+        return context.getResources().getString(
                 R.string.listitem_track_info,
-                durationStr,
-                cursor.getString(COLUMN_ARTIST),
-                cursor.getString(COLUMN_ALBUM));
+                getDurationStr(),
+                getCursor().getString(COLUMN_ARTIST),
+                getCursor().getString(COLUMN_ALBUM));
     }
 }
