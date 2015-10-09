@@ -5,13 +5,16 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 
@@ -36,9 +39,11 @@ public class ArtistActivity
 
         trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_AND_ALBUM);
 
+        initAppBarLayout();
         initToolbar();
         initCollapsingToolbar();
         initTracksView();
+        initArtistArt();
     }
 
     @Override
@@ -84,6 +89,14 @@ public class ArtistActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    private void initAppBarLayout() {
+        Point displaySize = new Point();
+        getWindowManager().getDefaultDisplay().getSize(displaySize);
+
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.artist_appbarlayout);
+        appBarLayout.getLayoutParams().height = displaySize.x;
+    }
+
     private void initCollapsingToolbar() {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
@@ -96,5 +109,10 @@ public class ArtistActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void initArtistArt() {
+        ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
+        artistArtView.setImageResource(R.drawable.fallback_cover);
     }
 }
