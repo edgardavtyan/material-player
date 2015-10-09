@@ -44,6 +44,7 @@ public class AlbumActivity
         initRecyclerView();
         initToolbar();
         initCollapsingToolbar();
+        initAlbumArtView();
     }
 
 
@@ -91,18 +92,25 @@ public class AlbumActivity
     private void initCollapsingToolbar() {
         CollapsingToolbarLayout toolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.album_collapsingToolbar);
+
+        if (toolbar == null) {
+            return;
+        }
+
         toolbar.setTitleEnabled(true);
         toolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
-
-        ImageView artView = (ImageView) findViewById(R.id.album_art);
-        Picasso.with(this)
-                .load(new File(getIntent().getStringExtra(EXTRA_ALBUM_ART)))
-                .into(artView);
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(trackAdapter);
+    }
+
+    private void initAlbumArtView() {
+        ImageView artView = (ImageView) findViewById(R.id.album_art);
+        Picasso.with(this)
+                .load(new File(getIntent().getStringExtra(EXTRA_ALBUM_ART)))
+                .into(artView);
     }
 }
