@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -47,20 +42,20 @@
             android:id="@+id/nowplaying_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Stompin' at the Savoy"
+            android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/nowplaying_title_textSize"
+            tools:text="Now Playing Track Title"/>
 
         <TextView
             android:id="@+id/nowplaying_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:text="Bob James - All Around the Town"
+            android:layout_marginTop="@dimen/nowplaying_info_marginTop"
+            android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/nowplaying_info_textSize"
+            tools:text="Artist Name - Album Name"/>
 
     </LinearLayout>
 

@@ -2,4 +2,8 @@
 <resources>
     <dimen name="nowPlaying_controls_horizontalPadding">20dp</dimen>
     <dimen name="nowplaying_control_height">60dp</dimen>
+    <dimen name="nowplaying_text_marginLeft">20dp</dimen>
+    <dimen name="nowplaying_info_textSize">16sp</dimen>
+    <dimen name="nowplaying_info_marginTop">10dp</dimen>
+    <dimen name="nowplaying_title_textSize">24sp</dimen>
 </resources>
