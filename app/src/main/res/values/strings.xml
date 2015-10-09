@@ -33,6 +33,8 @@
         <item quantity="other">%d Tracks</item>
     </plurals>
 
+    <string name="artist_image_description">Artist image</string>
+
     <string name="nowplaying_shuffle_description">Toggle shuffle</string>
     <string name="nowplaying_rewind_description">Rewind</string>
     <string name="nowplaying_playPause_description">Play/Pause</string>
