@@ -56,6 +56,8 @@ public class NowPlayingActivity extends AppCompatActivity {
 
         Picasso.with(this)
                 .load(new File(getArtPath()))
+                .placeholder(R.drawable.fallback_cover)
+                .error(R.drawable.fallback_cover)
                 .into(artView);
     }
 

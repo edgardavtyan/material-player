@@ -23,7 +23,7 @@
 
     <ImageView
         android:id="@+id/nowplaying_art"
-        android:src="@drawable/cover"
+        android:src="@drawable/fallback_cover"
         android:contentDescription="@string/nowplaying_albumArt_description"
         android:layout_width="match_parent"
         android:layout_height="320dp"
