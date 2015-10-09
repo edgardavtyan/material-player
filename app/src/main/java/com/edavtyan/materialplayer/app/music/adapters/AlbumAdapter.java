@@ -66,6 +66,7 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
         Picasso.with(context)
                 .load(new File(cursor.getString(COLUMN_INDEX_ART)))
                 .placeholder(R.drawable.ic_albumart_placeholder)
+                .error(R.drawable.ic_albumart_placeholder)
                 .resize(100, 100)
                 .into(vh.artImageView);
     }
