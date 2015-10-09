@@ -1,16 +1,20 @@
 package com.edavtyan.materialplayer.app.activities;
 
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 
@@ -52,7 +56,10 @@ public class NowPlayingActivity extends AppCompatActivity {
 
     private void initArtView() {
         ImageView artView = (ImageView) findViewById(R.id.nowplaying_art);
-        artView.getLayoutParams().height = getScreenSize().x;
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            artView.getLayoutParams().height = getScreenSize().x;
+        }
 
         Picasso.with(this)
                 .load(new File(getArtPath()))
@@ -60,7 +67,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                 .error(R.drawable.fallback_cover)
                 .into(artView);
     }
-
 
     private Point getScreenSize() {
         Point screenSize = new Point();
