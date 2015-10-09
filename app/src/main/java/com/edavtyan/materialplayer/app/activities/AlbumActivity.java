@@ -6,7 +6,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,6 @@ import java.io.File;
 public class AlbumActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
-
     public static final String EXTRA_ALBUM_TITLE = "album_title";
     public static final String EXTRA_ALBUM_ART = "album_art";
     public static final String EXTRA_ALBUM_ID = "album_id";
@@ -41,8 +39,8 @@ public class AlbumActivity
         getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
         trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_ONLY);
 
-        initRecyclerView();
         initToolbar();
+        initTracksView();
         initCollapsingToolbar();
         initAlbumArtView();
     }
@@ -90,18 +88,18 @@ public class AlbumActivity
     }
 
     private void initCollapsingToolbar() {
-        CollapsingToolbarLayout toolbar =
+        CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.album_collapsingToolbar);
 
-        if (toolbar == null) {
+        if (collapsingToolbar == null) {
             return;
         }
 
-        toolbar.setTitleEnabled(true);
-        toolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
+        collapsingToolbar.setTitleEnabled(true);
+        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
     }
 
-    private void initRecyclerView() {
+    private void initTracksView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(trackAdapter);

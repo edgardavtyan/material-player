@@ -4,13 +4,9 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Point;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
+import com.squareup.picasso.Picasso;
 
 public class ArtistActivity
         extends AppCompatActivity
@@ -39,8 +36,8 @@ public class ArtistActivity
         getLoaderManager().initLoader(LOADER_ID, null, this);
         trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_AND_ALBUM);
 
-        initTracksView();
         initToolbar();
+        initTracksView();
         initCollapsingToolbar();
         initArtistArt();
     }
@@ -82,10 +79,10 @@ public class ArtistActivity
     }
 
 
-    private void initTracksView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.artist_tracks_listview);
-        recyclerView.setAdapter(trackAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initCollapsingToolbar() {
@@ -100,14 +97,16 @@ public class ArtistActivity
         collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    private void initTracksView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.artist_tracks_listview);
+        recyclerView.setAdapter(trackAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void initArtistArt() {
         ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
-        artistArtView.setImageResource(R.drawable.fallback_cover);
+        Picasso.with(this)
+                .load(R.drawable.fallback_cover)
+                .into(artistArtView);
     }
 }
