@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
@@ -25,11 +26,18 @@ public class NowPlayingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowplaying);
 
+        initToolbar();
         initArtView();
         initTitleView();
         initInfoView();
     }
 
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.nowplaying_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     private void initInfoView() {
         String trackInfo = getTrackInfo();

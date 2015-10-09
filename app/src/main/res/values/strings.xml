@@ -33,8 +33,6 @@
         <item quantity="other">%d Tracks</item>
     </plurals>
 
-
-    <!-- Now playing controls descriptions -->
     <string name="nowplaying_shuffle_description">Toggle shuffle</string>
     <string name="nowplaying_rewind_description">Rewind</string>
     <string name="nowplaying_playPause_description">Play/Pause</string>
@@ -42,6 +40,7 @@
     <string name="nowplaying_repeat_description">Repeat</string>
     <string name="nowplaying_albumArt_description">Album art</string>
 
-    <!-- Now playing string patterns -->
+    <string name="nowplaying_toolbar_title">Now playing</string>
+
     <string name="nowplaying_info_pattern">%1$s - %2$s</string>
 </resources>
