@@ -5,6 +5,5 @@
     <color name="colorPrimaryLight">#FFCDD2</color>
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextPrimaryInactive">#80FFFFFF</color>
-
-
+    <color name="colorRippleWhite">#50ffffff</color>
 </resources>

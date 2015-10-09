@@ -75,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/nowplaying_control_height"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/nowplaying_control_ripple"
             tools:ignore="NestedWeights"/>
 
         <ImageButton
@@ -84,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/nowplaying_control_height"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+            android:background="@drawable/nowplaying_control_ripple"/>
 
         <ImageButton
             android:src="@drawable/ic_play_white_36dp"
@@ -92,7 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/nowplaying_control_height"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+            android:background="@drawable/nowplaying_control_ripple"/>
 
         <ImageButton
             android:src="@drawable/ic_fast_forward_white_36dp"
@@ -100,7 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/nowplaying_control_height"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+            android:background="@drawable/nowplaying_control_ripple"/>
 
         <ImageButton
             android:src="@drawable/ic_repeat_white_36dp"
@@ -108,7 +108,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/nowplaying_control_height"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+            android:background="@drawable/nowplaying_control_ripple"/>
 
     </LinearLayout>
 
