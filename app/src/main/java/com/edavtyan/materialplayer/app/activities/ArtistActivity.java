@@ -4,8 +4,10 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Point;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -34,15 +36,12 @@ public class ArtistActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist);
-
         getLoaderManager().initLoader(LOADER_ID, null, this);
-
         trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_AND_ALBUM);
 
-        initAppBarLayout();
+        initTracksView();
         initToolbar();
         initCollapsingToolbar();
-        initTracksView();
         initArtistArt();
     }
 
@@ -89,17 +88,13 @@ public class ArtistActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void initAppBarLayout() {
-        Point displaySize = new Point();
-        getWindowManager().getDefaultDisplay().getSize(displaySize);
-
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.artist_appbarlayout);
-        appBarLayout.getLayoutParams().height = displaySize.x;
-    }
-
     private void initCollapsingToolbar() {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
+
+        if (collapsingToolbar == null) {
+            return;
+        }
 
         collapsingToolbar.setTitleEnabled(true);
         collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));

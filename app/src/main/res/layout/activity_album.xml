@@ -21,8 +21,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleTextAppearance="@style/artist_collapsingToolbar_title">
 
             <FrameLayout
