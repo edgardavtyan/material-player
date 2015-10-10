@@ -21,12 +21,32 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/nowplaying_art"
+    <FrameLayout
+        android:id="@+id/nowplaying_art_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
+        android:layout_height="320dp">
+
+        <ImageView
+            android:id="@+id/nowplaying_art"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/nowplaying_art_tint"/>
+
+        <ImageView
+            android:id="@+id/nowplaying_art_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

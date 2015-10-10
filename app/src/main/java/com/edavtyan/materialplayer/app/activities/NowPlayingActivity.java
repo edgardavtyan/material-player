@@ -55,17 +55,24 @@ public class NowPlayingActivity extends AppCompatActivity {
     }
 
     private void initArtView() {
-        ImageView artView = (ImageView) findViewById(R.id.nowplaying_art);
-
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            artView.getLayoutParams().height = getScreenSize().x;
+            FrameLayout artFrame = (FrameLayout) findViewById(R.id.nowplaying_art_frame);
+            artFrame.getLayoutParams().height = getScreenSize().x;
         }
 
+        ImageView artView = (ImageView) findViewById(R.id.nowplaying_art);
+        ImageView artBackView = (ImageView) findViewById(R.id.nowplaying_art_back);
         Picasso.with(this)
                 .load(new File(getArtPath()))
                 .placeholder(R.drawable.fallback_cover)
                 .error(R.drawable.fallback_cover)
                 .into(artView);
+
+        Picasso.with(this)
+                .load(new File(getArtPath()))
+                .placeholder(R.drawable.fallback_cover)
+                .error(R.drawable.fallback_cover)
+                .into(artBackView);
     }
 
     private Point getScreenSize() {
