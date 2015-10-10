@@ -106,7 +106,7 @@ public class ArtistActivity
     private void initArtistArt() {
         ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
         Picasso.with(this)
-                .load(R.drawable.fallback_cover)
+                .load(R.drawable.fallback_artist)
                 .into(artistArtView);
     }
 }
