@@ -1,14 +1,11 @@
 package com.edavtyan.materialplayer.app.activities;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,10 +13,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.connections.MusicPlayerConnection;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -31,7 +29,7 @@ public class NowPlayingActivity extends AppCompatActivity {
     public static final String EXTRA_TRACK_ARTIST = "track_artist";
     public static final String EXTRA_TRACK_ALBUM = "track_album";
 
-    private ServiceConnection playerConnection;
+    private MusicPlayerConnection playerConnection;
     private MusicPlayerService playerService;
     private boolean isBound;
 
@@ -46,19 +44,8 @@ public class NowPlayingActivity extends AppCompatActivity {
         initTitleView();
         initInfoView();
 
-        playerConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
-                playerService = binder.getService();
-                isBound = true;
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName componentName) {
-                isBound = false;
-            }
-        };
+        playerConnection = new MusicPlayerConnection();
+        playerService = playerConnection.getService();
 
         Intent intent = new Intent(this, MusicPlayerService.class);
         bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);

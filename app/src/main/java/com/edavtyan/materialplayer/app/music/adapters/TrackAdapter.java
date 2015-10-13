@@ -1,24 +1,21 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
+
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.connections.MusicPlayerConnection;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
-import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
 import java.util.ArrayList;
 
@@ -53,8 +50,8 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
     /* Fields */
     /* ****** */
 
+    private MusicPlayerConnection playerConnection;
     private MusicPlayerService playerService;
-    private boolean isBound;
 
     /* ************ */
     /* Constructors */
@@ -62,27 +59,10 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
 
     public TrackAdapter(Context context, Cursor cursor) {
         super(context, cursor);
-        MusicPlayerConnection playerConnection = new MusicPlayerConnection();
+        playerConnection = new MusicPlayerConnection();
+        playerService = playerConnection.getService();
         Intent serviceIntent = new Intent(context, MusicPlayerService.class);
         context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    /* ******* */
-    /* Classes */
-    /* ******* */
-
-    public class MusicPlayerConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
-            playerService = binder.getService();
-            isBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            isBound = false;
-        }
     }
 
     /* *************************************************************** */
