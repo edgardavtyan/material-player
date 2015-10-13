@@ -114,10 +114,14 @@ implements MediaPlayer.OnPreparedListener {
     }
 
     public void movePrev() {
-        if (position != 0) {
-            position--;
+        if (player.getCurrentPosition() > 5000) {
+            player.seekTo(0);
         } else {
-            position = tracks.size() - 1;
+            if (position != 0) {
+                position--;
+            } else {
+                position = tracks.size() - 1;
+            }
         }
     }
 }

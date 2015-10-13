@@ -38,7 +38,6 @@ public class NowPlayingActivity extends AppCompatActivity {
     /* ****** */
 
     private MusicPlayerConnection playerConnection;
-    private MusicPlayerService playerService;
     private boolean isBound;
 
     /* ************************* */
@@ -78,8 +77,6 @@ public class NowPlayingActivity extends AppCompatActivity {
         }
 
         playerConnection = new MusicPlayerConnection();
-        playerService = playerConnection.getService();
-
         Intent intent = new Intent(this, MusicPlayerService.class);
         bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
     }
@@ -95,21 +92,21 @@ public class NowPlayingActivity extends AppCompatActivity {
     /* *********************************** */
 
     public void play(View view) throws IOException {
-        if (playerService.isPlaying()) {
-            playerService.pause();
+        if (playerConnection.getService().isPlaying()) {
+            playerConnection.getService().pause();
         } else {
-            playerService.resume();
+            playerConnection.getService().resume();
         }
     }
 
     public void fastForward(View view) throws IOException {
-        playerService.moveNext();
-        playerService.prepare();
+        playerConnection.getService().moveNext();
+        playerConnection.getService().prepare();
     }
 
     public void rewind(View view) throws IOException {
-        playerService.movePrev();
-        playerService.prepare();
+        playerConnection.getService().movePrev();
+        playerConnection.getService().prepare();
     }
 
     private Point getScreenSize() {
