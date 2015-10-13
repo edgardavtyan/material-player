@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class NowPlayingActivity extends AppCompatActivity {
     /* ****** */
 
     private MusicPlayerConnection playerConnection;
+    private ImageView playPauseImageButton;
     private boolean isBound;
 
     /* ************************* */
@@ -48,6 +50,8 @@ public class NowPlayingActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowplaying);
+
+        playPauseImageButton = (ImageButton) findViewById(R.id.nowplaying_control_playPause);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.nowplaying_toolbar);
         setSupportActionBar(toolbar);
@@ -94,8 +98,10 @@ public class NowPlayingActivity extends AppCompatActivity {
     public void play(View view) throws IOException {
         if (playerConnection.getService().isPlaying()) {
             playerConnection.getService().pause();
+            playPauseImageButton.setImageResource(R.drawable.ic_play_white_36dp);
         } else {
             playerConnection.getService().resume();
+            playPauseImageButton.setImageResource(R.drawable.ic_pause_white_36dp);
         }
     }
 
