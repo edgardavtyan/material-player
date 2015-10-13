@@ -1,9 +1,12 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +16,11 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.services.MusicPlayerService;
+import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> {
@@ -31,6 +38,7 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
             MediaStore.Audio.Media.ALBUM_ID
     };
 
+    public static final int COLUMN_INDEX_ID = 0;
     public static final int COLUMN_INDEX_TITLE = 2;
     public static final int COLUMN_INDEX_ARTIST = 3;
     public static final int COLUMN_INDEX_ALBUM = 4;
@@ -43,15 +51,20 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
 
 
     private TrackInfoAmount infoAmount;
+    private MusicPlayerService playerService;
+    private boolean isBound;
 
 
     public TrackAdapter(Context context, Cursor cursor) {
         super(context, cursor);
         infoAmount = TrackInfoAmount.FULL;
+        MusicPlayerConnection playerConnection = new MusicPlayerConnection();
+        Intent serviceIntent = new Intent(context, MusicPlayerService.class);
+        context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
     }
 
     public TrackAdapter(Context context, Cursor cursor, TrackInfoAmount infoAmount) {
-        super(context, cursor);
+        this(context, cursor);
         this.infoAmount = infoAmount;
     }
 
@@ -97,22 +110,53 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
 
             itemView.setOnClickListener(view -> {
                 getCursor().moveToPosition(getAdapterPosition());
-                Intent i = new Intent(context, NowPlayingActivity.class);
-                i.putExtra(
-                        NowPlayingActivity.EXTRA_TRACK_TITLE,
-                        getCursor().getString(COLUMN_INDEX_TITLE));
-                i.putExtra(
-                        NowPlayingActivity.EXTRA_TRACK_ALBUM,
-                        getCursor().getString(COLUMN_INDEX_ALBUM));
-                i.putExtra(
-                        NowPlayingActivity.EXTRA_TRACK_ARTIST,
-                        getCursor().getString(COLUMN_INDEX_ARTIST));
-                i.putExtra(
-                        NowPlayingActivity.EXTRA_TRACK_ALBUM_ID,
-                        getCursor().getInt(COLUMN_INDEX_ALBUM_ID));
-                context.startActivity(i);
+                startNowPlayingActivity();
+
+                ArrayList<Integer> tracks = new ArrayList<Integer>();
+                getCursor().moveToFirst();
+                do {
+                    tracks.add(getCursor().getInt(COLUMN_INDEX_ID));
+                } while (getCursor().moveToNext());
+                playerService.setTracks(tracks);
+                playerService.setPosition(getAdapterPosition());
+                try {
+                    playerService.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
+    }
+
+    public class MusicPlayerConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
+            playerService = binder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            isBound = false;
+        }
+    }
+
+    private void startNowPlayingActivity() {
+        Intent i = new Intent(context, NowPlayingActivity.class);
+        i.putExtra(
+                NowPlayingActivity.EXTRA_TRACK_TITLE,
+                getCursor().getString(COLUMN_INDEX_TITLE));
+        i.putExtra(
+                NowPlayingActivity.EXTRA_TRACK_ALBUM,
+                getCursor().getString(COLUMN_INDEX_ALBUM));
+        i.putExtra(
+                NowPlayingActivity.EXTRA_TRACK_ARTIST,
+                getCursor().getString(COLUMN_INDEX_ARTIST));
+        i.putExtra(
+                NowPlayingActivity.EXTRA_TRACK_ALBUM_ID,
+                getCursor().getInt(COLUMN_INDEX_ALBUM_ID));
+        context.startActivity(i);
     }
 
 

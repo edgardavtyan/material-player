@@ -44,6 +44,8 @@
             </intent-filter>
         </activity>
 
+        <service android:name=".services.MusicPlayerService" />
+
     </application>
 
 </manifest>
