@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
+import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithFullInfo;
 
 // TODO: Implement CursorLoader
 public class TracksListFragment extends Fragment {
@@ -25,7 +26,7 @@ public class TracksListFragment extends Fragment {
                 TrackAdapter.URI, TrackAdapter.PROJECTION,
                 null, null, TrackAdapter.SORT_ORDER);
 
-        trackAdapter = new TrackAdapter(getActivity(), cursor);
+        trackAdapter = new TrackAdapterWithFullInfo(getActivity(), cursor);
     }
 
     @Nullable

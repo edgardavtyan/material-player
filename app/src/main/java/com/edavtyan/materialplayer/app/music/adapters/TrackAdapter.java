@@ -18,16 +18,17 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
+import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> {
+public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
+
     public static final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-
     public static final String SORT_ORDER = MediaStore.Audio.Media.TITLE + " ASC";
-
     public static final String[] PROJECTION = {
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.TRACK,
@@ -46,35 +47,46 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
     public static final int COLUMN_INDEX_ALBUM_ID = 6;
 
     public static final String COLUMN_NAME_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
-    public static final String COLUMN_NAME_ARTIST_TITLE = MediaStore.Audio.Media.ARTIST;
     public static final String COLUMN_NAME_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
 
+    /* ****** */
+    /* Fields */
+    /* ****** */
 
-    private TrackInfoAmount infoAmount;
     private MusicPlayerService playerService;
     private boolean isBound;
 
+    /* ************ */
+    /* Constructors */
+    /* ************ */
 
     public TrackAdapter(Context context, Cursor cursor) {
         super(context, cursor);
-        infoAmount = TrackInfoAmount.FULL;
         MusicPlayerConnection playerConnection = new MusicPlayerConnection();
         Intent serviceIntent = new Intent(context, MusicPlayerService.class);
         context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
     }
 
-    public TrackAdapter(Context context, Cursor cursor, TrackInfoAmount infoAmount) {
-        this(context, cursor);
-        this.infoAmount = infoAmount;
+    /* ************** */
+    /* Classed, enums */
+
+    public class MusicPlayerConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
+            playerService = binder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            isBound = false;
+        }
     }
 
-
-    public enum TrackInfoAmount {
-        TIME_ONLY,
-        TIME_AND_ALBUM,
-        FULL
-    }
-
+    /* *************************************************************** */
+    /* RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> members */
+    /* *************************************************************** */
 
     @Override
     protected View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -91,7 +103,7 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
     protected void bindView(View view, Context context, Cursor cursor) {
         TrackViewHolder vh = (TrackViewHolder) view.getTag();
         vh.titleTextView.setText(cursor.getString(COLUMN_INDEX_TITLE));
-        vh.infoTextView.setText(getSelectedInfo());
+        vh.infoTextView.setText(getTrackInfo());
     }
 
     @Override
@@ -99,48 +111,47 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
         return new TrackViewHolder(view);
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder {
+    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView titleTextView;
         TextView infoTextView;
 
         public TrackViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             titleTextView = (TextView) itemView.findViewById(R.id.listitem_track_title);
             infoTextView = (TextView) itemView.findViewById(R.id.listitem_track_info);
+        }
 
-            itemView.setOnClickListener(view -> {
-                getCursor().moveToPosition(getAdapterPosition());
-                startNowPlayingActivity();
+        @Override
+        public void onClick(View view){
+            getCursor().moveToPosition(getAdapterPosition());
+            startNowPlayingActivity();
 
-                ArrayList<Integer> tracks = new ArrayList<Integer>();
-                getCursor().moveToFirst();
-                do {
-                    tracks.add(getCursor().getInt(COLUMN_INDEX_ID));
-                } while (getCursor().moveToNext());
+            ArrayList<Integer> tracks = new ArrayList<>();
+            getCursor().moveToFirst();
+            do {
+                tracks.add(getCursor().getInt(COLUMN_INDEX_ID));
+            } while (getCursor().moveToNext());
+
+            try {
                 playerService.setTracks(tracks);
                 playerService.setPosition(getAdapterPosition());
-                try {
-                    playerService.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+                playerService.prepare();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public class MusicPlayerConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
-            playerService = binder.getService();
-            isBound = true;
-        }
+    /* *********************** */
+    /* Public abstract methods */
+    /* *********************** */
 
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            isBound = false;
-        }
-    }
+    public abstract String getTrackInfo();
+
+    /* *************** */
+    /* Private methods */
+    /* *************** */
 
     private void startNowPlayingActivity() {
         Intent i = new Intent(context, NowPlayingActivity.class);
@@ -159,45 +170,17 @@ public class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackVi
         context.startActivity(i);
     }
 
-
-    private String getSelectedInfo() {
-        switch (infoAmount) {
-            case FULL:
-                return  getFullInfo();
-            case TIME_AND_ALBUM:
-                return getDurationAndAlbumInfo();
-            case TIME_ONLY:
-                return getDurationInfo();
-            default:
-                return getFullInfo();
-        }
-    }
-
-    private String getDurationInfo() {
-        long duration = getCursor().getLong(COLUMN_INDEX_DURATION);
-        long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-        long seconds = totalSeconds % 60;
-        long minutes = totalSeconds / 60;
-        long hours = minutes / 60;
-
-        if (hours == 0) {
-            return String.format("%02d:%02d", minutes, seconds);
-        } else {
-            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
-        }
-    }
-
     private String getDurationAndAlbumInfo() {
         return context.getResources().getString(
                 R.string.track_listitem_timeAlbumInfo,
-                getDurationInfo(),
+                DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
                 getCursor().getString(COLUMN_INDEX_ALBUM));
     }
 
     private String getFullInfo() {
         return context.getResources().getString(
                 R.string.track_listitem_fullInfo,
-                getDurationInfo(),
+                DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
                 getCursor().getString(COLUMN_INDEX_ARTIST),
                 getCursor().getString(COLUMN_INDEX_ALBUM));
     }

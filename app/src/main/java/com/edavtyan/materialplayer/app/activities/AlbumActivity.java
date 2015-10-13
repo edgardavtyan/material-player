@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
+import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithDurationInfo;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -37,7 +38,7 @@ public class AlbumActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
-        trackAdapter = new TrackAdapter(this, null, TrackAdapter.TrackInfoAmount.TIME_ONLY);
+        trackAdapter = new TrackAdapterWithDurationInfo(this, null);
 
         initToolbar();
         initTracksView();
