@@ -67,8 +67,9 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
         context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
     }
 
-    /* ************** */
-    /* Classed, enums */
+    /* ******* */
+    /* Classes */
+    /* ******* */
 
     public class MusicPlayerConnection implements ServiceConnection {
         @Override
