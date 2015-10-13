@@ -124,9 +124,24 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
 
         @Override
         public void onClick(View view){
+            // Show now playing screen
             getCursor().moveToPosition(getAdapterPosition());
-            startNowPlayingActivity();
+            Intent i = new Intent(context, NowPlayingActivity.class);
+            i.putExtra(
+                    NowPlayingActivity.EXTRA_TRACK_TITLE,
+                    getCursor().getString(COLUMN_INDEX_TITLE));
+            i.putExtra(
+                    NowPlayingActivity.EXTRA_TRACK_ALBUM,
+                    getCursor().getString(COLUMN_INDEX_ALBUM));
+            i.putExtra(
+                    NowPlayingActivity.EXTRA_TRACK_ARTIST,
+                    getCursor().getString(COLUMN_INDEX_ARTIST));
+            i.putExtra(
+                    NowPlayingActivity.EXTRA_TRACK_ALBUM_ID,
+                    getCursor().getInt(COLUMN_INDEX_ALBUM_ID));
+            context.startActivity(i);
 
+            // Set tracks in service and start playing
             ArrayList<Integer> tracks = new ArrayList<>();
             getCursor().moveToFirst();
             do {
@@ -148,40 +163,4 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
     /* *********************** */
 
     public abstract String getTrackInfo();
-
-    /* *************** */
-    /* Private methods */
-    /* *************** */
-
-    private void startNowPlayingActivity() {
-        Intent i = new Intent(context, NowPlayingActivity.class);
-        i.putExtra(
-                NowPlayingActivity.EXTRA_TRACK_TITLE,
-                getCursor().getString(COLUMN_INDEX_TITLE));
-        i.putExtra(
-                NowPlayingActivity.EXTRA_TRACK_ALBUM,
-                getCursor().getString(COLUMN_INDEX_ALBUM));
-        i.putExtra(
-                NowPlayingActivity.EXTRA_TRACK_ARTIST,
-                getCursor().getString(COLUMN_INDEX_ARTIST));
-        i.putExtra(
-                NowPlayingActivity.EXTRA_TRACK_ALBUM_ID,
-                getCursor().getInt(COLUMN_INDEX_ALBUM_ID));
-        context.startActivity(i);
-    }
-
-    private String getDurationAndAlbumInfo() {
-        return context.getResources().getString(
-                R.string.track_listitem_timeAlbumInfo,
-                DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
-                getCursor().getString(COLUMN_INDEX_ALBUM));
-    }
-
-    private String getFullInfo() {
-        return context.getResources().getString(
-                R.string.track_listitem_fullInfo,
-                DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
-                getCursor().getString(COLUMN_INDEX_ARTIST),
-                getCursor().getString(COLUMN_INDEX_ALBUM));
-    }
 }
