@@ -23,15 +23,23 @@ import java.io.File;
 public class AlbumActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
     public static final String EXTRA_ALBUM_TITLE = "album_title";
     public static final String EXTRA_ALBUM_ART = "album_art";
     public static final String EXTRA_ALBUM_ID = "album_id";
-
     public static final int LOADER_ID = 2;
 
+    /* ****** */
+    /* Fields */
+    /* ****** */
 
     private TrackAdapter trackAdapter;
 
+    /* ************************* */
+    /* AppCompatActivity members */
+    /* ************************* */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,12 +48,30 @@ public class AlbumActivity
         getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
         trackAdapter = new TrackAdapterWithDurationInfo(this, null);
 
-        initToolbar();
-        initTracksView();
-        initCollapsingToolbar();
-        initAlbumArtView();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.album_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.album_collapsingToolbar);
+        if (collapsingToolbar != null) {
+            collapsingToolbar.setTitleEnabled(true);
+            collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
+        }
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(trackAdapter);
+
+        ImageView artView = (ImageView) findViewById(R.id.album_art);
+        Picasso.with(this)
+                .load(new File(getIntent().getStringExtra(EXTRA_ALBUM_ART)))
+                .into(artView);
     }
 
+    /* *********************** */
+    /* LoaderCallbacks members */
+    /* *********************** */
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -79,37 +105,5 @@ public class AlbumActivity
                     null,
                     TrackAdapter.SORT_ORDER);
         }
-    }
-
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.album_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void initCollapsingToolbar() {
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.album_collapsingToolbar);
-
-        if (collapsingToolbar == null) {
-            return;
-        }
-
-        collapsingToolbar.setTitleEnabled(true);
-        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
-    }
-
-    private void initTracksView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(trackAdapter);
-    }
-
-    private void initAlbumArtView() {
-        ImageView artView = (ImageView) findViewById(R.id.album_art);
-        Picasso.with(this)
-                .load(new File(getIntent().getStringExtra(EXTRA_ALBUM_ART)))
-                .into(artView);
     }
 }

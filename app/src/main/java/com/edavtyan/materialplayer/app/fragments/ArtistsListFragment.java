@@ -17,12 +17,22 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.ArtistAdapter;
 
 public class ArtistsListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
+
     private static final int LOADER_ID = 0;
 
+    /* ****** */
+    /* Fields */
+    /* ****** */
 
     private ArtistAdapter artistAdapter;
 
 
+    /* **************** */
+    /* Fragment members */
+    /* **************** */
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +61,9 @@ public class ArtistsListFragment extends Fragment implements LoaderManager.Loade
         getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
-
+    /* *********************** */
+    /* LoaderCallbacks members */
+    /* *********************** */
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {

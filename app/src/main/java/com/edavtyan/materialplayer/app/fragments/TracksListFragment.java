@@ -15,8 +15,15 @@ import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithFullInfo;
 
 // TODO: Implement CursorLoader
 public class TracksListFragment extends Fragment {
+    /* ****** */
+    /* Fields */
+    /* ****** */
+
     private TrackAdapter trackAdapter;
 
+    /* **************** */
+    /* Fragment members */
+    /* **************** */
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

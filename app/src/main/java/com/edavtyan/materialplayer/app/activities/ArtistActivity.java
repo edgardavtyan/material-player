@@ -21,14 +21,23 @@ import com.squareup.picasso.Picasso;
 public class ArtistActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
+
     public static final String EXTRA_ARTIST_ID = "artist_id";
     public static final String EXTRA_ARTIST_NAME = "artist_name";
-
     private static final int LOADER_ID = 1;
 
+    /* ****** */
+    /* Fields */
+    /* ****** */
 
     private TrackAdapter trackAdapter;
 
+    /* ************************* */
+    /* AppCompatActivity members */
+    /* ************************* */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,17 +46,35 @@ public class ArtistActivity
         getLoaderManager().initLoader(LOADER_ID, null, this);
         trackAdapter = new TrackAdapterWithAlbumInfo(this, null);
 
-        initToolbar();
-        initTracksView();
-        initCollapsingToolbar();
-        initArtistArt();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
+        if (collapsingToolbar != null) {
+            collapsingToolbar.setTitleEnabled(true);
+            collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
+        }
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.artist_tracks_listview);
+        recyclerView.setAdapter(trackAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
+        Picasso.with(this)
+                .load(R.drawable.fallback_artist)
+                .into(artistArtView);
     }
+
+    /* *********************** */
+    /* LoaderCallbacks members */
+    /* *********************** */
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new TracksLoader(this, getIntent().getIntExtra(EXTRA_ARTIST_ID, 0));
     }
-
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
@@ -77,37 +104,5 @@ public class ArtistActivity
                     TrackAdapter.SORT_ORDER);
         }
 
-    }
-
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void initCollapsingToolbar() {
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
-
-        if (collapsingToolbar == null) {
-            return;
-        }
-
-        collapsingToolbar.setTitleEnabled(true);
-        collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
-    }
-
-    private void initTracksView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.artist_tracks_listview);
-        recyclerView.setAdapter(trackAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    private void initArtistArt() {
-        ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
-        Picasso.with(this)
-                .load(R.drawable.fallback_artist)
-                .into(artistArtView);
     }
 }

@@ -7,18 +7,21 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class MusicPlayerConnection implements ServiceConnection {
+    /* ****** */
+    /* Fields */
+    /* ****** */
+
     private MusicPlayerService playerService;
     private boolean isBound;
 
+    /* ************************* */
+    /* ServiceConnection members */
+    /* ************************* */
 
-    public boolean isBound() {
-        return isBound;
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
+        isBound = false;
     }
-
-    public MusicPlayerService getService() {
-        return playerService;
-    }
-
 
     @Override
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -27,8 +30,15 @@ public class MusicPlayerConnection implements ServiceConnection {
         isBound = true;
     }
 
-    @Override
-    public void onServiceDisconnected(ComponentName componentName) {
-        isBound = false;
+    /* ************** */
+    /* Public methods */
+    /* ************** */
+
+    public boolean isBound() {
+        return isBound;
+    }
+
+    public MusicPlayerService getService() {
+        return playerService;
     }
 }

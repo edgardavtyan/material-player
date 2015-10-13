@@ -16,14 +16,24 @@ import java.util.List;
 
 public class MusicPlayerService extends Service
 implements MediaPlayer.OnPreparedListener {
-    private String TAG = "MusicPlayerService";
+    /* ********* */
+    /* Constants */
+    /* ********* */
 
+    private final String TAG = "MusicPlayerService";
+
+    /* ****** */
+    /* Fields */
+    /* ****** */
 
     private List<Integer> tracks;
     private MediaPlayer player;
     private int position;
     private boolean hasData;
 
+    /* *************** */
+    /* Service members */
+    /* *************** */
 
     @Nullable
     @Override
@@ -38,6 +48,15 @@ implements MediaPlayer.OnPreparedListener {
         player.setOnPreparedListener(this);
     }
 
+    public class MusicPlayerBinder extends Binder {
+        public MusicPlayerService getService() {
+            return MusicPlayerService.this;
+        }
+    }
+
+    /* ******************* */
+    /* MediaPlayer members */
+    /* ******************* */
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
@@ -45,13 +64,9 @@ implements MediaPlayer.OnPreparedListener {
         hasData = true;
     }
 
-
-    public class MusicPlayerBinder extends Binder {
-        public MusicPlayerService getService() {
-            return MusicPlayerService.this;
-        }
-    }
-
+    /* ************** */
+    /* Public methods */
+    /* ************** */
 
     public void setTracks(List<Integer> tracks) {
         this.tracks = tracks;

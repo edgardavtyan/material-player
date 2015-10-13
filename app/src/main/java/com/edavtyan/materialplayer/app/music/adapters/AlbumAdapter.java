@@ -20,10 +20,12 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 
 public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumViewHolder> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
+
     public static final Uri URI = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
-
     public static final String SORT_ORDER = MediaStore.Audio.Albums.ALBUM + " ASC";
-
     public static final String[] PROJECTION = {
             MediaStore.Audio.Albums._ID,
             MediaStore.Audio.Albums.ALBUM,
@@ -38,13 +40,17 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
     public static final int COLUMN_INDEX_SONGS_COUNT = 3;
     public static final int COLUMN_INDEX_ART = 4;
 
-    public static final String COLUMN_NAME_ID = MediaStore.Audio.Albums._ID;
-
+    /* ************ */
+    /* Constructors */
+    /* ************ */
 
     public AlbumAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
 
+    /* ********************************* */
+    /* RecyclerViewCursorAdapter members */
+    /* ********************************* */
 
     @Override
     protected View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -101,6 +107,9 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
 
     }
 
+    /* *************** */
+    /* Private methods */
+    /* *************** */
 
     private String getAdditionalInfo(Cursor cursor) {
         Resources res = context.getResources();

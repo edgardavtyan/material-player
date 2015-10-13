@@ -13,9 +13,15 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
 
 public class AlbumsListFragment extends Fragment {
+    /* ****** */
+    /* Fields */
+    /* ****** */
+
     private AlbumAdapter albumAdapter;
 
-
+    /* **************** */
+    /* Fragment members */
+    /* **************** */
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

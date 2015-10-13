@@ -18,10 +18,12 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.squareup.picasso.Picasso;
 
 public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.ArtistViewHolder> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
+
     public static final Uri URI = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
-
     public static final String SORT_ORDER = MediaStore.Audio.Artists.ARTIST + " ASC";
-
     public static final String[] PROJECTION = {
             MediaStore.Audio.Artists._ID,
             MediaStore.Audio.Artists.ARTIST,
@@ -34,11 +36,17 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
     public static final int COLUMN_ALBUMS_COUNT = 2;
     public static final int COLUMN_TRACKS_COUNT = 3;
 
+    /* ************ */
+    /* Constructors */
+    /* ************ */
 
     public ArtistAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
 
+    /* ********************************* */
+    /* RecyclerViewCursorAdapter members */
+    /* ********************************* */
 
     @Override
     protected View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -88,6 +96,9 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
         }
     }
 
+    /* *************** */
+    /* Private methods */
+    /* *************** */
 
     private String getArtistCounts(Cursor cursor) {
         Resources res = context.getResources();

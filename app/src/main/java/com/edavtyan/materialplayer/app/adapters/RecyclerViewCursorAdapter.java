@@ -9,18 +9,41 @@ import android.view.ViewGroup;
 
 public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHolder>
 extends RecyclerView.Adapter<VH> {
+    /* ****** */
+    /* Fields */
+    /* ****** */
+
     private CursorAdapter cursorAdapter;
+
+    /* **************** */
+    /* Protected fields */
+    /* **************** */
 
     protected Context context;
 
-
+    /* ************ */
+    /* Constructors */
+    /* ************ */
 
     public RecyclerViewCursorAdapter(Context context, Cursor cursor) {
         this.context = context;
-        createCursorAdapter(cursor);
+
+        cursorAdapter = new CursorAdapter(context, cursor, 0) {
+            @Override
+            public View newView(Context context, Cursor cursor, ViewGroup parent) {
+                return RecyclerViewCursorAdapter.this.newView(context, cursor, parent);
+            }
+
+            @Override
+            public void bindView(View view, Context context, Cursor cursor) {
+                RecyclerViewCursorAdapter.this.bindView(view, context, cursor);
+            }
+        };
     }
 
-
+    /* ************** */
+    /* Public methods */
+    /* ************** */
 
     public void swapCursor(Cursor cursor) {
         cursorAdapter.swapCursor(cursor);
@@ -31,7 +54,9 @@ extends RecyclerView.Adapter<VH> {
         return cursorAdapter.getCursor();
     }
 
-
+    /* ************************** */
+    /* Protected abstract methods */
+    /* ************************** */
 
     protected abstract View newView(Context context, Cursor cursor, ViewGroup parent);
 
@@ -39,7 +64,9 @@ extends RecyclerView.Adapter<VH> {
 
     protected abstract VH createViewHolder(View view, ViewGroup parent, int position);
 
-
+    /* **************************** */
+    /* RecyclerView.Adapter members */
+    /* **************************** */
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int position) {
@@ -56,21 +83,5 @@ extends RecyclerView.Adapter<VH> {
     @Override
     public int getItemCount() {
         return cursorAdapter.getCount();
-    }
-
-
-
-    private void createCursorAdapter(Cursor cursor) {
-        cursorAdapter = new CursorAdapter(context, cursor, 0) {
-            @Override
-            public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                return RecyclerViewCursorAdapter.this.newView(context, cursor, parent);
-            }
-
-            @Override
-            public void bindView(View view, Context context, Cursor cursor) {
-                RecyclerViewCursorAdapter.this.bindView(view, context, cursor);
-            }
-        };
     }
 }
