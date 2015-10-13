@@ -193,6 +193,12 @@ public class NowPlayingActivity extends AppCompatActivity {
             RequestCreator artRequest = AlbumArtUtils.getPicassoCoverRequest(this, artPath);
             artRequest.into(artView);
             artRequest.into(artBackView);
+
+            if (playerService.isPlaying()) {
+                playPauseImageButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            } else {
+                playPauseImageButton.setImageResource(R.drawable.ic_play_white_36dp);
+            }
         } finally {
             if (trackCursor != null) {
                 trackCursor.close();
