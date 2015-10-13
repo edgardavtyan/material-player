@@ -124,4 +124,8 @@ implements MediaPlayer.OnPreparedListener {
             }
         }
     }
+
+    public int getCurrentTrackId() {
+        return tracks.get(position);
+    }
 }
