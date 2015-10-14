@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
@@ -66,6 +67,17 @@ public class AlbumActivity
         AlbumArtUtils
                 .getFullArtRequest(this, AlbumArtUtils.getArtFileFromPath(artPath))
                 .into(artView);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /* *********************** */

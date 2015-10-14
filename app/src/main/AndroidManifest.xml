@@ -1,5 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:app="http://schemas.android.com/apk/res-auto"
           package="com.edavtyan.materialplayer.app">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,18 +8,17 @@
                  android:icon="@mipmap/ic_launcher"
                  android:theme="@style/AppTheme">
 
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"></category>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
                 android:name=".activities.ArtistActivity"
+                android:launchMode="singleTop"
                 android:theme="@style/WindowTransparentStatus">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".activities.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -28,16 +26,16 @@
         </activity>
 
         <activity android:name=".activities.AlbumActivity"
+                  android:launchMode="singleTop"
                   android:theme="@style/WindowTransparentStatus">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".activities.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.NowPlayingActivity">
+        <activity android:name=".activities.NowPlayingActivity"
+                  android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
