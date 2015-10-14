@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.app.services;
 import android.app.Service;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
@@ -10,6 +11,9 @@ import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,12 +27,30 @@ implements MediaPlayer.OnPreparedListener {
 
     private final String TAG = "MusicPlayerService";
 
+    private final Uri TRACKS_URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+    private final String[] TRACKS_PROJECTION = new String[] {
+            MediaStore.Audio.Media._ID,
+            MediaStore.Audio.Media.ALBUM_ID,
+            MediaStore.Audio.Media.TITLE,
+            MediaStore.Audio.Media.DURATION,
+            MediaStore.Audio.Media.ARTIST,
+            MediaStore.Audio.Media.ALBUM,
+    };
+
+    private static final int COLUMN_ALBUM_ID = 1;
+    private static final int COLUMN_TITLE = 2;
+    private static final int COLUMN_DURATION = 3;
+    private static final int COLUMN_ARTIST = 4;
+
+    private static final String COLUMN_NAME_ID = MediaStore.Audio.Media._ID;
+
     /* ****** */
     /* Fields */
     /* ****** */
 
     private List<Integer> tracks;
     private MediaPlayer player;
+    private Metadata metadata;
     private int position;
     private boolean hasData;
 
@@ -66,11 +88,16 @@ implements MediaPlayer.OnPreparedListener {
     public void onPrepared(MediaPlayer mediaPlayer) {
         player.start();
         hasData = true;
+        initMetadata();
     }
 
     /* ************** */
     /* Public methods */
     /* ************** */
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
 
     public void setTracks(List<Integer> tracks) {
         this.tracks = tracks;
@@ -139,5 +166,34 @@ implements MediaPlayer.OnPreparedListener {
 
     public boolean hasData() {
         return tracks.size() > 0;
+    }
+
+    /* *************** */
+    /* Private methods */
+    /* *************** */
+
+    private void initMetadata() {
+        metadata = new Metadata();
+
+        Cursor tracksCursor = null;
+        try {
+            int trackId = getCurrentTrackId();
+            metadata.setTrackId(trackId);
+
+            tracksCursor = getContentResolver().query(
+                    TRACKS_URI, TRACKS_PROJECTION,
+                    COLUMN_NAME_ID + "=" + trackId,
+                    null, null);
+            tracksCursor.moveToFirst();
+            metadata.setTrackTitle(tracksCursor.getString(COLUMN_TITLE));
+            metadata.setDuration(tracksCursor.getLong(COLUMN_DURATION));
+            metadata.setAlbumId(tracksCursor.getInt(COLUMN_ALBUM_ID));
+            metadata.setArtistTitle(tracksCursor.getString(COLUMN_ARTIST));
+            metadata.setArtFile(AlbumArtUtils.getArtFileFromId(metadata.getAlbumId(), this));
+        } finally {
+            if (tracksCursor != null) {
+                tracksCursor.close();
+            }
+        }
     }
 }

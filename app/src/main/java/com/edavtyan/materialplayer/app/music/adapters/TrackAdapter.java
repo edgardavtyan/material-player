@@ -41,7 +41,6 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
     public static final int COLUMN_INDEX_ARTIST = 3;
     public static final int COLUMN_INDEX_ALBUM = 4;
     public static final int COLUMN_INDEX_DURATION = 5;
-    public static final int COLUMN_INDEX_ALBUM_ID = 6;
 
     public static final String COLUMN_NAME_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
     public static final String COLUMN_NAME_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
@@ -105,24 +104,10 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
 
         @Override
         public void onClick(View view){
-            // Show now playing screen
             getCursor().moveToPosition(getAdapterPosition());
             Intent i = new Intent(context, NowPlayingActivity.class);
-            i.putExtra(
-                    NowPlayingActivity.EXTRA_TRACK_TITLE,
-                    getCursor().getString(COLUMN_INDEX_TITLE));
-            i.putExtra(
-                    NowPlayingActivity.EXTRA_TRACK_ALBUM,
-                    getCursor().getString(COLUMN_INDEX_ALBUM));
-            i.putExtra(
-                    NowPlayingActivity.EXTRA_TRACK_ARTIST,
-                    getCursor().getString(COLUMN_INDEX_ARTIST));
-            i.putExtra(
-                    NowPlayingActivity.EXTRA_TRACK_ALBUM_ID,
-                    getCursor().getInt(COLUMN_INDEX_ALBUM_ID));
             context.startActivity(i);
 
-            // Set tracks in service and start playing
             ArrayList<Integer> tracks = new ArrayList<>();
             getCursor().moveToFirst();
             do {

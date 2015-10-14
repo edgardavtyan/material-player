@@ -46,4 +46,5 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:recyclerview-v7:23.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    provided "org.projectlombok:lombok:1.16.6"
 }

@@ -4,11 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,24 +20,9 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
-import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-
 public class FloatingNowPlayingFragment extends Fragment implements View.OnClickListener {
-    /* ********* */
-    /* Constants */
-    /* ********* */
-
-    private final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-    private final String[] PROJECTION = new String[] {
-            MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.ALBUM_ID
-    };
-    private final int COLUMN_TITLE = 0;
-    private final int COLUMN_ALBUM_ID = 1;
-
     /* ****** */
     /* Fields */
     /* ****** */
@@ -127,30 +109,13 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
     /* View.OnClickListener */
     /* ******************** */
 
+    // TODO: fix this mess
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.nowplaying_floating_title:
-                // falls through
             case R.id.nowplaying_art:
-                Cursor cursor = null;
-                int albumId = -1;
-                try {
-                    int trackId = playerService.getCurrentTrackId();
-                    cursor = getContext().getContentResolver().query(
-                            URI, PROJECTION,
-                            MediaStore.Audio.Media._ID + "=" + trackId,
-                            null, null);
-                    cursor.moveToFirst();
-                    albumId = cursor.getInt(COLUMN_ALBUM_ID);
-                } finally {
-                    if (cursor != null) {
-                        cursor.close();
-                    }
-                }
-
                 Intent intent = new Intent(getContext(), NowPlayingActivity.class);
-                intent.putExtra(NowPlayingActivity.EXTRA_TRACK_ALBUM_ID, albumId);
                 startActivity(intent);
                 break;
 
@@ -162,43 +127,8 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
                     playerService.resume();
                     controlView.setImageResource(R.drawable.ic_pause_white_36dp);
                 }
+                break;
         }
-    }
-
-    /* ************** */
-    /* Public methods */
-    /* ************** */
-
-    public void playPause(View view) {
-        if (playerService.isPlaying()) {
-            playerService.pause();
-            controlView.setImageResource(R.drawable.ic_play_white_36dp);
-        } else {
-            playerService.resume();
-            controlView.setImageResource(R.drawable.ic_pause_white_36dp);
-        }
-    }
-
-    public void launchNowPlayingActivity(View view) {
-        Cursor cursor = null;
-        int albumId = -1;
-        try {
-            int trackId = playerService.getCurrentTrackId();
-            cursor = getContext().getContentResolver().query(
-                    URI, PROJECTION,
-                    MediaStore.Audio.Media._ID + "=" + trackId,
-                    null, null);
-            cursor.moveToFirst();
-            albumId = cursor.getInt(COLUMN_ALBUM_ID);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        Intent intent = new Intent(getContext(), NowPlayingActivity.class);
-        intent.putExtra(NowPlayingActivity.EXTRA_TRACK_ALBUM_ID, albumId);
-        startActivity(intent);
     }
 
     /* *************** */
@@ -206,32 +136,14 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
     /* *************** */
 
     private void syncDataWithService() {
-        int trackId = playerService.getCurrentTrackId();
-        Cursor cursor = null;
-        try {
-            cursor = getContext().getContentResolver().query(
-                    URI, PROJECTION,
-                    MediaStore.Audio.Media._ID + "=" + trackId,
-                    null, null);
-            cursor.moveToFirst();
+        Picasso.with(getContext())
+                .load(playerService.getMetadata().getArtFile())
+                .placeholder(R.drawable.fallback_cover)
+                .error(R.drawable.fallback_cover)
+                .into(artView);
 
-            titleView.setText(cursor.getString(COLUMN_TITLE));
+        titleView.setText(playerService.getMetadata().getTrackTitle());
 
-            int albumId = cursor.getInt(COLUMN_ALBUM_ID);
-            File art = AlbumArtUtils.getArtFileFromId(albumId, getContext());
-            Picasso.with(getContext())
-                    .load(art)
-                    .error(R.drawable.fallback_cover)
-                    .placeholder(R.drawable.fallback_cover)
-                    .fit()
-                    .into(artView);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        // Sync control
         if (playerService.isPlaying()) {
             controlView.setImageResource(R.drawable.ic_pause_white_36dp);
         } else {
