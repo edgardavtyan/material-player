@@ -20,12 +20,6 @@ import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithFullInfo;
 
 public class TracksListFragment extends Fragment
 implements LoaderManager.LoaderCallbacks<Cursor>{
-    /* ********* */
-    /* Constants */
-    /* ********* */
-
-    private static int LOADER_ID = 5;
-
     /* ****** */
     /* Fields */
     /* ****** */
@@ -59,7 +53,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(LOADER_ID, null, this);
+        getLoaderManager().initLoader(0, null, this);
     }
 
     /* *********************** */

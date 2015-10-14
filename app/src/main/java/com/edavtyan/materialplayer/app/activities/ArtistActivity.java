@@ -28,7 +28,6 @@ public class ArtistActivity
 
     public static final String EXTRA_ARTIST_ID = "artist_id";
     public static final String EXTRA_ARTIST_NAME = "artist_name";
-    private static final int LOADER_ID = 1;
 
     /* ****** */
     /* Fields */
@@ -44,7 +43,7 @@ public class ArtistActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist);
-        getLoaderManager().initLoader(LOADER_ID, null, this);
+        getLoaderManager().initLoader(0, null, this);
         trackAdapter = new TrackAdapterWithAlbumInfo(this, null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);

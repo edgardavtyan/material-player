@@ -19,12 +19,6 @@ import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
 
 public class AlbumsListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
-    /* ********* */
-    /* Constants */
-    /* ********* */
-
-    private static int LOADER_ID = 4;
-
     /* ****** */
     /* Fields */
     /* ****** */
@@ -58,7 +52,7 @@ public class AlbumsListFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
+        getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
     /* *********************** */

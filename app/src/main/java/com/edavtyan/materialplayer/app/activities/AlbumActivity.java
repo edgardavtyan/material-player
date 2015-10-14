@@ -28,7 +28,6 @@ public class AlbumActivity
     public static final String EXTRA_ALBUM_TITLE = "album_title";
     public static final String EXTRA_ALBUM_ART = "album_art";
     public static final String EXTRA_ALBUM_ID = "album_id";
-    public static final int LOADER_ID = 2;
 
     /* ****** */
     /* Fields */
@@ -44,7 +43,7 @@ public class AlbumActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
-        getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
+        getLoaderManager().initLoader(0, savedInstanceState, this);
         trackAdapter = new TrackAdapterWithDurationInfo(this, null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.album_toolbar);
