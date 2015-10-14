@@ -18,7 +18,6 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithDurationInfo;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
-import com.squareup.picasso.Picasso;
 
 public class AlbumActivity
         extends AppCompatActivity
@@ -65,10 +64,8 @@ public class AlbumActivity
 
         ImageView artView = (ImageView) findViewById(R.id.album_art);
         String artPath = getIntent().getStringExtra(EXTRA_ALBUM_ART);
-        Picasso.with(this)
-                .load(AlbumArtUtils.getArtFileFromPath(artPath))
-                .placeholder(R.drawable.fallback_cover)
-                .error(R.drawable.fallback_cover)
+        AlbumArtUtils
+                .getFullArtRequest(this, AlbumArtUtils.getArtFileFromPath(artPath))
                 .into(artView);
     }
 

@@ -87,7 +87,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         int albumId = getIntent().getIntExtra(EXTRA_TRACK_ALBUM_ID, 0);
         RequestCreator artRequest = Picasso
                 .with(this)
-                .load(AlbumArtUtils.getArtPathFromId(albumId, this))
+                .load(AlbumArtUtils.getArtFileFromId(albumId, this))
                 .placeholder(R.drawable.fallback_cover)
                 .error(R.drawable.fallback_cover);
 
@@ -188,8 +188,8 @@ public class NowPlayingActivity extends AppCompatActivity {
             infoView.setText(getTrackInfo(trackCursor));
 
             int albumId = trackCursor.getInt(COLUMN_ALBUM_ID);
-            File artFile = AlbumArtUtils.getArtPathFromId(albumId, this);
-            RequestCreator artRequest = AlbumArtUtils.getPicassoCoverRequest(this, artFile);
+            File artFile = AlbumArtUtils.getArtFileFromId(albumId, this);
+            RequestCreator artRequest = AlbumArtUtils.getFullArtRequest(this, artFile);
             artRequest.into(artView);
             artRequest.into(artBackView);
 

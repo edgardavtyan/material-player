@@ -17,7 +17,6 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -73,12 +72,7 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
 
         String artPath = getCursor().getString(COLUMN_INDEX_ART);
         File artFile = AlbumArtUtils.getArtFileFromPath(artPath);
-        Picasso.with(context)
-                .load(artFile)
-                .placeholder(R.drawable.ic_albumart_placeholder)
-                .error(R.drawable.ic_albumart_placeholder)
-                .resize(100, 100)
-                .into(vh.artImageView);
+        AlbumArtUtils.getSmallArtRequest(context, artFile).into(vh.artImageView);
     }
 
     @Override

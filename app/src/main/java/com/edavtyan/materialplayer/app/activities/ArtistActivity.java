@@ -13,10 +13,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithAlbumInfo;
-import com.squareup.picasso.Picasso;
+import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
 public class ArtistActivity
         extends AppCompatActivity
@@ -62,9 +63,7 @@ public class ArtistActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
-        Picasso.with(this)
-                .load(R.drawable.fallback_artist)
-                .into(artistArtView);
+        AlbumArtUtils.getFullArtistArtRequest(this).into(artistArtView);
     }
 
     /* *********************** */
