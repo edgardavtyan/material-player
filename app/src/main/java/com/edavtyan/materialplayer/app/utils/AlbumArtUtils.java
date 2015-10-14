@@ -11,7 +11,7 @@ import com.squareup.picasso.RequestCreator;
 import java.io.File;
 
 public class AlbumArtUtils {
-    public static String getArtPathFromId(int id, Context context) {
+    public static File getArtPathFromId(int id, Context context) {
         Cursor cursor = null;
         try {
             cursor = context.getContentResolver().query(
@@ -19,9 +19,10 @@ public class AlbumArtUtils {
                     new String[] { MediaStore.Audio.Albums.ALBUM_ART },
                     MediaStore.Audio.Albums._ID + "=" + id,
                     null, null);
-
             cursor.moveToFirst();
-            return cursor.getString(0);
+
+            String artPath = cursor.getString(0);
+            return getArtFileFromPath(artPath);
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -29,10 +30,19 @@ public class AlbumArtUtils {
         }
     }
 
-    public static RequestCreator getPicassoCoverRequest(Context context, String artPath) {
+    public static File getArtFileFromPath(String artPath) {
+        File artFile = null;
+        if (artPath != null) {
+            artFile = new File(artPath);
+        }
+
+        return artFile;
+    }
+
+    public static RequestCreator getPicassoCoverRequest(Context context, File artFile) {
         return Picasso
                 .with(context)
-                .load(new File(artPath))
+                .load(artFile)
                 .placeholder(R.drawable.fallback_cover)
                 .error(R.drawable.fallback_cover);
     }

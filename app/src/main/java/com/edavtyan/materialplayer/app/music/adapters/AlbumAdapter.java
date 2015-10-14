@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.edavtyan.materialplayer.app.activities.AlbumActivity;
+
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -69,8 +71,10 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
         vh.titleTextView.setText(cursor.getString(COLUMN_INDEX_TITLE));
         vh.infoTextView.setText(getAdditionalInfo(cursor));
 
+        String artPath = getCursor().getString(COLUMN_INDEX_ART);
+        File artFile = AlbumArtUtils.getArtFileFromPath(artPath);
         Picasso.with(context)
-                .load(new File(cursor.getString(COLUMN_INDEX_ART)))
+                .load(artFile)
                 .placeholder(R.drawable.ic_albumart_placeholder)
                 .error(R.drawable.ic_albumart_placeholder)
                 .resize(100, 100)

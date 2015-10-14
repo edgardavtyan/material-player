@@ -13,12 +13,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithDurationInfo;
+import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 public class AlbumActivity
         extends AppCompatActivity
@@ -64,8 +64,11 @@ public class AlbumActivity
         recyclerView.setAdapter(trackAdapter);
 
         ImageView artView = (ImageView) findViewById(R.id.album_art);
+        String artPath = getIntent().getStringExtra(EXTRA_ALBUM_ART);
         Picasso.with(this)
-                .load(new File(getIntent().getStringExtra(EXTRA_ALBUM_ART)))
+                .load(AlbumArtUtils.getArtFileFromPath(artPath))
+                .placeholder(R.drawable.fallback_cover)
+                .error(R.drawable.fallback_cover)
                 .into(artView);
     }
 
