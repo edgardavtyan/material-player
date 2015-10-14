@@ -6,4 +6,5 @@
     <dimen name="nowplaying_info_textSize">16sp</dimen>
     <dimen name="nowplaying_info_marginTop">10dp</dimen>
     <dimen name="nowplaying_title_textSize">24sp</dimen>
+    <dimen name="nowplaying_floating_height">60dp</dimen>
 </resources>

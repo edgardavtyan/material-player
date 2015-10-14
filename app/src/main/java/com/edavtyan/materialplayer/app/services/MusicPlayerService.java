@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MusicPlayerService extends Service
@@ -44,8 +45,11 @@ implements MediaPlayer.OnPreparedListener {
     @Override
     public void onCreate() {
         super.onCreate();
+
         player = new MediaPlayer();
         player.setOnPreparedListener(this);
+
+        tracks = new ArrayList<>();
     }
 
     public class MusicPlayerBinder extends Binder {
@@ -126,6 +130,14 @@ implements MediaPlayer.OnPreparedListener {
     }
 
     public int getCurrentTrackId() {
-        return tracks.get(position);
+        if (hasData()) {
+            return tracks.get(position);
+        } else {
+            return -1;
+        }
+    }
+
+    public boolean hasData() {
+        return tracks.size() > 0;
     }
 }
