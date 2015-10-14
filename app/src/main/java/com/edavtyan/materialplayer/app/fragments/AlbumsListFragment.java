@@ -1,18 +1,30 @@
 package com.edavtyan.materialplayer.app.fragments;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
 
-public class AlbumsListFragment extends Fragment {
+public class AlbumsListFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<Cursor> {
+    /* ********* */
+    /* Constants */
+    /* ********* */
+
+    private static int LOADER_ID = 4;
+
     /* ****** */
     /* Fields */
     /* ****** */
@@ -26,12 +38,7 @@ public class AlbumsListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Cursor cursor = getContext().getContentResolver().query(
-                AlbumAdapter.URI, AlbumAdapter.PROJECTION,
-                null, null, AlbumAdapter.SORT_ORDER);
-
-        albumAdapter = new AlbumAdapter(getContext(), cursor);
+        albumAdapter = new AlbumAdapter(getContext(), null);
     }
 
     @Nullable
@@ -46,5 +53,45 @@ public class AlbumsListFragment extends Fragment {
         albumsRecyclerView.setAdapter(albumAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getLoaderManager().initLoader(LOADER_ID, savedInstanceState, this);
+    }
+
+    /* *********************** */
+    /* LoaderCallbacks members */
+    /* *********************** */
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return new AlbumLoader(getContext());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        albumAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        albumAdapter.swapCursor(null);
+    }
+
+    private static class AlbumLoader extends CursorLoader {
+        public AlbumLoader(Context context) {
+            super(context);
+        }
+
+        @Override
+        public Cursor loadInBackground() {
+            return getContext().getContentResolver().query(
+                    AlbumAdapter.URI,
+                    AlbumAdapter.PROJECTION,
+                    null, null,
+                    AlbumAdapter.SORT_ORDER);
+        }
     }
 }

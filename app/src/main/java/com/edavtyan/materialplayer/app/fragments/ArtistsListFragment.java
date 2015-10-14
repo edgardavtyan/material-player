@@ -67,7 +67,7 @@ public class ArtistsListFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new ArtistLoader(getContext());
+        return new ArtistsLoader(getContext());
     }
 
     @Override
@@ -80,8 +80,8 @@ public class ArtistsListFragment extends Fragment implements LoaderManager.Loade
         artistAdapter.swapCursor(null);
     }
 
-    private static class ArtistLoader extends CursorLoader {
-        public ArtistLoader(Context context) {
+    private static class ArtistsLoader extends CursorLoader {
+        public ArtistsLoader(Context context) {
             super(context);
         }
 
