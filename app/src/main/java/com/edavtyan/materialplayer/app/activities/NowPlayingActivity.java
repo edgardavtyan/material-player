@@ -72,6 +72,15 @@ public class NowPlayingActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (isBound) {
+            syncTrackInfoWithService();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         unbindService(playerConnection);
         super.onDestroy();

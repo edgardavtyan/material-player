@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.app.services;
 
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -22,7 +21,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.activities.MainActivity;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
@@ -32,6 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: This needs some serious refactoring
 public class MusicPlayerService extends Service
 implements MediaPlayer.OnPreparedListener {
     /* ********* */
@@ -195,12 +194,16 @@ implements MediaPlayer.OnPreparedListener {
     public void resume() {
         if (hasData) {
             player.start();
+            notificationBuilder.setContent(getNotificationLayout());
+            NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }
 
     public void pause() {
         if (hasData) {
             player.pause();
+            notificationBuilder.setContent(getNotificationLayout());
+            NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }
 
