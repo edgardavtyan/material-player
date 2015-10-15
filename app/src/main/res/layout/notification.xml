@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/notification_art"
+        android:layout_width="@dimen/nowplaying_notification_height"
+        android:layout_height="match_parent"
+        android:layout_marginRight="8dp"
+        tools:src="@drawable/fallback_cover_listitem"/>
+
+    <LinearLayout
+        android:id="@+id/notification_info_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/notification_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:singleLine="true"
+            tools:text="Current Track Title"/>
+
+        <TextView
+            android:id="@+id/notification_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="#777777"
+            android:singleLine="true"
+            tools:text="Artist Name - Album Name"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:src="@drawable/ic_pause_black_36dp"
+        android:id="@+id/notification_playPause"
+        android:layout_width="@dimen/nowplaying_notification_control_height"
+        android:layout_height="match_parent"
+        android:background="@drawable/nowplaying_control_ripple"/>
+
+    <ImageButton
+        android:src="@drawable/ic_fast_forward_black_36dp"
+        android:id="@+id/notification_fastForward"
+        android:layout_width="@dimen/nowplaying_notification_control_height"
+        android:layout_height="match_parent"
+        android:background="@drawable/nowplaying_control_ripple"/>
+
+    <ImageButton
+        android:src="@drawable/ic_close_black_36dp"
+        android:id="@+id/notification_close"
+        android:layout_width="@dimen/nowplaying_notification_control_height"
+        android:layout_height="match_parent"
+        android:background="@drawable/nowplaying_control_ripple"/>
+
+</LinearLayout>

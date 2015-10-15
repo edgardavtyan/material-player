@@ -1,17 +1,29 @@
 package com.edavtyan.materialplayer.app.services;
 
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
+import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.MainActivity;
+import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
@@ -41,8 +53,14 @@ implements MediaPlayer.OnPreparedListener {
     private static final int COLUMN_TITLE = 2;
     private static final int COLUMN_DURATION = 3;
     private static final int COLUMN_ARTIST = 4;
+    private static final int COLUMN_ALBUM = 5;
 
     private static final String COLUMN_NAME_ID = MediaStore.Audio.Media._ID;
+
+    private static final int NOTIFICATION_ID = 1;
+
+    private static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
+    private static final String ACTION_FAST_FORWARD = "com.edavtyan.materialplayer.app.fastforward";
 
     /* ****** */
     /* Fields */
@@ -51,8 +69,41 @@ implements MediaPlayer.OnPreparedListener {
     private List<Integer> tracks;
     private MediaPlayer player;
     private Metadata metadata;
+    private NotificationCompat.Builder notificationBuilder;
     private int position;
     private boolean hasData;
+
+    /* ******************* */
+    /* Broadcast Receivers */
+    /* ******************* */
+
+    private class PlayPauseReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (isPlaying()) {
+                pause();
+            } else {
+                resume();
+            }
+
+            notificationBuilder.setContent(getNotificationLayout());
+            NotificationManagerCompat
+                    .from(MusicPlayerService.this)
+                    .notify(NOTIFICATION_ID, notificationBuilder.build());
+        }
+    }
+
+    private class FastForwardReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                moveNext();
+                prepare();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     /* *************** */
     /* Service members */
@@ -65,6 +116,17 @@ implements MediaPlayer.OnPreparedListener {
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        notificationBuilder = new NotificationCompat.Builder(this);
+        notificationBuilder
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContent(new RemoteViews(getPackageName(), R.layout.notification));
+
+        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+        return START_NOT_STICKY;
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 
@@ -72,6 +134,12 @@ implements MediaPlayer.OnPreparedListener {
         player.setOnPreparedListener(this);
 
         tracks = new ArrayList<>();
+
+        IntentFilter playPauseFilter = new IntentFilter(ACTION_PLAY_PAUSE);
+        registerReceiver(new PlayPauseReceiver(), playPauseFilter);
+
+        IntentFilter fastForwardFilter = new IntentFilter(ACTION_FAST_FORWARD);
+        registerReceiver(new FastForwardReceiver(), fastForwardFilter);
     }
 
     public class MusicPlayerBinder extends Binder {
@@ -89,6 +157,9 @@ implements MediaPlayer.OnPreparedListener {
         player.start();
         hasData = true;
         initMetadata();
+
+        notificationBuilder.setContent(getNotificationLayout());
+        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
     /* ************** */
@@ -189,11 +260,55 @@ implements MediaPlayer.OnPreparedListener {
             metadata.setDuration(tracksCursor.getLong(COLUMN_DURATION));
             metadata.setAlbumId(tracksCursor.getInt(COLUMN_ALBUM_ID));
             metadata.setArtistTitle(tracksCursor.getString(COLUMN_ARTIST));
+            metadata.setAlbumTitle(tracksCursor.getString(COLUMN_ALBUM));
             metadata.setArtFile(AlbumArtUtils.getArtFileFromId(metadata.getAlbumId(), this));
         } finally {
             if (tracksCursor != null) {
                 tracksCursor.close();
             }
         }
+    }
+
+    private RemoteViews getNotificationLayout() {
+        RemoteViews notificationLayout = new RemoteViews(getPackageName(), R.layout.notification);
+        notificationLayout.setTextViewText(R.id.notification_title, metadata.getTrackTitle());
+        notificationLayout.setTextViewText(R.id.notification_info, metadata.getAlbumTitle());
+
+        if (metadata.getArtFile() != null) {
+            Bitmap art = BitmapFactory.decodeFile(metadata.getArtFile().getPath());
+            notificationLayout.setImageViewBitmap(R.id.notification_art, art);
+        } else {
+            notificationLayout.setImageViewResource(R.id.notification_art, R.drawable.fallback_cover);
+        }
+
+        if (isPlaying()) {
+            notificationLayout.setImageViewResource(
+                    R.id.notification_playPause, R.drawable.ic_pause_black_36dp);
+        } else {
+            notificationLayout.setImageViewResource(
+                    R.id.notification_playPause, R.drawable.ic_play_black_36dp);
+        }
+
+        Intent playPauseIntent = new Intent(ACTION_PLAY_PAUSE);
+        PendingIntent playPausePendingIntent =
+                PendingIntent.getBroadcast(this, 0, playPauseIntent, 0);
+        notificationLayout.setOnClickPendingIntent(
+                R.id.notification_playPause, playPausePendingIntent);
+
+        Intent fastForwardIntent = new Intent(ACTION_FAST_FORWARD);
+        PendingIntent fastForwardPendingIntent =
+                PendingIntent.getBroadcast(this, 0, fastForwardIntent, 0);
+        notificationLayout.setOnClickPendingIntent(
+                R.id.notification_fastForward, fastForwardPendingIntent);
+
+        Intent appIntent = new Intent(this, NowPlayingActivity.class);
+        appIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent appPendingIntent = PendingIntent.getActivity(this, 0, appIntent, 0);
+        notificationLayout.setOnClickPendingIntent(
+                R.id.notification_art, appPendingIntent);
+        notificationLayout.setOnClickPendingIntent(
+                R.id.notification_info_container, appPendingIntent);
+
+        return notificationLayout;
     }
 }

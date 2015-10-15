@@ -7,4 +7,6 @@
     <dimen name="nowplaying_info_marginTop">10dp</dimen>
     <dimen name="nowplaying_title_textSize">24sp</dimen>
     <dimen name="nowplaying_floating_height">60dp</dimen>
+    <dimen name="nowplaying_notification_height">64dp</dimen>
+    <dimen name="nowplaying_notification_control_height">48dp</dimen>
 </resources>
