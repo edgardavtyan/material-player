@@ -6,7 +6,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -23,7 +22,6 @@ import android.widget.RemoteViews;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.music.Metadata;
-import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.edavtyan.materialplayer.app.utils.PendingIntents;
 
 import java.io.IOException;
@@ -38,24 +36,6 @@ implements MediaPlayer.OnPreparedListener {
     /* ********* */
 
     private final String TAG = "MusicPlayerService";
-
-    private final Uri TRACKS_URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-    private final String[] TRACKS_PROJECTION = new String[] {
-            MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.ALBUM_ID,
-            MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.DURATION,
-            MediaStore.Audio.Media.ARTIST,
-            MediaStore.Audio.Media.ALBUM,
-    };
-
-    private static final int COLUMN_ALBUM_ID = 1;
-    private static final int COLUMN_TITLE = 2;
-    private static final int COLUMN_DURATION = 3;
-    private static final int COLUMN_ARTIST = 4;
-    private static final int COLUMN_ALBUM = 5;
-
-    private static final String COLUMN_NAME_ID = MediaStore.Audio.Media._ID;
 
     private static final int NOTIFICATION_ID = 1;
 
@@ -156,7 +136,7 @@ implements MediaPlayer.OnPreparedListener {
     public void onPrepared(MediaPlayer mediaPlayer) {
         player.start();
         hasData = true;
-        initMetadata();
+        metadata = Metadata.fromId(getCurrentTrackId(), this);
 
         notificationBuilder.setContent(getNotificationLayout());
         NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
@@ -246,32 +226,6 @@ implements MediaPlayer.OnPreparedListener {
     /* *************** */
     /* Private methods */
     /* *************** */
-
-    private void initMetadata() {
-        metadata = new Metadata();
-
-        Cursor tracksCursor = null;
-        try {
-            int trackId = getCurrentTrackId();
-            metadata.setTrackId(trackId);
-
-            tracksCursor = getContentResolver().query(
-                    TRACKS_URI, TRACKS_PROJECTION,
-                    COLUMN_NAME_ID + "=" + trackId,
-                    null, null);
-            tracksCursor.moveToFirst();
-            metadata.setTrackTitle(tracksCursor.getString(COLUMN_TITLE));
-            metadata.setDuration(tracksCursor.getLong(COLUMN_DURATION));
-            metadata.setAlbumId(tracksCursor.getInt(COLUMN_ALBUM_ID));
-            metadata.setArtistTitle(tracksCursor.getString(COLUMN_ARTIST));
-            metadata.setAlbumTitle(tracksCursor.getString(COLUMN_ALBUM));
-            metadata.setArtFile(AlbumArtUtils.getArtFileFromId(metadata.getAlbumId(), this));
-        } finally {
-            if (tracksCursor != null) {
-                tracksCursor.close();
-            }
-        }
-    }
 
     private RemoteViews getNotificationLayout() {
         RemoteViews notificationLayout = new RemoteViews(getPackageName(), R.layout.notification);
