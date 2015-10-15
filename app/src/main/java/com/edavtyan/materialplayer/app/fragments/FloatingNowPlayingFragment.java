@@ -27,6 +27,7 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
     /* Fields */
     /* ****** */
 
+    private MusicPlayerConnection playerConnection;
     private MusicPlayerService playerService;
     private boolean isBound;
 
@@ -88,9 +89,16 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        MusicPlayerConnection playerConnection = new MusicPlayerConnection();
+        playerConnection = new MusicPlayerConnection();
         Intent intent = new Intent(getContext(), MusicPlayerService.class);
         getContext().bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    public void onDestroy() {
+        getContext().unbindService(playerConnection);
+
+        super.onDestroy();
     }
 
     @Override

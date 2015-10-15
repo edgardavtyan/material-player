@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.TabPagerFragmentAdapter;
+import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -24,5 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
+
+        Intent intent = new Intent(this, MusicPlayerService.class);
+        startService(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Intent intent = new Intent(this, MusicPlayerService.class);
+        stopService(intent);
+
+        super.onDestroy();
     }
 }
