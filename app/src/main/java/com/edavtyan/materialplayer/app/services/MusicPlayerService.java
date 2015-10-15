@@ -26,6 +26,7 @@ import com.edavtyan.materialplayer.app.activities.MainActivity;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
+import com.edavtyan.materialplayer.app.utils.PendingIntents;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -289,25 +290,21 @@ implements MediaPlayer.OnPreparedListener {
                     R.id.notification_playPause, R.drawable.ic_play_black_36dp);
         }
 
-        Intent playPauseIntent = new Intent(ACTION_PLAY_PAUSE);
-        PendingIntent playPausePendingIntent =
-                PendingIntent.getBroadcast(this, 0, playPauseIntent, 0);
         notificationLayout.setOnClickPendingIntent(
-                R.id.notification_playPause, playPausePendingIntent);
+                R.id.notification_playPause,
+                PendingIntents.getBroadcast(this, ACTION_PLAY_PAUSE));
 
-        Intent fastForwardIntent = new Intent(ACTION_FAST_FORWARD);
-        PendingIntent fastForwardPendingIntent =
-                PendingIntent.getBroadcast(this, 0, fastForwardIntent, 0);
         notificationLayout.setOnClickPendingIntent(
-                R.id.notification_fastForward, fastForwardPendingIntent);
+                R.id.notification_fastForward,
+                PendingIntents.getBroadcast(this, ACTION_FAST_FORWARD));
 
-        Intent appIntent = new Intent(this, NowPlayingActivity.class);
-        appIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent appPendingIntent = PendingIntent.getActivity(this, 0, appIntent, 0);
         notificationLayout.setOnClickPendingIntent(
-                R.id.notification_art, appPendingIntent);
+                R.id.notification_art,
+                PendingIntents.getResumeActivity(this, NowPlayingActivity.class));
+
         notificationLayout.setOnClickPendingIntent(
-                R.id.notification_info_container, appPendingIntent);
+                R.id.notification_info_container,
+                PendingIntents.getResumeActivity(this, NowPlayingActivity.class));
 
         return notificationLayout;
     }
