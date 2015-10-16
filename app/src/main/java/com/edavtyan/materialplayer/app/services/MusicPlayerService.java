@@ -24,7 +24,7 @@ import java.util.List;
 
 // TODO: This needs some serious refactoring
 public class MusicPlayerService extends Service
-implements MediaPlayer.OnPreparedListener {
+implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     /* ********* */
     /* Constants */
     /* ********* */
@@ -107,6 +107,7 @@ implements MediaPlayer.OnPreparedListener {
 
         player = new MediaPlayer();
         player.setOnPreparedListener(this);
+        player.setOnCompletionListener(this);
 
         tracks = new ArrayList<>();
         notification = new NowPlayingNotification(this);
@@ -139,6 +140,12 @@ implements MediaPlayer.OnPreparedListener {
 
         String metadataJson = new Gson().toJson(metadata);
         sendBroadcast(new Intent(SEND_NEW_TRACK).putExtra(EXTRA_METADATA, metadataJson));
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+        moveNext();
+        prepare();
     }
 
     /* ************** */
