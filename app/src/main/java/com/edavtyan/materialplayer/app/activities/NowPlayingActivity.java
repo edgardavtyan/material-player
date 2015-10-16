@@ -18,9 +18,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.controls.SeekbarControl;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
@@ -44,6 +46,8 @@ public class NowPlayingActivity extends AppCompatActivity {
     private ImageView artView;
     private ImageView artBackView;
 
+    private SeekbarControl seekbar;
+
     private BroadcastReceiver playReciever = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -60,6 +64,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             syncTrackInfoWithService();
+            seekbar.start();
         }
     };
 
@@ -77,6 +82,10 @@ public class NowPlayingActivity extends AppCompatActivity {
         titleView = (TextView) findViewById(R.id.title);
         artView = (ImageView) findViewById(R.id.art);
         artBackView = (ImageView) findViewById(R.id.art_back);
+
+        seekbar = new SeekbarControl((SeekBar) findViewById(R.id.seekbar));
+        seekbar.setOnStopTrackingListener(position -> playerService.setPosition(position));
+        seekbar.setUpdater(seekbar -> seekbar.setProgress(playerService.getPosition()));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -138,6 +147,7 @@ public class NowPlayingActivity extends AppCompatActivity {
             isBound = true;
 
             syncTrackInfoWithService();
+            seekbar.start();
         }
 
         @Override
@@ -190,6 +200,8 @@ public class NowPlayingActivity extends AppCompatActivity {
                 .error(R.drawable.fallback_cover);
         artRequest.into(artView);
         artRequest.into(artBackView);
+
+        seekbar.setMax((int) metadata.getDuration());
 
         if (playerService.isPlaying()) {
             playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);

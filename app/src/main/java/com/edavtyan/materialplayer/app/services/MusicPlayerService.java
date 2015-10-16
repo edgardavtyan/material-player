@@ -161,9 +161,16 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         Log.d(TAG, "setTracks count=" + this.tracks.size());
     }
 
+    public void setCurrentIndex(int index) {
+        this.position = index;
+    }
+
     public void setPosition(int position) {
-        this.position = position;
-        Log.d(TAG, "setPosition position=" + this.position);
+        player.seekTo(position);
+    }
+
+    public int getPosition() {
+        return player.getCurrentPosition();
     }
 
     public void prepare() {

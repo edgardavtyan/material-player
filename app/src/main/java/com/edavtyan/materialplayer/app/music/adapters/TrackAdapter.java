@@ -136,7 +136,7 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
 
             try {
                 playerService.setTracks(tracks);
-                playerService.setPosition(getAdapterPosition());
+                playerService.setCurrentIndex(getAdapterPosition());
                 playerService.prepare();
             } catch (Exception e) {
                 e.printStackTrace();
