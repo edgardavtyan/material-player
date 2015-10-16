@@ -30,12 +30,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MusicPlayerService.class);
         startService(intent);
     }
-
-    @Override
-    protected void onDestroy() {
-        Intent intent = new Intent(this, MusicPlayerService.class);
-        stopService(intent);
-
-        super.onDestroy();
-    }
 }
