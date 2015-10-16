@@ -3,8 +3,12 @@
     <color name="colorPrimary">#FF5722</color>
     <color name="colorPrimaryDark">#D84315</color>
     <color name="colorPrimaryLight">#FFCDD2</color>
+
+    <color name="accent">#FFC107</color>
+
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextPrimaryInactive">#80FFFFFF</color>
+
     <color name="colorRippleWhite">#50ffffff</color>
     <color name="nowplaying_art_tint">#77000000</color>
 </resources>

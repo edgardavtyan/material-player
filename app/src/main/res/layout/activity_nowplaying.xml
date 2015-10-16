@@ -77,11 +77,14 @@
 
     </LinearLayout>
 
-    <SeekBar
+    <app.minimize.com.seek_bar_compat.SeekBarCompat
         android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimaryDark"
+        app:thumbColor="@color/accent"
+        app:progressColor="@color/accent"
+        tools:progress="40"/>
 
     <LinearLayout
         android:layout_width="match_parent"
