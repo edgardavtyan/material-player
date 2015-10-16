@@ -1,8 +1,10 @@
 package com.edavtyan.materialplayer.app.activities;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -34,13 +36,32 @@ public class NowPlayingActivity extends AppCompatActivity {
 
     private MusicPlayerConnection playerConnection;
     private MusicPlayerService playerService;
-    private ImageView playPauseImageButton;
     private boolean isBound;
 
     private TextView titleView;
     private TextView infoView;
+    private ImageView playPauseView;
     private ImageView artView;
     private ImageView artBackView;
+
+    private BroadcastReceiver playReciever = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);
+        }
+    };
+    private BroadcastReceiver pauseReciever = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            playPauseView.setImageResource(R.drawable.ic_play_white_36dp);
+        }
+    };
+    private BroadcastReceiver newTrackReciever = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            syncTrackInfoWithService();
+        }
+    };
 
     /* ************************* */
     /* AppCompatActivity members */
@@ -51,7 +72,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowplaying);
 
-        playPauseImageButton = (ImageButton) findViewById(R.id.nowplaying_control_playPause);
+        playPauseView = (ImageButton) findViewById(R.id.nowplaying_control_playPause);
         infoView = (TextView) findViewById(R.id.nowplaying_info);
         titleView = (TextView) findViewById(R.id.nowplaying_title);
         artView = (ImageView) findViewById(R.id.nowplaying_art);
@@ -69,6 +90,11 @@ public class NowPlayingActivity extends AppCompatActivity {
         playerConnection = new MusicPlayerConnection();
         Intent intent = new Intent(this, MusicPlayerService.class);
         bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
+
+        registerReceiver(playReciever, new IntentFilter(MusicPlayerService.SEND_PLAY));
+        registerReceiver(pauseReciever, new IntentFilter(MusicPlayerService.SEND_PAUSE));
+        registerReceiver(newTrackReciever, new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+
     }
 
     @Override
@@ -83,6 +109,9 @@ public class NowPlayingActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         unbindService(playerConnection);
+        unregisterReceiver(playReciever);
+        unregisterReceiver(pauseReciever);
+        unregisterReceiver(newTrackReciever);
         super.onDestroy();
     }
 
@@ -122,36 +151,26 @@ public class NowPlayingActivity extends AppCompatActivity {
     /* *********************************** */
 
     public void play(View view) throws IOException {
-        if (playerService.isPlaying()) {
-            playerService.pause();
-            playPauseImageButton.setImageResource(R.drawable.ic_play_white_36dp);
-        } else {
-            playerService.resume();
-            playPauseImageButton.setImageResource(R.drawable.ic_pause_white_36dp);
-        }
+        sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
     }
 
     public void fastForward(View view) throws IOException {
-        playerService.moveNext();
-        playerService.prepare();
-        syncTrackInfoWithService();
+        sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
     }
 
     public void rewind(View view) throws IOException {
-        playerService.movePrev();
-        playerService.prepare();
-        syncTrackInfoWithService();
+        sendBroadcast(new Intent(MusicPlayerService.ACTION_REWIND));
     }
+
+    /* *************** */
+    /* Private methods */
+    /* *************** */
 
     private Point getScreenSize() {
         Point screenSize = new Point();
         getWindowManager().getDefaultDisplay().getSize(screenSize);
         return screenSize;
     }
-
-    /* *************** */
-    /* Private methods */
-    /* *************** */
 
     private String getTrackInfo(Metadata metadata) {
         return getResources().getString(
@@ -173,9 +192,9 @@ public class NowPlayingActivity extends AppCompatActivity {
         artRequest.into(artBackView);
 
         if (playerService.isPlaying()) {
-            playPauseImageButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);
         } else {
-            playPauseImageButton.setImageResource(R.drawable.ic_play_white_36dp);
+            playPauseView.setImageResource(R.drawable.ic_play_white_36dp);
         }
     }
 }

@@ -39,8 +39,13 @@ implements MediaPlayer.OnPreparedListener {
 
     private static final int NOTIFICATION_ID = 1;
 
-    private static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
-    private static final String ACTION_FAST_FORWARD = "com.edavtyan.materialplayer.app.fastforward";
+    public static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
+    public static final String ACTION_FAST_FORWARD = "com.edavtyan.materialplayer.app.fastforward";
+    public static final String ACTION_REWIND = "com.edavtyan.materialplayer.app.rewind";
+
+    public static final String SEND_PLAY = "com.edavtyan.materialplayer.app.play";
+    public static final String SEND_PAUSE = "com.edavtyan.materialplayer.app.pause";
+    public static final String SEND_NEW_TRACK = "com.edavtyan.materialplayer.app.newTrack";
 
     /* ****** */
     /* Fields */
@@ -76,12 +81,16 @@ implements MediaPlayer.OnPreparedListener {
     private class FastForwardReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            try {
-                moveNext();
-                prepare();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            moveNext();
+            prepare();
+        }
+    }
+
+    private class RewindReciever extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            movePrev();
+            prepare();
         }
     }
 
@@ -120,6 +129,9 @@ implements MediaPlayer.OnPreparedListener {
 
         IntentFilter fastForwardFilter = new IntentFilter(ACTION_FAST_FORWARD);
         registerReceiver(new FastForwardReceiver(), fastForwardFilter);
+
+        IntentFilter rewindFilter = new IntentFilter(ACTION_REWIND);
+        registerReceiver(new RewindReciever(), rewindFilter);
     }
 
     public class MusicPlayerBinder extends Binder {
@@ -140,6 +152,8 @@ implements MediaPlayer.OnPreparedListener {
 
         notificationBuilder.setContent(getNotificationLayout());
         NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
+
+        sendBroadcast(new Intent(SEND_NEW_TRACK));
     }
 
     /* ************** */
@@ -160,15 +174,19 @@ implements MediaPlayer.OnPreparedListener {
         Log.d(TAG, "setPosition position=" + this.position);
     }
 
-    public void prepare() throws IOException {
+    public void prepare() {
         if (hasData) {
             player.reset();
         }
 
-        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        uri = ContentUris.withAppendedId(uri, tracks.get(position));
-        player.setDataSource(getApplicationContext(), uri);
-        player.prepareAsync();
+        try {
+            Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+            uri = ContentUris.withAppendedId(uri, tracks.get(position));
+            player.setDataSource(getApplicationContext(), uri);
+            player.prepareAsync();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void resume() {
@@ -176,6 +194,7 @@ implements MediaPlayer.OnPreparedListener {
             player.start();
             notificationBuilder.setContent(getNotificationLayout());
             NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
+            sendBroadcast(new Intent(SEND_PLAY));
         }
     }
 
@@ -184,6 +203,7 @@ implements MediaPlayer.OnPreparedListener {
             player.pause();
             notificationBuilder.setContent(getNotificationLayout());
             NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
+            sendBroadcast(new Intent(SEND_PAUSE));
         }
     }
 
