@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/notification_art"
+        android:id="@+id/art"
         android:layout_width="@dimen/nowplaying_notification_height"
         android:layout_height="match_parent"
         android:layout_marginRight="8dp"
         tools:src="@drawable/fallback_cover_listitem"/>
 
     <LinearLayout
-        android:id="@+id/notification_info_container"
+        android:id="@+id/info_wrapper"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -24,7 +24,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/notification_title"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -34,7 +34,7 @@
             tools:text="Current Track Title"/>
 
         <TextView
-            android:id="@+id/notification_info"
+            android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -46,21 +46,21 @@
 
     <ImageButton
         android:src="@drawable/ic_pause_black_36dp"
-        android:id="@+id/notification_playPause"
+        android:id="@+id/playPause"
         android:layout_width="@dimen/nowplaying_notification_control_height"
         android:layout_height="match_parent"
         android:background="@drawable/nowplaying_control_ripple"/>
 
     <ImageButton
         android:src="@drawable/ic_fast_forward_black_36dp"
-        android:id="@+id/notification_fastForward"
+        android:id="@+id/fast_forward"
         android:layout_width="@dimen/nowplaying_notification_control_height"
         android:layout_height="match_parent"
         android:background="@drawable/nowplaying_control_ripple"/>
 
     <ImageButton
         android:src="@drawable/ic_close_black_36dp"
-        android:id="@+id/notification_close"
+        android:id="@+id/close"
         android:layout_width="@dimen/nowplaying_notification_control_height"
         android:layout_height="match_parent"
         android:background="@drawable/nowplaying_control_ripple"/>

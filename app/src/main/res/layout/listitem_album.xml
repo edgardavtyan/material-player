@@ -8,7 +8,7 @@
               android:background="?attr/selectableItemBackground">
 
     <ImageView
-            android:id="@+id/listitem_album_art"
+            android:id="@+id/art"
             android:layout_width="?attr/listPreferredItemHeight"
             android:layout_height="?attr/listPreferredItemHeight"/>
 
@@ -21,7 +21,7 @@
             android:paddingRight="?attr/listPreferredItemPaddingRight">
 
         <TextView
-                android:id="@+id/listitem_album_title"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceListItem"
@@ -29,7 +29,7 @@
                 android:ellipsize="end"/>
 
         <TextView
-                android:id="@+id/listitem_album_info"
+                android:id="@+id/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
     </LinearLayout>

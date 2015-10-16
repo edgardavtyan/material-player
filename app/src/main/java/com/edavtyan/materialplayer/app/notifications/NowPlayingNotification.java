@@ -29,7 +29,7 @@ public class NowPlayingNotification {
         @Override
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
-                    R.id.notification_playPause,
+                    R.id.playPause,
                     R.drawable.ic_pause_black_36dp);
             updateNotification();
         }
@@ -38,7 +38,7 @@ public class NowPlayingNotification {
         @Override
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
-                    R.id.notification_playPause,
+                    R.id.playPause,
                     R.drawable.ic_play_black_36dp);
             updateNotification();
         }
@@ -49,14 +49,14 @@ public class NowPlayingNotification {
             String jsonStr = intent.getStringExtra(MusicPlayerService.EXTRA_METADATA);
             Metadata metadata = new Gson().fromJson(jsonStr, Metadata.class);
 
-            view.setTextViewText(R.id.notification_title, metadata.getTrackTitle());
-            view.setTextViewText(R.id.notification_info, metadata.getAlbumTitle());
+            view.setTextViewText(R.id.title, metadata.getTrackTitle());
+            view.setTextViewText(R.id.info, metadata.getAlbumTitle());
 
             if (metadata.getArtFile() != null) {
                 Bitmap art = BitmapFactory.decodeFile(metadata.getArtFile().getPath());
-                view.setImageViewBitmap(R.id.notification_art, art);
+                view.setImageViewBitmap(R.id.art, art);
             } else {
-                view.setImageViewResource(R.id.notification_art, R.drawable.fallback_cover);
+                view.setImageViewResource(R.id.art, R.drawable.fallback_cover);
             }
 
             updateNotification();
@@ -67,16 +67,16 @@ public class NowPlayingNotification {
     public NowPlayingNotification(Context context) {
         view = new RemoteViews(context.getPackageName(), R.layout.notification);
         view.setOnClickPendingIntent(
-                R.id.notification_art,
+                R.id.art,
                 PendingIntents.getActivity(context, NowPlayingActivity.class));
         view.setOnClickPendingIntent(
-                R.id.notification_title,
+                R.id.title,
                 PendingIntents.getActivity(context, NowPlayingActivity.class));
         view.setOnClickPendingIntent(
-                R.id.notification_playPause,
+                R.id.playPause,
                 PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_PLAY_PAUSE));
         view.setOnClickPendingIntent(
-                R.id.notification_fastForward,
+                R.id.fast_forward,
                 PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_FAST_FORWARD));
 
         builder = new NotificationCompat.Builder(context)

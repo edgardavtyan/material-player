@@ -98,9 +98,9 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
                 context.startActivity(i);
             });
 
-            titleTextView = (TextView) itemView.findViewById(R.id.listitem_album_title);
-            infoTextView = (TextView) itemView.findViewById(R.id.listitem_album_info);
-            artImageView = (ImageView) itemView.findViewById(R.id.listitem_album_art);
+            titleTextView = (TextView) itemView.findViewById(R.id.title);
+            infoTextView = (TextView) itemView.findViewById(R.id.info);
+            artImageView = (ImageView) itemView.findViewById(R.id.art);
         }
 
     }

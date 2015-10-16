@@ -47,22 +47,22 @@ public class ArtistActivity
         getLoaderManager().initLoader(0, null, this);
         trackAdapter = new TrackAdapterWithAlbumInfo(this, null);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.artist_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.artist_collapsingToolbar);
+                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
         if (collapsingToolbar != null) {
             collapsingToolbar.setTitleEnabled(true);
             collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
         }
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.artist_tracks_listview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
         recyclerView.setAdapter(trackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ImageView artistArtView = (ImageView) findViewById(R.id.artist_art);
+        ImageView artistArtView = (ImageView) findViewById(R.id.art);
         AlbumArtUtils.getFullArtistArtRequest(this).into(artistArtView);
     }
 

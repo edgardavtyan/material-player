@@ -43,7 +43,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tracks, container, false);
 
-        RecyclerView artistsRecyclerView = (RecyclerView) view.findViewById(R.id.track_listview);
+        RecyclerView artistsRecyclerView = (RecyclerView) view.findViewById(R.id.track_list);
         artistsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         artistsRecyclerView.setAdapter(trackAdapter);
 

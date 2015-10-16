@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.app_name);
         toolbar.inflateMenu(R.menu.menu);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(new TabPagerFragmentAdapter(getSupportFragmentManager()));
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
         Intent intent = new Intent(this, MusicPlayerService.class);

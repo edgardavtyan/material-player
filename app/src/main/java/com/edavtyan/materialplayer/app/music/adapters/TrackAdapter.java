@@ -118,8 +118,8 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
         public TrackViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            titleTextView = (TextView) itemView.findViewById(R.id.listitem_track_title);
-            infoTextView = (TextView) itemView.findViewById(R.id.listitem_track_info);
+            titleTextView = (TextView) itemView.findViewById(R.id.title);
+            infoTextView = (TextView) itemView.findViewById(R.id.info);
         }
 
         @Override

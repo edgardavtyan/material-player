@@ -72,18 +72,18 @@ public class NowPlayingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowplaying);
 
-        playPauseView = (ImageButton) findViewById(R.id.nowplaying_control_playPause);
-        infoView = (TextView) findViewById(R.id.nowplaying_info);
-        titleView = (TextView) findViewById(R.id.nowplaying_title);
-        artView = (ImageView) findViewById(R.id.nowplaying_art);
-        artBackView = (ImageView) findViewById(R.id.nowplaying_art_back);
+        playPauseView = (ImageButton) findViewById(R.id.control_playPause);
+        infoView = (TextView) findViewById(R.id.info);
+        titleView = (TextView) findViewById(R.id.title);
+        artView = (ImageView) findViewById(R.id.art);
+        artBackView = (ImageView) findViewById(R.id.art_back);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.nowplaying_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            FrameLayout artFrame = (FrameLayout) findViewById(R.id.nowplaying_art_frame);
+            FrameLayout artFrame = (FrameLayout) findViewById(R.id.art_frame);
             artFrame.getLayoutParams().height = getScreenSize().x;
         }
 

@@ -71,16 +71,16 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_floating_nowplaying, parent, false);
 
-        artView = (ImageView) view.findViewById(R.id.nowplaying_floating_art);
+        artView = (ImageView) view.findViewById(R.id.art);
         artView.setOnClickListener(this);
 
-        titleView = (TextView) view.findViewById(R.id.nowplaying_floating_title);
+        titleView = (TextView) view.findViewById(R.id.title);
         titleView.setOnClickListener(this);
 
-        controlView = (ImageButton) view.findViewById(R.id.nowplaying_floating_control);
+        controlView = (ImageButton) view.findViewById(R.id.play_pause);
         controlView.setOnClickListener(this);
 
-        container = (LinearLayout) view.findViewById(R.id.nowplaying_floating_container);
+        container = (LinearLayout) view.findViewById(R.id.container);
 
         return view;
     }
@@ -121,13 +121,13 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.nowplaying_floating_title:
-            case R.id.nowplaying_art:
+            case R.id.title:
+            case R.id.art:
                 Intent intent = new Intent(getContext(), NowPlayingActivity.class);
                 startActivity(intent);
                 break;
 
-            case R.id.nowplaying_floating_control:
+            case R.id.play_pause:
                 if (playerService.isPlaying()) {
                     playerService.pause();
                     controlView.setImageResource(R.drawable.ic_play_white_36dp);

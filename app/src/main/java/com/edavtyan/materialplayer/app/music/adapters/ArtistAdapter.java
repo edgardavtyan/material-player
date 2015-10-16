@@ -90,9 +90,9 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
                 itemView.getContext().startActivity(i);
             });
 
-            titleTextView = (TextView) itemView.findViewById(R.id.listitem_artist_title);
-            countsTextView = (TextView) itemView.findViewById(R.id.listitem_artist_counts);
-            artImageView = (ImageView) itemView.findViewById(R.id.listitem_artist_art);
+            titleTextView = (TextView) itemView.findViewById(R.id.title);
+            countsTextView = (TextView) itemView.findViewById(R.id.info);
+            artImageView = (ImageView) itemView.findViewById(R.id.art);
         }
     }
 

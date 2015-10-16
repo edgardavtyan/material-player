@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/nowplaying_floating_container"
+    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -8,12 +8,12 @@
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:id="@+id/nowplaying_floating_art"
+        android:id="@+id/art"
         android:layout_width="@dimen/nowplaying_floating_height"
         android:layout_height="match_parent"/>
 
     <TextView
-        android:id="@+id/nowplaying_floating_title"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -23,7 +23,7 @@
         android:textColor="@color/colorTextPrimary"/>
 
     <ImageButton
-        android:id="@+id/nowplaying_floating_control"
+        android:id="@+id/play_pause"
         android:layout_width="@dimen/nowplaying_floating_height"
         android:layout_height="match_parent"
         android:src="@drawable/ic_play_white_36dp"

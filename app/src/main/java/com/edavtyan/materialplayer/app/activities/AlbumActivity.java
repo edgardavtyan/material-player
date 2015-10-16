@@ -47,22 +47,22 @@ public class AlbumActivity
         getLoaderManager().initLoader(0, savedInstanceState, this);
         trackAdapter = new TrackAdapterWithDurationInfo(this, null);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.album_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.album_collapsingToolbar);
+                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
         if (collapsingToolbar != null) {
             collapsingToolbar.setTitleEnabled(true);
             collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
         }
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_tracks_listview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(trackAdapter);
 
-        ImageView artView = (ImageView) findViewById(R.id.album_art);
+        ImageView artView = (ImageView) findViewById(R.id.art);
         String artPath = getIntent().getStringExtra(EXTRA_ALBUM_ART);
         AlbumArtUtils
                 .getFullArtRequest(this, AlbumArtUtils.getArtFileFromPath(artPath))

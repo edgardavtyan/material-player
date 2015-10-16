@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
+    android:id="@+id/wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/album_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -25,13 +25,13 @@
         android:layout_marginTop="48dp">
 
         <ImageView
-            android:id="@+id/album_art"
+            android:id="@+id/art"
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/album_tracks_listview"
+            android:id="@+id/tracks_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
