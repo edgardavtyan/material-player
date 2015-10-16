@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/nowplaying_toolbar_title"
-            app:titleTextColor="@color/colorTextPrimary"/>
+            app:titleTextColor="@color/text_on_primary"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -54,14 +54,14 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:background="@color/colorPrimary">
+        android:background="@color/primary">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/text_on_primary"
             android:textSize="@dimen/nowplaying_title_textSize"
             tools:text="Now Playing Track Title"/>
 
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/nowplaying_info_marginTop"
             android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/text_on_primary"
             android:textSize="@dimen/nowplaying_info_textSize"
             tools:text="Artist Name - Album Name"/>
 
@@ -81,7 +81,7 @@
         android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/primary_dark"
         app:thumbColor="@color/accent"
         app:progressColor="@color/accent"
         tools:progress="40"/>
@@ -94,7 +94,7 @@
         android:paddingRight="@dimen/nowPlaying_controls_horizontalPadding"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/primary_dark">
 
         <ImageButton
             android:src="@drawable/ic_shuffle_white_36dp"

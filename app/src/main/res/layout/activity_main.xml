@@ -25,8 +25,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                        android:background="@color/colorPrimary"
-                        app:titleTextColor="@color/colorTextPrimary"
+                        android:background="@color/primary"
+                        app:titleTextColor="@color/text_on_primary"
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways">
                 </android.support.v7.widget.Toolbar>
@@ -36,8 +36,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:tabIndicatorColor="#FFC107"
-                        app:tabTextColor="@color/colorTextPrimaryInactive"
-                        app:tabSelectedTextColor="@color/colorTextPrimary"
+                        app:tabTextColor="@color/text_on_primary_inactive"
+                        app:tabSelectedTextColor="@color/text_on_primary"
                         app:tabIndicatorHeight="2dp"
                         app:tabGravity="fill"
                         app:layout_collapseMode="parallax"

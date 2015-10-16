@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF5722</color>
-    <color name="colorPrimaryDark">#D84315</color>
-    <color name="colorPrimaryLight">#FFCDD2</color>
+    <color name="primary">#FF5722</color>
+    <color name="primary_dark">#D84315</color>
 
     <color name="accent">#FFC107</color>
 
-    <color name="colorTextPrimary">#FFFFFF</color>
-    <color name="colorTextPrimaryInactive">#80FFFFFF</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_primary_inactive">#80FFFFFF</color>
 
-    <color name="colorRippleWhite">#50ffffff</color>
+    <color name="ripple_white">#50FFFFFF</color>
+
     <color name="nowplaying_art_tint">#77000000</color>
 </resources>
