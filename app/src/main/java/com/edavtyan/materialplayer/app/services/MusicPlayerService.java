@@ -6,23 +6,17 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-import android.widget.RemoteViews;
 
-import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.music.Metadata;
-import com.edavtyan.materialplayer.app.utils.PendingIntents;
+import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +41,8 @@ implements MediaPlayer.OnPreparedListener {
     public static final String SEND_PAUSE = "com.edavtyan.materialplayer.app.pause";
     public static final String SEND_NEW_TRACK = "com.edavtyan.materialplayer.app.newTrack";
 
+    public static final String EXTRA_METADATA = "metadata";
+
     /* ****** */
     /* Fields */
     /* ****** */
@@ -54,7 +50,7 @@ implements MediaPlayer.OnPreparedListener {
     private List<Integer> tracks;
     private MediaPlayer player;
     private Metadata metadata;
-    private NotificationCompat.Builder notificationBuilder;
+    private NowPlayingNotification notification;
     private int position;
     private boolean hasData;
 
@@ -70,11 +66,6 @@ implements MediaPlayer.OnPreparedListener {
             } else {
                 resume();
             }
-
-            notificationBuilder.setContent(getNotificationLayout());
-            NotificationManagerCompat
-                    .from(MusicPlayerService.this)
-                    .notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }
 
@@ -106,12 +97,7 @@ implements MediaPlayer.OnPreparedListener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        notificationBuilder = new NotificationCompat.Builder(this);
-        notificationBuilder
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContent(new RemoteViews(getPackageName(), R.layout.notification));
-
-        startForeground(NOTIFICATION_ID, notificationBuilder.build());
+        startForeground(NOTIFICATION_ID, notification.build());
         return START_NOT_STICKY;
     }
 
@@ -123,6 +109,7 @@ implements MediaPlayer.OnPreparedListener {
         player.setOnPreparedListener(this);
 
         tracks = new ArrayList<>();
+        notification = new NowPlayingNotification(this);
 
         IntentFilter playPauseFilter = new IntentFilter(ACTION_PLAY_PAUSE);
         registerReceiver(new PlayPauseReceiver(), playPauseFilter);
@@ -150,10 +137,8 @@ implements MediaPlayer.OnPreparedListener {
         hasData = true;
         metadata = Metadata.fromId(getCurrentTrackId(), this);
 
-        notificationBuilder.setContent(getNotificationLayout());
-        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
-
-        sendBroadcast(new Intent(SEND_NEW_TRACK));
+        String metadataJson = new Gson().toJson(metadata);
+        sendBroadcast(new Intent(SEND_NEW_TRACK).putExtra(EXTRA_METADATA, metadataJson));
     }
 
     /* ************** */
@@ -192,8 +177,6 @@ implements MediaPlayer.OnPreparedListener {
     public void resume() {
         if (hasData) {
             player.start();
-            notificationBuilder.setContent(getNotificationLayout());
-            NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
             sendBroadcast(new Intent(SEND_PLAY));
         }
     }
@@ -201,8 +184,6 @@ implements MediaPlayer.OnPreparedListener {
     public void pause() {
         if (hasData) {
             player.pause();
-            notificationBuilder.setContent(getNotificationLayout());
-            NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder.build());
             sendBroadcast(new Intent(SEND_PAUSE));
         }
     }
@@ -241,48 +222,5 @@ implements MediaPlayer.OnPreparedListener {
 
     public boolean hasData() {
         return tracks.size() > 0;
-    }
-
-    /* *************** */
-    /* Private methods */
-    /* *************** */
-
-    private RemoteViews getNotificationLayout() {
-        RemoteViews notificationLayout = new RemoteViews(getPackageName(), R.layout.notification);
-        notificationLayout.setTextViewText(R.id.notification_title, metadata.getTrackTitle());
-        notificationLayout.setTextViewText(R.id.notification_info, metadata.getAlbumTitle());
-
-        if (metadata.getArtFile() != null) {
-            Bitmap art = BitmapFactory.decodeFile(metadata.getArtFile().getPath());
-            notificationLayout.setImageViewBitmap(R.id.notification_art, art);
-        } else {
-            notificationLayout.setImageViewResource(R.id.notification_art, R.drawable.fallback_cover);
-        }
-
-        if (isPlaying()) {
-            notificationLayout.setImageViewResource(
-                    R.id.notification_playPause, R.drawable.ic_pause_black_36dp);
-        } else {
-            notificationLayout.setImageViewResource(
-                    R.id.notification_playPause, R.drawable.ic_play_black_36dp);
-        }
-
-        notificationLayout.setOnClickPendingIntent(
-                R.id.notification_playPause,
-                PendingIntents.getBroadcast(this, ACTION_PLAY_PAUSE));
-
-        notificationLayout.setOnClickPendingIntent(
-                R.id.notification_fastForward,
-                PendingIntents.getBroadcast(this, ACTION_FAST_FORWARD));
-
-        notificationLayout.setOnClickPendingIntent(
-                R.id.notification_art,
-                PendingIntents.getResumeActivity(this, NowPlayingActivity.class));
-
-        notificationLayout.setOnClickPendingIntent(
-                R.id.notification_info_container,
-                PendingIntents.getResumeActivity(this, NowPlayingActivity.class));
-
-        return notificationLayout;
     }
 }
