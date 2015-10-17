@@ -112,11 +112,11 @@ public class AlbumActivity
         @Override
         public Cursor loadInBackground() {
             return getContext().getContentResolver().query(
-                    TracksAdapter.URI,
-                    TracksAdapter.PROJECTION,
-                    TracksAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
+                    AlbumTracksAdapter.URI,
+                    AlbumTracksAdapter.PROJECTION,
+                    AlbumTracksAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
                     null,
-                    TracksAdapter.SORT_ORDER);
+                    AlbumTracksAdapter.SORT_ORDER);
         }
     }
 }
