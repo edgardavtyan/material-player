@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
     <ImageView
         android:id="@+id/art"
@@ -49,20 +50,20 @@
         android:id="@+id/playPause"
         android:layout_width="@dimen/nowplaying_notification_control_height"
         android:layout_height="match_parent"
-        android:background="@drawable/nowplaying_control_ripple"/>
+        android:background="@drawable/notification_control_ripple"/>
 
     <ImageButton
         android:src="@drawable/ic_fast_forward_black_36dp"
         android:id="@+id/fast_forward"
         android:layout_width="@dimen/nowplaying_notification_control_height"
         android:layout_height="match_parent"
-        android:background="@drawable/nowplaying_control_ripple"/>
+        android:background="@drawable/notification_control_ripple"/>
 
     <ImageButton
         android:src="@drawable/ic_close_black_36dp"
         android:id="@+id/close"
         android:layout_width="@dimen/nowplaying_notification_control_height"
         android:layout_height="match_parent"
-        android:background="@drawable/nowplaying_control_ripple"/>
+        android:background="@drawable/notification_control_ripple"/>
 
 </LinearLayout>
