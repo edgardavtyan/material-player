@@ -51,5 +51,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.minimize.library:seekbar-compat:0.2.4'
-    provided "org.projectlombok:lombok:1.16.6"
+    provided 'org.projectlombok:lombok:1.16.6'
+    compile fileTree(dir: 'libs', include: '*.jar')
 }

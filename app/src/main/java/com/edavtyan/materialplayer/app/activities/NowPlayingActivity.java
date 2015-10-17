@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -23,18 +24,22 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.controls.SeekbarControl;
+import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
+import java.io.File;
 import java.io.IOException;
 
 public class NowPlayingActivity extends AppCompatActivity {
     /* ****** */
     /* Fields */
     /* ****** */
+
+    private ArtProvider artProvider;
 
     private MusicPlayerConnection playerConnection;
     private MusicPlayerService playerService;
@@ -76,6 +81,8 @@ public class NowPlayingActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nowplaying);
+
+        artProvider = new ArtProvider(this);
 
         playPauseView = (ImageButton) findViewById(R.id.control_playPause);
         infoView = (TextView) findViewById(R.id.info);
@@ -193,20 +200,34 @@ public class NowPlayingActivity extends AppCompatActivity {
         Metadata metadata = playerService.getMetadata();
         titleView.setText(metadata.getTrackTitle());
         infoView.setText(getTrackInfo(metadata));
-
-        RequestCreator artRequest = Picasso.with(this)
-                .load(metadata.getArtFile())
-                .placeholder(R.drawable.fallback_cover)
-                .error(R.drawable.fallback_cover);
-        artRequest.into(artView);
-        artRequest.into(artBackView);
-
         seekbar.setMax((int) metadata.getDuration());
+
+        new ArtLoadTask().execute(metadata);
 
         if (playerService.isPlaying()) {
             playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);
         } else {
             playPauseView.setImageResource(R.drawable.ic_play_white_36dp);
+        }
+    }
+
+    private class ArtLoadTask extends AsyncTask<Metadata, Void, File> {
+        @Override
+        protected File doInBackground(Metadata... metadata) {
+            return artProvider.getArt(metadata[0]);
+        }
+
+        @Override
+        protected void onPostExecute(File file) {
+            if (file.exists()) {
+                RequestCreator artRequest = Picasso
+                        .with(NowPlayingActivity.this)
+                        .load(file)
+                        .placeholder(R.drawable.fallback_cover)
+                        .error(R.drawable.fallback_cover);
+                artRequest.into(artView);
+                artRequest.into(artBackView);
+            }
         }
     }
 }

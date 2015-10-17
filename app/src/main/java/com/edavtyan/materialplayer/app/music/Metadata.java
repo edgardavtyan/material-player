@@ -21,6 +21,8 @@ public class Metadata {
             MediaStore.Audio.Media.DURATION,
             MediaStore.Audio.Media.ARTIST,
             MediaStore.Audio.Media.ALBUM,
+            MediaStore.Audio.Media.DATA,
+            MediaStore.Audio.Media.DATE_MODIFIED
     };
 
     private static final int COLUMN_ALBUM_ID = 1;
@@ -28,6 +30,8 @@ public class Metadata {
     private static final int COLUMN_DURATION = 3;
     private static final int COLUMN_ARTIST = 4;
     private static final int COLUMN_ALBUM = 5;
+    private static final int COLUMN_PATH = 6;
+    private static final int COLUMN_DATE_MODIFIED = 7;
 
     private static final String COLUMN_NAME_ID = MediaStore.Audio.Media._ID;
     private static final String COLUMN_NAME_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
@@ -35,6 +39,8 @@ public class Metadata {
     private static final String COLUMN_NAME_DURATION = MediaStore.Audio.Media.DURATION;
     private static final String COLUMN_NAME_ARTIST = MediaStore.Audio.Media.ARTIST;
     private static final String COLUMN_NAME_ALBUM = MediaStore.Audio.Media.ALBUM;
+    private static final String COLUMN_NAME_PATH = MediaStore.Audio.Media.DATA;
+    private static final String COLUMN_NAME_DATE_MODIFIED = MediaStore.Audio.Media.DATE_MODIFIED;
 
 
     private int trackId;
@@ -44,6 +50,9 @@ public class Metadata {
     private String artistTitle;
     private String albumTitle;
     private File artFile;
+    private String path;
+    private long dateModified;
+
 
 
     public static Metadata fromId(int id, Context context) {
@@ -63,6 +72,8 @@ public class Metadata {
             metadata.setArtistTitle(cursor.getString(COLUMN_ARTIST));
             metadata.setAlbumTitle(cursor.getString(COLUMN_ALBUM));
             metadata.setArtFile(AlbumArtUtils.getArtFileFromId(metadata.getAlbumId(), context));
+            metadata.setPath(cursor.getString(COLUMN_PATH));
+            metadata.setDateModified(cursor.getLong(COLUMN_DATE_MODIFIED));
         } finally {
             if (cursor != null) {
                 cursor.close();
