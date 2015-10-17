@@ -79,6 +79,8 @@
                 android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
                 android:textColor="@color/text_on_primary"
                 android:textSize="@dimen/nowplaying_title_textSize"
+                android:singleLine="true"
+                android:ellipsize="end"
                 tools:text="Now Playing Track Title"/>
 
             <TextView
@@ -89,6 +91,8 @@
                 android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
                 android:textColor="@color/text_on_primary"
                 android:textSize="@dimen/nowplaying_info_textSize"
+                android:singleLine="true"
+                android:ellipsize="end"
                 tools:text="Artist Name - Album Name"/>
 
         </LinearLayout>
