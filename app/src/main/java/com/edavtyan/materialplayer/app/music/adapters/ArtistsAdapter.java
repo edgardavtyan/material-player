@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.app.activities.ArtistActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 
-public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.ArtistViewHolder> {
+public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.ArtistViewHolder> {
     /* ********* */
     /* Constants */
     /* ********* */
@@ -38,7 +38,7 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
     /* Constructors */
     /* ************ */
 
-    public ArtistAdapter(Context context, Cursor cursor) {
+    public ArtistsAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
 

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
+import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class AlbumsListFragment extends Fragment
@@ -24,7 +24,7 @@ public class AlbumsListFragment extends Fragment
     /* Fields */
     /* ****** */
 
-    private AlbumAdapter albumAdapter;
+    private AlbumsAdapter albumsAdapter;
 
     /* **************** */
     /* Fragment members */
@@ -33,7 +33,7 @@ public class AlbumsListFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        albumAdapter = new AlbumAdapter(getContext(), null);
+        albumsAdapter = new AlbumsAdapter(getContext(), null);
     }
 
     @Nullable
@@ -45,7 +45,7 @@ public class AlbumsListFragment extends Fragment
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.albums_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(albumAdapter);
+        recyclerView.setAdapter(albumsAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
         return view;
@@ -68,12 +68,12 @@ public class AlbumsListFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        albumAdapter.swapCursor(data);
+        albumsAdapter.swapCursor(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        albumAdapter.swapCursor(null);
+        albumsAdapter.swapCursor(null);
     }
 
     private static class AlbumLoader extends CursorLoader {
@@ -84,10 +84,10 @@ public class AlbumsListFragment extends Fragment
         @Override
         public Cursor loadInBackground() {
             return getContext().getContentResolver().query(
-                    AlbumAdapter.URI,
-                    AlbumAdapter.PROJECTION,
+                    AlbumsAdapter.URI,
+                    AlbumsAdapter.PROJECTION,
                     null, null,
-                    AlbumAdapter.SORT_ORDER);
+                    AlbumsAdapter.SORT_ORDER);
         }
     }
 }

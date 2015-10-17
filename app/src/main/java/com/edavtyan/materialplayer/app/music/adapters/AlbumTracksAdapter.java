@@ -5,8 +5,8 @@ import android.database.Cursor;
 
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
-public class TrackAdapterWithDurationInfo extends TrackAdapter {
-    public TrackAdapterWithDurationInfo(Context context, Cursor cursor) {
+public class AlbumTracksAdapter extends TracksAdapter {
+    public AlbumTracksAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
 

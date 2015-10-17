@@ -15,8 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
-import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithFullInfo;
+import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class TracksListFragment extends Fragment
@@ -25,7 +24,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
     /* Fields */
     /* ****** */
 
-    private TrackAdapter trackAdapter;
+    private TracksAdapter tracksAdapter;
 
     /* **************** */
     /* Fragment members */
@@ -34,7 +33,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        trackAdapter = new TrackAdapterWithFullInfo(getActivity(), null);
+        tracksAdapter = new TracksAdapter(getActivity(), null);
     }
 
     @Nullable
@@ -46,7 +45,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.track_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(trackAdapter);
+        recyclerView.setAdapter(tracksAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
         return view;
@@ -69,12 +68,12 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        trackAdapter.swapCursor(data);
+        tracksAdapter.swapCursor(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        trackAdapter.swapCursor(null);
+        tracksAdapter.swapCursor(null);
     }
 
     private static class TracksLoader extends CursorLoader {
@@ -85,10 +84,10 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
         @Override
         public Cursor loadInBackground() {
             return getContext().getContentResolver().query(
-                    TrackAdapter.URI,
-                    TrackAdapter.PROJECTION,
+                    TracksAdapter.URI,
+                    TracksAdapter.PROJECTION,
                     null, null,
-                    TrackAdapter.SORT_ORDER);
+                    TracksAdapter.SORT_ORDER);
         }
     }
 }

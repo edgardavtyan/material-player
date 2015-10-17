@@ -20,7 +20,7 @@ import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
 import java.io.File;
 
-public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumViewHolder> {
+public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
     /* ********* */
     /* Constants */
     /* ********* */
@@ -45,7 +45,7 @@ public class AlbumAdapter extends RecyclerViewCursorAdapter<AlbumAdapter.AlbumVi
     /* Constructors */
     /* ************ */
 
-    public AlbumAdapter(Context context, Cursor cursor) {
+    public AlbumsAdapter(Context context, Cursor cursor) {
         super(context, cursor);
     }
 

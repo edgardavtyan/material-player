@@ -19,10 +19,11 @@ import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
+import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
 import java.util.ArrayList;
 
-public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> {
+public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> {
     /* ********* */
     /* Constants */
     /* ********* */
@@ -59,7 +60,7 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
     /* Constructors */
     /* ************ */
 
-    public TrackAdapter(Context context, Cursor cursor) {
+    public TracksAdapter(Context context, Cursor cursor) {
         super(context, cursor);
         MusicPlayerConnection playerConnection = new MusicPlayerConnection();
         Intent serviceIntent = new Intent(context, MusicPlayerService.class);
@@ -85,7 +86,7 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
     }
 
     /* *************************************************************** */
-    /* RecyclerViewCursorAdapter<TrackAdapter.TrackViewHolder> members */
+    /* RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> members */
     /* *************************************************************** */
 
     @Override
@@ -144,9 +145,15 @@ public abstract class TrackAdapter extends RecyclerViewCursorAdapter<TrackAdapte
         }
     }
 
-    /* *********************** */
-    /* Public abstract methods */
-    /* *********************** */
+    /* ************** */
+    /* Public methods */
+    /* ************** */
 
-    public abstract String getTrackInfo();
+    public String getTrackInfo() {
+        return context.getResources().getString(
+                R.string.track_listitem_fullInfo,
+                DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
+                getCursor().getString(COLUMN_INDEX_ARTIST),
+                getCursor().getString(COLUMN_INDEX_ALBUM));
+    };
 }

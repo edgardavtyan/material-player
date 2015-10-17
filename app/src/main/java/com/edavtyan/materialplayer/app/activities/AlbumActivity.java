@@ -16,8 +16,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
-import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithDurationInfo;
+import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
+import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
@@ -35,7 +35,7 @@ public class AlbumActivity
     /* Fields */
     /* ****** */
 
-    private TrackAdapter trackAdapter;
+    private TracksAdapter tracksAdapter;
 
     /* ************************* */
     /* AppCompatActivity members */
@@ -46,7 +46,7 @@ public class AlbumActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         getLoaderManager().initLoader(0, savedInstanceState, this);
-        trackAdapter = new TrackAdapterWithDurationInfo(this, null);
+        tracksAdapter = new AlbumTracksAdapter(this, null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,7 +61,7 @@ public class AlbumActivity
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(trackAdapter);
+        recyclerView.setAdapter(tracksAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
         ImageView artView = (ImageView) findViewById(R.id.art);
@@ -93,12 +93,12 @@ public class AlbumActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        trackAdapter.swapCursor(cursor);
+        tracksAdapter.swapCursor(cursor);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        trackAdapter.swapCursor(null);
+        tracksAdapter.swapCursor(null);
     }
 
     private static class TracksLoader extends CursorLoader {
@@ -112,11 +112,11 @@ public class AlbumActivity
         @Override
         public Cursor loadInBackground() {
             return getContext().getContentResolver().query(
-                    TrackAdapter.URI,
-                    TrackAdapter.PROJECTION,
-                    TrackAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
+                    TracksAdapter.URI,
+                    TracksAdapter.PROJECTION,
+                    TracksAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
                     null,
-                    TrackAdapter.SORT_ORDER);
+                    TracksAdapter.SORT_ORDER);
         }
     }
 }
