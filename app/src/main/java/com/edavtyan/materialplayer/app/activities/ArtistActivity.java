@@ -16,8 +16,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
-import com.edavtyan.materialplayer.app.music.adapters.ArtistTracksAdapter;
+import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
@@ -35,7 +34,7 @@ public class ArtistActivity
     /* Fields */
     /* ****** */
 
-    private TracksAdapter tracksAdapter;
+    private AlbumsAdapter tracksAdapter;
 
     /* ************************* */
     /* AppCompatActivity members */
@@ -46,7 +45,7 @@ public class ArtistActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist);
         getLoaderManager().initLoader(0, null, this);
-        tracksAdapter = new ArtistTracksAdapter(this, null);
+        tracksAdapter = new AlbumsAdapter(this, null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,7 +58,7 @@ public class ArtistActivity
             collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
         }
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.albums_list);
         recyclerView.setAdapter(tracksAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
@@ -70,7 +69,6 @@ public class ArtistActivity
 
     @Override
     protected void onDestroy() {
-        tracksAdapter.closeConnection();
         super.onDestroy();
     }
 
@@ -91,7 +89,7 @@ public class ArtistActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new TracksLoader(this, getIntent().getIntExtra(EXTRA_ARTIST_ID, 0));
+        return new TracksLoader(this, getIntent().getStringExtra(EXTRA_ARTIST_NAME));
     }
 
     @Override
@@ -105,22 +103,21 @@ public class ArtistActivity
     }
 
     private static class TracksLoader extends CursorLoader {
-        private int artistId;
+        private String artist;
 
-        public TracksLoader(Context context, int artistId) {
+        public TracksLoader(Context context, String artist) {
             super(context);
-            this.artistId = artistId;
+            this.artist = artist;
         }
 
         @Override
         public Cursor loadInBackground() {
             return getContext().getContentResolver().query(
-                    TracksAdapter.URI,
-                    TracksAdapter.PROJECTION,
-                    TracksAdapter.COLUMN_NAME_ARTIST_ID + "=" + artistId,
+                    AlbumsAdapter.URI,
+                    AlbumsAdapter.PROJECTION,
+                    AlbumsAdapter.COLUMN_ARTIST + "='" + artist + "'",
                     null,
-                    TracksAdapter.SORT_ORDER);
+                    AlbumsAdapter.SORT_ORDER);
         }
-
     }
 }

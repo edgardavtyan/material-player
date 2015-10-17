@@ -29,7 +29,6 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
             MediaStore.Audio.Artists.NUMBER_OF_TRACKS,
     };
 
-    public static final int COLUMN_ID = 0;
     public static final int COLUMN_ARTIST = 1;
     public static final int COLUMN_ALBUMS_COUNT = 2;
     public static final int COLUMN_TRACKS_COUNT = 3;
@@ -80,7 +79,6 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
                 Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
 
                 getCursor().moveToPosition(getAdapterPosition());
-                i.putExtra(ArtistActivity.EXTRA_ARTIST_ID, getCursor().getInt(COLUMN_ID));
                 i.putExtra(ArtistActivity.EXTRA_ARTIST_NAME, getCursor().getString(COLUMN_ARTIST));
 
                 itemView.getContext().startActivity(i);
