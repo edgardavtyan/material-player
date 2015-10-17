@@ -69,6 +69,12 @@ public class ArtistActivity
     }
 
     @Override
+    protected void onDestroy() {
+        tracksAdapter.closeConnection();
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

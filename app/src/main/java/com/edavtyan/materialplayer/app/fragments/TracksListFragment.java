@@ -57,6 +57,12 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
         getLoaderManager().initLoader(0, null, this);
     }
 
+    @Override
+    public void onDestroy() {
+        tracksAdapter.closeConnection();
+        super.onDestroy();
+    }
+
     /* *********************** */
     /* LoaderCallbacks members */
     /* *********************** */

@@ -19,8 +19,8 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.Album;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
-import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
+import com.squareup.picasso.Picasso;
 
 public class AlbumActivity
         extends AppCompatActivity
@@ -67,7 +67,18 @@ public class AlbumActivity
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
         ImageView artView = (ImageView) findViewById(R.id.art);
-        AlbumArtUtils.getFullArtRequest(this, album.getArt()).into(artView);
+        Picasso.with(this)
+                .load(album.getArt())
+                .placeholder(R.drawable.fallback_cover)
+                .error(R.drawable.fallback_cover)
+                .fit()
+                .into(artView);
+    }
+
+    @Override
+    protected void onDestroy() {
+        tracksAdapter.closeConnection();
+        super.onDestroy();
     }
 
     @Override

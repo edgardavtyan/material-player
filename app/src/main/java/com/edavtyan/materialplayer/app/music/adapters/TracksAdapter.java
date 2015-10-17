@@ -54,6 +54,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     /* ****** */
 
     private MusicPlayerService playerService;
+    private MusicPlayerConnection playerConnection;
     private boolean isBound;
 
     /* ************ */
@@ -62,7 +63,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
 
     public TracksAdapter(Context context, Cursor cursor) {
         super(context, cursor);
-        MusicPlayerConnection playerConnection = new MusicPlayerConnection();
+        playerConnection = new MusicPlayerConnection();
         Intent serviceIntent = new Intent(context, MusicPlayerService.class);
         context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
     }
@@ -156,4 +157,8 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
                 getCursor().getString(COLUMN_INDEX_ARTIST),
                 getCursor().getString(COLUMN_INDEX_ALBUM));
     };
+
+    public void closeConnection() {
+        context.unbindService(playerConnection);
+    }
 }
