@@ -48,99 +48,117 @@
 
     </FrameLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:background="@color/primary">
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+        <View
+            android:id="@+id/aligner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"/>
+
+        <LinearLayout
+            android:id="@+id/info_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@id/aligner"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:background="@color/primary"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/nowplaying_title_textSize"
+                tools:text="Now Playing Track Title"/>
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/nowplaying_info_marginTop"
+                android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/nowplaying_info_textSize"
+                tools:text="Artist Name - Album Name"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controls_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignTop="@id/aligner"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@color/primary_dark">
+
+            <ImageButton
+                android:src="@drawable/ic_shuffle_white_36dp"
+                android:contentDescription="@string/nowplaying_shuffle_description"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/nowplaying_control_ripple"
+                tools:ignore="NestedWeights"/>
+
+            <ImageButton
+                android:src="@drawable/ic_rewind_white_36dp"
+                android:contentDescription="@string/nowplaying_rewind_description"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/nowplaying_control_ripple"
+                android:onClick="rewind"/>
+
+            <ImageButton
+                android:id="@+id/control_playPause"
+                android:src="@drawable/ic_pause_white_36dp"
+                android:contentDescription="@string/nowplaying_playPause_description"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/nowplaying_control_ripple"
+                android:onClick="play"/>
+
+            <ImageButton
+                android:src="@drawable/ic_fast_forward_white_36dp"
+                android:contentDescription="@string/nowplaying_fastForward_description"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/nowplaying_control_ripple"
+                android:onClick="fastForward"/>
+
+            <ImageButton
+                android:src="@drawable/ic_repeat_white_36dp"
+                android:contentDescription="@string/nowplaying_repeat_description"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/nowplaying_control_ripple"/>
+
+        </LinearLayout>
+
+        <app.minimize.com.seek_bar_compat.SeekBarCompat
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-            android:textColor="@color/text_on_primary"
-            android:textSize="@dimen/nowplaying_title_textSize"
-            tools:text="Now Playing Track Title"/>
+            android:layout_centerVertical="true"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            app:thumbColor="@color/accent"
+            app:progressColor="@color/accent"
+            tools:progress="40"/>
 
-        <TextView
-            android:id="@+id/info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/nowplaying_info_marginTop"
-            android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-            android:textColor="@color/text_on_primary"
-            android:textSize="@dimen/nowplaying_info_textSize"
-            tools:text="Artist Name - Album Name"/>
-
-    </LinearLayout>
-
-    <app.minimize.com.seek_bar_compat.SeekBarCompat
-        android:id="@+id/seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary_dark"
-        app:thumbColor="@color/accent"
-        app:progressColor="@color/accent"
-        tools:progress="40"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="@dimen/nowPlaying_controls_horizontalPadding"
-        android:paddingRight="@dimen/nowPlaying_controls_horizontalPadding"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@color/primary_dark">
-
-        <ImageButton
-            android:src="@drawable/ic_shuffle_white_36dp"
-            android:contentDescription="@string/nowplaying_shuffle_description"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/nowplaying_control_height"
-            android:layout_weight="1"
-            android:background="@drawable/nowplaying_control_ripple"
-            tools:ignore="NestedWeights"/>
-
-        <ImageButton
-            android:src="@drawable/ic_rewind_white_36dp"
-            android:contentDescription="@string/nowplaying_rewind_description"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/nowplaying_control_height"
-            android:layout_weight="1"
-            android:background="@drawable/nowplaying_control_ripple"
-            android:onClick="rewind"/>
-
-        <ImageButton
-            android:id="@+id/control_playPause"
-            android:src="@drawable/ic_pause_white_36dp"
-            android:contentDescription="@string/nowplaying_playPause_description"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/nowplaying_control_height"
-            android:layout_weight="1"
-            android:background="@drawable/nowplaying_control_ripple"
-            android:onClick="play"/>
-
-        <ImageButton
-            android:src="@drawable/ic_fast_forward_white_36dp"
-            android:contentDescription="@string/nowplaying_fastForward_description"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/nowplaying_control_height"
-            android:layout_weight="1"
-            android:background="@drawable/nowplaying_control_ripple"
-            android:onClick="fastForward"/>
-
-        <ImageButton
-            android:src="@drawable/ic_repeat_white_36dp"
-            android:contentDescription="@string/nowplaying_repeat_description"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/nowplaying_control_height"
-            android:layout_weight="1"
-            android:background="@drawable/nowplaying_control_ripple"/>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
