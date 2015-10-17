@@ -16,8 +16,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
+import com.edavtyan.materialplayer.app.music.Album;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
+import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
@@ -27,8 +28,6 @@ public class AlbumActivity
     /* ********* */
     /* Constants */
     /* ********* */
-    public static final String EXTRA_ALBUM_TITLE = "album_title";
-    public static final String EXTRA_ALBUM_ART = "album_art";
     public static final String EXTRA_ALBUM_ID = "album_id";
 
     /* ****** */
@@ -46,7 +45,10 @@ public class AlbumActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         getLoaderManager().initLoader(0, savedInstanceState, this);
+
         tracksAdapter = new AlbumTracksAdapter(this, null);
+
+        Album album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +58,7 @@ public class AlbumActivity
                 (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
         if (collapsingToolbar != null) {
             collapsingToolbar.setTitleEnabled(true);
-            collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ALBUM_TITLE));
+            collapsingToolbar.setTitle(album.getTitle());
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
@@ -65,10 +67,7 @@ public class AlbumActivity
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
         ImageView artView = (ImageView) findViewById(R.id.art);
-        String artPath = getIntent().getStringExtra(EXTRA_ALBUM_ART);
-        AlbumArtUtils
-                .getFullArtRequest(this, AlbumArtUtils.getArtFileFromPath(artPath))
-                .into(artView);
+        AlbumArtUtils.getFullArtRequest(this, album.getArt()).into(artView);
     }
 
     @Override
