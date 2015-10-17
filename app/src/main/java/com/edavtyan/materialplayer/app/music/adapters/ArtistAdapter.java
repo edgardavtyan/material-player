@@ -10,12 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.edavtyan.materialplayer.app.activities.ArtistActivity;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
-import com.squareup.picasso.Picasso;
 
 public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.ArtistViewHolder> {
     /* ********* */
@@ -64,7 +62,6 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
         ArtistViewHolder vh = (ArtistViewHolder) view.getTag();
         vh.titleTextView.setText(cursor.getString(COLUMN_ARTIST));
         vh.countsTextView.setText(getArtistCounts(cursor));
-        Picasso.with(context).load(R.drawable.fallback_artist_listitem).into(vh.artImageView);
     }
 
     @Override
@@ -75,7 +72,6 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView countsTextView;
-        ImageView artImageView;
 
         public ArtistViewHolder(View itemView) {
             super(itemView);
@@ -92,7 +88,6 @@ public class ArtistAdapter extends RecyclerViewCursorAdapter<ArtistAdapter.Artis
 
             titleTextView = (TextView) itemView.findViewById(R.id.title);
             countsTextView = (TextView) itemView.findViewById(R.id.info);
-            artImageView = (ImageView) itemView.findViewById(R.id.art);
         }
     }
 
