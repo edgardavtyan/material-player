@@ -43,10 +43,10 @@ public class ArtistsListFragment extends Fragment implements LoaderManager.Loade
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_artists, container, false);
 
-        RecyclerView artistsRecyclerView = (RecyclerView) view.findViewById(R.id.artists_list);
-        artistsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        artistsRecyclerView.setAdapter(artistAdapter);
-        artistsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.artists_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(artistAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
         return view;
     }
