@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumAdapter;
+import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class AlbumsListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -45,6 +46,7 @@ public class AlbumsListFragment extends Fragment
         RecyclerView albumsRecyclerView = (RecyclerView) view.findViewById(R.id.albums_list);
         albumsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         albumsRecyclerView.setAdapter(albumAdapter);
+        albumsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
         return view;
     }

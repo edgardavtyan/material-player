@@ -19,6 +19,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithAlbumInfo;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
+import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class ArtistActivity
         extends AppCompatActivity
@@ -61,6 +62,7 @@ public class ArtistActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
         recyclerView.setAdapter(trackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
         ImageView artistArtView = (ImageView) findViewById(R.id.art);
         AlbumArtUtils.getFullArtistArtRequest(this).into(artistArtView);

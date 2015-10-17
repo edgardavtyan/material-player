@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TrackAdapterWithFullInfo;
+import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class TracksListFragment extends Fragment
 implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -46,6 +47,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
         RecyclerView artistsRecyclerView = (RecyclerView) view.findViewById(R.id.track_list);
         artistsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         artistsRecyclerView.setAdapter(trackAdapter);
+        artistsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
         return view;
     }
