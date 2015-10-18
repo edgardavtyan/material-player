@@ -58,7 +58,7 @@ public class ArtistActivity
             collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
         }
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.albums_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
         recyclerView.setAdapter(tracksAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));

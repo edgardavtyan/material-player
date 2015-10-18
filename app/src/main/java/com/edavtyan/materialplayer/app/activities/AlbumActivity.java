@@ -61,7 +61,7 @@ public class AlbumActivity
             collapsingToolbar.setTitle(album.getTitle());
         }
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.albums_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(tracksAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
