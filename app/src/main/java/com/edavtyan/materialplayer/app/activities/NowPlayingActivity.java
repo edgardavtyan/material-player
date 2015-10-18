@@ -44,22 +44,9 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
 
     private TextView titleView;
     private TextView infoView;
-    private ImageButton playPauseButton;
     private ImageView artView;
     private ImageView artBackView;
 
-    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
-        }
-    };
-    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
-        }
-    };
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -77,9 +64,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_nowplaying);
 
         artProvider = new ArtProvider(this);
-
-        playPauseButton = (ImageButton) findViewById(R.id.play_pause);
-        playPauseButton.setOnClickListener(this);
 
         ImageButton rewindButton = (ImageButton) findViewById(R.id.rewind);
         rewindButton.setOnClickListener(this);
@@ -105,10 +89,7 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         Intent intent = new Intent(this, MusicPlayerService.class);
         bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
 
-        registerReceiver(playReceiver, new IntentFilter(MusicPlayerService.SEND_PLAY));
-        registerReceiver(pauseReceiver, new IntentFilter(MusicPlayerService.SEND_PAUSE));
         registerReceiver(newTrackReceiver, new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
-
     }
 
     @Override
@@ -123,8 +104,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onDestroy() {
         unbindService(playerConnection);
-        unregisterReceiver(playReceiver);
-        unregisterReceiver(pauseReceiver);
         unregisterReceiver(newTrackReceiver);
         super.onDestroy();
     }
@@ -200,12 +179,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         infoView.setText(getTrackInfo(metadata));
 
         new ArtLoadTask().execute(metadata);
-
-        if (playerService.isPlaying()) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
-        } else {
-            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
-        }
     }
 
     private class ArtLoadTask extends AsyncTask<Metadata, Void, File> {
