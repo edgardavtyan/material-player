@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.aquery.SeekbarQuery;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 
@@ -24,13 +25,13 @@ public class PlayerSeekbarFragment
         extends Fragment
         implements SeekBar.OnSeekBarChangeListener, ServiceConnection {
 
+    private SeekbarQuery seekbarQuery;
     private Handler handler;
-    private SeekBar seekbar;
     private MusicPlayerService service;
     private Runnable syncSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekbar.setProgress(service.getPosition());
+            seekbarQuery.value(service.getPosition());
             handler.postDelayed(syncSeekbar, 1000);
         }
     };
@@ -54,7 +55,7 @@ public class PlayerSeekbarFragment
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            seekbar.setMax(service.getDuration());
+            seekbarQuery.max(service.getDuration());
             syncSeekbar.run();
         }
     };
@@ -71,8 +72,8 @@ public class PlayerSeekbarFragment
                 .from(getContext())
                 .inflate(R.layout.fragment_seekbar, container);
 
-        seekbar = (SeekBar) view.findViewById(R.id.seekbar);
-        seekbar.setOnSeekBarChangeListener(this);
+        seekbarQuery = new SeekbarQuery(view).id(R.id.seekbar);
+        seekbarQuery.changed(this);
         handler = new Handler();
 
         return view;
@@ -121,7 +122,7 @@ public class PlayerSeekbarFragment
     @Override
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         service = ((MusicPlayerBinder)iBinder).getService();
-        seekbar.setMax(service.getDuration());
+        seekbarQuery.max(service.getDuration());
         syncSeekbar.run();
     }
 

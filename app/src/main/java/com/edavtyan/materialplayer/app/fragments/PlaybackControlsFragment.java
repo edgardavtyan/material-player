@@ -13,8 +13,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
+import com.androidquery.AQuery;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
@@ -22,9 +22,8 @@ import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBi
 public class PlaybackControlsFragment
         extends Fragment
         implements View.OnClickListener, ServiceConnection {
-    private ImageButton playPauseButton;
-    private ImageButton fastForwardButton;
-    private ImageButton rewindButton;
+
+    private AQuery aquery;
 
     /*
      * BroadcastReceivers
@@ -33,19 +32,19 @@ public class PlaybackControlsFragment
     private BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);
         }
     };
     private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
+            aquery.id(R.id.play_pause).image(R.drawable.ic_play_white_36dp);
         }
     };
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);
         }
     };
 
@@ -60,12 +59,10 @@ public class PlaybackControlsFragment
                 .from(getActivity())
                 .inflate(R.layout.fragment_playback_controls, container, false);
 
-        playPauseButton = (ImageButton) view.findViewById(R.id.play_pause);
-        playPauseButton.setOnClickListener(this);
-        fastForwardButton = (ImageButton) view.findViewById(R.id.fast_forward);
-        fastForwardButton.setOnClickListener(this);
-        rewindButton = (ImageButton) view.findViewById(R.id.rewind);
-        rewindButton.setOnClickListener(this);
+        aquery = new AQuery(view);
+        aquery.id(R.id.play_pause).clicked(this);
+        aquery.id(R.id.fast_forward).clicked(this);
+        aquery.id(R.id.rewind).clicked(this);
 
         return view;
     }
@@ -125,9 +122,9 @@ public class PlaybackControlsFragment
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         MusicPlayerService service = ((MusicPlayerBinder)iBinder).getService();
         if (service.isPlaying()) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);
         } else {
-            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
+            aquery.id(R.id.play_pause).image(R.drawable.ic_play_white_36dp);
         }
     }
 
