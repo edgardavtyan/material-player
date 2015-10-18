@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.app.activities;
 
 import android.app.LoaderManager;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -88,7 +87,14 @@ public class ArtistActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new TracksLoader(this, getIntent().getStringExtra(EXTRA_ARTIST_NAME));
+        String artist = getIntent().getStringExtra(EXTRA_ARTIST_NAME);
+        return new CursorLoader(
+                this,
+                AlbumsAdapter.URI,
+                AlbumsAdapter.PROJECTION,
+                AlbumsAdapter.COLUMN_ARTIST + "='" + artist + "'",
+                null,
+                AlbumsAdapter.SORT_ORDER);
     }
 
     @Override
@@ -99,24 +105,5 @@ public class ArtistActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         tracksAdapter.swapCursor(null);
-    }
-
-    private static class TracksLoader extends CursorLoader {
-        private String artist;
-
-        public TracksLoader(Context context, String artist) {
-            super(context);
-            this.artist = artist;
-        }
-
-        @Override
-        public Cursor loadInBackground() {
-            return getContext().getContentResolver().query(
-                    AlbumsAdapter.URI,
-                    AlbumsAdapter.PROJECTION,
-                    AlbumsAdapter.COLUMN_ARTIST + "='" + artist + "'",
-                    null,
-                    AlbumsAdapter.SORT_ORDER);
-        }
     }
 }

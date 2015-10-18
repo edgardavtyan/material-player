@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.app.activities;
 
 import android.app.LoaderManager;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -28,7 +27,7 @@ public class AlbumActivity
     /* ********* */
     /* Constants */
     /* ********* */
-    
+
     public static final String EXTRA_ALBUM_ID = "album_id";
 
     /* ****** */
@@ -99,7 +98,14 @@ public class AlbumActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new TracksLoader(this, getIntent().getIntExtra(EXTRA_ALBUM_ID, 0));
+        int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
+        return new CursorLoader(
+                this,
+                AlbumTracksAdapter.URI,
+                AlbumTracksAdapter.PROJECTION,
+                AlbumTracksAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
+                null,
+                AlbumTracksAdapter.SORT_ORDER);
     }
 
     @Override
@@ -110,24 +116,5 @@ public class AlbumActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         tracksAdapter.swapCursor(null);
-    }
-
-    private static class TracksLoader extends CursorLoader {
-        private final int albumId;
-
-        public TracksLoader(Context context, int albumId) {
-            super(context);
-            this.albumId = albumId;
-        }
-
-        @Override
-        public Cursor loadInBackground() {
-            return getContext().getContentResolver().query(
-                    AlbumTracksAdapter.URI,
-                    AlbumTracksAdapter.PROJECTION,
-                    AlbumTracksAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
-                    null,
-                    AlbumTracksAdapter.SORT_ORDER);
-        }
     }
 }
