@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -75,7 +74,7 @@ public class NowPlayingActivity
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             FrameLayout artFrame = (FrameLayout) findViewById(R.id.art_frame);
-            artFrame.getLayoutParams().height = getScreenSize().x;
+            artFrame.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
         }
 
         Intent intent = new Intent(this, MusicPlayerService.class);
@@ -136,12 +135,6 @@ public class NowPlayingActivity
     /* *************** */
     /* Private methods */
     /* *************** */
-
-    private Point getScreenSize() {
-        Point screenSize = new Point();
-        getWindowManager().getDefaultDisplay().getSize(screenSize);
-        return screenSize;
-    }
 
     private String getTrackInfo(Metadata metadata) {
         return getResources().getString(
