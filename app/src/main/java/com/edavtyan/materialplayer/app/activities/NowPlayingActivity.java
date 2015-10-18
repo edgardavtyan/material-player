@@ -29,14 +29,15 @@ import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 
-public class NowPlayingActivity extends AppCompatActivity {
+public class NowPlayingActivity
+        extends AppCompatActivity
+        implements ServiceConnection {
     /* ****** */
     /* Fields */
     /* ****** */
 
     private ArtProvider artProvider;
 
-    private MusicPlayerConnection playerConnection;
     private MusicPlayerService playerService;
     private boolean isBound;
 
@@ -77,9 +78,8 @@ public class NowPlayingActivity extends AppCompatActivity {
             artFrame.getLayoutParams().height = getScreenSize().x;
         }
 
-        playerConnection = new MusicPlayerConnection();
         Intent intent = new Intent(this, MusicPlayerService.class);
-        bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
+        bindService(intent, this, Context.BIND_AUTO_CREATE);
 
         registerReceiver(newTrackReceiver, new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
     }
@@ -88,16 +88,20 @@ public class NowPlayingActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        Intent intent = new Intent(this, MusicPlayerService.class);
+        bindService(intent, this, Context.BIND_AUTO_CREATE);
+        registerReceiver(newTrackReceiver, new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+
         if (isBound) {
             syncTrackInfoWithService();
         }
     }
 
     @Override
-    protected void onDestroy() {
-        unbindService(playerConnection);
+    protected void onPause() {
+        super.onPause();
+        unbindService(this);
         unregisterReceiver(newTrackReceiver);
-        super.onDestroy();
     }
 
     @Override
@@ -111,24 +115,22 @@ public class NowPlayingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* ******* */
-    /* Classes */
-    /* ******* */
+    /*
+     * ServiceConnection members
+     */
 
-    private class MusicPlayerConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
-            playerService = binder.getService();
-            isBound = true;
+    @Override
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
+        playerService = binder.getService();
+        isBound = true;
 
-            syncTrackInfoWithService();
-        }
+        syncTrackInfoWithService();
+    }
 
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            isBound = false;
-        }
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
+        isBound = false;
     }
 
     /* *************** */
