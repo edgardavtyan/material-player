@@ -43,7 +43,7 @@ public class ArtistActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artist);
+        setContentView(R.layout.activity_collapsing_list);
         getLoaderManager().initLoader(0, null, this);
         tracksAdapter = new AlbumsAdapter(this, null);
 
