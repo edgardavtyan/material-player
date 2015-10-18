@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app.fragments;
+package com.edavtyan.materialplayer.app.fragments.base;
 
 import android.database.Cursor;
 import android.os.Bundle;

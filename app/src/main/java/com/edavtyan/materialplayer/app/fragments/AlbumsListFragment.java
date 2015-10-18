@@ -7,6 +7,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.fragments.base.ListFragment;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
 
 public class AlbumsListFragment extends ListFragment {

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app.activities;
+package com.edavtyan.materialplayer.app.activities.base;
 
 import android.database.Cursor;
 import android.os.Bundle;

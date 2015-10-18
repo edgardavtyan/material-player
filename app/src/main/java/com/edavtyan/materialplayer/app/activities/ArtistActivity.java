@@ -8,6 +8,7 @@ import android.support.v4.content.Loader;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
 import com.squareup.picasso.Picasso;
