@@ -27,7 +27,6 @@ public class ArtistActivity
     /* Constants */
     /* ********* */
 
-    public static final String EXTRA_ARTIST_ID = "artist_id";
     public static final String EXTRA_ARTIST_NAME = "artist_name";
 
     /* ****** */

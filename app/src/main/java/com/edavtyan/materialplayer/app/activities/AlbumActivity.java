@@ -28,6 +28,7 @@ public class AlbumActivity
     /* ********* */
     /* Constants */
     /* ********* */
+    
     public static final String EXTRA_ALBUM_ID = "album_id";
 
     /* ****** */
