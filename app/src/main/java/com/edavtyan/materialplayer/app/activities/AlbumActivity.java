@@ -24,15 +24,8 @@ import com.squareup.picasso.Picasso;
 public class AlbumActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
-    /* ********* */
-    /* Constants */
-    /* ********* */
 
     public static final String EXTRA_ALBUM_ID = "album_id";
-
-    /* ****** */
-    /* Fields */
-    /* ****** */
 
     private TracksAdapter tracksAdapter;
 

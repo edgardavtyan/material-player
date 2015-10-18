@@ -22,15 +22,8 @@ import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 public class ArtistActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
-    /* ********* */
-    /* Constants */
-    /* ********* */
 
     public static final String EXTRA_ARTIST_NAME = "artist_name";
-
-    /* ****** */
-    /* Fields */
-    /* ****** */
 
     private AlbumsAdapter tracksAdapter;
 
@@ -43,6 +36,7 @@ public class ArtistActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collapsing_list);
         getLoaderManager().initLoader(0, null, this);
+
         tracksAdapter = new AlbumsAdapter(this, null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
