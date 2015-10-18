@@ -36,10 +36,14 @@ public class NowPlayingInfoFragment
         }
     };
 
+    /*
+     * Fragment
+     */
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nowplaying_info, container, false);
         aquery = new AQuery(view);
         return view;
