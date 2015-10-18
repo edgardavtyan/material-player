@@ -24,7 +24,7 @@
     <FrameLayout
         android:id="@+id/art_frame"
         android:layout_width="match_parent"
-        android:layout_height="320dp">
+        android:layout_height="350dp">
 
         <ImageView
             android:id="@+id/art"
@@ -108,7 +108,6 @@
             android:background="@color/primary_dark">
 
             <ImageButton
-                android:id="@+id/shuffle"
                 android:src="@drawable/ic_shuffle_white_36dp"
                 android:contentDescription="@string/nowplaying_shuffle_description"
                 android:layout_width="0dp"
@@ -124,28 +123,25 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/nowplaying_control_ripple"
-                android:onClick="rewind"/>
+                android:background="@drawable/nowplaying_control_ripple"/>
 
             <ImageButton
-                android:id="@+id/control_playPause"
+                android:id="@+id/play_pause"
                 android:src="@drawable/ic_pause_white_36dp"
                 android:contentDescription="@string/nowplaying_playPause_description"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/nowplaying_control_ripple"
-                android:onClick="play"/>
+                android:background="@drawable/nowplaying_control_ripple"/>
 
             <ImageButton
-                android:id="@+id/shuffle"
+                android:id="@+id/fast_forward"
                 android:src="@drawable/ic_fast_forward_white_36dp"
                 android:contentDescription="@string/nowplaying_fastForward_description"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/nowplaying_control_ripple"
-                android:onClick="fastForward"/>
+                android:background="@drawable/nowplaying_control_ripple"/>
 
             <ImageButton
                 android:src="@drawable/ic_repeat_white_36dp"

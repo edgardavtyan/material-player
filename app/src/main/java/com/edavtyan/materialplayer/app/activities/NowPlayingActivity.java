@@ -33,7 +33,7 @@ import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 
-public class NowPlayingActivity extends AppCompatActivity {
+public class NowPlayingActivity extends AppCompatActivity implements View.OnClickListener {
     /* ****** */
     /* Fields */
     /* ****** */
@@ -46,7 +46,7 @@ public class NowPlayingActivity extends AppCompatActivity {
 
     private TextView titleView;
     private TextView infoView;
-    private ImageView playPauseView;
+    private ImageButton playPauseButton;
     private ImageView artView;
     private ImageView artBackView;
 
@@ -55,13 +55,13 @@ public class NowPlayingActivity extends AppCompatActivity {
     private BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
         }
     };
     private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseView.setImageResource(R.drawable.ic_play_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
         }
     };
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
@@ -83,7 +83,17 @@ public class NowPlayingActivity extends AppCompatActivity {
 
         artProvider = new ArtProvider(this);
 
-        playPauseView = (ImageButton) findViewById(R.id.control_playPause);
+        playPauseButton = (ImageButton) findViewById(R.id.play_pause);
+        playPauseButton.setOnClickListener(this);
+
+        ImageButton rewindButton = (ImageButton) findViewById(R.id.rewind);
+        rewindButton.setOnClickListener(this);
+
+        ImageButton fastForwardButton = (ImageButton) findViewById(R.id.fast_forward);
+        fastForwardButton.setOnClickListener(this);
+
+
+
         infoView = (TextView) findViewById(R.id.info);
         titleView = (TextView) findViewById(R.id.title);
         artView = (ImageView) findViewById(R.id.art);
@@ -141,6 +151,23 @@ public class NowPlayingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rewind:
+                sendBroadcast(new Intent(MusicPlayerService.ACTION_REWIND));
+                break;
+
+            case R.id.play_pause:
+                sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
+                break;
+
+            case R.id.fast_forward:
+                sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
+                break;
+        }
+    }
+
     /* ******* */
     /* Classes */
     /* ******* */
@@ -160,22 +187,6 @@ public class NowPlayingActivity extends AppCompatActivity {
         public void onServiceDisconnected(ComponentName componentName) {
             isBound = false;
         }
-    }
-
-    /* *********************************** */
-    /* Playback controls onClick listeners */
-    /* *********************************** */
-
-    public void play(View view) {
-        sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
-    }
-
-    public void fastForward(View view) {
-        sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
-    }
-
-    public void rewind(View view) {
-        sendBroadcast(new Intent(MusicPlayerService.ACTION_REWIND));
     }
 
     /* *************** */
@@ -204,9 +215,9 @@ public class NowPlayingActivity extends AppCompatActivity {
         new ArtLoadTask().execute(metadata);
 
         if (playerService.isPlaying()) {
-            playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
         } else {
-            playPauseView.setImageResource(R.drawable.ic_play_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
         }
     }
 
