@@ -168,6 +168,10 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         return player.getCurrentPosition();
     }
 
+    public int getDuration() {
+        return player.getDuration();
+    }
+
     public void prepare() {
         if (hasData) {
             player.reset();

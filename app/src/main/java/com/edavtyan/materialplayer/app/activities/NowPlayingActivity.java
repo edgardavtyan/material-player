@@ -19,11 +19,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.controls.SeekbarControl;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
@@ -50,8 +48,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
     private ImageView artView;
     private ImageView artBackView;
 
-    private SeekbarControl seekbar;
-
     private BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -68,7 +64,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         @Override
         public void onReceive(Context context, Intent intent) {
             syncTrackInfoWithService();
-            seekbar.start();
         }
     };
 
@@ -92,16 +87,10 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         ImageButton fastForwardButton = (ImageButton) findViewById(R.id.fast_forward);
         fastForwardButton.setOnClickListener(this);
 
-
-
         infoView = (TextView) findViewById(R.id.info);
         titleView = (TextView) findViewById(R.id.title);
         artView = (ImageView) findViewById(R.id.art);
         artBackView = (ImageView) findViewById(R.id.art_back);
-
-        seekbar = new SeekbarControl((SeekBar) findViewById(R.id.seekbar));
-        seekbar.setOnStopTrackingListener(position -> playerService.setPosition(position));
-        seekbar.setUpdater(seekbar -> seekbar.setProgress(playerService.getPosition()));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -180,7 +169,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
             isBound = true;
 
             syncTrackInfoWithService();
-            seekbar.start();
         }
 
         @Override
@@ -210,7 +198,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         Metadata metadata = playerService.getMetadata();
         titleView.setText(metadata.getTrackTitle());
         infoView.setText(getTrackInfo(metadata));
-        seekbar.setMax((int) metadata.getDuration());
 
         new ArtLoadTask().execute(metadata);
 
