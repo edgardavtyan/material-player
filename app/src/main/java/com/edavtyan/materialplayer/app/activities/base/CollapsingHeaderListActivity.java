@@ -75,11 +75,11 @@ public abstract class CollapsingHeaderListActivity
     }
 
 
-    public abstract Loader<Cursor> getLoader();
+    protected abstract Loader<Cursor> getLoader();
 
-    public abstract RecyclerViewCursorAdapter getAdapter();
+    protected abstract RecyclerViewCursorAdapter getAdapter();
 
-    public abstract String getToolbarTitle();
+    protected abstract String getToolbarTitle();
 
-    public abstract void setImageSource(ImageView imageView);
+    protected abstract void setImageSource(ImageView imageView);
 }

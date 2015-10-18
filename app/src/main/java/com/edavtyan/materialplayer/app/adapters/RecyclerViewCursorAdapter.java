@@ -31,7 +31,7 @@ extends RecyclerView.Adapter<VH> {
         cursorAdapter = new CursorAdapter(context, cursor, 0) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                return RecyclerViewCursorAdapter.this.newView(context, cursor, parent);
+                return RecyclerViewCursorAdapter.this.newView(context, parent);
             }
 
             @Override
@@ -58,11 +58,11 @@ extends RecyclerView.Adapter<VH> {
     /* Protected abstract methods */
     /* ************************** */
 
-    protected abstract View newView(Context context, Cursor cursor, ViewGroup parent);
+    protected abstract View newView(Context context, ViewGroup parent);
 
     protected abstract void bindView(View view, Context context, Cursor cursor);
 
-    protected abstract VH createViewHolder(View view, ViewGroup parent, int position);
+    protected abstract VH createViewHolder(View view);
 
     /* **************************** */
     /* RecyclerView.Adapter members */
@@ -71,7 +71,7 @@ extends RecyclerView.Adapter<VH> {
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int position) {
         View v = cursorAdapter.newView(context, cursorAdapter.getCursor(), parent);
-        return createViewHolder(v, parent, position);
+        return createViewHolder(v);
     }
 
     @Override

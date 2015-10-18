@@ -59,10 +59,6 @@ public class SeekbarControl {
         action.run();
     }
 
-    public void stop() {
-        handler.removeCallbacks(action);
-    }
-
     public void setMax(int max) {
         seekbar.setMax(max);
     }

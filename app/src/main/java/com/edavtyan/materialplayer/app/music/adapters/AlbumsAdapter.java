@@ -35,11 +35,11 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
             MediaStore.Audio.Albums.ALBUM_ART
     };
 
-    public static final int COLUMN_INDEX_ID = 0;
-    public static final int COLUMN_INDEX_TITLE = 1;
-    public static final int COLUMN_INDEX_ARTIST = 2;
-    public static final int COLUMN_INDEX_SONGS_COUNT = 3;
-    public static final int COLUMN_INDEX_ART = 4;
+    private static final int COLUMN_INDEX_ID = 0;
+    private static final int COLUMN_INDEX_TITLE = 1;
+    private static final int COLUMN_INDEX_ARTIST = 2;
+    private static final int COLUMN_INDEX_SONGS_COUNT = 3;
+    private static final int COLUMN_INDEX_ART = 4;
 
     public static final String COLUMN_ARTIST = MediaStore.Audio.Albums.ARTIST;
 
@@ -47,8 +47,8 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
     /* Constructors */
     /* ************ */
 
-    public AlbumsAdapter(Context context, Cursor cursor) {
-        super(context, cursor);
+    public AlbumsAdapter(Context context) {
+        super(context, null);
     }
 
     /* ********************************* */
@@ -56,7 +56,7 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
     /* ********************************* */
 
     @Override
-    protected View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, ViewGroup parent) {
         View view = LayoutInflater
                 .from(context)
                 .inflate(R.layout.listitem_album, parent, false);
@@ -78,7 +78,7 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
     }
 
     @Override
-    protected AlbumViewHolder createViewHolder(View view, ViewGroup parent, int position) {
+    protected AlbumViewHolder createViewHolder(View view) {
         return new AlbumViewHolder(view);
     }
 

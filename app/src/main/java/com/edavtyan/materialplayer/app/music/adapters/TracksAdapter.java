@@ -47,7 +47,6 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     public static final int COLUMN_INDEX_DURATION = 5;
 
     public static final String COLUMN_NAME_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
-    public static final String COLUMN_NAME_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
 
     /* ****** */
     /* Fields */
@@ -55,7 +54,6 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
 
     private MusicPlayerService playerService;
     private MusicPlayerConnection playerConnection;
-    private boolean isBound;
 
     /* ************ */
     /* Constructors */
@@ -77,13 +75,10 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
             playerService = binder.getService();
-            isBound = true;
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            isBound = false;
-        }
+        public void onServiceDisconnected(ComponentName componentName) {}
     }
 
     /* *************************************************************** */
@@ -91,7 +86,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     /* *************************************************************** */
 
     @Override
-    protected View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, ViewGroup parent) {
         View view = LayoutInflater
                 .from(context)
                 .inflate(R.layout.listitem_track, parent, false);
@@ -109,7 +104,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     }
 
     @Override
-    protected TrackViewHolder createViewHolder(View view, ViewGroup parent, int position) {
+    protected TrackViewHolder createViewHolder(View view) {
         return new TrackViewHolder(view);
     }
 
@@ -156,7 +151,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
                 DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
                 getCursor().getString(COLUMN_INDEX_ARTIST),
                 getCursor().getString(COLUMN_INDEX_ALBUM));
-    };
+    }
 
     public void closeConnection() {
         context.unbindService(playerConnection);

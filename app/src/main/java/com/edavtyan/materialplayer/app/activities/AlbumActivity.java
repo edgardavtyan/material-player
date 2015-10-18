@@ -25,7 +25,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        tracksAdapter = new AlbumTracksAdapter(this, null);
+        tracksAdapter = new AlbumTracksAdapter(this);
         album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
         super.onCreate(savedInstanceState);
     }

@@ -73,7 +73,7 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         }
     }
 
-    private class RewindReciever extends BroadcastReceiver {
+    private class RewindReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             movePrev();
@@ -115,7 +115,7 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         registerReceiver(new FastForwardReceiver(), fastForwardFilter);
 
         IntentFilter rewindFilter = new IntentFilter(ACTION_REWIND);
-        registerReceiver(new RewindReciever(), rewindFilter);
+        registerReceiver(new RewindReceiver(), rewindFilter);
     }
 
     public class MusicPlayerBinder extends Binder {

@@ -29,16 +29,16 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
             MediaStore.Audio.Artists.NUMBER_OF_TRACKS,
     };
 
-    public static final int COLUMN_ARTIST = 1;
-    public static final int COLUMN_ALBUMS_COUNT = 2;
-    public static final int COLUMN_TRACKS_COUNT = 3;
+    private static final int COLUMN_ARTIST = 1;
+    private static final int COLUMN_ALBUMS_COUNT = 2;
+    private static final int COLUMN_TRACKS_COUNT = 3;
 
     /* ************ */
     /* Constructors */
     /* ************ */
 
-    public ArtistsAdapter(Context context, Cursor cursor) {
-        super(context, cursor);
+    public ArtistsAdapter(Context context) {
+        super(context, null);
     }
 
     /* ********************************* */
@@ -46,7 +46,7 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     /* ********************************* */
 
     @Override
-    protected View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, ViewGroup parent) {
         View view = LayoutInflater
                 .from(context)
                 .inflate(R.layout.listitem_artist, parent, false);
@@ -64,7 +64,7 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     }
 
     @Override
-    protected ArtistViewHolder createViewHolder(View view, ViewGroup parent, int position) {
+    protected ArtistViewHolder createViewHolder(View view) {
         return new ArtistViewHolder(view);
     }
 

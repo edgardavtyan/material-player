@@ -108,6 +108,7 @@
             android:background="@color/primary_dark">
 
             <ImageButton
+                android:id="@+id/shuffle"
                 android:src="@drawable/ic_shuffle_white_36dp"
                 android:contentDescription="@string/nowplaying_shuffle_description"
                 android:layout_width="0dp"
@@ -117,6 +118,7 @@
                 tools:ignore="NestedWeights"/>
 
             <ImageButton
+                android:id="@+id/rewind"
                 android:src="@drawable/ic_rewind_white_36dp"
                 android:contentDescription="@string/nowplaying_rewind_description"
                 android:layout_width="0dp"
@@ -136,6 +138,7 @@
                 android:onClick="play"/>
 
             <ImageButton
+                android:id="@+id/shuffle"
                 android:src="@drawable/ic_fast_forward_white_36dp"
                 android:contentDescription="@string/nowplaying_fastForward_description"
                 android:layout_width="0dp"

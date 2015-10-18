@@ -18,9 +18,9 @@ import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public abstract class ListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
-    public abstract Loader<Cursor> getLoader();
+    protected abstract Loader<Cursor> getLoader();
 
-    public abstract RecyclerViewCursorAdapter getAdapter();
+    protected abstract RecyclerViewCursorAdapter getAdapter();
 
 
     @Nullable

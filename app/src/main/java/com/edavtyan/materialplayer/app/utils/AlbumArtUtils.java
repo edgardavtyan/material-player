@@ -39,25 +39,6 @@ public class AlbumArtUtils {
         return artFile;
     }
 
-    public static RequestCreator getFullArtRequest(Context context, File artFile) {
-        return Picasso
-                .with(context)
-                .load(artFile)
-                .placeholder(R.drawable.fallback_cover)
-                .error(R.drawable.fallback_cover);
-    }
-
-    public static RequestCreator getFullArtistArtRequest(Context context) {
-        return Picasso
-                .with(context)
-                .load(R.drawable.fallback_artist);
-    }
-    public static RequestCreator getSmallArtistArtRequest(Context context) {
-        return Picasso
-                .with(context)
-                .load(R.drawable.fallback_artist_listitem);
-    }
-
 
     public static RequestCreator getSmallArtRequest(Context context, File artFile) {
         return Picasso

@@ -32,7 +32,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
-import java.io.IOException;
 
 public class NowPlayingActivity extends AppCompatActivity {
     /* ****** */
@@ -167,15 +166,15 @@ public class NowPlayingActivity extends AppCompatActivity {
     /* Playback controls onClick listeners */
     /* *********************************** */
 
-    public void play(View view) throws IOException {
+    public void play(View view) {
         sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
     }
 
-    public void fastForward(View view) throws IOException {
+    public void fastForward(View view) {
         sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
     }
 
-    public void rewind(View view) throws IOException {
+    public void rewind(View view) {
         sendBroadcast(new Intent(MusicPlayerService.ACTION_REWIND));
     }
 

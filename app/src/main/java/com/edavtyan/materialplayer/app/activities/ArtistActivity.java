@@ -22,7 +22,7 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        albumsAdapter = new AlbumsAdapter(this, null);
+        albumsAdapter = new AlbumsAdapter(this);
         super.onCreate(savedInstanceState);
     }
 

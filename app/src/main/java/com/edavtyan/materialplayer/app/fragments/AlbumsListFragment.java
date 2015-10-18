@@ -16,7 +16,7 @@ public class AlbumsListFragment extends ListFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        albumsAdapter = new AlbumsAdapter(getContext(), null);
+        albumsAdapter = new AlbumsAdapter(getContext());
     }
 
     @Override
