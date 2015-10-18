@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
@@ -40,8 +39,6 @@ public class NowPlayingActivity
     private MusicPlayerService playerService;
     private boolean isBound;
 
-    private TextView titleView;
-    private TextView infoView;
     private ImageView artView;
     private ImageView artBackView;
 
@@ -63,8 +60,6 @@ public class NowPlayingActivity
 
         artProvider = new ArtProvider(this);
 
-        infoView = (TextView) findViewById(R.id.info);
-        titleView = (TextView) findViewById(R.id.title);
         artView = (ImageView) findViewById(R.id.art);
         artBackView = (ImageView) findViewById(R.id.art_back);
 
@@ -136,19 +131,8 @@ public class NowPlayingActivity
     /* Private methods */
     /* *************** */
 
-    private String getTrackInfo(Metadata metadata) {
-        return getResources().getString(
-                R.string.nowplaying_info_pattern,
-                metadata.getArtistTitle(),
-                metadata.getAlbumTitle());
-    }
-
     private void syncTrackInfoWithService() {
-        Metadata metadata = playerService.getMetadata();
-        titleView.setText(metadata.getTrackTitle());
-        infoView.setText(getTrackInfo(metadata));
-
-        new ArtLoadTask().execute(metadata);
+        new ArtLoadTask().execute(playerService.getMetadata());
     }
 
     private class ArtLoadTask extends AsyncTask<Metadata, Void, File> {

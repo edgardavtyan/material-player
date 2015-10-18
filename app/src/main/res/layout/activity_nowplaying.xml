@@ -61,41 +61,14 @@
             android:layout_height="0dp"
             android:layout_centerInParent="true"/>
 
-        <LinearLayout
-            android:id="@+id/info_wrapper"
+        <fragment
+            android:id="@+id/fragment_info"
+            android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingInfoFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_alignBottom="@id/aligner"
             android:layout_alignParentTop="true"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:background="@color/primary"
-            android:clipToPadding="false">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-                android:textColor="@color/text_on_primary"
-                android:textSize="@dimen/nowplaying_title_textSize"
-                android:singleLine="true"
-                android:ellipsize="end"
-                tools:text="Now Playing Track Title"/>
-
-            <TextView
-                android:id="@+id/info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/nowplaying_info_marginTop"
-                android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-                android:textColor="@color/text_on_primary"
-                android:textSize="@dimen/nowplaying_info_textSize"
-                android:singleLine="true"
-                android:ellipsize="end"
-                tools:text="Artist Name - Album Name"/>
-
-        </LinearLayout>
+            tools:layout="@layout/fragment_nowplaying_info"/>
 
         <fragment
             android:id="@+id/fragment_controls"
