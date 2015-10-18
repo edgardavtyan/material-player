@@ -38,7 +38,7 @@ public abstract class CollapsingHeaderListActivity
             collapsingToolbar.setTitle(getToolbarTitle());
         }
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
