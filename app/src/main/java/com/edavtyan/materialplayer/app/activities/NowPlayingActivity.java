@@ -53,19 +53,19 @@ public class NowPlayingActivity extends AppCompatActivity {
 
     private SeekbarControl seekbar;
 
-    private BroadcastReceiver playReciever = new BroadcastReceiver() {
+    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             playPauseView.setImageResource(R.drawable.ic_pause_white_36dp);
         }
     };
-    private BroadcastReceiver pauseReciever = new BroadcastReceiver() {
+    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             playPauseView.setImageResource(R.drawable.ic_play_white_36dp);
         }
     };
-    private BroadcastReceiver newTrackReciever = new BroadcastReceiver() {
+    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             syncTrackInfoWithService();
@@ -107,9 +107,9 @@ public class NowPlayingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MusicPlayerService.class);
         bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
 
-        registerReceiver(playReciever, new IntentFilter(MusicPlayerService.SEND_PLAY));
-        registerReceiver(pauseReciever, new IntentFilter(MusicPlayerService.SEND_PAUSE));
-        registerReceiver(newTrackReciever, new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+        registerReceiver(playReceiver, new IntentFilter(MusicPlayerService.SEND_PLAY));
+        registerReceiver(pauseReceiver, new IntentFilter(MusicPlayerService.SEND_PAUSE));
+        registerReceiver(newTrackReceiver, new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
 
     }
 
@@ -125,9 +125,9 @@ public class NowPlayingActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         unbindService(playerConnection);
-        unregisterReceiver(playReciever);
-        unregisterReceiver(pauseReciever);
-        unregisterReceiver(newTrackReciever);
+        unregisterReceiver(playReceiver);
+        unregisterReceiver(pauseReceiver);
+        unregisterReceiver(newTrackReceiver);
         super.onDestroy();
     }
 
