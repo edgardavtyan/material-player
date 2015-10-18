@@ -15,9 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +29,7 @@ import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 
-public class NowPlayingActivity extends AppCompatActivity implements View.OnClickListener {
+public class NowPlayingActivity extends AppCompatActivity {
     /* ****** */
     /* Fields */
     /* ****** */
@@ -64,12 +62,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_nowplaying);
 
         artProvider = new ArtProvider(this);
-
-        ImageButton rewindButton = (ImageButton) findViewById(R.id.rewind);
-        rewindButton.setOnClickListener(this);
-
-        ImageButton fastForwardButton = (ImageButton) findViewById(R.id.fast_forward);
-        fastForwardButton.setOnClickListener(this);
 
         infoView = (TextView) findViewById(R.id.info);
         titleView = (TextView) findViewById(R.id.title);
@@ -117,23 +109,6 @@ public class NowPlayingActivity extends AppCompatActivity implements View.OnClic
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.rewind:
-                sendBroadcast(new Intent(MusicPlayerService.ACTION_REWIND));
-                break;
-
-            case R.id.play_pause:
-                sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
-                break;
-
-            case R.id.fast_forward:
-                sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
-                break;
-        }
     }
 
     /* ******* */
