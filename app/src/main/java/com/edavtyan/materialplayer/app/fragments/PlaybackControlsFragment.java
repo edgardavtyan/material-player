@@ -1,27 +1,23 @@
 package com.edavtyan.materialplayer.app.fragments;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.androidquery.AQuery;
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 
 public class PlaybackControlsFragment
-        extends Fragment
-        implements View.OnClickListener, ServiceConnection {
+        extends ServiceFragment
+        implements View.OnClickListener {
 
     private AQuery aquery;
 
@@ -49,15 +45,13 @@ public class PlaybackControlsFragment
     };
 
     /*
-     * Fragment members
+     * ServiceFragment
      */
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater
-                .from(getActivity())
-                .inflate(R.layout.fragment_playback_controls, container, false);
+        View view = inflater.inflate(R.layout.fragment_playback_controls, container, false);
 
         aquery = new AQuery(view);
         aquery.id(R.id.play_pause).clicked(this);
@@ -93,6 +87,15 @@ public class PlaybackControlsFragment
         getActivity().unbindService(this);
     }
 
+    @Override
+    public void onServiceConnected() {
+        if (getService().isPlaying()) {
+            aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);
+        } else {
+            aquery.id(R.id.play_pause).image(R.drawable.ic_play_white_36dp);
+        }
+    }
+
     /*
      * View.OnClickListener members
      */
@@ -112,24 +115,5 @@ public class PlaybackControlsFragment
                 getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
                 break;
         }
-    }
-
-    /*
-     * ServiceConnection members
-     */
-
-    @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        MusicPlayerService service = ((MusicPlayerBinder)iBinder).getService();
-        if (service.isPlaying()) {
-            aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);
-        } else {
-            aquery.id(R.id.play_pause).image(R.drawable.ic_play_white_36dp);
-        }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName componentName) {
-
     }
 }
