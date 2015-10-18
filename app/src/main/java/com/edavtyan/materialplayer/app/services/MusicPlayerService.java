@@ -12,7 +12,6 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
@@ -28,9 +27,6 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     /* ********* */
     /* Constants */
     /* ********* */
-
-    private final String TAG = "MusicPlayerService";
-
     private static final int NOTIFICATION_ID = 1;
 
     public static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
@@ -158,7 +154,6 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
     public void setTracks(List<Integer> tracks) {
         this.tracks = tracks;
-        Log.d(TAG, "setTracks count=" + this.tracks.size());
     }
 
     public void setCurrentIndex(int index) {
