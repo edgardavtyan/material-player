@@ -1,86 +1,32 @@
 package com.edavtyan.materialplayer.app.activities;
 
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
-import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
-import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
+import com.squareup.picasso.Picasso;
 
-public class ArtistActivity
-        extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ArtistActivity extends CollapsingHeaderListActivity {
 
     public static final String EXTRA_ARTIST_NAME = "artist_name";
 
-    private AlbumsAdapter tracksAdapter;
+    private AlbumsAdapter albumsAdapter;
 
-    /* ************************* */
-    /* AppCompatActivity members */
-    /* ************************* */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        albumsAdapter = new AlbumsAdapter(this, null);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collapsing_list);
-        getLoaderManager().initLoader(0, null, this);
-
-        tracksAdapter = new AlbumsAdapter(this, null);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        if (collapsingToolbar != null) {
-            collapsingToolbar.setTitleEnabled(true);
-            collapsingToolbar.setTitle(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
-        }
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
-        recyclerView.setAdapter(tracksAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
-
-        ImageView artistArtView = (ImageView) findViewById(R.id.art);
-        AlbumArtUtils.getFullArtistArtRequest(this).into(artistArtView);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    /* *********************** */
-    /* LoaderCallbacks members */
-    /* *********************** */
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public Loader<Cursor> getLoader() {
         String artist = getIntent().getStringExtra(EXTRA_ARTIST_NAME);
         return new CursorLoader(
                 this,
@@ -92,12 +38,19 @@ public class ArtistActivity
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        tracksAdapter.swapCursor(cursor);
+    public RecyclerViewCursorAdapter getAdapter() {
+        return albumsAdapter;
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        tracksAdapter.swapCursor(null);
+    public String getToolbarTitle() {
+        return getIntent().getStringExtra(EXTRA_ARTIST_NAME);
+    }
+
+    @Override
+    public void setImageSource(ImageView imageView) {
+        Picasso.with(this)
+                .load(R.drawable.fallback_artist)
+                .into(imageView);
     }
 }

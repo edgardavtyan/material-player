@@ -1,71 +1,32 @@
 package com.edavtyan.materialplayer.app.activities;
 
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.Album;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
-import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 import com.squareup.picasso.Picasso;
 
-public class AlbumActivity
-        extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class AlbumActivity extends CollapsingHeaderListActivity {
 
     public static final String EXTRA_ALBUM_ID = "album_id";
 
     private TracksAdapter tracksAdapter;
+    private Album album;
 
-    /* ************************* */
-    /* AppCompatActivity members */
-    /* ************************* */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collapsing_list);
-        getLoaderManager().initLoader(0, savedInstanceState, this);
-
         tracksAdapter = new AlbumTracksAdapter(this, null);
-
-        Album album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        if (collapsingToolbar != null) {
-            collapsingToolbar.setTitleEnabled(true);
-            collapsingToolbar.setTitle(album.getTitle());
-        }
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.tracks_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(tracksAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
-
-        ImageView artView = (ImageView) findViewById(R.id.art);
-        Picasso.with(this)
-                .load(album.getArt())
-                .placeholder(R.drawable.fallback_cover)
-                .error(R.drawable.fallback_cover)
-                .fit()
-                .into(artView);
+        album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -74,23 +35,9 @@ public class AlbumActivity
         super.onDestroy();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    /* *********************** */
-    /* LoaderCallbacks members */
-    /* *********************** */
 
     @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    public Loader<Cursor> getLoader() {
         int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
         return new CursorLoader(
                 this,
@@ -102,12 +49,22 @@ public class AlbumActivity
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        tracksAdapter.swapCursor(cursor);
+    public RecyclerViewCursorAdapter getAdapter() {
+        return tracksAdapter;
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        tracksAdapter.swapCursor(null);
+    public String getToolbarTitle() {
+        return album.getTitle();
+    }
+
+    @Override
+    public void setImageSource(ImageView imageView) {
+        Picasso.with(this)
+                .load(album.getArt())
+                .placeholder(R.drawable.fallback_cover)
+                .error(R.drawable.fallback_cover)
+                .fit()
+                .into(imageView);
     }
 }
