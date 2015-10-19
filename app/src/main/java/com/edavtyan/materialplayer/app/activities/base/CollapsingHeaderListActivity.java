@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -56,23 +55,24 @@ public abstract class CollapsingHeaderListActivity
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
+
+        RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
+        header.attachTo(recyclerView, true);
+        header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 totalScrolled += dy;
+                header.setTop(totalScrolled / 2);
 
                 if (totalScrolled <= 255) {
                     appbar.setBackgroundColor(Color.argb(totalScrolled, red, green, blue));
                     tintManager.setStatusBarAlpha(totalScrolled / 255f);
-                    Log.d("Scrolled Y", Integer.toString(totalScrolled));
                 }
             }
         });
-
-        RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
-        header.attachTo(recyclerView, true);
-        header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
 
         ImageView artistArtView = (ImageView) findViewById(R.id.art_header);
         setImageSource(artistArtView);
