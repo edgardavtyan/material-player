@@ -85,7 +85,6 @@ public class PlaybackControlsFragment
         getActivity().unregisterReceiver(playReceiver);
         getActivity().unregisterReceiver(pauseReceiver);
         getActivity().unregisterReceiver(newTrackReceiver);
-        getActivity().unbindService(this);
     }
 
     @Override

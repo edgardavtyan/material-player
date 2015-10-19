@@ -57,7 +57,6 @@ public class NowPlayingInfoFragment extends ServiceFragment {
     public void onPause() {
         super.onPause();
         getActivity().unregisterReceiver(newTrackReceiver);
-        getActivity().unbindService(this);
     }
 
     @Override
