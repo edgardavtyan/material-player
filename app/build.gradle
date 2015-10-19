@@ -52,6 +52,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.minimize.library:seekbar-compat:0.2.4'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     provided 'org.projectlombok:lombok:1.16.6'
     compile fileTree(dir: 'libs', include: '*.jar')
 }
