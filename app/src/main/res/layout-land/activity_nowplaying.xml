@@ -26,124 +26,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/art_frame"
-            android:layout_width="320dp"
-            android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/fragment_art"
+            android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingArtFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_nowplaying_art"/>
 
-            <ImageView
-                android:id="@+id/art_back"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/nowplaying_art_tint"/>
+                android:id="@+id/aligner"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"/>
 
-            <ImageView
-                android:id="@+id/art"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
+            <fragment
+                android:id="@+id/fragment_info"
+                android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingInfoFragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:background="@color/primary">
+                android:layout_alignBottom="@id/aligner"
+                android:layout_alignParentTop="true"
+                tools:layout="@layout/fragment_nowplaying_info"/>
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-                    android:textColor="@color/text_on_primary"
-                    android:textSize="@dimen/nowplaying_title_textSize"
-                    tools:text="Now Playing Track Title"/>
-
-                <TextView
-                    android:id="@+id/info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/nowplaying_info_marginTop"
-                    android:layout_marginLeft="@dimen/nowplaying_text_marginLeft"
-                    android:textColor="@color/text_on_primary"
-                    android:textSize="@dimen/nowplaying_info_textSize"
-                    tools:text="Artist Name - Album Name"/>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <fragment
+                android:id="@+id/fragment_controls"
+                android:name="com.edavtyan.materialplayer.app.fragments.PlaybackControlsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/nowPlaying_controls_horizontalPadding"
-                android:paddingRight="@dimen/nowPlaying_controls_horizontalPadding"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:background="@color/primary_dark">
+                android:layout_alignTop="@id/aligner"
+                android:layout_alignParentBottom="true"
+                tools:layout="@layout/fragment_playback_controls"/>
 
-                <ImageButton
-                    android:src="@drawable/ic_shuffle_white_36dp"
-                    android:contentDescription="@string/nowplaying_shuffle_description"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/nowplaying_control_height"
-                    android:layout_weight="1"
-                    android:background="@drawable/nowplaying_control_ripple"
-                    tools:ignore="NestedWeights"/>
+            <fragment
+                android:id="@+id/fragment_seekbar"
+                android:name="com.edavtyan.materialplayer.app.fragments.PlayerSeekbarFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                tools:layout="@layout/fragment_seekbar"/>
 
-                <ImageButton
-                    android:src="@drawable/ic_rewind_white_36dp"
-                    android:contentDescription="@string/nowplaying_rewind_description"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/nowplaying_control_height"
-                    android:layout_weight="1"
-                    android:background="@drawable/nowplaying_control_ripple"
-                    android:onClick="rewind"/>
-
-                <ImageButton
-                    android:id="@+id/control_playPause"
-                    android:src="@drawable/ic_pause_white_36dp"
-                    android:contentDescription="@string/nowplaying_playPause_description"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/nowplaying_control_height"
-                    android:layout_weight="1"
-                    android:background="@drawable/nowplaying_control_ripple"
-                    android:onClick="play"/>
-
-                <ImageButton
-                    android:src="@drawable/ic_fast_forward_white_36dp"
-                    android:contentDescription="@string/nowplaying_fastForward_description"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/nowplaying_control_height"
-                    android:layout_weight="1"
-                    android:background="@drawable/nowplaying_control_ripple"
-                    android:onClick="fastForward"/>
-
-                <ImageButton
-                    android:src="@drawable/ic_repeat_white_36dp"
-                    android:contentDescription="@string/nowplaying_repeat_description"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/nowplaying_control_height"
-                    android:layout_weight="1"
-                    android:background="@drawable/nowplaying_control_ripple"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
