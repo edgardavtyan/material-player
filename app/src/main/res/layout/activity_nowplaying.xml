@@ -21,34 +21,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/art_frame"
+    <fragment
+        android:id="@+id/fragment_art"
+        android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingArtFragment"
         android:layout_width="match_parent"
-        android:layout_height="350dp">
-
-        <ImageView
-            android:id="@+id/art"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:src="@drawable/fallback_cover"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/nowplaying_art_tint"/>
-
-        <ImageView
-            android:id="@+id/art_back"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/fallback_cover"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
-
-    </FrameLayout>
+        android:layout_height="350dp"
+        tools:layout="@layout/fragment_nowplaying_art"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
