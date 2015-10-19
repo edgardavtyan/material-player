@@ -1,12 +1,10 @@
 package com.edavtyan.materialplayer.app.activities.base;
 
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +16,8 @@ import android.widget.ImageView;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.resources.AppColors;
+import com.edavtyan.materialplayer.app.utils.CustomColor;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -27,6 +27,10 @@ public abstract class CollapsingHeaderListActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private int totalScrolled = 0;
+
+    /*
+     * AppCompatActivity
+     */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,14 +45,9 @@ public abstract class CollapsingHeaderListActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        int color = ContextCompat.getColor(this, R.color.primary);
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintColor(color);
+        tintManager.setStatusBarTintColor(AppColors.getPrimaryDark(this));
         tintManager.setStatusBarAlpha(0f);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
@@ -60,6 +59,7 @@ public abstract class CollapsingHeaderListActivity
         header.attachTo(recyclerView, true);
         header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
 
+        CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -67,10 +67,8 @@ public abstract class CollapsingHeaderListActivity
                 totalScrolled += dy;
                 header.setTop(totalScrolled / 2);
 
-                if (totalScrolled <= 255) {
-                    appbar.setBackgroundColor(Color.argb(totalScrolled, red, green, blue));
-                    tintManager.setStatusBarAlpha(totalScrolled / 255f);
-                }
+                tintManager.setStatusBarAlpha(totalScrolled / 255f);
+                appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
             }
         });
 
@@ -89,6 +87,9 @@ public abstract class CollapsingHeaderListActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * LoaderCallbacks
+     */
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -105,6 +106,9 @@ public abstract class CollapsingHeaderListActivity
         getAdapter().swapCursor(null);
     }
 
+    /*
+     * Abstract methods
+     */
 
     protected abstract Loader<Cursor> getLoader();
 
