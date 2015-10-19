@@ -65,7 +65,6 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
                 .load(album.getArt())
                 .placeholder(R.drawable.fallback_cover)
                 .error(R.drawable.fallback_cover)
-                .fit()
                 .into(imageView);
     }
 }

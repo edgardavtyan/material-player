@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.app.activities.base;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
@@ -31,19 +31,16 @@ public abstract class CollapsingHeaderListActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        if (collapsingToolbar != null) {
-            collapsingToolbar.setTitleEnabled(true);
-            collapsingToolbar.setTitle(getToolbarTitle());
-        }
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
-        ImageView artistArtView = (ImageView) findViewById(R.id.art);
+        RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
+        header.attachTo(recyclerView, true);
+        header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
+
+        ImageView artistArtView = (ImageView) findViewById(R.id.art_header);
         setImageSource(artistArtView);
     }
 
