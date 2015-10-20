@@ -9,6 +9,8 @@
     <color name="text_on_primary">#FFFFFF</color>
     <color name="text_on_primary_inactive">#80FFFFFF</color>
 
+    <color name="shadow">#35000000</color>
+
     <color name="ripple_white">#50FFFFFF</color>
 
     <color name="nowplaying_art_tint">#77000000</color>

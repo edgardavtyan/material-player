@@ -9,4 +9,6 @@
     <dimen name="nowplaying_floating_height">60dp</dimen>
     <dimen name="nowplaying_notification_height">64dp</dimen>
     <dimen name="nowplaying_notification_control_height">48dp</dimen>
+
+    <dimen name="shadow_level_1">3dp</dimen>
 </resources>

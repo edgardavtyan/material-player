@@ -59,21 +59,21 @@ public abstract class CollapsingHeaderListActivity
         header.attachTo(recyclerView, true);
         header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
 
+        ImageView artistArtView = (ImageView) findViewById(R.id.art_header);
+        setImageSource(artistArtView);
+
         CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 totalScrolled += dy;
-                header.setTop(totalScrolled / 2);
+                artistArtView.setTop(totalScrolled / 2);
 
                 tintManager.setStatusBarAlpha(totalScrolled / 255f);
                 appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
             }
         });
-
-        ImageView artistArtView = (ImageView) findViewById(R.id.art_header);
-        setImageSource(artistArtView);
     }
 
     @Override
