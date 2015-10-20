@@ -10,28 +10,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
+        <LinearLayout
+            android:id="@+id/appbar_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp">
+            android:orientation="vertical">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/shadow_small"
+                app:elevation="0dp">
+
+                <View
+                    android:id="@+id/statusbar_tint"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_gravity="top"
+                    android:background="#3000"/>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:elevation="0dp"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:titleTextColor="@color/text_onPrimary" />
+
+            </android.support.design.widget.AppBarLayout>
 
             <View
-                android:id="@+id/statusbar_tint"
+                android:id="@+id/appbar_shadow"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_gravity="top"
-                android:background="#3000"/>
+                android:layout_height="@dimen/shadow_small"
+                android:layout_gravity="bottom"
+                android:alpha="0"
+                android:background="@drawable/shadow_top"/>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:elevation="0dp"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:titleTextColor="@color/text_onPrimary" />
-
-        </android.support.design.widget.AppBarLayout>
+        </LinearLayout>
 
         <FrameLayout
             android:fitsSystemWindows="false"

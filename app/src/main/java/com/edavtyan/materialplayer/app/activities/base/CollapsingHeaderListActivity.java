@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
@@ -46,8 +47,12 @@ public abstract class CollapsingHeaderListActivity
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
+        LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
+        appbarWrapper.bringToFront();
+
         AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-        appbar.bringToFront();
+
+        View appbarShadow = findViewById(R.id.appbar_shadow);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,8 +82,16 @@ public abstract class CollapsingHeaderListActivity
                 totalScrolled += dy;
                 artistArtView.setTop(totalScrolled / 2);
 
+                float alpha;
+                if (totalScrolled > 255) {
+                    alpha = 1.0f;
+                } else {
+                    alpha = totalScrolled / 255f;
+                }
+
                 appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
                 statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
+                appbarShadow.setAlpha(alpha);
             }
         });
     }

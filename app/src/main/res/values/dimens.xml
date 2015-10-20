@@ -11,5 +11,6 @@
     <dimen name="icon_medium">48dp</dimen>
 
     <dimen name="shadow_tiny">3dp</dimen>
+    <dimen name="shadow_small">5dp</dimen>
 
 </resources>
