@@ -25,10 +25,10 @@ extends RecyclerView.Adapter<VH> {
     /* Constructors */
     /* ************ */
 
-    public RecyclerViewCursorAdapter(Context context, Cursor cursor) {
+    public RecyclerViewCursorAdapter(Context context) {
         this.context = context;
 
-        cursorAdapter = new CursorAdapter(context, cursor, 0) {
+        cursorAdapter = new CursorAdapter(context, (Cursor) null, 0) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
                 return RecyclerViewCursorAdapter.this.newView(context, parent);

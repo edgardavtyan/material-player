@@ -60,7 +60,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     /* ************ */
 
     public TracksAdapter(Context context) {
-        super(context, null);
+        super(context);
         playerConnection = new MusicPlayerConnection();
         Intent serviceIntent = new Intent(context, MusicPlayerService.class);
         context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);

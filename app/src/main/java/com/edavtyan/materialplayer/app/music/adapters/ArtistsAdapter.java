@@ -38,7 +38,7 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     /* ************ */
 
     public ArtistsAdapter(Context context) {
-        super(context, null);
+        super(context);
     }
 
     /* ********************************* */

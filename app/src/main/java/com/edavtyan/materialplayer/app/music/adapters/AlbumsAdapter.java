@@ -48,7 +48,7 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
     /* ************ */
 
     public AlbumsAdapter(Context context) {
-        super(context, null);
+        super(context);
     }
 
     /* ********************************* */
