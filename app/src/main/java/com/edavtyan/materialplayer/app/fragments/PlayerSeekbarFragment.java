@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.aquery.SeekbarQuery;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
@@ -21,12 +20,12 @@ public class PlayerSeekbarFragment
         extends ServiceFragment
         implements SeekBar.OnSeekBarChangeListener {
 
-    private SeekbarQuery seekbarQuery;
+    private SeekBar seekbar;
     private Handler handler;
     private final Runnable syncSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekbarQuery.value(getService().getPosition());
+            seekbar.setProgress(getService().getPosition());
             handler.postDelayed(syncSeekbar, 1000);
         }
     };
@@ -50,7 +49,7 @@ public class PlayerSeekbarFragment
     private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            seekbarQuery.max(getService().getDuration());
+            seekbar.setMax(getService().getDuration());
             syncSeekbar.run();
         }
     };
@@ -65,8 +64,8 @@ public class PlayerSeekbarFragment
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_seekbar, container);
 
-        seekbarQuery = new SeekbarQuery(view).id(R.id.seekbar);
-        seekbarQuery.changed(this);
+        seekbar = (SeekBar) view.findViewById(R.id.seekbar);
+        seekbar.setOnSeekBarChangeListener(this);
         handler = new Handler();
 
         return view;
@@ -110,7 +109,7 @@ public class PlayerSeekbarFragment
 
     @Override
     public void onServiceConnected() {
-        seekbarQuery.max(getService().getDuration());
+        seekbar.setMax(getService().getDuration());
         syncSeekbar.run();
     }
 

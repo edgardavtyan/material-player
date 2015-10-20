@@ -9,14 +9,16 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.androidquery.AQuery;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class NowPlayingInfoFragment extends ServiceFragment {
-    private AQuery aquery;
+
+    private TextView titleView;
+    private TextView infoView;
 
     /*
      * BroadcastReceivers
@@ -38,7 +40,10 @@ public class NowPlayingInfoFragment extends ServiceFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nowplaying_info, container, false);
-        aquery = new AQuery(view);
+
+        titleView = (TextView) view.findViewById(R.id.title);
+        infoView = (TextView) view.findViewById(R.id.info);
+
         return view;
     }
 
@@ -74,7 +79,7 @@ public class NowPlayingInfoFragment extends ServiceFragment {
                 getService().getMetadata().getArtistTitle(),
                 getService().getMetadata().getAlbumTitle());
 
-        aquery.id(R.id.title).text(getService().getMetadata().getTrackTitle());
-        aquery.id(R.id.info).text(trackMetadata);
+        titleView.setText(getService().getMetadata().getTrackTitle());
+        infoView.setText(trackMetadata);
     }
 }
