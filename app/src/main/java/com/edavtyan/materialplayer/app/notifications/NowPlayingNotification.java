@@ -21,11 +21,11 @@ import com.google.gson.Gson;
 public class NowPlayingNotification {
     private static final int NOTIFICATION_ID = 1;
 
-    private NotificationCompat.Builder builder;
-    private NotificationManagerCompat manager;
-    private RemoteViews view;
+    private final NotificationCompat.Builder builder;
+    private final NotificationManagerCompat manager;
+    private final RemoteViews view;
 
-    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
@@ -34,7 +34,7 @@ public class NowPlayingNotification {
             updateNotification();
         }
     };
-    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
@@ -43,7 +43,7 @@ public class NowPlayingNotification {
             updateNotification();
         }
     };
-    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String jsonStr = intent.getStringExtra(MusicPlayerService.EXTRA_METADATA);

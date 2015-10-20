@@ -12,7 +12,7 @@ public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
     /* Fields */
     /* ****** */
 
-    private String[] tabNames = {
+    private final String[] tabNames = {
             "Artists",
             "Albums",
             "Tracks"

@@ -53,7 +53,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     /* ****** */
 
     private MusicPlayerService playerService;
-    private MusicPlayerConnection playerConnection;
+    private final MusicPlayerConnection playerConnection;
 
     /* ************ */
     /* Constructors */
@@ -109,8 +109,8 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     }
 
     public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView titleTextView;
-        TextView infoTextView;
+        final TextView titleTextView;
+        final TextView infoTextView;
 
         public TrackViewHolder(View itemView) {
             super(itemView);

@@ -69,8 +69,8 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     }
 
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
-        TextView countsTextView;
+        private final TextView titleTextView;
+        private final TextView countsTextView;
 
         public ArtistViewHolder(View itemView) {
             super(itemView);

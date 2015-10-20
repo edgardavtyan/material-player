@@ -25,19 +25,19 @@ public class PlaybackControlsFragment
      * BroadcastReceivers
      */
 
-    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);
         }
     };
-    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             aquery.id(R.id.play_pause).image(R.drawable.ic_play_white_36dp);
         }
     };
-    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             aquery.id(R.id.play_pause).image(R.drawable.ic_pause_white_36dp);

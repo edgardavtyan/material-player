@@ -23,7 +23,7 @@ public class PlayerSeekbarFragment
 
     private SeekbarQuery seekbarQuery;
     private Handler handler;
-    private Runnable syncSeekbar = new Runnable() {
+    private final Runnable syncSeekbar = new Runnable() {
         @Override
         public void run() {
             seekbarQuery.value(getService().getPosition());
@@ -35,19 +35,19 @@ public class PlayerSeekbarFragment
      * BroadcastReceivers
      */
 
-    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             syncSeekbar.run();
         }
     };
-    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             handler.removeCallbacks(syncSeekbar);
         }
     };
-    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             seekbarQuery.max(getService().getDuration());

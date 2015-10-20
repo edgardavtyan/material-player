@@ -4,11 +4,11 @@ import android.os.Handler;
 import android.widget.SeekBar;
 
 public class SeekbarControl {
-    private Handler handler;
+    private final Handler handler;
     private OnStopTrackingListener onStopListener;
     private OnUpdateListener updater;
-    private SeekBar seekbar;
-    private Runnable action = new Runnable() {
+    private final SeekBar seekbar;
+    private final Runnable action = new Runnable() {
         @Override
         public void run() {
             updater.run(seekbar);

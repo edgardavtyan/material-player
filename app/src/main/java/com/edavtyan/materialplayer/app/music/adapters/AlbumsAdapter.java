@@ -83,9 +83,9 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
     }
 
     public class AlbumViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
-        TextView infoTextView;
-        ImageView artImageView;
+        private final TextView titleTextView;
+        private final TextView infoTextView;
+        private final ImageView artImageView;
 
         public AlbumViewHolder(View itemView) {
             super(itemView);

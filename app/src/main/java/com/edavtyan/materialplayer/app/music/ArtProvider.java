@@ -10,14 +10,14 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 
 public class ArtProvider {
-    private static HashMap<Integer, File> arts;
+    private final static HashMap<Integer, File> arts;
 
     static {
         arts = new HashMap<>();
     }
 
 
-    private Context context;
+    private final Context context;
 
     public ArtProvider(Context context) {
         this.context = context;

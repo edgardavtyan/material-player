@@ -13,13 +13,13 @@ extends RecyclerView.Adapter<VH> {
     /* Fields */
     /* ****** */
 
-    private CursorAdapter cursorAdapter;
+    private final CursorAdapter cursorAdapter;
 
     /* **************** */
     /* Protected fields */
     /* **************** */
 
-    protected Context context;
+    protected final Context context;
 
     /* ************ */
     /* Constructors */

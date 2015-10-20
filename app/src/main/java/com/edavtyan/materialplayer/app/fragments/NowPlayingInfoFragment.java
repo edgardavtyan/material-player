@@ -22,7 +22,7 @@ public class NowPlayingInfoFragment extends ServiceFragment {
      * BroadcastReceivers
      */
 
-    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             syncWithService();
