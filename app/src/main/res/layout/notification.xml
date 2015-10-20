@@ -46,24 +46,24 @@
     </LinearLayout>
 
     <ImageButton
-        android:src="@drawable/ic_pause_black_36dp"
+        android:src="@drawable/ic_pause_black"
         android:id="@+id/playPause"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/notification_control_ripple"/>
+        android:background="@drawable/ripple_control_notification"/>
 
     <ImageButton
-        android:src="@drawable/ic_fast_forward_black_36dp"
+        android:src="@drawable/ic_fast_forward_black"
         android:id="@+id/fast_forward"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/notification_control_ripple"/>
+        android:background="@drawable/ripple_control_notification"/>
 
     <ImageButton
-        android:src="@drawable/ic_close_black_36dp"
+        android:src="@drawable/ic_close_black"
         android:id="@+id/close"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/notification_control_ripple"/>
+        android:background="@drawable/ripple_control_notification"/>
 
 </LinearLayout>

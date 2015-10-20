@@ -10,25 +10,25 @@
 
     <ImageButton
         style="@style/nowplaying_control"
-        android:src="@drawable/ic_shuffle_white_36dp"/>
+        android:src="@drawable/ic_shuffle_white"/>
 
     <ImageButton
         style="@style/nowplaying_control"
         android:id="@+id/rewind"
-        android:src="@drawable/ic_rewind_white_36dp"/>
+        android:src="@drawable/ic_rewind_white"/>
 
     <ImageButton
         style="@style/nowplaying_control"
         android:id="@+id/play_pause"
-        android:src="@drawable/ic_pause_white_36dp"/>
+        android:src="@drawable/ic_pause_white"/>
 
     <ImageButton
         style="@style/nowplaying_control"
         android:id="@+id/fast_forward"
-        android:src="@drawable/ic_fast_forward_white_36dp"/>
+        android:src="@drawable/ic_fast_forward_white"/>
 
     <ImageButton
         style="@style/nowplaying_control"
-        android:src="@drawable/ic_repeat_white_36dp"/>
+        android:src="@drawable/ic_repeat_white"/>
 
 </LinearLayout>

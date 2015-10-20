@@ -30,19 +30,19 @@ public class PlaybackControlsFragment
     private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }
     };
     private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_play_white);
         }
     };
     private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }
     };
 
@@ -97,9 +97,9 @@ public class PlaybackControlsFragment
     @Override
     public void onServiceConnected() {
         if (getService().isPlaying()) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_pause_white);
         } else {
-            playPauseButton.setImageResource(R.drawable.ic_play_white_36dp);
+            playPauseButton.setImageResource(R.drawable.ic_play_white);
         }
     }
 

@@ -130,10 +130,10 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
             case R.id.play_pause:
                 if (playerService.isPlaying()) {
                     playerService.pause();
-                    controlView.setImageResource(R.drawable.ic_play_white_36dp);
+                    controlView.setImageResource(R.drawable.ic_play_white);
                 } else {
                     playerService.resume();
-                    controlView.setImageResource(R.drawable.ic_pause_white_36dp);
+                    controlView.setImageResource(R.drawable.ic_pause_white);
                 }
                 break;
         }
@@ -153,9 +153,9 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
         titleView.setText(playerService.getMetadata().getTrackTitle());
 
         if (playerService.isPlaying()) {
-            controlView.setImageResource(R.drawable.ic_pause_white_36dp);
+            controlView.setImageResource(R.drawable.ic_pause_white);
         } else {
-            controlView.setImageResource(R.drawable.ic_play_white_36dp);
+            controlView.setImageResource(R.drawable.ic_play_white);
         }
     }
 }

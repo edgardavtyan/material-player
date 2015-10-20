@@ -30,7 +30,7 @@ public class NowPlayingNotification {
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
                     R.id.playPause,
-                    R.drawable.ic_pause_black_36dp);
+                    R.drawable.ic_pause_black);
             updateNotification();
         }
     };
@@ -39,7 +39,7 @@ public class NowPlayingNotification {
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
                     R.id.playPause,
-                    R.drawable.ic_play_black_36dp);
+                    R.drawable.ic_play_black);
             updateNotification();
         }
     };

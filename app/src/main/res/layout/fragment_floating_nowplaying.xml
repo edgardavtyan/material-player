@@ -26,6 +26,6 @@
         android:id="@+id/play_pause"
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_play_white_36dp"
-        android:background="@drawable/nowplaying_control_ripple"/>
+        android:src="@drawable/ic_play_white"
+        android:background="@drawable/ripple_conrol_nowplaying"/>
 </LinearLayout>
