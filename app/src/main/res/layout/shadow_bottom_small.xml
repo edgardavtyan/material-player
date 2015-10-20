@@ -2,6 +2,6 @@
 <View
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/shadow_level_1"
+    android:layout_height="@dimen/shadow_tiny"
     android:layout_gravity="bottom"
     android:background="@drawable/shadow_bottom_small" />

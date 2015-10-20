@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="primary">#FF5722</color>
     <color name="primary_dark">#D84315</color>
-    <color name="primary_faded">#60FF5722</color>
-
     <color name="accent">#FFC107</color>
 
     <color name="text_on_primary">#FFFFFF</color>
     <color name="text_on_primary_inactive">#80FFFFFF</color>
 
-    <color name="shadow">#35000000</color>
+    <color name="grey_alpha_light">#35000000</color>
+    <color name="grey_alpha_dark">#77000000</color>
 
-    <color name="ripple_white">#50FFFFFF</color>
+    <color name="white_alpha_light">#50FFFFFF</color>
 
-    <color name="nowplaying_art_tint">#77000000</color>
 </resources>

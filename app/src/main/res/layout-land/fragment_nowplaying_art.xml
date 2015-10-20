@@ -17,7 +17,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/nowplaying_art_tint"/>
+        android:background="@color/grey_alpha_dark"/>
 
     <ImageView
         android:id="@+id/back"

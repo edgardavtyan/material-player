@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="nowPlaying_controls_horizontalPadding">20dp</dimen>
-    <dimen name="nowplaying_control_height">60dp</dimen>
-    <dimen name="nowplaying_text_marginLeft">20dp</dimen>
-    <dimen name="nowplaying_info_textSize">16sp</dimen>
-    <dimen name="nowplaying_info_marginTop">10dp</dimen>
-    <dimen name="nowplaying_title_textSize">24sp</dimen>
-    <dimen name="nowplaying_floating_height">60dp</dimen>
-    <dimen name="nowplaying_notification_height">64dp</dimen>
-    <dimen name="nowplaying_notification_control_height">48dp</dimen>
 
-    <dimen name="shadow_level_1">3dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_tiny">8dp</dimen>
+
+    <dimen name="font_big">24sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+
+    <dimen name="icon_big">64dp</dimen>
+    <dimen name="icon_medium">48dp</dimen>
+
+    <dimen name="shadow_tiny">3dp</dimen>
+
 </resources>
