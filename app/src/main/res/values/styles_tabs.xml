@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="tabs_base">
+        <item name="tabIndicatorColor">#FFC107</item>
+        <item name="tabTextColor">@color/text_onPrimary_inactive</item>
+        <item name="tabSelectedTextColor">@color/text_onPrimary</item>
+        <item name="tabIndicatorHeight">2dp</item>
+    </style>
+
+    <style name="tabs_fill" parent="tabs_base">
+        <item name="tabGravity">fill</item>
+    </style>
+
+</resources>

@@ -9,23 +9,18 @@
         android:id="@+id/art"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:src="@drawable/fallback_cover"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
+        style="@style/nowplaying_art"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_alpha_dark"/>
+        style="@style/nowplaying_art_tint"/>
 
     <com.edavtyan.materialplayer.app.views.SquareImageView
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fallback_cover"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+        style="@style/nowplaying_art_back"/>
 
     <include layout="@layout/shadow_bottom_small" />
 

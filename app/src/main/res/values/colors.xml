@@ -5,12 +5,12 @@
     <color name="primary_dark">#D84315</color>
     <color name="accent">#FFC107</color>
 
-    <color name="text_on_primary">#FFFFFF</color>
-    <color name="text_on_primary_inactive">#80FFFFFF</color>
+    <color name="text_onPrimary">#FFF</color>
+    <color name="text_onPrimary_inactive">#7FFF</color>
 
-    <color name="grey_alpha_light">#35000000</color>
-    <color name="grey_alpha_dark">#77000000</color>
+    <color name="transparent_gray_light">#3000</color>
+    <color name="transparent_gray_dark">#7000</color>
 
-    <color name="white_alpha_light">#50FFFFFF</color>
+    <color name="white_alpha_light">#5FFF</color>
 
 </resources>

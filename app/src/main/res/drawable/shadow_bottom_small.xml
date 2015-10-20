@@ -5,7 +5,7 @@
     >
     <gradient
         android:type="linear"
-        android:startColor="@color/grey_alpha_light"
+        android:startColor="@color/transparent_gray_light"
         android:endColor="@android:color/transparent"
         android:angle="90"
         />

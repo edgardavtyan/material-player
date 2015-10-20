@@ -46,7 +46,7 @@
                         android:id="@+id/art_header"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"/>
+                        style="@style/info_art"/>
 
                     <include layout="@layout/shadow_bottom_small" />
 

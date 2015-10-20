@@ -17,7 +17,7 @@
             android:layout_height="?actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/nowplaying_toolbar_title"
-            app:titleTextColor="@color/text_on_primary"/>
+            app:titleTextColor="@color/text_onPrimary"/>
 
     </android.support.design.widget.AppBarLayout>
 
