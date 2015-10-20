@@ -14,15 +14,22 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3000">
+            app:elevation="0dp">
+
+            <View
+                android:id="@+id/statusbar_tint"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="top"
+                android:background="#3000"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:background="#3000"
+                app:elevation="0dp"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:titleTextColor="@color/text_on_primary" />
+                app:titleTextColor="@color/text_onPrimary" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -47,6 +54,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         style="@style/info_art"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="@drawable/collapsing_toolbar_gradient"/>
 
                     <include layout="@layout/shadow_bottom_small" />
 

@@ -19,8 +19,7 @@
 
         <activity
                 android:name=".activities.ArtistActivity"
-                android:launchMode="singleTop"
-                android:theme="@style/WindowTransparentStatus">
+                android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -28,8 +27,7 @@
         </activity>
 
         <activity android:name=".activities.AlbumActivity"
-                  android:launchMode="singleTop"
-                  android:theme="@style/WindowTransparentStatus">
+                  android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

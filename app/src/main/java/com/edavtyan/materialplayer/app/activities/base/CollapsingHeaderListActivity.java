@@ -1,16 +1,20 @@
 package com.edavtyan.materialplayer.app.activities.base;
 
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
@@ -18,9 +22,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
-import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public abstract class CollapsingHeaderListActivity
         extends AppCompatActivity
@@ -38,17 +40,18 @@ public abstract class CollapsingHeaderListActivity
         setContentView(R.layout.activity_collapsing_list);
         getSupportLoaderManager().initLoader(0, null, this);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
         AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-        appbar.setPadding(0, DeviceUtils.getStatusBarHeight(getResources()), 0, 0);
+        appbar.bringToFront();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintColor(AppColors.getPrimaryDark(this));
-        tintManager.setStatusBarAlpha(0f);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
@@ -62,7 +65,11 @@ public abstract class CollapsingHeaderListActivity
         ImageView artistArtView = (ImageView) findViewById(R.id.art_header);
         setImageSource(artistArtView);
 
+        View statusBarTint = findViewById(R.id.statusbar_tint);
+
         CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
+        CustomColor statusBarTintColor = new CustomColor(
+                ContextCompat.getColor(this, R.color.transparent_gray_light));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -70,8 +77,8 @@ public abstract class CollapsingHeaderListActivity
                 totalScrolled += dy;
                 artistArtView.setTop(totalScrolled / 2);
 
-                tintManager.setStatusBarAlpha(totalScrolled / 255f);
                 appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
+                statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
             }
         });
     }
