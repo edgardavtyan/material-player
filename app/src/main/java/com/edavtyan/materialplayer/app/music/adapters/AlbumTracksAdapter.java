@@ -9,7 +9,7 @@ public class AlbumTracksAdapter extends TracksAdapter {
     public static final String SORT_ORDER = MediaStore.Audio.Media.TRACK + " ASC";
 
     public AlbumTracksAdapter(Context context) {
-        super(context, null);
+        super(context);
     }
 
     @Override
