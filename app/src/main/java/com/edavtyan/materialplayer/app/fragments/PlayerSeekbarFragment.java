@@ -128,5 +128,6 @@ public class PlayerSeekbarFragment
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         getService().setPosition(seekBar.getProgress());
+        syncSeekbar.run();
     }
 }
