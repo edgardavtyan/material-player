@@ -27,10 +27,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/shadow_level_1"
-        android:layout_gravity="bottom"
-        android:background="@drawable/shadow_bottom_small" />
+    <include layout="@layout/shadow_bottom_small" />
 
 </FrameLayout>
