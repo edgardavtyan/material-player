@@ -51,7 +51,7 @@
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
         android:padding="12dp"
-        android:background="@drawable/ripple_conrol_nowplaying"
+        android:background="@drawable/ripple_control_nowplaying"
         app:vc_endDrawable="@drawable/ic_pause_to_play"
         app:vc_startDrawable="@drawable/ic_play_to_pause"
         app:vc_foregroundTint="#fff"
