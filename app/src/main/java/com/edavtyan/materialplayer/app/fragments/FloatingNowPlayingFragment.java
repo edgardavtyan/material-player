@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.squareup.picasso.Picasso;
+import com.wnafee.vector.MorphButton;
 
 public class FloatingNowPlayingFragment
         extends ServiceFragment
@@ -26,7 +26,7 @@ public class FloatingNowPlayingFragment
     private ImageView artView;
     private TextView titleView;
     private TextView infoView;
-    private ImageButton controlView;
+    private MorphButton controlView;
     private LinearLayout container;
 
     /* **************** */
@@ -47,7 +47,7 @@ public class FloatingNowPlayingFragment
 
         infoView = (TextView) view.findViewById(R.id.info);
 
-        controlView = (ImageButton) view.findViewById(R.id.play_pause);
+        controlView = (MorphButton) view.findViewById(R.id.play_pause);
         controlView.setOnClickListener(this);
 
         container = (LinearLayout) view.findViewById(R.id.container);
@@ -94,10 +94,10 @@ public class FloatingNowPlayingFragment
             case R.id.play_pause:
                 if (getService().isPlaying()) {
                     getService().pause();
-                    controlView.setImageResource(R.drawable.ic_play_white);
+                    controlView.setState(MorphButton.MorphState.START, true);
                 } else {
                     getService().resume();
-                    controlView.setImageResource(R.drawable.ic_pause_white);
+                    controlView.setState(MorphButton.MorphState.END, true);
                 }
                 break;
         }
@@ -123,9 +123,9 @@ public class FloatingNowPlayingFragment
 
 
         if (getService().isPlaying()) {
-            controlView.setImageResource(R.drawable.ic_pause_white);
+            controlView.setState(MorphButton.MorphState.END);
         } else {
-            controlView.setImageResource(R.drawable.ic_play_white);
+            controlView.setState(MorphButton.MorphState.START);
         }
     }
 }

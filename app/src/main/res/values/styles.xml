@@ -5,6 +5,7 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="morphButtonStyle">@style/Widget.MorphButton</item>
     </style>
 
     <style name="artist_collapsingToolbar_title">

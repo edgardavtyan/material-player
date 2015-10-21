@@ -14,12 +14,16 @@ import android.widget.ImageButton;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
+import com.wnafee.vector.MorphButton;
 
 public class PlaybackControlsFragment
         extends ServiceFragment
         implements View.OnClickListener {
 
-    ImageButton playPauseButton;
+    private static final MorphButton.MorphState STATE_PAUSE = MorphButton.MorphState.START;
+    private static final MorphButton.MorphState STATE_PLAY = MorphButton.MorphState.END;
+
+    MorphButton playPauseButton;
     ImageButton fastForwardButton;
     ImageButton rewindButton;
 
@@ -30,19 +34,19 @@ public class PlaybackControlsFragment
     private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            playPauseButton.setState(STATE_PAUSE, true);
         }
     };
     private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_play_white);
+            playPauseButton.setState(STATE_PLAY, true);
         }
     };
     private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            playPauseButton.setState(STATE_PAUSE);
         }
     };
 
@@ -56,7 +60,7 @@ public class PlaybackControlsFragment
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playback_controls, container, false);
 
-        playPauseButton =(ImageButton) view.findViewById(R.id.play_pause);
+        playPauseButton =(MorphButton) view.findViewById(R.id.play_pause);
         playPauseButton.setOnClickListener(this);
 
         fastForwardButton =(ImageButton) view.findViewById(R.id.fast_forward);
@@ -97,9 +101,9 @@ public class PlaybackControlsFragment
     @Override
     public void onServiceConnected() {
         if (getService().isPlaying()) {
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            playPauseButton.setState(STATE_PAUSE);
         } else {
-            playPauseButton.setImageResource(R.drawable.ic_play_white);
+            playPauseButton.setState(STATE_PLAY);
         }
     }
 
