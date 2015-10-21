@@ -25,7 +25,7 @@
         android:id="@+id/fragment_art"
         android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingArtFragment"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         tools:layout="@layout/fragment_nowplaying_art"/>
 
     <RelativeLayout

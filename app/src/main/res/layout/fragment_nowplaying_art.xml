@@ -3,23 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/frame"
     android:layout_width="match_parent"
-    android:layout_height="350dp">
+    android:layout_height="wrap_content">
 
     <com.edavtyan.materialplayer.app.views.SquareImageView
         android:id="@+id/art"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         style="@style/nowplaying_art"/>
 
-    <View
+    <com.edavtyan.materialplayer.app.views.SquareView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         style="@style/nowplaying_art_tint"/>
 
     <com.edavtyan.materialplayer.app.views.SquareImageView
         android:id="@+id/back"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         style="@style/nowplaying_art_back"/>
 
     <include layout="@layout/shadow_bottom_small" />
