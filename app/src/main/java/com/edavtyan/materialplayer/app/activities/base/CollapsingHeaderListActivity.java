@@ -90,8 +90,10 @@ public abstract class CollapsingHeaderListActivity
                 }
 
                 appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
-                statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
                 appbarShadow.setAlpha(alpha);
+                if (statusBarTint != null) {
+                    statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
+                }
             }
         });
     }
