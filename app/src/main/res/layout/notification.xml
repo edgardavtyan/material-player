@@ -59,7 +59,7 @@
         />
 
     <ImageButton
-        android:id="@+id/playPause"
+        android:id="@+id/play_pause"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
         android:src="@drawable/ic_pause_black"

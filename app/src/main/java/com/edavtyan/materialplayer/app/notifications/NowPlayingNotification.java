@@ -29,7 +29,7 @@ public class NowPlayingNotification {
         @Override
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
-                    R.id.playPause,
+                    R.id.play_pause,
                     R.drawable.ic_pause_black);
             updateNotification();
         }
@@ -38,7 +38,7 @@ public class NowPlayingNotification {
         @Override
         public void onReceive(Context context, Intent intent) {
             view.setImageViewResource(
-                    R.id.playPause,
+                    R.id.play_pause,
                     R.drawable.ic_play_black);
             updateNotification();
         }
@@ -51,6 +51,7 @@ public class NowPlayingNotification {
 
             view.setTextViewText(R.id.title, metadata.getTrackTitle());
             view.setTextViewText(R.id.info, metadata.getAlbumTitle());
+            view.setImageViewResource(R.id.play_pause, R.drawable.ic_pause_black);
 
             if (metadata.getArtFile() != null) {
                 Bitmap art = BitmapFactory.decodeFile(metadata.getArtFile().getPath());
@@ -73,7 +74,7 @@ public class NowPlayingNotification {
                 R.id.title,
                 PendingIntents.getActivity(context, NowPlayingActivity.class));
         view.setOnClickPendingIntent(
-                R.id.playPause,
+                R.id.play_pause,
                 PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_PLAY_PAUSE));
         view.setOnClickPendingIntent(
                 R.id.fast_forward,
