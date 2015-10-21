@@ -86,7 +86,7 @@
                         >
 
                         <ImageView
-                            android:id="@+id/art_header"
+                            android:id="@+id/art"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             style="@style/info_art"

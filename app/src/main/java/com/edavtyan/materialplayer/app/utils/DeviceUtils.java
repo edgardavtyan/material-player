@@ -1,16 +1,16 @@
 package com.edavtyan.materialplayer.app.utils;
 
+import android.content.res.Configuration;
 import android.content.res.Resources;
 
 public final class DeviceUtils {
     private DeviceUtils() {}
 
-    public static int getStatusBarHeight(Resources res) {
-        int result = 0;
-        int resourceId = res.getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = res.getDimensionPixelSize(resourceId);
-        }
-        return result;
+    public static boolean isLandscape(Resources res) {
+        return res.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    public static boolean isPortrait(Resources res) {
+        return res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 }

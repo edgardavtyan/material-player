@@ -23,6 +23,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
+import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public abstract class CollapsingHeaderListActivity
@@ -41,61 +42,68 @@ public abstract class CollapsingHeaderListActivity
         setContentView(R.layout.activity_collapsing_list);
         getSupportLoaderManager().initLoader(0, null, this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
-        LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
-        appbarWrapper.bringToFront();
-
-        AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-
-        View appbarShadow = findViewById(R.id.appbar_shadow);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
-        RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
-        header.attachTo(recyclerView, true);
-        header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
-
-        ImageView artistArtView = (ImageView) findViewById(R.id.art_header);
+        ImageView artistArtView = (ImageView) findViewById(R.id.art);
         setImageSource(artistArtView);
 
-        View statusBarTint = findViewById(R.id.statusbar_tint);
+        AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
 
-        CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
-        CustomColor statusBarTintColor = new CustomColor(
-                ContextCompat.getColor(this, R.color.transparent_gray_light));
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                totalScrolled += dy;
-                artistArtView.setTop(totalScrolled / 2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-                float alpha;
-                if (totalScrolled > 255) {
-                    alpha = 1.0f;
-                } else {
-                    alpha = totalScrolled / 255f;
-                }
+        if (DeviceUtils.isPortrait(getResources())) {
 
-                appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
-                appbarShadow.setAlpha(alpha);
-                if (statusBarTint != null) {
-                    statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                getWindow().setFlags(
+                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             }
-        });
+
+            LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
+            appbarWrapper.bringToFront();
+
+            View appbarShadow = findViewById(R.id.appbar_shadow);
+            View statusBarTint = findViewById(R.id.statusbar_tint);
+
+            RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
+            header.attachTo(recyclerView, true);
+            header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
+
+            CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
+            CustomColor statusBarTintColor = new CustomColor(
+                    ContextCompat.getColor(this, R.color.transparent_gray_light));
+
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    totalScrolled += dy;
+                    artistArtView.setTop(totalScrolled / 2);
+
+                    float alpha;
+                    if (totalScrolled > 255) {
+                        alpha = 1.0f;
+                    } else {
+                        alpha = totalScrolled / 255f;
+                    }
+
+                    appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
+                    appbarShadow.setAlpha(alpha);
+                    if (statusBarTint != null) {
+                        statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
+                    }
+                }
+            });
+
+        } else {
+            ImageView artBackView = (ImageView) findViewById(R.id.back);
+            setImageSource(artBackView);
+        }
     }
 
     @Override
