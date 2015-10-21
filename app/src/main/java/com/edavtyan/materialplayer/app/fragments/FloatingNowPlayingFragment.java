@@ -37,19 +37,19 @@ public class FloatingNowPlayingFragment
      * BroadcastReceivers
      */
 
-    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             controlView.setState(MorphButton.MorphState.END, true);
         }
     };
-    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             controlView.setState(MorphButton.MorphState.START, true);
         }
     };
-    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             syncDataWithService();
