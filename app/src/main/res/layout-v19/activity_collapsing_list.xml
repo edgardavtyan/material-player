@@ -2,95 +2,111 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/appbar_wrapper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <android.support.design.widget.AppBarLayout
-                android:id="@+id/appbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/shadow_small"
-                app:elevation="0dp">
-
-                <View
-                    android:id="@+id/statusbar_tint"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:layout_gravity="top"
-                    android:background="#3000"/>
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    app:elevation="0dp"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:titleTextColor="@color/text_onPrimary" />
-
-            </android.support.design.widget.AppBarLayout>
-
-            <View
-                android:id="@+id/appbar_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/shadow_small"
-                android:layout_gravity="bottom"
-                android:alpha="0"
-                android:background="@drawable/shadow_top"/>
-
-        </LinearLayout>
+        android:layout_height="match_parent">
 
         <FrameLayout
-            android:fitsSystemWindows="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
-                android:id="@+id/list_header"
+            <LinearLayout
+                android:id="@+id/appbar_wrapper"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:fitsSystemWindows="true">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <FrameLayout
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/art_header"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        style="@style/info_art"/>
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/shadow_small"
+                    app:elevation="0dp">
 
                     <View
+                        android:id="@+id/statusbar_tint"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="@drawable/collapsing_toolbar_gradient"/>
+                        android:layout_height="25dp"
+                        android:layout_gravity="top"
+                        android:background="#3000"/>
 
-                    <include layout="@layout/shadow_bottom_small" />
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?actionBarSize"
+                        app:elevation="0dp"
+                        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                        app:titleTextColor="@color/text_onPrimary" />
 
-                </FrameLayout>
+                </android.support.design.widget.AppBarLayout>
 
-            </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+                <View
+                    android:id="@+id/appbar_shadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/shadow_small"
+                    android:layout_gravity="bottom"
+                    android:alpha="0"
+                    android:background="@drawable/shadow_top"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list"
+            </LinearLayout>
+
+            <FrameLayout
+                android:fitsSystemWindows="false"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
+                    android:id="@+id/list_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:fitsSystemWindows="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/art_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/info_art"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:background="@drawable/collapsing_toolbar_gradient"/>
+
+                        <include layout="@layout/shadow_bottom_small" />
+
+                    </FrameLayout>
+
+                </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            </FrameLayout>
 
         </FrameLayout>
 
-    </FrameLayout>
+        <fragment
+            android:id="@+id/floating_nowplaying"
+            android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/icon_big"
+            tools:layout="@layout/fragment_floating_nowplaying"/>
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
