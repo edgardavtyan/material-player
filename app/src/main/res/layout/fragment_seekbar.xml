@@ -14,6 +14,7 @@
         android:paddingRight="0dp"
         app:thumbColor="@color/accent"
         app:progressColor="@color/accent"
+        app:progressBackgroundColor="@color/accent"
         tools:progress="40"/>
 
 </FrameLayout>
