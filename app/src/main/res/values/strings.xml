@@ -45,4 +45,9 @@
     <string name="nowplaying_toolbar_title">Now playing</string>
 
     <string name="nowplaying_info_pattern">%1$s - %2$s</string>
+
+
+    <string name="notification.defaultText.title">Nothing is playing</string>
+    <string name="notification.defaultText.info">Tap to open MaterialPlayer</string>
+
 </resources>
