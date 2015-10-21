@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="@dimen/icon_big"
+    android:orientation="horizontal"
     android:background="@color/primary"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
     <ImageView
         android:id="@+id/art"
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
-        tools:src="@drawable/fallback_cover_listitem"/>
+        tools:src="@drawable/fallback_cover_listitem"
+        />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginLeft="@dimen/spacing_medium"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/title"
@@ -28,14 +31,16 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/text_onPrimary"
-            tools:text="Current Track Title"/>
+            tools:text="Current Track Title"
+            />
 
         <TextView
             android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/white_alpha_dark"
-            tools:text="Current Artist - Current Album"/>
+            tools:text="Current Artist - Current Album"
+            />
 
     </LinearLayout>
 
@@ -44,5 +49,7 @@
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
         android:src="@drawable/ic_play_white"
-        android:background="@drawable/ripple_conrol_nowplaying"/>
+        android:background="@drawable/ripple_conrol_nowplaying"
+        />
+
 </LinearLayout>

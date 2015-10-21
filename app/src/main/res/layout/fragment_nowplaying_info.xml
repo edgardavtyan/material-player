@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:background="@color/primary">
+    android:background="@color/primary"
+    >
 
     <TextView
         android:id="@+id/title"
@@ -18,7 +19,8 @@
         android:textSize="@dimen/font_big"
         android:singleLine="true"
         android:ellipsize="end"
-        tools:text="Now Playing Track Title"/>
+        tools:text="Now Playing Track Title"
+        />
 
     <TextView
         android:id="@+id/info"
@@ -30,6 +32,7 @@
         android:textSize="@dimen/font_medium"
         android:singleLine="true"
         android:ellipsize="end"
-        tools:text="Artist Name - Album Name"/>
+        tools:text="Artist Name - Album Name"
+        />
 
 </LinearLayout>

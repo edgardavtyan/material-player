@@ -8,4 +8,5 @@
     <style name="info_art">
         <item name="android:scaleType">centerCrop</item>
     </style>
+
 </resources>

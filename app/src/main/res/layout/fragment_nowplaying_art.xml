@@ -3,25 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/frame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <com.edavtyan.materialplayer.app.views.SquareImageView
         android:id="@+id/art"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/nowplaying_art"/>
+        style="@style/nowplaying_art"
+        />
 
     <com.edavtyan.materialplayer.app.views.SquareView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/nowplaying_art_tint"/>
+        style="@style/nowplaying_art_tint"
+        />
 
     <com.edavtyan.materialplayer.app.views.SquareImageView
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/nowplaying_art_back"/>
+        style="@style/nowplaying_art_back"
+        />
 
-    <include layout="@layout/shadow_bottom_small" />
+    <include layout="@layout/shadow_bottom_small"/>
 
 </FrameLayout>

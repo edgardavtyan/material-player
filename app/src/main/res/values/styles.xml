@@ -1,5 +1,6 @@
 <resources>
-    <style name="AppTheme" parent="AppTheme.Base" />
+
+    <style name="AppTheme" parent="AppTheme.Base"/>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
@@ -9,4 +10,5 @@
     <style name="artist_collapsingToolbar_title">
         <item name="android:textSize">30sp</item>
     </style>
+
 </resources>

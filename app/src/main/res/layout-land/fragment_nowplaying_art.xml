@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/frame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:id="@+id/art"
@@ -12,12 +13,14 @@
         android:background="@android:color/transparent"
         android:src="@drawable/fallback_cover"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent_gray_dark"/>
+        android:background="@color/transparent_gray_dark"
+        />
 
     <ImageView
         android:id="@+id/back"
@@ -25,6 +28,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/fallback_cover"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        />
 
 </FrameLayout>

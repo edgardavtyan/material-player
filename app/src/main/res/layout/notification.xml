@@ -2,17 +2,19 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:orientation="horizontal"
+    android:background="#fff"
+    >
 
     <ImageView
         android:id="@+id/art"
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
         android:layout_marginRight="8dp"
-        tools:src="@drawable/fallback_cover_listitem"/>
+        tools:src="@drawable/fallback_cover_listitem"
+        />
 
     <LinearLayout
         android:id="@+id/info_wrapper"
@@ -22,7 +24,8 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/title"
@@ -32,7 +35,8 @@
             android:textColor="#000000"
             android:textSize="16sp"
             android:singleLine="true"
-            tools:text="Current Track Title"/>
+            tools:text="Current Track Title"
+            />
 
         <TextView
             android:id="@+id/info"
@@ -41,29 +45,33 @@
             android:gravity="center_vertical"
             android:textColor="#777777"
             android:singleLine="true"
-            tools:text="Artist Name - Album Name"/>
+            tools:text="Artist Name - Album Name"
+            />
 
     </LinearLayout>
 
     <ImageButton
-        android:src="@drawable/ic_pause_black"
         android:id="@+id/playPause"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/ripple_control_notification"/>
+        android:src="@drawable/ic_pause_black"
+        android:background="@drawable/ripple_control_notification"
+        />
 
     <ImageButton
-        android:src="@drawable/ic_fast_forward_black"
         android:id="@+id/fast_forward"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/ripple_control_notification"/>
+        android:src="@drawable/ic_fast_forward_black"
+        android:background="@drawable/ripple_control_notification"
+        />
 
     <ImageButton
-        android:src="@drawable/ic_close_black"
         android:id="@+id/close"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/ripple_control_notification"/>
+        android:src="@drawable/ic_close_black"
+        android:background="@drawable/ripple_control_notification"
+        />
 
 </LinearLayout>

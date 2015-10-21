@@ -1,49 +1,64 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.edavtyan.materialplayer.app">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.edavtyan.materialplayer.app"
+    >
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
-    <application android:allowBackup="true"
-                 android:label="@string/app_name"
-                 android:icon="@mipmap/ic_launcher"
-                 android:theme="@style/AppTheme"
-                 android:persistent="true">
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme"
+        android:persistent="true"
+        >
 
-        <activity android:name=".activities.MainActivity" android:launchMode="singleTop">
+        <activity
+            android:name=".activities.MainActivity"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.edavtyan.materialplayer.app.close" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="com.edavtyan.materialplayer.app.close"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <activity
-                android:name=".activities.ArtistActivity"
-                android:launchMode="singleTop">
+            android:name=".activities.ArtistActivity"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.AlbumActivity"
-                  android:launchMode="singleTop">
+        <activity
+            android:name=".activities.AlbumActivity"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.NowPlayingActivity"
-                  android:launchMode="singleTop">
+        <activity
+            android:name=".activities.NowPlayingActivity"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
-        <service android:name=".services.MusicPlayerService"
-                 android:enabled="true" />
+        <service
+            android:name=".services.MusicPlayerService"
+            android:enabled="true"
+            />
 
     </application>
 

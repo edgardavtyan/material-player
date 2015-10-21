@@ -4,4 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/shadow_tiny"
     android:layout_gravity="bottom"
-    android:background="@drawable/shadow_bottom_small" />
+    android:background="@drawable/shadow_bottom_small"
+    />
