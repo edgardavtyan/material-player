@@ -1,6 +1,9 @@
 package com.edavtyan.materialplayer.app.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
+import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.squareup.picasso.Picasso;
 import com.wnafee.vector.MorphButton;
 
@@ -28,6 +32,29 @@ public class FloatingNowPlayingFragment
     private TextView infoView;
     private MorphButton controlView;
     private LinearLayout container;
+
+    /*
+     * BroadcastReceivers
+     */
+
+    private BroadcastReceiver playReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            controlView.setState(MorphButton.MorphState.END, true);
+        }
+    };
+    private BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            controlView.setState(MorphButton.MorphState.START, true);
+        }
+    };
+    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            syncDataWithService();
+        }
+    };
 
     /* **************** */
     /* Fragment members */
@@ -68,6 +95,30 @@ public class FloatingNowPlayingFragment
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        getActivity().registerReceiver(
+                playReceiver,
+                new IntentFilter(MusicPlayerService.SEND_PLAY));
+        getActivity().registerReceiver(
+                pauseReceiver,
+                new IntentFilter(MusicPlayerService.SEND_PAUSE));
+        getActivity().registerReceiver(
+                newTrackReceiver,
+                new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        getActivity().unregisterReceiver(playReceiver);
+        getActivity().unregisterReceiver(pauseReceiver);
+        getActivity().unregisterReceiver(newTrackReceiver);
+    }
+
+    @Override
     public void onServiceConnected() {
         if (getService().hasData()) {
             container.setVisibility(View.VISIBLE);
@@ -92,13 +143,7 @@ public class FloatingNowPlayingFragment
                 break;
 
             case R.id.play_pause:
-                if (getService().isPlaying()) {
-                    getService().pause();
-                    controlView.setState(MorphButton.MorphState.START, true);
-                } else {
-                    getService().resume();
-                    controlView.setState(MorphButton.MorphState.END, true);
-                }
+                getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
                 break;
         }
     }
