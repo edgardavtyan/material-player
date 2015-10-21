@@ -78,6 +78,9 @@ public class NowPlayingNotification {
         view.setOnClickPendingIntent(
                 R.id.fast_forward,
                 PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_FAST_FORWARD));
+        view.setOnClickPendingIntent(
+                R.id.rewind,
+                PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_REWIND));
 
         builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher)

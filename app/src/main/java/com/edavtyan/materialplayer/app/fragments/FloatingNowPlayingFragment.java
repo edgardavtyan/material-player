@@ -136,7 +136,7 @@ public class FloatingNowPlayingFragment
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.title:
+            case R.id.info_wrapper:
             case R.id.art:
                 Intent intent = new Intent(getContext(), NowPlayingActivity.class);
                 startActivity(intent);

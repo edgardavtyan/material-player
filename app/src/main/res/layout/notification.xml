@@ -51,6 +51,14 @@
     </LinearLayout>
 
     <ImageButton
+        android:id="@+id/rewind"
+        android:layout_width="@dimen/icon_medium"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_rewind_black"
+        android:background="@drawable/ripple_control_notification"
+        />
+
+    <ImageButton
         android:id="@+id/playPause"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
@@ -63,14 +71,6 @@
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
         android:src="@drawable/ic_fast_forward_black"
-        android:background="@drawable/ripple_control_notification"
-        />
-
-    <ImageButton
-        android:id="@+id/close"
-        android:layout_width="@dimen/icon_medium"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_close_black"
         android:background="@drawable/ripple_control_notification"
         />
 
