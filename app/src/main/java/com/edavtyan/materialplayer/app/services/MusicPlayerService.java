@@ -68,16 +68,20 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     private class FastForwardReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            moveNext();
-            prepare();
+            if (hasData()) {
+                moveNext();
+                prepare();
+            }
         }
     }
 
     private class RewindReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            movePrev();
-            prepare();
+            if (hasData()) {
+                movePrev();
+                prepare();
+            }
         }
     }
 

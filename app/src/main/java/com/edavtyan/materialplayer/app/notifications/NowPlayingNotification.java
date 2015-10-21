@@ -12,7 +12,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.widget.RemoteViews;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
+import com.edavtyan.materialplayer.app.activities.MainActivity;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.utils.PendingIntents;
@@ -24,6 +24,8 @@ public class NowPlayingNotification {
     private final NotificationCompat.Builder builder;
     private final NotificationManagerCompat manager;
     private final RemoteViews view;
+
+    private Context context;
 
     private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
@@ -66,13 +68,19 @@ public class NowPlayingNotification {
 
 
     public NowPlayingNotification(Context context) {
+        this.context = context;
+
+        Intent notificationIntent = new Intent(context, MainActivity.class);
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
         view = new RemoteViews(context.getPackageName(), R.layout.notification);
         view.setOnClickPendingIntent(
                 R.id.art,
-                PendingIntents.getActivity(context, NowPlayingActivity.class));
+                PendingIntents.fromIntent(context, notificationIntent));
         view.setOnClickPendingIntent(
-                R.id.title,
-                PendingIntents.getActivity(context, NowPlayingActivity.class));
+                R.id.info_wrapper,
+                PendingIntents.fromIntent(context, notificationIntent));
         view.setOnClickPendingIntent(
                 R.id.play_pause,
                 PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_PLAY_PAUSE));
@@ -102,7 +110,9 @@ public class NowPlayingNotification {
 
 
     public Notification build() {
-        return builder.build();
+        Notification notification = builder.build();
+        notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
+        return notification;
     }
 
 
