@@ -1,13 +1,8 @@
 package com.edavtyan.materialplayer.app.fragments;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,48 +13,21 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
+import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.squareup.picasso.Picasso;
 
-public class FloatingNowPlayingFragment extends Fragment implements View.OnClickListener {
+public class FloatingNowPlayingFragment
+        extends ServiceFragment
+        implements View.OnClickListener {
     /* ****** */
     /* Fields */
     /* ****** */
 
-    private MusicPlayerConnection playerConnection;
-    private MusicPlayerService playerService;
-    private boolean isBound;
-
     private ImageView artView;
     private TextView titleView;
+    private TextView infoView;
     private ImageButton controlView;
     private LinearLayout container;
-
-    /* ******* */
-    /* Classes */
-    /* ******* */
-
-    private class MusicPlayerConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
-            playerService = binder.getService();
-            isBound = true;
-
-            if (playerService.hasData()) {
-                container.setVisibility(View.VISIBLE);
-                syncDataWithService();
-            } else {
-                container.setVisibility(View.GONE);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            isBound = false;
-        }
-    }
 
     /* **************** */
     /* Fragment members */
@@ -77,6 +45,8 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
         titleView = (TextView) view.findViewById(R.id.title);
         titleView.setOnClickListener(this);
 
+        infoView = (TextView) view.findViewById(R.id.info);
+
         controlView = (ImageButton) view.findViewById(R.id.play_pause);
         controlView.setOnClickListener(this);
 
@@ -86,26 +56,20 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        playerConnection = new MusicPlayerConnection();
-        Intent intent = new Intent(getContext(), MusicPlayerService.class);
-        getContext().bindService(intent, playerConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    @Override
-    public void onDestroy() {
-        getContext().unbindService(playerConnection);
-
-        super.onDestroy();
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
 
-        if (isBound && playerService.hasData()) {
+        if (isBound() && getService().hasData()) {
+            container.setVisibility(View.VISIBLE);
+            syncDataWithService();
+        } else {
+            container.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onServiceConnected() {
+        if (getService().hasData()) {
             container.setVisibility(View.VISIBLE);
             syncDataWithService();
         } else {
@@ -128,11 +92,11 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
                 break;
 
             case R.id.play_pause:
-                if (playerService.isPlaying()) {
-                    playerService.pause();
+                if (getService().isPlaying()) {
+                    getService().pause();
                     controlView.setImageResource(R.drawable.ic_play_white);
                 } else {
-                    playerService.resume();
+                    getService().resume();
                     controlView.setImageResource(R.drawable.ic_pause_white);
                 }
                 break;
@@ -145,14 +109,20 @@ public class FloatingNowPlayingFragment extends Fragment implements View.OnClick
 
     private void syncDataWithService() {
         Picasso.with(getContext())
-                .load(playerService.getMetadata().getArtFile())
+                .load(getService().getMetadata().getArtFile())
                 .placeholder(R.drawable.fallback_cover)
                 .error(R.drawable.fallback_cover)
                 .into(artView);
 
-        titleView.setText(playerService.getMetadata().getTrackTitle());
+        String trackInfo = getResources().getString(
+                R.string.nowplaying_info_pattern,
+                getService().getMetadata().getArtistTitle(),
+                getService().getMetadata().getAlbumTitle());
+        titleView.setText(getService().getMetadata().getTrackTitle());
+        infoView.setText(trackInfo);
 
-        if (playerService.isPlaying()) {
+
+        if (getService().isPlaying()) {
             controlView.setImageResource(R.drawable.ic_pause_white);
         } else {
             controlView.setImageResource(R.drawable.ic_play_white);

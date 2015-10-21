@@ -1,17 +1,18 @@
 package com.edavtyan.materialplayer.app.fragments.base;
 
-import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.v4.app.Fragment;
 
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 
 public abstract class ServiceFragment extends Fragment implements ServiceConnection {
     private MusicPlayerService service;
+    private boolean isBound;
 
     /*
      * Fragment
@@ -38,11 +39,14 @@ public abstract class ServiceFragment extends Fragment implements ServiceConnect
     @Override
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         service = ((MusicPlayerBinder)iBinder).getService();
+        isBound = true;
         onServiceConnected();
     }
 
     @Override
-    public void onServiceDisconnected(ComponentName componentName) {}
+    public void onServiceDisconnected(ComponentName componentName) {
+        isBound = false;
+    }
 
     /*
      * Public methods
@@ -52,6 +56,10 @@ public abstract class ServiceFragment extends Fragment implements ServiceConnect
 
     public MusicPlayerService getService() {
         return service;
+    }
+
+    public boolean isBound() {
+        return isBound;
     }
 
 }
