@@ -66,6 +66,9 @@ public class FloatingNowPlayingFragment
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_floating_nowplaying, parent, false);
 
+        LinearLayout infoWrapper = (LinearLayout) view.findViewById(R.id.info_wrapper);
+        infoWrapper.setOnClickListener(this);
+
         artView = (ImageView) view.findViewById(R.id.art);
         artView.setOnClickListener(this);
 

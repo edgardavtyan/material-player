@@ -20,11 +20,12 @@
     <LinearLayout
         android:id="@+id/info_wrapper"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginLeft="@dimen/spacing_medium"
-        android:layout_gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_medium"
+        android:gravity="center_vertical"
         android:orientation="vertical"
+        android:clickable="true"
         >
 
         <TextView
@@ -39,7 +40,7 @@
         <TextView
             android:id="@+id/info"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/white_alpha_dark"
             tools:text="Current Artist - Current Album"
             />
