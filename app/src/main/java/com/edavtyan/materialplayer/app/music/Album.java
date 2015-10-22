@@ -52,7 +52,7 @@ public class Album {
             album.setSongsCount(cursor.getInt(COLUMN_SONGS_COUNT));
 
             Metadata metadata = Metadata.firstTrackOfAlbum(albumId, context);
-            album.setArt(new ArtProvider(context).getArt(metadata));
+            album.setArt(new ArtProvider().getArt(metadata));
         } finally {
             if (cursor != null) cursor.close();
         }

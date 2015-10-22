@@ -74,7 +74,7 @@ public class NowPlayingArtFragment extends ServiceFragment {
         artView = (ImageView) view.findViewById(R.id.art);
         backView = (ImageView) view.findViewById(R.id.back);
 
-        artProvider = new ArtProvider(getActivity());
+        artProvider = new ArtProvider();
 
         return view;
     }
