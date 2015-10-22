@@ -29,7 +29,7 @@
         android:layout_marginTop="@dimen/spacing_tiny"
         android:layout_marginLeft="@dimen/spacing_medium"
         android:textColor="@color/text_onPrimary"
-        android:textSize="@dimen/font_medium"
+        android:textSize="@dimen/font_normal"
         android:singleLine="true"
         android:ellipsize="end"
         tools:text="Artist Name - Album Name"

@@ -6,6 +6,7 @@
     <color name="accent">#FFC107</color>
 
     <color name="text_onPrimary">#FFF</color>
+    <color name="text_onPrimary_dim">#7FFF</color>
     <color name="text_onPrimary_inactive">#7FFF</color>
 
     <color name="transparent_gray_light">#3000</color>
