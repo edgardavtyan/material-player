@@ -9,6 +9,7 @@ import android.support.v4.content.Loader;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.fragments.base.ListFragment;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
+import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 
 public class AlbumsListFragment extends ListFragment {
     private AlbumsAdapter albumsAdapter;
@@ -23,10 +24,10 @@ public class AlbumsListFragment extends ListFragment {
     public Loader<Cursor> getLoader() {
         return new CursorLoader(
                 getContext(),
-                AlbumsAdapter.URI,
-                AlbumsAdapter.PROJECTION,
+                AlbumColumns.URI,
+                AlbumColumns.PROJECTION,
                 null, null,
-                AlbumsAdapter.SORT_ORDER);
+                AlbumColumns.NAME_TITLE + " ASC");
     }
 
     @Override

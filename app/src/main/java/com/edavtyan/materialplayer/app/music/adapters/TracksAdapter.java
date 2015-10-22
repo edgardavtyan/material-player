@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +15,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
@@ -24,30 +23,6 @@ import com.edavtyan.materialplayer.app.utils.DurationUtils;
 import java.util.ArrayList;
 
 public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> {
-    /* ********* */
-    /* Constants */
-    /* ********* */
-
-    public static final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-    public static final String SORT_ORDER = MediaStore.Audio.Media.TITLE + " ASC";
-    public static final String[] PROJECTION = {
-            MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.TRACK,
-            MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.ARTIST,
-            MediaStore.Audio.Media.ALBUM,
-            MediaStore.Audio.Media.DURATION,
-            MediaStore.Audio.Media.ALBUM_ID
-    };
-
-    public static final int COLUMN_INDEX_ID = 0;
-    public static final int COLUMN_INDEX_TITLE = 2;
-    public static final int COLUMN_INDEX_ARTIST = 3;
-    public static final int COLUMN_INDEX_ALBUM = 4;
-    public static final int COLUMN_INDEX_DURATION = 5;
-
-    public static final String COLUMN_NAME_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
-
     /* ****** */
     /* Fields */
     /* ****** */
@@ -99,7 +74,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     @Override
     protected void bindView(View view, Context context, Cursor cursor) {
         TrackViewHolder vh = (TrackViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(COLUMN_INDEX_TITLE));
+        vh.titleTextView.setText(cursor.getString(TrackColumns.TITLE));
         vh.infoTextView.setText(getTrackInfo());
     }
 
@@ -128,7 +103,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
             ArrayList<Integer> tracks = new ArrayList<>();
             getCursor().moveToFirst();
             do {
-                tracks.add(getCursor().getInt(COLUMN_INDEX_ID));
+                tracks.add(getCursor().getInt(TrackColumns.ID));
             } while (getCursor().moveToNext());
 
             try {
@@ -148,9 +123,9 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     public String getTrackInfo() {
         return context.getResources().getString(
                 R.string.track_listitem_fullInfo,
-                DurationUtils.toStringUntilHours(getCursor().getInt(COLUMN_INDEX_DURATION)),
-                getCursor().getString(COLUMN_INDEX_ARTIST),
-                getCursor().getString(COLUMN_INDEX_ALBUM));
+                DurationUtils.toStringUntilHours(getCursor().getInt(TrackColumns.DURATION)),
+                getCursor().getString(TrackColumns.ARTIST),
+                getCursor().getString(TrackColumns.ALBUM));
     }
 
     public void closeConnection() {

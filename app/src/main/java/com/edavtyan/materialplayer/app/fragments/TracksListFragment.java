@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
+import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class TracksListFragment extends Fragment
@@ -90,10 +91,10 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
         @Override
         public Cursor loadInBackground() {
             return getContext().getContentResolver().query(
-                    TracksAdapter.URI,
-                    TracksAdapter.PROJECTION,
+                    TrackColumns.URI,
+                    TrackColumns.PROJECTION,
                     null, null,
-                    TracksAdapter.SORT_ORDER);
+                    TrackColumns.TITLE + " ASC");
         }
     }
 }

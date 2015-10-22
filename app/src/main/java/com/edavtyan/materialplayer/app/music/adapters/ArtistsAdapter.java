@@ -4,35 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.edavtyan.materialplayer.app.activities.ArtistActivity;
+
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.ArtistActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.music.columns.ArtistColumns;
 
 public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.ArtistViewHolder> {
-    /* ********* */
-    /* Constants */
-    /* ********* */
-
-    public static final Uri URI = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
-    public static final String SORT_ORDER = MediaStore.Audio.Artists.ARTIST + " ASC";
-    public static final String[] PROJECTION = {
-            MediaStore.Audio.Artists._ID,
-            MediaStore.Audio.Artists.ARTIST,
-            MediaStore.Audio.Artists.NUMBER_OF_ALBUMS,
-            MediaStore.Audio.Artists.NUMBER_OF_TRACKS,
-    };
-
-    private static final int COLUMN_ARTIST = 1;
-    private static final int COLUMN_ALBUMS_COUNT = 2;
-    private static final int COLUMN_TRACKS_COUNT = 3;
-
     /* ************ */
     /* Constructors */
     /* ************ */
@@ -59,7 +42,7 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     @Override
     protected void bindView(View view, Context context, Cursor cursor) {
         ArtistViewHolder vh = (ArtistViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(COLUMN_ARTIST));
+        vh.titleTextView.setText(cursor.getString(ArtistColumns.TITLE));
         vh.countsTextView.setText(getArtistCounts(cursor));
     }
 
@@ -79,7 +62,9 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
                 Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
 
                 getCursor().moveToPosition(getAdapterPosition());
-                i.putExtra(ArtistActivity.EXTRA_ARTIST_NAME, getCursor().getString(COLUMN_ARTIST));
+                i.putExtra(
+                        ArtistActivity.EXTRA_ARTIST_NAME,
+                        getCursor().getString(ArtistColumns.TITLE));
 
                 itemView.getContext().startActivity(i);
             });
@@ -98,13 +83,13 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
 
         String albumsCount = res.getQuantityString(
                 R.plurals.albums,
-                cursor.getInt(COLUMN_ALBUMS_COUNT),
-                cursor.getInt(COLUMN_ALBUMS_COUNT));
+                cursor.getInt(ArtistColumns.ALBUMS_COUNT),
+                cursor.getInt(ArtistColumns.ALBUMS_COUNT));
 
         String tracksCount = res.getQuantityString(
                 R.plurals.tracks,
-                cursor.getInt(COLUMN_TRACKS_COUNT),
-                cursor.getInt(COLUMN_TRACKS_COUNT));
+                cursor.getInt(ArtistColumns.TRACKS_COUNT),
+                cursor.getInt(ArtistColumns.TRACKS_COUNT));
 
         return res.getString(R.string.two_strings_with_bar, albumsCount, tracksCount);
     }

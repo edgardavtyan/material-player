@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
+import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.squareup.picasso.Picasso;
 
 public class ArtistActivity extends CollapsingHeaderListActivity {
@@ -31,11 +32,11 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
         String artist = getIntent().getStringExtra(EXTRA_ARTIST_NAME);
         return new CursorLoader(
                 this,
-                AlbumsAdapter.URI,
-                AlbumsAdapter.PROJECTION,
-                AlbumsAdapter.COLUMN_ARTIST + "='" + artist + "'",
+                AlbumColumns.URI,
+                AlbumColumns.PROJECTION,
+                AlbumColumns.NAME_ARTIST + "='" + artist + "'",
                 null,
-                AlbumsAdapter.SORT_ORDER);
+                AlbumColumns.NAME_TITLE + " ASC");
     }
 
     @Override

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,33 +14,12 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
 import java.io.File;
 
 public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
-    /* ********* */
-    /* Constants */
-    /* ********* */
-
-    public static final Uri URI = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
-    public static final String SORT_ORDER = MediaStore.Audio.Albums.ALBUM + " ASC";
-    public static final String[] PROJECTION = {
-            MediaStore.Audio.Albums._ID,
-            MediaStore.Audio.Albums.ALBUM,
-            MediaStore.Audio.Albums.ARTIST,
-            MediaStore.Audio.Albums.NUMBER_OF_SONGS,
-            MediaStore.Audio.Albums.ALBUM_ART
-    };
-
-    private static final int COLUMN_INDEX_ID = 0;
-    private static final int COLUMN_INDEX_TITLE = 1;
-    private static final int COLUMN_INDEX_ARTIST = 2;
-    private static final int COLUMN_INDEX_SONGS_COUNT = 3;
-    private static final int COLUMN_INDEX_ART = 4;
-
-    public static final String COLUMN_ARTIST = MediaStore.Audio.Albums.ARTIST;
-
     /* ************ */
     /* Constructors */
     /* ************ */
@@ -69,10 +46,10 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
     @Override
     protected void bindView(View view, Context context, Cursor cursor) {
         AlbumViewHolder vh = (AlbumViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(COLUMN_INDEX_TITLE));
+        vh.titleTextView.setText(cursor.getString(AlbumColumns.TITLE));
         vh.infoTextView.setText(getAdditionalInfo(cursor));
 
-        String artPath = getCursor().getString(COLUMN_INDEX_ART);
+        String artPath = getCursor().getString(AlbumColumns.ART);
         File artFile = AlbumArtUtils.getArtFileFromPath(artPath);
         AlbumArtUtils.getSmallArtRequest(context, artFile).into(vh.artImageView);
     }
@@ -94,7 +71,7 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
                 getCursor().moveToPosition(getAdapterPosition());
 
                 Intent i = new Intent(context, AlbumActivity.class);
-                i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(COLUMN_INDEX_ID));
+                i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(AlbumColumns.ID));
                 context.startActivity(i);
             });
 
@@ -114,12 +91,12 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
 
         String tracksCount = res.getQuantityString(
                 R.plurals.tracks,
-                cursor.getInt(COLUMN_INDEX_SONGS_COUNT),
-                cursor.getInt(COLUMN_INDEX_SONGS_COUNT));
+                cursor.getInt(AlbumColumns.ARTIST),
+                cursor.getInt(AlbumColumns.SONGS_COUNT));
 
         return res.getString(
                 R.string.two_strings_with_bar,
-                cursor.getString(COLUMN_INDEX_ARTIST),
+                cursor.getString(AlbumColumns.ARTIST),
                 tracksCount);
     }
 }

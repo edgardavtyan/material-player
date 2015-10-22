@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.Album;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
+import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.squareup.picasso.Picasso;
 
 public class AlbumActivity extends CollapsingHeaderListActivity {
@@ -42,11 +43,11 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
         int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
         return new CursorLoader(
                 this,
-                AlbumTracksAdapter.URI,
-                AlbumTracksAdapter.PROJECTION,
-                AlbumTracksAdapter.COLUMN_NAME_ALBUM_ID + "=" + albumId,
+                TrackColumns.URI,
+                TrackColumns.PROJECTION,
+                TrackColumns.NAME_ALBUM_ID + "=" + albumId,
                 null,
-                AlbumTracksAdapter.SORT_ORDER);
+                TrackColumns.NAME_TRACK + " ASC");
     }
 
     @Override
