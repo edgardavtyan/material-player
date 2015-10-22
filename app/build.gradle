@@ -52,6 +52,6 @@ dependencies {
     compile 'com.minimize.library:seekbar-compat:0.2.4'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
     provided 'org.projectlombok:lombok:1.16.6'
-    compile 'org:jaudiotagger:2.0.3'
     compile 'com.wnafee:vector-compat:1.0.5'
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
