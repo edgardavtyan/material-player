@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/text_onPrimary"
+            android:singleLine="true"
             tools:text="Current Track Title"
             />
 
@@ -42,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white_alpha_dark"
+            android:singleLine="true"
             tools:text="Current Artist - Current Album"
             />
 
