@@ -13,11 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.squareup.picasso.Picasso;
 import com.wnafee.vector.MorphButton;
 
 public class FloatingNowPlayingFragment
@@ -158,9 +158,8 @@ public class FloatingNowPlayingFragment
     /* *************** */
 
     private void syncDataWithService() {
-        Picasso.with(getContext())
+        Glide.with(getContext())
                 .load(getService().getMetadata().getArtFile())
-                .placeholder(R.drawable.fallback_cover)
                 .error(R.drawable.fallback_cover)
                 .into(artView);
 

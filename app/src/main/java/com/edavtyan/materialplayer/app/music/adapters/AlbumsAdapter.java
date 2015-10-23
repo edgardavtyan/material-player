@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
@@ -51,7 +52,11 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
 
         String artPath = getCursor().getString(AlbumColumns.ART);
         File artFile = AlbumArtUtils.getArtFileFromPath(artPath);
-        AlbumArtUtils.getSmallArtRequest(context, artFile).into(vh.artImageView);
+
+        Glide.with(context)
+                .load(artFile)
+                .error(R.drawable.fallback_cover_listitem)
+                .into(vh.artImageView);
     }
 
     @Override

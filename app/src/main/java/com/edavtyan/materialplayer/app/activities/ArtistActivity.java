@@ -7,13 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
+import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
 import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.music.data.Artist;
-import com.squareup.picasso.Picasso;
 
 public class ArtistActivity extends CollapsingHeaderListActivity {
 
@@ -49,7 +49,7 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
 
         super.onCreate(savedInstanceState);
 
-        Picasso.with(this).load(R.drawable.fallback_artist).into(imageView);
+        Glide.with(this).load(R.drawable.fallback_artist).into(imageView);
         new ArtistLoadTask().execute(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
     }
 

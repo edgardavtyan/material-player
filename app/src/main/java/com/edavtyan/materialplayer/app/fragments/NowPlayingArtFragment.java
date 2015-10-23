@@ -12,13 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.DrawableRequestBuilder;
+import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 
@@ -51,10 +51,9 @@ public class NowPlayingArtFragment extends ServiceFragment {
         @Override
         protected void onPostExecute(File file) {
             if (file.exists()) {
-                RequestCreator artRequest = Picasso
+                DrawableRequestBuilder artRequest = Glide
                         .with(getActivity())
                         .load(file)
-                        .placeholder(R.drawable.fallback_cover)
                         .error(R.drawable.fallback_cover);
                 artRequest.into(artView);
                 artRequest.into(backView);

@@ -8,6 +8,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
@@ -17,7 +18,6 @@ import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -39,9 +39,8 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
         @Override
         protected void onPostExecute(File artFile) {
             ImageView artView = (ImageView) findViewById(R.id.art);
-            Picasso.with(AlbumActivity.this)
+            Glide.with(AlbumActivity.this)
                     .load(artFile)
-                    .placeholder(R.drawable.fallback_cover)
                     .error(R.drawable.fallback_cover)
                     .into(artView);
         }

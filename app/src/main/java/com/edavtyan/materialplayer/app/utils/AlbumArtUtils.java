@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.edavtyan.materialplayer.app.R;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
-
 import java.io.File;
 
 public class AlbumArtUtils {
@@ -37,14 +33,5 @@ public class AlbumArtUtils {
         }
 
         return artFile;
-    }
-
-
-    public static RequestCreator getSmallArtRequest(Context context, File artFile) {
-        return Picasso
-                .with(context)
-                .load(artFile)
-                .placeholder(R.drawable.fallback_cover_listitem)
-                .error(R.drawable.fallback_cover_listitem);
     }
 }
