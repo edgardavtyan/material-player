@@ -32,7 +32,7 @@ public class Album {
     private int id;
     private String title;
     private String artistTitle;
-    private int songsCount;
+    private int tracksCount;
     private File art;
 
     public static Album fromId(int albumId, Context context) {
@@ -49,7 +49,7 @@ public class Album {
             album.setId(albumId);
             album.setTitle(cursor.getString(COLUMN_TITLE));
             album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
-            album.setSongsCount(cursor.getInt(COLUMN_SONGS_COUNT));
+            album.setTracksCount(cursor.getInt(COLUMN_SONGS_COUNT));
 
             Metadata metadata = Metadata.firstTrackOfAlbum(albumId, context);
             album.setArt(new ArtProvider().getArt(metadata));

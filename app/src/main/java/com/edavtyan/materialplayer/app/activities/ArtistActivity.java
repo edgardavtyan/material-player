@@ -1,17 +1,18 @@
 package com.edavtyan.materialplayer.app.activities;
 
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumsAdapter;
 import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
+import com.edavtyan.materialplayer.app.music.data.Artist;
 import com.squareup.picasso.Picasso;
 
 public class ArtistActivity extends CollapsingHeaderListActivity {
@@ -21,10 +22,35 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
     private AlbumsAdapter albumsAdapter;
 
 
+    private class ArtistLoadTask extends AsyncTask<String, Void, Artist> {
+        @Override
+        protected Artist doInBackground(String... artistTitles) {
+            return Artist.fromTitle(ArtistActivity.this, artistTitles[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Artist artist) {
+            titleView.setText(artist.getTitle());
+
+            String albumsPlural = getResources().getQuantityString(
+                    R.plurals.albums, artist.getAlbumsCount(), artist.getAlbumsCount());
+            String tracksPlural = getResources().getQuantityString(
+                    R.plurals.tracks, artist.getTracksCount(), artist.getTracksCount());
+            String artistInfo = getResources().getString(
+                    R.string.pattern_artist_info, albumsPlural, tracksPlural);
+            infoView.setText(artistInfo);
+        }
+    }
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         albumsAdapter = new AlbumsAdapter(this);
+
         super.onCreate(savedInstanceState);
+
+        Picasso.with(this).load(R.drawable.fallback_artist).into(imageView);
+        new ArtistLoadTask().execute(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
     }
 
     @Override
@@ -42,17 +68,5 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
     @Override
     public RecyclerViewCursorAdapter getAdapter() {
         return albumsAdapter;
-    }
-
-    @Override
-    public String getToolbarTitle() {
-        return getIntent().getStringExtra(EXTRA_ARTIST_NAME);
-    }
-
-    @Override
-    public void setImageSource(ImageView imageView) {
-        Picasso.with(this)
-                .load(R.drawable.fallback_artist)
-                .into(imageView);
     }
 }

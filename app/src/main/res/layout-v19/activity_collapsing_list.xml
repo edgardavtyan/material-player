@@ -73,36 +73,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 >
 
-                <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
-                    android:id="@+id/list_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:fitsSystemWindows="true"
-                    >
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        >
-
-                        <ImageView
-                            android:id="@+id/art"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            style="@style/info_art"
-                            />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:background="@drawable/collapsing_toolbar_gradient"/>
-
-                        <include layout="@layout/shadow_bottom_small"
-                            />
-
-                    </FrameLayout>
-
-                </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+                <include layout="@layout/layout_collapsing_header" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/list"

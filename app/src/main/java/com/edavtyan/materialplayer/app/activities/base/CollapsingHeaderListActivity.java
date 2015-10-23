@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
@@ -30,7 +31,10 @@ public abstract class CollapsingHeaderListActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private int totalScrolled = 0;
+    protected int totalScrolled = 0;
+    protected ImageView imageView;
+    protected TextView titleView;
+    protected TextView infoView;
 
     /*
      * AppCompatActivity
@@ -47,8 +51,9 @@ public abstract class CollapsingHeaderListActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
-        ImageView artistArtView = (ImageView) findViewById(R.id.art);
-        setImageSource(artistArtView);
+        imageView = (ImageView) findViewById(R.id.art);
+        titleView = (TextView) findViewById(R.id.title);
+        infoView = (TextView) findViewById(R.id.info);
 
         AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
 
@@ -72,7 +77,9 @@ public abstract class CollapsingHeaderListActivity
 
             RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
             header.attachTo(recyclerView, true);
-            header.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
+
+            imageView.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
+
 
             CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
             CustomColor statusBarTintColor = new CustomColor(
@@ -83,7 +90,7 @@ public abstract class CollapsingHeaderListActivity
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
                     totalScrolled += dy;
-                    artistArtView.setTop(totalScrolled / 2);
+                    imageView.setTop(totalScrolled / 2);
 
                     float alpha;
                     if (totalScrolled > 255) {
@@ -99,10 +106,6 @@ public abstract class CollapsingHeaderListActivity
                     }
                 }
             });
-
-        } else {
-            ImageView artBackView = (ImageView) findViewById(R.id.back);
-            setImageSource(artBackView);
         }
     }
 
@@ -143,8 +146,4 @@ public abstract class CollapsingHeaderListActivity
     protected abstract Loader<Cursor> getLoader();
 
     protected abstract RecyclerViewCursorAdapter getAdapter();
-
-    protected abstract String getToolbarTitle();
-
-    protected abstract void setImageSource(ImageView imageView);
 }

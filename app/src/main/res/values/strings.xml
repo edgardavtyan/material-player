@@ -6,6 +6,9 @@
     <string name="track_listitem_fullInfo">%1$s | %2$s - %3$s</string>
     <string name="track_listitem_timeAlbumInfo">%1$s | %2$s</string>
 
+    <string name="pattern.artist.info">%1$s | %2$s</string>
+    <string name="pattern.album.info">%1$s | %2$s</string>
+
     <plurals name="albums">
         <item quantity="zero">No Albums</item>
         <item quantity="one">%d Album</item>

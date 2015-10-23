@@ -5,6 +5,9 @@
     <color name="primary_dark">#D32F2F</color>
     <color name="accent">#FFC107</color>
 
+    <color name="text_primary">#000</color>
+    <color name="text_secondary">#555</color>
+
     <color name="text_onPrimary">#FFF</color>
     <color name="text_onPrimary_dim">#7FFF</color>
     <color name="text_onPrimary_inactive">#7FFF</color>
@@ -12,6 +15,7 @@
     <color name="transparent_gray_light">#3000</color>
     <color name="transparent_gray_dark">#7000</color>
 
+    <color name="white">#FFF</color>
     <color name="white_alpha_light">#5FFF</color>
     <color name="white_alpha_dark">#AFFF</color>
 
