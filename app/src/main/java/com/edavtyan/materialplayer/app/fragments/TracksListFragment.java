@@ -94,7 +94,7 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
                     TrackColumns.URI,
                     TrackColumns.PROJECTION,
                     null, null,
-                    TrackColumns.TITLE + " ASC");
+                    TrackColumns.TRACK + " ASC");
         }
     }
 }
