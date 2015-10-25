@@ -16,11 +16,10 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
+import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
-
-import java.util.ArrayList;
 
 public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> {
     /* ****** */
@@ -96,23 +95,12 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
 
         @Override
         public void onClick(View view){
-            getCursor().moveToPosition(getAdapterPosition());
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            ArrayList<Integer> tracks = new ArrayList<>();
-            getCursor().moveToFirst();
-            do {
-                tracks.add(getCursor().getInt(TrackColumns.ID));
-            } while (getCursor().moveToNext());
-
-            try {
-                playerService.setTracks(tracks);
-                playerService.setCurrentIndex(getAdapterPosition());
-                playerService.prepare();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            playerService.setTracks(TracksProvider.getAllIds(getCursor()));
+            playerService.setCurrentIndex(getAdapterPosition());
+            playerService.prepare();
         }
     }
 
