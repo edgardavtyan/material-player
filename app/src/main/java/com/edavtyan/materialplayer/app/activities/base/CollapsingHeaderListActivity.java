@@ -1,12 +1,10 @@
 package com.edavtyan.materialplayer.app.activities.base;
 
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +22,7 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
+import com.edavtyan.materialplayer.app.utils.WindowUtils;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public abstract class CollapsingHeaderListActivity
@@ -62,18 +60,13 @@ public abstract class CollapsingHeaderListActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (DeviceUtils.isPortrait(getResources())) {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                getWindow().setFlags(
-                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-            }
+            WindowUtils.makeStatusBarTransparent(getWindow());
 
             LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
             appbarWrapper.bringToFront();
 
             View appbarShadow = findViewById(R.id.appbar_shadow);
-            View statusBarTint = findViewById(R.id.statusbar_tint);
+            View statusShadow = findViewById(R.id.statusbar_tint);
 
             RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
             header.attachTo(recyclerView, true);
@@ -82,8 +75,7 @@ public abstract class CollapsingHeaderListActivity
 
 
             CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
-            CustomColor statusBarTintColor = new CustomColor(
-                    ContextCompat.getColor(this, R.color.transparent_gray_light));
+            CustomColor primaryDarkColor = new CustomColor(AppColors.getPrimaryDark(this));
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -101,9 +93,7 @@ public abstract class CollapsingHeaderListActivity
 
                     appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
                     appbarShadow.setAlpha(alpha);
-                    if (statusBarTint != null) {
-                        statusBarTint.setBackgroundColor(statusBarTintColor.fadeLimit(totalScrolled));
-                    }
+                    statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
                 }
             });
         }

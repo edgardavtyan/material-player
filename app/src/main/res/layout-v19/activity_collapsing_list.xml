@@ -41,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_gravity="top"
-                        android:background="#3000"
+                        android:background="#0000"
                         />
 
                     <android.support.v7.widget.Toolbar

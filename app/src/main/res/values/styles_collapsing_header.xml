@@ -4,7 +4,6 @@
     <style name="collapsingHeader_header">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="collapsingHeader_art">
