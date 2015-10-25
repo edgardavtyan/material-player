@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             >
 
-            <ImageView
+            <com.edavtyan.materialplayer.app.views.SquareView
                 android:id="@+id/art"
                 tools:src="@drawable/fallback_cover"
                 style="@style/collapsingHeader_art"

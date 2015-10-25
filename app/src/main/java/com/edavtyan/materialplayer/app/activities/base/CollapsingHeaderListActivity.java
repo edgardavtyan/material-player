@@ -20,6 +20,7 @@ import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.resources.AppColors;
+import com.edavtyan.materialplayer.app.utils.ColorUtils;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.utils.WindowUtils;
@@ -53,8 +54,6 @@ public abstract class CollapsingHeaderListActivity
         titleView = (TextView) findViewById(R.id.title);
         infoView = (TextView) findViewById(R.id.info);
 
-        AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -65,32 +64,24 @@ public abstract class CollapsingHeaderListActivity
             LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
             appbarWrapper.bringToFront();
 
-            View appbarShadow = findViewById(R.id.appbar_shadow);
-            View statusShadow = findViewById(R.id.statusbar_tint);
-
             RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
             header.attachTo(recyclerView, true);
 
-            imageView.getLayoutParams().height = getResources().getDisplayMetrics().widthPixels;
-
-
+            AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+            View appbarShadow = findViewById(R.id.appbar_shadow);
+            View statusShadow = findViewById(R.id.statusbar_tint);
             CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
             CustomColor primaryDarkColor = new CustomColor(AppColors.getPrimaryDark(this));
-
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
                     totalScrolled += dy;
-                    imageView.setTop(totalScrolled / 2);
 
-                    float alpha;
-                    if (totalScrolled > 255) {
-                        alpha = 1.0f;
-                    } else {
-                        alpha = totalScrolled / 255f;
-                    }
+                    int parallaxAmount = 2;
+                    imageView.setTop(totalScrolled / parallaxAmount);
 
+                    float alpha = ColorUtils.intToFloatAlpha(totalScrolled);
                     appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
                     appbarShadow.setAlpha(alpha);
                     statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
