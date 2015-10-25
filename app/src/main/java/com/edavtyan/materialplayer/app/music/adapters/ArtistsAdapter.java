@@ -16,17 +16,13 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.columns.ArtistColumns;
 
 public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.ArtistViewHolder> {
-    /* ************ */
-    /* Constructors */
-    /* ************ */
-
     public ArtistsAdapter(Context context) {
         super(context);
     }
 
-    /* ********************************* */
-    /* RecyclerViewCursorAdapter members */
-    /* ********************************* */
+    /*
+     * RecyclerViewCursorAdapter
+     */
 
     @Override
     protected View newView(Context context, ViewGroup parent) {
@@ -74,9 +70,9 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
         }
     }
 
-    /* *************** */
-    /* Private methods */
-    /* *************** */
+    /*
+     * Private methods
+     */
 
     private String getArtistCounts(Cursor cursor) {
         Resources res = context.getResources();

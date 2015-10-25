@@ -22,12 +22,13 @@ import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import java.io.File;
 
 public class AlbumActivity extends CollapsingHeaderListActivity {
-
     public static final String EXTRA_ALBUM_ID = "album_id";
 
     private TracksAdapter tracksAdapter;
-    private Album album;
 
+    /*
+     * AsyncTasks
+     */
 
     private class ImageLoadTask extends AsyncTask<Integer, Void, File> {
         @Override
@@ -46,16 +47,18 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
         }
     }
 
+    /*
+     * CollapsingHeaderListActivity
+     */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         tracksAdapter = new AlbumTracksAdapter(this);
-
         super.onCreate(savedInstanceState);
 
-        album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
-        titleView.setText(album.getTitle());
+        Album album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
 
+        titleView.setText(album.getTitle());
         String tracksCount = getResources().getQuantityString(
                 R.plurals.tracks, album.getTracksCount(), album.getTracksCount());
         String albumInfo = getResources().getString(
@@ -70,7 +73,6 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
         tracksAdapter.closeConnection();
         super.onDestroy();
     }
-
 
     @Override
     public Loader<Cursor> getLoader() {

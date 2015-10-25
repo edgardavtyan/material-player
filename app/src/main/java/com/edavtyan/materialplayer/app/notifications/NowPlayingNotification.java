@@ -25,7 +25,6 @@ public class NowPlayingNotification {
     private final NotificationManagerCompat manager;
     private final RemoteViews view;
 
-    private Context context;
 
     private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
         @Override
@@ -68,8 +67,6 @@ public class NowPlayingNotification {
 
 
     public NowPlayingNotification(Context context) {
-        this.context = context;
-
         Intent notificationIntent = new Intent(context, MainActivity.class);
         notificationIntent.setAction(Intent.ACTION_MAIN);
         notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);

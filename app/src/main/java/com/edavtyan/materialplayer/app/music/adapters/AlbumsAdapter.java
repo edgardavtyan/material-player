@@ -21,17 +21,13 @@ import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 import java.io.File;
 
 public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
-    /* ************ */
-    /* Constructors */
-    /* ************ */
-
     public AlbumsAdapter(Context context) {
         super(context);
     }
 
-    /* ********************************* */
-    /* RecyclerViewCursorAdapter members */
-    /* ********************************* */
+    /*
+     * RecyclerViewCursorAdapter
+     */
 
     @Override
     protected View newView(Context context, ViewGroup parent) {
@@ -87,9 +83,9 @@ public class AlbumsAdapter extends RecyclerViewCursorAdapter<AlbumsAdapter.Album
 
     }
 
-    /* *************** */
-    /* Private methods */
-    /* *************** */
+    /*
+     * Private methods
+     */
 
     private String getAdditionalInfo(Cursor cursor) {
         Resources res = context.getResources();

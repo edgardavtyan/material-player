@@ -8,22 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHolder>
-extends RecyclerView.Adapter<VH> {
-    /* ****** */
-    /* Fields */
-    /* ****** */
-
+        extends RecyclerView.Adapter<VH> {
     private final CursorAdapter cursorAdapter;
-
-    /* **************** */
-    /* Protected fields */
-    /* **************** */
-
     protected final Context context;
-
-    /* ************ */
-    /* Constructors */
-    /* ************ */
 
     public RecyclerViewCursorAdapter(Context context) {
         this.context = context;
@@ -41,32 +28,9 @@ extends RecyclerView.Adapter<VH> {
         };
     }
 
-    /* ************** */
-    /* Public methods */
-    /* ************** */
-
-    public void swapCursor(Cursor cursor) {
-        cursorAdapter.swapCursor(cursor);
-        notifyDataSetChanged();
-    }
-
-    public Cursor getCursor() {
-        return cursorAdapter.getCursor();
-    }
-
-    /* ************************** */
-    /* Protected abstract methods */
-    /* ************************** */
-
-    protected abstract View newView(Context context, ViewGroup parent);
-
-    protected abstract void bindView(View view, Context context, Cursor cursor);
-
-    protected abstract VH createViewHolder(View view);
-
-    /* **************************** */
-    /* RecyclerView.Adapter members */
-    /* **************************** */
+    /*
+     * RecyclerView.Adapter
+     */
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int position) {
@@ -84,4 +48,27 @@ extends RecyclerView.Adapter<VH> {
     public int getItemCount() {
         return cursorAdapter.getCount();
     }
+
+    /*
+     * Public methods
+     */
+
+    public void swapCursor(Cursor cursor) {
+        cursorAdapter.swapCursor(cursor);
+        notifyDataSetChanged();
+    }
+
+    public Cursor getCursor() {
+        return cursorAdapter.getCursor();
+    }
+
+    /*
+     * Protected abstract
+     */
+
+    protected abstract View newView(Context context, ViewGroup parent);
+
+    protected abstract void bindView(View view, Context context, Cursor cursor);
+
+    protected abstract VH createViewHolder(View view);
 }

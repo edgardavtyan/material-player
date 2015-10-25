@@ -22,16 +22,8 @@ import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBi
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
 public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> {
-    /* ****** */
-    /* Fields */
-    /* ****** */
-
     private MusicPlayerService playerService;
     private final MusicPlayerConnection playerConnection;
-
-    /* ************ */
-    /* Constructors */
-    /* ************ */
 
     public TracksAdapter(Context context) {
         super(context);
@@ -39,10 +31,6 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
         Intent serviceIntent = new Intent(context, MusicPlayerService.class);
         context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
     }
-
-    /* ******* */
-    /* Classes */
-    /* ******* */
 
     private class MusicPlayerConnection implements ServiceConnection {
         @Override
@@ -55,9 +43,9 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
         public void onServiceDisconnected(ComponentName componentName) {}
     }
 
-    /* *************************************************************** */
-    /* RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> members */
-    /* *************************************************************** */
+    /*
+     * RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder>
+     */
 
     @Override
     protected View newView(Context context, ViewGroup parent) {
@@ -104,9 +92,9 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
         }
     }
 
-    /* ************** */
-    /* Public methods */
-    /* ************** */
+    /*
+     * Public methods
+     */
 
     public String getTrackInfo() {
         return context.getResources().getString(

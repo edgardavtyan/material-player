@@ -23,10 +23,8 @@ import java.util.List;
 
 // TODO: This needs some serious refactoring
 public class MusicPlayerService extends Service
-implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
-    /* ********* */
-    /* Constants */
-    /* ********* */
+        implements MediaPlayer.OnPreparedListener,
+                   MediaPlayer.OnCompletionListener {
     private static final int NOTIFICATION_ID = 1;
 
     public static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
@@ -39,9 +37,9 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
     public static final String EXTRA_METADATA = "metadata";
 
-    /* ****** */
-    /* Fields */
-    /* ****** */
+    /*
+     * Fields
+     */
 
     private List<Integer> tracks;
     private MediaPlayer player;
@@ -50,9 +48,9 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     private int position;
     private boolean hasData;
 
-    /* ******************* */
-    /* Broadcast Receivers */
-    /* ******************* */
+    /*
+     * Broadcast Receivers
+     */
 
     private class PlayPauseReceiver extends BroadcastReceiver {
         @Override
@@ -85,9 +83,9 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         }
     }
 
-    /* *************** */
-    /* Service members */
-    /* *************** */
+    /*
+     * Service
+     */
 
     @Nullable
     @Override
@@ -128,9 +126,9 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         }
     }
 
-    /* ******************* */
-    /* MediaPlayer members */
-    /* ******************* */
+    /*
+     * MediaPlayer
+     */
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
@@ -148,9 +146,9 @@ implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         prepare();
     }
 
-    /* ************** */
-    /* Public methods */
-    /* ************** */
+    /*
+     * Public methods
+     */
 
     public Metadata getMetadata() {
         return metadata;

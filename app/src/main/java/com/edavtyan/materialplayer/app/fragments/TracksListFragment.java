@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.app.fragments;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,16 +19,12 @@ import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class TracksListFragment extends Fragment
-implements LoaderManager.LoaderCallbacks<Cursor>{
-    /* ****** */
-    /* Fields */
-    /* ****** */
-
+        implements LoaderManager.LoaderCallbacks<Cursor> {
     private TracksAdapter tracksAdapter;
 
-    /* **************** */
-    /* Fragment members */
-    /* **************** */
+    /*
+     * Fragment
+     */
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,13 +59,18 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
         super.onDestroy();
     }
 
-    /* *********************** */
-    /* LoaderCallbacks members */
-    /* *********************** */
+    /*
+     * LoaderCallbacks
+     */
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new TracksLoader(getContext());
+        return new CursorLoader(
+                getActivity(),
+                TrackColumns.URI,
+                TrackColumns.PROJECTION,
+                null, null,
+                TrackColumns.TRACK + " ASC");
     }
 
     @Override
@@ -81,20 +81,5 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         tracksAdapter.swapCursor(null);
-    }
-
-    private static class TracksLoader extends CursorLoader {
-        public TracksLoader(Context context) {
-            super(context);
-        }
-
-        @Override
-        public Cursor loadInBackground() {
-            return getContext().getContentResolver().query(
-                    TrackColumns.URI,
-                    TrackColumns.PROJECTION,
-                    null, null,
-                    TrackColumns.TRACK + " ASC");
-        }
     }
 }

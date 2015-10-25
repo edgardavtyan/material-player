@@ -19,9 +19,12 @@ import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 public abstract class ListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
     protected abstract Loader<Cursor> getLoader();
-
     protected abstract RecyclerViewCursorAdapter getAdapter();
 
+
+    /*
+     * Fragment
+     */
 
     @Nullable
     @Override
@@ -41,6 +44,10 @@ public abstract class ListFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
         getLoaderManager().initLoader(0, null, this);
     }
+
+    /*
+     * LoaderCallbacks<Cursor>
+     */
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {

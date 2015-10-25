@@ -23,9 +23,6 @@ import com.wnafee.vector.MorphButton;
 public class FloatingNowPlayingFragment
         extends ServiceFragment
         implements View.OnClickListener {
-    /* ****** */
-    /* Fields */
-    /* ****** */
 
     private ImageView artView;
     private TextView titleView;
@@ -56,9 +53,9 @@ public class FloatingNowPlayingFragment
         }
     };
 
-    /* **************** */
-    /* Fragment members */
-    /* **************** */
+    /*
+     * Fragment
+     */
 
     @Nullable
     @Override
@@ -131,11 +128,10 @@ public class FloatingNowPlayingFragment
         }
     }
 
-    /* ******************** */
-    /* View.OnClickListener */
-    /* ******************** */
+    /*
+     * View.OnClickListener
+     */
 
-    // TODO: fix this mess
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -153,9 +149,9 @@ public class FloatingNowPlayingFragment
         }
     }
 
-    /* *************** */
-    /* Private methods */
-    /* *************** */
+    /*
+     * Private methods
+     */
 
     private void syncDataWithService() {
         Glide.with(getContext())

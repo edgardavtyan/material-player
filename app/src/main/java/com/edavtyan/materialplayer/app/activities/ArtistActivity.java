@@ -16,11 +16,13 @@ import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.music.data.Artist;
 
 public class ArtistActivity extends CollapsingHeaderListActivity {
-
     public static final String EXTRA_ARTIST_NAME = "artist_name";
 
     private AlbumsAdapter albumsAdapter;
 
+    /*
+     * AsyncTasks
+     */
 
     private class ArtistLoadTask extends AsyncTask<String, Void, Artist> {
         @Override
@@ -42,6 +44,9 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
         }
     }
 
+    /*
+     * CollapsingHeaderListActivity
+     */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
