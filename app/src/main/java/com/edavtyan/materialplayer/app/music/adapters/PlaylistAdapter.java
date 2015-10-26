@@ -4,7 +4,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
 import android.os.IBinder;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,45 +12,43 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
-import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class PlaylistAdapter
-        extends RecyclerViewCursorAdapter<PlaylistAdapter.TrackViewHolder>
+        extends RecyclerView.Adapter<PlaylistAdapter.TrackViewHolder>
         implements ServiceConnection {
 
+    private Context context;
     private MusicPlayerService service;
     private boolean isBound;
 
     public PlaylistAdapter(Context context) {
-        super(context);
+        this.context = context;
         context.bindService(
                 new Intent(context, MusicPlayerService.class),
                 this, Context.BIND_AUTO_CREATE);
     }
 
     @Override
-    protected View newView(Context context, ViewGroup parent) {
+    public TrackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(context)
                 .inflate(R.layout.listitem_track, parent, false);
 
-        TrackViewHolder vh = new TrackViewHolder(view);
-        view.setTag(vh);
-        return view;
-    }
-
-    @Override
-    protected void bindView(View view, Context context, Cursor cursor) {
-        TrackViewHolder vh = (TrackViewHolder) view.getTag();
-        vh.titleView.setText(cursor.getString(TrackColumns.TITLE));
-        vh.infoView.setText(cursor.getString(TrackColumns.ALBUM));
-    }
-
-    @Override
-    protected TrackViewHolder createViewHolder(View view) {
         return new TrackViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(TrackViewHolder holder, int position) {
+        if (!isBound) return;
+        holder.titleView.setText(service.getTracks().get(position).getTrackTitle());
+        holder.infoView.setText(service.getTracks().get(position).getAlbumTitle());
+    }
+
+    @Override
+    public int getItemCount() {
+        if (!isBound) return 0;
+        return service.getTracks().size();
     }
 
     public class TrackViewHolder extends RecyclerView.ViewHolder {

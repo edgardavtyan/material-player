@@ -86,7 +86,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            playerService.setTracks(TracksProvider.getAllIds(getCursor()));
+            playerService.setTracks(TracksProvider.getAllTracks(getCursor()));
             playerService.setCurrentIndex(getAdapterPosition());
             playerService.prepare();
         }

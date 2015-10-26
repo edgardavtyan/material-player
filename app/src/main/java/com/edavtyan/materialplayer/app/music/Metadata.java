@@ -5,8 +5,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
-
 import java.io.File;
 
 import lombok.Data;
@@ -67,7 +65,7 @@ public class Metadata {
                     COLUMN_NAME_ID + "=" + id,
                     null, null);
             cursor.moveToFirst();
-            metadata = fromCursor(cursor, context);
+            metadata = fromCursor(cursor);
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -87,7 +85,7 @@ public class Metadata {
                     null, null);
             cursor.moveToFirst();
 
-            metadata = fromCursor(cursor, context);
+            metadata = fromCursor(cursor);
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -97,7 +95,7 @@ public class Metadata {
         return metadata;
     }
 
-    public static Metadata fromCursor(Cursor cursor, Context context) {
+    public static Metadata fromCursor(Cursor cursor) {
         Metadata metadata = new Metadata();
         metadata.setTrackId(cursor.getInt(COLUMN_ID));
         metadata.setTrackTitle(cursor.getString(COLUMN_TITLE));
@@ -105,7 +103,6 @@ public class Metadata {
         metadata.setAlbumId(cursor.getInt(COLUMN_ALBUM_ID));
         metadata.setArtistTitle(cursor.getString(COLUMN_ARTIST));
         metadata.setAlbumTitle(cursor.getString(COLUMN_ALBUM));
-        metadata.setArtFile(AlbumArtUtils.getArtFileFromId(metadata.getAlbumId(), context));
         metadata.setPath(cursor.getString(COLUMN_PATH));
         metadata.setDateModified(cursor.getLong(COLUMN_DATE_MODIFIED));
         return metadata;
