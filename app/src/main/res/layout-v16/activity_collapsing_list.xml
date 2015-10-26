@@ -19,6 +19,11 @@
             android:layout_weight="1"
             >
 
+            <View
+                android:id="@+id/statusbar_tint"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
             <LinearLayout
                 android:id="@+id/appbar_wrapper"
                 android:layout_width="match_parent"

@@ -154,6 +154,10 @@ public class MusicPlayerService extends Service
         return metadata;
     }
 
+    public List<Integer> getTracks() {
+        return tracks;
+    }
+
     public void setTracks(List<Integer> tracks) {
         this.tracks = tracks;
     }

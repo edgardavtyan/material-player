@@ -84,7 +84,10 @@ public abstract class CollapsingHeaderListActivity
                     float alpha = ColorUtils.intToFloatAlpha(totalScrolled);
                     appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
                     appbarShadow.setAlpha(alpha);
-                    statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
+
+                    if (statusShadow != null) {
+                        statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
+                    }
                 }
             });
         }

@@ -12,7 +12,7 @@ public final class TracksProvider {
 
     public static ArrayList<Integer> getAllIds(Cursor cursor) {
         ArrayList<Integer> trackIds = new ArrayList<>();
-        cursor.moveToPosition(-1);
+        cursor.moveToPosition(0);
         while (cursor.moveToNext()) {
             trackIds.add(cursor.getInt(TrackColumns.ID));
         }
