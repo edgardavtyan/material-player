@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.app.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -17,6 +19,10 @@ public class NowPlayingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
+        playlistFab.setOnClickListener(
+                view -> startActivity(new Intent(this, PlaylistActivity.class)));
     }
 
     @Override

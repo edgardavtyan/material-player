@@ -41,7 +41,7 @@ public class MusicPlayerService extends Service
      * Fields
      */
 
-    private List<Integer> tracks;
+    private List<Metadata> tracks;
     private MediaPlayer player;
     private Metadata metadata;
     private NowPlayingNotification notification;
@@ -154,7 +154,11 @@ public class MusicPlayerService extends Service
         return metadata;
     }
 
-    public void setTracks(List<Integer> tracks) {
+    public List<Metadata> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Metadata> tracks) {
         this.tracks = tracks;
     }
 
@@ -181,7 +185,7 @@ public class MusicPlayerService extends Service
 
         try {
             Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-            uri = ContentUris.withAppendedId(uri, tracks.get(position));
+            uri = ContentUris.withAppendedId(uri, tracks.get(position).getTrackId());
             player.setDataSource(getApplicationContext(), uri);
             player.prepareAsync();
         } catch (IOException e) {
@@ -229,7 +233,7 @@ public class MusicPlayerService extends Service
 
     public int getCurrentTrackId() {
         if (hasData()) {
-            return tracks.get(position);
+            return tracks.get(position).getTrackId();
         } else {
             return -1;
         }
