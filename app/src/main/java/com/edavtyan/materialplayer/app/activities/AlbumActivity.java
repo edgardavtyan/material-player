@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.widget.ImageView;
 
+import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActivity;
@@ -39,11 +39,12 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 
         @Override
         protected void onPostExecute(File artFile) {
-            ImageView artView = (ImageView) findViewById(R.id.art);
-            Glide.with(AlbumActivity.this)
+            DrawableRequestBuilder artRequest = Glide.with(AlbumActivity.this)
                     .load(artFile)
-                    .error(R.drawable.fallback_cover)
-                    .into(artView);
+                    .error(R.drawable.fallback_cover);
+
+            artRequest.into(imageBackView);
+            artRequest.into(imageView);
         }
     }
 

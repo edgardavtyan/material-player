@@ -32,6 +32,7 @@ public abstract class CollapsingHeaderListActivity
 
     protected int totalScrolled = 0;
     protected ImageView imageView;
+    protected ImageView imageBackView;
     protected TextView titleView;
     protected TextView infoView;
 
@@ -51,6 +52,7 @@ public abstract class CollapsingHeaderListActivity
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
         imageView = (ImageView) findViewById(R.id.art);
+        imageBackView = (ImageView) findViewById(R.id.back);
         titleView = (TextView) findViewById(R.id.title);
         infoView = (TextView) findViewById(R.id.info);
 

@@ -23,6 +23,12 @@
                 style="@style/collapsingHeader_art"
                 />
 
+            <ImageView
+                android:id="@+id/back"
+                tools:src="@drawable/fallback_cover"
+                style="@style/collapsingHeader_artBack"
+                />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="80dp"

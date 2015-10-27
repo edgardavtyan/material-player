@@ -9,6 +9,12 @@
     <style name="collapsingHeader_art">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="collapsingHeader_artBack">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
