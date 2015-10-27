@@ -105,6 +105,7 @@ public class Metadata {
         metadata.setAlbumTitle(cursor.getString(COLUMN_ALBUM));
         metadata.setPath(cursor.getString(COLUMN_PATH));
         metadata.setDateModified(cursor.getLong(COLUMN_DATE_MODIFIED));
+        metadata.setArtFile(new ArtProvider().getArt(metadata));
         return metadata;
     }
 }
