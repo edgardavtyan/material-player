@@ -76,7 +76,7 @@ public class TracksListFragment extends Fragment
                 TrackColumns.URI,
                 TrackColumns.PROJECTION,
                 null, null,
-                TrackColumns.TRACK + " ASC");
+                TrackColumns.NAME_TITLE + " ASC");
     }
 
     @Override
