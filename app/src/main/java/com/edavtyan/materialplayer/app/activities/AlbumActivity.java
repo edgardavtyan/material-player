@@ -70,7 +70,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 
     @Override
     protected void onDestroy() {
-        tracksAdapter.closeConnection();
+        tracksAdapter.unbindService();
         super.onDestroy();
     }
 

@@ -55,7 +55,7 @@ public class TracksListFragment extends Fragment
 
     @Override
     public void onDestroy() {
-        tracksAdapter.closeConnection();
+        tracksAdapter.unbindService();
         super.onDestroy();
     }
 

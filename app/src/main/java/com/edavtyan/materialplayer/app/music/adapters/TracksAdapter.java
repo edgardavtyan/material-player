@@ -1,11 +1,8 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.database.Cursor;
-import android.os.IBinder;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,34 +13,16 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
-import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
-public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.TrackViewHolder> {
-    private MusicPlayerService playerService;
-    private final MusicPlayerConnection playerConnection;
-
+public class TracksAdapter
+        extends RecyclerServiceCursorAdapter<TracksAdapter.TrackViewHolder> {
     public TracksAdapter(Context context) {
         super(context);
-        playerConnection = new MusicPlayerConnection();
-        Intent serviceIntent = new Intent(context, MusicPlayerService.class);
-        context.bindService(serviceIntent, playerConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    private class MusicPlayerConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            MusicPlayerBinder binder = (MusicPlayerBinder) iBinder;
-            playerService = binder.getService();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {}
     }
 
     /*
@@ -91,7 +70,7 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
                 switch (menuItem.getItemId()) {
                     case R.id.menu_addToPlaylist:
                         int trackId = getCursor().getInt(TrackColumns.ID);
-                        playerService.getTracks().add(Metadata.fromId(trackId, context));
+                        getService().getTracks().add(Metadata.fromId(trackId, context));
                         return true;
 
                     default:
@@ -107,9 +86,9 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            playerService.setTracks(TracksProvider.getAllTracks(getCursor()));
-            playerService.setCurrentIndex(getAdapterPosition());
-            playerService.prepare();
+            getService().setTracks(TracksProvider.getAllTracks(getCursor()));
+            getService().setCurrentIndex(getAdapterPosition());
+            getService().prepare();
         }
     }
 
@@ -123,9 +102,5 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
                 DurationUtils.toStringUntilHours(getCursor().getInt(TrackColumns.DURATION)),
                 getCursor().getString(TrackColumns.ARTIST),
                 getCursor().getString(TrackColumns.ALBUM));
-    }
-
-    public void closeConnection() {
-        context.unbindService(playerConnection);
     }
 }

@@ -1,12 +1,9 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.os.IBinder;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,28 +16,18 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
-import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
-import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
 import java.io.File;
 import java.util.List;
 
-public class AlbumsAdapter
-        extends RecyclerViewCursorAdapter<AlbumsAdapter.AlbumViewHolder>
-        implements ServiceConnection {
-
-    private MusicPlayerService service;
-    private boolean isBound;
-
+public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
     public AlbumsAdapter(Context context) {
         super(context);
-        context.bindService(
-                new Intent(context, MusicPlayerService.class),
-                this, Context.BIND_AUTO_CREATE);
     }
 
     /*
@@ -108,7 +95,7 @@ public class AlbumsAdapter
                         getCursor().moveToPosition(getAdapterPosition());
                         int albumId = getCursor().getInt(AlbumColumns.ID);
                         List<Metadata> tracks = TracksProvider.getAlbumTracks(albumId, context);
-                        service.getTracks().addAll(tracks);
+                        getService().getTracks().addAll(tracks);
 
                     default:
                         return false;
@@ -117,21 +104,6 @@ public class AlbumsAdapter
 
             menuButton.setOnClickListener(view -> popupMenu.show());
         }
-    }
-
-    /*
-     * ServiceConnection
-     */
-
-    @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        service = ((MusicPlayerService.MusicPlayerBinder)iBinder).getService();
-        isBound = true;
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName componentName) {
-        isBound = false;
     }
 
     /*

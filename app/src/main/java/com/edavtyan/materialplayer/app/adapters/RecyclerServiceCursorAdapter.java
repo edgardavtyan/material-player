@@ -1,0 +1,45 @@
+package com.edavtyan.materialplayer.app.adapters;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+
+import com.edavtyan.materialplayer.app.base.ServiceConnectible;
+import com.edavtyan.materialplayer.app.base.ServiceConnectibleImpl;
+import com.edavtyan.materialplayer.app.services.MusicPlayerService;
+
+public abstract class RecyclerServiceCursorAdapter<TViewHolder extends RecyclerView.ViewHolder>
+        extends RecyclerViewCursorAdapter<TViewHolder>
+        implements ServiceConnectible {
+
+    private ServiceConnectibleImpl serviceConnectible;
+
+    public RecyclerServiceCursorAdapter(Context context) {
+        super(context);
+        serviceConnectible = new ServiceConnectibleImpl(context);
+    }
+
+    /*
+     * ServiceConnectible
+     */
+
+    @Override
+    public void unbindService() {
+        serviceConnectible.unbindService();
+    }
+
+    @Override
+    public MusicPlayerService getService() {
+        return serviceConnectible.getService();
+    }
+
+    @Override
+    public boolean isBound() {
+        return serviceConnectible.isBound();
+    }
+
+    @Override
+    public void onServiceConnected() {}
+
+    @Override
+    public void onServiceDisconnected() {}
+}
