@@ -37,15 +37,16 @@ public abstract class ServiceFragment extends Fragment implements ServiceConnect
      */
 
     @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         service = ((MusicPlayerBinder)iBinder).getService();
         isBound = true;
         onServiceConnected();
     }
 
     @Override
-    public void onServiceDisconnected(ComponentName componentName) {
+    public final void onServiceDisconnected(ComponentName componentName) {
         isBound = false;
+        onServiceDisconnected();
     }
 
     /*
@@ -53,6 +54,8 @@ public abstract class ServiceFragment extends Fragment implements ServiceConnect
      */
 
     public void onServiceConnected() {}
+
+    public void onServiceDisconnected() {}
 
     public MusicPlayerService getService() {
         return service;
