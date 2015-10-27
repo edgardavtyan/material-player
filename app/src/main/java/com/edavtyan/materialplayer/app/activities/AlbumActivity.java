@@ -69,9 +69,15 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onResume() {
+        super.onResume();
+        tracksAdapter.bindService();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         tracksAdapter.unbindService();
-        super.onDestroy();
     }
 
     @Override

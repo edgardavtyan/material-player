@@ -1,8 +1,6 @@
 package com.edavtyan.materialplayer.app.activities;
 
-import android.content.ComponentName;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,11 +31,6 @@ public class PlaylistActivity extends ServiceActivity {
     }
 
     @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        super.onServiceConnected(componentName, iBinder);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -46,5 +39,11 @@ public class PlaylistActivity extends ServiceActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        playlistAdapter.unbindService();
     }
 }

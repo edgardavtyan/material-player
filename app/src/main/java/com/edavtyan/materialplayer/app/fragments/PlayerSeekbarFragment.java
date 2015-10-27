@@ -72,14 +72,6 @@ public class PlayerSeekbarFragment
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        Intent intent = new Intent(getActivity(), MusicPlayerService.class);
-        getActivity().getApplicationContext().bindService(intent, this, Context.BIND_AUTO_CREATE);
-    }
-
-    @Override
     public void onResume() {
         getActivity().registerReceiver(
                 playReceiver,
@@ -90,6 +82,10 @@ public class PlayerSeekbarFragment
         getActivity().registerReceiver(
                 newTrackReceiver,
                 new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+        getActivity().getApplicationContext().bindService(
+                new Intent(getActivity(), MusicPlayerService.class),
+                this, Context.BIND_AUTO_CREATE);
+
         super.onResume();
     }
 
@@ -98,13 +94,9 @@ public class PlayerSeekbarFragment
         getActivity().unregisterReceiver(playReceiver);
         getActivity().unregisterReceiver(pauseReceiver);
         getActivity().unregisterReceiver(newTrackReceiver);
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
         getActivity().getApplicationContext().unbindService(this);
-        super.onDestroy();
+
+        super.onPause();
     }
 
     @Override

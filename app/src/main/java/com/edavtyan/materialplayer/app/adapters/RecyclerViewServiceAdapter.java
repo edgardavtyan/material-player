@@ -20,6 +20,11 @@ public abstract class RecyclerViewServiceAdapter<TViewHolder extends RecyclerVie
 
 
     @Override
+    public void bindService() {
+        serviceConnectible.bindService();
+    }
+
+    @Override
     public final void unbindService() {
         serviceConnectible.unbindService();
     }

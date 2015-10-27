@@ -54,9 +54,15 @@ public class TracksListFragment extends Fragment
     }
 
     @Override
-    public void onDestroy() {
+    public void onResume() {
+        super.onResume();
+        tracksAdapter.bindService();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         tracksAdapter.unbindService();
-        super.onDestroy();
     }
 
     /*

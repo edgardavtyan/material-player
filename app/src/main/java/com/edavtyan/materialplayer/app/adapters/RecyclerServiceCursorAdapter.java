@@ -23,6 +23,11 @@ public abstract class RecyclerServiceCursorAdapter<TViewHolder extends RecyclerV
      */
 
     @Override
+    public void bindService() {
+        serviceConnectible.bindService();
+    }
+
+    @Override
     public void unbindService() {
         serviceConnectible.unbindService();
     }

@@ -21,6 +21,18 @@ public class AlbumsListFragment extends ListFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        albumsAdapter.bindService();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        albumsAdapter.unbindService();
+    }
+
+    @Override
     public Loader<Cursor> getLoader() {
         return new CursorLoader(
                 getContext(),

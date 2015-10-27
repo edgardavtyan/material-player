@@ -59,6 +59,18 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        albumsAdapter.bindService();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        albumsAdapter.unbindService();
+    }
+
+    @Override
     public Loader<Cursor> getLoader() {
         String artist = getIntent().getStringExtra(EXTRA_ARTIST_NAME);
         return new CursorLoader(

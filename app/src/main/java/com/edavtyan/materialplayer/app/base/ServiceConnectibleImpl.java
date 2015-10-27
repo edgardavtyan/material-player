@@ -19,11 +19,15 @@ public class ServiceConnectibleImpl
 
     public ServiceConnectibleImpl(Context context) {
         this.context = context;
+    }
+
+
+    @Override
+    public void bindService() {
         context.bindService(
                 new Intent(context, MusicPlayerService.class),
                 this, Context.BIND_AUTO_CREATE);
     }
-
 
     @Override
     public final void unbindService() {
