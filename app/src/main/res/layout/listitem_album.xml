@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeight"
     android:background="?attr/selectableItemBackground"
@@ -13,11 +14,13 @@
         android:id="@+id/art"
         android:layout_width="?attr/listPreferredItemHeight"
         android:layout_height="?attr/listPreferredItemHeight"
+        tools:src="@drawable/fallback_cover_listitem"
         />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
@@ -31,14 +34,24 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textAppearance="?attr/textAppearanceListItem"
+            tools:text="Album Title"
             />
 
         <TextView
             android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:text="Album Artist | 399 Tracks"
             />
-        
+
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/menu"
+        android:layout_width="@dimen/icon_medium"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_more_vert"
+        android:background="@drawable/ripple_control_notification"
+        />
 
 </LinearLayout>

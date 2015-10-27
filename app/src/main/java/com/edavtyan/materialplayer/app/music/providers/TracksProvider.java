@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.music.providers;
 
+import android.content.Context;
 import android.database.Cursor;
 
 import com.edavtyan.materialplayer.app.music.Metadata;
@@ -29,6 +30,26 @@ public final class TracksProvider {
         }
 
         return tracks;
+    }
+
+    public static ArrayList<Metadata> getAlbumTracks(int albumId, Context context) {
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(
+                    TrackColumns.URI,
+                    TrackColumns.PROJECTION,
+                    TrackColumns.NAME_ALBUM_ID + "=" + albumId,
+                    null,
+                    TrackColumns.NAME_TRACK + " ASC");
+            return getAllTracks(cursor);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
     public static Metadata getTrackFromCursor(Cursor cursor) {
