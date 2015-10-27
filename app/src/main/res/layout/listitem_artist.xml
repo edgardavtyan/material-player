@@ -22,15 +22,14 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:singleLine="true"
-            android:ellipsize="end"
+            style="@style/listitem_primary"
             />
 
         <TextView
             android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/listitem_secondary"
             />
 
     </LinearLayout>
