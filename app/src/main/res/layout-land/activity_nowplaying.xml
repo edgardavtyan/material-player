@@ -1,89 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="@string/nowplaying_toolbar_title"
-            app:titleTextColor="@color/text_onPrimary"
-            />
-
-    </android.support.design.widget.AppBarLayout>
-
     <LinearLayout
-        android:id="@+id/nowplaying_mainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:baselineAligned="false"
+        android:orientation="vertical"
         >
 
-        <fragment
-            android:id="@+id/fragment_art"
-            android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingArtFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout="@layout/fragment_nowplaying_art"
-            />
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             >
 
-            <View
-                android:id="@+id/aligner"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:title="@string/nowplaying_toolbar_title"
+                app:titleTextColor="@color/text_onPrimary"
+                />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/nowplaying_mainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            >
+
+            <fragment
+                android:id="@+id/fragment_art"
+                android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingArtFragment"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_centerInParent="true"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:layout="@layout/fragment_nowplaying_art"
                 />
 
-            <fragment
-                android:id="@+id/fragment_info"
-                android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingInfoFragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_alignBottom="@id/aligner"
-                android:layout_alignParentTop="true"
-                tools:layout="@layout/fragment_nowplaying_info"
-                />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
 
-            <fragment
-                android:id="@+id/fragment_controls"
-                android:name="com.edavtyan.materialplayer.app.fragments.PlaybackControlsFragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_alignTop="@id/aligner"
-                android:layout_alignParentBottom="true"
-                tools:layout="@layout/fragment_playback_controls"
-                />
+                <View
+                    android:id="@+id/aligner"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    />
 
-            <fragment
-                android:id="@+id/fragment_seekbar"
-                android:name="com.edavtyan.materialplayer.app.fragments.PlayerSeekbarFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                tools:layout="@layout/fragment_seekbar"
-                />
+                <fragment
+                    android:id="@+id/fragment_info"
+                    android:name="com.edavtyan.materialplayer.app.fragments.NowPlayingInfoFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_alignBottom="@id/aligner"
+                    android:layout_alignParentTop="true"
+                    tools:layout="@layout/fragment_nowplaying_info"
+                    />
 
-        </RelativeLayout>
+                <fragment
+                    android:id="@+id/fragment_controls"
+                    android:name="com.edavtyan.materialplayer.app.fragments.PlaybackControlsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_alignTop="@id/aligner"
+                    android:layout_alignParentBottom="true"
+                    tools:layout="@layout/fragment_playback_controls"
+                    />
+
+                <fragment
+                    android:id="@+id/fragment_seekbar"
+                    android:name="com.edavtyan.materialplayer.app.fragments.PlayerSeekbarFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    tools:layout="@layout/fragment_seekbar"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_playlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_medium"
+        android:src="@drawable/ic_list"
+        app:layout_anchor="@id/fragment_info"
+        app:layout_anchorGravity="right"
+        />
+
+</android.support.design.widget.CoordinatorLayout>
