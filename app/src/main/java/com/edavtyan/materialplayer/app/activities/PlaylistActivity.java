@@ -42,6 +42,12 @@ public class PlaylistActivity extends ServiceActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        playlistAdapter.bindService();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         playlistAdapter.unbindService();
