@@ -31,8 +31,6 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_collapseMode="pin"
-                    app:layout_scrollFlags="scroll|enterAlways"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     />
 
@@ -40,8 +38,6 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_collapseMode="parallax"
-                    app:layout_scrollFlags="scroll|enterAlways"
                     style="@style/tabs_fill"
                     />
 
