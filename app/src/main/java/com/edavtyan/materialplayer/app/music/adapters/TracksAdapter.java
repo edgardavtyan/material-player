@@ -10,11 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
@@ -73,12 +76,30 @@ public class TracksAdapter extends RecyclerViewCursorAdapter<TracksAdapter.Track
     public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView titleTextView;
         final TextView infoTextView;
+        final ImageButton menuButton;
 
         public TrackViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             titleTextView = (TextView) itemView.findViewById(R.id.title);
             infoTextView = (TextView) itemView.findViewById(R.id.info);
+            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+
+            PopupMenu popupMenu = new PopupMenu(context, menuButton);
+            popupMenu.inflate(R.menu.menu_track);
+            popupMenu.setOnMenuItemClickListener(menuItem -> {
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_addToPlaylist:
+                        int trackId = getCursor().getInt(TrackColumns.ID);
+                        playerService.getTracks().add(Metadata.fromId(trackId, context));
+                        return true;
+
+                    default:
+                        return false;
+                }
+            });
+
+            menuButton.setOnClickListener(view -> popupMenu.show());
         }
 
         @Override
