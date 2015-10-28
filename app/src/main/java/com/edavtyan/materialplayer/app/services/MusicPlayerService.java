@@ -2,29 +2,23 @@ package com.edavtyan.materialplayer.app.services;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 // TODO: This needs some serious refactoring
-public class MusicPlayerService extends Service
-        implements MediaPlayer.OnPreparedListener,
-                   MediaPlayer.OnCompletionListener {
+public class MusicPlayerService extends Service implements MediaPlayer.OnPreparedListener {
     private static final int NOTIFICATION_ID = 1;
 
     public static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
@@ -41,12 +35,8 @@ public class MusicPlayerService extends Service
      * Fields
      */
 
-    private List<Metadata> tracks;
-    private MediaPlayer player;
-    private Metadata metadata;
     private NowPlayingNotification notification;
-    private int position;
-    private boolean hasData;
+    private MusicPlayer player;
 
     /*
      * Broadcast Receivers
@@ -84,6 +74,16 @@ public class MusicPlayerService extends Service
     }
 
     /*
+     * MusicPlayer
+     */
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        String metadataJson = new Gson().toJson(player.getCurrentTrack());
+        sendBroadcast(new Intent(SEND_NEW_TRACK).putExtra(EXTRA_METADATA, metadataJson));
+    }
+
+    /*
      * Service
      */
 
@@ -103,12 +103,9 @@ public class MusicPlayerService extends Service
     public void onCreate() {
         super.onCreate();
 
-        player = new MediaPlayer();
-        player.setOnPreparedListener(this);
-        player.setOnCompletionListener(this);
-
-        tracks = new ArrayList<>();
         notification = new NowPlayingNotification(this);
+        player = new MusicPlayer();
+        player.setOnPreparedListener(this);
 
         IntentFilter playPauseFilter = new IntentFilter(ACTION_PLAY_PAUSE);
         registerReceiver(new PlayPauseReceiver(), playPauseFilter);
@@ -127,51 +124,31 @@ public class MusicPlayerService extends Service
     }
 
     /*
-     * MediaPlayer
-     */
-
-    @Override
-    public void onPrepared(MediaPlayer mediaPlayer) {
-        player.start();
-        hasData = true;
-        metadata = Metadata.fromId(getCurrentTrackId(), this);
-
-        String metadataJson = new Gson().toJson(metadata);
-        sendBroadcast(new Intent(SEND_NEW_TRACK).putExtra(EXTRA_METADATA, metadataJson));
-    }
-
-    @Override
-    public void onCompletion(MediaPlayer mediaPlayer) {
-        moveNext();
-        prepare();
-    }
-
-    /*
      * Public methods
      */
 
-    public Metadata getMetadata() {
-        return metadata;
+    public Metadata getCurrentTrack() {
+        return player.getCurrentTrack();
     }
 
     public List<Metadata> getTracks() {
-        return tracks;
+        return player.getTracks();
     }
 
     public void setTracks(List<Metadata> tracks) {
-        this.tracks = tracks;
+        player.setTracks(tracks);
     }
 
     public void setCurrentIndex(int index) {
-        this.position = index;
+        player.setCurrentTrackIndex(index);
     }
 
-    public void setPosition(int position) {
+    public void seekTo(int position) {
         player.seekTo(position);
     }
 
-    public int getPosition() {
-        return player.getCurrentPosition();
+    public int getSeek() {
+        return player.getSeek();
     }
 
     public int getDuration() {
@@ -179,32 +156,17 @@ public class MusicPlayerService extends Service
     }
 
     public void prepare() {
-        if (hasData) {
-            player.reset();
-        }
-
-        try {
-            Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-            uri = ContentUris.withAppendedId(uri, tracks.get(position).getTrackId());
-            player.setDataSource(getApplicationContext(), uri);
-            player.prepareAsync();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        player.prepare();
     }
 
     public void resume() {
-        if (hasData) {
-            player.start();
-            sendBroadcast(new Intent(SEND_PLAY));
-        }
+        player.resume();
+        sendBroadcast(new Intent(SEND_PLAY));
     }
 
     public void pause() {
-        if (hasData) {
-            player.pause();
-            sendBroadcast(new Intent(SEND_PAUSE));
-        }
+        player.pause();
+        sendBroadcast(new Intent(SEND_PAUSE));
     }
 
     public boolean isPlaying() {
@@ -212,34 +174,14 @@ public class MusicPlayerService extends Service
     }
 
     public void moveNext() {
-        if (position >= tracks.size() - 1) {
-            position = 0;
-        } else {
-            position++;
-        }
+        player.moveNext();
     }
 
     public void movePrev() {
-        if (player.getCurrentPosition() > 5000) {
-            player.seekTo(0);
-        } else {
-            if (position != 0) {
-                position--;
-            } else {
-                position = tracks.size() - 1;
-            }
-        }
-    }
-
-    public int getCurrentTrackId() {
-        if (hasData()) {
-            return tracks.get(position).getTrackId();
-        } else {
-            return -1;
-        }
+        player.movePrev();
     }
 
     public boolean hasData() {
-        return tracks.size() > 0;
+        return player.getTracks().size() > 0;
     }
 }

@@ -155,15 +155,15 @@ public class FloatingNowPlayingFragment
 
     private void syncDataWithService() {
         Glide.with(getContext())
-                .load(getService().getMetadata().getArtFile())
+                .load(getService().getCurrentTrack().getArtFile())
                 .error(R.drawable.fallback_cover)
                 .into(artView);
 
         String trackInfo = getResources().getString(
                 R.string.nowplaying_info_pattern,
-                getService().getMetadata().getArtistTitle(),
-                getService().getMetadata().getAlbumTitle());
-        titleView.setText(getService().getMetadata().getTrackTitle());
+                getService().getCurrentTrack().getArtistTitle(),
+                getService().getCurrentTrack().getAlbumTitle());
+        titleView.setText(getService().getCurrentTrack().getTrackTitle());
         infoView.setText(trackInfo);
 
 

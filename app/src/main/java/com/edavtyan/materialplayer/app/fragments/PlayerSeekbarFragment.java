@@ -25,7 +25,7 @@ public class PlayerSeekbarFragment
     private final Runnable syncSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekbar.setProgress(getService().getPosition());
+            seekbar.setProgress(getService().getSeek());
             handler.postDelayed(syncSeekbar, 1000);
         }
     };
@@ -119,7 +119,7 @@ public class PlayerSeekbarFragment
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        getService().setPosition(seekBar.getProgress());
+        getService().seekTo(seekBar.getProgress());
         syncSeekbar.run();
     }
 }

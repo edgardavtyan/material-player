@@ -13,6 +13,7 @@ public class TrackColumns {
     public static final int ALBUM = 6;
     public static final int ARTIST_ID = 7;
     public static final int ARTIST = 8;
+    public static final int DATE_MODIFIED = 9;
 
     public static final String NAME_ID = MediaStore.Audio.Media._ID;
     public static final String NAME_TRACK = MediaStore.Audio.Media.TRACK;
@@ -23,6 +24,7 @@ public class TrackColumns {
     public static final String NAME_ALBUM = MediaStore.Audio.Media.ALBUM;
     public static final String NAME_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
     public static final String NAME_ARTIST = MediaStore.Audio.Media.ARTIST;
+    public static final String NAME_DATE_MODIFIED = MediaStore.Audio.Media.DATE_MODIFIED;
 
     public static final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
     public static final String[] PROJECTION = new String[] {
@@ -35,5 +37,6 @@ public class TrackColumns {
             NAME_ALBUM,
             NAME_ARTIST_ID,
             NAME_ARTIST,
+            NAME_DATE_MODIFIED,
     };
 }

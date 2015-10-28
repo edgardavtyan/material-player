@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.app.music.providers;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 
@@ -61,6 +62,8 @@ public final class TracksProvider {
         metadata.setArtistTitle(cursor.getString(TrackColumns.ARTIST));
         metadata.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
         metadata.setPath(cursor.getString(TrackColumns.PATH));
+        metadata.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED));
+        metadata.setArtFile(new ArtProvider().getArt(metadata));
         return metadata;
     }
 }
