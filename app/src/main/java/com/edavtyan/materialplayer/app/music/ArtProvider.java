@@ -11,8 +11,10 @@ import org.jaudiotagger.audio.AudioFileIO;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-public class ArtProvider {
-    public File getArt(Metadata metadata) {
+public final class ArtProvider {
+    private ArtProvider() {}
+
+    public static File fromMetadata(Metadata metadata) {
         File artFile = DataStorage.readArt(metadata.getAlbumId());
         if (!artFile.exists() || artFile.lastModified() < metadata.getDateModified()) {
             try {
@@ -31,6 +33,15 @@ public class ArtProvider {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        return artFile;
+    }
+
+    public static File fromPath(String artPath) {
+        File artFile = null;
+        if (artPath != null) {
+            artFile = new File(artPath);
         }
 
         return artFile;

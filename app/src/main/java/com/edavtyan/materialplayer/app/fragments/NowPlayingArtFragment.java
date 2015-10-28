@@ -25,7 +25,6 @@ import java.io.File;
 public class NowPlayingArtFragment extends ServiceFragment {
     private ImageView artView;
     private ImageView backView;
-    private ArtProvider artProvider;
 
     /*
      * BroadcastReceivers
@@ -45,7 +44,7 @@ public class NowPlayingArtFragment extends ServiceFragment {
     private class ArtLoadTask extends AsyncTask<Metadata, Void, File> {
         @Override
         protected File doInBackground(Metadata... metadata) {
-            return artProvider.getArt(metadata[0]);
+            return ArtProvider.fromMetadata(metadata[0]);
         }
 
         @Override
@@ -72,8 +71,6 @@ public class NowPlayingArtFragment extends ServiceFragment {
 
         artView = (ImageView) view.findViewById(R.id.art);
         backView = (ImageView) view.findViewById(R.id.back);
-
-        artProvider = new ArtProvider();
 
         return view;
     }

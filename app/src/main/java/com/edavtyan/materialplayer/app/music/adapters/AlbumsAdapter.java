@@ -17,12 +17,11 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerServiceCursorAdapter;
+import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
-import com.edavtyan.materialplayer.app.utils.AlbumArtUtils;
 
-import java.io.File;
 import java.util.List;
 
 public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
@@ -52,10 +51,8 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
         vh.infoTextView.setText(getAdditionalInfo(cursor));
 
         String artPath = getCursor().getString(AlbumColumns.ART);
-        File artFile = AlbumArtUtils.getArtFileFromPath(artPath);
-
         Glide.with(context)
-                .load(artFile)
+                .load(ArtProvider.fromPath(artPath))
                 .error(R.drawable.fallback_cover_listitem)
                 .into(vh.artImageView);
     }

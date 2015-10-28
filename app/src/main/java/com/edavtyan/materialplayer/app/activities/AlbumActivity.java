@@ -34,7 +34,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
         @Override
         protected File doInBackground(Integer... albumIds) {
             Metadata metadata = Metadata.firstTrackOfAlbum(albumIds[0], AlbumActivity.this);
-            return new ArtProvider().getArt(metadata);
+            return ArtProvider.fromMetadata(metadata);
         }
 
         @Override
