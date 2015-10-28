@@ -82,6 +82,7 @@ public abstract class CollapsingHeaderListActivity
 
                     int parallaxAmount = 2;
                     imageView.setTop(totalScrolled / parallaxAmount);
+                    imageBackView.setTop(totalScrolled / parallaxAmount);
 
                     float alpha = ColorUtils.intToFloatAlpha(totalScrolled);
                     appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
