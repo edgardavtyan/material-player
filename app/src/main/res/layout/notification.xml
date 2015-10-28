@@ -61,7 +61,7 @@
         android:id="@+id/play_pause"
         android:layout_width="@dimen/icon_medium"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_pause_black"
+        android:src="@drawable/ic_play_pause_black"
         android:background="@drawable/ripple_control_notification"
         />
 

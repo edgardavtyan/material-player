@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -25,25 +24,6 @@ public class NowPlayingNotification {
     private final NotificationManagerCompat manager;
     private final RemoteViews view;
 
-
-    private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            view.setImageViewResource(
-                    R.id.play_pause,
-                    R.drawable.ic_pause_black);
-            updateNotification();
-        }
-    };
-    private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            view.setImageViewResource(
-                    R.id.play_pause,
-                    R.drawable.ic_play_black);
-            updateNotification();
-        }
-    };
     private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -52,14 +32,7 @@ public class NowPlayingNotification {
 
             view.setTextViewText(R.id.title, metadata.getTrackTitle());
             view.setTextViewText(R.id.info, metadata.getAlbumTitle());
-            view.setImageViewResource(R.id.play_pause, R.drawable.ic_pause_black);
-
-            if (metadata.getArtFile() != null) {
-                Bitmap art = BitmapFactory.decodeFile(metadata.getArtFile().getPath());
-                view.setImageViewBitmap(R.id.art, art);
-            } else {
-                view.setImageViewResource(R.id.art, R.drawable.fallback_cover);
-            }
+            view.setImageViewBitmap(R.id.art, BitmapFactory.decodeFile(metadata.getArtFile().getPath()));
 
             updateNotification();
         }
@@ -94,12 +67,6 @@ public class NowPlayingNotification {
 
         manager = NotificationManagerCompat.from(context);
 
-        context.registerReceiver(
-                playReceiver,
-                new IntentFilter(MusicPlayerService.SEND_PLAY));
-        context.registerReceiver(
-                pauseReceiver,
-                new IntentFilter(MusicPlayerService.SEND_PAUSE));
         context.registerReceiver(
                 newTrackReceiver,
                 new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
