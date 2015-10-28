@@ -12,7 +12,7 @@ public class ServiceConnectibleImpl
         implements ServiceConnectible,
                    ServiceConnection {
 
-    private Context context;
+    private final Context context;
     private MusicPlayerService service;
     private boolean isBound;
 

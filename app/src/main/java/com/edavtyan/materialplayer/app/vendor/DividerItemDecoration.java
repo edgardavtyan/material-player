@@ -13,8 +13,6 @@ import android.view.View;
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private final Drawable mDivider;
-    private boolean mShowFirstDivider = true;
-    private boolean mShowLastDivider = true;
 
 
     public DividerItemDecoration(Context context, AttributeSet attrs) {
@@ -24,24 +22,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         a.recycle();
     }
 
-    public DividerItemDecoration(Context context, AttributeSet attrs, boolean showFirstDivider,
-                                 boolean showLastDivider) {
-        this(context, attrs);
-        mShowFirstDivider = showFirstDivider;
-        mShowLastDivider = showLastDivider;
-    }
-
-    public DividerItemDecoration(Drawable divider) {
-        mDivider = divider;
-    }
-
-    public DividerItemDecoration(Drawable divider, boolean showFirstDivider,
-                                 boolean showLastDivider) {
-        this(divider);
-        mShowFirstDivider = showFirstDivider;
-        mShowLastDivider = showLastDivider;
-    }
-
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                RecyclerView.State state) {
@@ -49,7 +29,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         if (mDivider == null) {
             return;
         }
-        if (parent.getChildPosition(view) < 1) {
+        if (parent.getChildAdapterPosition(view) < 1) {
             return;
         }
 
@@ -82,7 +62,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             bottom = parent.getHeight() - parent.getPaddingBottom();
         }
 
-        for (int i = mShowFirstDivider ? 0 : 1; i < childCount; i++) {
+        for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
 
@@ -98,7 +78,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
 
         // show last divider
-        if (mShowLastDivider && childCount > 0) {
+        if (childCount > 0) {
             View child = parent.getChildAt(childCount - 1);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             if (orientation == LinearLayoutManager.VERTICAL) {

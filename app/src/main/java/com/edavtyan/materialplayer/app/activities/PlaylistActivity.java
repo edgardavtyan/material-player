@@ -2,16 +2,16 @@ package com.edavtyan.materialplayer.app.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.activities.base.ServiceActivity;
 import com.edavtyan.materialplayer.app.music.adapters.PlaylistAdapter;
 
-public class PlaylistActivity extends ServiceActivity {
+public class PlaylistActivity extends AppCompatActivity {
     private PlaylistAdapter playlistAdapter;
 
     @Override

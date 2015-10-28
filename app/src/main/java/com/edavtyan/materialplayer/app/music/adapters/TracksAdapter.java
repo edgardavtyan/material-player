@@ -98,7 +98,7 @@ public class TracksAdapter
 
     public String getTrackInfo() {
         return context.getResources().getString(
-                R.string.track_listitem_fullInfo,
+                R.string.pattern_track_info,
                 DurationUtils.toStringUntilHours(getCursor().getInt(TrackColumns.DURATION)),
                 getCursor().getString(TrackColumns.ARTIST),
                 getCursor().getString(TrackColumns.ALBUM));

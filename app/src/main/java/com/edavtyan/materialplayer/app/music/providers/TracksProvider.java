@@ -13,16 +13,6 @@ public final class TracksProvider {
     private TracksProvider() {}
 
 
-    public static ArrayList<Integer> getAllIds(Cursor cursor) {
-        ArrayList<Integer> trackIds = new ArrayList<>();
-        cursor.moveToPosition(0);
-        while (cursor.moveToNext()) {
-            trackIds.add(cursor.getInt(TrackColumns.ID));
-        }
-
-        return trackIds;
-    }
-
     public static ArrayList<Metadata> getAllTracks(Cursor cursor) {
         ArrayList<Metadata> tracks = new ArrayList<>();
         cursor.moveToPosition(-1);

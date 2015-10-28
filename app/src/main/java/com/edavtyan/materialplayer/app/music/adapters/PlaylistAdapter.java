@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewServiceAdapter;
 public class PlaylistAdapter
         extends RecyclerViewServiceAdapter<PlaylistAdapter.TrackViewHolder> {
 
-    private Context context;
+    private final Context context;
 
     public PlaylistAdapter(Context context) {
         super(context);

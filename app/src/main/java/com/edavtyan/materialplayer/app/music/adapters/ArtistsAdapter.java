@@ -87,6 +87,6 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
                 cursor.getInt(ArtistColumns.TRACKS_COUNT),
                 cursor.getInt(ArtistColumns.TRACKS_COUNT));
 
-        return res.getString(R.string.two_strings_with_bar, albumsCount, tracksCount);
+        return res.getString(R.string.pattern_artist_info, albumsCount, tracksCount);
     }
 }

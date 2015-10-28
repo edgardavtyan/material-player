@@ -24,20 +24,6 @@ public class NowPlayingNotification {
     private final NotificationManagerCompat manager;
     private final RemoteViews view;
 
-    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String jsonStr = intent.getStringExtra(MusicPlayerService.EXTRA_METADATA);
-            Metadata metadata = new Gson().fromJson(jsonStr, Metadata.class);
-
-            view.setTextViewText(R.id.title, metadata.getTrackTitle());
-            view.setTextViewText(R.id.info, metadata.getAlbumTitle());
-            view.setImageViewBitmap(R.id.art, BitmapFactory.decodeFile(metadata.getArtFile().getPath()));
-
-            updateNotification();
-        }
-    };
-
 
     public NowPlayingNotification(Context context) {
         Intent notificationIntent = new Intent(context, MainActivity.class);
@@ -66,6 +52,20 @@ public class NowPlayingNotification {
                 .setContent(view);
 
         manager = NotificationManagerCompat.from(context);
+
+        BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String jsonStr = intent.getStringExtra(MusicPlayerService.EXTRA_METADATA);
+                Metadata metadata = new Gson().fromJson(jsonStr, Metadata.class);
+
+                view.setTextViewText(R.id.title, metadata.getTrackTitle());
+                view.setTextViewText(R.id.info, metadata.getAlbumTitle());
+                view.setImageViewBitmap(R.id.art, BitmapFactory.decodeFile(metadata.getArtFile().getPath()));
+
+                updateNotification();
+            }
+        };
 
         context.registerReceiver(
                 newTrackReceiver,

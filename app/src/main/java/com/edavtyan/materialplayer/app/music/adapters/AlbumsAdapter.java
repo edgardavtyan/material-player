@@ -116,7 +116,7 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
                 cursor.getInt(AlbumColumns.SONGS_COUNT));
 
         return res.getString(
-                R.string.two_strings_with_bar,
+                R.string.pattern_album_info,
                 cursor.getString(AlbumColumns.ARTIST),
                 tracksCount);
     }

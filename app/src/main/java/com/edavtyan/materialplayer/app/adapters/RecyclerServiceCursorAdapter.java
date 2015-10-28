@@ -11,7 +11,7 @@ public abstract class RecyclerServiceCursorAdapter<TViewHolder extends RecyclerV
         extends RecyclerViewCursorAdapter<TViewHolder>
         implements ServiceConnectible {
 
-    private ServiceConnectibleImpl serviceConnectible;
+    private final ServiceConnectibleImpl serviceConnectible;
 
     public RecyclerServiceCursorAdapter(Context context) {
         super(context);

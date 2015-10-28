@@ -1,13 +1,9 @@
 <resources>
     <string name="app_name">MaterialPlayer</string>
-    <string name="search_title">Search</string>
-
-    <string name="two_strings_with_bar">%1$s | %2$s</string>
-    <string name="track_listitem_fullInfo">%1$s | %2$s - %3$s</string>
-    <string name="track_listitem_timeAlbumInfo">%1$s | %2$s</string>
-
+    
     <string name="pattern.artist.info">%1$s | %2$s</string>
     <string name="pattern.album.info">%1$s | %2$s</string>
+    <string name="pattern.track.info">%1$s | %2$s - %3$s</string>
 
     <plurals name="albums">
         <item quantity="zero">No Albums</item>
@@ -18,15 +14,6 @@
         <item quantity="other">%d Albums</item>
     </plurals>
 
-    <plurals name="artists">
-        <item quantity="zero">No Artists</item>
-        <item quantity="one">%d Artist</item>
-        <item quantity="two">%d Artists</item>
-        <item quantity="few">%d Artists</item>
-        <item quantity="many">%d Artists</item>
-        <item quantity="other">%d Artists</item>
-    </plurals>
-
     <plurals name="tracks">
         <item quantity="zero">No Tracks</item>
         <item quantity="one">%d Track</item>
@@ -35,15 +22,6 @@
         <item quantity="many">%d Tracks</item>
         <item quantity="other">%d Tracks</item>
     </plurals>
-
-    <string name="artist_image_description">Artist image</string>
-
-    <string name="nowplaying_shuffle_description">Toggle shuffle</string>
-    <string name="nowplaying_rewind_description">Rewind</string>
-    <string name="nowplaying_playPause_description">Play/Pause</string>
-    <string name="nowplaying_fastForward_description">Fast forward</string>
-    <string name="nowplaying_repeat_description">Repeat</string>
-    <string name="nowplaying_albumArt_description">Album art</string>
 
     <string name="nowplaying_toolbar_title">Now playing</string>
 

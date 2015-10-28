@@ -11,7 +11,7 @@ public abstract class RecyclerViewServiceAdapter<TViewHolder extends RecyclerVie
         extends RecyclerView.Adapter<TViewHolder>
         implements ServiceConnectible {
 
-    private ServiceConnectibleImpl serviceConnectible;
+    private final ServiceConnectibleImpl serviceConnectible;
 
 
     public RecyclerViewServiceAdapter(Context context) {
