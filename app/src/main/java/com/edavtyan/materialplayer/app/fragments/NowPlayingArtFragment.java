@@ -41,22 +41,19 @@ public class NowPlayingArtFragment extends ServiceFragment {
      * AsyncTasks
      */
 
-    private class ArtLoadTask extends AsyncTask<Metadata, Void, File> {
+    private class ArtLoadTask extends AsyncTask<Metadata, Void, DrawableRequestBuilder> {
         @Override
-        protected File doInBackground(Metadata... metadata) {
-            return ArtProvider.fromMetadata(metadata[0]);
+        protected DrawableRequestBuilder doInBackground(Metadata... metadata) {
+            File artFile = ArtProvider.fromMetadata(metadata[0]);
+            return Glide.with(getActivity())
+                    .load(artFile)
+                    .error(R.drawable.fallback_cover);
         }
 
         @Override
-        protected void onPostExecute(File file) {
-            if (file.exists()) {
-                DrawableRequestBuilder artRequest = Glide
-                        .with(getActivity())
-                        .load(file)
-                        .error(R.drawable.fallback_cover);
-                artRequest.into(artView);
-                artRequest.into(backView);
-            }
+        protected void onPostExecute(DrawableRequestBuilder artRequest) {
+            artRequest.into(artView);
+            artRequest.into(backView);
         }
     }
 
