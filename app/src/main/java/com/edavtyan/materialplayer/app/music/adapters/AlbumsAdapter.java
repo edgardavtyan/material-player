@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -30,6 +31,57 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
     }
 
     /*
+     * ViewHolder
+     */
+
+    public class AlbumViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+        private final TextView titleTextView;
+        private final TextView infoTextView;
+        private final ImageView artImageView;
+        private final ImageButton menuButton;
+
+        public AlbumViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+
+            titleTextView = (TextView) itemView.findViewById(R.id.title);
+            infoTextView = (TextView) itemView.findViewById(R.id.info);
+            artImageView = (ImageView) itemView.findViewById(R.id.art);
+            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+
+            PopupMenu popupMenu = new PopupMenu(context, menuButton);
+            popupMenu.inflate(R.menu.menu_track);
+            popupMenu.setOnMenuItemClickListener(this);
+            menuButton.setOnClickListener(view -> popupMenu.show());
+        }
+
+        @Override
+        public void onClick(View view) {
+            getCursor().moveToPosition(getAdapterPosition());
+            Intent i = new Intent(context, AlbumActivity.class);
+            i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(AlbumColumns.ID));
+            context.startActivity(i);
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_addToPlaylist:
+                    getCursor().moveToPosition(getAdapterPosition());
+                    int albumId = getCursor().getInt(AlbumColumns.ID);
+                    List<Metadata> tracks = TracksProvider.getAlbumTracks(albumId, context);
+                    getService().getTracks().addAll(tracks);
+
+                default:
+                    return false;
+            }
+        }
+    }
+
+
+    /*
      * RecyclerViewCursorAdapter
      */
 
@@ -48,7 +100,7 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
     protected void bindView(View view, Context context, Cursor cursor) {
         AlbumViewHolder vh = (AlbumViewHolder) view.getTag();
         vh.titleTextView.setText(cursor.getString(AlbumColumns.TITLE));
-        vh.infoTextView.setText(getAdditionalInfo(cursor));
+        vh.infoTextView.setText(getAlbumInfo(cursor));
 
         String artPath = getCursor().getString(AlbumColumns.ART);
         Glide.with(context)
@@ -62,52 +114,11 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
         return new AlbumViewHolder(view);
     }
 
-    public class AlbumViewHolder extends RecyclerView.ViewHolder {
-        private final TextView titleTextView;
-        private final TextView infoTextView;
-        private final ImageView artImageView;
-        private final ImageButton menuButton;
-
-        public AlbumViewHolder(View itemView) {
-            super(itemView);
-
-            itemView.setOnClickListener(view -> {
-                getCursor().moveToPosition(getAdapterPosition());
-
-                Intent i = new Intent(context, AlbumActivity.class);
-                i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(AlbumColumns.ID));
-                context.startActivity(i);
-            });
-
-            titleTextView = (TextView) itemView.findViewById(R.id.title);
-            infoTextView = (TextView) itemView.findViewById(R.id.info);
-            artImageView = (ImageView) itemView.findViewById(R.id.art);
-            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
-
-            PopupMenu popupMenu = new PopupMenu(context, menuButton);
-            popupMenu.inflate(R.menu.menu_track);
-            popupMenu.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.menu_addToPlaylist:
-                        getCursor().moveToPosition(getAdapterPosition());
-                        int albumId = getCursor().getInt(AlbumColumns.ID);
-                        List<Metadata> tracks = TracksProvider.getAlbumTracks(albumId, context);
-                        getService().getTracks().addAll(tracks);
-
-                    default:
-                        return false;
-                }
-            });
-
-            menuButton.setOnClickListener(view -> popupMenu.show());
-        }
-    }
-
     /*
      * Private methods
      */
 
-    private String getAdditionalInfo(Cursor cursor) {
+    private String getAlbumInfo(Cursor cursor) {
         Resources res = context.getResources();
 
         String tracksCount = res.getQuantityString(

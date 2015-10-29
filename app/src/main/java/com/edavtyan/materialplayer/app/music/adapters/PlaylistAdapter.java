@@ -23,6 +23,55 @@ public class PlaylistAdapter
         this.context = context;
     }
 
+    /*
+     * ViewHolder
+     */
+
+    public class TrackViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+        private final TextView titleView;
+        private final TextView infoView;
+        private final ImageButton menuButton;
+
+        public TrackViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+
+            titleView = (TextView) itemView.findViewById(R.id.title);
+            infoView = (TextView) itemView.findViewById(R.id.info);
+            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+
+            PopupMenu popupMenu = new PopupMenu(context, menuButton);
+            popupMenu.inflate(R.menu.menu_queue);
+            popupMenu.setOnMenuItemClickListener(this);
+            menuButton.setOnClickListener(view -> popupMenu.show());
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (!isBound()) {
+                return;
+            }
+
+            getService().setCurrentIndex(getAdapterPosition());
+            getService().prepare();
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_remove:
+                    getService().getTracks().remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+    }
+
     @Override
     public TrackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater
@@ -43,48 +92,5 @@ public class PlaylistAdapter
     public int getItemCount() {
         if (!isBound()) return 0;
         return getService().getTracks().size();
-    }
-
-    public class TrackViewHolder
-            extends RecyclerView.ViewHolder
-            implements PopupMenu.OnMenuItemClickListener {
-        private final TextView titleView;
-        private final TextView infoView;
-        private final ImageButton menuButton;
-
-        public TrackViewHolder(View itemView) {
-            super(itemView);
-
-            titleView = (TextView) itemView.findViewById(R.id.title);
-            infoView = (TextView) itemView.findViewById(R.id.info);
-            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
-
-            itemView.setOnClickListener(view -> {
-                if (!isBound()) {
-                    return;
-                }
-
-                getService().setCurrentIndex(getAdapterPosition());
-                getService().prepare();
-            });
-
-            PopupMenu popupMenu = new PopupMenu(context, menuButton);
-            popupMenu.inflate(R.menu.menu_queue);
-            popupMenu.setOnMenuItemClickListener(this);
-            menuButton.setOnClickListener(view -> popupMenu.show());
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.menu_remove:
-                    getService().getTracks().remove(getAdapterPosition());
-                    notifyItemRemoved(getAdapterPosition());
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
     }
 }

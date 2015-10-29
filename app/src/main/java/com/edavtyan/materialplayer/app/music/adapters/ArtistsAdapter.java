@@ -21,6 +21,38 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     }
 
     /*
+     * ViewHolder
+     */
+
+    public class ArtistViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+        private final TextView titleTextView;
+        private final TextView countsTextView;
+
+        public ArtistViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+
+            titleTextView = (TextView) itemView.findViewById(R.id.title);
+            countsTextView = (TextView) itemView.findViewById(R.id.info);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
+
+            getCursor().moveToPosition(getAdapterPosition());
+            i.putExtra(
+                    ArtistActivity.EXTRA_ARTIST_NAME,
+                    getCursor().getString(ArtistColumns.TITLE));
+
+            itemView.getContext().startActivity(i);
+        }
+    }
+
+
+    /*
      * RecyclerViewCursorAdapter
      */
 
@@ -39,7 +71,7 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
     protected void bindView(View view, Context context, Cursor cursor) {
         ArtistViewHolder vh = (ArtistViewHolder) view.getTag();
         vh.titleTextView.setText(cursor.getString(ArtistColumns.TITLE));
-        vh.countsTextView.setText(getArtistCounts(cursor));
+        vh.countsTextView.setText(getArtistInfo(cursor));
     }
 
     @Override
@@ -47,34 +79,11 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
         return new ArtistViewHolder(view);
     }
 
-    public class ArtistViewHolder extends RecyclerView.ViewHolder {
-        private final TextView titleTextView;
-        private final TextView countsTextView;
-
-        public ArtistViewHolder(View itemView) {
-            super(itemView);
-
-            itemView.setOnClickListener(view -> {
-                Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
-
-                getCursor().moveToPosition(getAdapterPosition());
-                i.putExtra(
-                        ArtistActivity.EXTRA_ARTIST_NAME,
-                        getCursor().getString(ArtistColumns.TITLE));
-
-                itemView.getContext().startActivity(i);
-            });
-
-            titleTextView = (TextView) itemView.findViewById(R.id.title);
-            countsTextView = (TextView) itemView.findViewById(R.id.info);
-        }
-    }
-
     /*
      * Private methods
      */
 
-    private String getArtistCounts(Cursor cursor) {
+    private String getArtistInfo(Cursor cursor) {
         Resources res = context.getResources();
 
         String albumsCount = res.getQuantityString(

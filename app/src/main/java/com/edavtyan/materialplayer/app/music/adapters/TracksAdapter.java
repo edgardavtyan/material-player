@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -23,6 +24,54 @@ public class TracksAdapter
         extends RecyclerServiceCursorAdapter<TracksAdapter.TrackViewHolder> {
     public TracksAdapter(Context context) {
         super(context);
+    }
+
+    /*
+     * ViewHolder
+     */
+
+    public class TrackViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+        private final TextView titleTextView;
+        private final TextView infoTextView;
+        private final ImageButton menuButton;
+
+        public TrackViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+            titleTextView = (TextView) itemView.findViewById(R.id.title);
+            infoTextView = (TextView) itemView.findViewById(R.id.info);
+            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+
+            PopupMenu popupMenu = new PopupMenu(context, menuButton);
+            popupMenu.inflate(R.menu.menu_track);
+            popupMenu.setOnMenuItemClickListener(this);
+            menuButton.setOnClickListener(view -> popupMenu.show());
+        }
+
+        @Override
+        public void onClick(View view){
+            Intent i = new Intent(context, NowPlayingActivity.class);
+            context.startActivity(i);
+
+            getService().setTracks(TracksProvider.getAllTracks(getCursor()));
+            getService().setCurrentIndex(getAdapterPosition());
+            getService().prepare();
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_addToPlaylist:
+                    int trackId = getCursor().getInt(TrackColumns.ID);
+                    getService().getTracks().add(Metadata.fromId(trackId, context));
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
     }
 
     /*
@@ -52,51 +101,11 @@ public class TracksAdapter
         return new TrackViewHolder(view);
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        final TextView titleTextView;
-        final TextView infoTextView;
-        final ImageButton menuButton;
-
-        public TrackViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            titleTextView = (TextView) itemView.findViewById(R.id.title);
-            infoTextView = (TextView) itemView.findViewById(R.id.info);
-            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
-
-            PopupMenu popupMenu = new PopupMenu(context, menuButton);
-            popupMenu.inflate(R.menu.menu_track);
-            popupMenu.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.menu_addToPlaylist:
-                        int trackId = getCursor().getInt(TrackColumns.ID);
-                        getService().getTracks().add(Metadata.fromId(trackId, context));
-                        return true;
-
-                    default:
-                        return false;
-                }
-            });
-
-            menuButton.setOnClickListener(view -> popupMenu.show());
-        }
-
-        @Override
-        public void onClick(View view){
-            Intent i = new Intent(context, NowPlayingActivity.class);
-            context.startActivity(i);
-
-            getService().setTracks(TracksProvider.getAllTracks(getCursor()));
-            getService().setCurrentIndex(getAdapterPosition());
-            getService().prepare();
-        }
-    }
-
     /*
-     * Public methods
+     * Protected methods
      */
 
-    public String getTrackInfo() {
+    protected String getTrackInfo() {
         return context.getResources().getString(
                 R.string.pattern_track_info,
                 DurationUtils.toStringUntilHours(getCursor().getInt(TrackColumns.DURATION)),
