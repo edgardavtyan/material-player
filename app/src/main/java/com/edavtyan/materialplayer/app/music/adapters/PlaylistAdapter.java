@@ -3,8 +3,11 @@ package com.edavtyan.materialplayer.app.music.adapters;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
@@ -42,15 +45,19 @@ public class PlaylistAdapter
         return getService().getTracks().size();
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder {
+    public class TrackViewHolder
+            extends RecyclerView.ViewHolder
+            implements PopupMenu.OnMenuItemClickListener {
         private final TextView titleView;
         private final TextView infoView;
+        private final ImageButton menuButton;
 
         public TrackViewHolder(View itemView) {
             super(itemView);
 
             titleView = (TextView) itemView.findViewById(R.id.title);
             infoView = (TextView) itemView.findViewById(R.id.info);
+            menuButton = (ImageButton) itemView.findViewById(R.id.menu);
 
             itemView.setOnClickListener(view -> {
                 if (!isBound()) {
@@ -60,6 +67,24 @@ public class PlaylistAdapter
                 getService().setCurrentIndex(getAdapterPosition());
                 getService().prepare();
             });
+
+            PopupMenu popupMenu = new PopupMenu(context, menuButton);
+            popupMenu.inflate(R.menu.menu_queue);
+            popupMenu.setOnMenuItemClickListener(this);
+            menuButton.setOnClickListener(view -> popupMenu.show());
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_remove:
+                    getService().getTracks().remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    return true;
+
+                default:
+                    return false;
+            }
         }
     }
 }

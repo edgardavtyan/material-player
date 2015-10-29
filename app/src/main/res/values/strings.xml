@@ -31,4 +31,5 @@
     <string name="notification.defaultText.title">Nothing is playing</string>
     <string name="notification.defaultText.info">Tap to open MaterialPlayer</string>
 
+    <string name="menu.queue.remove">Remove from queue</string>
 </resources>
