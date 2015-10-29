@@ -1,32 +1,8 @@
 <resources>
-    <string name="app_name">MaterialPlayer</string>
-    
-    <string name="pattern.artist.info">%1$s | %2$s</string>
-    <string name="pattern.album.info">%1$s | %2$s</string>
-    <string name="pattern.track.info">%1$s | %2$s - %3$s</string>
+    <string name="app.name">MaterialPlayer</string>
 
-    <plurals name="albums">
-        <item quantity="zero">No Albums</item>
-        <item quantity="one">%d Album</item>
-        <item quantity="two">%d Albums</item>
-        <item quantity="few">%d Albums</item>
-        <item quantity="many">%d Albums</item>
-        <item quantity="other">%d Albums</item>
-    </plurals>
-
-    <plurals name="tracks">
-        <item quantity="zero">No Tracks</item>
-        <item quantity="one">%d Track</item>
-        <item quantity="two">%d Tracks</item>
-        <item quantity="few">%d Tracks</item>
-        <item quantity="many">%d Tracks</item>
-        <item quantity="other">%d Tracks</item>
-    </plurals>
-
-    <string name="nowplaying_toolbar_title">Now playing</string>
-
-    <string name="nowplaying_info_pattern">%1$s - %2$s</string>
-
+    <string name="nowplaying.toolbar.title">Now playing</string>
+    <string name="nowplaying.info.pattern">%1$s - %2$s</string>
 
     <string name="notification.defaultText.title">Nothing is playing</string>
     <string name="notification.defaultText.info">Tap to open MaterialPlayer</string>
