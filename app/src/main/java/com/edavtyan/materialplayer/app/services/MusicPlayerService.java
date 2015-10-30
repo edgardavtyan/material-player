@@ -13,7 +13,6 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -79,8 +78,7 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-        String metadataJson = new Gson().toJson(player.getCurrentTrack());
-        sendBroadcast(new Intent(SEND_NEW_TRACK).putExtra(EXTRA_METADATA, metadataJson));
+        sendBroadcast(new Intent(SEND_NEW_TRACK));
     }
 
     /*
