@@ -12,6 +12,7 @@
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
         android:layout_marginRight="8dp"
+        android:contentDescription="@string/description.art"
         android:src="@drawable/fallback_cover_listitem"
         />
 
@@ -55,6 +56,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_rewind_black"
         android:background="@drawable/ripple_control_notification"
+        android:contentDescription="@string/description.control.rewind"
         />
 
     <ImageButton
@@ -63,6 +65,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_play_pause_black"
         android:background="@drawable/ripple_control_notification"
+        android:contentDescription="@string/description.control.playPause"
         />
 
     <ImageButton
@@ -71,6 +74,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_fast_forward_black"
         android:background="@drawable/ripple_control_notification"
+        android:contentDescription="@string/description.control.fastForward"
         />
 
 </LinearLayout>

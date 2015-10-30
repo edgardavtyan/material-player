@@ -14,6 +14,7 @@
         android:id="@+id/art"
         android:layout_width="?attr/listPreferredItemHeight"
         android:layout_height="?attr/listPreferredItemHeight"
+        android:contentDescription="@string/description.art"
         tools:src="@drawable/fallback_cover_listitem"
         />
 
@@ -51,6 +52,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_more_vert"
         android:background="@drawable/ripple_control_notification"
+        android:contentDescription="@string/description.moreActions"
         />
 
 </LinearLayout>

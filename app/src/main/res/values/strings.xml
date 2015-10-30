@@ -8,4 +8,5 @@
     <string name="notification.defaultText.info">Tap to open MaterialPlayer</string>
 
     <string name="menu.queue.remove">Remove from queue</string>
+    <string name="description.moreActions">Additional actions</string>
 </resources>

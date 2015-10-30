@@ -25,6 +25,7 @@
 
             <ImageView
                 android:id="@+id/back"
+                android:contentDescription="@string/description.art"
                 tools:src="@drawable/fallback_cover"
                 style="@style/collapsingHeader_artBack"
                 />

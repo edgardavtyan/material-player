@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="description.art">Artwork</string>
+    <string name="description.backArt">Artwork background</string>
+    <string name="description.control.shuffle">Shuffle tracks</string>
+    <string name="description.control.rewind">Play previous track</string>
+    <string name="description.control.playPause">Pause or resume playback</string>
+    <string name="description.control.fastForward">Play next track</string>
+    <string name="description.control.repeat">Toggle playback repeat mode</string>
+
+</resources>
