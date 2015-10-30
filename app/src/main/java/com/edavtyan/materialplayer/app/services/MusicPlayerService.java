@@ -76,6 +76,7 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
         sendBroadcast(new Intent(SEND_NEW_TRACK));
+        seekTo(0);
     }
 
     /*
