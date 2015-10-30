@@ -14,7 +14,7 @@
         android:src="@drawable/fallback_cover"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/description.art"
+        android:contentDescription="@string/description_art"
         />
 
     <View
@@ -30,7 +30,7 @@
         android:src="@drawable/fallback_cover"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:contentDescription="@string/description.backArt"
+        android:contentDescription="@string/description_backArt"
         />
 
 </FrameLayout>

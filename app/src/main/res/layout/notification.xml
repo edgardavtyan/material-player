@@ -12,7 +12,7 @@
         android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
         android:layout_marginRight="8dp"
-        android:contentDescription="@string/description.art"
+        android:contentDescription="@string/description_art"
         android:src="@drawable/fallback_cover_listitem"
         />
 
@@ -35,7 +35,7 @@
             android:textColor="#000000"
             android:textSize="16sp"
             android:singleLine="true"
-            android:text="@string/notification.defaultText.title"
+            android:text="@string/notification_defaultText_title"
             />
 
         <TextView
@@ -45,7 +45,7 @@
             android:gravity="center_vertical"
             android:textColor="#777777"
             android:singleLine="true"
-            android:text="@string/notification.defaultText.info"
+            android:text="@string/notification_defaultText_info"
             />
 
     </LinearLayout>
@@ -56,7 +56,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_rewind_black"
         android:background="@drawable/ripple_control_notification"
-        android:contentDescription="@string/description.control.rewind"
+        android:contentDescription="@string/description_control_rewind"
         />
 
     <ImageButton
@@ -65,7 +65,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_play_pause_black"
         android:background="@drawable/ripple_control_notification"
-        android:contentDescription="@string/description.control.playPause"
+        android:contentDescription="@string/description_control_playPause"
         />
 
     <ImageButton
@@ -74,7 +74,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_fast_forward_black"
         android:background="@drawable/ripple_control_notification"
-        android:contentDescription="@string/description.control.fastForward"
+        android:contentDescription="@string/description_control_fastForward"
         />
 
 </LinearLayout>

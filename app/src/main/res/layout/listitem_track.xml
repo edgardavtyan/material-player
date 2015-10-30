@@ -43,7 +43,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/ripple_control_notification"
         android:src="@drawable/ic_more_vert"
-        android:contentDescription="@string/description.moreActions"
+        android:contentDescription="@string/description_moreActions"
         />
 
 </LinearLayout>

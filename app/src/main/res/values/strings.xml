@@ -1,12 +1,12 @@
 <resources>
-    <string name="app.name">MaterialPlayer</string>
+    <string name="app_name">MaterialPlayer</string>
 
-    <string name="nowplaying.toolbar.title">Now playing</string>
-    <string name="nowplaying.info.pattern">%1$s - %2$s</string>
+    <string name="nowplaying_toolbar_title">Now playing</string>
+    <string name="nowplaying_info_pattern">%1$s - %2$s</string>
 
-    <string name="notification.defaultText.title">Nothing is playing</string>
-    <string name="notification.defaultText.info">Tap to open MaterialPlayer</string>
+    <string name="notification_defaultText_title">Nothing is playing</string>
+    <string name="notification_defaultText_info">Tap to open MaterialPlayer</string>
 
-    <string name="menu.queue.remove">Remove from queue</string>
-    <string name="description.moreActions">Additional actions</string>
+    <string name="menu_queue_remove">Remove from queue</string>
+    <string name="description_moreActions">Additional actions</string>
 </resources>

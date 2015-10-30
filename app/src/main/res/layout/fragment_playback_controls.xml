@@ -12,14 +12,14 @@
 
     <ImageButton
         android:src="@drawable/ic_shuffle_white"
-        android:contentDescription="@string/description.control.shuffle"
+        android:contentDescription="@string/description_control_shuffle"
         style="@style/nowplaying_control"
         />
 
     <ImageButton
         android:id="@+id/rewind"
         android:src="@drawable/ic_rewind_white"
-        android:contentDescription="@string/description.control.rewind"
+        android:contentDescription="@string/description_control_rewind"
         style="@style/nowplaying_control"
         />
 
@@ -31,20 +31,20 @@
         app:vc_endDrawable="@drawable/ic_play_to_pause"
         app:vc_foregroundTint="#fff"
         app:vc_autoStartAnimation="true"
-        android:contentDescription="@string/description.control.playPause"
+        android:contentDescription="@string/description_control_playPause"
         style="@style/nowplaying_control"
         />
 
     <ImageButton
         android:id="@+id/fast_forward"
         android:src="@drawable/ic_fast_forward_white"
-        android:contentDescription="@string/description.control.fastForward"
+        android:contentDescription="@string/description_control_fastForward"
         style="@style/nowplaying_control"
         />
 
     <ImageButton
         android:src="@drawable/ic_repeat_white"
-        android:contentDescription="@string/description.control.repeat"
+        android:contentDescription="@string/description_control_repeat"
         style="@style/nowplaying_control"
         />
 

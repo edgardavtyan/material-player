@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/art"
-        android:contentDescription="@string/description.art"
+        android:contentDescription="@string/description_art"
         tools:src="@drawable/fallback_cover_listitem"
         style="@style/nowplayingBar_art"
         />
