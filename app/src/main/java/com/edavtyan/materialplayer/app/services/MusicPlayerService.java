@@ -16,7 +16,6 @@ import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
 
 import java.util.List;
 
-// TODO: This needs some serious refactoring
 public class MusicPlayerService extends Service implements MediaPlayer.OnPreparedListener {
     private static final int NOTIFICATION_ID = 1;
 
@@ -27,8 +26,6 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
     public static final String SEND_PLAY = "com.edavtyan.materialplayer.app.play";
     public static final String SEND_PAUSE = "com.edavtyan.materialplayer.app.pause";
     public static final String SEND_NEW_TRACK = "com.edavtyan.materialplayer.app.newTrack";
-
-    public static final String EXTRA_METADATA = "metadata";
 
     /*
      * Fields
