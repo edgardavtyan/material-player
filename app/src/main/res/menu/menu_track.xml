@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_addToPlaylist"
-          android:title="Add to playlist" />
+          android:title="@string/menu_tracks_addToPlaylist" />
 
 </menu>

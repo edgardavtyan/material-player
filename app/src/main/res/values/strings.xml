@@ -8,5 +8,7 @@
     <string name="notification_defaultText_info">Tap to open MaterialPlayer</string>
 
     <string name="menu_queue_remove">Remove from queue</string>
+    <string name="menu_tracks_addToPlaylist">Add to playlist</string>
+
     <string name="description_moreActions">Additional actions</string>
 </resources>
