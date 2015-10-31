@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
+import com.edavtyan.materialplayer.app.music.RepeatMode;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
 
 import java.util.List;
@@ -100,7 +101,7 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
         super.onCreate();
 
         notification = new NowPlayingNotification(this);
-        player = new MusicPlayer();
+        player = new MusicPlayer(this);
         player.setOnPreparedListener(this);
 
         IntentFilter playPauseFilter = new IntentFilter(ACTION_PLAY_PAUSE);
@@ -133,6 +134,14 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
 
     public void setTracks(List<Metadata> tracks) {
         player.setTracks(tracks);
+    }
+
+    public RepeatMode getRepeatMode() {
+        return player.getRepeatMode();
+    }
+
+    public void toggleRepeatMode() {
+        player.toggleRepeatMode();
     }
 
     public void setCurrentIndex(int index) {

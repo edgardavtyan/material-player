@@ -26,6 +26,7 @@ public class PlaybackControlsFragment
     MorphButton playPauseButton;
     ImageButton fastForwardButton;
     ImageButton rewindButton;
+    ImageButton repeatButton;
 
     /*
      * BroadcastReceivers
@@ -69,6 +70,8 @@ public class PlaybackControlsFragment
         rewindButton =(ImageButton) view.findViewById(R.id.rewind);
         rewindButton.setOnClickListener(this);
 
+        repeatButton = (ImageButton) view.findViewById(R.id.repeat);
+        repeatButton.setOnClickListener(this);
 
         return view;
     }
@@ -105,6 +108,8 @@ public class PlaybackControlsFragment
         } else {
             playPauseButton.setState(STATE_PLAY);
         }
+
+        syncRepeatButtonIcon();
     }
 
     /*
@@ -125,6 +130,29 @@ public class PlaybackControlsFragment
             case R.id.fast_forward:
                 getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_FAST_FORWARD));
                 break;
+
+            case R.id.repeat:
+                getService().toggleRepeatMode();
+                syncRepeatButtonIcon();
+                break;
+        }
+    }
+
+    /*
+     * Private methods
+     */
+
+    private void syncRepeatButtonIcon() {
+        switch (getService().getRepeatMode()) {
+            case NO_REPEAT:
+                repeatButton.setImageResource(R.drawable.ic_repeat_white);
+                return;
+            case REPEAT:
+                repeatButton.setImageResource(R.drawable.ic_repeat_accent);
+                return;
+            case REPEAT_ONE:
+                repeatButton.setImageResource(R.drawable.ic_repeat_one_accent);
+                return;
         }
     }
 }

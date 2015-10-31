@@ -43,6 +43,7 @@
         />
 
     <ImageButton
+        android:id="@+id/repeat"
         android:src="@drawable/ic_repeat_white"
         android:contentDescription="@string/description_control_repeat"
         style="@style/nowplaying_control"

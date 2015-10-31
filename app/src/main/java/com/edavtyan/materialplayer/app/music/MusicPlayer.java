@@ -1,6 +1,9 @@
 package com.edavtyan.materialplayer.app.music;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,13 +15,16 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
     private final List<Metadata> tracks;
     private int currentTrackIndex;
     private MediaPlayer.OnPreparedListener onPreparedListener;
+    private RepeatMode repeatMode;
+    private SharedPreferences prefs;
 
-
-    public MusicPlayer() {
+    public MusicPlayer(Context context) {
         player = new MediaPlayer();
         player.setOnCompletionListener(this);
         player.setOnPreparedListener(this);
         tracks = new ArrayList<>();
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        repeatMode = RepeatMode.fromPref(prefs, "repeat_mode");
     }
 
 
@@ -28,6 +34,26 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
 
     public void setCurrentTrackIndex(int index) {
         currentTrackIndex = index;
+    }
+
+    public RepeatMode getRepeatMode() {
+        return repeatMode;
+    }
+
+    public void toggleRepeatMode() {
+        switch (repeatMode) {
+            case NO_REPEAT:
+                repeatMode = RepeatMode.REPEAT;
+                break;
+            case REPEAT:
+                repeatMode = RepeatMode.REPEAT_ONE;
+                break;
+            case REPEAT_ONE:
+                repeatMode = RepeatMode.NO_REPEAT;
+                break;
+        }
+
+        prefs.edit().putInt("repeat_mode", RepeatMode.toInt(repeatMode)).apply();
     }
 
     public List<Metadata> getTracks() {
@@ -102,8 +128,23 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
-        moveNext();
-        prepare();
+        switch (repeatMode) {
+            case NO_REPEAT:
+                if (currentTrackIndex >= tracks.size() - 1) {
+                    player.pause();
+                }
+                return;
+
+            case REPEAT:
+                moveNext();
+                prepare();
+                return;
+
+            case REPEAT_ONE:
+                player.seekTo(0);
+                prepare();
+                return;
+        }
     }
 
     @Override
