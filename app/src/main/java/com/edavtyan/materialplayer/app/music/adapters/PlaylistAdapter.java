@@ -1,17 +1,22 @@
 package com.edavtyan.materialplayer.app.music.adapters;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewServiceAdapter;
+import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class PlaylistAdapter
         extends RecyclerViewServiceAdapter<PlaylistAdapter.TrackViewHolder> {
@@ -21,7 +26,22 @@ public class PlaylistAdapter
     public PlaylistAdapter(Context context) {
         super(context);
         this.context = context;
+        context.registerReceiver(
+                newTrackReceiver,
+                new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
     }
+
+    /*
+     * BroadcastReceivers
+     */
+
+    private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            notifyItemChanged(getService().getCurrentTrackIndex());
+            notifyItemChanged(getService().getCurrentTrackIndex() - 1);
+        }
+    };
 
     /*
      * ViewHolder
@@ -33,6 +53,7 @@ public class PlaylistAdapter
         private final TextView titleView;
         private final TextView infoView;
         private final ImageButton menuButton;
+        private final ImageView nowPlayingIcon;
 
         public TrackViewHolder(View itemView) {
             super(itemView);
@@ -41,6 +62,7 @@ public class PlaylistAdapter
             titleView = (TextView) itemView.findViewById(R.id.title);
             infoView = (TextView) itemView.findViewById(R.id.info);
             menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+            nowPlayingIcon = (ImageView) itemView.findViewById(R.id.nowPlaying);
 
             PopupMenu popupMenu = new PopupMenu(context, menuButton);
             popupMenu.inflate(R.menu.menu_queue);
@@ -86,11 +108,22 @@ public class PlaylistAdapter
         if (!isBound()) return;
         holder.titleView.setText(getService().getTracks().get(position).getTrackTitle());
         holder.infoView.setText(getService().getTracks().get(position).getAlbumTitle());
+        if (getService().getCurrentTrackIndex() == holder.getAdapterPosition()) {
+            holder.nowPlayingIcon.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
         if (!isBound()) return 0;
         return getService().getTracks().size();
+    }
+
+    /*
+     * Public methods
+     */
+
+    public void close() {
+        context.unregisterReceiver(newTrackReceiver);
     }
 }

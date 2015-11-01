@@ -37,6 +37,16 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/nowPlaying"
+        android:layout_width="@dimen/icon_medium"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_sound_bars"
+        android:scaleType="center"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
     <ImageButton
         android:id="@+id/menu"
         android:layout_width="@dimen/icon_medium"

@@ -32,6 +32,10 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         return tracks.get(currentTrackIndex);
     }
 
+    public int getCurrentTrackIndex() {
+        return currentTrackIndex;
+    }
+
     public void setCurrentTrackIndex(int index) {
         currentTrackIndex = index;
     }

@@ -51,5 +51,6 @@ public class PlaylistActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         playlistAdapter.unbindService();
+        playlistAdapter.close();
     }
 }

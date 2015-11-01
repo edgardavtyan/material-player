@@ -144,6 +144,10 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
         player.toggleRepeatMode();
     }
 
+    public int getCurrentTrackIndex() {
+        return player.getCurrentTrackIndex();
+    }
+
     public void setCurrentIndex(int index) {
         player.setCurrentTrackIndex(index);
     }
