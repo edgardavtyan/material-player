@@ -12,17 +12,17 @@ public final class TracksProvider {
     private TracksProvider() {}
 
 
-    public static ArrayList<Track> getAllTracks(Cursor cursor) {
+    public static ArrayList<Track> allFromCursor(Cursor cursor) {
         ArrayList<Track> tracks = new ArrayList<>();
         cursor.moveToPosition(-1);
         while (cursor.moveToNext()) {
-            tracks.add(getTrackFromCursor(cursor));
+            tracks.add(singleFromCursor(cursor));
         }
 
         return tracks;
     }
 
-    public static ArrayList<Track> getAlbumTracks(int albumId, Context context) {
+    public static ArrayList<Track> allWithAlbumId(int albumId, Context context) {
         Cursor cursor = null;
         try {
             cursor = context.getContentResolver().query(
@@ -31,18 +31,52 @@ public final class TracksProvider {
                     TrackColumns.NAME_ALBUM_ID + "=" + albumId,
                     null,
                     TrackColumns.NAME_TRACK + " ASC");
-            return getAllTracks(cursor);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
+            return allFromCursor(cursor);
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            if (cursor != null) cursor.close();
         }
     }
 
-    public static Track getTrackFromCursor(Cursor cursor) {
+    public static Track firstWithAlbumId(int albumId, Context context) {
+        Track track = new Track();
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(
+                    TrackColumns.URI,
+                    TrackColumns.PROJECTION,
+                    TrackColumns.NAME_ALBUM_ID + "=" + albumId,
+                    null, null);
+            cursor.moveToFirst();
+
+            track = singleFromCursor(cursor);
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+
+        return track;
+    }
+
+    public static Track withId(int id, Context context) {
+        Track track = new Track();
+        Cursor cursor = null;
+        try {
+            track.setTrackId(id);
+
+            cursor = context.getContentResolver().query(
+                    TrackColumns.URI,
+                    TrackColumns.PROJECTION,
+                    TrackColumns.NAME_ID + "=" + id,
+                    null, null);
+            cursor.moveToFirst();
+            track = singleFromCursor(cursor);
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+
+        return track;
+    }
+
+    public static Track singleFromCursor(Cursor cursor) {
         Track track = new Track();
         track.setTrackId(cursor.getInt(TrackColumns.ID));
         track.setTrackTitle(cursor.getString(TrackColumns.TITLE));
@@ -51,7 +85,7 @@ public final class TracksProvider {
         track.setArtistTitle(cursor.getString(TrackColumns.ARTIST));
         track.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
         track.setPath(cursor.getString(TrackColumns.PATH));
-        track.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED));
+        track.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED) * 1000);
         return track;
     }
 }

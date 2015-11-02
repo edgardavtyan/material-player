@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerServiceCursorAdapter;
-import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
@@ -55,7 +54,7 @@ public class TracksAdapter
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            getService().setTracks(TracksProvider.getAllTracks(getCursor()));
+            getService().setTracks(TracksProvider.allFromCursor(getCursor()));
             getService().setCurrentIndex(getAdapterPosition());
             getService().prepare();
         }
@@ -65,7 +64,7 @@ public class TracksAdapter
             switch (menuItem.getItemId()) {
                 case R.id.menu_addToPlaylist:
                     int trackId = getCursor().getInt(TrackColumns.ID);
-                    getService().getTracks().add(Track.fromId(trackId, context));
+                    getService().getTracks().add(TracksProvider.withId(trackId, context));
                     return true;
 
                 default:

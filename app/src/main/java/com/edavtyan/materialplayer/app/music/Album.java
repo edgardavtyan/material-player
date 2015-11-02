@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
+
 import java.io.File;
 
 import lombok.Data;
@@ -51,7 +53,7 @@ public class Album {
             album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
             album.setTracksCount(cursor.getInt(COLUMN_SONGS_COUNT));
 
-            Track track = Track.firstTrackOfAlbum(albumId, context);
+            Track track = TracksProvider.firstWithAlbumId(albumId, context);
             album.setArt(ArtProvider.fromTrack(track));
         } finally {
             if (cursor != null) cursor.close();

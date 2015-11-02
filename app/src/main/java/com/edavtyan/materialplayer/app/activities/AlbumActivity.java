@@ -18,6 +18,7 @@ import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
+import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 
 import java.io.File;
 
@@ -33,7 +34,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
     private class ImageLoadTask extends AsyncTask<Integer, Void, File> {
         @Override
         protected File doInBackground(Integer... albumIds) {
-            Track track = Track.firstTrackOfAlbum(albumIds[0], AlbumActivity.this);
+            Track track = TracksProvider.firstWithAlbumId(albumIds[0], AlbumActivity.this);
             return ArtProvider.fromTrack(track);
         }
 
