@@ -17,7 +17,6 @@ public class Metadata {
     private String trackTitle;
     private String artistTitle;
     private String albumTitle;
-    private File artFile;
     private String path;
     private long dateModified;
 
@@ -76,7 +75,6 @@ public class Metadata {
         metadata.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
         metadata.setPath(cursor.getString(TrackColumns.PATH));
         metadata.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED) * 1000);
-        metadata.setArtFile(ArtProvider.fromMetadata(metadata));
         return metadata;
     }
 }

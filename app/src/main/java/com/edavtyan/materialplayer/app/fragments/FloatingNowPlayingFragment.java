@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
+import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.wnafee.vector.MorphButton;
 
@@ -155,7 +156,7 @@ public class FloatingNowPlayingFragment
 
     private void syncDataWithService() {
         Glide.with(getContext())
-                .load(getService().getCurrentTrack().getArtFile())
+                .load(ArtProvider.fromMetadata(getService().getCurrentTrack()))
                 .error(R.drawable.fallback_cover)
                 .into(artView);
 

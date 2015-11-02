@@ -7,6 +7,7 @@ import com.edavtyan.materialplayer.app.music.ArtProvider;
 import com.edavtyan.materialplayer.app.music.Metadata;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public final class TracksProvider {
@@ -53,7 +54,6 @@ public final class TracksProvider {
         metadata.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
         metadata.setPath(cursor.getString(TrackColumns.PATH));
         metadata.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED));
-        metadata.setArtFile(ArtProvider.fromMetadata(metadata));
         return metadata;
     }
 }
