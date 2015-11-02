@@ -12,7 +12,7 @@ import java.util.List;
 public class MusicPlayer implements MediaPlayer.OnCompletionListener,
                                     MediaPlayer.OnPreparedListener {
     private final MediaPlayer player;
-    private final List<Metadata> tracks;
+    private final List<Track> tracks;
     private int currentTrackIndex;
     private MediaPlayer.OnPreparedListener onPreparedListener;
     private RepeatMode repeatMode;
@@ -28,7 +28,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
     }
 
 
-    public Metadata getCurrentTrack() {
+    public Track getCurrentTrack() {
         return tracks.get(currentTrackIndex);
     }
 
@@ -60,11 +60,11 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         prefs.edit().putInt("repeat_mode", RepeatMode.toInt(repeatMode)).apply();
     }
 
-    public List<Metadata> getTracks() {
+    public List<Track> getTracks() {
         return tracks;
     }
 
-    public void setTracks(List<Metadata> newTracks) {
+    public void setTracks(List<Track> newTracks) {
         tracks.clear();
         tracks.addAll(newTracks);
     }

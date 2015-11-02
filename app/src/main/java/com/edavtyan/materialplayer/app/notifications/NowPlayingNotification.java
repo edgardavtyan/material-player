@@ -17,7 +17,7 @@ import android.widget.RemoteViews;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.MainActivity;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.utils.PendingIntents;
 
@@ -100,11 +100,11 @@ public class NowPlayingNotification implements ServiceConnection {
                 PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_REWIND));
 
         if (service != null && service.hasData()) {
-            Metadata metadata = service.getCurrentTrack();
-            view.setTextViewText(R.id.title, metadata.getTrackTitle());
-            view.setTextViewText(R.id.info, metadata.getAlbumTitle());
+            Track track = service.getCurrentTrack();
+            view.setTextViewText(R.id.title, track.getTrackTitle());
+            view.setTextViewText(R.id.info, track.getAlbumTitle());
 
-            String artPath = ArtProvider.fromMetadata(metadata).getAbsolutePath();
+            String artPath = ArtProvider.fromTrack(track).getAbsolutePath();
             Bitmap art = BitmapFactory.decodeFile(artPath);
             view.setImageViewBitmap(R.id.art, art);
         }

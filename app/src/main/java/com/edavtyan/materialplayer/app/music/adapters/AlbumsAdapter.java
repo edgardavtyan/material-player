@@ -19,7 +19,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 
@@ -71,7 +71,7 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
                 case R.id.menu_addToPlaylist:
                     getCursor().moveToPosition(getAdapterPosition());
                     int albumId = getCursor().getInt(AlbumColumns.ID);
-                    List<Metadata> tracks = TracksProvider.getAlbumTracks(albumId, context);
+                    List<Track> tracks = TracksProvider.getAlbumTracks(albumId, context);
                     getService().getTracks().addAll(tracks);
 
                 default:

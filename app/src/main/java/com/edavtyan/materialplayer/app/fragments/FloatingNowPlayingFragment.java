@@ -156,7 +156,7 @@ public class FloatingNowPlayingFragment
 
     private void syncDataWithService() {
         Glide.with(getContext())
-                .load(ArtProvider.fromMetadata(getService().getCurrentTrack()))
+                .load(ArtProvider.fromTrack(getService().getCurrentTrack()))
                 .error(R.drawable.fallback_cover)
                 .into(artView);
 

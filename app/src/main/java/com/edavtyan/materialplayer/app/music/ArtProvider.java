@@ -14,11 +14,11 @@ import java.io.File;
 public final class ArtProvider {
     private ArtProvider() {}
 
-    public static File fromMetadata(Metadata metadata) {
-        File artFile = DataStorage.readArt(metadata.getAlbumId());
-        if (!artFile.exists() || artFile.lastModified() < metadata.getDateModified()) {
+    public static File fromTrack(Track track) {
+        File artFile = DataStorage.readArt(track.getAlbumId());
+        if (!artFile.exists() || artFile.lastModified() < track.getDateModified()) {
             try {
-                AudioFile audiofile = AudioFileIO.read(new File(metadata.getPath()));
+                AudioFile audiofile = AudioFileIO.read(new File(track.getPath()));
                 byte[] artBytes = audiofile.getTag().getFirstArtwork().getBinaryData();
 
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -26,8 +26,8 @@ public final class ArtProvider {
                 Bitmap art = BitmapFactory.decodeByteArray(artBytes, 0, artBytes.length);
                 art.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
 
-                DataStorage.saveArt(metadata.getAlbumId(), byteArrayOutputStream.toByteArray());
-                artFile = DataStorage.readArt(metadata.getAlbumId());
+                DataStorage.saveArt(track.getAlbumId(), byteArrayOutputStream.toByteArray());
+                artFile = DataStorage.readArt(track.getAlbumId());
 
                 byteArrayOutputStream.close();
             } catch (Exception e) {

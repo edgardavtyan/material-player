@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 import java.io.File;
@@ -41,10 +41,10 @@ public class NowPlayingArtFragment extends ServiceFragment {
      * AsyncTasks
      */
 
-    private class ArtLoadTask extends AsyncTask<Metadata, Void, DrawableRequestBuilder> {
+    private class ArtLoadTask extends AsyncTask<Track, Void, DrawableRequestBuilder> {
         @Override
-        protected DrawableRequestBuilder doInBackground(Metadata... metadata) {
-            File artFile = ArtProvider.fromMetadata(metadata[0]);
+        protected DrawableRequestBuilder doInBackground(Track... tracks) {
+            File artFile = ArtProvider.fromTrack(tracks[0]);
             return Glide.with(getActivity())
                     .load(artFile)
                     .error(R.drawable.fallback_cover);

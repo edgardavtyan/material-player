@@ -3,19 +3,17 @@ package com.edavtyan.materialplayer.app.music.providers;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public final class TracksProvider {
     private TracksProvider() {}
 
 
-    public static ArrayList<Metadata> getAllTracks(Cursor cursor) {
-        ArrayList<Metadata> tracks = new ArrayList<>();
+    public static ArrayList<Track> getAllTracks(Cursor cursor) {
+        ArrayList<Track> tracks = new ArrayList<>();
         cursor.moveToPosition(-1);
         while (cursor.moveToNext()) {
             tracks.add(getTrackFromCursor(cursor));
@@ -24,7 +22,7 @@ public final class TracksProvider {
         return tracks;
     }
 
-    public static ArrayList<Metadata> getAlbumTracks(int albumId, Context context) {
+    public static ArrayList<Track> getAlbumTracks(int albumId, Context context) {
         Cursor cursor = null;
         try {
             cursor = context.getContentResolver().query(
@@ -44,16 +42,16 @@ public final class TracksProvider {
         }
     }
 
-    public static Metadata getTrackFromCursor(Cursor cursor) {
-        Metadata metadata = new Metadata();
-        metadata.setTrackId(cursor.getInt(TrackColumns.ID));
-        metadata.setTrackTitle(cursor.getString(TrackColumns.TITLE));
-        metadata.setDuration(cursor.getLong(TrackColumns.DURATION));
-        metadata.setAlbumId(cursor.getInt(TrackColumns.ALBUM_ID));
-        metadata.setArtistTitle(cursor.getString(TrackColumns.ARTIST));
-        metadata.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
-        metadata.setPath(cursor.getString(TrackColumns.PATH));
-        metadata.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED));
-        return metadata;
+    public static Track getTrackFromCursor(Cursor cursor) {
+        Track track = new Track();
+        track.setTrackId(cursor.getInt(TrackColumns.ID));
+        track.setTrackTitle(cursor.getString(TrackColumns.TITLE));
+        track.setDuration(cursor.getLong(TrackColumns.DURATION));
+        track.setAlbumId(cursor.getInt(TrackColumns.ALBUM_ID));
+        track.setArtistTitle(cursor.getString(TrackColumns.ARTIST));
+        track.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
+        track.setPath(cursor.getString(TrackColumns.PATH));
+        track.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED));
+        return track;
     }
 }

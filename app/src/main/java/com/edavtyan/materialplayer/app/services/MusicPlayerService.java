@@ -10,7 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.music.RepeatMode;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
@@ -124,15 +124,15 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
      * Public methods
      */
 
-    public Metadata getCurrentTrack() {
+    public Track getCurrentTrack() {
         return player.getCurrentTrack();
     }
 
-    public List<Metadata> getTracks() {
+    public List<Track> getTracks() {
         return player.getTracks();
     }
 
-    public void setTracks(List<Metadata> tracks) {
+    public void setTracks(List<Track> tracks) {
         player.setTracks(tracks);
     }
 

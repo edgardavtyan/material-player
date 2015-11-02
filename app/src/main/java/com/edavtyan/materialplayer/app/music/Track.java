@@ -5,12 +5,10 @@ import android.database.Cursor;
 
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 
-import java.io.File;
-
 import lombok.Data;
 
 @Data
-public class Metadata {
+public class Track {
     private int trackId;
     private int albumId;
     private long duration;
@@ -22,11 +20,11 @@ public class Metadata {
 
 
 
-    public static Metadata fromId(int id, Context context) {
-        Metadata metadata = new Metadata();
+    public static Track fromId(int id, Context context) {
+        Track track = new Track();
         Cursor cursor = null;
         try {
-            metadata.setTrackId(id);
+            track.setTrackId(id);
 
             cursor = context.getContentResolver().query(
                     TrackColumns.URI,
@@ -34,18 +32,18 @@ public class Metadata {
                     TrackColumns.NAME_ID + "=" + id,
                     null, null);
             cursor.moveToFirst();
-            metadata = fromCursor(cursor);
+            track = fromCursor(cursor);
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
         }
 
-        return metadata;
+        return track;
     }
 
-    public static Metadata firstTrackOfAlbum(int albumId, Context context) {
-        Metadata metadata = new Metadata();
+    public static Track firstTrackOfAlbum(int albumId, Context context) {
+        Track track = new Track();
         Cursor cursor = null;
         try {
             cursor = context.getContentResolver().query(
@@ -55,26 +53,26 @@ public class Metadata {
                     null, null);
             cursor.moveToFirst();
 
-            metadata = fromCursor(cursor);
+            track = fromCursor(cursor);
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
         }
 
-        return metadata;
+        return track;
     }
 
-    public static Metadata fromCursor(Cursor cursor) {
-        Metadata metadata = new Metadata();
-        metadata.setTrackId(cursor.getInt(TrackColumns.ID));
-        metadata.setTrackTitle(cursor.getString(TrackColumns.TITLE));
-        metadata.setDuration(cursor.getLong(TrackColumns.DURATION));
-        metadata.setAlbumId(cursor.getInt(TrackColumns.ALBUM_ID));
-        metadata.setArtistTitle(cursor.getString(TrackColumns.ARTIST));
-        metadata.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
-        metadata.setPath(cursor.getString(TrackColumns.PATH));
-        metadata.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED) * 1000);
-        return metadata;
+    public static Track fromCursor(Cursor cursor) {
+        Track track = new Track();
+        track.setTrackId(cursor.getInt(TrackColumns.ID));
+        track.setTrackTitle(cursor.getString(TrackColumns.TITLE));
+        track.setDuration(cursor.getLong(TrackColumns.DURATION));
+        track.setAlbumId(cursor.getInt(TrackColumns.ALBUM_ID));
+        track.setArtistTitle(cursor.getString(TrackColumns.ARTIST));
+        track.setAlbumTitle(cursor.getString(TrackColumns.ALBUM));
+        track.setPath(cursor.getString(TrackColumns.PATH));
+        track.setDateModified(cursor.getLong(TrackColumns.DATE_MODIFIED) * 1000);
+        return track;
     }
 }

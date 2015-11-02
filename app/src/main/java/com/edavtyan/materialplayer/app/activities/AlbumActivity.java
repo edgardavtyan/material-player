@@ -14,7 +14,7 @@ import com.edavtyan.materialplayer.app.activities.base.CollapsingHeaderListActiv
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.Album;
 import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Metadata;
+import com.edavtyan.materialplayer.app.music.Track;
 import com.edavtyan.materialplayer.app.music.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
@@ -33,8 +33,8 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
     private class ImageLoadTask extends AsyncTask<Integer, Void, File> {
         @Override
         protected File doInBackground(Integer... albumIds) {
-            Metadata metadata = Metadata.firstTrackOfAlbum(albumIds[0], AlbumActivity.this);
-            return ArtProvider.fromMetadata(metadata);
+            Track track = Track.firstTrackOfAlbum(albumIds[0], AlbumActivity.this);
+            return ArtProvider.fromTrack(track);
         }
 
         @Override
