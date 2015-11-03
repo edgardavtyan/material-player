@@ -108,8 +108,10 @@ public class PlaylistAdapter
         if (!isBound()) return;
         holder.titleView.setText(getService().getTracks().get(position).getTrackTitle());
         holder.infoView.setText(getService().getTracks().get(position).getAlbumTitle());
-        if (getService().getCurrentTrackIndex() == holder.getAdapterPosition()) {
+        if (getService().getCurrentTrackIndex() == holder.getLayoutPosition()) {
             holder.nowPlayingIcon.setVisibility(View.VISIBLE);
+        } else {
+            holder.nowPlayingIcon.setVisibility(View.GONE);
         }
     }
 
