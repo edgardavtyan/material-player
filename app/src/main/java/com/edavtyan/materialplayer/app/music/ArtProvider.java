@@ -2,34 +2,56 @@ package com.edavtyan.materialplayer.app.music;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.edavtyan.materialplayer.app.utils.DataStorage;
+import com.edavtyan.materialplayer.app.utils.FileUtils;
+import com.esotericsoftware.wildcard.Paths;
 
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 
 public final class ArtProvider {
     private ArtProvider() {}
 
+
+    private static final String TAG = "ArtProvider";
+
+
     public static File fromTrack(Track track) {
-        File artFile = DataStorage.readArt(track.getAlbumId());
-        if (!artFile.exists() || artFile.lastModified() < track.getDateModified()) {
+        String artFolder = DataStorage.ART_FOLDER.getAbsolutePath();
+        String artGlob = track.getAlbumId() + "@*";
+        List<File> artFiles = new Paths().glob(artFolder, artGlob).getFiles();
+
+        boolean foundArt = artFiles.size() != 0;
+        boolean artOutdated = foundArt && artFiles.get(0).lastModified() < track.getDateModified();
+
+        int artGeneration = 1;
+        if (artOutdated) {
+            String artFileName = artFiles.get(0).getName();
+            FileUtils.delete(artFileName);
+            artGeneration = getArtGeneration(artFileName);
+            artGeneration++;
+        }
+
+        File artFile = new File(
+                DataStorage.ART_FOLDER,
+                String.format("%d@%d", track.getAlbumId(), artGeneration));
+
+        if (artOutdated || !foundArt) {
+            Log.d(TAG, "Art for " + track.getAlbumTitle() + " does not exist or outdated");
             try {
-                AudioFile audiofile = AudioFileIO.read(new File(track.getPath()));
-                byte[] artBytes = audiofile.getTag().getFirstArtwork().getBinaryData();
+                AudioFile audioFile = AudioFileIO.read(new File(track.getPath()));
+                byte[] artBytes = audioFile.getTag().getFirstArtwork().getBinaryData();
 
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-                Bitmap art = BitmapFactory.decodeByteArray(artBytes, 0, artBytes.length);
-                art.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
-
-                DataStorage.saveArt(track.getAlbumId(), byteArrayOutputStream.toByteArray());
-                artFile = DataStorage.readArt(track.getAlbumId());
-
-                byteArrayOutputStream.close();
+                FileOutputStream outputStream = new FileOutputStream(artFile);
+                Bitmap artBitmap = BitmapFactory.decodeByteArray(artBytes, 0, artBytes.length);
+                artBitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
+                outputStream.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -45,5 +67,9 @@ public final class ArtProvider {
         }
 
         return artFile;
+    }
+
+    private static int getArtGeneration(String artFileName) {
+        return Integer.parseInt(artFileName.substring(artFileName.indexOf("@") + 1));
     }
 }
