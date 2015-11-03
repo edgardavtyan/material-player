@@ -76,8 +76,10 @@ public class PlaylistAdapter
                 return;
             }
 
+            int oldPosition = getService().getCurrentTrackIndex();
             getService().setCurrentIndex(getAdapterPosition());
             getService().prepare();
+            notifyItemChanged(oldPosition);
         }
 
         @Override
