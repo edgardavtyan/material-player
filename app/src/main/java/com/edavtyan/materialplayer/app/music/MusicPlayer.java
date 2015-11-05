@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MusicPlayer implements MediaPlayer.OnCompletionListener,
@@ -14,6 +15,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
     private final MediaPlayer player;
     private final List<Track> tracks;
     private int currentTrackIndex;
+    private boolean isShuffling;
     private MediaPlayer.OnPreparedListener onPreparedListener;
     private RepeatMode repeatMode;
     private SharedPreferences prefs;
@@ -25,6 +27,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         tracks = new ArrayList<>();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         repeatMode = RepeatMode.fromPref(prefs, "repeat_mode");
+        isShuffling = prefs.getBoolean("is_shuffling", false);
     }
 
 
@@ -38,6 +41,17 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
 
     public void setCurrentTrackIndex(int index) {
         currentTrackIndex = index;
+    }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> newTracks, int index) {
+        tracks.clear();
+        tracks.addAll(newTracks);
+        currentTrackIndex = index;
+        if (isShuffling) shuffleQueue();
     }
 
     public RepeatMode getRepeatMode() {
@@ -60,13 +74,20 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         prefs.edit().putInt("repeat_mode", RepeatMode.toInt(repeatMode)).apply();
     }
 
-    public List<Track> getTracks() {
-        return tracks;
+    public boolean isShuffling() {
+        return isShuffling;
     }
 
-    public void setTracks(List<Track> newTracks) {
-        tracks.clear();
-        tracks.addAll(newTracks);
+    public void toggleShuffling() {
+        isShuffling = !isShuffling;
+        prefs.edit().putBoolean("is_shuffling", isShuffling).apply();
+        if (isShuffling) {
+            shuffleQueue();
+        } else {
+            Track currentTrack = tracks.get(currentTrackIndex);
+            Collections.sort(tracks, (t1, t2) -> t1.getQueueIndex() - t2.getQueueIndex());
+            currentTrackIndex = tracks.indexOf(currentTrack);
+        }
     }
 
     public void moveNext() {
@@ -157,5 +178,16 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         if (onPreparedListener != null) {
             onPreparedListener.onPrepared(mediaPlayer);
         }
+    }
+
+    /*
+     * Private methods
+     */
+
+    private void shuffleQueue() {
+        Track currentTrack = tracks.get(currentTrackIndex);
+        Collections.shuffle(tracks);
+        Collections.swap(tracks, 0, tracks.indexOf(currentTrack));
+        currentTrackIndex = 0;
     }
 }

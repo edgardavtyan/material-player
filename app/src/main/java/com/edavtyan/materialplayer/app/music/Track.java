@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Track {
+    private int queueIndex;
     private int trackId;
     private int albumId;
     private long duration;

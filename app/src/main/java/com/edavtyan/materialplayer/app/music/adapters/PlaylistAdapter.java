@@ -38,8 +38,8 @@ public class PlaylistAdapter
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            notifyItemChanged(getService().getCurrentTrackIndex());
-            notifyItemChanged(getService().getCurrentTrackIndex() - 1);
+            notifyItemChanged(getService().getCurrentIndex());
+            notifyItemChanged(getService().getCurrentIndex() - 1);
         }
     };
 
@@ -76,7 +76,7 @@ public class PlaylistAdapter
                 return;
             }
 
-            int oldPosition = getService().getCurrentTrackIndex();
+            int oldPosition = getService().getCurrentIndex();
             getService().setCurrentIndex(getAdapterPosition());
             getService().prepare();
             notifyItemChanged(oldPosition);
@@ -110,7 +110,7 @@ public class PlaylistAdapter
         if (!isBound()) return;
         holder.titleView.setText(getService().getTracks().get(position).getTrackTitle());
         holder.infoView.setText(getService().getTracks().get(position).getAlbumTitle());
-        if (getService().getCurrentTrackIndex() == holder.getLayoutPosition()) {
+        if (getService().getCurrentIndex() == holder.getLayoutPosition()) {
             holder.nowPlayingIcon.setVisibility(View.VISIBLE);
         } else {
             holder.nowPlayingIcon.setVisibility(View.GONE);

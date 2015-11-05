@@ -15,8 +15,12 @@ public final class TracksProvider {
     public static ArrayList<Track> allFromCursor(Cursor cursor) {
         ArrayList<Track> tracks = new ArrayList<>();
         cursor.moveToPosition(-1);
+        int queueIndex = 0;
         while (cursor.moveToNext()) {
-            tracks.add(singleFromCursor(cursor));
+            Track track = singleFromCursor(cursor);
+            track.setQueueIndex(queueIndex);
+            tracks.add(track);
+            queueIndex++;
         }
 
         return tracks;

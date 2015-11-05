@@ -132,8 +132,8 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
         return player.getTracks();
     }
 
-    public void setTracks(List<Track> tracks) {
-        player.setTracks(tracks);
+    public void setTracks(List<Track> tracks, int index) {
+        player.setTracks(tracks, index);
     }
 
     public RepeatMode getRepeatMode() {
@@ -144,7 +144,15 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
         player.toggleRepeatMode();
     }
 
-    public int getCurrentTrackIndex() {
+    public boolean isShuffling() {
+        return player.isShuffling();
+    }
+
+    public void toggleShuffling() {
+        player.toggleShuffling();
+    }
+
+    public int getCurrentIndex() {
         return player.getCurrentTrackIndex();
     }
 

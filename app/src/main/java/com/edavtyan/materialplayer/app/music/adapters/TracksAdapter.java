@@ -54,8 +54,7 @@ public class TracksAdapter
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            getService().setTracks(TracksProvider.allFromCursor(getCursor()));
-            getService().setCurrentIndex(getAdapterPosition());
+            getService().setTracks(TracksProvider.allFromCursor(getCursor()), getAdapterPosition());
             getService().prepare();
         }
 

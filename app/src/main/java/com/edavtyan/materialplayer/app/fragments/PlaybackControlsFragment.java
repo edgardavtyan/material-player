@@ -27,6 +27,7 @@ public class PlaybackControlsFragment
     ImageButton fastForwardButton;
     ImageButton rewindButton;
     ImageButton repeatButton;
+    ImageButton shuffleButton;
 
     /*
      * BroadcastReceivers
@@ -73,6 +74,9 @@ public class PlaybackControlsFragment
         repeatButton = (ImageButton) view.findViewById(R.id.repeat);
         repeatButton.setOnClickListener(this);
 
+        shuffleButton = (ImageButton) view.findViewById(R.id.shuffle);
+        shuffleButton.setOnClickListener(this);
+
         return view;
     }
 
@@ -110,6 +114,7 @@ public class PlaybackControlsFragment
         }
 
         syncRepeatButtonIcon();
+        syncShuffleButtonIcon();
     }
 
     /*
@@ -135,6 +140,11 @@ public class PlaybackControlsFragment
                 getService().toggleRepeatMode();
                 syncRepeatButtonIcon();
                 break;
+
+            case R.id.shuffle:
+                getService().toggleShuffling();
+                syncShuffleButtonIcon();
+                break;
         }
     }
 
@@ -153,6 +163,14 @@ public class PlaybackControlsFragment
             case REPEAT_ONE:
                 repeatButton.setImageResource(R.drawable.ic_repeat_one_accent);
                 return;
+        }
+    }
+
+    private void syncShuffleButtonIcon() {
+        if (getService().isShuffling()) {
+            shuffleButton.setImageResource(R.drawable.ic_shuffle_accent);
+        } else {
+            shuffleButton.setImageResource(R.drawable.ic_shuffle_white);
         }
     }
 }
