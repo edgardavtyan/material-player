@@ -36,7 +36,11 @@
             android:orientation="horizontal"
             >
 
-            <include layout="@layout/fragment_nowplaying_art" />
+            <include
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                layout="@layout/fragment_nowplaying_art" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list"
