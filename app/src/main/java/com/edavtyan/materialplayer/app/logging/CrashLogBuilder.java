@@ -1,26 +1,26 @@
-package com.edavtyan.materialplayer.app.utils;
+package com.edavtyan.materialplayer.app.logging;
 
 import android.os.Build;
 import android.util.Log;
 
-public final class CrashLogger {
+public final class CrashLogBuilder {
     private static final String DIVIDER = "\n============\n";
 
     private StringBuilder logBuilder;
 
 
-    public static CrashLogger from(Throwable throwable) {
-        return new CrashLogger().addSection("STACK TRACE", Log.getStackTraceString(throwable));
+    public static CrashLogBuilder from(Throwable throwable) {
+        return new CrashLogBuilder().addSection("STACK TRACE", Log.getStackTraceString(throwable));
     }
 
 
-    private CrashLogger() {
+    private CrashLogBuilder() {
         logBuilder = new StringBuilder();
         logBuilder.append("Build version: ").append(Build.VERSION.SDK_INT);
     }
 
 
-    public CrashLogger addSection(String name, String body) {
+    public CrashLogBuilder addSection(String name, String body) {
         logBuilder
                 .append("\n\n")
                 .append(name)

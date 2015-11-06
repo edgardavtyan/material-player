@@ -1,39 +1,31 @@
 package com.edavtyan.materialplayer.app;
 
 import android.app.Application;
-import android.os.Environment;
 
-import com.edavtyan.materialplayer.app.utils.CrashLogger;
+import com.edavtyan.materialplayer.app.logging.CrashLogBuilder;
+import com.edavtyan.materialplayer.app.logging.FileLogger;
+import com.edavtyan.materialplayer.app.logging.Logger;
+import com.edavtyan.materialplayer.app.utils.DataStorage;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
 public class App
         extends Application
         implements Thread.UncaughtExceptionHandler {
+    private Logger logger;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        logger = new FileLogger();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
-        String log = CrashLogger.from(throwable).build();
-        String logFileName = "log" + System.currentTimeMillis() + ".txt";
-        File logFile = new File(
-                Environment.getExternalStorageDirectory(),
-                "MaterialPlayer/logs" + logFileName);
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(logFile);
-            fileOutputStream.write(log.getBytes());
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        logger.log(throwable);
         System.exit(1);
     }
 }
