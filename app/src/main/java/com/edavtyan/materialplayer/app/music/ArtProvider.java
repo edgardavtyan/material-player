@@ -23,7 +23,7 @@ public final class ArtProvider {
 
 
     public static File fromTrack(Track track) {
-        String artFolder = DataStorage.ART_FOLDER.getAbsolutePath();
+        String artFolder = DataStorage.DIR_ART.getAbsolutePath();
         String artGlob = track.getAlbumId() + "@*";
         List<File> artFiles = new Paths().glob(artFolder, artGlob).getFiles();
 
@@ -39,7 +39,7 @@ public final class ArtProvider {
         }
 
         File artFile = new File(
-                DataStorage.ART_FOLDER,
+                DataStorage.DIR_ART,
                 String.format("%d@%d", track.getAlbumId(), artGeneration));
 
         if (artOutdated || !foundArt) {
