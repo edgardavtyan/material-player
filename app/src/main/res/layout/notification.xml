@@ -3,78 +3,51 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="#fff"
+    style="@style/notification_wrapper"
     >
 
     <ImageView
         android:id="@+id/art"
-        android:layout_width="@dimen/icon_big"
-        android:layout_height="match_parent"
-        android:layout_marginRight="8dp"
         android:contentDescription="@string/description_art"
-        android:src="@drawable/fallback_cover_listitem"
+        style="@style/notification_art"
         />
 
     <LinearLayout
         android:id="@+id/info_wrapper"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
+        style="@style/notification_text_wrapper"
         >
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:singleLine="true"
-            android:text="@string/notification_defaultText_title"
+            style="@style/notification_title"
             />
 
         <TextView
             android:id="@+id/info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textColor="#777777"
-            android:singleLine="true"
-            android:text="@string/notification_defaultText_info"
+            style="@style/notification_info"
             />
 
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/rewind"
-        android:layout_width="@dimen/icon_medium"
-        android:layout_height="match_parent"
         android:src="@drawable/ic_rewind_black"
-        android:background="@drawable/ripple_control_notification"
         android:contentDescription="@string/description_control_rewind"
+        style="@style/notification_control"
         />
 
     <ImageButton
         android:id="@+id/play_pause"
-        android:layout_width="@dimen/icon_medium"
-        android:layout_height="match_parent"
         android:src="@drawable/ic_play_pause_black"
-        android:background="@drawable/ripple_control_notification"
         android:contentDescription="@string/description_control_playPause"
+        style="@style/notification_control"
         />
 
     <ImageButton
         android:id="@+id/fast_forward"
-        android:layout_width="@dimen/icon_medium"
-        android:layout_height="match_parent"
         android:src="@drawable/ic_fast_forward_black"
-        android:background="@drawable/ripple_control_notification"
         android:contentDescription="@string/description_control_fastForward"
+        style="@style/notification_control"
         />
 
 </LinearLayout>
