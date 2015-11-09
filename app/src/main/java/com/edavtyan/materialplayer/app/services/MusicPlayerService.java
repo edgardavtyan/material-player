@@ -74,12 +74,6 @@ public class MusicPlayerService
      */
 
     @Override
-    public void onPrepared() {
-        sendBroadcast(new Intent(SEND_NEW_TRACK));
-        player.seekTo(0);
-    }
-
-    @Override
     public void onPlaybackStateChanged(MusicPlayer.PlaybackState state) {
         switch (state) {
             case PAUSED:
@@ -89,6 +83,10 @@ public class MusicPlayerService
                 sendBroadcast(new Intent(SEND_PLAY));
                 break;
         }
+    }
+
+    public void onPrepared() {
+        sendBroadcast(new Intent(SEND_NEW_TRACK));
     }
 
     /*

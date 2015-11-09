@@ -2,10 +2,14 @@ package com.edavtyan.materialplayer.app.music;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.edavtyan.materialplayer.app.music.data.Track;
+import com.h6ah4i.android.media.IBasicMediaPlayer;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayer;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,9 +19,9 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class MusicPlayer implements MediaPlayer.OnCompletionListener,
-                                    MediaPlayer.OnPreparedListener {
-    private final MediaPlayer player;
+public class MusicPlayer implements OpenSLMediaPlayer.OnCompletionListener,
+                                    OpenSLMediaPlayer.OnPreparedListener {
+    private final OpenSLMediaPlayer player;
     private final @Getter List<Track> queue;
     private @Getter @Setter int currentTrackIndex;
     private @Getter boolean isShuffling;
@@ -41,7 +45,14 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
 
 
     public MusicPlayer(Context context) {
-        player = new MediaPlayer();
+        OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
+        params.options = OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER;
+        params.shortFadeDuration = 200;
+        params.longFadeDuration = 200;
+
+        OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(context, params);
+
+        player = (OpenSLMediaPlayer) factory.createMediaPlayer();
         player.setOnCompletionListener(this);
         player.setOnPreparedListener(this);
         queue = new ArrayList<>();
@@ -55,7 +66,8 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         try {
             player.reset();
             player.setDataSource(getCurrentTrack().getPath());
-            player.prepareAsync();
+            player.prepare();
+            player.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,7 +164,10 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
 
 
     @Override
-    public void onCompletion(MediaPlayer mediaPlayer) {
+    public void onCompletion(IBasicMediaPlayer mediaPlayer) {
+        Log.i("MusicPlayer", "onCompletition "  + getCurrentTrack().getTrackTitle());
+        if (player.getCurrentPosition() < 500) return;
+
         switch (repeatMode) {
             case NO_REPEAT:
                 if (currentTrackIndex >= queue.size() - 1) {
@@ -173,7 +188,8 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
     }
 
     @Override
-    public void onPrepared(MediaPlayer mediaPlayer) {
+    public void onPrepared(IBasicMediaPlayer mediaPlayer) {
+        Log.i("MusicPlayer", "onPrepared "  + getCurrentTrack().getTrackTitle());
         player.start();
         if (onPreparedListener != null) {
             onPreparedListener.onPrepared();
