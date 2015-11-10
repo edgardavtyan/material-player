@@ -115,14 +115,9 @@ public class MusicPlayerService
         player = new MusicPlayer(this);
         player.setOnPreparedListener(this);
 
-        IntentFilter playPauseFilter = new IntentFilter(ACTION_PLAY_PAUSE);
-        registerReceiver(new PlayPauseReceiver(), playPauseFilter);
-
-        IntentFilter fastForwardFilter = new IntentFilter(ACTION_FAST_FORWARD);
-        registerReceiver(new FastForwardReceiver(), fastForwardFilter);
-
-        IntentFilter rewindFilter = new IntentFilter(ACTION_REWIND);
-        registerReceiver(new RewindReceiver(), rewindFilter);
+        registerReceiver(new PlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
+        registerReceiver(new FastForwardReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
+        registerReceiver(new RewindReceiver(), new IntentFilter(ACTION_REWIND));
     }
 
     public class MusicPlayerBinder extends Binder {
