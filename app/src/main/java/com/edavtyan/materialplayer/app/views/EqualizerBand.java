@@ -10,12 +10,16 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.HQEqualizerStats;
 
 public class EqualizerBand extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
+    private int maxGain;
+
     TextView frequencyView;
     TextView gainView;
     SeekBar bandView;
 
     public EqualizerBand(Context context, int frequency, int gain) {
         super(context);
+
+        maxGain = isInEditMode() ? 1500 : HQEqualizerStats.MAX_GAIN;
 
         LayoutInflater.from(context).inflate(R.layout.layout_equalizer_band, this, true);
 
@@ -28,7 +32,7 @@ public class EqualizerBand extends FrameLayout implements SeekBar.OnSeekBarChang
         gainView.setText(getGainStr(gain));
 
         bandView = (SeekBar) findViewById(R.id.band);
-        bandView.setMax(millibelsToDecibels(HQEqualizerStats.MAX_GAIN * 2));
+        bandView.setMax(millibelsToDecibels(maxGain));
         bandView.setProgress(bandView.getMax() / 2);
         bandView.setOnSeekBarChangeListener(this);
     }
@@ -53,7 +57,7 @@ public class EqualizerBand extends FrameLayout implements SeekBar.OnSeekBarChang
      */
 
     private int progressToGain(int progress) {
-        progress -= millibelsToDecibels(HQEqualizerStats.MAX_GAIN);
+        progress -= millibelsToDecibels(maxGain);
         return progress;
     }
 
