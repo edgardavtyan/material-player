@@ -160,17 +160,17 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
                 if (currentTrackIndex >= tracks.size() - 1) {
                     player.pause();
                 }
-                return;
+                break;
 
             case REPEAT:
                 moveNext();
                 prepare();
-                return;
+                break;
 
             case REPEAT_ONE:
                 player.seekTo(0);
                 prepare();
-                return;
+                break;
         }
     }
 
