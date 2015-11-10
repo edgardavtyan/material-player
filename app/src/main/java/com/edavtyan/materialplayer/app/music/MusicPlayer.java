@@ -12,14 +12,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class MusicPlayer implements MediaPlayer.OnCompletionListener,
                                     MediaPlayer.OnPreparedListener {
     private final MediaPlayer player;
-    private final List<Track> tracks;
-    private int currentTrackIndex;
-    private boolean isShuffling;
-    private MediaPlayer.OnPreparedListener onPreparedListener;
-    private RepeatMode repeatMode;
+    private final @Getter List<Track> tracks;
+    private @Getter @Setter int currentTrackIndex;
+    private @Getter boolean isShuffling;
+    private @Setter MediaPlayer.OnPreparedListener onPreparedListener;
+    private @Getter RepeatMode repeatMode;
     private SharedPreferences prefs;
 
     public MusicPlayer(Context context) {
@@ -37,27 +40,11 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         return tracks.get(currentTrackIndex);
     }
 
-    public int getCurrentTrackIndex() {
-        return currentTrackIndex;
-    }
-
-    public void setCurrentTrackIndex(int index) {
-        currentTrackIndex = index;
-    }
-
-    public List<Track> getTracks() {
-        return tracks;
-    }
-
     public void setTracks(List<Track> newTracks, int index) {
         tracks.clear();
         tracks.addAll(newTracks);
         currentTrackIndex = index;
         if (isShuffling) shuffleQueue();
-    }
-
-    public RepeatMode getRepeatMode() {
-        return repeatMode;
     }
 
     public void toggleRepeatMode() {
@@ -74,10 +61,6 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         }
 
         prefs.edit().putInt("repeat_mode", RepeatMode.toInt(repeatMode)).apply();
-    }
-
-    public boolean isShuffling() {
-        return isShuffling;
     }
 
     public void toggleShuffling() {
@@ -112,7 +95,6 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
         }
     }
 
-
     public void prepare() {
         try {
             player.reset();
@@ -145,11 +127,6 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener,
 
     public boolean isPlaying() {
         return player.isPlaying();
-    }
-
-
-    public void setOnPreparedListener(MediaPlayer.OnPreparedListener listener) {
-        onPreparedListener = listener;
     }
 
 
