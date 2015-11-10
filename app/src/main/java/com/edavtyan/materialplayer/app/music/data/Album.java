@@ -1,10 +1,11 @@
-package com.edavtyan.materialplayer.app.music;
+package com.edavtyan.materialplayer.app.music.data;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.edavtyan.materialplayer.app.music.providers.ArtProvider;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 
 import java.io.File;

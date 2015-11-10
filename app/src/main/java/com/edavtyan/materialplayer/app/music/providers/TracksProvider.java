@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.app.music.providers;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.edavtyan.materialplayer.app.music.Track;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 
 import java.util.ArrayList;

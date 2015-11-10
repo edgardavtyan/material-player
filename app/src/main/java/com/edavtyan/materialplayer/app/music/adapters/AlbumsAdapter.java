@@ -18,8 +18,8 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.adapters.RecyclerServiceCursorAdapter;
-import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Track;
+import com.edavtyan.materialplayer.app.music.providers.ArtProvider;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.music.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 

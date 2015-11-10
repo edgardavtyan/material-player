@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 
+import com.edavtyan.materialplayer.app.music.data.Track;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;

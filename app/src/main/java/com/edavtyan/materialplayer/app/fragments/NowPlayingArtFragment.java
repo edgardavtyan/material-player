@@ -16,8 +16,8 @@ import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
-import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Track;
+import com.edavtyan.materialplayer.app.music.providers.ArtProvider;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 import java.io.File;

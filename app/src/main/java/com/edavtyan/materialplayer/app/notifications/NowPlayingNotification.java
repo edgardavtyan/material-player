@@ -16,8 +16,8 @@ import android.widget.RemoteViews;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.MainActivity;
-import com.edavtyan.materialplayer.app.music.ArtProvider;
-import com.edavtyan.materialplayer.app.music.Track;
+import com.edavtyan.materialplayer.app.music.providers.ArtProvider;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.utils.PendingIntents;
 

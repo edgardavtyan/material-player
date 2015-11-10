@@ -1,9 +1,10 @@
-package com.edavtyan.materialplayer.app.music;
+package com.edavtyan.materialplayer.app.music.providers;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.utils.DataStorage;
 import com.edavtyan.materialplayer.app.utils.FileUtils;
 import com.esotericsoftware.wildcard.Paths;

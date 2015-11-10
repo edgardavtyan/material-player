@@ -10,7 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.app.music.Track;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.music.RepeatMode;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
