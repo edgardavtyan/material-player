@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.music.providers.ArtProvider;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.wnafee.vector.MorphButton;
@@ -87,7 +88,7 @@ public class FloatingNowPlayingFragment
     public void onStart() {
         super.onStart();
 
-        if (isBound() && getService().hasData()) {
+        if (isBound() && getService().getPlayer().hasData()) {
             container.setVisibility(View.VISIBLE);
             syncDataWithService();
         } else {
@@ -121,7 +122,7 @@ public class FloatingNowPlayingFragment
 
     @Override
     public void onServiceConnected() {
-        if (getService().hasData()) {
+        if (getService().getPlayer().hasData()) {
             container.setVisibility(View.VISIBLE);
             syncDataWithService();
         } else {
@@ -156,19 +157,20 @@ public class FloatingNowPlayingFragment
 
     private void syncDataWithService() {
         Glide.with(getContext())
-                .load(ArtProvider.fromTrack(getService().getCurrentTrack()))
+                .load(ArtProvider.fromTrack(getService().getPlayer().getCurrentTrack()))
                 .error(R.drawable.fallback_cover)
                 .into(artView);
 
+        Track track = getService().getPlayer().getCurrentTrack();
         String trackInfo = getResources().getString(
                 R.string.nowplaying_info_pattern,
-                getService().getCurrentTrack().getArtistTitle(),
-                getService().getCurrentTrack().getAlbumTitle());
-        titleView.setText(getService().getCurrentTrack().getTrackTitle());
+                track.getArtistTitle(),
+                track.getAlbumTitle());
+        titleView.setText(getService().getPlayer().getCurrentTrack().getTrackTitle());
         infoView.setText(trackInfo);
 
 
-        if (getService().isPlaying()) {
+        if (getService().getPlayer().isPlaying()) {
             controlView.setState(MorphButton.MorphState.END);
         } else {
             controlView.setState(MorphButton.MorphState.START);

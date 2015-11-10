@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
+import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class NowPlayingInfoFragment extends ServiceFragment {
@@ -74,12 +75,13 @@ public class NowPlayingInfoFragment extends ServiceFragment {
      */
 
     private void syncWithService() {
+        Track track = getService().getPlayer().getCurrentTrack();
         String trackMetadata = getResources().getString(
                 R.string.nowplaying_info_pattern,
-                getService().getCurrentTrack().getArtistTitle(),
-                getService().getCurrentTrack().getAlbumTitle());
+                track.getArtistTitle(),
+                track.getAlbumTitle());
 
-        titleView.setText(getService().getCurrentTrack().getTrackTitle());
+        titleView.setText(track.getTrackTitle());
         infoView.setText(trackMetadata);
     }
 }
