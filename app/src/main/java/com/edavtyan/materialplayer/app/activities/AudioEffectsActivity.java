@@ -20,6 +20,9 @@ public class AudioEffectsActivity extends AppCompatActivity {
         presetsSpinner.setAdapter(new EqualizerPresetsAdapter(this));
 
         EqualizerView equalizerView = (EqualizerView) findViewById(R.id.equalizer);
-        equalizerView.setGainLimit(HQEqualizerStats.MAX_GAIN);
+        equalizerView.setGainLimit(HQEqualizerStats.GAIN_LIMIT);
+        for (int i = 0; i < HQEqualizerStats.BANDS_COUNT; i++) {
+            equalizerView.addBand(HQEqualizerStats.FREQUENCIES[i], HQEqualizerStats.DEFAULT_GAIN);
+        }
     }
 }

@@ -11,9 +11,12 @@ import java.util.List;
 public class EqualizerView extends FrameLayout {
     private List<EqualizerBandView> bands;
     private LinearLayout bandsContainer;
+    private final Context context;
+    private int gainLimit;
 
     public EqualizerView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         bands = new ArrayList<>();
         bandsContainer = new LinearLayout(context, attrs);
         bandsContainer.setOrientation(LinearLayout.VERTICAL);
@@ -40,13 +43,18 @@ public class EqualizerView extends FrameLayout {
      * Public methods
      */
 
-    public void addBand(EqualizerBandView bandView) {
-        addView(bandView);
-        bands.add(bandView);
+    public void addBand(int frequency, int gain) {
+        EqualizerBandView band = new EqualizerBandView(context);
+        band.setGainLimit(gainLimit);
+        band.setGain(gain);
+        band.setFrequency(frequency);
+        bands.add(band);
+        bandsContainer.addView(band);
     }
 
     public void setGainLimit(int gain) {
         for (EqualizerBandView band : bands) band.setGainLimit(gain);
+        gainLimit = gain;
     }
 
     public void setBandGain(int band, int gain) {
