@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.music.HQEqualizerStats;
 import com.edavtyan.materialplayer.app.music.adapters.EqualizerPresetsAdapter;
+import com.edavtyan.materialplayer.app.views.EqualizerView;
 
 public class AudioEffectsActivity extends AppCompatActivity {
     @Override
@@ -16,5 +18,8 @@ public class AudioEffectsActivity extends AppCompatActivity {
 
         Spinner presetsSpinner = (Spinner) findViewById(R.id.presets);
         presetsSpinner.setAdapter(new EqualizerPresetsAdapter(this));
+
+        EqualizerView equalizerView = (EqualizerView) findViewById(R.id.equalizer);
+        equalizerView.setGainLimit(HQEqualizerStats.MAX_GAIN);
     }
 }

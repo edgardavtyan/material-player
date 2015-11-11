@@ -46,7 +46,8 @@
 
     </LinearLayout>
 
-    <com.edavtyan.materialplayer.app.views.Equalizer
+    <com.edavtyan.materialplayer.app.views.EqualizerView
+        android:id="@+id/equalizer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

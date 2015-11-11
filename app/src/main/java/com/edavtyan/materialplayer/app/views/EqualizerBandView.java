@@ -7,34 +7,44 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.music.HQEqualizerStats;
 
-public class EqualizerBand extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-    private int maxGain;
+public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
+    private int gainLimit;
 
     TextView frequencyView;
     TextView gainView;
     SeekBar bandView;
 
-    public EqualizerBand(Context context, int frequency, int gain) {
+    public EqualizerBandView(Context context) {
         super(context);
-
-        maxGain = isInEditMode() ? 1500 : HQEqualizerStats.MAX_GAIN;
 
         LayoutInflater.from(context).inflate(R.layout.layout_equalizer_band, this, true);
 
         frequencyView = (TextView) findViewById(R.id.frequency);
+        gainView = (TextView) findViewById(R.id.gain);
+
+        bandView = (SeekBar) findViewById(R.id.band);
+        bandView.setOnSeekBarChangeListener(this);
+    }
+
+    /*
+     * Public methods
+     */
+
+    public void setGainLimit(int gain) {
+        gainLimit = gain * 2;
+        bandView.setMax(gainLimit);
+    }
+
+    public void setGain(int gain) {
+        bandView.setProgress(gain + (gainLimit / 2));
+        gainView.setText(getGainStr(gain));
+    }
+
+    public void setFrequency(int frequency) {
         frequencyView.setText(getResources().getString(
                 R.string.equalizer_format_band,
                 hertzToGigahertz(frequency)));
-
-        gainView = (TextView) findViewById(R.id.gain);
-        gainView.setText(getGainStr(gain));
-
-        bandView = (SeekBar) findViewById(R.id.band);
-        bandView.setMax(millibelsToDecibels(maxGain));
-        bandView.setProgress(bandView.getMax() / 2);
-        bandView.setOnSeekBarChangeListener(this);
     }
 
     /*
@@ -57,12 +67,8 @@ public class EqualizerBand extends FrameLayout implements SeekBar.OnSeekBarChang
      */
 
     private int progressToGain(int progress) {
-        progress -= millibelsToDecibels(maxGain);
+        progress -= bandView.getMax();
         return progress;
-    }
-
-    private int millibelsToDecibels(int millibels) {
-        return millibels / 100;
     }
 
     private int hertzToGigahertz(int hertz) {
