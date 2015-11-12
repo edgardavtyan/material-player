@@ -8,8 +8,6 @@ import android.util.Log;
 import com.edavtyan.materialplayer.app.music.data.Track;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayer;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ import lombok.Setter;
 
 public class MusicPlayer implements OpenSLMediaPlayer.OnCompletionListener,
                                     OpenSLMediaPlayer.OnPreparedListener {
-    private final OpenSLMediaPlayer player;
+    private final IBasicMediaPlayer player;
     private final @Getter List<Track> queue;
     private @Getter @Setter int currentTrackIndex;
     private @Getter boolean isShuffling;
@@ -44,15 +42,8 @@ public class MusicPlayer implements OpenSLMediaPlayer.OnCompletionListener,
     }
 
 
-    public MusicPlayer(Context context) {
-        OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
-        params.options = OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER;
-        params.shortFadeDuration = 200;
-        params.longFadeDuration = 200;
-
-        OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(context, params);
-
-        player = (OpenSLMediaPlayer) factory.createMediaPlayer();
+    public MusicPlayer(Context context, IBasicMediaPlayer player) {
+        this.player = player;
         player.setOnCompletionListener(this);
         player.setOnPreparedListener(this);
         queue = new ArrayList<>();

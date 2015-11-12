@@ -8,11 +8,23 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EqualizerView extends FrameLayout {
+import lombok.Setter;
+
+public class EqualizerView
+        extends FrameLayout
+        implements EqualizerBandView.OnBandChangedListener {
     private List<EqualizerBandView> bands;
     private LinearLayout bandsContainer;
     private final Context context;
+    private @Setter OnBandChangedListener onBandChangedListener;
     private int gainLimit;
+
+
+    public interface OnBandChangedListener {
+        void onBandStopTracking();
+        void onBandChanged(int band, int gain);
+    }
+
 
     public EqualizerView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -34,6 +46,7 @@ public class EqualizerView extends FrameLayout {
                 band.setFrequency(frequencies[i]);
                 band.setGainLimit(15);
                 band.setGain(gains[i]);
+                band.setOnBandChangedListener(this);
                 bandsContainer.addView(band);
             }
         }
@@ -48,16 +61,28 @@ public class EqualizerView extends FrameLayout {
         band.setGainLimit(gainLimit);
         band.setGain(gain);
         band.setFrequency(frequency);
+        band.setOnBandChangedListener(this);
         bands.add(band);
         bandsContainer.addView(band);
     }
 
     public void setGainLimit(int gain) {
-        for (EqualizerBandView band : bands) band.setGainLimit(gain);
         gainLimit = gain;
     }
 
-    public void setBandGain(int band, int gain) {
-        bands.get(band).setGain(gain);
+    /*
+     * EqualizerBandView.OnBandChangedListener
+     */
+
+    @Override
+    public void OnBandStopTracking() {
+        if (onBandChangedListener != null) onBandChangedListener.onBandStopTracking();
+    }
+
+    @Override
+    public void onBandChanged(EqualizerBandView band, int gain) {
+        if (onBandChangedListener != null) {
+            onBandChangedListener.onBandChanged(bands.indexOf(band), gain);
+        }
     }
 }

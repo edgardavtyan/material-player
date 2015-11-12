@@ -8,12 +8,22 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 
+import lombok.Setter;
+
 public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
     private int gainLimit;
+    private @Setter OnBandChangedListener onBandChangedListener;
 
-    TextView frequencyView;
-    TextView gainView;
-    SeekBar bandView;
+    private TextView frequencyView;
+    private TextView gainView;
+    private SeekBar bandView;
+
+
+    public interface OnBandChangedListener {
+        void OnBandStopTracking();
+        void onBandChanged(EqualizerBandView band, int gain);
+    }
+
 
     public EqualizerBandView(Context context) {
         super(context);
@@ -42,9 +52,7 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
     }
 
     public void setFrequency(int frequency) {
-        frequencyView.setText(getResources().getString(
-                R.string.equalizer_format_band,
-                hertzToGigahertz(frequency)));
+        frequencyView.setText(getResources().getString(R.string.equalizer_format_band, frequency));
     }
 
     /*
@@ -53,11 +61,15 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        gainView.setText(getGainStr(progressToGain(progress)));
+        int gain = progressToGain(progress);
+        gainView.setText(getGainStr(gain));
+        if (onBandChangedListener != null) onBandChangedListener.onBandChanged(this, gain);
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        if (onBandChangedListener != null) onBandChangedListener.OnBandStopTracking();
+    }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {}
@@ -67,12 +79,8 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
      */
 
     private int progressToGain(int progress) {
-        progress -= bandView.getMax();
+        progress -= bandView.getMax() / 2;
         return progress;
-    }
-
-    private int hertzToGigahertz(int hertz) {
-        return hertz / 1000;
     }
 
     private String getGainStr(int gain) {
