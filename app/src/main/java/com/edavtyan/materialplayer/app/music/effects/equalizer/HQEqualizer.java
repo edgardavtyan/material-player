@@ -17,7 +17,6 @@ public class HQEqualizer implements Equalizer {
 
     public HQEqualizer(Context context, IEqualizer equalizer) {
         this.equalizer = equalizer;
-        this.equalizer.setEnabled(true);
         gson = new Gson();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -28,6 +27,8 @@ public class HQEqualizer implements Equalizer {
 
         int[] gainsFromPref = gson.fromJson(prefs.getString("pref_current_preset", null), int[].class);
         gains = (gainsFromPref != null) ? gainsFromPref : new int[getBandsCount()];
+
+        equalizer.setEnabled(prefs.getBoolean("pref_equalizer_isEnabled", true));
     }
 
     @Override
@@ -64,5 +65,16 @@ public class HQEqualizer implements Equalizer {
     @Override
     public void saveSettings() {
         prefs.edit().putString("pref_current_preset", gson.toJson(gains)).apply();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return equalizer.getEnabled();
+    }
+
+    @Override
+    public void setEnabled(boolean isEnabled) {
+        equalizer.setEnabled(isEnabled);
+        prefs.edit().putBoolean("pref_equalizer_isEnabled", isEnabled).apply();
     }
 }

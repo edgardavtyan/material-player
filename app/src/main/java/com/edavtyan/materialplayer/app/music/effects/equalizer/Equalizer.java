@@ -8,4 +8,6 @@ public interface Equalizer {
     void setBandGain(int band, int gain);
     void saveSettings();
     int getGainLimit();
+    boolean isEnabled();
+    void setEnabled(boolean isEnabled);
 }

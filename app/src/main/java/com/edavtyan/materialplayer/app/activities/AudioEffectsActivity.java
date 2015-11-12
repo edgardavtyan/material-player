@@ -7,6 +7,8 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
@@ -16,9 +18,11 @@ import com.edavtyan.materialplayer.app.views.EqualizerView;
 
 public class AudioEffectsActivity
         extends BaseToolbarActivity
-        implements ServiceConnection, EqualizerView.OnBandChangedListener {
+        implements ServiceConnection, EqualizerView.OnBandChangedListener,
+                   CompoundButton.OnCheckedChangeListener {
     private Equalizer equalizer;
     private EqualizerView equalizerView;
+    private Switch equalizerSwitch;
 
 
     @Override
@@ -28,6 +32,8 @@ public class AudioEffectsActivity
         initToolbar(R.string.audio_effects_title);
 
         equalizerView = (EqualizerView) findViewById(R.id.equalizer);
+        equalizerSwitch = (Switch) findViewById(R.id.equalizer_switch);
+        equalizerSwitch.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -55,6 +61,8 @@ public class AudioEffectsActivity
         equalizerView.setOnBandChangedListener(this);
         equalizerView.setBands(equalizer.getBandsCount(), equalizer.getFrequencies(),
                 equalizer.getGains());
+
+        equalizerSwitch.setChecked(equalizer.isEnabled());
     }
 
     @Override
@@ -72,5 +80,14 @@ public class AudioEffectsActivity
     @Override
     public void onBandStopTracking() {
         equalizer.saveSettings();
+    }
+
+    /*
+     * CompoundButton.OnCheckedChangeListener
+     */
+
+    @Override
+    public void onCheckedChanged(CompoundButton button, boolean isChecked) {
+        equalizer.setEnabled(isChecked);
     }
 }

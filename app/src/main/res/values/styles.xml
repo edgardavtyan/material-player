@@ -13,6 +13,10 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
+    <style name="AppTheme.Base.Reversed" parent="AppTheme.Base">
+        <item name="colorAccent">@color/primary</item>
+    </style>
+
     <style name="AppTheme.Popup">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:popupBackground">@color/white</item>

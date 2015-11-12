@@ -8,6 +8,34 @@
 
     <include layout="@layout/layout_toolbar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/spacing_tiny"
+        android:layout_marginLeft="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/equalizer_title"
+            android:textSize="@dimen/font_medium"
+            android:textColor="@color/text_primary"
+            />
+
+        <Switch
+            android:id="@+id/equalizer_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.Base.Reversed"
+            />
+
+    </LinearLayout>
+
     <com.edavtyan.materialplayer.app.views.EqualizerView
         android:id="@+id/equalizer"
         android:layout_width="match_parent"
