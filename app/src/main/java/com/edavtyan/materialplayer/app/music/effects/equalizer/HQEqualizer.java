@@ -8,6 +8,10 @@ import com.google.gson.Gson;
 import com.h6ah4i.android.media.audiofx.IEqualizer;
 
 public class HQEqualizer implements Equalizer {
+    private static final String PREF_GAINS = "pref_equalizer_gains";
+    private static final String PREF_ENABLED = "pref_equalizer_enabled";
+
+
     private final IEqualizer equalizer;
     private final Gson gson;
     private final SharedPreferences prefs;
@@ -25,10 +29,10 @@ public class HQEqualizer implements Equalizer {
             frequencies[i] = equalizer.getCenterFreq((short)i) / 1000;
         }
 
-        int[] gainsFromPref = gson.fromJson(prefs.getString("pref_current_preset", null), int[].class);
+        int[] gainsFromPref = gson.fromJson(prefs.getString(PREF_GAINS, null), int[].class);
         gains = (gainsFromPref != null) ? gainsFromPref : new int[getBandsCount()];
 
-        equalizer.setEnabled(prefs.getBoolean("pref_equalizer_isEnabled", true));
+        equalizer.setEnabled(prefs.getBoolean(PREF_ENABLED, true));
     }
 
     @Override
@@ -64,7 +68,7 @@ public class HQEqualizer implements Equalizer {
 
     @Override
     public void saveSettings() {
-        prefs.edit().putString("pref_current_preset", gson.toJson(gains)).apply();
+        prefs.edit().putString(PREF_GAINS, gson.toJson(gains)).apply();
     }
 
     @Override
@@ -75,6 +79,6 @@ public class HQEqualizer implements Equalizer {
     @Override
     public void setEnabled(boolean isEnabled) {
         equalizer.setEnabled(isEnabled);
-        prefs.edit().putBoolean("pref_equalizer_isEnabled", isEnabled).apply();
+        prefs.edit().putBoolean(PREF_ENABLED, isEnabled).apply();
     }
 }
