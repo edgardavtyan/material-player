@@ -50,7 +50,15 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
     }
 
     public void setFrequency(int frequency) {
-        frequencyView.setText(getResources().getString(R.string.equalizer_format_band, frequency));
+        int frequencyFormat;
+        if (frequency >= 1000) {
+            frequency /= 1000;
+            frequencyFormat = R.string.equalizer_frequency_khz;
+        } else {
+            frequencyFormat = R.string.equalizer_frequency_hz;
+        }
+
+        frequencyView.setText(getResources().getString(frequencyFormat, frequency));
     }
 
     /*
