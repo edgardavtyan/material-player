@@ -15,12 +15,19 @@ public class HQEqualizer implements Equalizer {
     private final Gson gson;
     private final SharedPreferences prefs;
     private final List<EqualizerPreset> presets;
+    private final int[] frequencies;
     private EqualizerPreset currentPreset;
 
 
     public HQEqualizer(Context context, IEqualizer equalizer) {
         this.equalizer = equalizer;
         this.equalizer.setEnabled(true);
+
+        frequencies = new int[equalizer.getNumberOfBands()];
+        for (int i = 0; i < frequencies.length; i++) {
+            frequencies[i] = equalizer.getCenterFreq((short)i) / 1000;
+        }
+        
         gson = new Gson();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         presets = new ArrayList<>();
@@ -45,8 +52,13 @@ public class HQEqualizer implements Equalizer {
     }
 
     @Override
-    public int getBandFrequency(int band) {
-        return equalizer.getCenterFreq((short) band) / 1000;
+    public int[] getFrequencies() {
+        return frequencies;
+    }
+
+    @Override
+    public int[] getGains() {
+        return currentPreset.getGains();
     }
 
     @Override

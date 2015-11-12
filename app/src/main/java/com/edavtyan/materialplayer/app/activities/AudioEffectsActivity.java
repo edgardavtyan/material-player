@@ -52,9 +52,8 @@ public class AudioEffectsActivity
         equalizer = ((MusicPlayerService.MusicPlayerBinder)iBinder).getService().getEqualizer();
         equalizerView.setGainLimit(equalizer.getGainLimit());
         equalizerView.setOnBandChangedListener(this);
-        for (int i = 0; i < equalizer.getBandsCount(); i++) {
-            equalizerView.addBand(equalizer.getBandFrequency(i), equalizer.getBandGain(i));
-        }
+        equalizerView.setBands(equalizer.getBandsCount(), equalizer.getFrequencies(),
+                equalizer.getGains());
     }
 
     @Override

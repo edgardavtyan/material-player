@@ -53,14 +53,18 @@ public class EqualizerView
      * Public methods
      */
 
-    public void addBand(int frequency, int gain) {
-        EqualizerBandView band = new EqualizerBandView(context);
-        band.setGainLimit(gainLimit);
-        band.setGain(gain);
-        band.setFrequency(frequency);
-        band.setOnBandChangedListener(this);
-        bands.add(band);
-        bandsContainer.addView(band);
+    public void setBands(int count, int[] frequencies, int[] gains) {
+        bands.clear();
+        bandsContainer.removeAllViews();
+        for (int i = 0; i < count; i++) {
+            EqualizerBandView band = new EqualizerBandView(context);
+            band.setGainLimit(gainLimit);
+            band.setGain(gains[i]);
+            band.setFrequency(frequencies[i]);
+            band.setOnBandChangedListener(this);
+            bands.add(band);
+            bandsContainer.addView(band);
+        }
     }
 
     public void setGainLimit(int gain) {
