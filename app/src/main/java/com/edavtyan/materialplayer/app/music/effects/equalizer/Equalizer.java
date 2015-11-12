@@ -7,6 +7,5 @@ public interface Equalizer {
     int getBandGain(int band);
     void setBandGain(int band, int gain);
     void saveSettings();
-    void usePreset(EqualizerPreset preset);
     int getGainLimit();
 }

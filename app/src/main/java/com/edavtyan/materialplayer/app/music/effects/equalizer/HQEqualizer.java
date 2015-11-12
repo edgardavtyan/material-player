@@ -7,43 +7,27 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.h6ah4i.android.media.audiofx.IEqualizer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class HQEqualizer implements Equalizer {
     private final IEqualizer equalizer;
     private final Gson gson;
     private final SharedPreferences prefs;
-    private final List<EqualizerPreset> presets;
     private final int[] frequencies;
-    private EqualizerPreset currentPreset;
+    private final int[] gains;
 
 
     public HQEqualizer(Context context, IEqualizer equalizer) {
         this.equalizer = equalizer;
         this.equalizer.setEnabled(true);
+        gson = new Gson();
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         frequencies = new int[equalizer.getNumberOfBands()];
         for (int i = 0; i < frequencies.length; i++) {
             frequencies[i] = equalizer.getCenterFreq((short)i) / 1000;
         }
-        
-        gson = new Gson();
-        prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        presets = new ArrayList<>();
 
-        EqualizerPreset preset = new EqualizerPreset();
-        preset.setIndex(0);
-        preset.setName("Flat");
-        preset.setGains(new int[getBandsCount()]);
-        presets.add(preset);
-
-        currentPreset = gson.fromJson(
-                prefs.getString("pref_current_preset", null),
-                EqualizerPreset.class);
-        if (currentPreset == null) currentPreset = presets.get(0);
-
-        usePreset(currentPreset);
+        int[] gainsFromPref = gson.fromJson(prefs.getString("pref_current_preset", null), int[].class);
+        gains = (gainsFromPref != null) ? gainsFromPref : new int[getBandsCount()];
     }
 
     @Override
@@ -58,7 +42,7 @@ public class HQEqualizer implements Equalizer {
 
     @Override
     public int[] getGains() {
-        return currentPreset.getGains();
+        return gains;
     }
 
     @Override
@@ -74,18 +58,11 @@ public class HQEqualizer implements Equalizer {
     @Override
     public void setBandGain(int band, int gain) {
         equalizer.setBandLevel((short)band, (short)(gain*100));
-        currentPreset.getGains()[band] = gain;
-    }
-
-    @Override
-    public void usePreset(EqualizerPreset preset) {
-        for (int i = 0; i < getBandsCount(); i++) {
-            setBandGain(i, preset.getGains()[i]);
-        }
+        gains[band] = gain;
     }
 
     @Override
     public void saveSettings() {
-        prefs.edit().putString("pref_current_preset", gson.toJson(currentPreset)).apply();
+        prefs.edit().putString("pref_current_preset", gson.toJson(gains)).apply();
     }
 }
