@@ -36,9 +36,7 @@ public class EqualizerView
 
         if (isInEditMode()) {
             int bandsCount = 10;
-            int[] frequencies = new int[] {
-                    31250, 62500, 125000, 250000, 500000, 1000000,
-                    2000000, 4000000, 8000000, 16000000 };
+            int[] frequencies = new int[] { 30, 60, 125, 250, 500, 1000, 2000, 4000, 8000, 1600 };
             int[] gains = new int[] { 2, 5, -7, 1, 3, -4, 15, 12, 6, 9 };
 
             for (int i = 0; i < bandsCount; i++) {
@@ -46,7 +44,6 @@ public class EqualizerView
                 band.setFrequency(frequencies[i]);
                 band.setGainLimit(15);
                 band.setGain(gains[i]);
-                band.setOnBandChangedListener(this);
                 bandsContainer.addView(band);
             }
         }
