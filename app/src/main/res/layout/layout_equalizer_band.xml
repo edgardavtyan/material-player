@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="horizontal"
+    android:paddingLeft="@dimen/spacing_medium"
+    android:paddingRight="@dimen/spacing_medium"
     >
 
     <TextView
         android:id="@+id/frequency"
-        android:layout_width="80dp"
+        android:layout_width="@dimen/icon_big"
         android:layout_height="match_parent"
         android:gravity="end|center_vertical"
         android:textColor="@color/text_primary"
@@ -28,9 +30,9 @@
 
     <TextView
         android:id="@+id/gain"
-        android:layout_width="64dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|right"
         android:textColor="@color/text_primary"
         tools:text="+12 Db"
         />
