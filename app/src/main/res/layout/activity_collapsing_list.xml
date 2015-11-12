@@ -20,11 +20,6 @@
             android:layout_weight="1"
             >
 
-            <View
-                android:id="@+id/statusbar_tint"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
-
             <LinearLayout
                 android:id="@+id/appbar_wrapper"
                 android:layout_width="match_parent"
@@ -32,15 +27,28 @@
                 android:orientation="vertical"
                 >
 
-                <include layout="@layout/layout_toolbar" />
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appbar"
+                    style="@style/CollapsingList_AppBar"
+                    >
+
+                    <View
+                        android:id="@+id/statusbar_tint"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        style="@style/CollapsingList_StatusBarTint"
+                        />
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/CollapsingList_Toolbar"
+                        />
+
+                </android.support.design.widget.AppBarLayout>
 
                 <View
                     android:id="@+id/appbar_shadow"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/shadow_small"
-                    android:layout_gravity="bottom"
-                    android:alpha="0"
-                    android:background="@drawable/shadow_top"
+                    style="@style/CollapsingList_AppBarShadow"
                     />
 
             </LinearLayout>
@@ -69,9 +77,9 @@
 
         <fragment
             android:id="@+id/floating_nowplaying"
-            android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/icon_big"
+            android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
             tools:layout="@layout/fragment_floating_nowplaying"
             />
 
