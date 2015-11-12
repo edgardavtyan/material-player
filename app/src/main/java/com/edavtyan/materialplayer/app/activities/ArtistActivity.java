@@ -51,8 +51,8 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         albumsAdapter = new AlbumsAdapter(this);
-
         super.onCreate(savedInstanceState);
+        initToolbar(R.string.app_name);
 
         Glide.with(this).load(R.drawable.fallback_artist).into(imageView);
         new ArtistLoadTask().execute(getIntent().getStringExtra(EXTRA_ARTIST_NAME));

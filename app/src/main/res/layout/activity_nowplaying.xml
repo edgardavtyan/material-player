@@ -13,21 +13,7 @@
         android:orientation="vertical"
         >
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:title="@string/nowplaying_toolbar_title"
-                app:titleTextColor="@color/text_onPrimary"
-                />
-
-        </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/layout_toolbar" />
 
         <fragment
             android:id="@+id/fragment_art"

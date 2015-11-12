@@ -57,6 +57,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         tracksAdapter = new AlbumTracksAdapter(this);
         super.onCreate(savedInstanceState);
+        initToolbar(R.string.app_name);
 
         Album album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
 

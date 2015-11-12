@@ -7,15 +7,15 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.views.EqualizerView;
 
 public class AudioEffectsActivity
-        extends AppCompatActivity
+        extends BaseToolbarActivity
         implements ServiceConnection, EqualizerView.OnBandChangedListener {
     private Equalizer equalizer;
     private EqualizerView equalizerView;
@@ -25,6 +25,7 @@ public class AudioEffectsActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_effects);
+        initToolbar(R.string.audio_effects_title);
 
         equalizerView = (EqualizerView) findViewById(R.id.equalizer);
     }

@@ -32,24 +32,7 @@
                 android:orientation="vertical"
                 >
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/appbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    app:elevation="0dp"
-                    >
-
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?actionBarSize"
-                        app:elevation="0dp"
-                        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                        app:titleTextColor="@color/text_onPrimary"
-                        />
-
-                </android.support.design.widget.AppBarLayout>
+                <include layout="@layout/layout_toolbar" />
 
                 <View
                     android:id="@+id/appbar_shadow"
