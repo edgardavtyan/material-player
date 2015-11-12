@@ -17,7 +17,7 @@
         tools:text="16000 Hz"
         />
 
-    <app.minimize.com.seek_bar_compat.SeekBarCompat
+    <com.edavtyan.materialplayer.app.views.DoubleSeekbar
         android:id="@+id/band"
         android:layout_width="0dp"
         android:layout_height="match_parent"

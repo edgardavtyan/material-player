@@ -11,12 +11,11 @@ import com.edavtyan.materialplayer.app.R;
 import lombok.Setter;
 
 public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-    private int gainLimit;
     private @Setter OnBandChangedListener onBandChangedListener;
 
     private TextView frequencyView;
     private TextView gainView;
-    private SeekBar bandView;
+    private DoubleSeekbar bandView;
 
 
     public interface OnBandChangedListener {
@@ -33,7 +32,7 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
         frequencyView = (TextView) findViewById(R.id.frequency);
         gainView = (TextView) findViewById(R.id.gain);
 
-        bandView = (SeekBar) findViewById(R.id.band);
+        bandView = (DoubleSeekbar) findViewById(R.id.band);
         bandView.setOnSeekBarChangeListener(this);
     }
 
@@ -42,12 +41,11 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
      */
 
     public void setGainLimit(int gain) {
-        gainLimit = gain * 2;
-        bandView.setMax(gainLimit);
+        bandView.setMax(gain);
     }
 
     public void setGain(int gain) {
-        bandView.setProgress(gain + (gainLimit / 2));
+        bandView.setProgress(gain);
         gainView.setText(getGainStr(gain));
     }
 
@@ -61,9 +59,8 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int gain = progressToGain(progress);
-        gainView.setText(getGainStr(gain));
-        if (onBandChangedListener != null) onBandChangedListener.onBandChanged(this, gain);
+        gainView.setText(getGainStr(progress));
+        if (onBandChangedListener != null) onBandChangedListener.onBandChanged(this, progress);
     }
 
     @Override
@@ -77,11 +74,6 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
     /*
      * Private methods
      */
-
-    private int progressToGain(int progress) {
-        progress -= bandView.getMax() / 2;
-        return progress;
-    }
 
     private String getGainStr(int gain) {
         return getResources().getString(
