@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.app.music.adapters.PlaylistAdapter;
+import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
 
 public class PlaylistActivity extends BaseToolbarActivity {
     private PlaylistAdapter playlistAdapter;
@@ -25,6 +26,7 @@ public class PlaylistActivity extends BaseToolbarActivity {
         RecyclerView playlistView = (RecyclerView) findViewById(R.id.list);
         playlistView.setLayoutManager(new LinearLayoutManager(this));
         playlistView.setAdapter(playlistAdapter);
+        playlistView.addItemDecoration(new DividerItemDecoration(this, null));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
