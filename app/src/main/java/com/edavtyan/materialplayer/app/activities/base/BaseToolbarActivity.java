@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.app.activities.base;
 
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
 
-public class BaseToolbarActivity extends AppCompatActivity {
+public class BaseToolbarActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
