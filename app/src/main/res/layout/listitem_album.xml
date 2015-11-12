@@ -48,7 +48,7 @@
 
     <ImageButton
         android:id="@+id/menu"
-        android:layout_width="@dimen/icon_medium"
+        android:layout_width="@dimen/size_medium"
         android:layout_height="match_parent"
         android:src="@drawable/ic_more_vert"
         android:background="@drawable/ripple_control_notification"

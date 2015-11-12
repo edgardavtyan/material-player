@@ -8,7 +8,7 @@
     </style>
 
     <style name="notification_art">
-        <item name="android:layout_width">@dimen/icon_medium</item>
+        <item name="android:layout_width">@dimen/size_medium</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_margin">@dimen/spacing_tiny</item>
         <item name="android:layout_marginRight">8dp</item>
@@ -46,7 +46,7 @@
     </style>
 
     <style name="notification_control">
-        <item name="android:layout_width">@dimen/icon_medium</item>
+        <item name="android:layout_width">@dimen/size_medium</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/ripple_control_notification</item>
     </style>

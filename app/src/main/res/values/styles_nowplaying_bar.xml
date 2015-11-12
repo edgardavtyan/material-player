@@ -3,13 +3,13 @@
 
     <style name="nowplayingBar_container">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/icon_big</item>
+        <item name="android:layout_height">@dimen/size_big</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@color/primary</item>
     </style>
 
     <style name="nowplayingBar_art">
-        <item name="android:layout_width">@dimen/icon_big</item>
+        <item name="android:layout_width">@dimen/size_big</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 

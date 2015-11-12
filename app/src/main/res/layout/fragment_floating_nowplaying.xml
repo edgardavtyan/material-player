@@ -37,7 +37,7 @@
 
     <com.wnafee.vector.MorphButton
         android:id="@+id/play_pause"
-        android:layout_width="@dimen/icon_big"
+        android:layout_width="@dimen/size_big"
         android:layout_height="match_parent"
         style="@style/nowplayingBar_playPause"
         />
