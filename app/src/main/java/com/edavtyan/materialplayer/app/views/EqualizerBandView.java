@@ -76,7 +76,7 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
      */
 
     private String getGainStr(int gain) {
-        return getResources().getString(
+        return (gain > 0 ? "+" : "") + getResources().getString(
                 R.string.equalizer_format_gain, gain);
     }
 }
