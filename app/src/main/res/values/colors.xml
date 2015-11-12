@@ -15,6 +15,7 @@
     <color name="transparent_gray_light">#3000</color>
     <color name="transparent_gray_dark">#7000</color>
 
+    <color name="white">#eee</color>
     <color name="white_alpha_light">#5FFF</color>
 
 </resources>
