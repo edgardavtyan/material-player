@@ -107,7 +107,7 @@ public class PlaybackControlsFragment
 
     @Override
     public void onServiceConnected() {
-        if (getService().isPlaying()) {
+        if (getService().getPlayer().isPlaying()) {
             playPauseButton.setState(STATE_PAUSE);
         } else {
             playPauseButton.setState(STATE_PLAY);
@@ -137,12 +137,12 @@ public class PlaybackControlsFragment
                 break;
 
             case R.id.repeat:
-                getService().toggleRepeatMode();
+                getService().getPlayer().toggleRepeatMode();
                 syncRepeatButtonIcon();
                 break;
 
             case R.id.shuffle:
-                getService().toggleShuffling();
+                getService().getPlayer().toggleShuffling();
                 syncShuffleButtonIcon();
                 break;
         }
@@ -153,7 +153,7 @@ public class PlaybackControlsFragment
      */
 
     private void syncRepeatButtonIcon() {
-        switch (getService().getRepeatMode()) {
+        switch (getService().getPlayer().getRepeatMode()) {
             case NO_REPEAT:
                 repeatButton.setImageResource(R.drawable.ic_repeat_white);
                 return;
@@ -167,7 +167,7 @@ public class PlaybackControlsFragment
     }
 
     private void syncShuffleButtonIcon() {
-        if (getService().isShuffling()) {
+        if (getService().getPlayer().isShuffling()) {
             shuffleButton.setImageResource(R.drawable.ic_shuffle_accent);
         } else {
             shuffleButton.setImageResource(R.drawable.ic_shuffle_white);

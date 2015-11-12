@@ -25,7 +25,7 @@ public class PlayerSeekbarFragment
     private final Runnable syncSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekbar.setProgress(getService().getSeek());
+            seekbar.setProgress(getService().getPlayer().getSeek());
             handler.postDelayed(syncSeekbar, 1000);
         }
     };
@@ -49,7 +49,7 @@ public class PlayerSeekbarFragment
     private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            seekbar.setMax(getService().getDuration());
+            seekbar.setMax(getService().getPlayer().getDuration());
             syncSeekbar.run();
         }
     };
@@ -101,7 +101,7 @@ public class PlayerSeekbarFragment
 
     @Override
     public void onServiceConnected() {
-        seekbar.setMax(getService().getDuration());
+        seekbar.setMax(getService().getPlayer().getDuration());
         syncSeekbar.run();
     }
 
@@ -119,7 +119,7 @@ public class PlayerSeekbarFragment
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        getService().seekTo(seekBar.getProgress());
+        getService().getPlayer().seekTo(seekBar.getProgress());
         syncSeekbar.run();
     }
 }

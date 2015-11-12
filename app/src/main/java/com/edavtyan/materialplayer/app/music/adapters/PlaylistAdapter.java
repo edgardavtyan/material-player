@@ -38,8 +38,8 @@ public class PlaylistAdapter
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            notifyItemChanged(getService().getCurrentIndex());
-            notifyItemChanged(getService().getCurrentIndex() - 1);
+            notifyItemChanged(getService().getPlayer().getCurrentTrackIndex());
+            notifyItemChanged(getService().getPlayer().getCurrentTrackIndex() - 1);
         }
     };
 
@@ -76,9 +76,9 @@ public class PlaylistAdapter
                 return;
             }
 
-            int oldPosition = getService().getCurrentIndex();
-            getService().setCurrentIndex(getAdapterPosition());
-            getService().prepare();
+            int oldPosition = getService().getPlayer().getCurrentTrackIndex();
+            getService().getPlayer().setCurrentTrackIndex(getAdapterPosition());
+            getService().getPlayer().prepare();
             notifyItemChanged(oldPosition);
         }
 
@@ -86,7 +86,7 @@ public class PlaylistAdapter
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.menu_remove:
-                    getService().getTracks().remove(getAdapterPosition());
+                    getService().getPlayer().getQueue().remove(getAdapterPosition());
                     notifyItemRemoved(getAdapterPosition());
                     return true;
 
@@ -108,9 +108,9 @@ public class PlaylistAdapter
     @Override
     public void onBindViewHolder(TrackViewHolder holder, int position) {
         if (!isBound()) return;
-        holder.titleView.setText(getService().getTracks().get(position).getTrackTitle());
-        holder.infoView.setText(getService().getTracks().get(position).getAlbumTitle());
-        if (getService().getCurrentIndex() == holder.getLayoutPosition()) {
+        holder.titleView.setText(getService().getPlayer().getQueue().get(position).getTrackTitle());
+        holder.infoView.setText(getService().getPlayer().getQueue().get(position).getAlbumTitle());
+        if (getService().getPlayer().getCurrentTrackIndex() == holder.getLayoutPosition()) {
             holder.nowPlayingIcon.setVisibility(View.VISIBLE);
         } else {
             holder.nowPlayingIcon.setVisibility(View.GONE);
@@ -120,7 +120,7 @@ public class PlaylistAdapter
     @Override
     public int getItemCount() {
         if (!isBound()) return 0;
-        return getService().getTracks().size();
+        return getService().getPlayer().getQueue().size();
     }
 
     /*

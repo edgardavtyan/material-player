@@ -5,19 +5,22 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
-import com.edavtyan.materialplayer.app.music.RepeatMode;
+import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.app.music.effects.equalizer.HQEqualizer;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
-import java.util.List;
+import lombok.Getter;
 
-public class MusicPlayerService extends Service implements MediaPlayer.OnPreparedListener {
+public class MusicPlayerService
+        extends Service
+        implements MusicPlayer.OnPreparedListener, MusicPlayer.OnPlaybackStateChangedListener {
     private static final int NOTIFICATION_ID = 1;
 
     public static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
@@ -33,7 +36,8 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
      */
 
     private NowPlayingNotification notification;
-    private MusicPlayer player;
+    private @Getter MusicPlayer player;
+    private @Getter Equalizer equalizer;
 
     /*
      * Broadcast Receivers
@@ -42,10 +46,10 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
     private class PlayPauseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (isPlaying()) {
-                pause();
+            if (player.isPlaying()) {
+                player.pause();
             } else {
-                resume();
+                player.resume();
             }
         }
     }
@@ -53,9 +57,9 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
     private class FastForwardReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (hasData()) {
-                moveNext();
-                prepare();
+            if (player.hasData()) {
+                player.moveNext();
+                player.prepare();
             }
         }
     }
@@ -63,9 +67,9 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
     private class RewindReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (hasData()) {
-                movePrev();
-                prepare();
+            if (player.hasData()) {
+                player.movePrev();
+                player.prepare();
             }
         }
     }
@@ -75,9 +79,19 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
      */
 
     @Override
-    public void onPrepared(MediaPlayer mediaPlayer) {
+    public void onPlaybackStateChanged(MusicPlayer.PlaybackState state) {
+        switch (state) {
+            case PAUSED:
+                sendBroadcast(new Intent(SEND_PAUSE));
+                break;
+            case RESUMED:
+                sendBroadcast(new Intent(SEND_PLAY));
+                break;
+        }
+    }
+
+    public void onPrepared() {
         sendBroadcast(new Intent(SEND_NEW_TRACK));
-        seekTo(0);
     }
 
     /*
@@ -100,105 +114,25 @@ public class MusicPlayerService extends Service implements MediaPlayer.OnPrepare
     public void onCreate() {
         super.onCreate();
 
-        notification = new NowPlayingNotification(this);
-        player = new MusicPlayer(this);
+        OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
+        params.options = OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER;
+        params.shortFadeDuration = 200;
+        params.longFadeDuration = 200;
+        OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
+
+        player = new MusicPlayer(this, factory.createMediaPlayer());
         player.setOnPreparedListener(this);
+        equalizer = new HQEqualizer(this, factory.createHQEqualizer());
+        notification = new NowPlayingNotification(this);
 
-        IntentFilter playPauseFilter = new IntentFilter(ACTION_PLAY_PAUSE);
-        registerReceiver(new PlayPauseReceiver(), playPauseFilter);
-
-        IntentFilter fastForwardFilter = new IntentFilter(ACTION_FAST_FORWARD);
-        registerReceiver(new FastForwardReceiver(), fastForwardFilter);
-
-        IntentFilter rewindFilter = new IntentFilter(ACTION_REWIND);
-        registerReceiver(new RewindReceiver(), rewindFilter);
+        registerReceiver(new PlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
+        registerReceiver(new FastForwardReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
+        registerReceiver(new RewindReceiver(), new IntentFilter(ACTION_REWIND));
     }
 
     public class MusicPlayerBinder extends Binder {
         public MusicPlayerService getService() {
             return MusicPlayerService.this;
         }
-    }
-
-    /*
-     * Public methods
-     */
-
-    public Track getCurrentTrack() {
-        return player.getCurrentTrack();
-    }
-
-    public List<Track> getTracks() {
-        return player.getTracks();
-    }
-
-    public void setTracks(List<Track> tracks, int index) {
-        player.setTracks(tracks, index);
-    }
-
-    public RepeatMode getRepeatMode() {
-        return player.getRepeatMode();
-    }
-
-    public void toggleRepeatMode() {
-        player.toggleRepeatMode();
-    }
-
-    public boolean isShuffling() {
-        return player.isShuffling();
-    }
-
-    public void toggleShuffling() {
-        player.toggleShuffling();
-    }
-
-    public int getCurrentIndex() {
-        return player.getCurrentTrackIndex();
-    }
-
-    public void setCurrentIndex(int index) {
-        player.setCurrentTrackIndex(index);
-    }
-
-    public void seekTo(int position) {
-        player.seekTo(position);
-    }
-
-    public int getSeek() {
-        return player.getSeek();
-    }
-
-    public int getDuration() {
-        return player.getDuration();
-    }
-
-    public void prepare() {
-        player.prepare();
-    }
-
-    public void resume() {
-        player.resume();
-        sendBroadcast(new Intent(SEND_PLAY));
-    }
-
-    public void pause() {
-        player.pause();
-        sendBroadcast(new Intent(SEND_PAUSE));
-    }
-
-    public boolean isPlaying() {
-        return player.isPlaying();
-    }
-
-    public void moveNext() {
-        player.moveNext();
-    }
-
-    public void movePrev() {
-        player.movePrev();
-    }
-
-    public boolean hasData() {
-        return player.getTracks().size() > 0;
     }
 }
