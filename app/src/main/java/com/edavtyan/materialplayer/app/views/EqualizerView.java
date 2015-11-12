@@ -83,7 +83,7 @@ public class EqualizerView
     @Override
     public void onBandChanged(EqualizerBandView band, int gain) {
         if (onBandChangedListener != null) {
-            onBandChangedListener.onBandChanged(bands.indexOf(band), gain);
+            onBandChangedListener.onBandChanged(bands.size() - bands.indexOf(band) - 1, gain);
         }
     }
 }
