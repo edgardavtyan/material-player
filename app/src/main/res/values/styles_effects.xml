@@ -7,10 +7,9 @@
         <item name="android:layout_marginRight">@dimen/spacing_tiny</item>
         <item name="android:layout_marginLeft">@dimen/spacing_medium</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
-        <item name="android:layout_marginBottom">@dimen/spacing_medium</item>
     </style>
 
-    <style name="AudioEffects_SectionTitle">
+    <style name="AudioEffects_SectionEqualizer">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -19,10 +18,22 @@
         <item name="android:textColor">@color/text_primary</item>
     </style>
 
+    <style name="AudioEffects_SectionFx" parent="AudioEffects_SectionEqualizer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">0</item>
+    </style>
+
     <style name="AudioEffects_SectionSwitch">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:theme">@style/AppTheme.Base.Reversed</item>
+    </style>
+
+    <style name="AudioEffects_SeekbarFx">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="progress">40</item>
     </style>
 
 </resources>

@@ -32,11 +32,6 @@ public class HQSurround implements Surround {
     }
 
     @Override
-    public boolean isEnabled() {
-        return surround.getEnabled();
-    }
-
-    @Override
     public int getMaxStrength() {
         return MAX_STRENGTH;
     }

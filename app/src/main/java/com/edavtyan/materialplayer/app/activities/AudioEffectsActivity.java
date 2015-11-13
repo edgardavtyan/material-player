@@ -27,7 +27,6 @@ public class AudioEffectsActivity
     private Switch equalizerSwitch;
     private Surround surround;
     private SeekBar surroundSeekbar;
-    private Switch surroundSwitch;
 
 
     @Override
@@ -41,8 +40,6 @@ public class AudioEffectsActivity
         equalizerSwitch.setOnCheckedChangeListener(this);
         surroundSeekbar = (SeekBar) findViewById(R.id.surround_seekbar);
         surroundSeekbar.setOnSeekBarChangeListener(this);
-        surroundSwitch = (Switch) findViewById(R.id.surround_switch);
-        surroundSwitch.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -74,7 +71,6 @@ public class AudioEffectsActivity
         equalizerSwitch.setChecked(equalizer.isEnabled());
 
         surround = service.getSurround();
-        surroundSwitch.setChecked(surround.isEnabled());
         surroundSeekbar.setMax(surround.getMaxStrength());
         surroundSeekbar.setProgress(surround.getStrength());
     }
@@ -105,10 +101,6 @@ public class AudioEffectsActivity
         switch (button.getId()) {
             case R.id.equalizer_switch:
                 equalizer.setEnabled(isChecked);
-                break;
-
-            case R.id.surround_switch:
-                surround.setEnabled(isChecked);
                 break;
         }
     }
