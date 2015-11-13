@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     >
 
@@ -29,20 +29,11 @@
         android:layout_height="wrap_content"
         />
 
-    <LinearLayout style="@style/AudioEffects_Section">
-
-        <TextView
-            android:text="@string/surround_title"
-            style="@style/AudioEffects_SectionFx"
-            />
-
-        <app.minimize.com.seek_bar_compat.SeekBarCompat
-            android:id="@+id/surround_seekbar"
-            tools:progress="40"
-            style="@style/AudioEffects_SeekbarFx"
-            />
-
-    </LinearLayout>
-
+    <com.edavtyan.materialplayer.app.views.TitledSeekbarView
+        android:id="@+id/surround"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:text="@string/surround_title"
+        />
 
 </LinearLayout>

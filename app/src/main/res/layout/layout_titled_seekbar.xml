@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/TitledSeekbar_Section"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TitledSeekbar_Title"
+        tools:text="Title"
+        />
+
+    <app.minimize.com.seek_bar_compat.SeekBarCompat
+        android:id="@+id/seekbar"
+        tools:progress="40"
+        style="@style/TitledSeekbar_Seekbar"
+        />
+
+</LinearLayout>

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.CompoundButton;
-import android.widget.SeekBar;
 import android.widget.Switch;
 
 import com.edavtyan.materialplayer.app.R;
@@ -17,16 +16,18 @@ import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.music.effects.surround.Surround;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.views.EqualizerView;
+import com.edavtyan.materialplayer.app.views.TitledSeekbarView;
 
 public class AudioEffectsActivity
         extends BaseToolbarActivity
         implements ServiceConnection, EqualizerView.OnBandChangedListener,
-                   CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
+                   CompoundButton.OnCheckedChangeListener,
+                   TitledSeekbarView.OnSeekChangedListener {
     private Equalizer equalizer;
     private EqualizerView equalizerView;
     private Switch equalizerSwitch;
     private Surround surround;
-    private SeekBar surroundSeekbar;
+    private TitledSeekbarView surroundSeekbar;
 
 
     @Override
@@ -38,7 +39,8 @@ public class AudioEffectsActivity
         equalizerView = (EqualizerView) findViewById(R.id.equalizer);
         equalizerSwitch = (Switch) findViewById(R.id.equalizer_switch);
         equalizerSwitch.setOnCheckedChangeListener(this);
-        surroundSeekbar = (SeekBar) findViewById(R.id.surround_seekbar);
+
+        surroundSeekbar = (TitledSeekbarView) findViewById(R.id.surround);
         surroundSeekbar.setOnSeekBarChangeListener(this);
     }
 
@@ -105,27 +107,20 @@ public class AudioEffectsActivity
         }
     }
 
-    /*
-     * SeekBar.OnSeekBarChangeListener
-     */
-
     @Override
-    public void onProgressChanged(SeekBar seekbar, int progress, boolean fromUser) {
+    public void onProgressChanged(TitledSeekbarView titledSeekbar, int progress, boolean fromUser) {
         if (!fromUser) return;
-        switch (seekbar.getId()) {
-            case R.id.surround_seekbar:
+        switch (titledSeekbar.getId()) {
+            case R.id.surround:
                 surround.setStrength(progress);
                 break;
         }
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        switch (seekBar.getId()) {
-            case R.id.surround_seekbar:
+    public void onStopTrackingTouch(TitledSeekbarView titledSeekbar) {
+        switch (titledSeekbar.getId()) {
+            case R.id.surround:
                 surround.saveSettings();
                 break;
         }
