@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout style="@style/AudioEffects_Section">
+
+        <TextView
+            android:text="@string/equalizer_title"
+            style="@style/AudioEffects_SectionEqualizer"
+            />
+
+        <Switch
+            android:id="@+id/equalizer_switch"
+            style="@style/AudioEffects_SectionSwitch"
+            />
+
+    </LinearLayout>
+
+    <com.edavtyan.materialplayer.app.views.EqualizerView
+        android:id="@+id/equalizer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
