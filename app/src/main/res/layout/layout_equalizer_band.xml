@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:minHeight="28sp"
+        android:maxHeight="300sp"
         tools:progress="40"
         />
 
