@@ -9,11 +9,11 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <LinearLayout style="@style/AudioEffects_Section" >
+    <LinearLayout style="@style/AudioEffects_Section">
 
         <TextView
-            style="@style/AudioEffects_SectionEqualizer"
             android:text="@string/equalizer_title"
+            style="@style/AudioEffects_SectionEqualizer"
             />
 
         <Switch
@@ -32,18 +32,17 @@
     <LinearLayout style="@style/AudioEffects_Section">
 
         <TextView
-            style="@style/AudioEffects_SectionFx"
             android:text="@string/surround_title"
+            style="@style/AudioEffects_SectionFx"
             />
 
         <app.minimize.com.seek_bar_compat.SeekBarCompat
             android:id="@+id/surround_seekbar"
-            style="@style/AudioEffects_SeekbarFx"
             tools:progress="40"
+            style="@style/AudioEffects_SeekbarFx"
             />
 
     </LinearLayout>
-
 
 
 </LinearLayout>
