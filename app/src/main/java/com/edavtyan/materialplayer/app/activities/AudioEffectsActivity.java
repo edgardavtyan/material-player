@@ -8,21 +8,26 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.Switch;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.app.music.effects.surround.Surround;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.views.EqualizerView;
 
 public class AudioEffectsActivity
         extends BaseToolbarActivity
         implements ServiceConnection, EqualizerView.OnBandChangedListener,
-                   CompoundButton.OnCheckedChangeListener {
+                   CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
     private Equalizer equalizer;
     private EqualizerView equalizerView;
     private Switch equalizerSwitch;
+    private Surround surround;
+    private SeekBar surroundSeekbar;
+    private Switch surroundSwitch;
 
 
     @Override
@@ -34,6 +39,10 @@ public class AudioEffectsActivity
         equalizerView = (EqualizerView) findViewById(R.id.equalizer);
         equalizerSwitch = (Switch) findViewById(R.id.equalizer_switch);
         equalizerSwitch.setOnCheckedChangeListener(this);
+        surroundSeekbar = (SeekBar) findViewById(R.id.surround_seekbar);
+        surroundSeekbar.setOnSeekBarChangeListener(this);
+        surroundSwitch = (Switch) findViewById(R.id.surround_switch);
+        surroundSwitch.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -56,13 +65,18 @@ public class AudioEffectsActivity
 
     @Override
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        equalizer = ((MusicPlayerService.MusicPlayerBinder)iBinder).getService().getEqualizer();
+        MusicPlayerService service = ((MusicPlayerService.MusicPlayerBinder)iBinder).getService();
+        equalizer = service.getEqualizer();
         equalizerView.setGainLimit(equalizer.getGainLimit());
         equalizerView.setOnBandChangedListener(this);
         equalizerView.setBands(equalizer.getBandsCount(), equalizer.getFrequencies(),
                 equalizer.getGains());
-
         equalizerSwitch.setChecked(equalizer.isEnabled());
+
+        surround = service.getSurround();
+        surroundSwitch.setChecked(surround.isEnabled());
+        surroundSeekbar.setMax(surround.getMaxStrength());
+        surroundSeekbar.setProgress(surround.getStrength());
     }
 
     @Override
@@ -88,6 +102,40 @@ public class AudioEffectsActivity
 
     @Override
     public void onCheckedChanged(CompoundButton button, boolean isChecked) {
-        equalizer.setEnabled(isChecked);
+        switch (button.getId()) {
+            case R.id.equalizer_switch:
+                equalizer.setEnabled(isChecked);
+                break;
+
+            case R.id.surround_switch:
+                surround.setEnabled(isChecked);
+                break;
+        }
+    }
+
+    /*
+     * SeekBar.OnSeekBarChangeListener
+     */
+
+    @Override
+    public void onProgressChanged(SeekBar seekbar, int progress, boolean fromUser) {
+        if (!fromUser) return;
+        switch (seekbar.getId()) {
+            case R.id.surround_seekbar:
+                surround.setStrength(progress);
+                break;
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        switch (seekBar.getId()) {
+            case R.id.surround_seekbar:
+                surround.saveSettings();
+                break;
+        }
     }
 }

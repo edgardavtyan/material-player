@@ -12,7 +12,10 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.HQEqualizer;
+import com.edavtyan.materialplayer.app.music.effects.surround.HQSurround;
+import com.edavtyan.materialplayer.app.music.effects.surround.Surround;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
+import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
@@ -38,6 +41,7 @@ public class MusicPlayerService
     private NowPlayingNotification notification;
     private @Getter MusicPlayer player;
     private @Getter Equalizer equalizer;
+    private @Getter Surround surround;
 
     /*
      * Broadcast Receivers
@@ -115,14 +119,18 @@ public class MusicPlayerService
         super.onCreate();
 
         OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
-        params.options = OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER;
+        params.options =
+                OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER |
+                OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER;
         params.shortFadeDuration = 200;
         params.longFadeDuration = 200;
         OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
 
-        player = new MusicPlayer(this, factory.createMediaPlayer());
+        IBasicMediaPlayer basicPlayer = factory.createMediaPlayer();
+        player = new MusicPlayer(this, basicPlayer);
         player.setOnPreparedListener(this);
         equalizer = new HQEqualizer(this, factory.createHQEqualizer());
+        surround = new HQSurround(this, factory.createVirtualizer(basicPlayer));
         notification = new NowPlayingNotification(this);
 
         registerReceiver(new PlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
