@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.app.views;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -14,6 +13,7 @@ import lombok.Setter;
 
 public class TitledSeekbarView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
     private SeekBar seekbar;
+    private TextView titleView;
     private @Setter OnSeekChangedListener onSeekBarChangeListener;
 
 
@@ -30,12 +30,7 @@ public class TitledSeekbarView extends FrameLayout implements SeekBar.OnSeekBarC
         seekbar = (SeekBar) findViewById(R.id.seekbar);
         seekbar.setOnSeekBarChangeListener(this);
 
-        TypedArray typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.TitledSeekbarView);
-
-        TextView titleView = (TextView) findViewById(R.id.title);
-        titleView.setText(typedAttrs.getString(R.styleable.TitledSeekbarView_text));
-
-        typedAttrs.recycle();
+        titleView = (TextView) findViewById(R.id.title);
     }
 
 
@@ -45,6 +40,10 @@ public class TitledSeekbarView extends FrameLayout implements SeekBar.OnSeekBarC
 
     public void setMax(int max) {
         seekbar.setMax(max);
+    }
+
+    public void setText(int title) {
+        titleView.setText(title);
     }
 
 
