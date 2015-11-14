@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
+import com.edavtyan.materialplayer.app.music.effects.SingleLevelEffectType;
 import com.edavtyan.materialplayer.app.music.effects.StrengthBasedEffect;
 
 public abstract class AudioEffectFragment

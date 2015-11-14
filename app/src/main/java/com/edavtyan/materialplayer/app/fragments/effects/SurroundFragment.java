@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.app.fragments.effects;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.music.effects.SingleLevelEffectType;
 
 public class SurroundFragment extends AudioEffectFragment {
     @Override
