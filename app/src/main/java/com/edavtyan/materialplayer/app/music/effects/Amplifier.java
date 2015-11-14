@@ -25,7 +25,7 @@ public class Amplifier implements StrengthBasedEffect {
         setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
     }
 
-    
+
     @Override
     public void setEnabled(boolean isEnabled) {
         amplifier.setEnabled(true);

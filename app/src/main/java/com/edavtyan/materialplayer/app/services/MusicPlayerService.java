@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.music.effects.Amplifier;
+import com.edavtyan.materialplayer.app.music.effects.BassBoost;
 import com.edavtyan.materialplayer.app.music.effects.HQSurround;
 import com.edavtyan.materialplayer.app.music.effects.StrengthBasedEffect;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
@@ -44,6 +45,7 @@ public class MusicPlayerService
     private @Getter Equalizer equalizer;
     private @Getter StrengthBasedEffect surround;
     private @Getter Amplifier amplifier;
+    private @Getter BassBoost bassBoost;
 
     /*
      * Broadcast Receivers
@@ -124,7 +126,8 @@ public class MusicPlayerService
         params.options =
                 OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER |
                 OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER |
-                OpenSLMediaPlayerContext.OPTION_USE_PREAMP;
+                OpenSLMediaPlayerContext.OPTION_USE_PREAMP|
+                OpenSLMediaPlayerContext.OPTION_USE_BASSBOOST;
         params.shortFadeDuration = 200;
         params.longFadeDuration = 200;
         OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
@@ -135,6 +138,7 @@ public class MusicPlayerService
         equalizer = new HQEqualizer(this, factory.createHQEqualizer());
         surround = new HQSurround(this, factory.createVirtualizer(basicPlayer));
         amplifier = new Amplifier(this, factory.createPreAmp());
+        bassBoost = new BassBoost(this, factory.createBassBoost(basicPlayer));
 
         notification = new NowPlayingNotification(this);
 

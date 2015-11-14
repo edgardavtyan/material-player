@@ -34,4 +34,12 @@
         tools:layout="@layout/layout_titled_seekbar"
         />
 
+    <fragment
+        android:id="@+id/fragment_bassBoost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.edavtyan.materialplayer.app.fragments.effects.BassBoostFragment"
+        tools:layout="@layout/layout_titled_seekbar"
+        />
+
 </LinearLayout>
