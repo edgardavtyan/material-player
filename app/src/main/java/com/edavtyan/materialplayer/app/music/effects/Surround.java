@@ -18,6 +18,7 @@ public class Surround implements StrengthBasedEffect {
 
     public Surround(Context context, IVirtualizer surround) {
         this.surround = surround;
+        surround.setEnabled(true);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         setStrength(prefs.getInt(PREF_STRENGTH, 0));
