@@ -126,7 +126,7 @@ public class MusicPlayerService
         params.options =
                 OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER |
                 OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER |
-                OpenSLMediaPlayerContext.OPTION_USE_PREAMP|
+                OpenSLMediaPlayerContext.OPTION_USE_PREAMP |
                 OpenSLMediaPlayerContext.OPTION_USE_BASSBOOST;
         params.shortFadeDuration = 200;
         params.longFadeDuration = 200;
