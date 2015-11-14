@@ -26,11 +26,6 @@ public class BassBoost implements StrengthBasedEffect {
 
 
     @Override
-    public void setEnabled(boolean isEnabled) {
-        bassBoost.setEnabled(isEnabled);
-    }
-
-    @Override
     public int getMaxStrength() {
         return MAX_STRENGTH;
     }
@@ -41,12 +36,12 @@ public class BassBoost implements StrengthBasedEffect {
     }
 
     @Override
-    public void saveSettings() {
-        prefs.edit().putInt(PREF_STRENGTH, getStrength()).apply();
+    public void setStrength(int strength) {
+        bassBoost.setStrength((short) strength);
     }
 
     @Override
-    public void setStrength(int progress) {
-        bassBoost.setStrength((short) progress);
+    public void saveSettings() {
+        prefs.edit().putInt(PREF_STRENGTH, getStrength()).apply();
     }
 }

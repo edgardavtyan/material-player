@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.music.effects.Amplifier;
 import com.edavtyan.materialplayer.app.music.effects.BassBoost;
-import com.edavtyan.materialplayer.app.music.effects.HQSurround;
+import com.edavtyan.materialplayer.app.music.effects.Surround;
 import com.edavtyan.materialplayer.app.music.effects.StrengthBasedEffect;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.HQEqualizer;
@@ -136,7 +136,7 @@ public class MusicPlayerService
         player = new MusicPlayer(this, basicPlayer);
         player.setOnPreparedListener(this);
         equalizer = new HQEqualizer(this, factory.createHQEqualizer());
-        surround = new HQSurround(this, factory.createVirtualizer(basicPlayer));
+        surround = new Surround(this, factory.createVirtualizer(basicPlayer));
         amplifier = new Amplifier(this, factory.createPreAmp());
         bassBoost = new BassBoost(this, factory.createBassBoost(basicPlayer));
 

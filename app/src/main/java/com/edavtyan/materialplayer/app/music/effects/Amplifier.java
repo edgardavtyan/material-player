@@ -27,12 +27,6 @@ public class Amplifier implements StrengthBasedEffect {
 
 
     @Override
-    public void setEnabled(boolean isEnabled) {
-        amplifier.setEnabled(true);
-        prefs.edit().putBoolean(PREF_ENABLED, isEnabled).apply();
-    }
-
-    @Override
     public int getMaxStrength() {
         return MAX_STRENGTH;
     }
