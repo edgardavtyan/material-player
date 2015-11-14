@@ -10,10 +10,11 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
-import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
-import com.edavtyan.materialplayer.app.music.effects.equalizer.HQEqualizer;
+import com.edavtyan.materialplayer.app.music.effects.Amplifier;
 import com.edavtyan.materialplayer.app.music.effects.HQSurround;
 import com.edavtyan.materialplayer.app.music.effects.StrengthBasedEffect;
+import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.app.music.effects.equalizer.HQEqualizer;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
@@ -41,8 +42,8 @@ public class MusicPlayerService
     private NowPlayingNotification notification;
     private @Getter MusicPlayer player;
     private @Getter Equalizer equalizer;
-    private @Getter
-    StrengthBasedEffect surround;
+    private @Getter StrengthBasedEffect surround;
+    private @Getter Amplifier amplifier;
 
     /*
      * Broadcast Receivers
@@ -122,7 +123,8 @@ public class MusicPlayerService
         OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
         params.options =
                 OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER |
-                OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER;
+                OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER |
+                OpenSLMediaPlayerContext.OPTION_USE_PREAMP;
         params.shortFadeDuration = 200;
         params.longFadeDuration = 200;
         OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
@@ -132,6 +134,7 @@ public class MusicPlayerService
         player.setOnPreparedListener(this);
         equalizer = new HQEqualizer(this, factory.createHQEqualizer());
         surround = new HQSurround(this, factory.createVirtualizer(basicPlayer));
+        amplifier = new Amplifier(this, factory.createPreAmp());
 
         notification = new NowPlayingNotification(this);
 

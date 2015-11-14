@@ -51,6 +51,10 @@ public abstract class AudioEffectFragment
             case EFFECT_SURROUND:
                 effect = getService().getSurround();
                 break;
+
+            case EFFECT_AMPLIFIER:
+                effect = getService().getAmplifier();
+                break;
         }
 
         seekbar.setMax(effect.getMaxStrength());
