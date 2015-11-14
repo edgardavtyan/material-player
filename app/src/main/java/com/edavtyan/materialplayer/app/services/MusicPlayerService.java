@@ -12,8 +12,8 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.app.music.MusicPlayer;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.music.effects.equalizer.HQEqualizer;
-import com.edavtyan.materialplayer.app.music.effects.surround.HQSurround;
-import com.edavtyan.materialplayer.app.music.effects.surround.Surround;
+import com.edavtyan.materialplayer.app.music.effects.HQSurround;
+import com.edavtyan.materialplayer.app.music.effects.StrengthBasedEffect;
 import com.edavtyan.materialplayer.app.notifications.NowPlayingNotification;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
@@ -41,7 +41,8 @@ public class MusicPlayerService
     private NowPlayingNotification notification;
     private @Getter MusicPlayer player;
     private @Getter Equalizer equalizer;
-    private @Getter Surround surround;
+    private @Getter
+    StrengthBasedEffect surround;
 
     /*
      * Broadcast Receivers
@@ -131,6 +132,7 @@ public class MusicPlayerService
         player.setOnPreparedListener(this);
         equalizer = new HQEqualizer(this, factory.createHQEqualizer());
         surround = new HQSurround(this, factory.createVirtualizer(basicPlayer));
+
         notification = new NowPlayingNotification(this);
 
         registerReceiver(new PlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));

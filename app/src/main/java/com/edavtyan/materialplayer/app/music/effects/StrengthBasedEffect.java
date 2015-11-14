@@ -1,6 +1,6 @@
-package com.edavtyan.materialplayer.app.music.effects.surround;
+package com.edavtyan.materialplayer.app.music.effects;
 
-public interface Surround {
+public interface StrengthBasedEffect {
     void setEnabled(boolean isEnabled);
     int getMaxStrength();
     int getStrength();

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.app.music.effects.surround;
+package com.edavtyan.materialplayer.app.music.effects;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.h6ah4i.android.media.audiofx.IVirtualizer;
 
-public class HQSurround implements Surround {
+public class HQSurround implements StrengthBasedEffect {
     private static final String PREF_ENABLED = "pref_surround_enabled";
     private static final String PREF_STRENGTH = "pref_surround_strength";
     private static final int MAX_STRENGTH = 1000;
