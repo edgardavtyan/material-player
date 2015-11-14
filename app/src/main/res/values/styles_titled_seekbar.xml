@@ -6,7 +6,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingRight">@dimen/spacing_tiny</item>
         <item name="android:paddingLeft">@dimen/spacing_medium</item>
-        <item name="android:paddingTop">@dimen/spacing_medium</item>
     </style>
 
     <style name="TitledSeekbar_Title">
