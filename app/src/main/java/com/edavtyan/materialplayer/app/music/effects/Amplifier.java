@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.app.music.effects;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.h6ah4i.android.media.audiofx.IPreAmp;
 
@@ -26,6 +25,7 @@ public class Amplifier implements StrengthBasedEffect {
         setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
     }
 
+    
     @Override
     public void setEnabled(boolean isEnabled) {
         amplifier.setEnabled(true);
@@ -39,16 +39,13 @@ public class Amplifier implements StrengthBasedEffect {
 
     @Override
     public int getStrength() {
-        int strength = (int) ((amplifier.getLevel() - 1) * MAX_STRENGTH);
-        Log.i("Amplifier", "getStrength() = " + strength);
-        return strength;
+        return (int) ((amplifier.getLevel() - 1) * MAX_STRENGTH);
     }
 
     @Override
     public void setStrength(int strength) {
         float strengthFloat = (strength / (float) MAX_STRENGTH) + 1;
         if (strengthFloat > 2.0f) strengthFloat = 2.0f;
-        Log.i("Amplifier", "setStrength() = " + strengthFloat);
         amplifier.setLevel(strengthFloat);
     }
 
