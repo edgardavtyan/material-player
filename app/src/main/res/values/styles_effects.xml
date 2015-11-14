@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="AudioEffects_TitleWidth">100dp</dimen>
     
     <style name="AudioEffects_Section">
         <item name="android:layout_width">match_parent</item>

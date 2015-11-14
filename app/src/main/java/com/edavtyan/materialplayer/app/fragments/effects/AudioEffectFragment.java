@@ -27,6 +27,7 @@ public abstract class AudioEffectFragment
 
         TextView titleView = (TextView) view.findViewById(R.id.title);
         titleView.setText(getResources().getString(getTitleId()));
+        titleView.setWidth(getResources().getDimensionPixelSize(R.dimen.AudioEffects_TitleWidth));
 
         seekbar = (SeekBar) view.findViewById(R.id.seekbar);
         seekbar.setOnSeekBarChangeListener(this);
