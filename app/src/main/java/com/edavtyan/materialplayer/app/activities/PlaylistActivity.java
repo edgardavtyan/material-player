@@ -47,6 +47,7 @@ public class PlaylistActivity extends BaseToolbarActivity {
     @Override
     public void onResume() {
         super.onResume();
+        playlistAdapter.registerReceivers();
         playlistAdapter.bindService();
     }
 
@@ -54,6 +55,6 @@ public class PlaylistActivity extends BaseToolbarActivity {
     public void onPause() {
         super.onPause();
         playlistAdapter.unbindService();
-        playlistAdapter.close();
+        playlistAdapter.unregisterReceivers();
     }
 }

@@ -26,9 +26,6 @@ public class PlaylistAdapter
     public PlaylistAdapter(Context context) {
         super(context);
         this.context = context;
-        context.registerReceiver(
-                newTrackReceiver,
-                new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
     }
 
     /*
@@ -127,7 +124,13 @@ public class PlaylistAdapter
      * Public methods
      */
 
-    public void close() {
+    public void registerReceivers() {
+        context.registerReceiver(
+                newTrackReceiver,
+                new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+    }
+
+    public void unregisterReceivers() {
         context.unregisterReceiver(newTrackReceiver);
     }
 }
