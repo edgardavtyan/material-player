@@ -9,4 +9,8 @@ public final class DeviceUtils {
     public static boolean isPortrait(Resources res) {
         return res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
+
+    public static boolean isLandscape(Resources res) {
+        return res.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
 }

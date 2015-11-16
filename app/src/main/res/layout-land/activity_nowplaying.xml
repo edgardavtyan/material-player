@@ -93,14 +93,4 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_playlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_medium"
-        android:src="@drawable/ic_list"
-        app:layout_anchor="@id/fragment_info"
-        app:layout_anchorGravity="right"
-        />
-
 </android.support.design.widget.CoordinatorLayout>

@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 
 public class NowPlayingActivity extends BaseToolbarActivity {
     @Override
@@ -20,8 +23,34 @@ public class NowPlayingActivity extends BaseToolbarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
-        playlistFab.setOnClickListener(
-                view -> startActivity(new Intent(this, PlaylistActivity.class)));
+        if (DeviceUtils.isPortrait(getResources())) {
+            FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
+            playlistFab.setOnClickListener(view -> openNowPlayingQueue());
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (DeviceUtils.isLandscape(getResources())) {
+            getMenuInflater().inflate(R.menu.menu_playlist, menu);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_playlist:
+                openNowPlayingQueue();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void openNowPlayingQueue() {
+        startActivity(new Intent(this, PlaylistActivity.class));
     }
 }
