@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.app.music.providers;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.edavtyan.materialplayer.app.music.data.Track;
@@ -50,8 +48,7 @@ public final class ArtProvider {
                 byte[] artBytes = audioFile.getTag().getFirstArtwork().getBinaryData();
 
                 FileOutputStream outputStream = new FileOutputStream(artFile);
-                Bitmap artBitmap = BitmapFactory.decodeByteArray(artBytes, 0, artBytes.length);
-                artBitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
+                outputStream.write(artBytes);
                 outputStream.close();
             } catch (Exception e) {
                 e.printStackTrace();
