@@ -22,9 +22,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:title="@string/nowplaying_toolbar_title"
-                app:titleTextColor="@color/text_onPrimary"
                 />
 
         </android.support.design.widget.AppBarLayout>

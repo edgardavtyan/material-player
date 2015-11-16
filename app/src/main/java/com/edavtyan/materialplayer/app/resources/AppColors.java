@@ -13,6 +13,6 @@ public final class AppColors {
     }
 
     public static int getPrimaryDark(Context context) {
-        return ContextCompat.getColor(context, R.color.primary_dark);
+        return ContextCompat.getColor(context, R.color.primaryDark);
     }
 }

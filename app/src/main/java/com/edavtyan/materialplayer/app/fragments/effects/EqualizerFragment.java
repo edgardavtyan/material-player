@@ -2,11 +2,11 @@ package com.edavtyan.materialplayer.app.fragments.effects;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
@@ -19,7 +19,7 @@ public class EqualizerFragment
                    CompoundButton.OnCheckedChangeListener {
     private Equalizer equalizer;
     private EqualizerView equalizerView;
-    private Switch equalizerSwitch;
+    private SwitchCompat equalizerSwitch;
 
     @Nullable
     @Override
@@ -30,7 +30,7 @@ public class EqualizerFragment
         equalizerView = (EqualizerView) view.findViewById(R.id.equalizer);
         equalizerView.setOnBandChangedListener(this);
 
-        equalizerSwitch = (Switch) view.findViewById(R.id.equalizer_switch);
+        equalizerSwitch = (SwitchCompat) view.findViewById(R.id.equalizer_switch);
         equalizerSwitch.setOnCheckedChangeListener(this);
 
         return view;

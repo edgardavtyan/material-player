@@ -14,9 +14,9 @@
         android:maxHeight="300sp"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
-        app:thumbColor="@color/accent"
-        app:progressColor="@color/accent"
-        app:progressBackgroundColor="@color/accent"
+        app:thumbColor="?colorAccent"
+        app:progressColor="?colorAccent"
+        app:progressBackgroundColor="?colorAccent"
         tools:progress="40"
         />
 

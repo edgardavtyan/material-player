@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:background="@color/primary"
+    android:background="?colorPrimary"
     >
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/spacing_medium"
-        android:textColor="@color/text_onPrimary"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/font_big"
         android:singleLine="true"
         android:ellipsize="end"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_tiny"
         android:layout_marginLeft="@dimen/spacing_medium"
-        android:textColor="@color/text_onPrimary"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/font_normal"
         android:singleLine="true"
         android:ellipsize="end"

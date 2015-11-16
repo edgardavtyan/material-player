@@ -15,7 +15,7 @@
         android:layout_width="@dimen/size_medium"
         android:layout_height="match_parent"
         android:gravity="end|center_vertical"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/textPrimary"
         tools:text="500 Hz"
         />
 
@@ -33,7 +33,7 @@
         android:layout_width="@dimen/size_medium"
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/textPrimary"
         tools:text="+12 Db"
         />
 

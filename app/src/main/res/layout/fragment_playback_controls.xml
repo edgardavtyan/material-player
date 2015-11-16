@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:background="@color/primary_dark"
+    android:background="?colorPrimaryDark"
     >
 
     <ImageButton
@@ -27,10 +27,9 @@
     <com.wnafee.vector.MorphButton
         android:id="@+id/play_pause"
         android:padding="16dp"
-        android:textColor="#fff"
         app:vc_startDrawable="@drawable/ic_pause_to_play"
         app:vc_endDrawable="@drawable/ic_play_to_pause"
-        app:vc_foregroundTint="#fff"
+        app:vc_foregroundTint="?android:textColorPrimary"
         app:vc_autoStartAnimation="true"
         android:contentDescription="@string/description_control_playPause"
         style="@style/nowplaying_control"
