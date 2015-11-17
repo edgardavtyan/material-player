@@ -5,10 +5,6 @@
     <color name="primaryDark">#bf360c</color>
     <color name="accent">#ffc107</color>
 
-    <color name="textPrimary">#de000000</color>
-    <color name="textSecondary">#8a000000</color>
-    <color name="textColorPrimary">#ffffff</color>
-    <color name="textColorSecondary">#B2ffffff</color>
 
     <color name="transparent_gray_light">#3000</color>
     <color name="transparent_gray_dark">#7000</color>

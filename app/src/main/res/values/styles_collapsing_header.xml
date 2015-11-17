@@ -28,14 +28,14 @@
     <style name="collapsingHeader_title">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textColor">?textPrimary</item>
         <item name="android:textSize">@dimen/font_big</item>
     </style>
 
     <style name="collapsingHeader_info" parent="collapsingHeader_title">
         <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
         <item name="android:textSize">@dimen/font_normal</item>
-        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColor">?textSecondary</item>
     </style>
 
     <style name="collapsingHeader_appbarShadow">

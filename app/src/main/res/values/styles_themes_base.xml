@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Light Theme -->
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#de000000</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#8a000000</item>
+
+        <item name="textPrimary">?android:textColor</item>
+        <item name="textSecondary">?android:textColorSecondary</item>
+        <item name="textColorPrimary">?android:textColorPrimary</item>
+        <item name="textColorSecondary">#B2ffffff</item>
+
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="colorControlActivated">?colorPrimary</item>
+
+        <item name="actionOverflowMenuStyle">@style/AppTheme.Popup.Light</item>
+        <item name="morphButtonStyle">@style/Widget.MorphButton</item>
+    </style>
+
+    <style name="AppTheme.Popup.Light" parent="Widget.AppCompat.Light.PopupMenu.Overflow" />
+
+</resources>

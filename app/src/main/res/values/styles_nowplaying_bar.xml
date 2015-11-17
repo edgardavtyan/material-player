@@ -33,13 +33,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/font_medium</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">?textColorPrimary</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
     </style>
 
     <style name="nowplayingBar_info" parent="nowplayingBar_title">
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">?textColorSecondary</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 

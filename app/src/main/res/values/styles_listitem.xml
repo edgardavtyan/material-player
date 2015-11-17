@@ -4,12 +4,12 @@
     <style name="listitem_primary">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textColor">?textPrimary</item>
         <item name="android:textSize">@dimen/font_normal</item>
     </style>
 
     <style name="listitem_secondary" parent="listitem_primary">
-        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColor">?textSecondary</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
     
