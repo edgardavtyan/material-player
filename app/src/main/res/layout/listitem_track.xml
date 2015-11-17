@@ -41,7 +41,7 @@
         android:id="@+id/nowPlaying"
         android:layout_width="@dimen/size_medium"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_sound_bars"
+        android:src="@drawable/bitmap_now_playing"
         android:scaleType="center"
         android:visibility="gone"
         tools:visibility="visible"

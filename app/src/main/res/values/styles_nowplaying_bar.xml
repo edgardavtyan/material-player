@@ -25,7 +25,7 @@
         <item name="android:background">@drawable/ripple_white</item>
         <item name="vc_endDrawable">@drawable/ic_pause_to_play</item>
         <item name="vc_startDrawable">@drawable/ic_play_to_pause</item>
-        <item name="vc_foregroundTint">#fff</item>
+        <item name="vc_foregroundTint">?textColorPrimary</item>
         <item name="vc_autoStartAnimation">true</item>
     </style>
 
