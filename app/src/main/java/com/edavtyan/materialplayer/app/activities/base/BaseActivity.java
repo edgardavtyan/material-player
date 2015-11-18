@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,14 +52,6 @@ public class BaseActivity
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        boolean hasColorSchemeChanged =
-                key.equals(ThemeUtils.PREF_THEME_BASE)
-                || key.equals(ThemeUtils.PREF_THEME_PRIMARY)
-                || key.equals(ThemeUtils.PREF_THEME_ACCENT);
-
-        if (hasColorSchemeChanged) {
-            setTheme(ThemeUtils.fromRes(this));
-            recreate();
-        }
+        ThemeUtils.setTheme(this, key);
     }
 }

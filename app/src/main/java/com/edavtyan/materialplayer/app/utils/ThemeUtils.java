@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -29,5 +30,17 @@ public final class ThemeUtils {
         String themeName = String.format("%s.%s.%s.%s", THEME_BASE, themeBase, themePrimary, themeAccent);
         Log.d("ThemeUtils", themeName);
         return context.getResources().getIdentifier(themeName, TYPE_THEME, context.getPackageName());
+    }
+
+    public static void setTheme(Activity activity, String key) {
+        boolean hasColorSchemeChanged =
+                key.equals(ThemeUtils.PREF_THEME_BASE)
+                || key.equals(ThemeUtils.PREF_THEME_PRIMARY)
+                || key.equals(ThemeUtils.PREF_THEME_ACCENT);
+
+        if (hasColorSchemeChanged) {
+            activity.setTheme(ThemeUtils.fromRes(activity));
+            activity.recreate();
+        }
     }
 }
