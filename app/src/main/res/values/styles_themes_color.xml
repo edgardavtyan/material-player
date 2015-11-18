@@ -4,67 +4,67 @@
     <!-- Light -->
 
     <style name="AppTheme.Light.Orange">
-        <item name="colorPrimary">#ff5722</item>
-        <item name="colorPrimaryDark">#bf360c</item>
+        <item name="colorPrimary">@color/primary_orange</item>
+        <item name="colorPrimaryDark">@color/primary_dark_orange</item>
     </style>
 
     <style name="AppTheme.Light.Blue">
-        <item name="colorPrimary">#3F51B5</item>
-        <item name="colorPrimaryDark">#1A237E</item>
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryDark">@color/primary_dark_blue</item>
     </style>
 
     <style name="AppTheme.Light.Green">
-        <item name="colorPrimary">#7CB342</item>
-        <item name="colorPrimaryDark">#33691E</item>
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryDark">@color/primary_dark_green</item>
     </style>
 
     <style name="AppTheme.Light.Red">
-        <item name="colorPrimary">#F44336</item>
-        <item name="colorPrimaryDark">#B71C1C</item>
+        <item name="colorPrimary">@color/primary_red</item>
+        <item name="colorPrimaryDark">@color/primary_dark_red</item>
     </style>
 
     <!-- Dark -->
 
     <style name="AppTheme.Dark.Orange">
-        <item name="colorPrimary">#ff5722</item>
-        <item name="colorPrimaryDark">#bf360c</item>
+        <item name="colorPrimary">@color/primary_orange</item>
+        <item name="colorPrimaryDark">@color/primary_dark_orange</item>
     </style>
 
     <style name="AppTheme.Dark.Blue">
-        <item name="colorPrimary">#3F51B5</item>
-        <item name="colorPrimaryDark">#1A237E</item>
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryDark">@color/primary_dark_blue</item>
     </style>
 
     <style name="AppTheme.Dark.Green">
-        <item name="colorPrimary">#7CB342</item>
-        <item name="colorPrimaryDark">#33691E</item>
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryDark">@color/primary_dark_green</item>
     </style>
 
     <style name="AppTheme.Dark.Red">
-        <item name="colorPrimary">#F44336</item>
-        <item name="colorPrimaryDark">#B71C1C</item>
+        <item name="colorPrimary">@color/primary_red</item>
+        <item name="colorPrimaryDark">@color/primary_dark_red</item>
     </style>
 
     <!-- Black -->
 
     <style name="AppTheme.Black.Orange">
-        <item name="colorPrimary">#ff5722</item>
-        <item name="colorPrimaryDark">#bf360c</item>
+        <item name="colorPrimary">@color/primary_orange</item>
+        <item name="colorPrimaryDark">@color/primary_dark_orange</item>
     </style>
 
     <style name="AppTheme.Black.Blue">
-        <item name="colorPrimary">#3F51B5</item>
-        <item name="colorPrimaryDark">#1A237E</item>
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryDark">@color/primary_dark_blue</item>
     </style>
 
     <style name="AppTheme.Black.Green">
-        <item name="colorPrimary">#7CB342</item>
-        <item name="colorPrimaryDark">#33691E</item>
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryDark">@color/primary_dark_green</item>
     </style>
 
     <style name="AppTheme.Black.Red">
-        <item name="colorPrimary">#F44336</item>
-        <item name="colorPrimaryDark">#B71C1C</item>
+        <item name="colorPrimary">@color/primary_red</item>
+        <item name="colorPrimaryDark">@color/primary_dark_red</item>
     </style>
 
 </resources>
