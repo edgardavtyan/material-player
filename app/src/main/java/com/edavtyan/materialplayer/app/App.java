@@ -15,7 +15,6 @@ public class App
     @Override
     public void onCreate() {
         super.onCreate();
-
         logger = new FileLogger();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }

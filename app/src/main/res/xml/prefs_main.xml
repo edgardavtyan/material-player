@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ListPreference
-        android:key="pref_theme_base"
-        android:title="@string/prefs_theme_base_title"
-        android:summary="@string/prefs_theme_base_summary"
-        android:entries="@array/prefs_theme_base_entries"
-        android:entryValues="@array/prefs_theme_base_entries"
-        android:defaultValue="@string/prefs_theme_base_default"
-        />
+    <com.edavtyan.materialplayer.app.views.ColoredPreferenceCategory android:title="Appearance">
 
-    <ListPreference
-        android:key="pref_theme_primary"
-        android:title="@string/prefs_theme_primary_title"
-        android:summary="@string/prefs_theme_primary_summary"
-        android:entries="@array/prefs_theme_primary_entries"
-        android:entryValues="@array/prefs_theme_primary_entries"
-        android:defaultValue="@string/prefs_theme_primary_default"
-        />
+        <ListPreference
+            android:key="pref_theme_base"
+            android:title="@string/prefs_theme_base_title"
+            android:summary="@string/prefs_theme_base_summary"
+            android:entries="@array/prefs_theme_base_entries"
+            android:entryValues="@array/prefs_theme_base_entries"
+            android:defaultValue="@string/prefs_theme_base_default"
+            />
 
-    <ListPreference
-        android:key="pref_theme_accent"
-        android:title="@string/prefs_theme_accent_title"
-        android:summary="@string/prefs_theme_accent_summary"
-        android:entries="@array/prefs_theme_accent_entries"
-        android:entryValues="@array/prefs_theme_accent_entries"
-        android:defaultValue="@string/prefs_theme_accent_default"
-        />
+        <ListPreference
+            android:key="pref_theme_primary"
+            android:title="@string/prefs_theme_primary_title"
+            android:summary="@string/prefs_theme_primary_summary"
+            android:entries="@array/prefs_theme_primary_entries"
+            android:entryValues="@array/prefs_theme_primary_entries"
+            android:defaultValue="@string/prefs_theme_primary_default"
+            />
+
+        <ListPreference
+            android:key="pref_theme_accent"
+            android:title="@string/prefs_theme_accent_title"
+            android:summary="@string/prefs_theme_accent_summary"
+            android:entries="@array/prefs_theme_accent_entries"
+            android:entryValues="@array/prefs_theme_accent_entries"
+            android:defaultValue="@string/prefs_theme_accent_default"
+            />
+
+    </com.edavtyan.materialplayer.app.views.ColoredPreferenceCategory>
 
 </PreferenceScreen>
