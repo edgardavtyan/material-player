@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="prefs_title">Settings</string>
+
+
     <!-- Base -->
     
     <string name="prefs_theme_base_title">Base color scheme</string>
