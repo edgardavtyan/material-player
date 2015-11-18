@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Purple Light -->
+
+    <style name="AppTheme.Light.Blue.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Light.Red.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Light.Orange.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Light.Green.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <!-- Purple Dark -->
+
+    <style name="AppTheme.Dark.Blue.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Dark.Red.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Dark.Orange.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Dark.Green.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <!-- Purple Black -->
+
+    <style name="AppTheme.Black.Blue.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Black.Red.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Black.Orange.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+    <style name="AppTheme.Black.Green.Purple">
+        <item name="colorAccent">@color/accent_purple</item>
+    </style>
+
+</resources>

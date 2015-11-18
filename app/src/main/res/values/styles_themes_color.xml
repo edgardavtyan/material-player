@@ -1,28 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.Light.Orange" parent="AppTheme.Light">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorAccent">@color/accent</item>
+    <!-- Light -->
+
+    <style name="AppTheme.Light.Orange">
+        <item name="colorPrimary">#ff5722</item>
+        <item name="colorPrimaryDark">#bf360c</item>
     </style>
 
-    <style name="AppTheme.Light.Blue" parent="AppTheme.Light">
+    <style name="AppTheme.Light.Blue">
         <item name="colorPrimary">#3F51B5</item>
         <item name="colorPrimaryDark">#1A237E</item>
-        <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="AppTheme.Light.Green" parent="AppTheme.Light">
+    <style name="AppTheme.Light.Green">
         <item name="colorPrimary">#7CB342</item>
         <item name="colorPrimaryDark">#33691E</item>
-        <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="AppTheme.Light.Red" parent="AppTheme.Light">
+    <style name="AppTheme.Light.Red">
         <item name="colorPrimary">#F44336</item>
         <item name="colorPrimaryDark">#B71C1C</item>
-        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <!-- Dark -->
+
+    <style name="AppTheme.Dark.Orange">
+        <item name="colorPrimary">#ff5722</item>
+        <item name="colorPrimaryDark">#bf360c</item>
+    </style>
+
+    <style name="AppTheme.Dark.Blue">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#1A237E</item>
+    </style>
+
+    <style name="AppTheme.Dark.Green">
+        <item name="colorPrimary">#7CB342</item>
+        <item name="colorPrimaryDark">#33691E</item>
+    </style>
+
+    <style name="AppTheme.Dark.Red">
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">#B71C1C</item>
+    </style>
+
+    <!-- Black -->
+
+    <style name="AppTheme.Black.Orange">
+        <item name="colorPrimary">#ff5722</item>
+        <item name="colorPrimaryDark">#bf360c</item>
+    </style>
+
+    <style name="AppTheme.Black.Blue">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#1A237E</item>
+    </style>
+
+    <style name="AppTheme.Black.Green">
+        <item name="colorPrimary">#7CB342</item>
+        <item name="colorPrimaryDark">#33691E</item>
+    </style>
+
+    <style name="AppTheme.Black.Red">
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">#B71C1C</item>
     </style>
 
 </resources>

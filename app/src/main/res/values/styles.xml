@@ -1,5 +1,5 @@
 <resources>
 
-    <style name="AppTheme" parent="AppTheme.Light.Orange"/>
+    <style name="AppTheme.Standard" parent="AppTheme.Light.Orange"/>
 
 </resources>

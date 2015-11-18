@@ -11,7 +11,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.Standard"
         android:persistent="true"
         >
 
@@ -69,6 +69,16 @@
 
         <activity
             android:name=".activities.AudioEffectsActivity"
+            android:launchMode="singleTop"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.PrefActivity"
             android:launchMode="singleTop"
             >
             <intent-filter>

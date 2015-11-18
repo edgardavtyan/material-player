@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Pink Light -->
+
+    <style name="AppTheme.Light.Blue.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Light.Red.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Light.Orange.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Light.Green.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <!-- Pink Dark -->
+
+    <style name="AppTheme.Dark.Blue.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Dark.Red.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Dark.Orange.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Dark.Green.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <!-- Pink Black -->
+
+    <style name="AppTheme.Black.Blue.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Black.Red.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Black.Orange.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+    <style name="AppTheme.Black.Green.Pink">
+        <item name="colorAccent">@color/accent_pink</item>
+    </style>
+
+</resources>

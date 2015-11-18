@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.app.resources;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 
 import com.edavtyan.materialplayer.app.R;
 
@@ -9,10 +9,14 @@ public final class AppColors {
     private AppColors() {}
 
     public static int getPrimary(Context context) {
-        return ContextCompat.getColor(context, R.color.primary);
+        TypedValue color = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, color, true);
+        return color.data;
     }
 
     public static int getPrimaryDark(Context context) {
-        return ContextCompat.getColor(context, R.color.primaryDark);
+        TypedValue color = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, color, true);
+        return color.data;
     }
 }

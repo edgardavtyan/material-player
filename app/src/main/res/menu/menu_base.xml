@@ -3,6 +3,12 @@
 
     <item
         android:id="@+id/menu_effects"
-        android:title="@string/menu_base_effects" />
+        android:title="@string/menu_base_effects"
+        />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:title="@string/menu_base_settings"
+        />
 
 </menu>
