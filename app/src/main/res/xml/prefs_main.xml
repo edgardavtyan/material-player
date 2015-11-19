@@ -17,17 +17,8 @@
             android:title="@string/prefs_theme_primary_title"
             android:summary="@string/prefs_theme_primary_summary"
             android:entries="@array/prefs_theme_primary_entries"
-            android:entryValues="@array/prefs_theme_primary_entries"
+            android:entryValues="@array/prefs_theme_primary_values"
             android:defaultValue="@string/prefs_theme_primary_default"
-            />
-
-        <ListPreference
-            android:key="pref_theme_accent"
-            android:title="@string/prefs_theme_accent_title"
-            android:summary="@string/prefs_theme_accent_summary"
-            android:entries="@array/prefs_theme_accent_entries"
-            android:entryValues="@array/prefs_theme_accent_entries"
-            android:defaultValue="@string/prefs_theme_accent_default"
             />
 
     </com.edavtyan.materialplayer.app.views.ColoredPreferenceCategory>

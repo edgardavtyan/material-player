@@ -14,20 +14,17 @@ public final class ThemeUtils {
 
     public static final String PREF_THEME_BASE = "pref_theme_base";
     public static final String PREF_THEME_PRIMARY = "pref_theme_primary";
-    public static final String PREF_THEME_ACCENT = "pref_theme_accent";
 
     public static final String THEME_BASE = "AppTheme";
     public static final String THEME_BASE_DEFAULT = "Light";
     public static final String THEME_PRIMARY_DEFAULT = "Orange";
-    public static final String THEME_ACCENT_DEFAULT = "Yellow";
 
 
     public static int fromRes(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String themeBase = prefs.getString(PREF_THEME_BASE, THEME_BASE_DEFAULT);
         String themePrimary = prefs.getString(PREF_THEME_PRIMARY, THEME_PRIMARY_DEFAULT);
-        String themeAccent = prefs.getString(PREF_THEME_ACCENT, THEME_ACCENT_DEFAULT);
-        String themeName = String.format("%s.%s.%s.%s", THEME_BASE, themeBase, themePrimary, themeAccent);
+        String themeName = String.format("%s.%s.%s", THEME_BASE, themeBase, themePrimary);
         Log.d("ThemeUtils", themeName);
         return context.getResources().getIdentifier(themeName, TYPE_THEME, context.getPackageName());
     }
@@ -35,8 +32,7 @@ public final class ThemeUtils {
     public static void setTheme(Activity activity, String key) {
         boolean hasColorSchemeChanged =
                 key.equals(ThemeUtils.PREF_THEME_BASE)
-                || key.equals(ThemeUtils.PREF_THEME_PRIMARY)
-                || key.equals(ThemeUtils.PREF_THEME_ACCENT);
+                || key.equals(ThemeUtils.PREF_THEME_PRIMARY);
 
         if (hasColorSchemeChanged) {
             activity.setTheme(ThemeUtils.fromRes(activity));
