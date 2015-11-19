@@ -68,9 +68,7 @@ public class NowPlayingArtFragment extends ServiceFragment {
         View view = inflater.inflate(R.layout.fragment_nowplaying_art, container, false);
 
         artView = (ImageView) view.findViewById(R.id.art);
-        artView.setColorFilter(AppColors.getTextSecondary(getContext()));
         backView = (ImageView) view.findViewById(R.id.back);
-        backView.setColorFilter(AppColors.getTextSecondary(getContext()));
 
         return view;
     }
