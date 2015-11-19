@@ -10,6 +10,7 @@
         android:id="@+id/art"
         android:contentDescription="@string/description_art"
         tools:src="@drawable/fallback_cover_listitem"
+        android:tint="?textColorSecondary"
         style="@style/nowplayingBar_art"
         />
 

@@ -18,6 +18,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
 import com.edavtyan.materialplayer.app.music.providers.ArtProvider;
 import com.edavtyan.materialplayer.app.music.data.Track;
+import com.edavtyan.materialplayer.app.resources.AppColors;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 import java.io.File;
@@ -67,7 +68,9 @@ public class NowPlayingArtFragment extends ServiceFragment {
         View view = inflater.inflate(R.layout.fragment_nowplaying_art, container, false);
 
         artView = (ImageView) view.findViewById(R.id.art);
+        artView.setColorFilter(AppColors.getTextSecondary(getContext()));
         backView = (ImageView) view.findViewById(R.id.back);
+        backView.setColorFilter(AppColors.getTextSecondary(getContext()));
 
         return view;
     }
