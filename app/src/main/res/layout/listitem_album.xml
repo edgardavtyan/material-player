@@ -15,7 +15,6 @@
         android:layout_width="?attr/listPreferredItemHeight"
         android:layout_height="?attr/listPreferredItemHeight"
         android:contentDescription="@string/description_art"
-        android:tint="?textSecondary"
         tools:src="@drawable/fallback_cover_listitem"
         />
 

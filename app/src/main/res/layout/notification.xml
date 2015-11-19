@@ -9,7 +9,6 @@
     <ImageView
         android:id="@+id/art"
         android:contentDescription="@string/description_art"
-        android:tint="#444"
         style="@style/notification_art"
         />
 
