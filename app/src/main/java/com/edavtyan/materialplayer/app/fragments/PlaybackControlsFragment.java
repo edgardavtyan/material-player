@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.fragments.base.ServiceFragment;
+import com.edavtyan.materialplayer.app.resources.AppColors;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.wnafee.vector.MorphButton;
 
@@ -155,22 +156,25 @@ public class PlaybackControlsFragment
     private void syncRepeatButtonIcon() {
         switch (getService().getPlayer().getRepeatMode()) {
             case NO_REPEAT:
-                repeatButton.setImageResource(R.drawable.bitmap_repeat_off);
+                repeatButton.setImageResource(R.drawable.ic_repeat);
+                repeatButton.setColorFilter(AppColors.getTextColorPrimary(getContext()));
                 return;
             case REPEAT:
-                repeatButton.setImageResource(R.drawable.bitmap_repeat_on);
+                repeatButton.setImageResource(R.drawable.ic_repeat);
+                repeatButton.setColorFilter(AppColors.getAccentColor(getContext()));
                 return;
             case REPEAT_ONE:
-                repeatButton.setImageResource(R.drawable.bitmap_repeat_one);
+                repeatButton.setImageResource(R.drawable.ic_repeat_one);
+                repeatButton.setColorFilter(AppColors.getAccentColor(getContext()));
                 return;
         }
     }
 
     private void syncShuffleButtonIcon() {
         if (getService().getPlayer().isShuffling()) {
-            shuffleButton.setImageResource(R.drawable.bitmap_shuffle_on);
+            shuffleButton.setColorFilter(AppColors.getAccentColor(getContext()));
         } else {
-            shuffleButton.setImageResource(R.drawable.bitmap_shuffle_off);
+            shuffleButton.setColorFilter(AppColors.getTextColorPrimary(getContext()));
         }
     }
 }

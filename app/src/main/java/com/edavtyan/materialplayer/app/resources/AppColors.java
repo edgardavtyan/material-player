@@ -9,14 +9,25 @@ public final class AppColors {
     private AppColors() {}
 
     public static int getPrimary(Context context) {
-        TypedValue color = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.colorPrimary, color, true);
-        return color.data;
+        return resolveAttribute(context, R.attr.colorPrimary);
     }
 
     public static int getPrimaryDark(Context context) {
-        TypedValue color = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, color, true);
-        return color.data;
+        return resolveAttribute(context, R.attr.colorPrimaryDark);
+    }
+
+    public static int getAccentColor(Context context) {
+        return resolveAttribute(context, R.attr.colorAccent);
+    }
+
+    public static int getTextColorPrimary(Context context) {
+        return resolveAttribute(context, R.attr.textColorPrimary);
+    }
+
+
+    private static int resolveAttribute(Context context, int attrId) {
+        TypedValue attr = new TypedValue();
+        context.getTheme().resolveAttribute(attrId, attr, true);
+        return attr.data;
     }
 }
