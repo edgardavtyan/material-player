@@ -155,22 +155,22 @@ public class PlaybackControlsFragment
     private void syncRepeatButtonIcon() {
         switch (getService().getPlayer().getRepeatMode()) {
             case NO_REPEAT:
-                repeatButton.setImageResource(R.drawable.ic_repeat_white);
+                repeatButton.setImageResource(R.drawable.bitmap_repeat_off);
                 return;
             case REPEAT:
-                repeatButton.setImageResource(R.drawable.ic_repeat_accent);
+                repeatButton.setImageResource(R.drawable.bitmap_repeat_on);
                 return;
             case REPEAT_ONE:
-                repeatButton.setImageResource(R.drawable.ic_repeat_one_accent);
+                repeatButton.setImageResource(R.drawable.bitmap_repeat_one);
                 return;
         }
     }
 
     private void syncShuffleButtonIcon() {
         if (getService().getPlayer().isShuffling()) {
-            shuffleButton.setImageResource(R.drawable.ic_shuffle_accent);
+            shuffleButton.setImageResource(R.drawable.bitmap_shuffle_on);
         } else {
-            shuffleButton.setImageResource(R.drawable.ic_shuffle_white);
+            shuffleButton.setImageResource(R.drawable.bitmap_shuffle_off);
         }
     }
 }

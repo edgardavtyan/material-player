@@ -31,21 +31,21 @@
 
     <ImageButton
         android:id="@+id/rewind"
-        android:src="@drawable/ic_rewind_black"
+        android:src="@drawable/ic_rewind"
         android:contentDescription="@string/description_control_rewind"
         style="@style/notification_control"
         />
 
     <ImageButton
         android:id="@+id/play_pause"
-        android:src="@drawable/ic_play_pause_black"
+        android:src="@drawable/ic_play_pause"
         android:contentDescription="@string/description_control_playPause"
         style="@style/notification_control"
         />
 
     <ImageButton
         android:id="@+id/fast_forward"
-        android:src="@drawable/ic_fast_forward_black"
+        android:src="@drawable/ic_fast_forward"
         android:contentDescription="@string/description_control_fastForward"
         style="@style/notification_control"
         />

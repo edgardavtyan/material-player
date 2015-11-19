@@ -6,7 +6,6 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/ripple_white</item>
-        <item name="android:tint">?textColorPrimary</item>
     </style>
 
     <!-- Art -->

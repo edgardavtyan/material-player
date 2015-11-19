@@ -12,14 +12,14 @@
 
     <ImageButton
         android:id="@+id/shuffle"
-        android:src="@drawable/ic_shuffle_white"
+        android:src="@drawable/ic_shuffle"
         android:contentDescription="@string/description_control_shuffle"
         style="@style/nowplaying_control"
         />
 
     <ImageButton
         android:id="@+id/rewind"
-        android:src="@drawable/ic_rewind_white"
+        android:src="@drawable/ic_rewind"
         android:contentDescription="@string/description_control_rewind"
         style="@style/nowplaying_control"
         />
@@ -37,14 +37,14 @@
 
     <ImageButton
         android:id="@+id/fast_forward"
-        android:src="@drawable/ic_fast_forward_white"
+        android:src="@drawable/ic_fast_forward"
         android:contentDescription="@string/description_control_fastForward"
         style="@style/nowplaying_control"
         />
 
     <ImageButton
         android:id="@+id/repeat"
-        android:src="@drawable/ic_repeat_white"
+        android:src="@drawable/ic_repeat"
         android:contentDescription="@string/description_control_repeat"
         style="@style/nowplaying_control"
         />
