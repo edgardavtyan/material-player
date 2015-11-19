@@ -25,6 +25,10 @@ public final class AppColors {
     }
 
 
+    public static int getTextSecondary(Context context) {
+        return resolveAttribute(context, R.attr.textSecondary);
+    }
+
     private static int resolveAttribute(Context context, int attrId) {
         TypedValue attr = new TypedValue();
         context.getTheme().resolveAttribute(attrId, attr, true);

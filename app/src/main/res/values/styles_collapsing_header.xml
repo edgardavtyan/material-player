@@ -4,17 +4,17 @@
     <style name="collapsingHeader_header">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?android:windowBackground</item>
     </style>
 
     <style name="collapsingHeader_art">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">fitCenter</item>
+        <item name="android:tint">?textSecondary</item>
     </style>
 
-    <style name="collapsingHeader_artBack">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+    <style name="collapsingHeader_artBack" parent="collapsingHeader_art">
         <item name="android:scaleType">centerCrop</item>
     </style>
 

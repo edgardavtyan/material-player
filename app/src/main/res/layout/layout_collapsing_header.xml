@@ -19,14 +19,14 @@
 
             <com.edavtyan.materialplayer.app.views.SquareView
                 android:id="@+id/art"
-                tools:src="@drawable/fallback_cover"
+                tools:src="@drawable/fallback_artist"
                 style="@style/collapsingHeader_art"
                 />
 
             <ImageView
                 android:id="@+id/back"
                 android:contentDescription="@string/description_art"
-                tools:src="@drawable/fallback_cover"
+                tools:src="@drawable/fallback_artist"
                 style="@style/collapsingHeader_artBack"
                 />
 
@@ -36,7 +36,7 @@
                 android:background="@drawable/collapsing_toolbar_gradient"
                 />
 
-            <include layout="@layout/shadow_bottom_small"/>
+            <include layout="@layout/shadow_bottom_small" />
 
         </FrameLayout>
 

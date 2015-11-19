@@ -50,7 +50,9 @@ public abstract class CollapsingHeaderListActivity
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
 
         imageView = (ImageView) findViewById(R.id.art);
+        imageView.setColorFilter(AppColors.getTextSecondary(this));
         imageBackView = (ImageView) findViewById(R.id.back);
+        imageBackView.setColorFilter(AppColors.getTextSecondary(this));
         titleView = (TextView) findViewById(R.id.title);
         infoView = (TextView) findViewById(R.id.info);
 
