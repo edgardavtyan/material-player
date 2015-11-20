@@ -5,5 +5,7 @@
     <attr name="textSecondary" format="color" />
     <attr name="textColorPrimary" format="color" />
     <attr name="textColorSecondary" format="color" />
+    <attr name="toolbarTheme" format="reference" />
+    <attr name="toolbarPopupTheme" format="reference" />
     
 </resources>

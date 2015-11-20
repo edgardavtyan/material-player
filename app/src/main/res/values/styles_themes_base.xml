@@ -21,6 +21,8 @@
         <item name="textSecondary">#8a000000</item>
         <item name="textColorPrimary">#ffffff</item>
         <item name="textColorSecondary">#B2ffffff</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
         <item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 
         <item name="android:textColor">?textPrimary</item>
@@ -41,6 +43,8 @@
         <item name="textSecondary">#b2ffffff</item>
         <item name="textColorPrimary">#ffffff</item>
         <item name="textColorSecondary">#B2ffffff</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/Theme.AppCompat</item>
         <item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 
         <item name="android:textColor">?textPrimary</item>
@@ -61,6 +65,8 @@
         <item name="textSecondary">#66ffffff</item>
         <item name="textColorPrimary">#ffffff</item>
         <item name="textColorSecondary">#B2ffffff</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/Theme.AppCompat</item>
         <item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 
         <item name="android:textColor">?textPrimary</item>

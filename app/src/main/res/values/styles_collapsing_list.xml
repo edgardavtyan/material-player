@@ -12,6 +12,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?actionBarSize</item>
         <item name="elevation">0dp</item>
+        <item name="theme">?toolbarTheme</item>
+        <item name="popupTheme">?toolbarPopupTheme</item>
     </style>
 
     <style name="CollapsingList_AppBar">
