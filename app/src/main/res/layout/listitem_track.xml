@@ -52,7 +52,7 @@
         android:id="@+id/menu"
         android:layout_width="@dimen/size_medium"
         android:layout_height="match_parent"
-        android:background="@drawable/ripple_control_notification"
+        android:background="@drawable/ripple_base"
         android:src="@drawable/ic_more_vert"
         android:tint="?textPrimary"
         android:contentDescription="@string/description_moreActions"
