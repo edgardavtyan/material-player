@@ -24,9 +24,12 @@ public final class AppColors {
         return resolveAttribute(context, R.attr.textColorPrimary);
     }
 
-
     public static int getTextSecondary(Context context) {
         return resolveAttribute(context, R.attr.textSecondary);
+    }
+
+    public static int getWindowBackground(Context context) {
+        return resolveAttribute(context, android.R.attr.windowBackground);
     }
 
     private static int resolveAttribute(Context context, int attrId) {

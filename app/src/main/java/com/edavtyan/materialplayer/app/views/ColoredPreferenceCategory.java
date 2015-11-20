@@ -17,8 +17,13 @@ public class ColoredPreferenceCategory extends PreferenceCategory {
 
     @Override
     protected View onCreateView(ViewGroup parent) {
+        int titleColor = AppColors.getPrimary(getContext());
+        if (titleColor == AppColors.getWindowBackground(getContext())) {
+            titleColor = AppColors.getTextSecondary(getContext());
+        }
+
         TextView titleView = (TextView) super.onCreateView(parent);
-        titleView.setTextColor(AppColors.getPrimary(getContext()));
+        titleView.setTextColor(titleColor);
         return titleView;
     }
 }
