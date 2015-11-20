@@ -2,15 +2,15 @@ package com.edavtyan.materialplayer.app.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.activities.base.SupportPreferenceActivity;
 import com.edavtyan.materialplayer.app.utils.ThemeUtils;
 
 public class PrefActivity
-        extends PreferenceActivity
+        extends SupportPreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,9 @@ public class PrefActivity
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.prefs_title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.prefs_title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
