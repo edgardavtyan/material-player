@@ -48,7 +48,7 @@
     <style name="notification_control">
         <item name="android:layout_width">@dimen/size_medium</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/ripple_base</item>
+        <item name="android:background">@drawable/ripple_notification</item>
         <item name="android:tint">#000</item>
     </style>
 
