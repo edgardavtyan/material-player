@@ -106,7 +106,11 @@ public class NowPlayingNotification implements ServiceConnection {
 
             String artPath = ArtProvider.fromTrack(track).getAbsolutePath();
             Bitmap art = BitmapFactory.decodeFile(artPath);
-            view.setImageViewBitmap(R.id.art, art);
+            if (art != null) {
+                view.setImageViewBitmap(R.id.art, art);
+            } else {
+                view.setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
+            }
         }
 
         return view;
