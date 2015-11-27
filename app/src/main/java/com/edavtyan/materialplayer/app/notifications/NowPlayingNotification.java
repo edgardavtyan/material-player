@@ -72,7 +72,10 @@ public class NowPlayingNotification implements ServiceConnection {
      */
 
     public Notification build() {
-        Notification notification = builder.setContent(buildView()).build();
+        Notification notification = builder
+                .setContent(buildView())
+                .setSmallIcon(R.drawable.ic_status)
+                .build();
         notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
         return notification;
     }
