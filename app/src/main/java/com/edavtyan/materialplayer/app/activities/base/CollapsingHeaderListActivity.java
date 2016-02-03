@@ -22,7 +22,7 @@ import com.edavtyan.materialplayer.app.utils.ColorUtils;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.utils.WindowUtils;
-import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
+import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 
 public abstract class CollapsingHeaderListActivity
         extends BaseToolbarActivity
@@ -47,7 +47,7 @@ public abstract class CollapsingHeaderListActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
+        recyclerView.addItemDecoration(new DividerItemDecoration());
 
         imageView = (ImageView) findViewById(R.id.art);
         imageBackView = (ImageView) findViewById(R.id.back);

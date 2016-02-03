@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
-import com.edavtyan.materialplayer.app.vendor.DividerItemDecoration;
+import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 
 public abstract class ListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -34,7 +34,7 @@ public abstract class ListFragment extends Fragment
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(getAdapter());
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
+        recyclerView.addItemDecoration(new DividerItemDecoration());
 
         return view;
     }
