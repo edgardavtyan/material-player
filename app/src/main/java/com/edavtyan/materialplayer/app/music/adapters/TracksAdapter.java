@@ -62,6 +62,7 @@ public class TracksAdapter
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.menu_addToPlaylist:
+                    getCursor().moveToPosition(getAdapterPosition());
                     int trackId = getCursor().getInt(TrackColumns.ID);
                     getService().getPlayer().getQueue().add(TracksProvider.withId(trackId, context));
                     return true;
