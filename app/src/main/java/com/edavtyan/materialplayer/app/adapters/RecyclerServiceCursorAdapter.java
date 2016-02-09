@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.app.adapters;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.app.base.ServiceConnectible;
@@ -13,8 +14,8 @@ public abstract class RecyclerServiceCursorAdapter<TViewHolder extends RecyclerV
 
     private final ServiceConnectibleImpl serviceConnectible;
 
-    public RecyclerServiceCursorAdapter(Context context) {
-        super(context);
+    public RecyclerServiceCursorAdapter(Context context, Cursor cursor) {
+        super(context, cursor);
         serviceConnectible = new ServiceConnectibleImpl(context);
     }
 

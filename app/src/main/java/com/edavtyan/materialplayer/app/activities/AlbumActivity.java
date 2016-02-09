@@ -55,7 +55,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        tracksAdapter = new AlbumTracksAdapter(this);
+        tracksAdapter = new AlbumTracksAdapter(this, null);
         super.onCreate(savedInstanceState);
         initToolbar(R.string.app_name);
 

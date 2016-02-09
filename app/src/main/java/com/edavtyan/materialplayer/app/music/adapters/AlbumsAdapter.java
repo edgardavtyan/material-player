@@ -26,8 +26,8 @@ import com.edavtyan.materialplayer.app.music.providers.TracksProvider;
 import java.util.List;
 
 public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
-    public AlbumsAdapter(Context context) {
-        super(context);
+    public AlbumsAdapter(Context context, Cursor cursor) {
+        super(context, cursor);
     }
 
     /*
@@ -59,9 +59,9 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
 
         @Override
         public void onClick(View view) {
-            getCursor().moveToPosition(getAdapterPosition());
+            cursor.moveToPosition(getAdapterPosition());
             Intent i = new Intent(context, AlbumActivity.class);
-            i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, getCursor().getInt(AlbumColumns.ID));
+            i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, cursor.getInt(AlbumColumns.ID));
             context.startActivity(i);
         }
 
@@ -69,8 +69,8 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.menu_addToPlaylist:
-                    getCursor().moveToPosition(getAdapterPosition());
-                    int albumId = getCursor().getInt(AlbumColumns.ID);
+                    cursor.moveToPosition(getAdapterPosition());
+                    int albumId = cursor.getInt(AlbumColumns.ID);
                     List<Track> tracks = TracksProvider.allWithAlbumId(albumId, context);
                     getService().getPlayer().getQueue().addAll(tracks);
 
@@ -86,32 +86,22 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
      */
 
     @Override
-    protected View newView(Context context, ViewGroup parent) {
-        View view = LayoutInflater
-                .from(context)
-                .inflate(R.layout.listitem_album, parent, false);
-
-        AlbumViewHolder vh = new AlbumViewHolder(view);
-        view.setTag(vh);
-        return view;
+    public AlbumViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.listitem_album, parent, false);
+        return new AlbumViewHolder(view);
     }
 
     @Override
-    protected void bindView(View view, Context context, Cursor cursor) {
-        AlbumViewHolder vh = (AlbumViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(AlbumColumns.TITLE));
-        vh.infoTextView.setText(getAlbumInfo(cursor));
+    public void onBindViewHolder(AlbumViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+        holder.titleTextView.setText(cursor.getString(AlbumColumns.TITLE));
+        holder.infoTextView.setText(getAlbumInfo(cursor));
 
-        String artPath = getCursor().getString(AlbumColumns.ART);
+        String artPath = cursor.getString(AlbumColumns.ART);
         Glide.with(context)
                 .load(ArtProvider.fromPath(artPath))
                 .error(R.drawable.fallback_cover_listitem)
-                .into(vh.artImageView);
-    }
-
-    @Override
-    protected AlbumViewHolder createViewHolder(View view) {
-        return new AlbumViewHolder(view);
+                .into(holder.artImageView);
     }
 
     /*

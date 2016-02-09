@@ -29,7 +29,7 @@ public class TracksListFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tracksAdapter = new TracksAdapter(getActivity());
+        tracksAdapter = new TracksAdapter(getActivity(), null);
     }
 
     @Nullable

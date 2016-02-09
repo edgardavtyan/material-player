@@ -21,8 +21,8 @@ import com.edavtyan.materialplayer.app.utils.DurationUtils;
 
 public class TracksAdapter
         extends RecyclerServiceCursorAdapter<TracksAdapter.TrackViewHolder> {
-    public TracksAdapter(Context context) {
-        super(context);
+    public TracksAdapter(Context context, Cursor cursor) {
+        super(context, cursor);
     }
 
     /*
@@ -54,7 +54,7 @@ public class TracksAdapter
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            getService().getPlayer().setTracks(TracksProvider.allFromCursor(getCursor()), getAdapterPosition());
+            getService().getPlayer().setTracks(TracksProvider.allFromCursor(cursor), getAdapterPosition());
             getService().getPlayer().prepare();
         }
 
@@ -62,8 +62,8 @@ public class TracksAdapter
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.menu_addToPlaylist:
-                    getCursor().moveToPosition(getAdapterPosition());
-                    int trackId = getCursor().getInt(TrackColumns.ID);
+                    cursor.moveToPosition(getAdapterPosition());
+                    int trackId = cursor.getInt(TrackColumns.ID);
                     getService().getPlayer().getQueue().add(TracksProvider.withId(trackId, context));
                     return true;
 
@@ -78,26 +78,16 @@ public class TracksAdapter
      */
 
     @Override
-    protected View newView(Context context, ViewGroup parent) {
-        View view = LayoutInflater
-                .from(context)
-                .inflate(R.layout.listitem_track, parent, false);
-
-        TrackViewHolder vh = new TrackViewHolder(view);
-        view.setTag(vh);
-        return view;
-    }
-
-    @Override
-    protected void bindView(View view, Context context, Cursor cursor) {
-        TrackViewHolder vh = (TrackViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(TrackColumns.TITLE));
-        vh.infoTextView.setText(getTrackInfo());
-    }
-
-    @Override
-    protected TrackViewHolder createViewHolder(View view) {
+    public TrackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.listitem_track, parent, false);
         return new TrackViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(TrackViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+        holder.titleTextView.setText(cursor.getString(TrackColumns.TITLE));
+        holder.infoTextView.setText(getTrackInfo());
     }
 
     /*
@@ -107,8 +97,8 @@ public class TracksAdapter
     protected String getTrackInfo() {
         return context.getResources().getString(
                 R.string.pattern_track_info,
-                DurationUtils.toStringUntilHours(getCursor().getInt(TrackColumns.DURATION)),
-                getCursor().getString(TrackColumns.ARTIST),
-                getCursor().getString(TrackColumns.ALBUM));
+                DurationUtils.toStringUntilHours(cursor.getInt(TrackColumns.DURATION)),
+                cursor.getString(TrackColumns.ARTIST),
+                cursor.getString(TrackColumns.ALBUM));
     }
 }

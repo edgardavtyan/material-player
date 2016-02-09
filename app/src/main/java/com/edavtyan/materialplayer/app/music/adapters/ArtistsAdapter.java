@@ -16,8 +16,8 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.music.columns.ArtistColumns;
 
 public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.ArtistViewHolder> {
-    public ArtistsAdapter(Context context) {
-        super(context);
+    public ArtistsAdapter(Context context, Cursor cursor) {
+        super(context, cursor);
     }
 
     /*
@@ -42,10 +42,10 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
         public void onClick(View view) {
             Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
 
-            getCursor().moveToPosition(getAdapterPosition());
+            cursor.moveToPosition(getAdapterPosition());
             i.putExtra(
                     ArtistActivity.EXTRA_ARTIST_NAME,
-                    getCursor().getString(ArtistColumns.TITLE));
+                    cursor.getString(ArtistColumns.TITLE));
 
             itemView.getContext().startActivity(i);
         }
@@ -57,26 +57,16 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
      */
 
     @Override
-    protected View newView(Context context, ViewGroup parent) {
-        View view = LayoutInflater
-                .from(context)
-                .inflate(R.layout.listitem_artist, parent, false);
-
-        ArtistViewHolder vh = new ArtistViewHolder(view);
-        view.setTag(vh);
-        return view;
-    }
-
-    @Override
-    protected void bindView(View view, Context context, Cursor cursor) {
-        ArtistViewHolder vh = (ArtistViewHolder) view.getTag();
-        vh.titleTextView.setText(cursor.getString(ArtistColumns.TITLE));
-        vh.countsTextView.setText(getArtistInfo(cursor));
-    }
-
-    @Override
-    protected ArtistViewHolder createViewHolder(View view) {
+    public ArtistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.listitem_artist, parent, false);
         return new ArtistViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ArtistViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+        holder.titleTextView.setText(cursor.getString(ArtistColumns.TITLE));
+        holder.countsTextView.setText(getArtistInfo(cursor));
     }
 
     /*

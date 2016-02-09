@@ -50,7 +50,7 @@ public class ArtistActivity extends CollapsingHeaderListActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        albumsAdapter = new AlbumsAdapter(this);
+        albumsAdapter = new AlbumsAdapter(this, null);
         super.onCreate(savedInstanceState);
         initToolbar(R.string.app_name);
 

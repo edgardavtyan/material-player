@@ -95,10 +95,7 @@ public class PlaylistAdapter
 
     @Override
     public TrackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater
-                .from(context)
-                .inflate(R.layout.listitem_track, parent, false);
-
+        View view = LayoutInflater.from(context).inflate(R.layout.listitem_track, parent, false);
         return new TrackViewHolder(view);
     }
 
