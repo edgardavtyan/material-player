@@ -35,8 +35,8 @@ public class PlaylistAdapter
     private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            notifyItemChanged(getService().getPlayer().getCurrentTrackIndex());
-            notifyItemChanged(getService().getPlayer().getCurrentTrackIndex() - 1);
+            notifyItemChanged(service.getPlayer().getCurrentTrackIndex());
+            notifyItemChanged(service.getPlayer().getCurrentTrackIndex() - 1);
         }
     };
 
@@ -69,13 +69,13 @@ public class PlaylistAdapter
 
         @Override
         public void onClick(View view) {
-            if (!isBound()) {
+            if (!isBound) {
                 return;
             }
 
-            int oldPosition = getService().getPlayer().getCurrentTrackIndex();
-            getService().getPlayer().setCurrentTrackIndex(getAdapterPosition());
-            getService().getPlayer().prepare();
+            int oldPosition = service.getPlayer().getCurrentTrackIndex();
+            service.getPlayer().setCurrentTrackIndex(getAdapterPosition());
+            service.getPlayer().prepare();
             notifyItemChanged(oldPosition);
         }
 
@@ -83,7 +83,7 @@ public class PlaylistAdapter
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.menu_remove:
-                    getService().getPlayer().getQueue().remove(getAdapterPosition());
+                    service.getPlayer().getQueue().remove(getAdapterPosition());
                     notifyItemRemoved(getAdapterPosition());
                     return true;
 
@@ -101,10 +101,10 @@ public class PlaylistAdapter
 
     @Override
     public void onBindViewHolder(TrackViewHolder holder, int position) {
-        if (!isBound()) return;
-        holder.titleView.setText(getService().getPlayer().getQueue().get(position).getTrackTitle());
-        holder.infoView.setText(getService().getPlayer().getQueue().get(position).getAlbumTitle());
-        if (getService().getPlayer().getCurrentTrackIndex() == holder.getLayoutPosition()) {
+        if (!isBound) return;
+        holder.titleView.setText(service.getPlayer().getQueue().get(position).getTrackTitle());
+        holder.infoView.setText(service.getPlayer().getQueue().get(position).getAlbumTitle());
+        if (service.getPlayer().getCurrentTrackIndex() == holder.getLayoutPosition()) {
             holder.nowPlayingIcon.setVisibility(View.VISIBLE);
         } else {
             holder.nowPlayingIcon.setVisibility(View.GONE);
@@ -113,8 +113,8 @@ public class PlaylistAdapter
 
     @Override
     public int getItemCount() {
-        if (!isBound()) return 0;
-        return getService().getPlayer().getQueue().size();
+        if (!isBound) return 0;
+        return service.getPlayer().getQueue().size();
     }
 
     /*

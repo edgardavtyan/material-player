@@ -1,47 +1,51 @@
 package com.edavtyan.materialplayer.app.adapters;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.widget.RecyclerView;
 
-import com.edavtyan.materialplayer.app.base.ServiceConnectible;
-import com.edavtyan.materialplayer.app.base.ServiceConnectibleImpl;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public abstract class RecyclerViewServiceAdapter<TViewHolder extends RecyclerView.ViewHolder>
-        extends RecyclerView.Adapter<TViewHolder>
-        implements ServiceConnectible {
+        extends RecyclerView.Adapter<TViewHolder> implements ServiceConnection {
 
-    private final ServiceConnectibleImpl serviceConnectible;
-
+    protected Context context;
+    protected MusicPlayerService service;
+    protected boolean isBound;
 
     public RecyclerViewServiceAdapter(Context context) {
-        serviceConnectible = new ServiceConnectibleImpl(context);
+        this.context = context;
     }
 
+    /*
+     * ServiceConnection
+     */
 
     @Override
+    public void onServiceConnected(ComponentName name, IBinder binder) {
+        service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
+        isBound = true;
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        isBound = false;
+    }
+
+    /*
+     * Public methods
+     */
+
     public void bindService() {
-        serviceConnectible.bindService();
+        context.bindService(
+                new Intent(context, MusicPlayerService.class),
+                this, Context.BIND_AUTO_CREATE);
     }
 
-    @Override
     public final void unbindService() {
-        serviceConnectible.unbindService();
+        context.unbindService(this);
     }
-
-    @Override
-    public final MusicPlayerService getService() {
-        return serviceConnectible.getService();
-    }
-
-    @Override
-    public final boolean isBound() {
-        return serviceConnectible.isBound();
-    }
-
-    @Override
-    public void onServiceDisconnected() {}
-
-    @Override
-    public void onServiceConnected() {}
 }

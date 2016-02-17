@@ -54,8 +54,8 @@ public class TracksAdapter
             Intent i = new Intent(context, NowPlayingActivity.class);
             context.startActivity(i);
 
-            getService().getPlayer().setTracks(TracksProvider.allFromCursor(cursor), getAdapterPosition());
-            getService().getPlayer().prepare();
+            service.getPlayer().setTracks(TracksProvider.allFromCursor(cursor), getAdapterPosition());
+            service.getPlayer().prepare();
         }
 
         @Override
@@ -64,7 +64,7 @@ public class TracksAdapter
                 case R.id.menu_addToPlaylist:
                     cursor.moveToPosition(getAdapterPosition());
                     int trackId = cursor.getInt(TrackColumns.ID);
-                    getService().getPlayer().getQueue().add(TracksProvider.withId(trackId, context));
+                    service.getPlayer().getQueue().add(TracksProvider.withId(trackId, context));
                     return true;
 
                 default:
