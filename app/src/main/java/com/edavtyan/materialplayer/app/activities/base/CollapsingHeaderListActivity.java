@@ -47,7 +47,7 @@ public abstract class CollapsingHeaderListActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration());
+        recyclerView.addItemDecoration(new DividerItemDecoration(AppColors.getDivider(this)));
 
         imageView = (ImageView) findViewById(R.id.art);
         imageBackView = (ImageView) findViewById(R.id.back);

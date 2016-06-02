@@ -32,6 +32,10 @@ public final class AppColors {
         return resolveAttribute(context, android.R.attr.windowBackground);
     }
 
+    public static int getDivider(Context context) {
+        return resolveAttribute(context, R.attr.dividerColor);
+    }
+
     private static int resolveAttribute(Context context, int attrId) {
         TypedValue attr = new TypedValue();
         context.getTheme().resolveAttribute(attrId, attr, true);

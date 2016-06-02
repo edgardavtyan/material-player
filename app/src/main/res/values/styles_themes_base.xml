@@ -16,6 +16,7 @@
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlNormal">?textColorPrimary</item>
         <item name="colorControlActivated">?colorPrimary</item>
+        <item name="dividerColor">#1e000000</item>
         <item name="morphButtonStyle">@style/Widget.MorphButton</item>
     </style>
 
@@ -34,6 +35,7 @@
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlNormal">?textColorPrimary</item>
         <item name="colorControlActivated">?colorPrimary</item>
+        <item name="dividerColor">#1effffff</item>
         <item name="morphButtonStyle">@style/Widget.MorphButton</item>
     </style>
 

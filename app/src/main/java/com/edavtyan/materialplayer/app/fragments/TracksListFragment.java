@@ -17,6 +17,7 @@ import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
+import com.edavtyan.materialplayer.app.resources.AppColors;
 
 public class TracksListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -42,7 +43,7 @@ public class TracksListFragment extends Fragment
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(tracksAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration());
+        recyclerView.addItemDecoration(new DividerItemDecoration(AppColors.getDivider(getActivity())));
 
         return view;
     }
