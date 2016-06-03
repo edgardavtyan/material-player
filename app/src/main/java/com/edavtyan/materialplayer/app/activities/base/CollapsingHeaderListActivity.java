@@ -29,7 +29,6 @@ public abstract class CollapsingHeaderListActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	protected AppColors appColors;
-    protected int totalScrolled = 0;
     protected ImageView imageView;
     protected ImageView imageBackView;
     protected TextView titleView;
@@ -70,24 +69,25 @@ public abstract class CollapsingHeaderListActivity
             RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
             header.attachTo(recyclerView, true);
 
-            AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-            View appbarShadow = findViewById(R.id.appbar_shadow);
-            View statusShadow = findViewById(R.id.statusbar_tint);
-            CustomColor primaryColor = new CustomColor(appColors.primary);
-            CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+	        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+	            private int totalScrolled = 0;
+	            private final int parallaxAmount = 2;
+
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
+	                AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+	                View appbarShadow = findViewById(R.id.appbar_shadow);
+	                View statusShadow = findViewById(R.id.statusbar_tint);
+	                CustomColor primaryColor = new CustomColor(appColors.primary);
+	                CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
+
                     totalScrolled += dy;
 
-                    int parallaxAmount = 2;
                     imageView.setTop(totalScrolled / parallaxAmount);
                     imageBackView.setTop(totalScrolled / parallaxAmount);
 
-                    float alpha = ColorUtils.intToFloatAlpha(totalScrolled);
                     appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
-                    appbarShadow.setAlpha(alpha);
+                    appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(totalScrolled));
                     statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
                 }
             });
