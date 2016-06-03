@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
 
-        <android.support.design.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            >
+		<android.support.design.widget.CoordinatorLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			>
 
-            <android.support.design.widget.AppBarLayout
-                android:id="@+id/appbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                >
+			<android.support.design.widget.AppBarLayout
+				android:id="@+id/appbar"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:fitsSystemWindows="true"
+				>
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:theme="?toolbarTheme"
-                    app:popupTheme="?toolbarPopupTheme"
-                    />
+				<android.support.v7.widget.Toolbar
+					android:id="@+id/toolbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:popupTheme="?toolbarPopupTheme"
+					app:theme="?toolbarTheme"
+					/>
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/tabs_fill"
-                    />
+				<android.support.design.widget.TabLayout
+					android:id="@+id/tab_layout"
+					style="@style/tabs_fill"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					/>
 
-            </android.support.design.widget.AppBarLayout>
+			</android.support.design.widget.AppBarLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                />
+			<android.support.v4.view.ViewPager
+				android:id="@+id/view_pager"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:layout_behavior="@string/appbar_scrolling_view_behavior"
+				/>
 
-        </android.support.design.widget.CoordinatorLayout>
+		</android.support.design.widget.CoordinatorLayout>
 
-        <fragment
-            android:id="@+id/floating_nowplaying"
-            android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_floating_nowplaying"
-            />
+		<fragment
+			android:id="@+id/floating_nowplaying"
+			android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:layout="@layout/fragment_floating_nowplaying"
+			/>
 
-    </LinearLayout>
+	</LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

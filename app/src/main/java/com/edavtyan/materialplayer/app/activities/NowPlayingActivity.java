@@ -13,44 +13,44 @@ import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 
 public class NowPlayingActivity extends BaseToolbarActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nowplaying);
-        initToolbar(R.string.nowplaying_toolbar_title);
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_nowplaying);
+		initToolbar(R.string.nowplaying_toolbar_title);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (DeviceUtils.isPortrait(getResources())) {
-            FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
-            playlistFab.setOnClickListener(view -> openNowPlayingQueue());
-        }
-    }
+		if (DeviceUtils.isPortrait(getResources())) {
+			FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
+			playlistFab.setOnClickListener(view -> openNowPlayingQueue());
+		}
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        if (DeviceUtils.isLandscape(getResources())) {
-            getMenuInflater().inflate(R.menu.menu_playlist, menu);
-        }
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		if (DeviceUtils.isLandscape(getResources())) {
+			getMenuInflater().inflate(R.menu.menu_playlist, menu);
+		}
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_playlist:
-                openNowPlayingQueue();
-                break;
-        }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_playlist:
+				openNowPlayingQueue();
+				break;
+		}
 
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
 
-    private void openNowPlayingQueue() {
-        startActivity(new Intent(this, PlaylistActivity.class));
-    }
+	private void openNowPlayingQueue() {
+		startActivity(new Intent(this, PlaylistActivity.class));
+	}
 }

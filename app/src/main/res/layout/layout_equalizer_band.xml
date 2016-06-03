@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:orientation="horizontal"
-    android:paddingLeft="@dimen/spacing_medium"
-    android:paddingRight="@dimen/spacing_medium"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_gravity="center"
+	android:orientation="horizontal"
+	android:paddingLeft="@dimen/spacing_medium"
+	android:paddingRight="@dimen/spacing_medium"
+	>
 
-    <TextView
-        android:id="@+id/frequency"
-        android:layout_width="@dimen/size_medium"
-        android:layout_height="match_parent"
-        android:gravity="end|center_vertical"
-        tools:text="500 Hz"
-        />
+	<TextView
+		android:id="@+id/frequency"
+		android:layout_width="@dimen/size_medium"
+		android:layout_height="match_parent"
+		android:gravity="end|center_vertical"
+		tools:text="500 Hz"
+		/>
 
-    <com.edavtyan.materialplayer.app.views.DoubleSeekbar
-        android:id="@+id/band"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:maxHeight="300sp"
-        tools:progress="40"
-        />
+	<com.edavtyan.materialplayer.app.views.DoubleSeekbar
+		android:id="@+id/band"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:maxHeight="300sp"
+		tools:progress="40"
+		/>
 
-    <TextView
-        android:id="@+id/gain"
-        android:layout_width="@dimen/size_medium"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|right"
-        tools:text="+12 Db"
-        />
+	<TextView
+		android:id="@+id/gain"
+		android:layout_width="@dimen/size_medium"
+		android:layout_height="match_parent"
+		android:gravity="center_vertical|right"
+		tools:text="+12 Db"
+		/>
 
 </LinearLayout>

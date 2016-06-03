@@ -25,99 +25,98 @@ import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.utils.WindowUtils;
 
 public abstract class CollapsingHeaderListActivity
-        extends BaseToolbarActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
-
+		extends BaseToolbarActivity
+		implements LoaderManager.LoaderCallbacks<Cursor> {
 	protected AppColors appColors;
-    protected ImageView imageView;
-    protected ImageView imageBackView;
-    protected TextView titleView;
-    protected TextView infoView;
+	protected ImageView imageView;
+	protected ImageView imageBackView;
+	protected TextView titleView;
+	protected TextView infoView;
 
-    /*
-     * AppCompatActivity
-     */
+	/*
+	 * AppCompatActivity
+	 */
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collapsing_list);
-        getSupportLoaderManager().initLoader(0, null, this);
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_collapsing_list);
+		getSupportLoaderManager().initLoader(0, null, this);
 
-	    appColors = new AppColors(this);
+		appColors = new AppColors(this);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setAdapter(getAdapter());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
+		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+		recyclerView.setAdapter(getAdapter());
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
-        imageView = (ImageView) findViewById(R.id.art);
-        imageBackView = (ImageView) findViewById(R.id.back);
-        titleView = (TextView) findViewById(R.id.title);
-        infoView = (TextView) findViewById(R.id.info);
+		imageView = (ImageView) findViewById(R.id.art);
+		imageBackView = (ImageView) findViewById(R.id.back);
+		titleView = (TextView) findViewById(R.id.title);
+		infoView = (TextView) findViewById(R.id.info);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (DeviceUtils.isPortrait(getResources())) {
-            WindowUtils.makeStatusBarTransparent(getWindow());
+		if (DeviceUtils.isPortrait(getResources())) {
+			WindowUtils.makeStatusBarTransparent(getWindow());
 
-            LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
-            appbarWrapper.bringToFront();
+			LinearLayout appbarWrapper = (LinearLayout) findViewById(R.id.appbar_wrapper);
+			appbarWrapper.bringToFront();
 
-            RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
-            header.attachTo(recyclerView, true);
+			RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
+			header.attachTo(recyclerView, true);
 
-	        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-	            private int totalScrolled = 0;
-	            private final int parallaxAmount = 2;
+			recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+				private int totalScrolled = 0;
+				private final int parallaxAmount = 2;
 
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-	                AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-	                View appbarShadow = findViewById(R.id.appbar_shadow);
-	                View statusShadow = findViewById(R.id.statusbar_tint);
-	                CustomColor primaryColor = new CustomColor(appColors.primary);
-	                CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
+				@Override
+				public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+					AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+					View appbarShadow = findViewById(R.id.appbar_shadow);
+					View statusShadow = findViewById(R.id.statusbar_tint);
+					CustomColor primaryColor = new CustomColor(appColors.primary);
+					CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
 
-                    totalScrolled += dy;
+					totalScrolled += dy;
 
-                    imageView.setTop(totalScrolled / parallaxAmount);
-                    imageBackView.setTop(totalScrolled / parallaxAmount);
+					imageView.setTop(totalScrolled / parallaxAmount);
+					imageBackView.setTop(totalScrolled / parallaxAmount);
 
-                    appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
-                    appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(totalScrolled));
-                    statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
-                }
-            });
-        }
-    }
+					appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
+					appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(totalScrolled));
+					statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
+				}
+			});
+		}
+	}
 
-    /*
-     * LoaderCallbacks
-     */
+	/*
+	 * LoaderCallbacks
+	 */
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return getLoader();
-    }
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		return getLoader();
+	}
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        getAdapter().swapCursor(data);
-    }
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+		getAdapter().swapCursor(data);
+	}
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        getAdapter().swapCursor(null);
-    }
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		getAdapter().swapCursor(null);
+	}
 
-    /*
-     * Abstract methods
-     */
+	/*
+	 * Abstract methods
+	 */
 
-    protected abstract Loader<Cursor> getLoader();
+	protected abstract Loader<Cursor> getLoader();
 
-    protected abstract RecyclerViewCursorAdapter getAdapter();
+	protected abstract RecyclerViewCursorAdapter getAdapter();
 }

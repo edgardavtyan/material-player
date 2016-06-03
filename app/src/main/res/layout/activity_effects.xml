@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/effects_wrapper"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/effects_wrapper"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
 
-    <include layout="@layout/layout_toolbar" />
+	<include layout="@layout/layout_toolbar" />
 
-    <fragment
-        android:id="@+id/fragment_equalizer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.edavtyan.materialplayer.app.fragments.effects.EqualizerFragment"
-        tools:layout="@layout/fragment_equalizer"
-        />
+	<fragment
+		android:id="@+id/fragment_equalizer"
+		android:name="com.edavtyan.materialplayer.app.fragments.effects.EqualizerFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/fragment_equalizer"
+		/>
 
-    <fragment
-        android:id="@+id/fragment_surround"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.edavtyan.materialplayer.app.fragments.effects.SurroundFragment"
-        tools:layout="@layout/layout_titled_seekbar"
-        />
+	<fragment
+		android:id="@+id/fragment_surround"
+		android:name="com.edavtyan.materialplayer.app.fragments.effects.SurroundFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/layout_titled_seekbar"
+		/>
 
-    <fragment
-        android:id="@+id/fragment_amplifier"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.edavtyan.materialplayer.app.fragments.effects.AmplifierFragment"
-        tools:layout="@layout/layout_titled_seekbar"
-        />
+	<fragment
+		android:id="@+id/fragment_amplifier"
+		android:name="com.edavtyan.materialplayer.app.fragments.effects.AmplifierFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/layout_titled_seekbar"
+		/>
 
-    <fragment
-        android:id="@+id/fragment_bassBoost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.edavtyan.materialplayer.app.fragments.effects.BassBoostFragment"
-        tools:layout="@layout/layout_titled_seekbar"
-        />
+	<fragment
+		android:id="@+id/fragment_bassBoost"
+		android:name="com.edavtyan.materialplayer.app.fragments.effects.BassBoostFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/layout_titled_seekbar"
+		/>
 
 </LinearLayout>

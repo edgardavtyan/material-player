@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/wrapper"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:background="?colorPrimary"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/wrapper"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="?colorPrimary"
+	android:gravity="center_vertical"
+	android:orientation="vertical"
+	>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/spacing_medium"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="@dimen/font_big"
-        android:singleLine="true"
-        android:ellipsize="end"
-        tools:text="Now Playing Track Title"
-        />
+	<TextView
+		android:id="@+id/title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/spacing_medium"
+		android:ellipsize="end"
+		android:singleLine="true"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="@dimen/font_big"
+		tools:text="Now Playing Track Title"
+		/>
 
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        android:layout_marginLeft="@dimen/spacing_medium"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="@dimen/font_normal"
-        android:singleLine="true"
-        android:ellipsize="end"
-        tools:text="Artist Name - Album Name"
-        />
+	<TextView
+		android:id="@+id/info"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/spacing_medium"
+		android:layout_marginTop="@dimen/spacing_tiny"
+		android:ellipsize="end"
+		android:singleLine="true"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="@dimen/font_normal"
+		tools:text="Artist Name - Album Name"
+		/>
 
 </LinearLayout>

@@ -17,55 +17,53 @@ import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 
-public abstract class ListFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
-    protected abstract Loader<Cursor> getLoader();
-    protected abstract RecyclerViewCursorAdapter getAdapter();
+public abstract class ListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+	protected abstract Loader<Cursor> getLoader();
+	protected abstract RecyclerViewCursorAdapter getAdapter();
 	protected AppColors appColors;
 
+	/*
+	 * Fragment
+	 */
 
-    /*
-     * Fragment
-     */
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		appColors = new AppColors(getActivity());
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	    appColors = new AppColors(getActivity());
+		View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-	    View view = inflater.inflate(R.layout.fragment_list, container, false);
+		RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		recyclerView.setAdapter(getAdapter());
+		recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(getAdapter());
-        recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
+		return view;
+	}
 
-        return view;
-    }
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		getLoaderManager().initLoader(0, null, this);
+	}
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(0, null, this);
-    }
+	/*
+	 * LoaderCallbacks<Cursor>
+	 */
 
-    /*
-     * LoaderCallbacks<Cursor>
-     */
+	@Override
+	public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+		return getLoader();
+	}
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return getLoader();
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        getAdapter().swapCursor(cursor);
-    }
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		getAdapter().swapCursor(cursor);
+	}
 
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        getAdapter().swapCursor(null);
-    }
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		getAdapter().swapCursor(null);
+	}
 }

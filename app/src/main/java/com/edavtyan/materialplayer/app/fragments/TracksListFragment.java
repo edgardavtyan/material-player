@@ -20,76 +20,76 @@ import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 
 public class TracksListFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
-    private TracksAdapter tracksAdapter;
+		implements LoaderManager.LoaderCallbacks<Cursor> {
+	private TracksAdapter tracksAdapter;
 	private AppColors appColors;
 
-    /*
-     * Fragment
-     */
+	/*
+	 * Fragment
+	 */
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        tracksAdapter = new TracksAdapter(getActivity(), null);
-    }
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		tracksAdapter = new TracksAdapter(getActivity(), null);
+	}
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-	    appColors = new AppColors(getActivity());
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+	                         @Nullable ViewGroup container,
+	                         @Nullable Bundle savedInstanceState) {
+		appColors = new AppColors(getActivity());
 
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
+		View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(tracksAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
+		RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		recyclerView.setAdapter(tracksAdapter);
+		recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
-        return view;
-    }
+		return view;
+	}
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(0, null, this);
-    }
+	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		getLoaderManager().initLoader(0, null, this);
+	}
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        tracksAdapter.bindService();
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
+		tracksAdapter.bindService();
+	}
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        tracksAdapter.unbindService();
-    }
+	@Override
+	public void onPause() {
+		super.onPause();
+		tracksAdapter.unbindService();
+	}
 
-    /*
-     * LoaderCallbacks
-     */
+	/*
+	 * LoaderCallbacks
+	 */
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(
-                getActivity(),
-                TrackColumns.URI,
-                TrackColumns.PROJECTION,
-                null, null,
-                TrackColumns.NAME_TITLE + " ASC");
-    }
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		return new CursorLoader(
+				getActivity(),
+				TrackColumns.URI,
+				TrackColumns.PROJECTION,
+				null, null,
+				TrackColumns.NAME_TITLE + " ASC");
+	}
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        tracksAdapter.swapCursor(data);
-    }
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+		tracksAdapter.swapCursor(data);
+	}
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        tracksAdapter.swapCursor(null);
-    }
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		tracksAdapter.swapCursor(null);
+	}
 }

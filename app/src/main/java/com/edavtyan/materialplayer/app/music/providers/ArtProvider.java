@@ -15,59 +15,59 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 public final class ArtProvider {
-    private ArtProvider() {}
+	private ArtProvider() {}
 
 
-    private static final String TAG = "ArtProvider";
+	private static final String TAG = "ArtProvider";
 
 
-    public static File fromTrack(Track track) {
-        String artFolder = DataStorage.DIR_ART.getAbsolutePath();
-        String artGlob = track.getAlbumId() + "@*";
-        List<File> artFiles = new Paths().glob(artFolder, artGlob).getFiles();
+	public static File fromTrack(Track track) {
+		String artFolder = DataStorage.DIR_ART.getAbsolutePath();
+		String artGlob = track.getAlbumId() + "@*";
+		List<File> artFiles = new Paths().glob(artFolder, artGlob).getFiles();
 
-        boolean foundArt = artFiles.size() != 0;
-        boolean artOutdated = foundArt && artFiles.get(0).lastModified() < track.getDateModified();
+		boolean foundArt = artFiles.size() != 0;
+		boolean artOutdated = foundArt && artFiles.get(0).lastModified() < track.getDateModified();
 
-        int artGeneration = 1;
-        if (artOutdated) {
-            String artFileName = artFiles.get(0).getName();
-            FileUtils.delete(artFileName);
-            artGeneration = getArtGeneration(artFileName);
-            artGeneration++;
-        }
+		int artGeneration = 1;
+		if (artOutdated) {
+			String artFileName = artFiles.get(0).getName();
+			FileUtils.delete(artFileName);
+			artGeneration = getArtGeneration(artFileName);
+			artGeneration++;
+		}
 
-        File artFile = new File(
-                DataStorage.DIR_ART,
-                String.format("%d@%d", track.getAlbumId(), artGeneration));
+		File artFile = new File(
+				DataStorage.DIR_ART,
+				String.format("%d@%d", track.getAlbumId(), artGeneration));
 
-        if (artOutdated || !foundArt) {
-            Log.d(TAG, "Art for " + track.getAlbumTitle() + " does not exist or outdated");
-            try {
-                AudioFile audioFile = AudioFileIO.read(new File(track.getPath()));
-                byte[] artBytes = audioFile.getTag().getFirstArtwork().getBinaryData();
+		if (artOutdated || !foundArt) {
+			Log.d(TAG, "Art for " + track.getAlbumTitle() + " does not exist or outdated");
+			try {
+				AudioFile audioFile = AudioFileIO.read(new File(track.getPath()));
+				byte[] artBytes = audioFile.getTag().getFirstArtwork().getBinaryData();
 
-                FileOutputStream outputStream = new FileOutputStream(artFile);
-                outputStream.write(artBytes);
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+				FileOutputStream outputStream = new FileOutputStream(artFile);
+				outputStream.write(artBytes);
+				outputStream.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-        return artFile;
-    }
+		return artFile;
+	}
 
-    public static File fromPath(String artPath) {
-        File artFile = null;
-        if (artPath != null) {
-            artFile = new File(artPath);
-        }
+	public static File fromPath(String artPath) {
+		File artFile = null;
+		if (artPath != null) {
+			artFile = new File(artPath);
+		}
 
-        return artFile;
-    }
+		return artFile;
+	}
 
-    private static int getArtGeneration(String artFileName) {
-        return Integer.parseInt(artFileName.substring(artFileName.indexOf("@") + 1));
-    }
+	private static int getArtGeneration(String artFileName) {
+		return Integer.parseInt(artFileName.substring(artFileName.indexOf("@") + 1));
+	}
 }

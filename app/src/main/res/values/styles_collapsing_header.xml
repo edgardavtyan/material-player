@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="collapsingHeader_header">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">?android:windowBackground</item>
-    </style>
+	<style name="collapsingHeader_header">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">?android:windowBackground</item>
+	</style>
 
-    <style name="collapsingHeader_art">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:scaleType">fitCenter</item>
-    </style>
+	<style name="collapsingHeader_art">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:scaleType">fitCenter</item>
+	</style>
 
-    <style name="collapsingHeader_artBack" parent="collapsingHeader_art">
-        <item name="android:scaleType">centerCrop</item>
-    </style>
+	<style name="collapsingHeader_artBack" parent="collapsingHeader_art">
+		<item name="android:scaleType">centerCrop</item>
+	</style>
 
-    <style name="collapsingHeader_textContainer">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:padding">@dimen/spacing_medium</item>
-    </style>
+	<style name="collapsingHeader_textContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:padding">@dimen/spacing_medium</item>
+	</style>
 
-    <style name="collapsingHeader_title">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">?textColorPrimary</item>
-        <item name="android:textSize">@dimen/font_big</item>
-    </style>
+	<style name="collapsingHeader_title">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textColor">?textColorPrimary</item>
+		<item name="android:textSize">@dimen/font_big</item>
+	</style>
 
-    <style name="collapsingHeader_info" parent="collapsingHeader_title">
-        <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
-        <item name="android:textSize">@dimen/font_normal</item>
-        <item name="android:textColor">?textColorSecondary</item>
-    </style>
+	<style name="collapsingHeader_info" parent="collapsingHeader_title">
+		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+		<item name="android:textSize">@dimen/font_normal</item>
+		<item name="android:textColor">?textColorSecondary</item>
+	</style>
 
-    <style name="collapsingHeader_appbarShadow">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">80dp</item>
-        <item name="android:background">@drawable/collapsing_toolbar_gradient</item>
-    </style>
+	<style name="collapsingHeader_appbarShadow">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">80dp</item>
+		<item name="android:background">@drawable/collapsing_toolbar_gradient</item>
+	</style>
 
 </resources>

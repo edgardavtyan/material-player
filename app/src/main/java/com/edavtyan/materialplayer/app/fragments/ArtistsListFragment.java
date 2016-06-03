@@ -12,26 +12,26 @@ import com.edavtyan.materialplayer.app.music.adapters.ArtistsAdapter;
 import com.edavtyan.materialplayer.app.music.columns.ArtistColumns;
 
 public class ArtistsListFragment extends ListFragment {
-    private ArtistsAdapter artistsAdapter;
+	private ArtistsAdapter artistsAdapter;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        artistsAdapter = new ArtistsAdapter(getContext(), null);
-    }
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		artistsAdapter = new ArtistsAdapter(getContext(), null);
+	}
 
-    @Override
-    public Loader<Cursor> getLoader() {
-        return new CursorLoader(
-                getContext(),
-                ArtistColumns.URI,
-                ArtistColumns.PROJECTION,
-                null, null,
-                ArtistColumns.NAME_TITLE + " ASC");
-    }
+	@Override
+	public Loader<Cursor> getLoader() {
+		return new CursorLoader(
+				getContext(),
+				ArtistColumns.URI,
+				ArtistColumns.PROJECTION,
+				null, null,
+				ArtistColumns.NAME_TITLE + " ASC");
+	}
 
-    @Override
-    public RecyclerViewCursorAdapter getAdapter() {
-        return artistsAdapter;
-    }
+	@Override
+	public RecyclerViewCursorAdapter getAdapter() {
+		return artistsAdapter;
+	}
 }

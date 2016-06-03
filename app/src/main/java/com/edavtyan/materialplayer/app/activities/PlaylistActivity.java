@@ -14,50 +14,50 @@ import com.edavtyan.materialplayer.app.music.adapters.PlaylistAdapter;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 
 public class PlaylistActivity extends BaseToolbarActivity {
-    private PlaylistAdapter playlistAdapter;
+	private PlaylistAdapter playlistAdapter;
 	private AppColors appColors;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_playlist);
-        initToolbar(R.string.queue_title);
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_playlist);
+		initToolbar(R.string.queue_title);
 
-	    appColors = new AppColors(this);
-        playlistAdapter = new PlaylistAdapter(this);
+		appColors = new AppColors(this);
+		playlistAdapter = new PlaylistAdapter(this);
 
-        RecyclerView playlistView = (RecyclerView) findViewById(R.id.list);
-        playlistView.setLayoutManager(new LinearLayoutManager(this));
-        playlistView.setAdapter(playlistAdapter);
-        playlistView.addItemDecoration(new DividerItemDecoration(appColors.divider));
+		RecyclerView playlistView = (RecyclerView) findViewById(R.id.list);
+		playlistView.setLayoutManager(new LinearLayoutManager(this));
+		playlistView.setAdapter(playlistAdapter);
+		playlistView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+				break;
+		}
 
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        playlistAdapter.registerReceivers();
-        playlistAdapter.bindService();
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
+		playlistAdapter.registerReceivers();
+		playlistAdapter.bindService();
+	}
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        playlistAdapter.unbindService();
-        playlistAdapter.unregisterReceivers();
-    }
+	@Override
+	public void onPause() {
+		super.onPause();
+		playlistAdapter.unbindService();
+		playlistAdapter.unregisterReceivers();
+	}
 }

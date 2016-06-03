@@ -14,74 +14,74 @@ import com.edavtyan.materialplayer.app.music.effects.SingleLevelEffectType;
 import com.edavtyan.materialplayer.app.music.effects.StrengthBasedEffect;
 
 public abstract class AudioEffectFragment
-        extends ServiceFragment
-        implements SeekBar.OnSeekBarChangeListener {
-    private StrengthBasedEffect effect;
-    private SeekBar seekbar;
+		extends ServiceFragment
+		implements SeekBar.OnSeekBarChangeListener {
+	private StrengthBasedEffect effect;
+	private SeekBar seekbar;
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_titled_seekbar, container, false);
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.layout_titled_seekbar, container, false);
 
-        TextView titleView = (TextView) view.findViewById(R.id.title);
-        titleView.setText(getResources().getString(getTitleId()));
-        titleView.setWidth(getResources().getDimensionPixelSize(R.dimen.AudioEffects_TitleWidth));
+		TextView titleView = (TextView) view.findViewById(R.id.title);
+		titleView.setText(getResources().getString(getTitleId()));
+		titleView.setWidth(getResources().getDimensionPixelSize(R.dimen.AudioEffects_TitleWidth));
 
-        seekbar = (SeekBar) view.findViewById(R.id.seekbar);
-        seekbar.setOnSeekBarChangeListener(this);
+		seekbar = (SeekBar) view.findViewById(R.id.seekbar);
+		seekbar.setOnSeekBarChangeListener(this);
 
-        return view;
-    }
+		return view;
+	}
 
-    /*
-     * Public methods
-     */
+	/*
+	 * Public methods
+	 */
 
-    public abstract int getTitleId();
-    public abstract SingleLevelEffectType getEffectType();
+	public abstract int getTitleId();
+	public abstract SingleLevelEffectType getEffectType();
 
-    /*
-     * ServiceConnection
-     */
+	/*
+	 * ServiceConnection
+	 */
 
-    @Override
-    public void onServiceConnected() {
-        switch (getEffectType()) {
-            case EFFECT_SURROUND:
-                effect = getService().getSurround();
-                break;
+	@Override
+	public void onServiceConnected() {
+		switch (getEffectType()) {
+		case EFFECT_SURROUND:
+			effect = getService().getSurround();
+			break;
 
-            case EFFECT_AMPLIFIER:
-                effect = getService().getAmplifier();
-                break;
+		case EFFECT_AMPLIFIER:
+			effect = getService().getAmplifier();
+			break;
 
-            case EFFECT_BASS_BOOST:
-                effect = getService().getBassBoost();
-                break;
-        }
+		case EFFECT_BASS_BOOST:
+			effect = getService().getBassBoost();
+			break;
+		}
 
-        seekbar.setMax(effect.getMaxStrength());
-        seekbar.setProgress(effect.getStrength());
-    }
+		seekbar.setMax(effect.getMaxStrength());
+		seekbar.setProgress(effect.getStrength());
+	}
 
-    /*
-     * CompoundButton.OnCheckedChangeListener
-     */
+	/*
+	 * CompoundButton.OnCheckedChangeListener
+	 */
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (!fromUser) return;
-        effect.setStrength(progress);
-    }
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		if (!fromUser) return;
+		effect.setStrength(progress);
+	}
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+	}
 
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        effect.saveSettings();
-    }
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		effect.saveSettings();
+	}
 }

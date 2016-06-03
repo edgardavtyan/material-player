@@ -11,80 +11,80 @@ import com.edavtyan.materialplayer.app.R;
 import lombok.Setter;
 
 public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-    private @Setter OnBandChangedListener onBandChangedListener;
+	private @Setter OnBandChangedListener onBandChangedListener;
 
-    private TextView frequencyView;
-    private TextView gainView;
-    private DoubleSeekbar bandView;
-
-
-    public interface OnBandChangedListener {
-        void OnBandStopTracking();
-        void onBandChanged(EqualizerBandView band, int gain);
-    }
+	private TextView frequencyView;
+	private TextView gainView;
+	private DoubleSeekbar bandView;
 
 
-    public EqualizerBandView(Context context) {
-        super(context);
+	public interface OnBandChangedListener {
+		void OnBandStopTracking();
+		void onBandChanged(EqualizerBandView band, int gain);
+	}
 
-        LayoutInflater.from(context).inflate(R.layout.layout_equalizer_band, this, true);
 
-        frequencyView = (TextView) findViewById(R.id.frequency);
-        gainView = (TextView) findViewById(R.id.gain);
+	public EqualizerBandView(Context context) {
+		super(context);
 
-        bandView = (DoubleSeekbar) findViewById(R.id.band);
-        bandView.setOnSeekBarChangeListener(this);
-    }
+		LayoutInflater.from(context).inflate(R.layout.layout_equalizer_band, this, true);
 
-    /*
-     * Public methods
-     */
+		frequencyView = (TextView) findViewById(R.id.frequency);
+		gainView = (TextView) findViewById(R.id.gain);
 
-    public void setGainLimit(int gain) {
-        bandView.setMax(gain);
-    }
+		bandView = (DoubleSeekbar) findViewById(R.id.band);
+		bandView.setOnSeekBarChangeListener(this);
+	}
 
-    public void setGain(int gain) {
-        bandView.setProgress(gain);
-        gainView.setText(getGainStr(gain));
-    }
+	/*
+	 * Public methods
+	 */
 
-    public void setFrequency(int frequency) {
-        int frequencyFormat;
-        if (frequency >= 1000) {
-            frequency /= 1000;
-            frequencyFormat = R.string.equalizer_frequency_khz;
-        } else {
-            frequencyFormat = R.string.equalizer_frequency_hz;
-        }
+	public void setGainLimit(int gain) {
+		bandView.setMax(gain);
+	}
 
-        frequencyView.setText(getResources().getString(frequencyFormat, frequency));
-    }
+	public void setGain(int gain) {
+		bandView.setProgress(gain);
+		gainView.setText(getGainStr(gain));
+	}
 
-    /*
-     * OnSeekBarChangeListener
-     */
+	public void setFrequency(int frequency) {
+		int frequencyFormat;
+		if (frequency >= 1000) {
+			frequency /= 1000;
+			frequencyFormat = R.string.equalizer_frequency_khz;
+		} else {
+			frequencyFormat = R.string.equalizer_frequency_hz;
+		}
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        gainView.setText(getGainStr(progress));
-        if (onBandChangedListener != null) onBandChangedListener.onBandChanged(this, progress);
-    }
+		frequencyView.setText(getResources().getString(frequencyFormat, frequency));
+	}
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-        if (onBandChangedListener != null) onBandChangedListener.OnBandStopTracking();
-    }
+	/*
+	 * OnSeekBarChangeListener
+	 */
 
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {}
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		gainView.setText(getGainStr(progress));
+		if (onBandChangedListener != null) onBandChangedListener.onBandChanged(this, progress);
+	}
 
-    /*
-     * Private methods
-     */
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		if (onBandChangedListener != null) onBandChangedListener.OnBandStopTracking();
+	}
 
-    private String getGainStr(int gain) {
-        return (gain > 0 ? "+" : "") + getResources().getString(
-                R.string.equalizer_format_gain, gain);
-    }
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {}
+
+	/*
+	 * Private methods
+	 */
+
+	private String getGainStr(int gain) {
+		return (gain > 0 ? "+" : "") + getResources().getString(
+				R.string.equalizer_format_gain, gain);
+	}
 }

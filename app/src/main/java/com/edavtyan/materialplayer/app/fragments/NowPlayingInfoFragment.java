@@ -17,71 +17,69 @@ import com.edavtyan.materialplayer.app.music.data.Track;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 
 public class NowPlayingInfoFragment extends ServiceFragment {
+	private TextView titleView;
+	private TextView infoView;
 
-    private TextView titleView;
-    private TextView infoView;
+	/*
+	 * BroadcastReceivers
+	 */
 
-    /*
-     * BroadcastReceivers
-     */
+	private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			syncWithService();
+		}
+	};
 
-    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            syncWithService();
-        }
-    };
+	/*
+	 * ServiceFragment
+	 */
 
-    /*
-     * ServiceFragment
-     */
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_nowplaying_info, container, false);
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nowplaying_info, container, false);
+		titleView = (TextView) view.findViewById(R.id.title);
+		infoView = (TextView) view.findViewById(R.id.info);
 
-        titleView = (TextView) view.findViewById(R.id.title);
-        infoView = (TextView) view.findViewById(R.id.info);
+		return view;
+	}
 
-        return view;
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().registerReceiver(
+				newTrackReceiver,
+				new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+		getActivity().bindService(
+				new Intent(getActivity(), MusicPlayerService.class),
+				this, Context.BIND_AUTO_CREATE);
+	}
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().registerReceiver(
-                newTrackReceiver,
-                new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
-        getActivity().bindService(
-                new Intent(getActivity(), MusicPlayerService.class),
-                this, Context.BIND_AUTO_CREATE);
-    }
+	@Override
+	public void onPause() {
+		super.onPause();
+		getActivity().unregisterReceiver(newTrackReceiver);
+	}
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        getActivity().unregisterReceiver(newTrackReceiver);
-    }
+	@Override
+	public void onServiceConnected() {
+		syncWithService();
+	}
 
-    @Override
-    public void onServiceConnected() {
-        syncWithService();
-    }
+	/*
+	 * Private methods
+	 */
 
-    /*
-     * Private methods
-     */
+	private void syncWithService() {
+		Track track = getService().getPlayer().getCurrentTrack();
+		String trackMetadata = getResources().getString(
+				R.string.nowplaying_info_pattern,
+				track.getArtistTitle(),
+				track.getAlbumTitle());
 
-    private void syncWithService() {
-        Track track = getService().getPlayer().getCurrentTrack();
-        String trackMetadata = getResources().getString(
-                R.string.nowplaying_info_pattern,
-                track.getArtistTitle(),
-                track.getAlbumTitle());
-
-        titleView.setText(track.getTrackTitle());
-        infoView.setText(trackMetadata);
-    }
+		titleView.setText(track.getTrackTitle());
+		infoView.setText(trackMetadata);
+	}
 }

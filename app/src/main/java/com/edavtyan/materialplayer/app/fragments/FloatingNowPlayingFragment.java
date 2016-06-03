@@ -23,157 +23,156 @@ import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.wnafee.vector.MorphButton;
 
 public class FloatingNowPlayingFragment
-        extends ServiceFragment
-        implements View.OnClickListener {
+		extends ServiceFragment
+		implements View.OnClickListener {
+	private ImageView artView;
+	private TextView titleView;
+	private TextView infoView;
+	private MorphButton controlView;
+	private LinearLayout container;
 
-    private ImageView artView;
-    private TextView titleView;
-    private TextView infoView;
-    private MorphButton controlView;
-    private LinearLayout container;
+	/*
+	 * BroadcastReceivers
+	 */
 
-    /*
-     * BroadcastReceivers
-     */
+	private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			controlView.setState(MorphButton.MorphState.END, true);
+		}
+	};
+	private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			controlView.setState(MorphButton.MorphState.START, true);
+		}
+	};
+	private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			syncDataWithService();
+		}
+	};
 
-    private final BroadcastReceiver playReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            controlView.setState(MorphButton.MorphState.END, true);
-        }
-    };
-    private final BroadcastReceiver pauseReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            controlView.setState(MorphButton.MorphState.START, true);
-        }
-    };
-    private final BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            syncDataWithService();
-        }
-    };
+	/*
+	 * Fragment
+	 */
 
-    /*
-     * Fragment
-     */
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+	                         Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_floating_nowplaying, parent, false);
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
-                             Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_floating_nowplaying, parent, false);
+		LinearLayout infoWrapper = (LinearLayout) view.findViewById(R.id.info_wrapper);
+		infoWrapper.setOnClickListener(this);
 
-        LinearLayout infoWrapper = (LinearLayout) view.findViewById(R.id.info_wrapper);
-        infoWrapper.setOnClickListener(this);
+		artView = (ImageView) view.findViewById(R.id.art);
+		artView.setOnClickListener(this);
 
-        artView = (ImageView) view.findViewById(R.id.art);
-        artView.setOnClickListener(this);
+		titleView = (TextView) view.findViewById(R.id.title);
+		titleView.setOnClickListener(this);
 
-        titleView = (TextView) view.findViewById(R.id.title);
-        titleView.setOnClickListener(this);
+		infoView = (TextView) view.findViewById(R.id.info);
 
-        infoView = (TextView) view.findViewById(R.id.info);
+		controlView = (MorphButton) view.findViewById(R.id.play_pause);
+		controlView.setOnClickListener(this);
 
-        controlView = (MorphButton) view.findViewById(R.id.play_pause);
-        controlView.setOnClickListener(this);
+		container = (LinearLayout) view.findViewById(R.id.container);
 
-        container = (LinearLayout) view.findViewById(R.id.container);
+		return view;
+	}
 
-        return view;
-    }
+	@Override
+	public void onStart() {
+		super.onStart();
 
-    @Override
-    public void onStart() {
-        super.onStart();
+		if (isBound() && getService().getPlayer().hasData()) {
+			container.setVisibility(View.VISIBLE);
+			syncDataWithService();
+		} else {
+			container.setVisibility(View.GONE);
+		}
+	}
 
-        if (isBound() && getService().getPlayer().hasData()) {
-            container.setVisibility(View.VISIBLE);
-            syncDataWithService();
-        } else {
-            container.setVisibility(View.GONE);
-        }
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
 
-    @Override
-    public void onResume() {
-        super.onResume();
+		getActivity().registerReceiver(
+				playReceiver,
+				new IntentFilter(MusicPlayerService.SEND_PLAY));
+		getActivity().registerReceiver(
+				pauseReceiver,
+				new IntentFilter(MusicPlayerService.SEND_PAUSE));
+		getActivity().registerReceiver(
+				newTrackReceiver,
+				new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+	}
 
-        getActivity().registerReceiver(
-                playReceiver,
-                new IntentFilter(MusicPlayerService.SEND_PLAY));
-        getActivity().registerReceiver(
-                pauseReceiver,
-                new IntentFilter(MusicPlayerService.SEND_PAUSE));
-        getActivity().registerReceiver(
-                newTrackReceiver,
-                new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
-    }
+	@Override
+	public void onPause() {
+		super.onPause();
 
-    @Override
-    public void onPause() {
-        super.onPause();
+		getActivity().unregisterReceiver(playReceiver);
+		getActivity().unregisterReceiver(pauseReceiver);
+		getActivity().unregisterReceiver(newTrackReceiver);
+	}
 
-        getActivity().unregisterReceiver(playReceiver);
-        getActivity().unregisterReceiver(pauseReceiver);
-        getActivity().unregisterReceiver(newTrackReceiver);
-    }
+	@Override
+	public void onServiceConnected() {
+		if (getService().getPlayer().hasData()) {
+			container.setVisibility(View.VISIBLE);
+			syncDataWithService();
+		} else {
+			container.setVisibility(View.GONE);
+		}
+	}
 
-    @Override
-    public void onServiceConnected() {
-        if (getService().getPlayer().hasData()) {
-            container.setVisibility(View.VISIBLE);
-            syncDataWithService();
-        } else {
-            container.setVisibility(View.GONE);
-        }
-    }
+	/*
+	 * View.OnClickListener
+	 */
 
-    /*
-     * View.OnClickListener
-     */
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.info_wrapper:
+		case R.id.title:
+		case R.id.info:
+		case R.id.art:
+			Intent intent = new Intent(getContext(), NowPlayingActivity.class);
+			startActivity(intent);
+			break;
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.info_wrapper:
-            case R.id.title:
-            case R.id.info:
-            case R.id.art:
-                Intent intent = new Intent(getContext(), NowPlayingActivity.class);
-                startActivity(intent);
-                break;
+		case R.id.play_pause:
+			getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
+			break;
+		}
+	}
 
-            case R.id.play_pause:
-                getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
-                break;
-        }
-    }
+	/*
+	 * Private methods
+	 */
 
-    /*
-     * Private methods
-     */
+	private void syncDataWithService() {
+		Glide.with(getContext())
+				.load(ArtProvider.fromTrack(getService().getPlayer().getCurrentTrack()))
+				.error(R.drawable.fallback_cover)
+				.into(artView);
 
-    private void syncDataWithService() {
-        Glide.with(getContext())
-                .load(ArtProvider.fromTrack(getService().getPlayer().getCurrentTrack()))
-                .error(R.drawable.fallback_cover)
-                .into(artView);
-
-        Track track = getService().getPlayer().getCurrentTrack();
-        String trackInfo = getResources().getString(
-                R.string.nowplaying_info_pattern,
-                track.getArtistTitle(),
-                track.getAlbumTitle());
-        titleView.setText(getService().getPlayer().getCurrentTrack().getTrackTitle());
-        infoView.setText(trackInfo);
+		Track track = getService().getPlayer().getCurrentTrack();
+		String trackInfo = getResources().getString(
+				R.string.nowplaying_info_pattern,
+				track.getArtistTitle(),
+				track.getAlbumTitle());
+		titleView.setText(getService().getPlayer().getCurrentTrack().getTrackTitle());
+		infoView.setText(trackInfo);
 
 
-        if (getService().getPlayer().isPlaying()) {
-            controlView.setState(MorphButton.MorphState.END);
-        } else {
-            controlView.setState(MorphButton.MorphState.START);
-        }
-    }
+		if (getService().getPlayer().isPlaying()) {
+			controlView.setState(MorphButton.MorphState.END);
+		} else {
+			controlView.setState(MorphButton.MorphState.START);
+		}
+	}
 }

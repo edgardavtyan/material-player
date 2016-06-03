@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class EqualizerPreset {
-    private int index;
-    private String name;
-    private int[] gains;
+	private int index;
+	private String name;
+	private int[] gains;
 }

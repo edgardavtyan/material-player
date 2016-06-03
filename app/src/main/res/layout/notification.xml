@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/notification_wrapper"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	style="@style/notification_wrapper"
+	>
 
-    <ImageView
-        android:id="@+id/art"
-        android:contentDescription="@string/description_art"
-        style="@style/notification_art"
-        />
+	<ImageView
+		android:id="@+id/art"
+		android:contentDescription="@string/description_art"
+		style="@style/notification_art"
+		/>
 
-    <LinearLayout
-        android:id="@+id/info_wrapper"
-        style="@style/notification_text_wrapper"
-        >
+	<LinearLayout
+		android:id="@+id/info_wrapper"
+		style="@style/notification_text_wrapper"
+		>
 
-        <TextView
-            android:id="@+id/title"
-            style="@style/notification_title"
-            />
+		<TextView
+			android:id="@+id/title"
+			style="@style/notification_title"
+			/>
 
-        <TextView
-            android:id="@+id/info"
-            style="@style/notification_info"
-            />
+		<TextView
+			android:id="@+id/info"
+			style="@style/notification_info"
+			/>
 
-    </LinearLayout>
+	</LinearLayout>
 
-    <ImageButton
-        android:id="@+id/rewind"
-        android:src="@drawable/ic_rewind"
-        android:contentDescription="@string/description_control_rewind"
-        style="@style/notification_control"
-        />
+	<ImageButton
+		android:id="@+id/rewind"
+		android:src="@drawable/ic_rewind"
+		android:contentDescription="@string/description_control_rewind"
+		style="@style/notification_control"
+		/>
 
-    <ImageButton
-        android:id="@+id/play_pause"
-        android:src="@drawable/ic_play_pause"
-        android:contentDescription="@string/description_control_playPause"
-        style="@style/notification_control"
-        />
+	<ImageButton
+		android:id="@+id/play_pause"
+		android:src="@drawable/ic_play_pause"
+		android:contentDescription="@string/description_control_playPause"
+		style="@style/notification_control"
+		/>
 
-    <ImageButton
-        android:id="@+id/fast_forward"
-        android:src="@drawable/ic_fast_forward"
-        android:contentDescription="@string/description_control_fastForward"
-        style="@style/notification_control"
-        />
+	<ImageButton
+		android:id="@+id/fast_forward"
+		android:src="@drawable/ic_fast_forward"
+		android:contentDescription="@string/description_control_fastForward"
+		style="@style/notification_control"
+		/>
 
 </LinearLayout>

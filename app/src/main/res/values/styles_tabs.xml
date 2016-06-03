@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="tabs_base">
-        <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabSelectedTextColor">?textColorContrastPrimary</item>
-        <item name="tabTextColor">?textColorContrastSecondary</item>
-    </style>
+	<style name="tabs_base">
+		<item name="tabIndicatorHeight">2dp</item>
+		<item name="tabSelectedTextColor">?textColorContrastPrimary</item>
+		<item name="tabTextColor">?textColorContrastSecondary</item>
+	</style>
 
-    <style name="tabs_fill" parent="tabs_base">
-        <item name="tabGravity">fill</item>
-    </style>
+	<style name="tabs_fill" parent="tabs_base">
+		<item name="tabGravity">fill</item>
+	</style>
 
 </resources>

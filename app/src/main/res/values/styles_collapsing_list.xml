@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="CollapsingList_StatusBarTint">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">25dp</item>
-        <item name="android:layout_gravity">top</item>
-        <item name="android:background">#0000</item>
-    </style>
+	<style name="CollapsingList_StatusBarTint">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">25dp</item>
+		<item name="android:layout_gravity">top</item>
+		<item name="android:background">#0000</item>
+	</style>
 
-    <style name="CollapsingList_Toolbar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?actionBarSize</item>
-        <item name="elevation">0dp</item>
-        <item name="theme">?toolbarTheme</item>
-        <item name="popupTheme">?toolbarPopupTheme</item>
-    </style>
+	<style name="CollapsingList_Toolbar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?actionBarSize</item>
+		<item name="elevation">0dp</item>
+		<item name="theme">?toolbarTheme</item>
+		<item name="popupTheme">?toolbarPopupTheme</item>
+	</style>
 
-    <style name="CollapsingList_AppBar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@android:color/transparent</item>
-        <item name="elevation">0dp</item>
-    </style>
+	<style name="CollapsingList_AppBar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@android:color/transparent</item>
+		<item name="elevation">0dp</item>
+	</style>
 
-    <style name="CollapsingList_AppBarShadow">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/shadow_small</item>
-        <item name="android:layout_gravity">bottom</item>
-        <item name="android:alpha">0</item>
-        <item name="android:background">@drawable/shadow_top</item>
-    </style>
+	<style name="CollapsingList_AppBarShadow">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/shadow_small</item>
+		<item name="android:layout_gravity">bottom</item>
+		<item name="android:alpha">0</item>
+		<item name="android:background">@drawable/shadow_top</item>
+	</style>
 
 </resources>

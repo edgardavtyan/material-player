@@ -1,62 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/wrapper"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/wrapper"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+		<android.support.design.widget.AppBarLayout
+			android:id="@+id/appbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                />
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?actionBarSize"
+				/>
 
-        </android.support.design.widget.AppBarLayout>
+		</android.support.design.widget.AppBarLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			>
 
-            <include
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                layout="@layout/fragment_nowplaying_art" />
+			<include
+				layout="@layout/fragment_nowplaying_art"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                />
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/list"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				/>
 
-        </LinearLayout>
+		</LinearLayout>
 
-        <fragment
-            android:id="@+id/floating_nowplaying"
-            android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/size_big"
-            tools:layout="@layout/fragment_floating_nowplaying"
-            />
+		<fragment
+			android:id="@+id/floating_nowplaying"
+			android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/size_big"
+			tools:layout="@layout/fragment_floating_nowplaying"
+			/>
 
-    </LinearLayout>
+	</LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

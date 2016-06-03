@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="audio_effects_title">Audio Effects</string>
+	<string name="audio_effects_title">Audio Effects</string>
 
-    <string name="equalizer_frequency_hz">%1$d Hz</string>
-    <string name="equalizer_frequency_khz">%1$d kHz</string>
-    <string name="equalizer_format_gain">%1$d Db</string>
+	<string name="equalizer_frequency_hz">%1$d Hz</string>
+	<string name="equalizer_frequency_khz">%1$d kHz</string>
+	<string name="equalizer_format_gain">%1$d Db</string>
 
-    <string name="equalizer_title">Equalizer</string>
-    <string name="surround_title">Surround</string>
-    <string name="amplifier_title">Amplifier</string>
-    <string name="bassBoost_title">Bass Boost</string>
+	<string name="equalizer_title">Equalizer</string>
+	<string name="surround_title">Surround</string>
+	<string name="amplifier_title">Amplifier</string>
+	<string name="bassBoost_title">Bass Boost</string>
 
 </resources>

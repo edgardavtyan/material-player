@@ -11,58 +11,58 @@ import com.edavtyan.materialplayer.app.services.MusicPlayerService;
 import com.edavtyan.materialplayer.app.services.MusicPlayerService.MusicPlayerBinder;
 
 public abstract class ServiceFragment extends Fragment implements ServiceConnection {
-    private MusicPlayerService service;
-    private boolean isBound;
+	private MusicPlayerService service;
+	private boolean isBound;
 
-    /*
-     * Fragment
-     */
+	/*
+	 * Fragment
+	 */
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().bindService(
-                new Intent(getActivity(), MusicPlayerService.class),
-                this, Context.BIND_AUTO_CREATE);
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().bindService(new Intent(getActivity(), MusicPlayerService.class), this, Context.BIND_AUTO_CREATE);
+	}
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        getActivity().unbindService(this);
-    }
+	@Override
+	public void onPause() {
+		super.onPause();
+		getActivity().unbindService(this);
+	}
 
-    /*
-     * ServiceConnection
-     */
+	/*
+	 * ServiceConnection
+	 */
 
-    @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        service = ((MusicPlayerBinder)iBinder).getService();
-        isBound = true;
-        onServiceConnected();
-    }
+	@Override
+	public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+		service = ((MusicPlayerBinder) iBinder).getService();
+		isBound = true;
+		onServiceConnected();
+	}
 
-    @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-        isBound = false;
-        onServiceDisconnected();
-    }
+	@Override
+	public final void onServiceDisconnected(ComponentName componentName) {
+		isBound = false;
+		onServiceDisconnected();
+	}
 
-    /*
-     * Public methods
-     */
+	/*
+	 * Public methods
+	 */
 
-    public void onServiceConnected() {}
+	public void onServiceConnected() {
+	}
 
-    public void onServiceDisconnected() {}
+	public void onServiceDisconnected() {
+	}
 
-    public MusicPlayerService getService() {
-        return service;
-    }
+	public MusicPlayerService getService() {
+		return service;
+	}
 
-    public boolean isBound() {
-        return isBound;
-    }
+	public boolean isBound() {
+		return isBound;
+	}
 
 }

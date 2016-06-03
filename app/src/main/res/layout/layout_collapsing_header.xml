@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list_header"
-    style="@style/collapsingHeader_header"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/list_header"
+	style="@style/collapsingHeader_header"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			>
 
-            <ImageView
-                android:id="@+id/back"
-                android:contentDescription="@string/description_art"
-                tools:src="@drawable/fallback_artist"
-                style="@style/collapsingHeader_artBack"
-                />
+			<ImageView
+				android:id="@+id/back"
+				android:contentDescription="@string/description_art"
+				tools:src="@drawable/fallback_artist"
+				style="@style/collapsingHeader_artBack"
+				/>
 
-            <com.edavtyan.materialplayer.app.views.SquareImageView
-                android:id="@+id/art"
-                tools:src="@drawable/fallback_artist"
-                style="@style/collapsingHeader_art"
-                />
+			<com.edavtyan.materialplayer.app.views.SquareImageView
+				android:id="@+id/art"
+				tools:src="@drawable/fallback_artist"
+				style="@style/collapsingHeader_art"
+				/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@drawable/collapsing_toolbar_gradient"
-                />
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="80dp"
+				android:background="@drawable/collapsing_toolbar_gradient"
+				/>
 
-            <include layout="@layout/shadow_bottom_small" />
+			<include layout="@layout/shadow_bottom_small" />
 
-        </FrameLayout>
+		</FrameLayout>
 
-        <LinearLayout style="@style/collapsingHeader_textContainer">
+		<LinearLayout style="@style/collapsingHeader_textContainer">
 
-            <TextView
-                android:id="@+id/title"
-                tools:text="Artist title"
-                style="@style/collapsingHeader_title"
-                />
+			<TextView
+				android:id="@+id/title"
+				tools:text="Artist title"
+				style="@style/collapsingHeader_title"
+				/>
 
-            <TextView
-                android:id="@+id/info"
-                tools:text="123 Albums | 456 Tracks"
-                style="@style/collapsingHeader_info"
-                />
+			<TextView
+				android:id="@+id/info"
+				tools:text="123 Albums | 456 Tracks"
+				style="@style/collapsingHeader_info"
+				/>
 
-        </LinearLayout>
+		</LinearLayout>
 
-    </LinearLayout>
+	</LinearLayout>
 
 </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>

@@ -16,42 +16,42 @@ import com.edavtyan.materialplayer.app.activities.PrefActivity;
 import com.edavtyan.materialplayer.app.utils.ThemeUtils;
 
 public class BaseActivity
-        extends AppCompatActivity
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(ThemeUtils.fromRes(this));
-        super.onCreate(savedInstanceState);
+		extends AppCompatActivity
+		implements SharedPreferences.OnSharedPreferenceChangeListener {
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		setTheme(ThemeUtils.fromRes(this));
+		super.onCreate(savedInstanceState);
 
-        PreferenceManager
-                .getDefaultSharedPreferences(this)
-                .registerOnSharedPreferenceChangeListener(this);
-    }
+		PreferenceManager
+				.getDefaultSharedPreferences(this)
+				.registerOnSharedPreferenceChangeListener(this);
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = new MenuInflater(this);
-        inflater.inflate(R.menu.menu_base, menu);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = new MenuInflater(this);
+		inflater.inflate(R.menu.menu_base, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_effects:
-                startActivity(new Intent(this, AudioEffectsActivity.class));
-                return true;
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_effects:
+			startActivity(new Intent(this, AudioEffectsActivity.class));
+			return true;
 
-            case R.id.menu_settings:
-                startActivity(new Intent(this, PrefActivity.class));
-                return true;
-        }
+		case R.id.menu_settings:
+			startActivity(new Intent(this, PrefActivity.class));
+			return true;
+		}
 
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        ThemeUtils.setTheme(this, key);
-    }
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		ThemeUtils.setTheme(this, key);
+	}
 }

@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/wrapper"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/wrapper"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            >
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			>
 
-            <LinearLayout
-                android:id="@+id/appbar_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+			<LinearLayout
+				android:id="@+id/appbar_wrapper"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/appbar"
-                    style="@style/CollapsingList_AppBar"
-                    >
+				<android.support.design.widget.AppBarLayout
+					android:id="@+id/appbar"
+					style="@style/CollapsingList_AppBar"
+					>
 
-                    <View
-                        android:id="@+id/statusbar_tint"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        style="@style/CollapsingList_StatusBarTint"
-                        />
+					<View
+						android:id="@+id/statusbar_tint"
+						style="@style/CollapsingList_StatusBarTint"
+						android:layout_width="match_parent"
+						android:layout_height="25dp"
+						/>
 
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        style="@style/CollapsingList_Toolbar"
-                        />
+					<android.support.v7.widget.Toolbar
+						android:id="@+id/toolbar"
+						style="@style/CollapsingList_Toolbar"
+						/>
 
-                </android.support.design.widget.AppBarLayout>
+				</android.support.design.widget.AppBarLayout>
 
-                <View
-                    android:id="@+id/appbar_shadow"
-                    style="@style/CollapsingList_AppBarShadow"
-                    />
+				<View
+					android:id="@+id/appbar_shadow"
+					style="@style/CollapsingList_AppBarShadow"
+					/>
 
-            </LinearLayout>
+			</LinearLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="false"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                >
+			<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:fitsSystemWindows="false"
+				app:layout_behavior="@string/appbar_scrolling_view_behavior"
+				>
 
-                <include layout="@layout/layout_collapsing_header" />
+				<include layout="@layout/layout_collapsing_header" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    />
+				<android.support.v7.widget.RecyclerView
+					android:id="@+id/list"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					app:layout_behavior="@string/appbar_scrolling_view_behavior"
+					/>
 
-                <include layout="@layout/shadow_bottom_small" />
+				<include layout="@layout/shadow_bottom_small" />
 
-            </FrameLayout>
+			</FrameLayout>
 
-        </FrameLayout>
+		</FrameLayout>
 
-        <fragment
-            android:id="@+id/floating_nowplaying"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
-            tools:layout="@layout/fragment_floating_nowplaying"
-            />
+		<fragment
+			android:id="@+id/floating_nowplaying"
+			android:name="com.edavtyan.materialplayer.app.fragments.FloatingNowPlayingFragment"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:layout="@layout/fragment_floating_nowplaying"
+			/>
 
-    </LinearLayout>
+	</LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

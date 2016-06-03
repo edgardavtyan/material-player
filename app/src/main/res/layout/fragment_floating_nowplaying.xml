@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    style="@style/nowplayingBar_container"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container"
+	style="@style/nowplayingBar_container"
+	>
 
-    <ImageView
-        android:id="@+id/art"
-        android:contentDescription="@string/description_art"
-        android:tint="?textColorContrastSecondary"
+	<ImageView
+		android:id="@+id/art"
+		android:contentDescription="@string/description_art"
+		android:tint="?textColorContrastSecondary"
 		tools:background="#333"
-        style="@style/nowplayingBar_art"
-        />
+		style="@style/nowplayingBar_art"
+		/>
 
-    <LinearLayout
-        android:id="@+id/info_wrapper"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        style="@style/nowplayingBar_infoWrapper"
-        >
+	<LinearLayout
+		android:id="@+id/info_wrapper"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		style="@style/nowplayingBar_infoWrapper"
+		>
 
-        <TextView
-            android:id="@+id/title"
-            tools:text="Current Track Title"
-            style="@style/nowplayingBar_title"
-            />
+		<TextView
+			android:id="@+id/title"
+			tools:text="Current Track Title"
+			style="@style/nowplayingBar_title"
+			/>
 
-        <TextView
-            android:id="@+id/info"
-            tools:text="Current Artist - Current Album"
-            style="@style/nowplayingBar_info"
-            />
+		<TextView
+			android:id="@+id/info"
+			tools:text="Current Artist - Current Album"
+			style="@style/nowplayingBar_info"
+			/>
 
-    </LinearLayout>
+	</LinearLayout>
 
-    <com.wnafee.vector.MorphButton
-        android:id="@+id/play_pause"
-        android:layout_width="@dimen/size_medium"
-        android:layout_height="match_parent"
-        style="@style/nowplayingBar_playPause"
-        />
+	<com.wnafee.vector.MorphButton
+		android:id="@+id/play_pause"
+		android:layout_width="@dimen/size_medium"
+		android:layout_height="match_parent"
+		style="@style/nowplayingBar_playPause"
+		/>
 
 </LinearLayout>
