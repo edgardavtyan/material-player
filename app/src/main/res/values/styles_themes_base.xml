@@ -2,46 +2,53 @@
 <resources>
 
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="textPrimary">#de000000</item>
-        <item name="textSecondary">#8a000000</item>
-        <item name="textColorPrimary">#ffffff</item>
-        <item name="textColorSecondary">#B2ffffff</item>
-        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
-        <item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+		<item name="colorAccent">@color/accent</item>
 
-        <item name="android:textColor">?textPrimary</item>
-        <item name="android:textColorPrimary">?textColorPrimary</item>
-        <item name="android:textColorSecondary">?textSecondary</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorControlNormal">?textColorPrimary</item>
-        <item name="colorControlActivated">?colorPrimary</item>
-        <item name="dividerColor">#1e000000</item>
-        <item name="morphButtonStyle">@style/Widget.MorphButton</item>
+		<item name="colorControlNormal">?attr/textColorContrastPrimary</item>
+		<item name="colorControlActivated">?colorPrimary</item>
+
+		<item name="textColorPrimary">#de000000</item>
+		<item name="textColorSecondary">#8a000000</item>
+		<item name="textColorContrastPrimary">#ffffff</item>
+		<item name="textColorContrastSecondary">#B2ffffff</item>
+		<item name="android:textColor">?attr/textColorPrimary</item>
+		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
+		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
+
+		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
+
+		<item name="dividerColor">#1e000000</item>
+
+		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+		<item name="morphButtonStyle">@style/Widget.MorphButton</item>
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="textPrimary">#ffffff</item>
-        <item name="textSecondary">#b2ffffff</item>
-        <item name="textColorPrimary">#ffffff</item>
-        <item name="textColorSecondary">#B2ffffff</item>
-        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="toolbarPopupTheme">@style/Theme.AppCompat</item>
-        <item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+		<item name="colorAccent">@color/accent</item>
 
-        <item name="android:textColor">?textPrimary</item>
-        <item name="android:textColorPrimary">?textColorPrimary</item>
-        <item name="android:textColorSecondary">?textSecondary</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorControlNormal">?textColorPrimary</item>
-        <item name="colorControlActivated">?colorPrimary</item>
-        <item name="dividerColor">#1effffff</item>
-        <item name="morphButtonStyle">@style/Widget.MorphButton</item>
+		<item name="colorControlNormal">?attr/textColorContrastPrimary</item>
+		<item name="colorControlActivated">?colorPrimary</item>
+
+		<item name="textColorPrimary">#ffffff</item>
+		<item name="textColorSecondary">#b2ffffff</item>
+		<item name="textColorContrastPrimary">#ffffff</item>
+		<item name="textColorContrastSecondary">#B2ffffff</item>
+		<item name="android:textColor">?attr/textColorPrimary</item>
+		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
+		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
+
+		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="toolbarPopupTheme">@style/Theme.AppCompat</item>
+		<item name="dividerColor">#1effffff</item>
+
+		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+		<item name="morphButtonStyle">@style/Widget.MorphButton</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppTheme.Dark">
-        <item name="textPrimary">#aaffffff</item>
-        <item name="textSecondary">#66ffffff</item>
+        <item name="textColorPrimary">#aaffffff</item>
+        <item name="textColorSecondary">#66ffffff</item>
         <item name="android:windowBackground">@color/black</item>
     </style>
 

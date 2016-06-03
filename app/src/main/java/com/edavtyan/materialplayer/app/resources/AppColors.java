@@ -18,8 +18,8 @@ public class AppColors {
 		primary = resolveAttribute(context, R.attr.colorPrimary);
 		primaryDark = resolveAttribute(context, R.attr.colorPrimaryDark);
 		accent = resolveAttribute(context, R.attr.colorAccent);
-		textPrimary = resolveAttribute(context, R.attr.textColorPrimary);
-		textSecondary = resolveAttribute(context, R.attr.textSecondary);
+		textPrimary = resolveAttribute(context, R.attr.textColorContrastPrimary);
+		textSecondary = resolveAttribute(context, R.attr.textColorSecondary);
 		windowBackground = resolveAttribute(context, android.R.attr.windowBackground);
 		divider = resolveAttribute(context, R.attr.dividerColor);
 	}

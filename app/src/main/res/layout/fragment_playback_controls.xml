@@ -29,7 +29,7 @@
         android:padding="16dp"
         app:vc_startDrawable="@drawable/ic_pause_to_play"
         app:vc_endDrawable="@drawable/ic_play_to_pause"
-        app:vc_foregroundTint="?textColorPrimary"
+        app:vc_foregroundTint="?textColorContrastPrimary"
         app:vc_autoStartAnimation="true"
         android:contentDescription="@string/description_control_playPause"
         style="@style/nowplaying_control"

@@ -14,7 +14,7 @@
         <item name="android:adjustViewBounds">true</item>
         <item name="android:scaleType">fitCenter</item>
         <item name="android:src">@drawable/fallback_cover</item>
-        <item name="android:tint">?textSecondary</item>
+        <item name="android:tint">?textColorSecondary</item>
         <item name="android:background">?android:windowBackground</item>
     </style>
 
