@@ -10,6 +10,7 @@
     <dimen name="font_small">14sp</dimen>
 
     <dimen name="size_big">64dp</dimen>
+	<dimen name="size_large">52dp</dimen>
     <dimen name="size_medium">48dp</dimen>
 
     <dimen name="shadow_tiny">3dp</dimen>

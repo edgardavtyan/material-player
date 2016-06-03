@@ -3,14 +3,14 @@
 
     <style name="nowplayingBar_container">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/size_big</item>
+        <item name="android:layout_height">@dimen/size_large</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:background">?colorPrimary</item>
     </style>
 
     <style name="nowplayingBar_art">
-        <item name="android:layout_width">@dimen/size_big</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/size_large</item>
+        <item name="android:layout_height">@dimen/size_large</item>
     </style>
 
     <style name="nowplayingBar_infoWrapper">
@@ -21,7 +21,7 @@
     </style>
 
     <style name="nowplayingBar_playPause">
-        <item name="android:padding">12dp</item>
+        <item name="android:padding">8dp</item>
         <item name="android:background">@drawable/ripple_primary</item>
         <item name="vc_endDrawable">@drawable/ic_pause_to_play</item>
         <item name="vc_startDrawable">@drawable/ic_play_to_pause</item>
