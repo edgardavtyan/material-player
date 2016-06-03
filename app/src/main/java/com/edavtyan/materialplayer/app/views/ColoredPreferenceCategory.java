@@ -10,16 +10,19 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 
 public class ColoredPreferenceCategory extends PreferenceCategory {
+	private AppColors appColors;
+
     public ColoredPreferenceCategory(Context context, AttributeSet attrs) {
         super(context, attrs);
+	    appColors = new AppColors(context);
     }
 
 
     @Override
     protected View onCreateView(ViewGroup parent) {
-        int titleColor = AppColors.getPrimary(getContext());
-        if (titleColor == AppColors.getWindowBackground(getContext())) {
-            titleColor = AppColors.getTextSecondary(getContext());
+        int titleColor = appColors.primary;
+        if (titleColor == appColors.windowBackground) {
+            titleColor = appColors.textSecondary;
         }
 
         TextView titleView = (TextView) super.onCreateView(parent);

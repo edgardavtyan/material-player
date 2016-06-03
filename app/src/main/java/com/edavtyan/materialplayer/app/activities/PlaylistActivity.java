@@ -9,12 +9,13 @@ import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.activities.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.app.music.adapters.PlaylistAdapter;
 import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
+import com.edavtyan.materialplayer.app.music.adapters.PlaylistAdapter;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 
 public class PlaylistActivity extends BaseToolbarActivity {
     private PlaylistAdapter playlistAdapter;
+	private AppColors appColors;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,12 +23,13 @@ public class PlaylistActivity extends BaseToolbarActivity {
         setContentView(R.layout.activity_playlist);
         initToolbar(R.string.queue_title);
 
+	    appColors = new AppColors(this);
         playlistAdapter = new PlaylistAdapter(this);
 
         RecyclerView playlistView = (RecyclerView) findViewById(R.id.list);
         playlistView.setLayoutManager(new LinearLayoutManager(this));
         playlistView.setAdapter(playlistAdapter);
-        playlistView.addItemDecoration(new DividerItemDecoration(AppColors.getDivider(this)));
+        playlistView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

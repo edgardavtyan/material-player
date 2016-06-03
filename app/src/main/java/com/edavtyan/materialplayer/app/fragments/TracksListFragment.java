@@ -14,14 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 import com.edavtyan.materialplayer.app.music.adapters.TracksAdapter;
 import com.edavtyan.materialplayer.app.music.columns.TrackColumns;
-import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 
 public class TracksListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
     private TracksAdapter tracksAdapter;
+	private AppColors appColors;
 
     /*
      * Fragment
@@ -38,12 +39,14 @@ public class TracksListFragment extends Fragment
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+	    appColors = new AppColors(getActivity());
+
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(tracksAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(AppColors.getDivider(getActivity())));
+        recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
         return view;
     }

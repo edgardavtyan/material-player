@@ -5,40 +5,28 @@ import android.util.TypedValue;
 
 import com.edavtyan.materialplayer.app.R;
 
-public final class AppColors {
-    private AppColors() {}
+public class AppColors {
+	public final int primary;
+	public final int primaryDark;
+	public final int accent;
+	public final int textPrimary;
+	public final int textSecondary;
+	public final int windowBackground;
+	public final int divider;
 
-    public static int getPrimary(Context context) {
-        return resolveAttribute(context, R.attr.colorPrimary);
-    }
+	public AppColors(Context context) {
+		primary = resolveAttribute(context, R.attr.colorPrimary);
+		primaryDark = resolveAttribute(context, R.attr.colorPrimaryDark);
+		accent = resolveAttribute(context, R.attr.colorAccent);
+		textPrimary = resolveAttribute(context, R.attr.textColorPrimary);
+		textSecondary = resolveAttribute(context, R.attr.textSecondary);
+		windowBackground = resolveAttribute(context, android.R.attr.windowBackground);
+		divider = resolveAttribute(context, R.attr.dividerColor);
+	}
 
-    public static int getPrimaryDark(Context context) {
-        return resolveAttribute(context, R.attr.colorPrimaryDark);
-    }
-
-    public static int getAccentColor(Context context) {
-        return resolveAttribute(context, R.attr.colorAccent);
-    }
-
-    public static int getTextColorPrimary(Context context) {
-        return resolveAttribute(context, R.attr.textColorPrimary);
-    }
-
-    public static int getTextSecondary(Context context) {
-        return resolveAttribute(context, R.attr.textSecondary);
-    }
-
-    public static int getWindowBackground(Context context) {
-        return resolveAttribute(context, android.R.attr.windowBackground);
-    }
-
-    public static int getDivider(Context context) {
-        return resolveAttribute(context, R.attr.dividerColor);
-    }
-
-    private static int resolveAttribute(Context context, int attrId) {
-        TypedValue attr = new TypedValue();
-        context.getTheme().resolveAttribute(attrId, attr, true);
-        return attr.data;
-    }
+	private static int resolveAttribute(Context context, int attrId) {
+		TypedValue attr = new TypedValue();
+		context.getTheme().resolveAttribute(attrId, attr, true);
+		return attr.data;
+	}
 }

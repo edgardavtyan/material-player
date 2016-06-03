@@ -30,6 +30,8 @@ public class PlaybackControlsFragment
     ImageButton repeatButton;
     ImageButton shuffleButton;
 
+	AppColors appColors;
+
     /*
      * BroadcastReceivers
      */
@@ -61,6 +63,8 @@ public class PlaybackControlsFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+	    appColors = new AppColors(getActivity());
+
         View view = inflater.inflate(R.layout.fragment_playback_controls, container, false);
 
         playPauseButton =(MorphButton) view.findViewById(R.id.play_pause);
@@ -157,24 +161,24 @@ public class PlaybackControlsFragment
         switch (getService().getPlayer().getRepeatMode()) {
             case NO_REPEAT:
                 repeatButton.setImageResource(R.drawable.ic_repeat);
-                repeatButton.setColorFilter(AppColors.getTextColorPrimary(getContext()));
+                repeatButton.setColorFilter(appColors.textPrimary);
                 return;
             case REPEAT:
                 repeatButton.setImageResource(R.drawable.ic_repeat);
-                repeatButton.setColorFilter(AppColors.getAccentColor(getContext()));
+                repeatButton.setColorFilter(appColors.accent);
                 return;
             case REPEAT_ONE:
                 repeatButton.setImageResource(R.drawable.ic_repeat_one);
-                repeatButton.setColorFilter(AppColors.getAccentColor(getContext()));
+                repeatButton.setColorFilter(appColors.accent);
                 return;
         }
     }
 
     private void syncShuffleButtonIcon() {
         if (getService().getPlayer().isShuffling()) {
-            shuffleButton.setColorFilter(AppColors.getAccentColor(getContext()));
+            shuffleButton.setColorFilter(appColors.accent);
         } else {
-            shuffleButton.setColorFilter(AppColors.getTextColorPrimary(getContext()));
+            shuffleButton.setColorFilter(appColors.textPrimary);
         }
     }
 }

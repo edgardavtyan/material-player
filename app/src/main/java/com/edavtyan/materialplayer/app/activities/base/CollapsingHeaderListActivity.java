@@ -17,17 +17,18 @@ import android.widget.TextView;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
 import com.edavtyan.materialplayer.app.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 import com.edavtyan.materialplayer.app.resources.AppColors;
 import com.edavtyan.materialplayer.app.utils.ColorUtils;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.utils.WindowUtils;
-import com.edavtyan.materialplayer.app.decorators.DividerItemDecoration;
 
 public abstract class CollapsingHeaderListActivity
         extends BaseToolbarActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
+	protected AppColors appColors;
     protected int totalScrolled = 0;
     protected ImageView imageView;
     protected ImageView imageBackView;
@@ -44,10 +45,12 @@ public abstract class CollapsingHeaderListActivity
         setContentView(R.layout.activity_collapsing_list);
         getSupportLoaderManager().initLoader(0, null, this);
 
+	    appColors = new AppColors(this);
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(AppColors.getDivider(this)));
+        recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
         imageView = (ImageView) findViewById(R.id.art);
         imageBackView = (ImageView) findViewById(R.id.back);
@@ -70,8 +73,8 @@ public abstract class CollapsingHeaderListActivity
             AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
             View appbarShadow = findViewById(R.id.appbar_shadow);
             View statusShadow = findViewById(R.id.statusbar_tint);
-            CustomColor primaryColor = new CustomColor(AppColors.getPrimary(this));
-            CustomColor primaryDarkColor = new CustomColor(AppColors.getPrimaryDark(this));
+            CustomColor primaryColor = new CustomColor(appColors.primary);
+            CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {

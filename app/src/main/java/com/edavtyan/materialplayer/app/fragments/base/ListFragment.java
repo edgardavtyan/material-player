@@ -21,6 +21,7 @@ public abstract class ListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
     protected abstract Loader<Cursor> getLoader();
     protected abstract RecyclerViewCursorAdapter getAdapter();
+	protected AppColors appColors;
 
 
     /*
@@ -30,12 +31,14 @@ public abstract class ListFragment extends Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
+	    appColors = new AppColors(getActivity());
+
+	    View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(getAdapter());
-        recyclerView.addItemDecoration(new DividerItemDecoration(AppColors.getDivider(getActivity())));
+        recyclerView.addItemDecoration(new DividerItemDecoration(appColors.divider));
 
         return view;
     }
