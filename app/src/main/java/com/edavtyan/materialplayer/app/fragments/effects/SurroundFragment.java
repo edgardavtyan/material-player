@@ -14,4 +14,3 @@ public class SurroundFragment extends AudioEffectFragment {
         return SingleLevelEffectType.EFFECT_SURROUND;
     }
 }
-

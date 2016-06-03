@@ -34,4 +34,3 @@ public enum RepeatMode {
         return fromInt(prefs.getInt(pref, toInt(NO_REPEAT)));
     }
 }
-
