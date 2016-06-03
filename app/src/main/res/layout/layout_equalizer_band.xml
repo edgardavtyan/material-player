@@ -18,7 +18,7 @@
 		tools:text="500 Hz"
 		/>
 
-	<com.edavtyan.materialplayer.app.views.DoubleSeekbar
+	<com.edavtyan.materialplayer.app.lib.views.DoubleSeekbar
 		android:id="@+id/band"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"

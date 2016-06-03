@@ -12,7 +12,7 @@
 
 	<fragment
 		android:id="@+id/fragment_equalizer"
-		android:name="com.edavtyan.materialplayer.app.fragments.effects.EqualizerFragment"
+		android:name="com.edavtyan.materialplayer.app.views.fragments.effects.EqualizerFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:layout="@layout/fragment_equalizer"
@@ -20,7 +20,7 @@
 
 	<fragment
 		android:id="@+id/fragment_surround"
-		android:name="com.edavtyan.materialplayer.app.fragments.effects.SurroundFragment"
+		android:name="com.edavtyan.materialplayer.app.views.fragments.effects.SurroundFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:layout="@layout/layout_titled_seekbar"
@@ -28,7 +28,7 @@
 
 	<fragment
 		android:id="@+id/fragment_amplifier"
-		android:name="com.edavtyan.materialplayer.app.fragments.effects.AmplifierFragment"
+		android:name="com.edavtyan.materialplayer.app.views.fragments.effects.AmplifierFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:layout="@layout/layout_titled_seekbar"
@@ -36,7 +36,7 @@
 
 	<fragment
 		android:id="@+id/fragment_bassBoost"
-		android:name="com.edavtyan.materialplayer.app.fragments.effects.BassBoostFragment"
+		android:name="com.edavtyan.materialplayer.app.views.fragments.effects.BassBoostFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:layout="@layout/layout_titled_seekbar"

@@ -16,7 +16,7 @@
 		>
 
 		<activity
-			android:name=".activities.MainActivity"
+			android:name=".views.activities.MainActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -28,7 +28,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.ArtistActivity"
+			android:name=".views.activities.ArtistActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -38,7 +38,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.AlbumActivity"
+			android:name=".views.activities.AlbumActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -48,7 +48,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.NowPlayingActivity"
+			android:name=".views.activities.NowPlayingActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -58,7 +58,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.PlaylistActivity"
+			android:name=".views.activities.PlaylistActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -68,7 +68,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.AudioEffectsActivity"
+			android:name=".views.activities.AudioEffectsActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -78,7 +78,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.PrefActivity"
+			android:name=".views.activities.PrefActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
