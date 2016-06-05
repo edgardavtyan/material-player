@@ -17,7 +17,7 @@
 
 		<fragment
 			android:id="@+id/fragment_art"
-			android:name="com.edavtyan.materialplayer.app.views.fragments.NowPlayingArtFragment"
+			android:name="com.edavtyan.materialplayer.app.views.nowplaying.NowPlayingArtFragment"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			tools:layout="@layout/fragment_nowplaying_art"
@@ -38,7 +38,7 @@
 
 			<fragment
 				android:id="@+id/fragment_info"
-				android:name="com.edavtyan.materialplayer.app.views.fragments.NowPlayingInfoFragment"
+				android:name="com.edavtyan.materialplayer.app.views.nowplaying.NowPlayingInfoFragment"
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
 				android:layout_alignBottom="@id/aligner"
@@ -48,7 +48,7 @@
 
 			<fragment
 				android:id="@+id/fragment_controls"
-				android:name="com.edavtyan.materialplayer.app.views.fragments.PlaybackControlsFragment"
+				android:name="com.edavtyan.materialplayer.app.views.nowplaying.NowPlayingControlsFragment"
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
 				android:layout_alignParentBottom="true"
@@ -58,7 +58,7 @@
 
 			<fragment
 				android:id="@+id/fragment_seekbar"
-				android:name="com.edavtyan.materialplayer.app.views.fragments.PlayerSeekbarFragment"
+				android:name="com.edavtyan.materialplayer.app.views.nowplaying.NowPlayingSeekbarFragment"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_centerVertical="true"

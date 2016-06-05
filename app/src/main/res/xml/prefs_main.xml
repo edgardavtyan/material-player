@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<com.edavtyan.materialplayer.app.lib.views.ColoredPreferenceCategory android:title="Appearance">
+	<com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory android:title="Appearance">
 
 		<ListPreference
 			android:key="pref_theme_base"
@@ -21,6 +21,6 @@
 			android:defaultValue="@string/prefs_theme_primary_default"
 			/>
 
-	</com.edavtyan.materialplayer.app.lib.views.ColoredPreferenceCategory>
+	</com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory>
 
 </PreferenceScreen>

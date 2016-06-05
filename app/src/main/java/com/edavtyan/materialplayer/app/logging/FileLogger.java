@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.app.logging;
 
-import com.edavtyan.materialplayer.app.lib.utils.DataStorage;
+import com.edavtyan.materialplayer.app.utils.DataStorage;
 
 import java.io.File;
 

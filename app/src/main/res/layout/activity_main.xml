@@ -55,7 +55,7 @@
 
 		<fragment
 			android:id="@+id/floating_nowplaying"
-			android:name="com.edavtyan.materialplayer.app.views.fragments.FloatingNowPlayingFragment"
+			android:name="com.edavtyan.materialplayer.app.views.nowplaying.FloatingNowPlayingFragment"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			tools:layout="@layout/fragment_floating_nowplaying"
