@@ -16,18 +16,23 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.activities.AlbumActivity;
 import com.edavtyan.materialplayer.app.lib.adapters.RecyclerServiceCursorAdapter;
-import com.edavtyan.materialplayer.app.models.columns.AlbumColumns;
 import com.edavtyan.materialplayer.app.models.data.Track;
+import com.edavtyan.materialplayer.app.models.providers.AlbumsProvider;
 import com.edavtyan.materialplayer.app.models.providers.ArtProvider;
 import com.edavtyan.materialplayer.app.models.providers.TracksProvider;
+import com.edavtyan.materialplayer.app.views.activities.AlbumActivity;
 
 import java.util.List;
 
 public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.AlbumViewHolder> {
+	private final AlbumsProvider albumsProvider;
+	private final TracksProvider tracksProvider;
+
 	public AlbumsAdapter(Context context, Cursor cursor) {
 		super(context, cursor);
+		albumsProvider = new AlbumsProvider(context);
+		tracksProvider = new TracksProvider(context);
 	}
 
 	/*
@@ -61,7 +66,7 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
 		public void onClick(View view) {
 			cursor.moveToPosition(getAdapterPosition());
 			Intent i = new Intent(context, AlbumActivity.class);
-			i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, cursor.getInt(AlbumColumns.ID));
+			i.putExtra(AlbumActivity.EXTRA_ALBUM_ID, albumsProvider.getId(cursor));
 			context.startActivity(i);
 		}
 
@@ -70,8 +75,8 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
 			switch (menuItem.getItemId()) {
 			case R.id.menu_addToPlaylist:
 				cursor.moveToPosition(getAdapterPosition());
-				int albumId = cursor.getInt(AlbumColumns.ID);
-				List<Track> tracks = TracksProvider.allWithAlbumId(albumId, context);
+				int albumId = albumsProvider.getId(cursor);
+				List<Track> tracks = tracksProvider.allWithAlbumId(albumId);
 				service.getPlayer().getQueue().addAll(tracks);
 
 			default:
@@ -93,10 +98,10 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
 	@Override
 	public void onBindViewHolder(AlbumViewHolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.titleTextView.setText(cursor.getString(AlbumColumns.TITLE));
+		holder.titleTextView.setText(albumsProvider.getTitle(cursor));
 		holder.infoTextView.setText(getAlbumInfo(cursor));
 
-		String artPath = cursor.getString(AlbumColumns.ART);
+		String artPath = albumsProvider.getArtPath(cursor);
 		Glide.with(context)
 				.load(ArtProvider.fromPath(artPath))
 				.error(R.drawable.fallback_cover_listitem)
@@ -110,14 +115,10 @@ public class AlbumsAdapter extends RecyclerServiceCursorAdapter<AlbumsAdapter.Al
 	private String getAlbumInfo(Cursor cursor) {
 		Resources res = context.getResources();
 
-		String tracksCount = res.getQuantityString(
-				R.plurals.tracks,
-				cursor.getInt(AlbumColumns.ARTIST),
-				cursor.getInt(AlbumColumns.SONGS_COUNT));
+		int tracksCount = albumsProvider.getTracksCount(cursor);
+		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 
-		return res.getString(
-				R.string.pattern_album_info,
-				cursor.getString(AlbumColumns.ARTIST),
-				tracksCount);
+		String artist = albumsProvider.getArtist(cursor);
+		return res.getString(R.string.pattern_album_info, artist, tracksCountStr);
 	}
 }

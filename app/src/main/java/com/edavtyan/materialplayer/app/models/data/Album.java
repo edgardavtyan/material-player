@@ -41,6 +41,7 @@ public class Album {
 	public static Album fromId(int albumId, Context context) {
 		Cursor cursor = null;
 		Album album = null;
+		TracksProvider tracksProvider = new TracksProvider(context);
 		try {
 			cursor = context.getContentResolver().query(
 					URI, PROJECTION,
@@ -54,7 +55,7 @@ public class Album {
 			album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
 			album.setTracksCount(cursor.getInt(COLUMN_SONGS_COUNT));
 
-			Track track = TracksProvider.firstWithAlbumId(albumId, context);
+			Track track = tracksProvider.firstWithAlbumId(albumId);
 			album.setArt(ArtProvider.fromTrack(track));
 		} finally {
 			if (cursor != null) cursor.close();

@@ -10,10 +10,10 @@ import android.support.v4.content.Loader;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.lib.activities.CollapsingHeaderListActivity;
-import com.edavtyan.materialplayer.app.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.adapters.AlbumTracksAdapter;
 import com.edavtyan.materialplayer.app.adapters.TracksAdapter;
+import com.edavtyan.materialplayer.app.lib.activities.CollapsingHeaderListActivity;
+import com.edavtyan.materialplayer.app.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.app.models.columns.TrackColumns;
 import com.edavtyan.materialplayer.app.models.data.Album;
 import com.edavtyan.materialplayer.app.models.data.Track;
@@ -26,6 +26,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 	public static final String EXTRA_ALBUM_ID = "album_id";
 
 	private TracksAdapter tracksAdapter;
+	private TracksProvider tracksProvider;
 
 	/*
 	 * AsyncTasks
@@ -34,7 +35,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 	private class ImageLoadTask extends AsyncTask<Integer, Void, File> {
 		@Override
 		protected File doInBackground(Integer... albumIds) {
-			Track track = TracksProvider.firstWithAlbumId(albumIds[0], AlbumActivity.this);
+			Track track = tracksProvider.firstWithAlbumId(albumIds[0]);
 			return ArtProvider.fromTrack(track);
 		}
 
@@ -56,6 +57,7 @@ public class AlbumActivity extends CollapsingHeaderListActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		tracksAdapter = new AlbumTracksAdapter(this, null);
+		tracksProvider = new TracksProvider(this);
 		super.onCreate(savedInstanceState);
 		initToolbar(R.string.app_name);
 

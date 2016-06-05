@@ -13,16 +13,18 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.activities.NowPlayingActivity;
 import com.edavtyan.materialplayer.app.lib.adapters.RecyclerServiceCursorAdapter;
-import com.edavtyan.materialplayer.app.models.columns.TrackColumns;
-import com.edavtyan.materialplayer.app.models.providers.TracksProvider;
 import com.edavtyan.materialplayer.app.lib.utils.DurationUtils;
+import com.edavtyan.materialplayer.app.models.providers.TracksProvider;
+import com.edavtyan.materialplayer.app.views.activities.NowPlayingActivity;
 
 public class TracksAdapter
 		extends RecyclerServiceCursorAdapter<TracksAdapter.TrackViewHolder> {
+	private final TracksProvider tracksProvider;
+
 	public TracksAdapter(Context context, Cursor cursor) {
 		super(context, cursor);
+		tracksProvider = new TracksProvider(context);
 	}
 
 	/*
@@ -54,7 +56,7 @@ public class TracksAdapter
 			Intent i = new Intent(context, NowPlayingActivity.class);
 			context.startActivity(i);
 
-			service.getPlayer().setTracks(TracksProvider.allFromCursor(cursor), getAdapterPosition());
+			service.getPlayer().setTracks(tracksProvider.getAllTracks(cursor), getAdapterPosition());
 			service.getPlayer().prepare();
 		}
 
@@ -63,8 +65,8 @@ public class TracksAdapter
 			switch (menuItem.getItemId()) {
 			case R.id.menu_addToPlaylist:
 				cursor.moveToPosition(getAdapterPosition());
-				int trackId = cursor.getInt(TrackColumns.ID);
-				service.getPlayer().getQueue().add(TracksProvider.withId(trackId, context));
+				int trackId = tracksProvider.getId(cursor);
+				service.getPlayer().getQueue().add(tracksProvider.withId(trackId));
 				return true;
 
 			default:
@@ -86,7 +88,7 @@ public class TracksAdapter
 	@Override
 	public void onBindViewHolder(TrackViewHolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.titleTextView.setText(cursor.getString(TrackColumns.TITLE));
+		holder.titleTextView.setText(tracksProvider.getTitle(cursor));
 		holder.infoTextView.setText(getTrackInfo());
 	}
 
@@ -95,10 +97,14 @@ public class TracksAdapter
 	 */
 
 	protected String getTrackInfo() {
+		long duration  = tracksProvider.getDuration(cursor);
+		String artist = tracksProvider.getArtist(cursor);
+		String album = tracksProvider.getAlbum(cursor);
+
 		return context.getResources().getString(
 				R.string.pattern_track_info,
-				DurationUtils.toStringUntilHours(cursor.getInt(TrackColumns.DURATION)),
-				cursor.getString(TrackColumns.ARTIST),
-				cursor.getString(TrackColumns.ALBUM));
+				DurationUtils.toStringUntilHours(duration),
+				artist,
+				album);
 	}
 }

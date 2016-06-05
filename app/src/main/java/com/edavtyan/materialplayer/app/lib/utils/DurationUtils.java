@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public final class DurationUtils {
 	private DurationUtils() {}
 
-	public static String toStringUntilHours(int millis) {
+	public static String toStringUntilHours(long millis) {
 		long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(millis);
 		long seconds = totalSeconds % 60;
 		long minutes = totalSeconds / 60;

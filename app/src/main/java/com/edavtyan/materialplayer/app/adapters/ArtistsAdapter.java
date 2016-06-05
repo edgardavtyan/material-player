@@ -11,13 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.activities.ArtistActivity;
 import com.edavtyan.materialplayer.app.lib.adapters.RecyclerViewCursorAdapter;
-import com.edavtyan.materialplayer.app.models.columns.ArtistColumns;
+import com.edavtyan.materialplayer.app.models.providers.ArtistsProvider;
+import com.edavtyan.materialplayer.app.views.activities.ArtistActivity;
 
 public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.ArtistViewHolder> {
+	private final ArtistsProvider artistsProvider;
+
 	public ArtistsAdapter(Context context, Cursor cursor) {
 		super(context, cursor);
+		artistsProvider = new ArtistsProvider(context);
 	}
 
 	/*
@@ -40,12 +43,11 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
 
 		@Override
 		public void onClick(View view) {
-			Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
-
 			cursor.moveToPosition(getAdapterPosition());
-			i.putExtra(
-					ArtistActivity.EXTRA_ARTIST_NAME,
-					cursor.getString(ArtistColumns.TITLE));
+			String artistTitle = artistsProvider.getTitle(cursor);
+
+			Intent i = new Intent(itemView.getContext(), ArtistActivity.class);
+			i.putExtra(ArtistActivity.EXTRA_ARTIST_NAME, artistTitle);
 
 			itemView.getContext().startActivity(i);
 		}
@@ -65,7 +67,7 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
 	@Override
 	public void onBindViewHolder(ArtistViewHolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.titleTextView.setText(cursor.getString(ArtistColumns.TITLE));
+		holder.titleTextView.setText(artistsProvider.getTitle(cursor));
 		holder.countsTextView.setText(getArtistInfo(cursor));
 	}
 
@@ -75,17 +77,12 @@ public class ArtistsAdapter extends RecyclerViewCursorAdapter<ArtistsAdapter.Art
 
 	private String getArtistInfo(Cursor cursor) {
 		Resources res = context.getResources();
+		int albumsCount = artistsProvider.getAlbumsCount(cursor);
+		int tracksCount = artistsProvider.getTracksCount(cursor);
 
-		String albumsCount = res.getQuantityString(
-				R.plurals.albums,
-				cursor.getInt(ArtistColumns.ALBUMS_COUNT),
-				cursor.getInt(ArtistColumns.ALBUMS_COUNT));
+		String albumsCountStr = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
+		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 
-		String tracksCount = res.getQuantityString(
-				R.plurals.tracks,
-				cursor.getInt(ArtistColumns.TRACKS_COUNT),
-				cursor.getInt(ArtistColumns.TRACKS_COUNT));
-
-		return res.getString(R.string.pattern_artist_info, albumsCount, tracksCount);
+		return res.getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);
 	}
 }
