@@ -76,7 +76,7 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListAd
 			case R.id.menu_addToPlaylist:
 				cursor.moveToPosition(getAdapterPosition());
 				int albumId = albumsProvider.getId(cursor);
-				List<Track> tracks = tracksProvider.allWithAlbumId(albumId);
+				List<Track> tracks = tracksProvider.getAllTracksWithAlbumId(albumId);
 				service.getPlayer().getQueue().addAll(tracks);
 
 			default:

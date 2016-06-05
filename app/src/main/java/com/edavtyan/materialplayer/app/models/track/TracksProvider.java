@@ -108,6 +108,14 @@ public class TracksProvider {
 				MediaStore.Audio.Media.TITLE);
 	}
 
+	public CursorLoader getAlbumTracksLoader(int albumId) {
+		return new CursorLoader(
+				context, URI, PROJECTION,
+				MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
+				null,
+				MediaStore.Audio.Media.TRACK);
+	}
+
 	// ---
 
 	public ArrayList<Track> getAllTracks(Cursor cursor) {
@@ -137,29 +145,27 @@ public class TracksProvider {
 		return track;
 	}
 
-	public ArrayList<Track> allWithAlbumId(int albumId) {
+	public ArrayList<Track> getAllTracksWithAlbumId(int albumId) {
 		Cursor cursor = null;
 		try {
 			cursor = context.getContentResolver().query(
-					TrackColumns.URI,
-					TrackColumns.PROJECTION,
-					TrackColumns.NAME_ALBUM_ID + "=" + albumId,
+					URI, PROJECTION,
+					MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
 					null,
-					TrackColumns.NAME_TRACK + " ASC");
+					MediaStore.Audio.Media.TITLE);
 			return getAllTracks(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
 		}
 	}
 
-	public Track firstWithAlbumId(int albumId) {
+	public Track getSingleTrackWithAlbumId(int albumId) {
 		Track track = new Track();
 		Cursor cursor = null;
 		try {
 			cursor = context.getContentResolver().query(
-					TrackColumns.URI,
-					TrackColumns.PROJECTION,
-					TrackColumns.NAME_ALBUM_ID + "=" + albumId,
+					URI, PROJECTION,
+					MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
 					null, null);
 			cursor.moveToFirst();
 
@@ -171,16 +177,15 @@ public class TracksProvider {
 		return track;
 	}
 
-	public Track withId(int id) {
+	public Track getSingleTrackWithId(int id) {
 		Track track = new Track();
 		Cursor cursor = null;
 		try {
 			track.setTrackId(id);
 
 			cursor = context.getContentResolver().query(
-					TrackColumns.URI,
-					TrackColumns.PROJECTION,
-					TrackColumns.NAME_ID + "=" + id,
+					URI, PROJECTION,
+					MediaStore.Audio.Media._ID + "=" + id,
 					null, null);
 			cursor.moveToFirst();
 			track = getTrack(cursor);

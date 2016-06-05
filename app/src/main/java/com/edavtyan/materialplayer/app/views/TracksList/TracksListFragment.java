@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,13 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.lib.decorators.DividerItemDecoration;
-import com.edavtyan.materialplayer.app.models.track.TrackColumns;
+import com.edavtyan.materialplayer.app.models.track.TracksProvider;
 import com.edavtyan.materialplayer.app.utils.AppColors;
+import com.edavtyan.materialplayer.app.views.lib.decorators.DividerItemDecoration;
 
 public class TracksListFragment extends Fragment
 		implements LoaderManager.LoaderCallbacks<Cursor> {
 	private TracksListAdapter tracksAdapter;
+	private TracksProvider tracksProvider;
 	private AppColors appColors;
 
 	/*
@@ -31,6 +31,7 @@ public class TracksListFragment extends Fragment
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		tracksAdapter = new TracksListAdapter(getActivity(), null);
+		tracksProvider = new TracksProvider(getActivity());
 	}
 
 	@Nullable
@@ -74,12 +75,7 @@ public class TracksListFragment extends Fragment
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		return new CursorLoader(
-				getActivity(),
-				TrackColumns.URI,
-				TrackColumns.PROJECTION,
-				null, null,
-				TrackColumns.NAME_TITLE + " ASC");
+		return tracksProvider.getAllTracksLoader();
 	}
 
 	@Override

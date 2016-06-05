@@ -58,11 +58,35 @@ public class ArtistsProvider {
 		return cursor.getInt(COLUMN_TRACKS_COUNT);
 	}
 
+	//--
+
 	public CursorLoader getAllArtistsLoader() {
 		return new CursorLoader(
 				context,
 				URI,
 				PROJECTION,
 				null, null, null);
+	}
+
+	//--
+
+	public Artist getArtistFromTitle(String title) {
+		Cursor cursor = null;
+
+		try {
+			cursor = context.getContentResolver().query(
+					URI, PROJECTION,
+					MediaStore.Audio.Artists.ARTIST + "='" + title + "'",
+					null, null);
+			cursor.moveToFirst();
+
+			Artist artist = new Artist();
+			artist.setTitle(getTitle(cursor));
+			artist.setAlbumsCount(getAlbumsCount(cursor));
+			artist.setTracksCount(getTracksCount(cursor));
+			return artist;
+		} finally {
+			if (cursor != null) cursor.close();
+		}
 	}
 }

@@ -20,7 +20,7 @@ import com.edavtyan.materialplayer.app.views.nowplaying.NowPlayingActivity;
 
 public class TracksListAdapter
 		extends RecyclerServiceCursorAdapter<TracksListAdapter.TrackViewHolder> {
-	private final TracksProvider tracksProvider;
+	protected final TracksProvider tracksProvider;
 
 	public TracksListAdapter(Context context, Cursor cursor) {
 		super(context, cursor);
@@ -66,7 +66,7 @@ public class TracksListAdapter
 			case R.id.menu_addToPlaylist:
 				cursor.moveToPosition(getAdapterPosition());
 				int trackId = tracksProvider.getId(cursor);
-				service.getPlayer().getQueue().add(tracksProvider.withId(trackId));
+				service.getPlayer().getQueue().add(tracksProvider.getSingleTrackWithId(trackId));
 				return true;
 
 			default:

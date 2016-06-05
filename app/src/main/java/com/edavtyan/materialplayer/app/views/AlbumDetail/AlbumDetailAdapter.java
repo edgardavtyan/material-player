@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.app.views.albumdetail;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.edavtyan.materialplayer.app.models.track.TrackColumns;
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
 import com.edavtyan.materialplayer.app.views.trackslist.TracksListAdapter;
 
@@ -14,6 +13,6 @@ public class AlbumDetailAdapter extends TracksListAdapter {
 
 	@Override
 	public String getTrackInfo() {
-		return DurationUtils.toStringUntilHours(cursor.getInt(TrackColumns.DURATION));
+		return DurationUtils.toStringUntilHours(tracksProvider.getDuration(cursor));
 	}
 }

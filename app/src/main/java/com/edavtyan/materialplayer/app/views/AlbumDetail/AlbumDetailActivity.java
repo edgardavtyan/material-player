@@ -4,20 +4,19 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.trackslist.TracksListAdapter;
+import com.edavtyan.materialplayer.app.models.ArtProvider;
+import com.edavtyan.materialplayer.app.models.album.Album;
+import com.edavtyan.materialplayer.app.models.album.AlbumsProvider;
+import com.edavtyan.materialplayer.app.models.track.Track;
+import com.edavtyan.materialplayer.app.models.track.TracksProvider;
 import com.edavtyan.materialplayer.app.views.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.views.lib.adapters.RecyclerViewCursorAdapter;
-import com.edavtyan.materialplayer.app.models.track.TrackColumns;
-import com.edavtyan.materialplayer.app.models.album.Album;
-import com.edavtyan.materialplayer.app.models.track.Track;
-import com.edavtyan.materialplayer.app.models.ArtProvider;
-import com.edavtyan.materialplayer.app.models.track.TracksProvider;
+import com.edavtyan.materialplayer.app.views.trackslist.TracksListAdapter;
 
 import java.io.File;
 
@@ -34,7 +33,7 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	private class ImageLoadTask extends AsyncTask<Integer, Void, File> {
 		@Override
 		protected File doInBackground(Integer... albumIds) {
-			Track track = tracksProvider.firstWithAlbumId(albumIds[0]);
+			Track track = tracksProvider.getSingleTrackWithAlbumId(albumIds[0]);
 			return ArtProvider.fromTrack(track);
 		}
 
@@ -60,7 +59,8 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 		super.onCreate(savedInstanceState);
 		initToolbar(R.string.app_name);
 
-		Album album = Album.fromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1), this);
+		AlbumsProvider albumsProvider = new AlbumsProvider(this);
+		Album album = albumsProvider.getAlbumFromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1));
 
 		titleView.setText(album.getTitle());
 		String tracksCount = getResources().getQuantityString(
@@ -87,13 +87,7 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	@Override
 	public Loader<Cursor> getLoader() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
-		return new CursorLoader(
-				this,
-				TrackColumns.URI,
-				TrackColumns.PROJECTION,
-				TrackColumns.NAME_ALBUM_ID + "=" + albumId,
-				null,
-				TrackColumns.NAME_TRACK + " ASC");
+		return tracksProvider.getAlbumTracksLoader(albumId);
 	}
 
 	@Override

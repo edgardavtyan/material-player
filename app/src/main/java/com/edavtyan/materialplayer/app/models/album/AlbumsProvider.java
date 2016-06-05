@@ -6,6 +6,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
+import com.edavtyan.materialplayer.app.models.ArtProvider;
+import com.edavtyan.materialplayer.app.models.track.Track;
+import com.edavtyan.materialplayer.app.models.track.TracksProvider;
+
 public class AlbumsProvider {
 	/*
 	 * Fields
@@ -64,6 +68,8 @@ public class AlbumsProvider {
 		return cursor.getString(COLUMN_ART_PATH);
 	}
 
+	//---
+
 	public CursorLoader getAllAlbumsLoader() {
 		return new CursorLoader(
 				context,
@@ -71,5 +77,43 @@ public class AlbumsProvider {
 				PROJECTION,
 				null, null,
 				MediaStore.Audio.Albums.ALBUM);
+	}
+
+	public CursorLoader getArtistAlbumsLoader(String artist) {
+		return new CursorLoader(
+				context,
+				URI,
+				PROJECTION,
+				MediaStore.Audio.Albums.ARTIST + "='" + artist + "'",
+				null,
+				MediaStore.Audio.Albums.ALBUM);
+	}
+
+	//---
+
+	public Album getAlbumFromId(int id) {
+		Cursor cursor = null;
+		Album album = null;
+		TracksProvider tracksProvider = new TracksProvider(context);
+		try {
+			cursor = context.getContentResolver().query(
+					URI, PROJECTION,
+					MediaStore.Audio.Albums._ID + "=" + id,
+					null, null);
+			cursor.moveToFirst();
+
+			album = new Album();
+			album.setId(id);
+			album.setTitle(cursor.getString(COLUMN_TITLE));
+			album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
+			album.setTracksCount(cursor.getInt(COLUMN_TRACKS_COUNT));
+
+			Track track = tracksProvider.getSingleTrackWithAlbumId(id);
+			album.setArt(ArtProvider.fromTrack(track));
+		} finally {
+			if (cursor != null) cursor.close();
+		}
+
+		return album;
 	}
 }
