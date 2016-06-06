@@ -2,40 +2,41 @@ package com.edavtyan.materialplayer.app.views.lib.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
 import android.widget.SeekBar;
 
 import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import lombok.Setter;
 
-public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-	private SeekBar seekbar;
+public class DoubleSeekbar extends SeekBarCompat implements SeekBar.OnSeekBarChangeListener {
+	/*
+	 * Fields
+	 */
+
+	private int max = 100;
 	private @Setter SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
 
+	/*
+	 * Constructors
+	 */
 
 	public DoubleSeekbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
-		seekbar = new SeekBarCompat(context, attrs);
-		seekbar.setOnSeekBarChangeListener(this);
-		setMax(seekbar.getMax());
-		addView(seekbar);
+		super.setOnSeekBarChangeListener(this);
 	}
 
 	/*
 	 * Public methods
 	 */
 
+	@Override
 	public void setMax(int max) {
-		seekbar.setMax(max * 2);
+		super.setMax(max * 2);
+		this.max = max;
 	}
 
-	public int getMax() {
-		return seekbar.getMax() / 2;
-	}
-
-	public void setProgress(int progress) {
-		seekbar.setProgress(progress + getMax());
+	@Override
+	public synchronized void setProgress(int progress) {
+		super.setProgress(progress + max);
 	}
 
 	/*
@@ -45,7 +46,7 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		if (onSeekBarChangeListener != null) {
-			onSeekBarChangeListener.onProgressChanged(seekBar, progress - getMax(), fromUser);
+			onSeekBarChangeListener.onProgressChanged(seekBar, progress - max, fromUser);
 		}
 	}
 
