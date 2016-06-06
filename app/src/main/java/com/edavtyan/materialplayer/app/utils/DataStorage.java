@@ -17,6 +17,7 @@ public final class DataStorage {
 
 	static {
 		DIR_ART.mkdirs();
+		DIR_LOG.mkdirs();
 	}
 
 
