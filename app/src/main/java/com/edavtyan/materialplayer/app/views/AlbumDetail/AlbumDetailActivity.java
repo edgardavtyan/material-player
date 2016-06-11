@@ -16,14 +16,13 @@ import com.edavtyan.materialplayer.app.models.track.Track;
 import com.edavtyan.materialplayer.app.models.track.TracksProvider;
 import com.edavtyan.materialplayer.app.views.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.app.views.lib.adapters.RecyclerViewCursorAdapter;
-import com.edavtyan.materialplayer.app.views.trackslist.TracksListAdapter;
 
 import java.io.File;
 
 public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	public static final String EXTRA_ALBUM_ID = "album_id";
 
-	private TracksListAdapter tracksAdapter;
+	private AlbumDetailAdapter tracksAdapter;
 	private TracksProvider tracksProvider;
 
 	/*
