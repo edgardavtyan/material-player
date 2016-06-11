@@ -6,8 +6,8 @@ import android.view.View;
 import com.edavtyan.materialplayer.app.utils.DurationUtils;
 import com.edavtyan.materialplayer.app.views.trackslist.TracksViewHolder;
 
-public class AlbumDetailViewHolder extends TracksViewHolder {
-	public AlbumDetailViewHolder(Context context, View itemView) {
+public class AlbumTracksViewHolder extends TracksViewHolder {
+	public AlbumTracksViewHolder(Context context, View itemView) {
 		super(context, itemView);
 	}
 

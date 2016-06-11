@@ -6,13 +6,13 @@ import android.view.View;
 
 import com.edavtyan.materialplayer.app.views.trackslist.TracksAdapter;
 
-public class AlbumDetailAdapter extends TracksAdapter<AlbumDetailViewHolder> {
+public class AlbumDetailAdapter extends TracksAdapter<AlbumTracksViewHolder> {
 	public AlbumDetailAdapter(Context context, Cursor cursor) {
 		super(context, cursor);
 	}
 
 	@Override
-	public AlbumDetailViewHolder createViewHolder(View view) {
-		return new AlbumDetailViewHolder(context, view);
+	public AlbumTracksViewHolder createViewHolder(View view) {
+		return new AlbumTracksViewHolder(context, view);
 	}
 }
