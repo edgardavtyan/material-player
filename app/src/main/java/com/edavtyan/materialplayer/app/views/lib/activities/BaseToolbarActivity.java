@@ -1,11 +1,22 @@
 package com.edavtyan.materialplayer.app.views.lib.activities;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
 
-public class BaseToolbarActivity extends BaseActivity {
+public abstract class BaseToolbarActivity extends BaseActivity {
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		toolbar.setTitle(getResources().getString(getToolbarTitleStringId()));
+		setSupportActionBar(toolbar);
+		if (isBackIconEnabled()) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -17,10 +28,17 @@ public class BaseToolbarActivity extends BaseActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void initToolbar(int titleStringId) {
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		toolbar.setTitle(getResources().getString(titleStringId));
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	/*
+	 * Protected methods
+	 */
+
+	protected boolean isBackIconEnabled() {
+		return true;
 	}
+
+	/*
+	 * Abstract methods
+	 */
+
+	public abstract int getToolbarTitleStringId();
 }

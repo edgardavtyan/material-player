@@ -66,7 +66,6 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 		tracksAdapter = new AlbumDetailAdapter(this, null);
 		tracksProvider = new TracksProvider(this);
 		super.onCreate(savedInstanceState);
-		initToolbar(R.string.app_name);
 
 		AlbumsProvider albumsProvider = new AlbumsProvider(this);
 		Album album = albumsProvider.getAlbumFromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1));
@@ -102,5 +101,14 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	@Override
 	public RecyclerViewCursorAdapter getAdapter() {
 		return tracksAdapter;
+	}
+
+	/*
+	 * BaseToolbarActivity
+	 */
+
+	@Override
+	public int getToolbarTitleStringId() {
+		return R.string.app_name;
 	}
 }

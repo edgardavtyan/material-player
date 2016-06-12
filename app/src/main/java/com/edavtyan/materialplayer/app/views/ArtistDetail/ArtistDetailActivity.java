@@ -66,7 +66,6 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 		albumsProvider = new AlbumsProvider(this);
 		artistsProvider = new ArtistsProvider(this);
 		super.onCreate(savedInstanceState);
-		initToolbar(R.string.app_name);
 
 		Glide.with(this).load(R.drawable.fallback_artist).into(imageView);
 		new ArtistLoadTask().execute(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
@@ -93,5 +92,14 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 	@Override
 	public RecyclerViewCursorAdapter getAdapter() {
 		return albumsAdapter;
+	}
+
+	/*
+	 * BaseToolbarActivity
+	 */
+
+	@Override
+	public int getToolbarTitleStringId() {
+		return R.string.app_name;
 	}
 }

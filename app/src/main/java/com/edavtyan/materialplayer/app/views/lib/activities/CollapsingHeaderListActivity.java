@@ -8,7 +8,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,13 +15,13 @@ import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.lib.adapters.RecyclerViewCursorAdapter;
-import com.edavtyan.materialplayer.app.views.lib.decorators.DividerItemDecoration;
 import com.edavtyan.materialplayer.app.utils.AppColors;
 import com.edavtyan.materialplayer.app.utils.ColorUtils;
 import com.edavtyan.materialplayer.app.utils.CustomColor;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
 import com.edavtyan.materialplayer.app.utils.WindowUtils;
+import com.edavtyan.materialplayer.app.views.lib.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.app.views.lib.decorators.DividerItemDecoration;
 
 public abstract class CollapsingHeaderListActivity
 		extends BaseToolbarActivity
@@ -40,7 +39,6 @@ public abstract class CollapsingHeaderListActivity
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_collapsing_list);
 		getSupportLoaderManager().initLoader(0, null, this);
 
 		appColors = new AppColors(this);
@@ -54,10 +52,6 @@ public abstract class CollapsingHeaderListActivity
 		imageBackView = (ImageView) findViewById(R.id.back);
 		titleView = (TextView) findViewById(R.id.title);
 		infoView = (TextView) findViewById(R.id.info);
-
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		if (DeviceUtils.isPortrait(getResources())) {
 			WindowUtils.makeStatusBarTransparent(getWindow());
@@ -91,6 +85,13 @@ public abstract class CollapsingHeaderListActivity
 				}
 			});
 		}
+	}
+
+	/* BaseActivity */
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_collapsing_list;
 	}
 
 	/*

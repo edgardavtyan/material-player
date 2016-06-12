@@ -29,8 +29,6 @@ public class PlaylistActivity extends BaseToolbarActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_playlist);
-		initToolbar(R.string.queue_title);
 
 		appColors = new AppColors(this);
 		playlistAdapter = new PlaylistAdapter(this);
@@ -48,9 +46,9 @@ public class PlaylistActivity extends BaseToolbarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case android.R.id.home:
-				onBackPressed();
-				break;
+		case android.R.id.home:
+			onBackPressed();
+			break;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -68,5 +66,19 @@ public class PlaylistActivity extends BaseToolbarActivity {
 		super.onPause();
 		playlistAdapter.unbindService();
 		playlistAdapter.unregisterReceivers();
+	}
+
+	/* BaseActivity */
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_playlist;
+	}
+
+	/* BaseToolbarActivity */
+
+	@Override
+	public int getToolbarTitleStringId() {
+		return R.string.queue_title;
 	}
 }

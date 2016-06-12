@@ -11,17 +11,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.audioeffects.AudioEffectsActivity;
-import com.edavtyan.materialplayer.app.views.PrefActivity;
 import com.edavtyan.materialplayer.app.utils.ThemeUtils;
+import com.edavtyan.materialplayer.app.views.PrefActivity;
+import com.edavtyan.materialplayer.app.views.audioeffects.AudioEffectsActivity;
 
-public class BaseActivity
+public abstract class BaseActivity
 		extends AppCompatActivity
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
+	public abstract int getLayoutId();
+
+	/* AppCompatActivity */
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		setTheme(ThemeUtils.fromRes(this));
 		super.onCreate(savedInstanceState);
+		setContentView(getLayoutId());
 
 		PreferenceManager
 				.getDefaultSharedPreferences(this)
@@ -49,6 +54,8 @@ public class BaseActivity
 
 		return super.onOptionsItemSelected(item);
 	}
+
+	/* SharedPreferences.OnSharedPreferenceChangeListener */
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,12 +24,6 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_nowplaying);
-		initToolbar(R.string.nowplaying_toolbar_title);
-
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		if (DeviceUtils.isPortrait(getResources())) {
 			FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
@@ -56,5 +49,19 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	/* BaseActivity */
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_nowplaying;
+	}
+
+	/* BaseToolbarActivity */
+
+	@Override
+	public int getToolbarTitleStringId() {
+		return R.string.nowplaying_toolbar_title;
 	}
 }
