@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.app.views.artistslist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +36,7 @@ public class ArtistsListAdapter extends RecyclerViewCursorAdapter<ArtistsListVie
 		holder.setInfo(artistsProvider.getAlbumsCount(cursor), artistsProvider.getTracksCount(cursor));
 		holder.setOnClickListener(view -> {
 			cursor.moveToPosition(holder.getAdapterPosition());
-			String artistTitle = artistsProvider.getTitle(cursor);
-			Intent i = new Intent(context, ArtistDetailActivity.class);
-			i.putExtra(ArtistDetailActivity.EXTRA_ARTIST_NAME, artistTitle);
-			context.startActivity(i);
+			ArtistDetailActivity.startActivity(context, artistsProvider.getTitle(cursor));
 		});
 	}
 }

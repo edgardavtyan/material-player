@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.app.views.albumdetail;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,6 +47,14 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 			artRequest.into(imageBackView);
 			artRequest.into(imageView);
 		}
+	}
+
+	//---
+
+	public static void startActivity(Context context, int albumId) {
+		Intent intent = new Intent(context, AlbumDetailActivity.class);
+		intent.putExtra(EXTRA_ALBUM_ID, albumId);
+		context.startActivity(intent);
 	}
 
 	/*

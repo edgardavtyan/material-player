@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.views.nowplaying;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,11 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.lib.activities.BaseToolbarActivity;
 import com.edavtyan.materialplayer.app.utils.DeviceUtils;
+import com.edavtyan.materialplayer.app.views.lib.activities.BaseToolbarActivity;
 import com.edavtyan.materialplayer.app.views.playlist.PlaylistActivity;
 
 public class NowPlayingActivity extends BaseToolbarActivity {
+	public static void startActivity(Context context) {
+		Intent intent = new Intent(context, NowPlayingActivity.class);
+		context.startActivity(intent);
+	}
+
+	//---
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,7 +34,7 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 
 		if (DeviceUtils.isPortrait(getResources())) {
 			FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
-			playlistFab.setOnClickListener(view -> openNowPlayingQueue());
+			playlistFab.setOnClickListener(view -> PlaylistActivity.startActivity(this));
 		}
 	}
 
@@ -43,15 +51,10 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_playlist:
-				openNowPlayingQueue();
+				PlaylistActivity.startActivity(this);
 				break;
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-
-
-	private void openNowPlayingQueue() {
-		startActivity(new Intent(this, PlaylistActivity.class));
 	}
 }

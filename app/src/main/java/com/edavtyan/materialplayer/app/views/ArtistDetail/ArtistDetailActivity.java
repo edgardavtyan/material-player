@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.app.views.artistdetail;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,6 +46,14 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 					R.string.pattern_artist_info, albumsPlural, tracksPlural);
 			infoView.setText(artistInfo);
 		}
+	}
+
+	//---
+
+	public static void startActivity(Context context, String artistName) {
+		Intent intent = new Intent(context, ArtistDetailActivity.class);
+		intent.putExtra(EXTRA_ARTIST_NAME, artistName);
+		context.startActivity(intent);
 	}
 
 	/*

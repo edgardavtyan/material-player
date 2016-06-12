@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.app.views.albumslist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +36,7 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListVi
 
 		holder.setOnClickListener(itemView -> {
 			cursor.moveToPosition(holder.getAdapterPosition());
-			Intent i = new Intent(context, AlbumDetailActivity.class);
-			i.putExtra(AlbumDetailActivity.EXTRA_ALBUM_ID, albumsProvider.getId(cursor));
-			context.startActivity(i);
+			AlbumDetailActivity.startActivity(context, albumsProvider.getId(cursor));
 		});
 
 		holder.setOnMenuItemClickListener(item -> {

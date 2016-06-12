@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.app.views.trackslist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +34,7 @@ public abstract class TracksAdapter<THolder extends TracksViewHolder>
 		THolder holder = createViewHolder(view);
 
 		holder.setOnClickListener(itemView -> {
-			Intent i = new Intent(context, NowPlayingActivity.class);
-			context.startActivity(i);
+			NowPlayingActivity.startActivity(context);
 			service.getPlayer().setTracks(
 					tracksProvider.getAllTracks(cursor),
 					holder.getAdapterPosition());
