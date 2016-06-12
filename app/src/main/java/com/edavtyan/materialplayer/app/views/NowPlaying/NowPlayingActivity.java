@@ -50,9 +50,9 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.menu_playlist:
-				PlaylistActivity.startActivity(this);
-				break;
+		case R.id.menu_playlist:
+			PlaylistActivity.startActivity(this);
+			break;
 		}
 
 		return super.onOptionsItemSelected(item);
