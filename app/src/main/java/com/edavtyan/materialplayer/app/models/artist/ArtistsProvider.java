@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.models.artist;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -7,40 +8,37 @@ import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
 public class ArtistsProvider {
-	/*
-	 * Fields
-	 */
-
-	private final Context context;
-
-	/*
-	 * Constants
-	 */
-
-	private static final Uri URI = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
-	private static final String[] PROJECTION = {
-			MediaStore.Audio.Artists._ID,
-			MediaStore.Audio.Artists.ARTIST,
-			MediaStore.Audio.Artists.NUMBER_OF_ALBUMS,
-			MediaStore.Audio.Artists.NUMBER_OF_TRACKS,
-	};
-
 	private static final int COLUMN_ID = 0;
 	private static final int COLUMN_TITLE = 1;
 	private static final int COLUMN_ALBUMS_COUNT = 2;
 	private static final int COLUMN_TRACKS_COUNT = 3;
 
-	/*
-	 * Constructors
-	 */
+	private static final String KEY_ID = MediaStore.Audio.Artists._ID;
+	private static final String KEY_TITLE = MediaStore.Audio.Artists.ARTIST;
+	private static final String KEY_ALBUMS_COUNT = MediaStore.Audio.Artists.NUMBER_OF_ALBUMS;
+	private static final String KEY_TRACKS_COUNT = MediaStore.Audio.Artists.NUMBER_OF_TRACKS;
+
+	private static final Uri URI = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
+	private static final String[] PROJECTION = {
+			KEY_ID,
+			KEY_TITLE,
+			KEY_ALBUMS_COUNT,
+			KEY_TRACKS_COUNT,
+	};
+
+	/* Fields */
+
+	private final Context context;
+	private final ContentResolver resolver;
+
+	/* Constructors */
 
 	public ArtistsProvider(Context context) {
 		this.context = context;
+		resolver = context.getContentResolver();
 	}
 
-	/*
-	 * Public methods
-	 */
+	/* Public methods */
 
 	public int getId(Cursor cursor) {
 		return cursor.getInt(COLUMN_ID);
@@ -58,26 +56,22 @@ public class ArtistsProvider {
 		return cursor.getInt(COLUMN_TRACKS_COUNT);
 	}
 
-	//--
+	//---
 
 	public CursorLoader getAllArtistsLoader() {
-		return new CursorLoader(
-				context,
-				URI,
-				PROJECTION,
-				null, null, null);
+		return new CursorLoader(context, URI, PROJECTION, null, null, null);
 	}
 
-	//--
+	//---
 
 	public Artist getArtistFromTitle(String title) {
 		Cursor cursor = null;
 
+		String selection = String.format("%s=?", KEY_TITLE);
+		String[] args = {title};
+
 		try {
-			cursor = context.getContentResolver().query(
-					URI, PROJECTION,
-					MediaStore.Audio.Artists.ARTIST + "='" + title + "'",
-					null, null);
+			cursor = resolver.query(URI, PROJECTION, selection, args, KEY_TITLE);
 			cursor.moveToFirst();
 
 			Artist artist = new Artist();

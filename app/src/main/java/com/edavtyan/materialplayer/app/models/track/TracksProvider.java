@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.app.models.track;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,31 +10,6 @@ import android.support.v4.content.CursorLoader;
 import java.util.ArrayList;
 
 public class TracksProvider {
-	/*
-	 * Fields
-	 */
-
-	private final Context context;
-
-	/*
-	 * Constants
-	 */
-
-	private static final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-	private static final String[] PROJECTION = {
-			MediaStore.Audio.Media._ID,
-			MediaStore.Audio.Media.TRACK,
-			MediaStore.Audio.Media.TITLE,
-			MediaStore.Audio.Media.DURATION,
-			MediaStore.Audio.Media.DATA,
-			MediaStore.Audio.Media.ALBUM_ID,
-			MediaStore.Audio.Media.ALBUM,
-			MediaStore.Audio.Media.ARTIST_ID,
-			MediaStore.Audio.Media.ARTIST,
-			MediaStore.Audio.Media.DATE_MODIFIED,
-
-	};
-
 	public static final int COLUMN_ID = 0;
 	public static final int COLUMN_TRACK = 1;
 	public static final int COLUMN_TITLE = 2;
@@ -45,17 +21,45 @@ public class TracksProvider {
 	public static final int COLUMN_ARTIST = 8;
 	public static final int COLUMN_DATE_MODIFIED = 9;
 
-	/*
-	 * Constructors
-	 */
+	private static final String KEY_ID = MediaStore.Audio.Media._ID;
+	private static final String KEY_TRACK = MediaStore.Audio.Media.TRACK;
+	private static final String KEY_TITLE = MediaStore.Audio.Media.TITLE;
+	private static final String KEY_DURATION = MediaStore.Audio.Media.DURATION;
+	private static final String KEY_DATA = MediaStore.Audio.Media.DATA;
+	private static final String KEY_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
+	private static final String KEY_ALBUM = MediaStore.Audio.Media.ALBUM;
+	private static final String KEY_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
+	private static final String KEY_ARTIST = MediaStore.Audio.Media.ARTIST;
+	private static final String KEY_DATE_MODIFIED = MediaStore.Audio.Media.DATE_MODIFIED;
+
+	private static final Uri URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+	private static final String[] PROJECTION = {
+			KEY_ID,
+			KEY_TRACK,
+			KEY_TITLE,
+			KEY_DURATION,
+			KEY_DATA,
+			KEY_ALBUM_ID,
+			KEY_ALBUM,
+			KEY_ARTIST_ID,
+			KEY_ARTIST,
+			KEY_DATE_MODIFIED,
+
+	};
+
+	/* Fields */
+
+	private final Context context;
+	private final ContentResolver resolver;
+
+	/* Constructors */
 
 	public TracksProvider(Context context) {
 		this.context = context;
+		resolver = context.getContentResolver();
 	}
 
-	/*
-	 * Public methods
-	 */
+	/* Public methods */
 
 	public int getId(Cursor cursor) {
 		return cursor.getInt(COLUMN_ID);
@@ -100,20 +104,12 @@ public class TracksProvider {
 	// ---
 
 	public CursorLoader getAllTracksLoader() {
-		return new CursorLoader(
-				context,
-				URI,
-				PROJECTION,
-				null, null,
-				MediaStore.Audio.Media.TITLE);
+		return new CursorLoader(context, URI, PROJECTION, null, null, KEY_TITLE);
 	}
 
 	public CursorLoader getAlbumTracksLoader(int albumId) {
-		return new CursorLoader(
-				context, URI, PROJECTION,
-				MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
-				null,
-				MediaStore.Audio.Media.TRACK);
+		String selection = KEY_ALBUM_ID + "=" + albumId;
+		return new CursorLoader(context, URI, PROJECTION, selection, null, KEY_TRACK);
 	}
 
 	// ---
@@ -148,11 +144,7 @@ public class TracksProvider {
 	public ArrayList<Track> getAllTracksWithAlbumId(int albumId) {
 		Cursor cursor = null;
 		try {
-			cursor = context.getContentResolver().query(
-					URI, PROJECTION,
-					MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
-					null,
-					MediaStore.Audio.Media.TITLE);
+			cursor = resolver.query(URI, PROJECTION, KEY_ALBUM_ID + "=" + albumId, null, KEY_TITLE);
 			return getAllTracks(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
@@ -163,12 +155,8 @@ public class TracksProvider {
 		Track track = new Track();
 		Cursor cursor = null;
 		try {
-			cursor = context.getContentResolver().query(
-					URI, PROJECTION,
-					MediaStore.Audio.Media.ALBUM_ID + "=" + albumId,
-					null, null);
+			cursor = resolver.query(URI, PROJECTION, KEY_ALBUM_ID + "=" + albumId, null, null);
 			cursor.moveToFirst();
-
 			track = getTrack(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
@@ -182,11 +170,7 @@ public class TracksProvider {
 		Cursor cursor = null;
 		try {
 			track.setTrackId(id);
-
-			cursor = context.getContentResolver().query(
-					URI, PROJECTION,
-					MediaStore.Audio.Media._ID + "=" + id,
-					null, null);
+			cursor = resolver.query(URI, PROJECTION, KEY_ID + "=" + id, null, null);
 			cursor.moveToFirst();
 			track = getTrack(cursor);
 		} finally {
