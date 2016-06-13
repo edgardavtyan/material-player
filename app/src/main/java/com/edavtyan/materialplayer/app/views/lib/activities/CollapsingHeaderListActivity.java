@@ -62,18 +62,18 @@ public abstract class CollapsingHeaderListActivity
 			RecyclerViewHeader header = (RecyclerViewHeader) findViewById(R.id.list_header);
 			header.attachTo(recyclerView, true);
 
+			AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+			View appbarShadow = findViewById(R.id.appbar_shadow);
+			View statusShadow = findViewById(R.id.statusbar_tint);
+			CustomColor primaryColor = new CustomColor(appColors.primary);
+			CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
+
 			recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 				private int totalScrolled = 0;
 				private final int parallaxAmount = 2;
 
 				@Override
 				public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-					AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-					View appbarShadow = findViewById(R.id.appbar_shadow);
-					View statusShadow = findViewById(R.id.statusbar_tint);
-					CustomColor primaryColor = new CustomColor(appColors.primary);
-					CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
-
 					totalScrolled += dy;
 
 					imageView.setTop(totalScrolled / parallaxAmount);
