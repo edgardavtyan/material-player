@@ -9,13 +9,12 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.app.models.player.MusicPlayer;
 import com.edavtyan.materialplayer.app.models.effects.Amplifier;
 import com.edavtyan.materialplayer.app.models.effects.BassBoost;
-import com.edavtyan.materialplayer.app.models.effects.StrengthBasedEffect;
 import com.edavtyan.materialplayer.app.models.effects.Surround;
 import com.edavtyan.materialplayer.app.models.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.models.effects.equalizer.HQEqualizer;
+import com.edavtyan.materialplayer.app.models.player.MusicPlayer;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
@@ -42,7 +41,7 @@ public class MusicPlayerService
 	private NowPlayingNotification notification;
 	private @Getter MusicPlayer player;
 	private @Getter Equalizer equalizer;
-	private @Getter StrengthBasedEffect surround;
+	private @Getter Surround surround;
 	private @Getter Amplifier amplifier;
 	private @Getter BassBoost bassBoost;
 

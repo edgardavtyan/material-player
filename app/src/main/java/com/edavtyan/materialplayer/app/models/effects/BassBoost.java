@@ -18,12 +18,13 @@ public class BassBoost implements StrengthBasedEffect {
 
 	public BassBoost(Context context, IBassBoost bassBoost) {
 		this.bassBoost = bassBoost;
-		bassBoost.setEnabled(true);
+		this.bassBoost.setEnabled(true);
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
 	}
 
+	/* StrengthBasedEffect */
 
 	@Override
 	public int getMaxStrength() {

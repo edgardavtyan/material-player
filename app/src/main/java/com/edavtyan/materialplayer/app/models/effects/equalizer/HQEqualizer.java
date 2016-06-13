@@ -35,6 +35,8 @@ public class HQEqualizer implements Equalizer {
 		equalizer.setEnabled(prefs.getBoolean(PREF_ENABLED, true));
 	}
 
+	/* Equalizer */
+
 	@Override
 	public int getBandsCount() {
 		return equalizer.getNumberOfBands();
@@ -53,11 +55,6 @@ public class HQEqualizer implements Equalizer {
 	@Override
 	public int getGainLimit() {
 		return equalizer.getBandLevelRange()[1] / 100;
-	}
-
-	@Override
-	public int getBandGain(int band) {
-		return equalizer.getBandLevel((short) band) / 100;
 	}
 
 	@Override

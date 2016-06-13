@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import com.h6ah4i.android.media.audiofx.IPreAmp;
 
 public class Amplifier implements StrengthBasedEffect {
-	private static final String PREF_ENABLED = "pref_amplifier_enabled";
 	private static final String PREF_STRENGTH = "pref_amplifier_strength";
 	private static final int MAX_STRENGTH = 100;
 	private static final int DEFAULT_STRENGTH = 50;
@@ -19,12 +18,13 @@ public class Amplifier implements StrengthBasedEffect {
 
 	public Amplifier(Context context, IPreAmp amplifier) {
 		this.amplifier = amplifier;
-		amplifier.setEnabled(true);
+		this.amplifier.setEnabled(true);
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
 	}
 
+	/* StrengthBasedEffect */
 
 	@Override
 	public int getMaxStrength() {
