@@ -102,13 +102,4 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	public RecyclerViewCursorAdapter getAdapter() {
 		return tracksAdapter;
 	}
-
-	/*
-	 * BaseToolbarActivity
-	 */
-
-	@Override
-	public int getToolbarTitleStringId() {
-		return R.string.app_name;
-	}
 }

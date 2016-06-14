@@ -36,9 +36,7 @@ public abstract class BaseToolbarActivity extends BaseActivity {
 		return true;
 	}
 
-	/*
-	 * Abstract methods
-	 */
-
-	public abstract int getToolbarTitleStringId();
+	protected int getToolbarTitleStringId() {
+		return R.string.app_name;
+	}
 }

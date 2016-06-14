@@ -93,13 +93,4 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 	public RecyclerViewCursorAdapter getAdapter() {
 		return albumsAdapter;
 	}
-
-	/*
-	 * BaseToolbarActivity
-	 */
-
-	@Override
-	public int getToolbarTitleStringId() {
-		return R.string.app_name;
-	}
 }

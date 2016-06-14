@@ -35,11 +35,6 @@ public class MainActivity extends BaseToolbarActivity {
 	/* BaseToolbarActivity */
 
 	@Override
-	public int getToolbarTitleStringId() {
-		return R.string.app_name;
-	}
-
-	@Override
 	protected boolean isBackIconEnabled() {
 		return false;
 	}
