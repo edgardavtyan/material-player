@@ -138,6 +138,7 @@ public class MusicPlayerService
 		IBasicMediaPlayer basicPlayer = factory.createMediaPlayer();
 		player = new MusicPlayer(this, basicPlayer, queue);
 		player.setOnPreparedListener(this);
+		player.setOnPlaybackStateChangedListener(this);
 		equalizer = new HQEqualizer(this, factory.createHQEqualizer());
 		surround = new Surround(this, factory.createVirtualizer(basicPlayer));
 		amplifier = new Amplifier(this, factory.createPreAmp());
