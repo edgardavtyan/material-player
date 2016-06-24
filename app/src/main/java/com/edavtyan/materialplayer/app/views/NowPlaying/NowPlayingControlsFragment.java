@@ -166,15 +166,15 @@ public class NowPlayingControlsFragment
 		case NO_REPEAT:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
 			repeatButton.setColorFilter(appColors.textPrimary);
-			return;
+			break;
 		case REPEAT:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
 			repeatButton.setColorFilter(appColors.accent);
-			return;
+			break;
 		case REPEAT_ONE:
 			repeatButton.setImageResource(R.drawable.ic_repeat_one);
 			repeatButton.setColorFilter(appColors.accent);
-			return;
+			break;
 		}
 	}
 
