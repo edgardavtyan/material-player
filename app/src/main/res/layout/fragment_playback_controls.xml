@@ -24,16 +24,26 @@
 		style="@style/nowplaying_control"
 		/>
 
-	<com.wnafee.vector.MorphButton
-		android:id="@+id/play_pause"
-		android:padding="16dp"
-		android:contentDescription="@string/description_control_playPause"
-		app:vc_autoStartAnimation="true"
-		app:vc_endDrawable="@drawable/ic_play_to_pause"
-		app:vc_foregroundTint="?textColorContrastPrimary"
-		app:vc_startDrawable="@drawable/ic_pause_to_play"
-		style="@style/nowplaying_control"
-		/>
+	<FrameLayout
+		android:id="@+id/play_pause_container"
+		android:clickable="true"
+		android:focusable="true"
+		style="@style/nowplaying_control">
+
+		<com.wnafee.vector.MorphButton
+			android:id="@+id/play_pause"
+			android:layout_width="36dp"
+			android:layout_height="36dp"
+			android:layout_gravity="center"
+			android:background="@android:color/transparent"
+			android:contentDescription="@string/description_control_playPause"
+			app:vc_endDrawable="@drawable/ic_play_to_pause"
+			app:vc_startDrawable="@drawable/ic_pause_to_play"
+			app:vc_foregroundTint="?textColorContrastPrimary"
+			app:vc_autoStartAnimation="true"
+			/>
+
+	</FrameLayout>
 
 	<ImageButton
 		android:id="@+id/fast_forward"

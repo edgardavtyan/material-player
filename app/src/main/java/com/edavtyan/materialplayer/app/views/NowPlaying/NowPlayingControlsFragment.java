@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.edavtyan.materialplayer.app.R;
@@ -23,6 +24,7 @@ public class NowPlayingControlsFragment
 	private static final MorphButton.MorphState STATE_PAUSE = MorphButton.MorphState.START;
 	private static final MorphButton.MorphState STATE_PLAY = MorphButton.MorphState.END;
 
+	FrameLayout playPauseContainer;
 	MorphButton playPauseButton;
 	ImageButton fastForwardButton;
 	ImageButton rewindButton;
@@ -65,8 +67,12 @@ public class NowPlayingControlsFragment
 
 		View view = inflater.inflate(R.layout.fragment_playback_controls, container, false);
 
+		playPauseContainer = (FrameLayout) view.findViewById(R.id.play_pause_container);
+		playPauseContainer.setOnClickListener(this);
+
 		playPauseButton = (MorphButton) view.findViewById(R.id.play_pause);
-		playPauseButton.setOnClickListener(this);
+		playPauseButton.setClickable(false);
+		playPauseButton.setFocusable(false);
 
 		fastForwardButton = (ImageButton) view.findViewById(R.id.fast_forward);
 		fastForwardButton.setOnClickListener(this);
@@ -131,7 +137,7 @@ public class NowPlayingControlsFragment
 			getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_REWIND));
 			break;
 
-		case R.id.play_pause:
+		case R.id.play_pause_container:
 			getActivity().sendBroadcast(new Intent(MusicPlayerService.ACTION_PLAY_PAUSE));
 			break;
 
