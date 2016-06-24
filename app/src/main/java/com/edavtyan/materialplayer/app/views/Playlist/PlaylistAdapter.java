@@ -27,8 +27,8 @@ public class PlaylistAdapter extends RecyclerViewServiceAdapter<PlaylistTrackVie
 	private BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			notifyItemChanged(service.getPlayer().getCurrentTrackIndex());
-			notifyItemChanged(service.getPlayer().getCurrentTrackIndex() - 1);
+			notifyItemChanged(service.getQueue().getCurrentTrackIndex());
+			notifyItemChanged(service.getQueue().getCurrentTrackIndex() - 1);
 		}
 	};
 
@@ -39,8 +39,8 @@ public class PlaylistAdapter extends RecyclerViewServiceAdapter<PlaylistTrackVie
 
 		holder.setOnClickListener(itemView -> {
 			if (!isBound) return;
-			int oldPosition = service.getPlayer().getCurrentTrackIndex();
-			service.getPlayer().setCurrentTrackIndex(holder.getAdapterPosition());
+			int oldPosition = service.getQueue().getCurrentTrackIndex();
+			service.getQueue().setCurrentTrackIndex(holder.getAdapterPosition());
 			service.getPlayer().prepare();
 			notifyItemChanged(oldPosition);
 		});
@@ -48,7 +48,7 @@ public class PlaylistAdapter extends RecyclerViewServiceAdapter<PlaylistTrackVie
 		holder.setOnMenuItemClickListener(item -> {
 			switch (item.getItemId()) {
 			case R.id.menu_remove:
-				service.getPlayer().getQueue().remove(holder.getAdapterPosition());
+				service.getQueue().remove(holder.getAdapterPosition());
 				notifyItemRemoved(holder.getAdapterPosition());
 				return true;
 
@@ -63,15 +63,15 @@ public class PlaylistAdapter extends RecyclerViewServiceAdapter<PlaylistTrackVie
 	@Override
 	public void onBindViewHolder(PlaylistTrackViewHolder holder, int position) {
 		if (!isBound) return;
-		holder.setTitle(service.getPlayer().getQueue().get(position).getTrackTitle());
-		holder.setInfo(service.getPlayer().getQueue().get(position).getAlbumTitle());
-		holder.setNowPlaying(service.getPlayer().getCurrentTrackIndex() == holder.getLayoutPosition());
+		holder.setTitle(service.getQueue().get(position).getTrackTitle());
+		holder.setInfo(service.getQueue().get(position).getAlbumTitle());
+		holder.setNowPlaying(service.getQueue().getCurrentTrackIndex() == holder.getLayoutPosition());
 	}
 
 	@Override
 	public int getItemCount() {
 		if (!isBound) return 0;
-		return service.getPlayer().getQueue().size();
+		return service.getQueue().size();
 	}
 
 	/*

@@ -86,7 +86,7 @@ public class FloatingNowPlayingFragment
 	public void onStart() {
 		super.onStart();
 
-		if (isBound() && getService().getPlayer().hasData()) {
+		if (isBound() && getService().getQueue().hasData()) {
 			container.setVisibility(View.VISIBLE);
 			syncDataWithService();
 		} else {
@@ -120,7 +120,7 @@ public class FloatingNowPlayingFragment
 
 	@Override
 	public void onServiceConnected() {
-		if (getService().getPlayer().hasData()) {
+		if (getService().getQueue().hasData()) {
 			container.setVisibility(View.VISIBLE);
 			syncDataWithService();
 		} else {
@@ -155,16 +155,16 @@ public class FloatingNowPlayingFragment
 
 	private void syncDataWithService() {
 		Glide.with(getContext())
-				.load(ArtProvider.fromTrack(getService().getPlayer().getCurrentTrack()))
+				.load(ArtProvider.fromTrack(getService().getQueue().getCurrentTrack()))
 				.error(R.drawable.fallback_cover)
 				.into(artView);
 
-		Track track = getService().getPlayer().getCurrentTrack();
+		Track track = getService().getQueue().getCurrentTrack();
 		String trackInfo = getResources().getString(
 				R.string.nowplaying_info_pattern,
 				track.getArtistTitle(),
 				track.getAlbumTitle());
-		titleView.setText(getService().getPlayer().getCurrentTrack().getTrackTitle());
+		titleView.setText(getService().getQueue().getCurrentTrack().getTrackTitle());
 		infoView.setText(trackInfo);
 
 

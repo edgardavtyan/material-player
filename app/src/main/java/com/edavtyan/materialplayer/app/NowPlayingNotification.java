@@ -101,8 +101,8 @@ public class NowPlayingNotification implements ServiceConnection {
 				R.id.rewind,
 				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_REWIND));
 
-		if (service != null && service.getPlayer().hasData()) {
-			Track track = service.getPlayer().getCurrentTrack();
+		if (service != null && service.getQueue().hasData()) {
+			Track track = service.getQueue().getCurrentTrack();
 			view.setTextViewText(R.id.title, track.getTrackTitle());
 			view.setTextViewText(R.id.info, track.getAlbumTitle());
 

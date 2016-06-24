@@ -73,7 +73,7 @@ public class NowPlayingInfoFragment extends ServiceFragment {
 	 */
 
 	private void syncWithService() {
-		Track track = getService().getPlayer().getCurrentTrack();
+		Track track = getService().getQueue().getCurrentTrack();
 		String trackMetadata = getResources().getString(
 				R.string.nowplaying_info_pattern,
 				track.getArtistTitle(),

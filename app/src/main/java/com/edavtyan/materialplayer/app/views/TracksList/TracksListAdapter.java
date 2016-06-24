@@ -45,7 +45,7 @@ public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 		holder.setOnClickListener(view -> {
 			Intent i = new Intent(context, NowPlayingActivity.class);
 			context.startActivity(i);
-			service.getPlayer().setTracks(
+			service.getQueue().setTracks(
 					tracksProvider.getAllTracks(cursor),
 					holder.getAdapterPosition());
 			service.getPlayer().prepare();
@@ -56,7 +56,7 @@ public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 			case R.id.menu_addToPlaylist:
 				cursor.moveToPosition(holder.getAdapterPosition());
 				int trackId = tracksProvider.getId(cursor);
-				service.getPlayer().getQueue().add(tracksProvider.getSingleTrackWithId(trackId));
+				service.getQueue().add(tracksProvider.getSingleTrackWithId(trackId));
 				return true;
 
 			default:

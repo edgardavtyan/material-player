@@ -15,6 +15,8 @@ import com.edavtyan.materialplayer.app.models.effects.Surround;
 import com.edavtyan.materialplayer.app.models.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.models.effects.equalizer.HQEqualizer;
 import com.edavtyan.materialplayer.app.models.player.MusicPlayer;
+import com.edavtyan.materialplayer.app.models.player.NowPlayingQueue;
+import com.edavtyan.materialplayer.app.models.player.PlaybackState;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
@@ -40,6 +42,7 @@ public class MusicPlayerService
 
 	private NowPlayingNotification notification;
 	private @Getter MusicPlayer player;
+	private @Getter NowPlayingQueue queue;
 	private @Getter Equalizer equalizer;
 	private @Getter Surround surround;
 	private @Getter Amplifier amplifier;
@@ -63,7 +66,7 @@ public class MusicPlayerService
 	private class FastForwardReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (player.hasData()) {
+			if (getQueue().hasData()) {
 				player.moveNext();
 				player.prepare();
 			}
@@ -73,7 +76,7 @@ public class MusicPlayerService
 	private class RewindReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (player.hasData()) {
+			if (getQueue().hasData()) {
 				player.movePrev();
 				player.prepare();
 			}
@@ -85,7 +88,7 @@ public class MusicPlayerService
 	 */
 
 	@Override
-	public void onPlaybackStateChanged(MusicPlayer.PlaybackState state) {
+	public void onPlaybackStateChanged(PlaybackState state) {
 		switch (state) {
 		case PAUSED:
 			sendBroadcast(new Intent(SEND_PAUSE));
@@ -130,8 +133,10 @@ public class MusicPlayerService
 		params.longFadeDuration = 200;
 		OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
 
+		queue = new NowPlayingQueue(this);
+
 		IBasicMediaPlayer basicPlayer = factory.createMediaPlayer();
-		player = new MusicPlayer(this, basicPlayer);
+		player = new MusicPlayer(this, basicPlayer, queue);
 		player.setOnPreparedListener(this);
 		equalizer = new HQEqualizer(this, factory.createHQEqualizer());
 		surround = new Surround(this, factory.createVirtualizer(basicPlayer));

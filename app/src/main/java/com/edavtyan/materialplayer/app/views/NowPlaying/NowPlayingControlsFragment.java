@@ -140,12 +140,12 @@ public class NowPlayingControlsFragment
 			break;
 
 		case R.id.repeat:
-			getService().getPlayer().toggleRepeatMode();
+			getService().getQueue().toggleRepeatMode();
 			syncRepeatButtonIcon();
 			break;
 
 		case R.id.shuffle:
-			getService().getPlayer().toggleShuffling();
+			getService().getQueue().toggleShuffling();
 			syncShuffleButtonIcon();
 			break;
 		}
@@ -156,7 +156,7 @@ public class NowPlayingControlsFragment
 	 */
 
 	private void syncRepeatButtonIcon() {
-		switch (getService().getPlayer().getRepeatMode()) {
+		switch (getService().getQueue().getRepeatMode()) {
 		case NO_REPEAT:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
 			repeatButton.setColorFilter(appColors.textPrimary);
@@ -173,7 +173,7 @@ public class NowPlayingControlsFragment
 	}
 
 	private void syncShuffleButtonIcon() {
-		if (getService().getPlayer().isShuffling()) {
+		if (getService().getQueue().isShuffling()) {
 			shuffleButton.setColorFilter(appColors.accent);
 		} else {
 			shuffleButton.setColorFilter(appColors.textPrimary);

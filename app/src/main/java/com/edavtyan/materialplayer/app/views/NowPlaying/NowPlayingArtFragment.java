@@ -97,6 +97,6 @@ public class NowPlayingArtFragment extends ServiceFragment {
 	 */
 
 	private void syncWithService() {
-		new ArtLoadTask().execute(getService().getPlayer().getCurrentTrack());
+		new ArtLoadTask().execute(getService().getQueue().getCurrentTrack());
 	}
 }

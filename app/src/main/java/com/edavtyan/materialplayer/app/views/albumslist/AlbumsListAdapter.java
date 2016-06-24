@@ -45,7 +45,7 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListVi
 				cursor.moveToPosition(holder.getAdapterPosition());
 				int albumId = albumsProvider.getId(cursor);
 				List<Track> tracks = tracksProvider.getAllTracksWithAlbumId(albumId);
-				service.getPlayer().getQueue().addAll(tracks);
+				service.getQueue().addAll(tracks);
 
 			default:
 				return false;
