@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
-import com.edavtyan.materialplayer.app.R;
-import com.edavtyan.materialplayer.app.views.lib.fragments.ServiceFragment;
-import com.edavtyan.materialplayer.app.utils.AppColors;
 import com.edavtyan.materialplayer.app.MusicPlayerService;
+import com.edavtyan.materialplayer.app.R;
+import com.edavtyan.materialplayer.app.utils.AppColors;
+import com.edavtyan.materialplayer.app.views.lib.fragments.ServiceFragment;
 import com.wnafee.vector.MorphButton;
 
 public class NowPlayingControlsFragment
