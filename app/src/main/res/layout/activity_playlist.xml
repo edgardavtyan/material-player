@@ -7,7 +7,7 @@
 	android:orientation="vertical"
 	>
 
-	<include layout="@layout/layout_toolbar" />
+	<include layout="@layout/layout_appbar" />
 
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/list"
