@@ -69,12 +69,14 @@ public class NowPlayingQueue extends ArrayList<Track> {
 		Collections.shuffle(this);
 		Collections.swap(this, 0, indexOf(currentTrack));
 		currentTrackIndex = 0;
+		isShuffling = true;
 	}
 
 	public void sort() {
 		Track currentTrack = get(currentTrackIndex);
 		Collections.sort(this, (t1, t2) -> t1.getQueueIndex() - t2.getQueueIndex());
 		currentTrackIndex = indexOf(currentTrack);
+		isShuffling = false;
 	}
 
 	public void toggleShuffling() {
