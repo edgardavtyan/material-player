@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="pref_audio_engine_key">pref_audio_engine</string>
+
+	<string name="pref_audio_engine_title">Audio engine</string>
+
+	<string name="pref_audio_engine_summary">
+		OpenSL engine has better sound and provides effects such as equalizer and bass boost,
+		Basic engine is compatible with custom sound processors such as Viper4Android
+	</string>
+
+	<string name="pref_audio_engine_opensl">OpenSL</string>
+	<string name="pref_audio_engine_basic">Basic</string>
+	<string name="pref_audio_engine_default">@string/pref_audio_engine_opensl</string>
+
+	<string-array name="pref_audio_engine_entries">
+		<item>@string/pref_audio_engine_basic</item>
+		<item>@string/pref_audio_engine_opensl</item>
+	</string-array>
+
+	<string-array name="pref_audio_engine_values">
+		<item>@string/pref_audio_engine_basic</item>
+		<item>@string/pref_audio_engine_opensl</item>
+	</string-array>
+
+</resources>

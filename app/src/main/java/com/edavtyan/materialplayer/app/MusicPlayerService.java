@@ -5,8 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.app.models.effects.Amplifier;
@@ -14,9 +16,12 @@ import com.edavtyan.materialplayer.app.models.effects.BassBoost;
 import com.edavtyan.materialplayer.app.models.effects.Surround;
 import com.edavtyan.materialplayer.app.models.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.app.models.effects.equalizer.HQEqualizer;
+import com.edavtyan.materialplayer.app.models.player.AudioEngine;
 import com.edavtyan.materialplayer.app.models.player.MusicPlayer;
 import com.edavtyan.materialplayer.app.models.player.NowPlayingQueue;
+import com.edavtyan.materialplayer.app.models.player.OpenSLAudioEngine;
 import com.edavtyan.materialplayer.app.models.player.PlaybackState;
+import com.edavtyan.materialplayer.app.models.player.BasicAudioEngine;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
@@ -25,7 +30,8 @@ import lombok.Getter;
 
 public class MusicPlayerService
 		extends Service
-		implements MusicPlayer.OnPreparedListener, MusicPlayer.OnPlaybackStateChangedListener {
+		implements MusicPlayer.OnPreparedListener, MusicPlayer.OnPlaybackStateChangedListener,
+		           SharedPreferences.OnSharedPreferenceChangeListener {
 	private static final int NOTIFICATION_ID = 1;
 
 	public static final String ACTION_PLAY_PAUSE = "com.edavtyan.materialplayer.app.playpause";
@@ -41,6 +47,8 @@ public class MusicPlayerService
 	 */
 
 	private NowPlayingNotification notification;
+	private AudioEngine openslAudioEngine;
+	private AudioEngine basicAudioEngine;
 	private @Getter MusicPlayer player;
 	private @Getter NowPlayingQueue queue;
 	private @Getter Equalizer equalizer;
@@ -132,19 +140,24 @@ public class MusicPlayerService
 		params.shortFadeDuration = 200;
 		params.longFadeDuration = 200;
 		OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
-
-		queue = new NowPlayingQueue(this);
-
 		IBasicMediaPlayer basicPlayer = factory.createMediaPlayer();
-		player = new MusicPlayer(this, basicPlayer, queue);
-		player.setOnPreparedListener(this);
-		player.setOnPlaybackStateChangedListener(this);
 		equalizer = new HQEqualizer(this, factory.createHQEqualizer());
 		surround = new Surround(this, factory.createVirtualizer(basicPlayer));
 		amplifier = new Amplifier(this, factory.createPreAmp());
 		bassBoost = new BassBoost(this, factory.createBassBoost(basicPlayer));
 
+		queue = new NowPlayingQueue(this);
+		openslAudioEngine = new OpenSLAudioEngine(basicPlayer);
+		basicAudioEngine = new BasicAudioEngine();
+
+		player = new MusicPlayer(openslAudioEngine, queue);
+		player.setOnPreparedListener(this);
+		player.setOnPlaybackStateChangedListener(this);
+
 		notification = new NowPlayingNotification(this);
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		registerReceiver(new PlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(new FastForwardReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
@@ -154,6 +167,23 @@ public class MusicPlayerService
 	public class MusicPlayerBinder extends Binder {
 		public MusicPlayerService getService() {
 			return MusicPlayerService.this;
+		}
+	}
+
+	/* SharedPreferences.onSharedPreferenceChanged */
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+		if (!key.equals(getString(R.string.pref_audio_engine_key))) return;
+
+		String audioEnginePref = prefs.getString(key, getString(R.string.pref_audio_engine_basic));
+		String basicEnginePref = getString(R.string.pref_audio_engine_basic);
+		String openslEnginePref = getString(R.string.pref_audio_engine_opensl);
+
+		if (audioEnginePref.equals(basicEnginePref)) {
+			player.setAudioEngine(basicAudioEngine);
+		} else if (audioEnginePref.equals(openslEnginePref)) {
+			player.setAudioEngine(openslAudioEngine);
 		}
 	}
 }

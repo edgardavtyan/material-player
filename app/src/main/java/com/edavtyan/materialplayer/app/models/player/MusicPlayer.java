@@ -1,18 +1,15 @@
 package com.edavtyan.materialplayer.app.models.player;
 
-import android.content.Context;
-
-import com.h6ah4i.android.media.IBasicMediaPlayer;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayer;
+import android.util.Log;
 
 import java.io.IOException;
 
 import lombok.Setter;
 
 public class MusicPlayer
-		implements OpenSLMediaPlayer.OnCompletionListener, OpenSLMediaPlayer.OnPreparedListener {
-	private final IBasicMediaPlayer player;
+		implements AudioEngine.OnCompletionListener, AudioEngine.OnPreparedListener {
 	private final NowPlayingQueue queue;
+	private AudioEngine audioEngine;
 	private @Setter OnPreparedListener onPreparedListener;
 	private @Setter OnPlaybackStateChangedListener onPlaybackStateChangedListener;
 
@@ -28,33 +25,56 @@ public class MusicPlayer
 
 	/* Constructors */
 
-	public MusicPlayer(Context context, IBasicMediaPlayer player, NowPlayingQueue queue) {
-		this.player = player;
+	public MusicPlayer(AudioEngine audioEngine, NowPlayingQueue queue) {
 		this.queue = queue;
-		player.setOnCompletionListener(this);
-		player.setOnPreparedListener(this);
+		setAudioEngine(audioEngine);
 	}
 
 	/* MusicPlayer methods */
 
+	public void setAudioEngine(AudioEngine newAudioEngine) {
+		int position = 0;
+		boolean isPlaying = false;
+		if (audioEngine != null) {
+			position = audioEngine.getCurrentPosition();
+			isPlaying = audioEngine.isPlaying();
+			audioEngine.reset();
+		}
+
+		audioEngine = newAudioEngine;
+		audioEngine.setOnCompletionListener(this);
+		audioEngine.setOnPreparedListener(this);
+
+		if (queue.hasData()) {
+			try {
+				audioEngine.setDataSource(queue.getCurrentTrack().getPath());
+				audioEngine.prepare();
+				audioEngine.seekTo(position);
+				if (isPlaying) audioEngine.start();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void prepare() {
 		try {
-			player.reset();
-			player.setDataSource(queue.getCurrentTrack().getPath());
-			player.prepare();
-			player.start();
+			audioEngine.reset();
+			audioEngine.setDataSource(queue.getCurrentTrack().getPath());
+			audioEngine.prepare();
+			audioEngine.start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void resume() {
-		player.start();
+		audioEngine.start();
 		raiseOnPlaybackStateChanged(PlaybackState.RESUMED);
 	}
 
 	public void pause() {
-		player.pause();
+		audioEngine.pause();
 		raiseOnPlaybackStateChanged(PlaybackState.PAUSED);
 	}
 
@@ -63,38 +83,44 @@ public class MusicPlayer
 	}
 
 	public void movePrev() {
-		if (player.getCurrentPosition() > 5000) {
-			player.seekTo(0);
+		if (audioEngine.getCurrentPosition() > 5000) {
+			audioEngine.seekTo(0);
 		} else {
 			queue.moveToPrev();
 		}
 	}
 
 	public boolean isPlaying() {
-		return player.isPlaying();
+		return audioEngine.isPlaying();
 	}
 
 	public int getDuration() {
-		return player.getDuration();
+		return audioEngine.getDuration();
 	}
 
 	public int getPosition() {
-		return player.getCurrentPosition();
+		return audioEngine.getCurrentPosition();
 	}
 
 	public void setPosition(int position) {
-		player.seekTo(position);
+		audioEngine.seekTo(position);
 	}
 
 	/* OpenSLMediaPlayer event listeners */
 
 	@Override
-	public void onCompletion(IBasicMediaPlayer mediaPlayer) {
-		if (player.getCurrentPosition() < 500) return;
+	public void onCompletion() {
+		Log.i("MusicPlayer.class", "onCompletion");
+		if (audioEngine.getCurrentPosition() < 500) return;
 
 		switch (queue.getRepeatMode()) {
 		case NO_REPEAT:
-			if (queue.isAtLastTrack()) player.pause();
+			if (queue.isAtLastTrack()) {
+				audioEngine.pause();
+			} else {
+				moveNext();
+				prepare();
+			}
 			break;
 
 		case REPEAT:
@@ -103,15 +129,15 @@ public class MusicPlayer
 			break;
 
 		case REPEAT_ONE:
-			player.seekTo(0);
+			audioEngine.seekTo(0);
 			prepare();
 			break;
 		}
 	}
 
 	@Override
-	public void onPrepared(IBasicMediaPlayer mediaPlayer) {
-		player.start();
+	public void onPrepared() {
+		//audioEngine.start();
 		if (onPreparedListener != null) {
 			onPreparedListener.onPrepared();
 		}

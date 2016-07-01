@@ -23,4 +23,20 @@
 
 	</com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory>
 
+	<PreferenceCategory android:layout="@layout/pref_category_shadow" />
+
+	<com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory
+		android:title="Audio">
+
+		<ListPreference
+			android:key="@string/pref_audio_engine_key"
+		    android:title="@string/pref_audio_engine_title"
+		    android:summary="@string/pref_audio_engine_summary"
+		    android:entries="@array/pref_audio_engine_entries"
+		    android:entryValues="@array/pref_audio_engine_values"
+		    android:defaultValue="@string/pref_audio_engine_default"
+			/>
+
+	</com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory>
+
 </PreferenceScreen>
