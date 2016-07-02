@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory android:title="Appearance">
+	<com.edavtyan.materialplayer.views.lib.views.ColoredPreferenceCategory android:title="Appearance">
 
 		<ListPreference
 			android:key="pref_theme_base"
@@ -21,11 +21,11 @@
 			android:defaultValue="@string/prefs_theme_primary_default"
 			/>
 
-	</com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory>
+	</com.edavtyan.materialplayer.views.lib.views.ColoredPreferenceCategory>
 
 	<PreferenceCategory android:layout="@layout/pref_category_shadow" />
 
-	<com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory
+	<com.edavtyan.materialplayer.views.lib.views.ColoredPreferenceCategory
 		android:title="Audio">
 
 		<ListPreference
@@ -37,6 +37,6 @@
 		    android:defaultValue="@string/pref_audio_engine_default"
 			/>
 
-	</com.edavtyan.materialplayer.app.views.lib.views.ColoredPreferenceCategory>
+	</com.edavtyan.materialplayer.views.lib.views.ColoredPreferenceCategory>
 
 </PreferenceScreen>

@@ -1,13 +1,13 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.edavtyan.materialplayer.app"
+	package="com.edavtyan.materialplayer"
 	>
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 	<application
-		android:name=".App"
+		android:name="com.edavtyan.materialplayer.App"
 		android:allowBackup="true"
 		android:label="@string/app_name"
 		android:icon="@mipmap/ic_launcher"
@@ -16,7 +16,7 @@
 		>
 
 		<activity
-			android:name=".views.MainActivity"
+			android:name="com.edavtyan.materialplayer.views.MainActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -28,7 +28,7 @@
 		</activity>
 
 		<activity
-			android:name=".views.artistdetail.ArtistDetailActivity"
+			android:name="com.edavtyan.materialplayer.views.artistdetail.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -38,7 +38,7 @@
 		</activity>
 
 		<activity
-			android:name=".views.albumdetail.AlbumDetailActivity"
+			android:name="com.edavtyan.materialplayer.views.albumdetail.AlbumDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -48,7 +48,7 @@
 		</activity>
 
 		<activity
-			android:name=".views.nowplaying.NowPlayingActivity"
+			android:name="com.edavtyan.materialplayer.views.nowplaying.NowPlayingActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -58,7 +58,7 @@
 		</activity>
 
 		<activity
-			android:name=".views.playlist.PlaylistActivity"
+			android:name="com.edavtyan.materialplayer.views.playlist.PlaylistActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -68,7 +68,7 @@
 		</activity>
 
 		<activity
-			android:name=".views.audioeffects.AudioEffectsActivity"
+			android:name="com.edavtyan.materialplayer.views.audioeffects.AudioEffectsActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -78,7 +78,7 @@
 		</activity>
 
 		<activity
-			android:name=".views.PrefActivity"
+			android:name="com.edavtyan.materialplayer.views.PrefActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -88,7 +88,7 @@
 		</activity>
 
 		<service
-			android:name=".MusicPlayerService"
+			android:name="com.edavtyan.materialplayer.MusicPlayerService"
 			android:enabled="true"
 			/>
 

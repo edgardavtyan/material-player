@@ -7,20 +7,20 @@
 	android:layout_weight="1"
 	>
 
-	<com.edavtyan.materialplayer.app.views.lib.views.SquareImageView
+	<com.edavtyan.materialplayer.views.lib.views.SquareImageView
 		android:id="@+id/art"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		style="@style/nowplaying_art"
 		/>
 
-	<com.edavtyan.materialplayer.app.views.lib.views.SquareView
+	<com.edavtyan.materialplayer.views.lib.views.SquareView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		style="@style/nowplaying_art_tint"
 		/>
 
-	<com.edavtyan.materialplayer.app.views.lib.views.SquareImageView
+	<com.edavtyan.materialplayer.views.lib.views.SquareImageView
 		android:id="@+id/back"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
