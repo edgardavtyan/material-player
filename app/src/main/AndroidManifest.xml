@@ -16,7 +16,7 @@
 		>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.MainActivity"
+			android:name=".components.main.MainActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -28,7 +28,7 @@
 		</activity>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.artistdetail.ArtistDetailActivity"
+			android:name=".components.artists.detail.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -38,7 +38,7 @@
 		</activity>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.albumdetail.AlbumDetailActivity"
+			android:name=".components.albums.views.detail.AlbumDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -48,7 +48,7 @@
 		</activity>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.nowplaying.NowPlayingActivity"
+			android:name=".components.nowplaying.NowPlayingActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -58,7 +58,7 @@
 		</activity>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.playlist.PlaylistActivity"
+			android:name=".components.playlist.PlaylistActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -68,7 +68,7 @@
 		</activity>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.audioeffects.AudioEffectsActivity"
+			android:name=".components.audioeffects.AudioEffectsActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -78,7 +78,7 @@
 		</activity>
 
 		<activity
-			android:name="com.edavtyan.materialplayer.views.PrefActivity"
+			android:name=".components.prefs.PrefActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

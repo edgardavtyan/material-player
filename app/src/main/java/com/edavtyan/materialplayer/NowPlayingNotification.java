@@ -14,10 +14,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.widget.RemoteViews;
 
-import com.edavtyan.materialplayer.models.ArtProvider;
-import com.edavtyan.materialplayer.models.track.Track;
+import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.utils.PendingIntents;
-import com.edavtyan.materialplayer.views.MainActivity;
+import com.edavtyan.materialplayer.components.main.MainActivity;
 
 public class NowPlayingNotification implements ServiceConnection {
 	private static final int NOTIFICATION_ID = 1;

@@ -20,7 +20,7 @@
 
 	</LinearLayout>
 
-	<com.edavtyan.materialplayer.views.lib.views.EqualizerView
+	<com.edavtyan.materialplayer.lib.views.EqualizerView
 		android:id="@+id/equalizer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

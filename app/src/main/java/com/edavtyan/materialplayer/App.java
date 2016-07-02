@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
-import com.edavtyan.materialplayer.logging.FileLogger;
-import com.edavtyan.materialplayer.logging.Logger;
+import com.edavtyan.materialplayer.utils.logging.FileLogger;
+import com.edavtyan.materialplayer.utils.logging.Logger;
 
 import lombok.Getter;
 

@@ -24,7 +24,7 @@
 				style="@style/collapsingHeader_artBack"
 				/>
 
-			<com.edavtyan.materialplayer.views.lib.views.SquareImageView
+			<com.edavtyan.materialplayer.lib.views.SquareImageView
 				android:id="@+id/art"
 				tools:src="@drawable/fallback_artist"
 				style="@style/collapsingHeader_art"
