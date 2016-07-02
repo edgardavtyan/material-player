@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.app.models.player;
 
-import android.util.Log;
-
 import java.io.IOException;
 
 import lombok.Setter;
@@ -110,7 +108,6 @@ public class MusicPlayer
 
 	@Override
 	public void onCompletion() {
-		Log.i("MusicPlayer.class", "onCompletion");
 		if (audioEngine.getCurrentPosition() < 500) return;
 
 		switch (queue.getRepeatMode()) {
@@ -137,7 +134,6 @@ public class MusicPlayer
 
 	@Override
 	public void onPrepared() {
-		//audioEngine.start();
 		if (onPreparedListener != null) {
 			onPreparedListener.onPrepared();
 		}
