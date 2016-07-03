@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.lib.views;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
@@ -24,8 +25,8 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 	}
 
 
-	public EqualizerBandView(Context context) {
-		super(context);
+	public EqualizerBandView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 
 		LayoutInflater.from(context).inflate(R.layout.layout_equalizer_band, this, true);
 

@@ -4,10 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
-import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import lombok.Setter;
 
-public class DoubleSeekbar extends SeekBarCompat implements SeekBar.OnSeekBarChangeListener {
+public class DoubleSeekbar extends SeekBar implements SeekBar.OnSeekBarChangeListener {
 	/*
 	 * Fields
 	 */

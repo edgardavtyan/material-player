@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AudioEffects_Equalizer_Header">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">@dimen/spacing_medium</item>
+		<item name="android:paddingRight">@dimen/spacing_tiny</item>
+		<item name="android:paddingTop">@dimen/spacing_medium</item>
+		<item name="android:paddingBottom">@dimen/spacing_medium</item>
+	</style>
+
+	<style name="AudioEffects_Equalizer_Title">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:textSize">@dimen/font_medium</item>
+	</style>
+
+	<style name="AudioeEffects_Equalizer_Switch">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
+	<style name="AudioEffects_Equalizer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">@dimen/spacing_medium</item>
+		<item name="android:paddingLeft">@dimen/spacing_tiny</item>
+		<item name="android:paddingRight">@dimen/spacing_tiny</item>
+	</style>
+
+	<style name="AudioEffects_Effect">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">@dimen/spacing_medium</item>
+		<item name="android:paddingTop">@dimen/spacing_tiny</item>
+		<item name="ts_width">100dp</item>
+	</style>
+
+</resources>

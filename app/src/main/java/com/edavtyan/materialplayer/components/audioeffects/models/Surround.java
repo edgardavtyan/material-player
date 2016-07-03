@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.h6ah4i.android.media.audiofx.IVirtualizer;
 
-public class Surround implements StrengthBasedEffect {
+public class Surround {
 	private static final String PREF_ENABLED = "pref_surround_enabled";
 	private static final String PREF_STRENGTH = "pref_surround_strength";
 	private static final int MAX_STRENGTH = 1000;
@@ -25,22 +25,18 @@ public class Surround implements StrengthBasedEffect {
 	}
 
 
-	@Override
 	public int getMaxStrength() {
 		return MAX_STRENGTH;
 	}
 
-	@Override
 	public int getStrength() {
 		return surround.getRoundedStrength();
 	}
 
-	@Override
 	public void setStrength(int strength) {
 		surround.setStrength((short) strength);
 	}
 
-	@Override
 	public void saveSettings() {
 		prefs.edit().putInt(PREF_STRENGTH, getStrength()).apply();
 	}

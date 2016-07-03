@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/effects_wrapper"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent" android:layout_height="match_parent"
 	android:orientation="vertical"
 	>
 
 	<include layout="@layout/layout_appbar" />
 
-	<fragment
-		android:id="@+id/fragment_equalizer"
-		android:name="com.edavtyan.materialplayer.components.audioeffects.fragments.EqualizerFragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/fragment_equalizer"
+	<LinearLayout style="@style/AudioEffects_Equalizer_Header">
+
+		<TextView
+			android:text="@string/equalizer_title"
+			style="@style/AudioEffects_Equalizer_Title"
+			/>
+
+		<Switch
+			android:id="@+id/equalizerSwitch"
+			style="@style/AudioeEffects_Equalizer_Switch"
+			/>
+
+	</LinearLayout>
+
+	<com.edavtyan.materialplayer.lib.views.EqualizerView
+		android:id="@+id/equalizer"
+		style="@style/AudioEffects_Equalizer"
 		/>
 
-	<fragment
-		android:id="@+id/fragment_surround"
-		android:name="com.edavtyan.materialplayer.components.audioeffects.fragments.SurroundFragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/layout_titled_seekbar"
+	<com.edavtyan.materialplayer.lib.views.TitledSeekbar
+		android:id="@+id/bassBoost"
+		app:ts_title="@string/bassBoost_title"
+		style="@style/AudioEffects_Effect"
 		/>
 
-	<fragment
-		android:id="@+id/fragment_amplifier"
-		android:name="com.edavtyan.materialplayer.components.audioeffects.fragments.AmplifierFragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/layout_titled_seekbar"
+	<com.edavtyan.materialplayer.lib.views.TitledSeekbar
+		android:id="@+id/amplifier"
+		app:ts_title="@string/amplifier_title"
+		style="@style/AudioEffects_Effect"
+
 		/>
 
-	<fragment
-		android:id="@+id/fragment_bassBoost"
-		android:name="com.edavtyan.materialplayer.components.audioeffects.fragments.BassBoostFragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/layout_titled_seekbar"
+	<com.edavtyan.materialplayer.lib.views.TitledSeekbar
+		android:id="@+id/surround"
+		app:ts_title="@string/surround_title"
+		style="@style/AudioEffects_Effect"
 		/>
 
 </LinearLayout>

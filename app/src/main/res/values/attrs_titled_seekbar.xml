@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="TitledSeekbar">
+		<attr name="ts_title" format="string" />
+		<attr name="ts_width" format="dimension" />
+		<attr name="ts_progress" format="integer" />
+		<attr name="ts_max" format="integer" />
+	</declare-styleable>
+
+</resources>

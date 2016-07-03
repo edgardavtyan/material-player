@@ -2,39 +2,25 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_gravity="center"
-	android:orientation="horizontal"
-	android:paddingLeft="@dimen/spacing_medium"
-	android:paddingRight="@dimen/spacing_medium"
->
+	style="@style/EqualizerBand_Container"
+	>
 
 	<TextView
 		android:id="@+id/frequency"
-		android:layout_width="@dimen/size_medium"
-		android:layout_height="match_parent"
-		android:gravity="end|center_vertical"
 		tools:text="500 Hz"
+	    style="@style/EqualizerBand_Frequency"
 		/>
 
 	<com.edavtyan.materialplayer.lib.views.DoubleSeekbar
 		android:id="@+id/band"
-		android:layout_width="0dp"
-		android:layout_height="match_parent"
-		android:layout_weight="1"
-		android:maxHeight="300sp"
-		app:thumbColor="?colorControlActivated"
-		app:progressColor="?colorControlActivated"
 		tools:progress="40"
+	    style="@style/EqualizerBand_Seekbar"
 		/>
 
 	<TextView
 		android:id="@+id/gain"
-		android:layout_width="@dimen/size_medium"
-		android:layout_height="match_parent"
-		android:gravity="center_vertical|right"
 		tools:text="+12 Db"
+	    style="@style/EqualizerBand_Gain"
 		/>
 
 </LinearLayout>
