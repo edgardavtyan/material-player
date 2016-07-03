@@ -65,9 +65,9 @@ public class TitledSeekbar extends LinearLayout implements SeekBar.OnSeekBarChan
 	/* SeekBar.OnSeekBarChangeListener */
 
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-		if (onProgressChangedListener != null) {
-			onProgressChangedListener.onProgressChange(seekBar.getId(), progress);
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		if (onProgressChangedListener != null && fromUser) {
+			onProgressChangedListener.onProgressChange(getId(), progress);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class TitledSeekbar extends LinearLayout implements SeekBar.OnSeekBarChan
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		if (onProgressChangedListener != null) {
-			onProgressChangedListener.onStopTrackingTouch(seekBar.getId());
+			onProgressChangedListener.onStopTrackingTouch(getId());
 		}
 	}
 }
