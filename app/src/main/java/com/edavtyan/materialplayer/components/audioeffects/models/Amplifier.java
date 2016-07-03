@@ -9,7 +9,7 @@ import com.h6ah4i.android.media.audiofx.IPreAmp;
 public class Amplifier {
 	private static final String PREF_STRENGTH = "pref_amplifier_strength";
 	private static final int MAX_STRENGTH = 100;
-	private static final int DEFAULT_STRENGTH = 50;
+	private static final int DEFAULT_STRENGTH = 0;
 
 
 	private final IPreAmp amplifier;
