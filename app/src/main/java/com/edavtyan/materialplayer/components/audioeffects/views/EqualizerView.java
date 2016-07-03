@@ -13,11 +13,11 @@ import lombok.Setter;
 public class EqualizerView
 		extends FrameLayout
 		implements EqualizerBandView.OnBandChangedListener {
+	private final Context context;
+	private int gainLimit;
 	private List<EqualizerBandView> bands;
 	private LinearLayout bandsContainer;
-	private final Context context;
 	private @Setter OnBandChangedListener onBandChangedListener;
-	private int gainLimit;
 
 
 	public interface OnBandChangedListener {
