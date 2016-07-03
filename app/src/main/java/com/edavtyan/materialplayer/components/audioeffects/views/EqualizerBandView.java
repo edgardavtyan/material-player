@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.views;
+package com.edavtyan.materialplayer.components.audioeffects.views;
 
 import android.content.Context;
 import android.util.AttributeSet;

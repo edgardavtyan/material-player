@@ -22,25 +22,25 @@
 
 	</LinearLayout>
 
-	<com.edavtyan.materialplayer.lib.views.EqualizerView
+	<com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView
 		android:id="@+id/equalizer"
 		style="@style/AudioEffects_Equalizer"
 		/>
 
-	<com.edavtyan.materialplayer.lib.views.TitledSeekbar
+	<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 		android:id="@+id/bassBoost"
 		app:ts_title="@string/bassBoost_title"
 		style="@style/AudioEffects_Effect"
 		/>
 
-	<com.edavtyan.materialplayer.lib.views.TitledSeekbar
+	<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 		android:id="@+id/amplifier"
 		app:ts_title="@string/amplifier_title"
 		style="@style/AudioEffects_Effect"
 
 		/>
 
-	<com.edavtyan.materialplayer.lib.views.TitledSeekbar
+	<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 		android:id="@+id/surround"
 		app:ts_title="@string/surround_title"
 		style="@style/AudioEffects_Effect"
