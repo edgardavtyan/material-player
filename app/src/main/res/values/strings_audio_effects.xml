@@ -6,6 +6,7 @@
 	<string name="equalizer_frequency_hz">%1$d Hz</string>
 	<string name="equalizer_frequency_khz">%1$d kHz</string>
 	<string name="equalizer_format_gain">%1$d Db</string>
+	<string name="equalizer_format_gain_positive">+%1$d Db</string>
 
 	<string name="equalizer_title">Equalizer</string>
 	<string name="surround_title">Surround</string>

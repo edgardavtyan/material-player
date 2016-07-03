@@ -12,11 +12,10 @@ import com.edavtyan.materialplayer.R;
 import lombok.Setter;
 
 public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-	private @Setter OnBandChangedListener onBandChangedListener;
-
 	private TextView frequencyView;
 	private TextView gainView;
 	private DoubleSeekbar bandView;
+	private @Setter OnBandChangedListener onBandChangedListener;
 
 
 	public interface OnBandChangedListener {
@@ -52,8 +51,8 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 
 	public void setFrequency(int frequency) {
 		int frequencyFormat;
-		if (frequency >= 1000) {
-			frequency /= 1000;
+		if (isKHz(frequency)) {
+			frequency = kHzToHz(frequency);
 			frequencyFormat = R.string.equalizer_frequency_khz;
 		} else {
 			frequencyFormat = R.string.equalizer_frequency_hz;
@@ -85,7 +84,18 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 	 */
 
 	private String getGainStr(int gain) {
-		return (gain > 0 ? "+" : "") + getResources().getString(
-				R.string.equalizer_format_gain, gain);
+		int gainStringFormatId = gain > 0
+				? R.string.equalizer_format_gain_positive
+				: R.string.equalizer_format_gain;
+
+		return getResources().getString(gainStringFormatId, gain);
+	}
+
+	private int kHzToHz(int frequency) {
+		return frequency / 1000;
+	}
+
+	private boolean isKHz(int frequency) {
+		return frequency >= 1000;
 	}
 }
