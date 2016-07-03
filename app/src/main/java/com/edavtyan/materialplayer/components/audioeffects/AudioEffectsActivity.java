@@ -15,9 +15,9 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
-import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
 
 public class AudioEffectsActivity
 		extends BaseToolbarActivity
