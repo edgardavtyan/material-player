@@ -72,12 +72,12 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 	}
 
 	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-		if (onBandChangedListener != null) onBandChangedListener.OnBandStopTracking();
-	}
+	public void onStartTrackingTouch(SeekBar seekBar) {}
 
 	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {}
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		if (onBandChangedListener != null) onBandChangedListener.OnBandStopTracking();
+	}
 
 	/*
 	 * Private methods
