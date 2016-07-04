@@ -1,12 +1,13 @@
 package com.edavtyan.materialplayer.components.audioeffects.views;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
 import lombok.Setter;
 
-public class DoubleSeekbar extends SeekBar implements SeekBar.OnSeekBarChangeListener {
+public class DoubleSeekbar extends AppCompatSeekBar implements SeekBar.OnSeekBarChangeListener {
 	/*
 	 * Fields
 	 */

@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v7.widget.SwitchCompat;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
@@ -25,7 +25,7 @@ public class AudioEffectsActivity
 		           EqualizerView.OnBandChangedListener,
 		           TitledSeekbar.OnProgressChangedListener,
 		           CompoundButton.OnCheckedChangeListener {
-	private Switch equalizerSwitch;
+	private SwitchCompat equalizerSwitch;
 	private EqualizerView equalizerView;
 	private TitledSeekbar bassBoostView;
 	private TitledSeekbar amplifierView;
@@ -49,7 +49,7 @@ public class AudioEffectsActivity
 		equalizerView = (EqualizerView) findViewById(R.id.equalizer);
 		equalizerView.setOnBandChangedListener(this);
 
-		equalizerSwitch = (Switch) findViewById(R.id.equalizerSwitch);
+		equalizerSwitch = (SwitchCompat) findViewById(R.id.equalizerSwitch);
 		equalizerSwitch.setOnCheckedChangeListener(this);
 
 		bassBoostView = (TitledSeekbar) findViewById(R.id.bassBoost);

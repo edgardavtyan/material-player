@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,10 @@ import com.edavtyan.materialplayer.R;
 
 import lombok.Setter;
 
-public class TitledSeekbar extends LinearLayout implements SeekBar.OnSeekBarChangeListener {
-	private SeekBar seekbar;
+public class TitledSeekbar
+		extends LinearLayout
+		implements AppCompatSeekBar.OnSeekBarChangeListener {
+	private AppCompatSeekBar seekbar;
 	private TextView title;
 
 	private @Setter OnProgressChangedListener onProgressChangedListener;
@@ -34,7 +37,7 @@ public class TitledSeekbar extends LinearLayout implements SeekBar.OnSeekBarChan
 		View root = LayoutInflater
 				.from(context)
 				.inflate(R.layout.layout_titled_seekbar, this, true);
-		seekbar = (SeekBar) root.findViewById(R.id.seekbar);
+		seekbar = (AppCompatSeekBar) root.findViewById(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);
 		title = (TextView) root.findViewById(R.id.title);
 

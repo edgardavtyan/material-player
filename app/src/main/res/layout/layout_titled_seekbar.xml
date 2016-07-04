@@ -11,7 +11,7 @@
 		style="@style/TitledSeekbar_Title"
 		/>
 
-	<app.minimize.com.seek_bar_compat.SeekBarCompat
+	<android.support.v7.widget.AppCompatSeekBar
 		android:id="@+id/seekbar"
 		tools:progress="40"
 		style="@style/TitledSeekbar_Seekbar"

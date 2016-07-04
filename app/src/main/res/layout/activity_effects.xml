@@ -16,7 +16,7 @@
 			style="@style/AudioEffects_Equalizer_Title"
 			/>
 
-		<Switch
+		<android.support.v7.widget.SwitchCompat
 			android:id="@+id/equalizerSwitch"
 			style="@style/AudioeEffects_Equalizer_Switch"
 			/>
