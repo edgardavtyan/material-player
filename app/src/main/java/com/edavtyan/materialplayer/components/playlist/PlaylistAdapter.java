@@ -63,7 +63,7 @@ public class PlaylistAdapter extends RecyclerViewServiceAdapter<PlaylistTrackVie
 	@Override
 	public void onBindViewHolder(PlaylistTrackViewHolder holder, int position) {
 		if (!isBound) return;
-		holder.setTitle(service.getQueue().get(position).getTrackTitle());
+		holder.setTitle(service.getQueue().get(position).getTitle());
 		holder.setInfo(service.getQueue().get(position).getAlbumTitle());
 		holder.setNowPlaying(service.getQueue().getCurrentTrackIndex() == holder.getLayoutPosition());
 	}

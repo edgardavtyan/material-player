@@ -11,21 +11,21 @@ import com.edavtyan.materialplayer.components.albums.models.Album;
 import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.albums.views.detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.components.tracks.TracksProvider;
+import com.edavtyan.materialplayer.components.tracks.TrackDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 
 import java.util.List;
 
 public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListViewHolder> {
 	private final AlbumDB albumDB;
-	private final TracksProvider tracksProvider;
+	private final TrackDB trackDB;
 
 	//---
 
 	public AlbumsListAdapter(Context context, AlbumDB albumDB) {
 		super(context, null);
 		this.albumDB = albumDB;
-		tracksProvider = new TracksProvider(context);
+		this.trackDB = new TrackDB(context);
 	}
 
 	//---
@@ -44,7 +44,7 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListVi
 			switch (item.getItemId()) {
 			case R.id.menu_addToPlaylist:
 				Album album = albumDB.getAlbum(holder.getAdapterPosition());
-				List<Track> tracks = tracksProvider.getAllTracksWithAlbumId(album.getId());
+				List<Track> tracks = trackDB.getAllTracksWithAlbumId(album.getId());
 				service.getQueue().addAll(tracks);
 
 			default:

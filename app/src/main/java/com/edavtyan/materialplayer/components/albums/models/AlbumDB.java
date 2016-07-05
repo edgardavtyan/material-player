@@ -7,7 +7,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
 import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.components.tracks.TracksProvider;
+import com.edavtyan.materialplayer.components.tracks.TrackDB;
 import com.edavtyan.materialplayer.lib.models.CursorDB;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 
@@ -75,7 +75,7 @@ public class AlbumDB extends CursorDB {
 	public Album getAlbumFromId(int id) {
 		Cursor cursor = null;
 		Album album = null;
-		TracksProvider tracksProvider = new TracksProvider(context);
+		TrackDB trackDB = new TrackDB(context);
 		try {
 			cursor = resolver.query(URI, PROJECTION, KEY_ID + "=" + id, null, null);
 			cursor.moveToFirst();
@@ -86,7 +86,7 @@ public class AlbumDB extends CursorDB {
 			album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
 			album.setTracksCount(cursor.getInt(COLUMN_TRACKS_COUNT));
 
-			Track track = tracksProvider.getSingleTrackWithAlbumId(id);
+			Track track = trackDB.getSingleTrackWithAlbumId(id);
 			album.setArt(ArtProvider.fromTrack(track));
 		} finally {
 			if (cursor != null) cursor.close();

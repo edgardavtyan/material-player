@@ -14,7 +14,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.albums.models.Album;
 import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.components.tracks.TracksProvider;
+import com.edavtyan.materialplayer.components.tracks.TrackDB;
 import com.edavtyan.materialplayer.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.utils.ArtProvider;
@@ -25,7 +25,7 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	public static final String EXTRA_ALBUM_ID = "album_id";
 
 	private AlbumDetailAdapter tracksAdapter;
-	private TracksProvider tracksProvider;
+	private TrackDB trackDB;
 
 	/*
 	 * AsyncTasks
@@ -34,7 +34,7 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	private class ImageLoadTask extends AsyncTask<Integer, Void, File> {
 		@Override
 		protected File doInBackground(Integer... albumIds) {
-			Track track = tracksProvider.getSingleTrackWithAlbumId(albumIds[0]);
+			Track track = trackDB.getSingleTrackWithAlbumId(albumIds[0]);
 			return ArtProvider.fromTrack(track);
 		}
 
@@ -63,8 +63,8 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		tracksAdapter = new AlbumDetailAdapter(this, null);
-		tracksProvider = new TracksProvider(this);
+		trackDB = new TrackDB(this);
+		tracksAdapter = new AlbumDetailAdapter(this, trackDB);
 		super.onCreate(savedInstanceState);
 
 		AlbumDB albumDB = new AlbumDB(this);
@@ -95,7 +95,7 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 	@Override
 	public Loader<Cursor> getLoader() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
-		return tracksProvider.getAlbumTracksLoader(albumId);
+		return trackDB.getAlbumTracksLoader(albumId);
 	}
 
 	@Override

@@ -103,7 +103,7 @@ public class NowPlayingNotification implements ServiceConnection {
 
 		if (service != null && service.getQueue().hasData()) {
 			Track track = service.getQueue().getCurrentTrack();
-			view.setTextViewText(R.id.title, track.getTrackTitle());
+			view.setTextViewText(R.id.title, track.getTitle());
 			view.setTextViewText(R.id.info, track.getAlbumTitle());
 
 			String artPath = ArtProvider.fromTrack(track).getAbsolutePath();

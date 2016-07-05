@@ -8,17 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.tracks.TracksProvider;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
+import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.tracks.TrackDB;
 
 public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
-	protected final TracksProvider tracksProvider;
-
-	//---
-
-	public TracksListAdapter(Context context, Cursor cursor) {
-		super(context, cursor);
-		tracksProvider = new TracksProvider(context);
+	public TracksListAdapter(Context context, TrackDB trackDB) {
+		super(context, trackDB);
 	}
 
 	//---
@@ -38,15 +34,16 @@ public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 	@Override
 	public void onBindViewHolder(TracksListViewHolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.setTitle(tracksProvider.getTitle(cursor));
-		holder.setInfo(tracksProvider.getDuration(cursor), tracksProvider.getArtist(cursor),
-				tracksProvider.getAlbum(cursor));
+
+		Track track = trackDB.getTrack(position);
+		holder.setTitle(track.getTitle());
+		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
 
 		holder.setOnClickListener(view -> {
 			Intent i = new Intent(context, NowPlayingActivity.class);
 			context.startActivity(i);
 			service.getQueue().setTracks(
-					tracksProvider.getAllTracks(cursor),
+					trackDB.getAllTracks(cursor),
 					holder.getAdapterPosition());
 			service.getPlayer().prepare();
 		});
@@ -54,14 +51,20 @@ public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 		holder.setOnMenuItemClickListener(item -> {
 			switch (item.getItemId()) {
 			case R.id.menu_addToPlaylist:
-				cursor.moveToPosition(holder.getAdapterPosition());
-				int trackId = tracksProvider.getId(cursor);
-				service.getQueue().add(tracksProvider.getSingleTrackWithId(trackId));
+				Track selectedTrack = trackDB.getTrack(holder.getAdapterPosition());
+				int trackId = selectedTrack.getId();
+				service.getQueue().add(trackDB.getSingleTrackWithId(trackId));
 				return true;
 
 			default:
 				return false;
 			}
 		});
+	}
+
+	@Override
+	public void swapCursor(Cursor newCursor) {
+		super.swapCursor(newCursor);
+		trackDB.swapCursor(newCursor);
 	}
 }

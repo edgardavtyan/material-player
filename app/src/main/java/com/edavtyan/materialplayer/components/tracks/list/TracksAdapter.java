@@ -7,19 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.tracks.TracksProvider;
-import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
+import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.tracks.TrackDB;
+import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 
 public abstract class TracksAdapter<THolder extends TracksViewHolder>
 		extends RecyclerServiceCursorAdapter<THolder> {
-	protected final TracksProvider tracksProvider;
+	protected final TrackDB trackDB;
 
 	//---
 
-	public TracksAdapter(Context context, Cursor cursor) {
-		super(context, cursor);
-		tracksProvider = new TracksProvider(context);
+	public TracksAdapter(Context context, TrackDB trackDB) {
+		super(context, null);
+		this.trackDB = trackDB;
 	}
 
 	//---
@@ -35,18 +36,15 @@ public abstract class TracksAdapter<THolder extends TracksViewHolder>
 
 		holder.setOnClickListener(itemView -> {
 			NowPlayingActivity.startActivity(context);
-			service.getQueue().setTracks(
-					tracksProvider.getAllTracks(cursor),
-					holder.getAdapterPosition());
+			service.getQueue().setTracks(trackDB.getAllTracks(cursor), holder.getAdapterPosition());
 			service.getPlayer().prepare();
 		});
 
 		holder.setOnMenuItemClickListener(item -> {
 			switch (item.getItemId()) {
 			case R.id.menu_addToPlaylist:
-				cursor.moveToPosition(holder.getAdapterPosition());
-				int trackId = tracksProvider.getId(cursor);
-				service.getQueue().add(tracksProvider.getSingleTrackWithId(trackId));
+				Track track = trackDB.getTrack(holder.getAdapterPosition());
+				service.getQueue().add(trackDB.getSingleTrackWithId(track.getId()));
 				return true;
 
 			default:
@@ -60,8 +58,15 @@ public abstract class TracksAdapter<THolder extends TracksViewHolder>
 	@Override
 	public void onBindViewHolder(THolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.setTitle(tracksProvider.getTitle(cursor));
-		holder.setInfo(tracksProvider.getDuration(cursor), tracksProvider.getArtist(cursor),
-				tracksProvider.getAlbum(cursor));
+
+		Track track = trackDB.getTrack(position);
+		holder.setTitle(track.getTitle());
+		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
+	}
+
+	@Override
+	public void swapCursor(Cursor newCursor) {
+		super.swapCursor(newCursor);
+		trackDB.swapCursor(newCursor);
 	}
 }

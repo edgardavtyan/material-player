@@ -1,15 +1,16 @@
 package com.edavtyan.materialplayer.components.tracks;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
+import com.edavtyan.materialplayer.lib.models.CursorDB;
+
 import java.util.ArrayList;
 
-public class TracksProvider {
+public class TrackDB extends CursorDB {
 	public static final int COLUMN_ID = 0;
 	public static final int COLUMN_TRACK = 1;
 	public static final int COLUMN_TITLE = 2;
@@ -47,61 +48,17 @@ public class TracksProvider {
 
 	};
 
-	/* Fields */
+	/*
+	 * Constructors
+	 */
 
-	private final Context context;
-	private final ContentResolver resolver;
-
-	/* Constructors */
-
-	public TracksProvider(Context context) {
-		this.context = context;
-		resolver = context.getContentResolver();
+	public TrackDB(Context context) {
+		super(context);
 	}
 
-	/* Public methods */
-
-	public int getId(Cursor cursor) {
-		return cursor.getInt(COLUMN_ID);
-	}
-
-	public int getIndex(Cursor cursor) {
-		return cursor.getInt(COLUMN_TRACK);
-	}
-
-	public String getTitle(Cursor cursor) {
-		return cursor.getString(COLUMN_TITLE);
-	}
-
-	public long getDuration(Cursor cursor) {
-		return cursor.getLong(COLUMN_DURATION);
-	}
-
-	public String getPath(Cursor cursor) {
-		return cursor.getString(COLUMN_PATH);
-	}
-
-	public int getAlbumId(Cursor cursor) {
-		return cursor.getInt(COLUMN_ALBUM_ID);
-	}
-
-	public String getAlbum(Cursor cursor) {
-		return cursor.getString(COLUMN_ALBUM);
-	}
-
-	public int getArtistId(Cursor cursor) {
-		return cursor.getInt(COLUMN_ARTIST_ID);
-	}
-
-	public String getArtist(Cursor cursor) {
-		return cursor.getString(COLUMN_ARTIST);
-	}
-
-	public long getDateModified(Cursor cursor) {
-		return cursor.getLong(COLUMN_DATE_MODIFIED);
-	}
-
-	// ---
+	/*
+	 * Public methods
+	 */
 
 	public CursorLoader getAllTracksLoader() {
 		return new CursorLoader(context, URI, PROJECTION, null, null, KEY_TITLE);
@@ -114,31 +71,23 @@ public class TracksProvider {
 
 	// ---
 
+	public Track getTrack(int position) {
+		cursor.moveToPosition(position);
+		return getTrackFromCursor(cursor);
+	}
+
 	public ArrayList<Track> getAllTracks(Cursor cursor) {
 		ArrayList<Track> tracks = new ArrayList<>();
 		cursor.moveToPosition(-1);
 		int queueIndex = 0;
 		while (cursor.moveToNext()) {
-			Track track = getTrack(cursor);
+			Track track = getTrackFromCursor(cursor);
 			track.setQueueIndex(queueIndex);
 			tracks.add(track);
 			queueIndex++;
 		}
 
 		return tracks;
-	}
-
-	public Track getTrack(Cursor cursor) {
-		Track track = new Track();
-		track.setId(getId(cursor));
-		track.setTitle(getTitle(cursor));
-		track.setDuration(getDuration(cursor));
-		track.setAlbumId(getAlbumId(cursor));
-		track.setArtistTitle(getArtist(cursor));
-		track.setAlbumTitle(getAlbum(cursor));
-		track.setPath(getPath(cursor));
-		track.setDateModified(getDateModified(cursor) * 1000);
-		return track;
 	}
 
 	public ArrayList<Track> getAllTracksWithAlbumId(int albumId) {
@@ -157,7 +106,7 @@ public class TracksProvider {
 		try {
 			cursor = resolver.query(URI, PROJECTION, KEY_ALBUM_ID + "=" + albumId, null, null);
 			cursor.moveToFirst();
-			track = getTrack(cursor);
+			track = getTrackFromCursor(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
 		}
@@ -172,11 +121,28 @@ public class TracksProvider {
 			track.setId(id);
 			cursor = resolver.query(URI, PROJECTION, KEY_ID + "=" + id, null, null);
 			cursor.moveToFirst();
-			track = getTrack(cursor);
+			track = getTrackFromCursor(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
 		}
 
+		return track;
+	}
+
+	/*
+	 * Private methods
+	 */
+
+	public Track getTrackFromCursor(Cursor cursor) {
+		Track track = new Track();
+		track.setId(cursor.getInt(COLUMN_ID));
+		track.setTitle(cursor.getString(COLUMN_TITLE));
+		track.setDuration(cursor.getLong(COLUMN_DURATION));
+		track.setAlbumId(cursor.getInt(COLUMN_ALBUM_ID));
+		track.setAlbumTitle(cursor.getString(COLUMN_ALBUM));
+		track.setArtistTitle(cursor.getString(COLUMN_ARTIST));
+		track.setPath(cursor.getString(COLUMN_PATH));
+		track.setDateModified(cursor.getLong(COLUMN_DATE_MODIFIED) * 1000);
 		return track;
 	}
 }

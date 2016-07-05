@@ -79,7 +79,7 @@ public class NowPlayingInfoFragment extends ServiceFragment {
 				track.getArtistTitle(),
 				track.getAlbumTitle());
 
-		titleView.setText(track.getTrackTitle());
+		titleView.setText(track.getTitle());
 		infoView.setText(trackMetadata);
 	}
 }

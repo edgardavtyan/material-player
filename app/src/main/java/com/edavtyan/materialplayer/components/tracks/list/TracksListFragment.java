@@ -13,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.tracks.TracksProvider;
-import com.edavtyan.materialplayer.utils.AppColors;
+import com.edavtyan.materialplayer.components.tracks.TrackDB;
 import com.edavtyan.materialplayer.lib.decorators.DividerItemDecoration;
+import com.edavtyan.materialplayer.utils.AppColors;
 
 public class TracksListFragment extends Fragment
 		implements LoaderManager.LoaderCallbacks<Cursor> {
 	private TracksListAdapter tracksAdapter;
-	private TracksProvider tracksProvider;
+	private TrackDB trackDB;
 	private AppColors appColors;
 
 	/*
@@ -30,8 +30,8 @@ public class TracksListFragment extends Fragment
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		tracksAdapter = new TracksListAdapter(getActivity(), null);
-		tracksProvider = new TracksProvider(getActivity());
+		trackDB = new TrackDB(getActivity());
+		tracksAdapter = new TracksListAdapter(getActivity(), trackDB);
 	}
 
 	@Nullable
@@ -75,7 +75,7 @@ public class TracksListFragment extends Fragment
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		return tracksProvider.getAllTracksLoader();
+		return trackDB.getAllTracksLoader();
 	}
 
 	@Override

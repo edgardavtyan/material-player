@@ -165,7 +165,7 @@ public class FloatingNowPlayingFragment
 				R.string.nowplaying_info_pattern,
 				track.getArtistTitle(),
 				track.getAlbumTitle());
-		titleView.setText(getService().getQueue().getCurrentTrack().getTrackTitle());
+		titleView.setText(getService().getQueue().getCurrentTrack().getTitle());
 		infoView.setText(trackInfo);
 
 
