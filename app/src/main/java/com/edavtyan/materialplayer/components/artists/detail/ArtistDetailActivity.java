@@ -11,9 +11,9 @@ import android.support.v4.content.Loader;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.albums.models.AlbumsProvider;
+import com.edavtyan.materialplayer.components.albums.views.list.AlbumsListAdapter;
 import com.edavtyan.materialplayer.components.artists.Artist;
 import com.edavtyan.materialplayer.components.artists.ArtistsProvider;
-import com.edavtyan.materialplayer.components.albums.views.list.AlbumsListAdapter;
 import com.edavtyan.materialplayer.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 
@@ -67,7 +67,11 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 		artistsProvider = new ArtistsProvider(this);
 		super.onCreate(savedInstanceState);
 
-		Glide.with(this).load(R.drawable.fallback_artist).into(imageView);
+		Glide.with(this)
+				.load(R.drawable.fallback_artist)
+				.error(R.drawable.fallback_artist)
+				.into(imageView);
+
 		new ArtistLoadTask().execute(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
 	}
 

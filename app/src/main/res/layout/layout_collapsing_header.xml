@@ -17,7 +17,7 @@
 			android:layout_height="wrap_content"
 			>
 
-			<ImageView
+			<com.edavtyan.materialplayer.lib.views.SquareImageView
 				android:id="@+id/back"
 				android:contentDescription="@string/description_art"
 				tools:src="@drawable/fallback_artist"
