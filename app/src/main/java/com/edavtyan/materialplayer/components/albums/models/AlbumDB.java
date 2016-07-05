@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.albums.models;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,9 +8,10 @@ import android.support.v4.content.CursorLoader;
 
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.components.tracks.TracksProvider;
+import com.edavtyan.materialplayer.lib.models.CursorDB;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 
-public class AlbumDB {
+public class AlbumDB extends CursorDB {
 	private static final int COLUMN_ID = 0;
 	private static final int COLUMN_TITLE = 1;
 	private static final int COLUMN_ARTIST = 2;
@@ -34,29 +34,16 @@ public class AlbumDB {
 	};
 
 	/*
-	 * Fields
-	 */
-
-	private final Context context;
-	private final ContentResolver resolver;
-	private Cursor cursor;
-
-	/*
 	 * Constructors
 	 */
 
 	public AlbumDB(Context context) {
-		this.context = context;
-		resolver = context.getContentResolver();
+		super(context);
 	}
 
 	/*
 	 * Public methods
 	 */
-
-	public void swapCursor(Cursor newCursor) {
-		cursor = newCursor;
-	}
 
 	public Album getAlbum(int position) {
 		cursor.moveToPosition(position);

@@ -1,13 +1,14 @@
 package com.edavtyan.materialplayer.components.artists;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
-public class ArtistDB {
+import com.edavtyan.materialplayer.lib.models.CursorDB;
+
+public class ArtistDB extends CursorDB {
 	private static final int COLUMN_ID = 0;
 	private static final int COLUMN_TITLE = 1;
 	private static final int COLUMN_ALBUMS_COUNT = 2;
@@ -27,31 +28,16 @@ public class ArtistDB {
 	};
 
 	/*
-	 * Fields
-	 */
-
-	private final Context context;
-	private final ContentResolver resolver;
-	private Cursor cursor;
-
-	/*
 	 * Constructors
 	 */
 
 	public ArtistDB(Context context) {
-		this.context = context;
-		resolver = context.getContentResolver();
+		super(context);
 	}
 
 	/*
 	 * Public methods
 	 */
-
-	public void swapCursor(Cursor newCursor) {
-		cursor = newCursor;
-	}
-
-	//---
 
 	public CursorLoader getAllArtistsLoader() {
 		return new CursorLoader(context, URI, PROJECTION, null, null, null);
@@ -78,7 +64,7 @@ public class ArtistDB {
 			if (cursor != null) cursor.close();
 		}
 	}
-	
+
 	/*
 	 * Private methods
 	 */
