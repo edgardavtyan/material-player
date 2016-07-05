@@ -7,23 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.albums.models.AlbumsProvider;
+import com.edavtyan.materialplayer.components.albums.models.Album;
+import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
+import com.edavtyan.materialplayer.components.albums.views.detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.components.tracks.TracksProvider;
-import com.edavtyan.materialplayer.components.albums.views.detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 
 import java.util.List;
 
 public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListViewHolder> {
-	private final AlbumsProvider albumsProvider;
+	private final AlbumDB albumDB;
 	private final TracksProvider tracksProvider;
 
 	//---
 
-	public AlbumsListAdapter(Context context, Cursor cursor) {
-		super(context, cursor);
-		albumsProvider = new AlbumsProvider(context);
+	public AlbumsListAdapter(Context context, AlbumDB albumDB) {
+		super(context, null);
+		this.albumDB = albumDB;
 		tracksProvider = new TracksProvider(context);
 	}
 
@@ -35,16 +36,15 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListVi
 		AlbumsListViewHolder holder = new AlbumsListViewHolder(context, view);
 
 		holder.setOnClickListener(itemView -> {
-			cursor.moveToPosition(holder.getAdapterPosition());
-			AlbumDetailActivity.startActivity(context, albumsProvider.getId(cursor));
+			Album album = albumDB.getAlbum(holder.getAdapterPosition());
+			AlbumDetailActivity.startActivity(context, album.getId());
 		});
 
 		holder.setOnMenuItemClickListener(item -> {
 			switch (item.getItemId()) {
 			case R.id.menu_addToPlaylist:
-				cursor.moveToPosition(holder.getAdapterPosition());
-				int albumId = albumsProvider.getId(cursor);
-				List<Track> tracks = tracksProvider.getAllTracksWithAlbumId(albumId);
+				Album album = albumDB.getAlbum(holder.getAdapterPosition());
+				List<Track> tracks = tracksProvider.getAllTracksWithAlbumId(album.getId());
 				service.getQueue().addAll(tracks);
 
 			default:
@@ -58,8 +58,15 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListVi
 	@Override
 	public void onBindViewHolder(AlbumsListViewHolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.setTitle(albumsProvider.getTitle(cursor));
-		holder.setInfo(albumsProvider.getTracksCount(cursor), albumsProvider.getArtist(cursor));
-		holder.setArt(albumsProvider.getArtPath(cursor));
+		Album album = albumDB.getAlbum(position);
+		holder.setTitle(album.getTitle());
+		holder.setInfo(album.getTracksCount(), album.getArtistTitle());
+		holder.setArt(album.getArt());
+	}
+
+	@Override
+	public void swapCursor(Cursor newCursor) {
+		super.swapCursor(newCursor);
+		albumDB.swapCursor(newCursor);
 	}
 }

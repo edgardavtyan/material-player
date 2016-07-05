@@ -7,11 +7,11 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
-import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.components.tracks.TracksProvider;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 
-public class AlbumsProvider {
+public class AlbumDB {
 	private static final int COLUMN_ID = 0;
 	private static final int COLUMN_TITLE = 1;
 	private static final int COLUMN_ARTIST = 2;
@@ -33,38 +33,42 @@ public class AlbumsProvider {
 			KEY_ART_PATH,
 	};
 
-	/* Fields */
+	/*
+	 * Fields
+	 */
 
 	private final Context context;
 	private final ContentResolver resolver;
+	private Cursor cursor;
 
-	/* Constructors */
+	/*
+	 * Constructors
+	 */
 
-	public AlbumsProvider(Context context) {
+	public AlbumDB(Context context) {
 		this.context = context;
 		resolver = context.getContentResolver();
 	}
 
-	/* Public methods */
+	/*
+	 * Public methods
+	 */
 
-	public int getId(Cursor cursor) {
-		return cursor.getInt(COLUMN_ID);
+	public void swapCursor(Cursor newCursor) {
+		cursor = newCursor;
 	}
 
-	public String getTitle(Cursor cursor) {
-		return cursor.getString(COLUMN_TITLE);
-	}
+	public Album getAlbum(int position) {
+		cursor.moveToPosition(position);
 
-	public String getArtist(Cursor cursor) {
-		return cursor.getString(COLUMN_ARTIST);
-	}
+		Album album = new Album();
+		album.setId(cursor.getInt(COLUMN_ID));
+		album.setTitle(cursor.getString(COLUMN_TITLE));
+		album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
+		album.setTracksCount(cursor.getInt(COLUMN_TRACKS_COUNT));
+		album.setArt(ArtProvider.fromPath(cursor.getString(COLUMN_ART_PATH)));
 
-	public int getTracksCount(Cursor cursor) {
-		return cursor.getInt(COLUMN_TRACKS_COUNT);
-	}
-
-	public String getArtPath(Cursor cursor) {
-		return cursor.getString(COLUMN_ART_PATH);
+		return album;
 	}
 
 	//---

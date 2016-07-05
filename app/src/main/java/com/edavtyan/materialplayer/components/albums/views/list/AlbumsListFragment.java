@@ -5,19 +5,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.Loader;
 
+import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.lib.fragments.ListFragment;
-import com.edavtyan.materialplayer.components.albums.models.AlbumsProvider;
 
 public class AlbumsListFragment extends ListFragment {
 	private AlbumsListAdapter albumsAdapter;
-	private AlbumsProvider albumsProvider;
+	private AlbumDB albumDB;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		albumsAdapter = new AlbumsListAdapter(getContext(), null);
-		albumsProvider = new AlbumsProvider(getContext());
+		albumDB = new AlbumDB(getContext());
+		albumsAdapter = new AlbumsListAdapter(getContext(), albumDB);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class AlbumsListFragment extends ListFragment {
 
 	@Override
 	public Loader<Cursor> getLoader() {
-		return albumsProvider.getAllAlbumsLoader();
+		return albumDB.getAllAlbumsLoader();
 	}
 
 	@Override

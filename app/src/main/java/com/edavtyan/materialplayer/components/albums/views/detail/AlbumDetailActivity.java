@@ -11,13 +11,13 @@ import android.support.v4.content.Loader;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.components.albums.models.Album;
-import com.edavtyan.materialplayer.components.albums.models.AlbumsProvider;
+import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.components.tracks.TracksProvider;
 import com.edavtyan.materialplayer.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import java.io.File;
 
@@ -67,8 +67,8 @@ public class AlbumDetailActivity extends CollapsingHeaderListActivity {
 		tracksProvider = new TracksProvider(this);
 		super.onCreate(savedInstanceState);
 
-		AlbumsProvider albumsProvider = new AlbumsProvider(this);
-		Album album = albumsProvider.getAlbumFromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1));
+		AlbumDB albumDB = new AlbumDB(this);
+		Album album = albumDB.getAlbumFromId(getIntent().getIntExtra(EXTRA_ALBUM_ID, -1));
 
 		titleView.setText(album.getTitle());
 		String tracksCount = getResources().getQuantityString(

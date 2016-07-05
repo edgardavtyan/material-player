@@ -10,7 +10,7 @@ import android.support.v4.content.Loader;
 
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.albums.models.AlbumsProvider;
+import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.albums.views.list.AlbumsListAdapter;
 import com.edavtyan.materialplayer.components.artists.Artist;
 import com.edavtyan.materialplayer.components.artists.ArtistsProvider;
@@ -21,7 +21,7 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 	public static final String EXTRA_ARTIST_NAME = "artist_name";
 
 	private AlbumsListAdapter albumsAdapter;
-	private AlbumsProvider albumsProvider;
+	private AlbumDB albumDB;
 	private ArtistsProvider artistsProvider;
 
 	/*
@@ -62,8 +62,8 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		albumsAdapter = new AlbumsListAdapter(this, null);
-		albumsProvider = new AlbumsProvider(this);
+		albumDB = new AlbumDB(this);
+		albumsAdapter = new AlbumsListAdapter(this, albumDB);
 		artistsProvider = new ArtistsProvider(this);
 		super.onCreate(savedInstanceState);
 
@@ -90,7 +90,7 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 	@Override
 	public Loader<Cursor> getLoader() {
 		String artist = getIntent().getStringExtra(EXTRA_ARTIST_NAME);
-		return albumsProvider.getArtistAlbumsLoader(artist);
+		return albumDB.getArtistAlbumsLoader(artist);
 	}
 
 	@Override

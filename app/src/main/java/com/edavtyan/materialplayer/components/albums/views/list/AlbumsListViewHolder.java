@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+
+import java.io.File;
 
 public class AlbumsListViewHolder extends RecyclerView.ViewHolder {
 	private final Context context;
@@ -55,9 +56,9 @@ public class AlbumsListViewHolder extends RecyclerView.ViewHolder {
 		infoView.setText(info);
 	}
 
-	public void setArt(String artPath) {
+	public void setArt(File artFile) {
 		Glide.with(context)
-				.load(ArtProvider.fromPath(artPath))
+				.load(artFile)
 				.error(R.drawable.fallback_cover_listitem)
 				.into(artView);
 	}
