@@ -6,6 +6,7 @@
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_weight">1</item>
 		<item name="android:background">@drawable/ripple_primary</item>
+		<item name="android:tint">?textColorContrastPrimary</item>
 	</style>
 
 	<!-- Art -->
@@ -14,7 +15,7 @@
 		<item name="android:adjustViewBounds">true</item>
 		<item name="android:scaleType">fitCenter</item>
 		<item name="android:src">@drawable/fallback_cover</item>
-		<item name="android:tint">?textColorSecondary</item>
+		<item name="android:tint">?textColorContrastSecondary</item>
 		<item name="android:background">?android:windowBackground</item>
 	</style>
 

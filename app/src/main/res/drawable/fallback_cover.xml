@@ -1,0 +1,19 @@
+<vector
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:width="360dp"
+	android:height="360dp"
+	android:viewportHeight="140.0"
+	android:viewportWidth="140.0"
+	>
+
+	<path
+		android:fillColor="#000"
+		android:pathData="M70,10A60,60 0,0 0,10 70,60 60,0 0,0 70,130 60,60 0,0 0,130 70,60 60,0 0,0 70,10ZM70,20a5,5 0,1 1,0 10C47.67,30 30,47.67 30,70A5,5 0,1 1,20 70C20,42.33 42.33,20 70,20ZM70,55A15,15 0,0 1,85 70,15 15,0 0,1 70,85 15,15 0,0 1,55 70,15 15,0 0,1 70,55ZM114.92,64.91A5,5 0,0 1,120 69.98C120.01,97.64 97.69,119.99 70.02,120a5,5 0,1 1,-0 -10C92.35,109.99 110.01,92.32 110,69.98a5,5 0,0 1,4.92 -5.07z"
+		/>
+
+	<path
+		android:fillColor="#000"
+		android:pathData="M65,70a5,5 0,1 0,10 0a5,5 0,1 0,-10 0z"
+		/>
+
+</vector>
