@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.albums.views.list.AlbumsListAdapter;
 import com.edavtyan.materialplayer.components.artists.Artist;
-import com.edavtyan.materialplayer.components.artists.ArtistsProvider;
+import com.edavtyan.materialplayer.components.artists.ArtistDB;
 import com.edavtyan.materialplayer.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 
@@ -22,7 +22,7 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 
 	private AlbumsListAdapter albumsAdapter;
 	private AlbumDB albumDB;
-	private ArtistsProvider artistsProvider;
+	private ArtistDB artistDB;
 
 	/*
 	 * AsyncTasks
@@ -31,7 +31,7 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 	private class ArtistLoadTask extends AsyncTask<String, Void, Artist> {
 		@Override
 		protected Artist doInBackground(String... artistTitles) {
-			return artistsProvider.getArtistFromTitle(artistTitles[0]);
+			return artistDB.getArtistFromTitle(artistTitles[0]);
 		}
 
 		@Override
@@ -63,8 +63,8 @@ public class ArtistDetailActivity extends CollapsingHeaderListActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		albumDB = new AlbumDB(this);
+		artistDB = new ArtistDB(this);
 		albumsAdapter = new AlbumsListAdapter(this, albumDB);
-		artistsProvider = new ArtistsProvider(this);
 		super.onCreate(savedInstanceState);
 
 		Glide.with(this)

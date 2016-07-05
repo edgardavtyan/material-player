@@ -7,17 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.artists.ArtistsProvider;
+import com.edavtyan.materialplayer.components.artists.Artist;
+import com.edavtyan.materialplayer.components.artists.ArtistDB;
 import com.edavtyan.materialplayer.components.artists.detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 
 public class ArtistsListAdapter extends RecyclerViewCursorAdapter<ArtistsListViewHolder> {
-	private final ArtistsProvider artistsProvider;
+	private final ArtistDB artistDB;
 	private final Context context;
 
-	public ArtistsListAdapter(Context context, Cursor cursor) {
-		super(context, cursor);
-		artistsProvider = new ArtistsProvider(context);
+	public ArtistsListAdapter(Context context, ArtistDB artistDB) {
+		super(context, null);
+		this.artistDB = artistDB;
 		this.context = context;
 	}
 
@@ -32,11 +33,19 @@ public class ArtistsListAdapter extends RecyclerViewCursorAdapter<ArtistsListVie
 	@Override
 	public void onBindViewHolder(ArtistsListViewHolder holder, int position) {
 		super.onBindViewHolder(holder, position);
-		holder.setTitle(artistsProvider.getTitle(cursor));
-		holder.setInfo(artistsProvider.getAlbumsCount(cursor), artistsProvider.getTracksCount(cursor));
+
+		Artist artist = artistDB.getArtist(position);
+		holder.setTitle(artist.getTitle());
+		holder.setInfo(artist.getAlbumsCount(), artist.getTracksCount());
 		holder.setOnClickListener(view -> {
 			cursor.moveToPosition(holder.getAdapterPosition());
-			ArtistDetailActivity.startActivity(context, artistsProvider.getTitle(cursor));
+			ArtistDetailActivity.startActivity(context, artist.getTitle());
 		});
+	}
+
+	@Override
+	public void swapCursor(Cursor newCursor) {
+		super.swapCursor(newCursor);
+		artistDB.swapCursor(newCursor);
 	}
 }
