@@ -1,12 +1,10 @@
 package com.edavtyan.materialplayer.utils;
 
+import android.media.MediaMetadataRetriever;
 import android.util.Log;
 
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.esotericsoftware.wildcard.Paths;
-
-import org.jaudiotagger.audio.AudioFile;
-import org.jaudiotagger.audio.AudioFileIO;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,8 +40,9 @@ public final class ArtProvider {
 		if (artOutdated || !foundArt) {
 			Log.d(TAG, "Art for " + track.getAlbumTitle() + " does not exist or outdated");
 			try {
-				AudioFile audioFile = AudioFileIO.read(new File(track.getPath()));
-				byte[] artBytes = audioFile.getTag().getFirstArtwork().getBinaryData();
+				MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
+				metadataRetriever.setDataSource(track.getPath());
+				byte[] artBytes = metadataRetriever.getEmbeddedPicture();
 
 				FileOutputStream outputStream = new FileOutputStream(artFile);
 				outputStream.write(artBytes);
