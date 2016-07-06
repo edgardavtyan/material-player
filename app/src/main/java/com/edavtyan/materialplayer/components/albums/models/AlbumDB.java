@@ -54,7 +54,6 @@ public class AlbumDB extends CursorDB {
 		album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
 		album.setTracksCount(cursor.getInt(COLUMN_TRACKS_COUNT));
 		album.setArt(ArtProvider.fromPath(cursor.getString(COLUMN_ART_PATH)));
-
 		return album;
 	}
 
@@ -65,7 +64,7 @@ public class AlbumDB extends CursorDB {
 	}
 
 	public CursorLoader getArtistAlbumsLoader(String artist) {
-		String selection = String.format("%s=?", KEY_ARTIST);
+		String selection = KEY_ARTIST + "=?";
 		String[] args = new String[] {artist};
 		return new CursorLoader(context, URI, PROJECTION, selection, args, KEY_TITLE);
 	}

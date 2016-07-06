@@ -69,7 +69,7 @@ public class ArtistDB extends CursorDB {
 	 * Private methods
 	 */
 
-	public Artist getArtistFromCursor(Cursor cursor) {
+	private Artist getArtistFromCursor(Cursor cursor) {
 		Artist artist = new Artist();
 		artist.setId(cursor.getInt(COLUMN_ID));
 		artist.setTitle(cursor.getString(COLUMN_TITLE));

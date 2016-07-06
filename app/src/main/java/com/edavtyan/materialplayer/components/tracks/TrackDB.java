@@ -26,7 +26,7 @@ public class TrackDB extends CursorDB {
 	private static final String KEY_TRACK = MediaStore.Audio.Media.TRACK;
 	private static final String KEY_TITLE = MediaStore.Audio.Media.TITLE;
 	private static final String KEY_DURATION = MediaStore.Audio.Media.DURATION;
-	private static final String KEY_DATA = MediaStore.Audio.Media.DATA;
+	private static final String KEY_PATH = MediaStore.Audio.Media.DATA;
 	private static final String KEY_ALBUM_ID = MediaStore.Audio.Media.ALBUM_ID;
 	private static final String KEY_ALBUM = MediaStore.Audio.Media.ALBUM;
 	private static final String KEY_ARTIST_ID = MediaStore.Audio.Media.ARTIST_ID;
@@ -39,13 +39,12 @@ public class TrackDB extends CursorDB {
 			KEY_TRACK,
 			KEY_TITLE,
 			KEY_DURATION,
-			KEY_DATA,
+			KEY_PATH,
 			KEY_ALBUM_ID,
 			KEY_ALBUM,
 			KEY_ARTIST_ID,
 			KEY_ARTIST,
 			KEY_DATE_MODIFIED,
-
 	};
 
 	/*
@@ -77,17 +76,7 @@ public class TrackDB extends CursorDB {
 	}
 
 	public ArrayList<Track> getAllTracks() {
-		ArrayList<Track> tracks = new ArrayList<>();
-		cursor.moveToPosition(-1);
-		int queueIndex = 0;
-		while (cursor.moveToNext()) {
-			Track track = getTrackFromCursor(cursor);
-			track.setQueueIndex(queueIndex);
-			tracks.add(track);
-			queueIndex++;
-		}
-
-		return tracks;
+		return getAllTracksFromCursor(cursor);
 	}
 
 	public ArrayList<Track> getAllTracksWithAlbumId(int albumId) {
@@ -118,7 +107,6 @@ public class TrackDB extends CursorDB {
 		Track track = new Track();
 		Cursor cursor = null;
 		try {
-			track.setId(id);
 			cursor = resolver.query(URI, PROJECTION, KEY_ID + "=" + id, null, null);
 			cursor.moveToFirst();
 			track = getTrackFromCursor(cursor);
@@ -133,13 +121,15 @@ public class TrackDB extends CursorDB {
 	 * Private methods
 	 */
 
-	public Track getTrackFromCursor(Cursor cursor) {
+	private Track getTrackFromCursor(Cursor cursor) {
 		Track track = new Track();
 		track.setId(cursor.getInt(COLUMN_ID));
+		track.setTrack(cursor.getInt(COLUMN_TRACK));
 		track.setTitle(cursor.getString(COLUMN_TITLE));
 		track.setDuration(cursor.getLong(COLUMN_DURATION));
 		track.setAlbumId(cursor.getInt(COLUMN_ALBUM_ID));
 		track.setAlbumTitle(cursor.getString(COLUMN_ALBUM));
+		track.setArtistId(cursor.getInt(COLUMN_ARTIST_ID));
 		track.setArtistTitle(cursor.getString(COLUMN_ARTIST));
 		track.setPath(cursor.getString(COLUMN_PATH));
 		track.setDateModified(cursor.getLong(COLUMN_DATE_MODIFIED) * 1000);
