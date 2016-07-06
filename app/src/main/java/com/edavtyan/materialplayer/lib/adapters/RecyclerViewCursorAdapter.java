@@ -4,14 +4,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 
+import com.edavtyan.materialplayer.lib.models.CursorDB;
+
 public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHolder>
 		extends RecyclerView.Adapter<VH> {
 	protected final Context context;
-	protected Cursor cursor;
 
-	public RecyclerViewCursorAdapter(Context context, Cursor cursor) {
+	public RecyclerViewCursorAdapter(Context context) {
 		this.context = context;
-		this.cursor = cursor;
 	}
 
 	/*
@@ -19,15 +19,8 @@ public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHold
 	 */
 
 	@Override
-	public void onBindViewHolder(VH holder, int position) {
-		cursor.moveToPosition(position);
-		String a = "123456";
-	}
-
-	@Override
 	public int getItemCount() {
-		if (cursor == null) return 0;
-		return cursor.getCount();
+		return getDB().getCount();
 	}
 
 	/*
@@ -35,8 +28,13 @@ public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHold
 	 */
 
 	public void swapCursor(Cursor newCursor) {
-		if (cursor == newCursor) return;
-		cursor = newCursor;
+		getDB().swapCursor(newCursor);
 		notifyDataSetChanged();
 	}
+
+	/*
+	 * Abstract methods
+	 */
+
+	public abstract CursorDB getDB();
 }

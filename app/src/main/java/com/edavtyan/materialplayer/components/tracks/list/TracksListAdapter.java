@@ -43,7 +43,7 @@ public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 			Intent i = new Intent(context, NowPlayingActivity.class);
 			context.startActivity(i);
 			service.getQueue().setTracks(
-					trackDB.getAllTracks(cursor),
+					trackDB.getAllTracks(),
 					holder.getAdapterPosition());
 			service.getPlayer().prepare();
 		});

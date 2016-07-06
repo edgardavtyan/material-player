@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.tracks.list;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.components.tracks.TrackDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
+import com.edavtyan.materialplayer.lib.models.CursorDB;
 
 public abstract class TracksAdapter<THolder extends TracksViewHolder>
 		extends RecyclerServiceCursorAdapter<THolder> {
@@ -36,7 +36,7 @@ public abstract class TracksAdapter<THolder extends TracksViewHolder>
 
 		holder.setOnClickListener(itemView -> {
 			NowPlayingActivity.startActivity(context);
-			service.getQueue().setTracks(trackDB.getAllTracks(cursor), holder.getAdapterPosition());
+			service.getQueue().setTracks(trackDB.getAllTracks(), holder.getAdapterPosition());
 			service.getPlayer().prepare();
 		});
 
@@ -57,16 +57,16 @@ public abstract class TracksAdapter<THolder extends TracksViewHolder>
 
 	@Override
 	public void onBindViewHolder(THolder holder, int position) {
-		super.onBindViewHolder(holder, position);
-
 		Track track = trackDB.getTrack(position);
 		holder.setTitle(track.getTitle());
 		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
 	}
 
+	//---
+
+
 	@Override
-	public void swapCursor(Cursor newCursor) {
-		super.swapCursor(newCursor);
-		trackDB.swapCursor(newCursor);
+	public CursorDB getDB() {
+		return trackDB;
 	}
 }

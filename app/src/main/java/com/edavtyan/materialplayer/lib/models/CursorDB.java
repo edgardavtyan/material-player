@@ -25,4 +25,9 @@ public abstract class CursorDB {
 	public void swapCursor(Cursor newCursor) {
 		cursor = newCursor;
 	}
+
+	public int getCount() {
+		if (cursor == null) return 0;
+		return cursor.getCount();
+	}
 }

@@ -76,7 +76,7 @@ public class TrackDB extends CursorDB {
 		return getTrackFromCursor(cursor);
 	}
 
-	public ArrayList<Track> getAllTracks(Cursor cursor) {
+	public ArrayList<Track> getAllTracks() {
 		ArrayList<Track> tracks = new ArrayList<>();
 		cursor.moveToPosition(-1);
 		int queueIndex = 0;
@@ -94,7 +94,7 @@ public class TrackDB extends CursorDB {
 		Cursor cursor = null;
 		try {
 			cursor = resolver.query(URI, PROJECTION, KEY_ALBUM_ID + "=" + albumId, null, KEY_TITLE);
-			return getAllTracks(cursor);
+			return getAllTracksFromCursor(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
 		}
@@ -144,5 +144,19 @@ public class TrackDB extends CursorDB {
 		track.setPath(cursor.getString(COLUMN_PATH));
 		track.setDateModified(cursor.getLong(COLUMN_DATE_MODIFIED) * 1000);
 		return track;
+	}
+
+	private ArrayList<Track> getAllTracksFromCursor(Cursor cursor) {
+		ArrayList<Track> tracks = new ArrayList<>();
+		cursor.moveToPosition(-1);
+		int queueIndex = 0;
+		while (cursor.moveToNext()) {
+			Track track = getTrackFromCursor(cursor);
+			track.setQueueIndex(queueIndex);
+			tracks.add(track);
+			queueIndex++;
+		}
+
+		return tracks;
 	}
 }

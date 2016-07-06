@@ -17,7 +17,7 @@ public abstract class RecyclerServiceCursorAdapter<TViewHolder extends RecyclerV
 	protected boolean isBound;
 
 	public RecyclerServiceCursorAdapter(Context context, Cursor cursor) {
-		super(context, cursor);
+		super(context);
 	}
 
 	/*

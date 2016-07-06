@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.albums.views.list;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import com.edavtyan.materialplayer.components.albums.views.detail.AlbumDetailAct
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.components.tracks.TrackDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
+import com.edavtyan.materialplayer.lib.models.CursorDB;
 
 import java.util.List;
 
@@ -57,16 +57,16 @@ public class AlbumsListAdapter extends RecyclerServiceCursorAdapter<AlbumsListVi
 
 	@Override
 	public void onBindViewHolder(AlbumsListViewHolder holder, int position) {
-		super.onBindViewHolder(holder, position);
 		Album album = albumDB.getAlbum(position);
 		holder.setTitle(album.getTitle());
 		holder.setInfo(album.getTracksCount(), album.getArtistTitle());
 		holder.setArt(album.getArt());
 	}
 
+	//---
+
 	@Override
-	public void swapCursor(Cursor newCursor) {
-		super.swapCursor(newCursor);
-		albumDB.swapCursor(newCursor);
+	public CursorDB getDB() {
+		return albumDB;
 	}
 }
