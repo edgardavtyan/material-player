@@ -34,9 +34,10 @@ public class TitledSeekbar
 	//---
 
 	private class Attributes {
-		private static final int DEFAULT_TEXT_SIZE = 14;
-		private static final int DEFAULT_PROGRESS = 0;
+		private static final int DEFAULT_TEXT_SIZE = 25;
+		private static final int DEFAULT_PROGRESS = 30;
 		private static final int DEFAULT_MAX = 100;
+		private static final String DEFAULT_TEXT = "Title";
 
 		private @Getter String text;
 		private @Getter int textSize;
@@ -49,6 +50,7 @@ public class TitledSeekbar
 			try {
 				attrs = context.obtainStyledAttributes(attributeSet, R.styleable.TitledSeekbar);
 				text = attrs.getString(R.styleable.TitledSeekbar_ts_text);
+				if (text == null) text = DEFAULT_TEXT;
 				textSize = attrs.getDimensionPixelSize(
 						R.styleable.TitledSeekbar_ts_textSize, DEFAULT_TEXT_SIZE);
 				textWidth = attrs.getDimensionPixelSize(
@@ -79,7 +81,7 @@ public class TitledSeekbar
 		title = (TextView) root.findViewById(R.id.title);
 		title.setText(attributes.getText());
 		title.setTextSize(TypedValue.COMPLEX_UNIT_PX, attributes.getTextSize());
-		title.setWidth(attributes.getTextWidth());
+		title.getLayoutParams().width = attributes.getTextWidth();
 	}
 
 	/* Public methods */
