@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.artists.detail;
+package com.edavtyan.materialplayer.components.artists.views.detail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.albums.views.list.AlbumsListAdapter;
-import com.edavtyan.materialplayer.components.artists.Artist;
-import com.edavtyan.materialplayer.components.artists.ArtistDB;
+import com.edavtyan.materialplayer.components.artists.models.Artist;
+import com.edavtyan.materialplayer.components.artists.models.ArtistDB;
 import com.edavtyan.materialplayer.lib.activities.CollapsingHeaderListActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 

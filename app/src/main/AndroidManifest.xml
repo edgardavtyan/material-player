@@ -28,7 +28,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.artists.detail.ArtistDetailActivity"
+			android:name=".components.artists.views.detail.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

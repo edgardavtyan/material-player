@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.artists;
+package com.edavtyan.materialplayer.components.artists.models;
 
 import android.content.Context;
 import android.database.Cursor;

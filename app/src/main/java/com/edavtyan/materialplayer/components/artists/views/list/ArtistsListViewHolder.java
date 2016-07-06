@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.artists.list;
+package com.edavtyan.materialplayer.components.artists.views.list;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;

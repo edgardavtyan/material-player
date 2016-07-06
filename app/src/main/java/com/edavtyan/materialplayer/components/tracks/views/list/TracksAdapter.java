@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.tracks.list;
+package com.edavtyan.materialplayer.components.tracks.views.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
-import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.components.tracks.TrackDB;
+import com.edavtyan.materialplayer.components.tracks.models.Track;
+import com.edavtyan.materialplayer.components.tracks.models.TrackDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.lib.models.CursorDB;
 

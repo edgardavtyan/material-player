@@ -15,7 +15,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.widget.RemoteViews;
 
 import com.edavtyan.materialplayer.utils.ArtProvider;
-import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.tracks.models.Track;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 

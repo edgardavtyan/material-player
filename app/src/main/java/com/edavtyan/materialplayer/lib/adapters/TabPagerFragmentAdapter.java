@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.edavtyan.materialplayer.components.albums.views.list.AlbumsListFragment;
-import com.edavtyan.materialplayer.components.artists.list.ArtistsListFragment;
-import com.edavtyan.materialplayer.components.tracks.list.TracksListFragment;
+import com.edavtyan.materialplayer.components.artists.views.list.ArtistsListFragment;
+import com.edavtyan.materialplayer.components.tracks.views.list.TracksListFragment;
 
 public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
 	private final String[] tabNames = {

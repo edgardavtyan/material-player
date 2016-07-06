@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 import com.edavtyan.materialplayer.lib.fragments.ServiceFragment;
-import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.tracks.models.Track;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.wnafee.vector.MorphButton;

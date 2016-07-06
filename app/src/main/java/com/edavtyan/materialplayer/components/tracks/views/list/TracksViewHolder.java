@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.tracks.list;
+package com.edavtyan.materialplayer.components.tracks.views.list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

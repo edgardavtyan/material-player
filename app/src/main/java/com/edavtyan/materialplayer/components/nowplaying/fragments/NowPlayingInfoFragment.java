@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.fragments.ServiceFragment;
-import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.tracks.models.Track;
 import com.edavtyan.materialplayer.MusicPlayerService;
 
 public class NowPlayingInfoFragment extends ServiceFragment {

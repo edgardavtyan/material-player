@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
-import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.components.tracks.TrackDB;
+import com.edavtyan.materialplayer.components.tracks.models.Track;
+import com.edavtyan.materialplayer.components.tracks.models.TrackDB;
 import com.edavtyan.materialplayer.lib.models.CursorDB;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 

@@ -9,8 +9,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.albums.models.Album;
 import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.components.albums.views.detail.AlbumDetailActivity;
-import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.components.tracks.TrackDB;
+import com.edavtyan.materialplayer.components.tracks.models.Track;
+import com.edavtyan.materialplayer.components.tracks.models.TrackDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.lib.models.CursorDB;
 
