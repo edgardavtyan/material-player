@@ -27,23 +27,17 @@ public class ArtistDB extends CursorDB {
 			KEY_TRACKS_COUNT,
 	};
 
-	/*
-	 * Constructors
-	 */
+	//---
 
 	public ArtistDB(Context context) {
 		super(context);
 	}
 
-	/*
-	 * Public methods
-	 */
+	//---
 
 	public CursorLoader getAllArtistsLoader() {
 		return new CursorLoader(context, URI, PROJECTION, null, null, null);
 	}
-
-	//---
 
 	public Artist getArtist(int position) {
 		cursor.moveToPosition(position);
@@ -52,8 +46,7 @@ public class ArtistDB extends CursorDB {
 
 	public Artist getArtistFromTitle(String title) {
 		Cursor cursor = null;
-
-		String selection = String.format("%s=?", KEY_TITLE);
+		String selection = KEY_TITLE + "=?";
 		String[] args = {title};
 
 		try {
@@ -65,9 +58,7 @@ public class ArtistDB extends CursorDB {
 		}
 	}
 
-	/*
-	 * Private methods
-	 */
+	//---
 
 	private Artist getArtistFromCursor(Cursor cursor) {
 		Artist artist = new Artist();

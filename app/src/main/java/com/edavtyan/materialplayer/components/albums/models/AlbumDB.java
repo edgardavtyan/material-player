@@ -33,28 +33,10 @@ public class AlbumDB extends CursorDB {
 			KEY_ART_PATH,
 	};
 
-	/*
-	 * Constructors
-	 */
+	//---
 
 	public AlbumDB(Context context) {
 		super(context);
-	}
-
-	/*
-	 * Public methods
-	 */
-
-	public Album getAlbum(int position) {
-		cursor.moveToPosition(position);
-
-		Album album = new Album();
-		album.setId(cursor.getInt(COLUMN_ID));
-		album.setTitle(cursor.getString(COLUMN_TITLE));
-		album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
-		album.setTracksCount(cursor.getInt(COLUMN_TRACKS_COUNT));
-		album.setArt(ArtProvider.fromPath(cursor.getString(COLUMN_ART_PATH)));
-		return album;
 	}
 
 	//---
@@ -69,7 +51,17 @@ public class AlbumDB extends CursorDB {
 		return new CursorLoader(context, URI, PROJECTION, selection, args, KEY_TITLE);
 	}
 
-	//---
+	public Album getAlbum(int position) {
+		cursor.moveToPosition(position);
+
+		Album album = new Album();
+		album.setId(cursor.getInt(COLUMN_ID));
+		album.setTitle(cursor.getString(COLUMN_TITLE));
+		album.setArtistTitle(cursor.getString(COLUMN_ARTIST));
+		album.setTracksCount(cursor.getInt(COLUMN_TRACKS_COUNT));
+		album.setArt(ArtProvider.fromPath(cursor.getString(COLUMN_ART_PATH)));
+		return album;
+	}
 
 	public Album getAlbumFromId(int id) {
 		Cursor cursor = null;

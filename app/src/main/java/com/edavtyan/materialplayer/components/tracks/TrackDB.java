@@ -47,17 +47,13 @@ public class TrackDB extends CursorDB {
 			KEY_DATE_MODIFIED,
 	};
 
-	/*
-	 * Constructors
-	 */
+	//---
 
 	public TrackDB(Context context) {
 		super(context);
 	}
 
-	/*
-	 * Public methods
-	 */
+	//---
 
 	public CursorLoader getAllTracksLoader() {
 		return new CursorLoader(context, URI, PROJECTION, null, null, KEY_TITLE);
@@ -67,8 +63,6 @@ public class TrackDB extends CursorDB {
 		String selection = KEY_ALBUM_ID + "=" + albumId;
 		return new CursorLoader(context, URI, PROJECTION, selection, null, KEY_TRACK);
 	}
-
-	// ---
 
 	public Track getTrack(int position) {
 		cursor.moveToPosition(position);
@@ -81,8 +75,9 @@ public class TrackDB extends CursorDB {
 
 	public ArrayList<Track> getAllTracksWithAlbumId(int albumId) {
 		Cursor cursor = null;
+		String selection = KEY_ALBUM_ID + "=" + albumId;
 		try {
-			cursor = resolver.query(URI, PROJECTION, KEY_ALBUM_ID + "=" + albumId, null, KEY_TITLE);
+			cursor = resolver.query(URI, PROJECTION, selection, null, KEY_TITLE);
 			return getAllTracksFromCursor(cursor);
 		} finally {
 			if (cursor != null) cursor.close();
@@ -92,8 +87,9 @@ public class TrackDB extends CursorDB {
 	public Track getSingleTrackWithAlbumId(int albumId) {
 		Track track = new Track();
 		Cursor cursor = null;
+		String selection = KEY_ALBUM_ID + "=" + albumId;
 		try {
-			cursor = resolver.query(URI, PROJECTION, KEY_ALBUM_ID + "=" + albumId, null, null);
+			cursor = resolver.query(URI, PROJECTION, selection, null, null);
 			cursor.moveToFirst();
 			track = getTrackFromCursor(cursor);
 		} finally {
@@ -106,8 +102,9 @@ public class TrackDB extends CursorDB {
 	public Track getSingleTrackWithId(int id) {
 		Track track = new Track();
 		Cursor cursor = null;
+		String selection = KEY_ID + "=" + id;
 		try {
-			cursor = resolver.query(URI, PROJECTION, KEY_ID + "=" + id, null, null);
+			cursor = resolver.query(URI, PROJECTION, selection, null, null);
 			cursor.moveToFirst();
 			track = getTrackFromCursor(cursor);
 		} finally {
@@ -117,9 +114,7 @@ public class TrackDB extends CursorDB {
 		return track;
 	}
 
-	/*
-	 * Private methods
-	 */
+	//---
 
 	private Track getTrackFromCursor(Cursor cursor) {
 		Track track = new Track();
