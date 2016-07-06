@@ -17,7 +17,7 @@ public class BaseAppbar extends FrameLayout {
 
 	public BaseAppbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		LayoutInflater.from(context).inflate(R.layout.layout_toolbar, this, true);
+		LayoutInflater.from(context).inflate(R.layout.partial_toolbar, this, true);
 
 		appbar = (AppBarLayout) findViewById(R.id.appbar);
 		toolbar = (Toolbar) findViewById(R.id.toolbar);

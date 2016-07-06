@@ -16,7 +16,7 @@ public class PrefActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		setTheme(ThemeUtils.fromRes(this));
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_pref_toolbar);
+		setContentView(R.layout.partial_pref_toolbar);
 		addPreferencesFromResource(R.xml.prefs_main);
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

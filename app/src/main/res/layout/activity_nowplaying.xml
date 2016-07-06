@@ -13,7 +13,7 @@
 		android:orientation="vertical"
 		>
 
-		<include layout="@layout/layout_appbar" />
+		<include layout="@layout/partial_appbar" />
 
 		<fragment
 			android:id="@+id/fragment_art"

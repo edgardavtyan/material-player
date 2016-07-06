@@ -27,7 +27,7 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 	public EqualizerBandView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		LayoutInflater.from(context).inflate(R.layout.layout_equalizer_band, this, true);
+		LayoutInflater.from(context).inflate(R.layout.partial_equalizer_band, this, true);
 
 		frequencyView = (TextView) findViewById(R.id.frequency);
 		gainView = (TextView) findViewById(R.id.gain);

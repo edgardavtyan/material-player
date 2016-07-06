@@ -36,7 +36,7 @@ public class TitledSeekbar
 
 		View root = LayoutInflater
 				.from(context)
-				.inflate(R.layout.layout_titled_seekbar, this, true);
+				.inflate(R.layout.partial_titled_seekbar, this, true);
 		seekbar = (AppCompatSeekBar) root.findViewById(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);
 		title = (TextView) root.findViewById(R.id.title);

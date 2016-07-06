@@ -60,7 +60,7 @@
 				app:layout_behavior="@string/appbar_scrolling_view_behavior"
 				>
 
-				<include layout="@layout/layout_collapsing_header" />
+				<include layout="@layout/partial_collapsing_header" />
 
 				<android.support.v7.widget.RecyclerView
 					android:id="@+id/list"
