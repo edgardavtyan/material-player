@@ -62,7 +62,7 @@ public class NowPlayingSeekbarFragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_seekbar, container);
+		View view = inflater.inflate(R.layout.fragment_nowplaying_seekbar, container);
 
 		seekbar = (SeekBar) view.findViewById(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);

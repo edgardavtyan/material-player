@@ -62,7 +62,7 @@ public class FloatingNowPlayingFragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 	                         Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_floating_nowplaying, parent, false);
+		View view = inflater.inflate(R.layout.fragment_nowplaying_floating, parent, false);
 
 		LinearLayout infoWrapper = (LinearLayout) view.findViewById(R.id.info_wrapper);
 		infoWrapper.setOnClickListener(this);

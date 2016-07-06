@@ -65,7 +65,7 @@ public class NowPlayingControlsFragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		appColors = new AppColors(getActivity());
 
-		View view = inflater.inflate(R.layout.fragment_playback_controls, container, false);
+		View view = inflater.inflate(R.layout.fragment_nowplaying_controls, container, false);
 
 		playPauseContainer = (FrameLayout) view.findViewById(R.id.play_pause_container);
 		playPauseContainer.setOnClickListener(this);
