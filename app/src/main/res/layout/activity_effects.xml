@@ -37,20 +37,19 @@
 
 		<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 			android:id="@+id/bassBoost"
-			app:ts_title="@string/bassBoost_title"
+			app:ts_text="@string/bassBoost_title"
 			style="@style/AudioEffects_Effect"
 			/>
 
 		<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 			android:id="@+id/amplifier"
-			app:ts_title="@string/amplifier_title"
+			app:ts_text="@string/amplifier_title"
 			style="@style/AudioEffects_Effect"
-
 			/>
 
 		<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 			android:id="@+id/surround"
-			app:ts_title="@string/surround_title"
+			app:ts_text="@string/surround_title"
 			style="@style/AudioEffects_Effect"
 			/>
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 
+import lombok.Getter;
 import lombok.Setter;
 
 public class TitledSeekbar
@@ -29,30 +31,55 @@ public class TitledSeekbar
 		void onStopTrackingTouch(int seekbarId);
 	}
 
+	//---
+
+	private class Attributes {
+		private static final int DEFAULT_TEXT_SIZE = 14;
+		private static final int DEFAULT_PROGRESS = 0;
+		private static final int DEFAULT_MAX = 100;
+
+		private @Getter String text;
+		private @Getter int textSize;
+		private @Getter int textWidth;
+		private @Getter int progress;
+		private @Getter int max;
+
+		public Attributes(Context context, AttributeSet attributeSet) {
+			TypedArray attrs = null;
+			try {
+				attrs = context.obtainStyledAttributes(attributeSet, R.styleable.TitledSeekbar);
+				text = attrs.getString(R.styleable.TitledSeekbar_ts_text);
+				textSize = attrs.getDimensionPixelSize(
+						R.styleable.TitledSeekbar_ts_textSize, DEFAULT_TEXT_SIZE);
+				textWidth = attrs.getDimensionPixelSize(
+						R.styleable.TitledSeekbar_ts_textWidth, LayoutParams.WRAP_CONTENT);
+				progress = attrs.getInteger(
+						R.styleable.TitledSeekbar_ts_progress, DEFAULT_PROGRESS);
+				max = attrs.getInteger(
+						R.styleable.TitledSeekbar_ts_max, DEFAULT_MAX);
+			} finally {
+				if (attrs != null) attrs.recycle();
+			}
+		}
+	}
+
 	/* Constructors */
 
 	public TitledSeekbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		View root = LayoutInflater
-				.from(context)
-				.inflate(R.layout.partial_titled_seekbar, this, true);
-		seekbar = (AppCompatSeekBar) root.findViewById(R.id.seekbar);
-		seekbar.setOnSeekBarChangeListener(this);
-		title = (TextView) root.findViewById(R.id.title);
+		View root = LayoutInflater.from(context).inflate(R.layout.partial_titled_seekbar, this, true);
+		Attributes attributes = new Attributes(context, attrs);
 
-		TypedArray typedAttrs = null;
-		try {
-			typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.TitledSeekbar);
-			seekbar.setProgress(typedAttrs.getInteger(R.styleable.TitledSeekbar_ts_progress, 0));
-			seekbar.setMax(typedAttrs.getInteger(R.styleable.TitledSeekbar_ts_max, 0));
-			title.setText(typedAttrs.getString(R.styleable.TitledSeekbar_ts_title));
-			title.getLayoutParams().width = typedAttrs.getDimensionPixelSize(
-					R.styleable.TitledSeekbar_ts_width,
-					LayoutParams.WRAP_CONTENT);
-		} finally {
-			if (typedAttrs != null) typedAttrs.recycle();
-		}
+		seekbar = (AppCompatSeekBar) root.findViewById(R.id.seekbar);
+		seekbar.setMax(attributes.getMax());
+		seekbar.setProgress(attributes.getProgress());
+		seekbar.setOnSeekBarChangeListener(this);
+
+		title = (TextView) root.findViewById(R.id.title);
+		title.setText(attributes.getText());
+		title.setTextSize(TypedValue.COMPLEX_UNIT_PX, attributes.getTextSize());
+		title.setWidth(attributes.getTextWidth());
 	}
 
 	/* Public methods */

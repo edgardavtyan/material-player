@@ -2,8 +2,9 @@
 <resources>
 
 	<declare-styleable name="TitledSeekbar">
-		<attr name="ts_title" format="string" />
-		<attr name="ts_width" format="dimension" />
+		<attr name="ts_text" format="string" />
+		<attr name="ts_textSize" format="dimension" />
+		<attr name="ts_textWidth" format="dimension" />
 		<attr name="ts_progress" format="integer" />
 		<attr name="ts_max" format="integer" />
 	</declare-styleable>
