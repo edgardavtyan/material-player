@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">MaterialPlayer</string>
+	<string name="app_name">Material Player</string>
 
 	<string name="nowplaying_toolbar_title">Now playing</string>
 	<string name="nowplaying_info_pattern">%1$s - %2$s</string>
