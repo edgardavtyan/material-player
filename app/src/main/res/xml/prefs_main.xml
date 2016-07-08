@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+	>
 
 	<com.edavtyan.materialplayer.lib.views.ColoredPreferenceCategory android:title="Appearance">
 
@@ -28,13 +30,12 @@
 	<com.edavtyan.materialplayer.lib.views.ColoredPreferenceCategory
 		android:title="Audio">
 
-		<ListPreference
-			android:key="@string/pref_audio_engine_key"
-		    android:title="@string/pref_audio_engine_title"
-		    android:summary="@string/pref_audio_engine_summary"
-		    android:entries="@array/pref_audio_engine_entries"
-		    android:entryValues="@array/pref_audio_engine_values"
-		    android:defaultValue="@string/pref_audio_engine_default"
+		<com.edavtyan.materialplayer.components.prefs.views.summarylist.SummaryListPreference
+			android:title="@string/pref_audio_engine_title"
+			android:summary="@string/pref_audio_engine_summary"
+			app:entries="@array/pref_audio_engine_entries"
+			app:summaries="@array/pref_audio_engine_summaries"
+			app:values="@array/pref_audio_engine_values"
 			/>
 
 	</com.edavtyan.materialplayer.lib.views.ColoredPreferenceCategory>
