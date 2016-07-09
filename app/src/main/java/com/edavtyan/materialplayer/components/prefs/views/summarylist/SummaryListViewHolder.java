@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.R;
 
 import lombok.Setter;
 
-class SummaryListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class SummaryListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 	private final View itemView;
 	private final TextView titleView;
 	private final TextView summaryView;
@@ -19,8 +19,8 @@ class SummaryListViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
 	//---
 
-	interface OnHolderClickListener {
-		void onHolderClick(SummaryListViewHolder holder);
+	public interface OnHolderClickListener {
+		void onHolderClick(int position);
 	}
 
 	//---
@@ -57,7 +57,7 @@ class SummaryListViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 	@Override
 	public void onClick(View view) {
 		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this);
+			onHolderClickListener.onHolderClick(getAdapterPosition());
 		}
 	}
 }

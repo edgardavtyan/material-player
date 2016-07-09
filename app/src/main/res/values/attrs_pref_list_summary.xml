@@ -2,9 +2,11 @@
 <resources>
 
 	<declare-styleable name="SummaryListPref">
+		<attr name="key" format="string" />
+		<attr name="defaultValue" format="string" />
 		<attr name="entries" format="reference" />
-		<attr name="summaries" format="reference" />
 		<attr name="values" format="reference" />
+		<attr name="summaries" format="reference" />
 	</declare-styleable>
 
 </resources>
