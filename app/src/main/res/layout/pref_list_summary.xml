@@ -11,8 +11,8 @@
 		android:id="@+id/list"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-	    tools:listitem="@layout/listitem_pref_list_summary"
+		tools:listitem="@layout/listitem_pref_list_summary"
+		style="@style/ListPreference_List"
 		/>
 
 </LinearLayout>
