@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.prefs.views.customlist;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.widget.SeekBar;
 
 import lombok.Setter;
 
@@ -30,12 +29,6 @@ public abstract class ListPreferenceAdapter<VH extends RecyclerView.ViewHolder>
 	protected void raiseOnItemClickListener(int position) {
 		if (onItemClickListener != null) {
 			onItemClickListener.onPreferenceSelected(position);
-		}
-	}
-
-	class S extends SeekBar {
-		public S(Context context) {
-			super(context);
 		}
 	}
 }
