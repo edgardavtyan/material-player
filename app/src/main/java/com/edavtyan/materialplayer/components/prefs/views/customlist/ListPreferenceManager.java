@@ -16,12 +16,12 @@ import lombok.Getter;
 public abstract class ListPreferenceManager {
 	protected final Context context;
 	protected final SharedPreferences prefs;
-	protected @Getter final String preferenceKey;
-	protected @Getter final String defaultPreference;
-	protected @Getter final List<CharSequence> entries;
-	protected @Getter final List<CharSequence> summaries;
-	protected @Getter final List<CharSequence> values;
-	
+	protected final @Getter String preferenceKey;
+	protected final @Getter String defaultPreference;
+	protected final @Getter List<CharSequence> entries;
+	protected final @Getter List<CharSequence> summaries;
+	protected final @Getter List<CharSequence> values;
+
 	//---
 
 	@SuppressWarnings("ResourceType")
