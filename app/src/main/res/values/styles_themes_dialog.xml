@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<resources>
+
+	<!-- Light -->
+
+	<style name="DialogTheme_Light_Orange" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary_orange</item>
+	</style>
+
+	<style name="DialogTheme_Light_Purple" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary_purple</item>
+	</style>
+
+	<style name="DialogTheme_Light_Blue" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary_blue</item>
+	</style>
+
+	<style name="DialogTheme_Light_Red" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary_red</item>
+	</style>
+
+	<style name="DialogTheme_Light_Green" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary_green</item>
+	</style>
+
+	<style name="DialogTheme_Light_BlueGray" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary_blueGray</item>
+	</style>
+
+	<style name="DialogTheme_Light_Black" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/black</item>
+	</style>
+
+	<!-- Dark -->
+
+	<style name="Dark_Dialog" parent="Theme.AppCompat.Dialog.Alert">
+		<item name="android:background">#303030</item>
+	</style>
+
+	<style name="DialogTheme_Dark_Orange" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_orange</item>
+	</style>
+
+	<style name="DialogTheme_Dark_Purple" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_purple</item>
+	</style>
+
+	<style name="DialogTheme_Dark_Blue" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_blue</item>
+	</style>
+
+	<style name="DialogTheme_Dark_Red" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_red</item>
+	</style>
+
+	<style name="DialogTheme_Dark_Green" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_green</item>
+	</style>
+
+	<style name="DialogTheme_Dark_BlueGray" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_blueGray</item>
+	</style>
+
+	<style name="DialogTheme_Dark_Black" parent="Dark_Dialog">
+		<item name="colorAccent">@color/black</item>
+	</style>
+
+	<!-- Black -->
+
+	<style name="DialogTheme_Black_Orange" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_orange</item>
+	</style>
+
+	<style name="DialogTheme_Black_Purple" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_purple</item>
+	</style>
+
+	<style name="DialogTheme_Black_Blue" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_blue</item>
+	</style>
+
+	<style name="DialogTheme_Black_Red" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_red</item>
+	</style>
+
+	<style name="DialogTheme_Black_Green" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_green</item>
+	</style>
+
+	<style name="DialogTheme_Black_BlueGray" parent="Dark_Dialog">
+		<item name="colorAccent">@color/primary_blueGray</item>
+	</style>
+
+	<style name="DialogTheme_Black_Black" parent="Dark_Dialog">
+		<item name="colorAccent">@color/black</item>
+	</style>
+
+</resources>

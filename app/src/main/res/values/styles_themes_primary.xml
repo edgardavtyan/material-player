@@ -6,36 +6,43 @@
 	<style name="AppTheme.Light.Orange">
 		<item name="colorPrimary">@color/primary_orange</item>
 		<item name="colorPrimaryDark">@color/primary_dark_orange</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_Orange</item>
 	</style>
 
 	<style name="AppTheme.Light.Purple">
 		<item name="colorPrimary">@color/primary_purple</item>
 		<item name="colorPrimaryDark">@color/primary_dark_purple</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_Purple</item>
 	</style>
 
 	<style name="AppTheme.Light.Blue">
 		<item name="colorPrimary">@color/primary_blue</item>
 		<item name="colorPrimaryDark">@color/primary_dark_blue</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_Blue</item>
 	</style>
 
 	<style name="AppTheme.Light.Red">
 		<item name="colorPrimary">@color/primary_red</item>
 		<item name="colorPrimaryDark">@color/primary_dark_red</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_Red</item>
 	</style>
 
 	<style name="AppTheme.Light.Green">
 		<item name="colorPrimary">@color/primary_green</item>
 		<item name="colorPrimaryDark">@color/primary_dark_green</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_Green</item>
 	</style>
 
 	<style name="AppTheme.Light.BlueGray">
 		<item name="colorPrimary">@color/primary_blueGray</item>
 		<item name="colorPrimaryDark">@color/primary_dark_blueGray</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_BlueGray</item>
 	</style>
 
 	<style name="AppTheme.Light.Black">
 		<item name="colorPrimary">@color/black</item>
 		<item name="colorPrimaryDark">@color/black</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Light_Black</item>
 	</style>
 
 	<!-- Dark -->
@@ -43,36 +50,43 @@
 	<style name="AppTheme.Dark.Orange">
 		<item name="colorPrimary">@color/primary_orange</item>
 		<item name="colorPrimaryDark">@color/primary_dark_orange</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_Orange</item>
 	</style>
 
 	<style name="AppTheme.Dark.Purple">
 		<item name="colorPrimary">@color/primary_purple</item>
 		<item name="colorPrimaryDark">@color/primary_dark_purple</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_Purple</item>
 	</style>
 
 	<style name="AppTheme.Dark.Blue">
 		<item name="colorPrimary">@color/primary_blue</item>
 		<item name="colorPrimaryDark">@color/primary_dark_blue</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_Blue</item>
 	</style>
 
 	<style name="AppTheme.Dark.Red">
 		<item name="colorPrimary">@color/primary_red</item>
 		<item name="colorPrimaryDark">@color/primary_dark_red</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_Red</item>
 	</style>
 
 	<style name="AppTheme.Dark.Green">
 		<item name="colorPrimary">@color/primary_green</item>
 		<item name="colorPrimaryDark">@color/primary_dark_green</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_Green</item>
 	</style>
 
 	<style name="AppTheme.Dark.BlueGray">
 		<item name="colorPrimary">@color/primary_blueGray</item>
 		<item name="colorPrimaryDark">@color/primary_dark_blueGray</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_BlueGray</item>
 	</style>
 
 	<style name="AppTheme.Dark.Black">
 		<item name="colorPrimary">@color/black</item>
 		<item name="colorPrimaryDark">@color/black</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Dark_Black</item>
 	</style>
 
 	<!-- Black -->
@@ -80,36 +94,43 @@
 	<style name="AppTheme.Black.Orange">
 		<item name="colorPrimary">@color/primary_orange</item>
 		<item name="colorPrimaryDark">@color/primary_dark_orange</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_Orange</item>
 	</style>
 
 	<style name="AppTheme.Black.Purple">
 		<item name="colorPrimary">@color/primary_purple</item>
 		<item name="colorPrimaryDark">@color/primary_dark_purple</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_Purple</item>
 	</style>
 
 	<style name="AppTheme.Black.Blue">
 		<item name="colorPrimary">@color/primary_blue</item>
 		<item name="colorPrimaryDark">@color/primary_dark_blue</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_Blue</item>
 	</style>
 
 	<style name="AppTheme.Black.Red">
 		<item name="colorPrimary">@color/primary_red</item>
 		<item name="colorPrimaryDark">@color/primary_dark_red</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_Red</item>
 	</style>
 
 	<style name="AppTheme.Black.Green">
 		<item name="colorPrimary">@color/primary_green</item>
 		<item name="colorPrimaryDark">@color/primary_dark_green</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_Green</item>
 	</style>
 
 	<style name="AppTheme.Black.BlueGray">
 		<item name="colorPrimary">@color/primary_blueGray</item>
 		<item name="colorPrimaryDark">@color/primary_dark_blueGray</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_BlueGray</item>
 	</style>
 
 	<style name="AppTheme.Black.Black">
 		<item name="colorPrimary">@color/black</item>
 		<item name="colorPrimaryDark">@color/black</item>
+		<item name="android:alertDialogTheme">@style/DialogTheme_Black_Black</item>
 	</style>
 
 </resources>

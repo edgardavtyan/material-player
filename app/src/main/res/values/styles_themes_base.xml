@@ -50,8 +50,7 @@
 		<item name="textColorPrimary">#aaffffff</item>
 		<item name="textColorSecondary">#66ffffff</item>
 		<item name="android:windowBackground">@color/black</item>
-		<item name="colorControlNormal">#333333</item>
-		<item name="colorControlActivated">#aaaaaa</item>
+		<item name="colorControlNormal">#ddffffff</item>
 	</style>
 
 </resources>
