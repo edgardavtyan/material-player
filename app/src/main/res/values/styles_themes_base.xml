@@ -6,6 +6,8 @@
 
 		<item name="colorControlNormal">#8c000000</item>
 		<item name="colorControlActivated">?colorPrimary</item>
+		<item name="prefShadowTopColor">#33000000</item>
+		<item name="prefShadowBackground">#ddd</item>
 
 		<item name="textColorPrimary">#de000000</item>
 		<item name="textColorSecondary">#8a000000</item>
@@ -29,6 +31,8 @@
 
 		<item name="colorControlNormal">?attr/textColorContrastPrimary</item>
 		<item name="colorControlActivated">?colorPrimary</item>
+		<item name="prefShadowTopColor">#2c2c2c</item>
+		<item name="prefShadowBackground">#555</item>
 
 		<item name="textColorPrimary">#ffffff</item>
 		<item name="textColorSecondary">#b2ffffff</item>
@@ -47,6 +51,8 @@
 	</style>
 
 	<style name="AppTheme.Black" parent="AppTheme.Dark">
+		<item name="prefShadowTopColor">#111</item>
+		<item name="prefShadowBackground">#333</item>
 		<item name="textColorPrimary">#aaffffff</item>
 		<item name="textColorSecondary">#66ffffff</item>
 		<item name="android:windowBackground">@color/black</item>
