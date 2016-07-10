@@ -7,7 +7,7 @@
 	<!-- Base -->
 
 	<string name="prefs_theme_base_title">Base color scheme</string>
-	<string name="prefs_theme_base_summary">Light, dark or black</string>
+	<string name="prefs_theme_base_summary">%s</string>
 
 	<string name="prefs_theme_base_default">Light</string>
 	<string-array name="prefs_theme_base_entries">
@@ -19,9 +19,7 @@
 	<!-- Primary -->
 
 	<string name="prefs_theme_primary_title">Primary color scheme</string>
-    <string name="prefs_theme_primary_summary">
-        Color of toolbar, now playing background and many other elements
-    </string>
+    <string name="prefs_theme_primary_summary">%s</string>
 
 	<string name="prefs_theme_primary_default">Orange</string>
 	<string-array name="prefs_theme_primary_entries">
