@@ -21,12 +21,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId 'com.edavtyan.materialplayer'
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -43,9 +43,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.android.support:design:24.0.0'
-    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.minimize.library:seekbar-compat:0.2.4'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
     provided 'org.projectlombok:lombok:1.16.6'
