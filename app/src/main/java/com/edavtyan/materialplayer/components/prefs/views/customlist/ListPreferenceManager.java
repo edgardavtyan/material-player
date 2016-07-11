@@ -29,21 +29,15 @@ public abstract class ListPreferenceManager {
 		this.context = context;
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-		int[] attrs = new int[] {
-				android.R.attr.key,
-				android.R.attr.defaultValue,
-				android.R.attr.entryValues,
-				R.attr.summaries,
-				android.R.attr.entries,
-		};
 		TypedArray typedArray = null;
 		try {
-			typedArray = context.obtainStyledAttributes(attributeSet, attrs);
-			preferenceKey = typedArray.getString(0);
-			defaultPreference = typedArray.getString(1);
-			values = Arrays.asList(typedArray.getTextArray(2));
-			summaries = Arrays.asList(typedArray.getTextArray(3));
-			entries = Arrays.asList(typedArray.getTextArray(4));
+			typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.SummaryListPref);
+			preferenceKey = typedArray.getString(R.styleable.SummaryListPref_key);
+			defaultPreference = typedArray.getString(R.styleable.SummaryListPref_defaultValue);
+			values = Arrays.asList(typedArray.getTextArray(R.styleable.SummaryListPref_values));
+			entries = Arrays.asList(typedArray.getTextArray(R.styleable.SummaryListPref_entries));
+			summaries = Arrays.asList(typedArray.getTextArray(R.styleable.SummaryListPref_summaries));
+
 		} finally {
 			if (typedArray != null) {
 				typedArray.recycle();
