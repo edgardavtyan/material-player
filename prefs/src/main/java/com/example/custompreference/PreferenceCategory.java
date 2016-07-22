@@ -1,15 +1,12 @@
 package com.example.custompreference;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.custompreference.utils.AttributeResolver;
-import com.example.custompreference.utils.PixelConverter;
 
 public class PreferenceCategory extends LinearLayout {
 	private final Context context;
@@ -40,9 +37,5 @@ public class PreferenceCategory extends LinearLayout {
 		headingView.setTypeface(Typeface.create("sans-serif-medium", 0));
 		headingView.setTextColor(res.getColor(R.attr.colorPrimary));
 		headingView.setText(controller.getTitle());
-
-		View view = new View(context, null);
-		view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, PixelConverter.dpToPx(1)));
-		view.setBackgroundColor(Color.parseColor("#cccccc"));
 	}
 }
