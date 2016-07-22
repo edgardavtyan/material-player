@@ -1,5 +1,6 @@
 package com.example.custompreference;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -42,7 +43,9 @@ public class TestPreference extends SummaryPreference<TestPreference.TestControl
 			super(context);
 
 			@Cleanup("recycle")
-			TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.TestPreference);
+			@SuppressLint("Recycle")
+			TypedArray attrs = context.obtainStyledAttributes(
+					attributeSet, R.styleable.TestPreference);
 			key = attrs.getString(R.styleable.TestPreference_cp_key);
 			title = attrs.getString(R.styleable.TestPreference_cp_title);
 			summary = attrs.getString(R.styleable.TestPreference_cp_summary);

@@ -28,6 +28,16 @@
 		</activity>
 
 		<activity
+			android:name=".TestActivity"
+			android:launchMode="singleTop"
+			>
+			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity
 			android:name=".components.artists.views.detail.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>

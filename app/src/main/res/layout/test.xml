@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
 
-    <include layout="@layout/partial_appbar" />
+	<include layout="@layout/partial_appbar" />
 
-    <com.example.custompreference.TestPreference
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cp_key="test"
-        app:cp_title="Test preference title"
-        app:cp_summary="Test preference summary message"
-        app:cp_defaultValue="123"
-        />
+	<com.example.custompreference.PreferenceCategory
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cp_title="Test heading"
+		>
+
+		<com.example.custompreference.TestPreference
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:cp_key="test"
+			app:cp_title="Test preference title"
+			app:cp_summary="Test preference summary message"
+			app:cp_defaultValue="123"
+			/>
+
+	</com.example.custompreference.PreferenceCategory>
 
 </LinearLayout>
