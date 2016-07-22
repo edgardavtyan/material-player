@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="TestPreference">
+		<attr name="cp_key" format="string"/>
+		<attr name="cp_title" format="string"/>
+		<attr name="cp_summary" format="string"/>
+		<attr name="cp_defaultValue" format="string"/>
+	</declare-styleable>
+
+</resources>

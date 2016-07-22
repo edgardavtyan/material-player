@@ -1,0 +1,33 @@
+package com.example.custompreference.utils;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
+
+import lombok.Cleanup;
+
+public class AttributeResolver {
+	private final Context context;
+
+
+	public AttributeResolver(Context context) {
+		this.context = context;
+	}
+
+	public Drawable getDrawableAttribute(int attrId) {
+		@Cleanup("recycle") TypedArray attr = getAttribute(attrId);
+		return attr.getDrawable(0);
+	}
+
+	public int getDimen(int attrId) {
+		@Cleanup("recycle") TypedArray attr = getAttribute(attrId);
+		return attr.getDimensionPixelSize(0, 0);
+	}
+
+
+	private TypedArray getAttribute(int attrId) {
+		TypedValue typedValue = new TypedValue();
+		return context.obtainStyledAttributes(typedValue.data, new int[] { attrId });
+	}
+}
