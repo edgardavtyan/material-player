@@ -53,5 +53,6 @@ dependencies {
     compile 'com.wnafee:vector-compat:1.0.5'
     compile 'com.h6ah4i.android:openslmediaplayer:0.6.0'
     compile 'com.google.code.gson:gson:2.4'
+    compile project(':prefs')
     compile fileTree(include: '*.jar', dir: 'libs')
 }
