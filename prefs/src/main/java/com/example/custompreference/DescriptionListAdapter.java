@@ -25,11 +25,14 @@ public class DescriptionListAdapter
 		holder.setTitle(controller.getEntries().get(position));
 		holder.setDescription(controller.getSummaries().get(position));
 		holder.setChecked(controller.getPrefSelectedAtIndex(position));
+		holder.setValue(controller.getValues().get(position));
 		holder.setOnHolderClickListener(this);
 	}
 
 	@Override
-	public void onHolderClick(int position) {
+	public void onHolderClick(CharSequence value) {
+		controller.savePref(value);
 		controller.closeDialog();
+		notifyDataSetChanged();
 	}
 }

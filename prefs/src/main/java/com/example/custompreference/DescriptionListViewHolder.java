@@ -12,12 +12,12 @@ public class DescriptionListViewHolder extends RecyclerView.ViewHolder
 	private final RadioButton radioButton;
 	private final TextView titleView;
 	private final TextView descriptionView;
-	private @Setter int position;
+	private @Setter CharSequence value;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 
 	public interface OnHolderClickListener {
-		void onHolderClick(int position);
+		void onHolderClick(CharSequence value);
 	}
 
 
@@ -47,7 +47,7 @@ public class DescriptionListViewHolder extends RecyclerView.ViewHolder
 	@Override
 	public void onClick(View v) {
 		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(position);
+			onHolderClickListener.onHolderClick(value);
 		}
 	}
 }
