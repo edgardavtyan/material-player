@@ -21,7 +21,7 @@ public class SimpleListAdapter extends ListAdapter<SimpleListController, SimpleL
 
 	@Override
 	public void onBindViewHolder(SimpleListViewHolder holder, int position) {
-		holder.setTitleView(controller.getEntries().get(position).toString());
+		holder.setTitle(controller.getEntries().get(position).toString());
 		holder.setChecked(controller.getPrefSelectedAtIndex(position));
 		holder.setValue(controller.getValues().get(position));
 		holder.setOnHolderClickListener(this);

@@ -9,11 +9,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class SimpleListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-	private final RadioButton radioButton;
-	private final TextView titleView;
+	protected final RadioButton radioButton;
+	protected final TextView titleView;
 
-	private @Getter @Setter CharSequence value;
-	private @Setter OnHolderClickListener onHolderClickListener;
+	protected  @Getter @Setter CharSequence value;
+	protected  @Setter OnHolderClickListener onHolderClickListener;
 
 
 	interface OnHolderClickListener {
@@ -34,7 +34,7 @@ public class SimpleListViewHolder extends RecyclerView.ViewHolder implements Vie
 		radioButton.setChecked(checked);
 	}
 
-	public void setTitleView(String title) {
+	public void setTitle(CharSequence title) {
 		titleView.setText(title);
 	}
 
