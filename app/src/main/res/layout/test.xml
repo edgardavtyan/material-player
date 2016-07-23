@@ -15,13 +15,15 @@
 		app:cp_title="Test heading"
 		>
 
-		<com.example.custompreference.TestPreference
+		<com.example.custompreference.SimpleListPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:cp_key="test"
-			app:cp_title="Test preference title"
-			app:cp_summary="Test preference summary message"
-			app:cp_defaultValue="123"
+			app:cp_key="pref_theme_primary"
+			app:cp_title="@string/prefs_theme_primary_title"
+			app:cp_summary="@string/prefs_theme_primary_summary"
+			app:cp_defaultValue="@string/prefs_theme_primary_default"
+			app:cp_entries="@array/prefs_theme_primary_entries"
+			app:cp_entryValues="@array/prefs_theme_primary_values"
 			/>
 
 	</com.example.custompreference.PreferenceCategory>

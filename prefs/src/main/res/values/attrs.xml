@@ -6,6 +6,8 @@
 		<attr name="cp_title" format="string" />
 		<attr name="cp_summary" format="string" />
 		<attr name="cp_defaultValue" format="string" />
+		<attr name="cp_entries" format="reference" />
+		<attr name="cp_entryValues" format="reference" />
 	</declare-styleable>
 
 	<declare-styleable name="TestPreference">
@@ -13,6 +15,15 @@
 		<attr name="cp_title" />
 		<attr name="cp_summary" />
 		<attr name="cp_defaultValue" />
+	</declare-styleable>
+
+	<declare-styleable name="SimpleListPreference">
+		<attr name="cp_key" />
+		<attr name="cp_title" />
+		<attr name="cp_summary" />
+		<attr name="cp_defaultValue" />
+		<attr name="cp_entries" />
+		<attr name="cp_entryValues" />
 	</declare-styleable>
 
 	<declare-styleable name="PreferenceCategory">
