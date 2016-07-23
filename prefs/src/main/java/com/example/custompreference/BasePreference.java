@@ -14,18 +14,18 @@ public abstract class BasePreference<TController extends BaseController>
 	public BasePreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
-		this.controller = createController(context, attrs);
+		this.controller = createController(attrs);
 		createEntryView();
 	}
 
 	public BasePreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		this.context = context;
-		this.controller = createController(context, attrs);
+		this.controller = createController(attrs);
 		createEntryView();
 	}
 
 
-	protected abstract TController createController(Context context, AttributeSet attrs);
+	protected abstract TController createController(AttributeSet attrs);
 	protected abstract void createEntryView();
 }

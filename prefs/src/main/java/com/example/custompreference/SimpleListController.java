@@ -1,7 +1,6 @@
 package com.example.custompreference;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
@@ -11,7 +10,7 @@ import java.util.List;
 import lombok.Cleanup;
 import lombok.Getter;
 
-public class SimpleListController extends ListController {
+public class SimpleListController extends ListController<SimpleListPreference> {
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
 	private final @Getter CharSequence summary;
@@ -20,12 +19,12 @@ public class SimpleListController extends ListController {
 	private final @Getter List<CharSequence> values;
 
 
-	public SimpleListController(Context context, AttributeSet attributeSet) {
-		super(context);
+	public SimpleListController(SimpleListPreference preference, AttributeSet attributeSet) {
+		super(preference);
 
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")
-		TypedArray attrs = context.obtainStyledAttributes(
+		TypedArray attrs = preference.context.obtainStyledAttributes(
 				attributeSet, R.styleable.SimpleListPreference);
 		key = attrs.getString(R.styleable.SimpleListPreference_cp_key);
 		title = attrs.getString(R.styleable.SimpleListPreference_cp_title);

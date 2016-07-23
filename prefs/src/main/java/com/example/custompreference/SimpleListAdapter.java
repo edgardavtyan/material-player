@@ -5,18 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import lombok.Setter;
-
 public class SimpleListAdapter extends ListAdapter<SimpleListController, SimpleListViewHolder>
 		implements SimpleListViewHolder.OnHolderClickListener {
-
-	private @Setter OnItemSelectedListener onItemSelectedListener;
-
-
-	interface OnItemSelectedListener {
-		void onItemSelectedListener(CharSequence value);
-	}
-
 
 	public SimpleListAdapter(Context context, SimpleListController controller) {
 		super(context, controller);
@@ -40,9 +30,7 @@ public class SimpleListAdapter extends ListAdapter<SimpleListController, SimpleL
 	@Override
 	public void onHolderClick(CharSequence value) {
 		controller.savePref(value);
+		controller.closeDialog();
 		notifyDataSetChanged();
-		if (onItemSelectedListener != null) {
-			onItemSelectedListener.onItemSelectedListener(value);
-		}
 	}
 }

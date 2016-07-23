@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 public class DescriptionListPreference
-		extends ListPreference<DescriptionListController, DescriptionListAdapter>
-		implements DescriptionListAdapter.OnItemSelectedListener {
+		extends ListPreference<DescriptionListController, DescriptionListAdapter> {
+
 	public DescriptionListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
@@ -17,18 +17,11 @@ public class DescriptionListPreference
 
 	@Override
 	protected DescriptionListAdapter createAdapter(DescriptionListController controller) {
-		DescriptionListAdapter adapter = new DescriptionListAdapter(context, controller);
-		adapter.setOnItemSelectedListener(this);
-		return adapter;
+		return new DescriptionListAdapter(context, controller);
 	}
 
 	@Override
-	protected DescriptionListController createController(Context context, AttributeSet attrs) {
-		return new DescriptionListController(context, attrs);
-	}
-
-	@Override
-	public void onItemSelectedListener() {
-		closeDialog();
+	protected DescriptionListController createController(AttributeSet attrs) {
+		return new DescriptionListController(this, attrs);
 	}
 }

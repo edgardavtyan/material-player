@@ -5,19 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import lombok.Setter;
-
 public class DescriptionListAdapter
 		extends ListAdapter<DescriptionListController, DescriptionListViewHolder>
 		implements DescriptionListViewHolder.OnHolderClickListener {
-
-	private @Setter OnItemSelectedListener onItemSelectedListener;
-
-
-	interface OnItemSelectedListener {
-		void onItemSelectedListener();
-	}
-
 
 	public DescriptionListAdapter(Context context, DescriptionListController controller) {
 		super(context, controller);
@@ -40,8 +30,6 @@ public class DescriptionListAdapter
 
 	@Override
 	public void onHolderClick(int position) {
-		if (onItemSelectedListener != null) {
-			onItemSelectedListener.onItemSelectedListener();
-		}
+		controller.closeDialog();
 	}
 }

@@ -3,8 +3,7 @@ package com.example.custompreference;
 import android.content.Context;
 import android.util.AttributeSet;
 
-public class SimpleListPreference extends ListPreference<SimpleListController, SimpleListAdapter>
-		implements SimpleListAdapter.OnItemSelectedListener {
+public class SimpleListPreference extends ListPreference<SimpleListController, SimpleListAdapter> {
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -17,18 +16,11 @@ public class SimpleListPreference extends ListPreference<SimpleListController, S
 
 	@Override
 	protected SimpleListAdapter createAdapter(SimpleListController controller) {
-		SimpleListAdapter adapter = new SimpleListAdapter(context, controller);
-		adapter.setOnItemSelectedListener(this);
-		return adapter;
+		return new SimpleListAdapter(context, controller);
 	}
 
 	@Override
-	protected SimpleListController createController(Context context, AttributeSet attrs) {
-		return new SimpleListController(context, attrs);
-	}
-
-	@Override
-	public void onItemSelectedListener(CharSequence value) {
-		closeDialog();
+	protected SimpleListController createController(AttributeSet attrs) {
+		return new SimpleListController(this, attrs);
 	}
 }

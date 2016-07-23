@@ -1,15 +1,16 @@
 package com.example.custompreference;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public abstract class BaseController {
-	protected final SharedPreferences prefs;
+public abstract class BaseController<TPreference extends BasePreference> {
+	protected final SharedPreferences sharedPrefs;
+	protected final TPreference prefView;
 
 
-	public BaseController(Context context) {
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+	public BaseController(TPreference prefView) {
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(prefView.context);
+		this.prefView = prefView;
 	}
 
 
@@ -19,6 +20,6 @@ public abstract class BaseController {
 
 
 	public CharSequence getCurrentPreference() {
-		return prefs.getString(getKey().toString(), getDefaultValue().toString());
+		return sharedPrefs.getString(getKey().toString(), getDefaultValue().toString());
 	}
 }

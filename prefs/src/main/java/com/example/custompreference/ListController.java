@@ -1,13 +1,12 @@
 package com.example.custompreference;
 
-import android.content.Context;
-
 import java.util.List;
 
-public abstract class ListController extends SummaryController {
+public abstract class ListController<TPreference extends ListPreference>
+		extends SummaryController<TPreference> {
 
-	public ListController(Context context) {
-		super(context);
+	public ListController(TPreference preference) {
+		super(preference);
 	}
 
 
@@ -20,6 +19,6 @@ public abstract class ListController extends SummaryController {
 	}
 
 	public void savePref(CharSequence value) {
-		prefs.edit().putString(getKey().toString(), value.toString()).apply();
+		sharedPrefs.edit().putString(getKey().toString(), value.toString()).apply();
 	}
 }

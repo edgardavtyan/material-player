@@ -1,10 +1,10 @@
 package com.example.custompreference;
 
-import android.content.Context;
+public abstract class SummaryController<TPreference extends SummaryPreference>
+		extends DialogController<TPreference> {
 
-public abstract class SummaryController extends BaseController {
-	public SummaryController(Context context) {
-		super(context);
+	public SummaryController(TPreference preference) {
+		super(preference);
 	}
 
 
