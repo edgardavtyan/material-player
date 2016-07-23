@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import lombok.Setter;
 
-public class DescriptionListViewHolder extends RecyclerView.ViewHolder {
+public class DescriptionListViewHolder extends RecyclerView.ViewHolder
+		implements View.OnClickListener {
 	private final RadioButton radioButton;
 	private final TextView titleView;
 	private final TextView descriptionView;
@@ -23,6 +24,7 @@ public class DescriptionListViewHolder extends RecyclerView.ViewHolder {
 	public DescriptionListViewHolder(View itemView) {
 		super(itemView);
 
+		itemView.setOnClickListener(this);
 		radioButton = (RadioButton) itemView.findViewById(R.id.radioButton);
 		titleView = (TextView) itemView.findViewById(R.id.title);
 		descriptionView = (TextView) itemView.findViewById(R.id.description);
@@ -39,5 +41,13 @@ public class DescriptionListViewHolder extends RecyclerView.ViewHolder {
 
 	public void setDescription(CharSequence description) {
 		descriptionView.setText(description);
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		if (onHolderClickListener != null) {
+			onHolderClickListener.onHolderClick(position);
+		}
 	}
 }
