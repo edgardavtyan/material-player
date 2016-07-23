@@ -24,11 +24,6 @@ public class TestPreference extends SummaryPreference<TestPreference.TestControl
 	}
 
 	@Override
-	protected void updateDialog() {
-
-	}
-
-	@Override
 	protected TestController createController(Context context, AttributeSet attrs) {
 		return new TestController(context, attrs);
 	}

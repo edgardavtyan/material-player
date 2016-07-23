@@ -28,10 +28,10 @@ public abstract class DialogPreference<TController extends BaseController>
 	protected abstract void createDialogBuilder(AlertDialog.Builder builder);
 
 
-	public void updateDialog() {
+	protected void updateDialog() {
 	}
 
-	public void closeDialog() {
+	protected void closeDialog() {
 		dialog.dismiss();
 	}
 
