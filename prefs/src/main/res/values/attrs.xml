@@ -19,6 +19,16 @@
 		<attr name="cp_entryValues" />
 	</declare-styleable>
 
+	<declare-styleable name="DescriptionList">
+		<attr name="cp_key" />
+		<attr name="cp_title" />
+		<attr name="cp_summary" />
+		<attr name="cp_defaultValue" />
+		<attr name="cp_entries" />
+		<attr name="cp_entryValues" />
+		<attr name="cp_summaries" format="reference" />
+	</declare-styleable>
+
 	<declare-styleable name="PreferenceCategory">
 		<attr name="cp_title" />
 	</declare-styleable>
