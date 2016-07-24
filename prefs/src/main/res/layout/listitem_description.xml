@@ -50,6 +50,7 @@
 		android:layout_marginStart="72dp"
 		android:layout_marginRight="24dp"
 		android:layout_marginEnd="24dp"
+		android:layout_marginTop="-4sp"
 		android:textColor="?android:textColorSecondary"
 		tools:text="Summary text"
 		/>
