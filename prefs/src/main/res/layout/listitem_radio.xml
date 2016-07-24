@@ -4,23 +4,13 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="?android:listPreferredItemHeightSmall"
-	android:background="?android:selectableItemBackground"
-	android:clickable="true"
 	android:orientation="horizontal"
+	style="@style/DialogListItem_Container"
 	>
 
 	<RadioButton
 		android:id="@+id/radioButton"
-		android:layout_width="32dp"
-		android:layout_height="32dp"
-		android:layout_marginRight="16dp"
-		android:layout_marginEnd="16dp"
-		android:layout_marginLeft="24dp"
-		android:layout_marginStart="24dp"
-		android:layout_gravity="center_vertical"
-		android:clickable="false"
-		android:focusable="false"
-		android:background="@null"
+		style="@style/DialogListItem_RadioButton"
 		/>
 
 	<TextView
@@ -28,9 +18,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
-		android:textColor="?android:colorForeground"
-		android:textSize="18sp"
 		tools:text="List item title"
+		style="@style/DialogListItem_Title"
 		/>
 
 </LinearLayout>
