@@ -31,7 +31,7 @@ public abstract class SummaryPreference<TController extends SummaryController>
 
 	public void updateEntry() {
 		if (isInEditMode()) {
-			summaryView.setText(controller.getSummary());
+			summaryView.setText(initialSummary.replace("%s", controller.getDefaultValue()));
 			return;
 		}
 
