@@ -28,6 +28,10 @@ public class ColorCircleView extends View {
 		paint.setColor(color);
 	}
 
+	public int getColor() {
+		return paint.getColor();
+	}
+
 
 	@Override
 	protected void onDraw(Canvas canvas) {

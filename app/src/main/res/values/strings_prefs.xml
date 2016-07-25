@@ -43,12 +43,12 @@
 
 
 
-	<string-array name="pref_colors_primary_entries">
-		<item>#cc3100</item>
-		<item>#7b1fa2</item>
-		<item>#293689</item>
-		<item>#a82424</item>
-		<item>#29702d</item>
-		<item>#455a64</item>
-	</string-array>
+	<array name="pref_colors_primary_entries">
+		<item>@color/primary_blue</item>
+		<item>@color/primary_blueGray</item>
+		<item>@color/primary_green</item>
+		<item>@color/primary_orange</item>
+		<item>@color/primary_purple</item>
+		<item>@color/primary_red</item>
+	</array>
 </resources>

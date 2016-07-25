@@ -35,6 +35,10 @@ public class ColorToggleSelectedView extends FrameLayout {
 		colorView.setColor(color);
 	}
 
+	public int getColor() {
+		return colorView.getColor();
+	}
+
 	@Override
 	public void setLayoutParams(ViewGroup.LayoutParams params) {
 		super.setLayoutParams(params);

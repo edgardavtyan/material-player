@@ -1,8 +1,8 @@
 package com.example.custompreference;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.custompreference.utils.PixelConverter;
@@ -12,15 +12,21 @@ import java.util.List;
 
 import lombok.Setter;
 
-public class ColorSelectionView extends LinearLayout {
+public class ColorSelectionView extends LinearLayout implements View.OnClickListener {
 
 	private final Context context;
-	private @Setter List<CharSequence> colors;
+	private @Setter List<Integer> colors;
 	private @Setter int colorViewSize;
 	private @Setter int spacing;
 	private @Setter int colorsPerRow;
 	private @Setter int minSpacing;
 	private @Setter int totalWidth;
+	private @Setter OnColorSelectedListener onColorSelectedListener;
+
+
+	interface OnColorSelectedListener {
+		void onColorSelected(int color, int position);
+	}
 
 
 	public ColorSelectionView(Context context, AttributeSet attrs) {
@@ -56,6 +62,16 @@ public class ColorSelectionView extends LinearLayout {
 	}
 
 
+	@Override
+	public void onClick(View v) {
+		if (onColorSelectedListener != null) {
+			ColorToggleSelectedView colorView = (ColorToggleSelectedView) v;
+			int color = colorView.getColor();
+			onColorSelectedListener.onColorSelected(color, colors.indexOf(color));
+		}
+	}
+
+
 	private void init() {
 		setOrientation(VERTICAL);
 		colors = new ArrayList<>();
@@ -87,7 +103,8 @@ public class ColorSelectionView extends LinearLayout {
 
 		ColorToggleSelectedView colorView = new ColorToggleSelectedView(context, null);
 		colorView.setLayoutParams(params);
-		colorView.setColor(Color.parseColor(colors.get(index).toString()));
+		colorView.setColor(colors.get(index));
+		colorView.setOnClickListener(this);
 		return colorView;
 	}
 
