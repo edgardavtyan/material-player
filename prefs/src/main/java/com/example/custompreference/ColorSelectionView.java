@@ -15,6 +15,7 @@ import lombok.Setter;
 public class ColorSelectionView extends LinearLayout implements View.OnClickListener {
 
 	private final Context context;
+	private List<ColorToggleSelectedView> colorViews;
 	private @Setter List<Integer> colors;
 	private @Setter int colorViewSize;
 	private @Setter int spacing;
@@ -61,6 +62,11 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 		addView(lastRow);
 	}
 
+	public void setSelectedColor(int position) {
+		for (ColorToggleSelectedView colorView : colorViews) colorView.setChecked(false);
+		colorViews.get(position).setChecked(true);
+	}
+
 
 	@Override
 	public void onClick(View v) {
@@ -75,6 +81,7 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 	private void init() {
 		setOrientation(VERTICAL);
 		colors = new ArrayList<>();
+		colorViews = new ArrayList<>();
 		minSpacing = PixelConverter.dpToPx(12);
 		colorViewSize = PixelConverter.dpToPx(36);
 		totalWidth = PixelConverter.dpToPx(240);
@@ -105,6 +112,7 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 		colorView.setLayoutParams(params);
 		colorView.setColor(colors.get(index));
 		colorView.setOnClickListener(this);
+		colorViews.add(colorView);
 		return colorView;
 	}
 

@@ -29,11 +29,21 @@ public class ColorSelectionController extends DialogController<ColorSelectionPre
 		key = attrs.getText(R.styleable.ColorSelectionPreference_cp_key);
 		title = attrs.getText(R.styleable.ColorSelectionPreference_cp_title);
 		defaultValue = attrs.getText(R.styleable.ColorSelectionPreference_cp_defaultValue);
+		entries = getEntries(prefView, attrs);
 		values = Arrays.asList(attrs.getTextArray(R.styleable.ColorSelectionPreference_cp_entryValues));
+	}
 
-		int entriesId = attrs.getResourceId(R.styleable.ColorSelectionPreference_cp_entryValues, 0);
+
+	public int getSelectedPrefIndex() {
+		return values.indexOf(sharedPrefs.getString(key.toString(), defaultValue.toString()));
+	}
+
+
+	private List<Integer> getEntries(ColorSelectionPreference prefView, TypedArray attrs) {
+		int entriesId = attrs.getResourceId(R.styleable.ColorSelectionPreference_cp_entries, 0);
 		int[] entriesArray = prefView.context.getResources().getIntArray(entriesId);
-		entries = new ArrayList<>();
+		List<Integer> entries = new ArrayList<>();
 		for (int entry : entriesArray) entries.add(entry);
+		return entries;
 	}
 }

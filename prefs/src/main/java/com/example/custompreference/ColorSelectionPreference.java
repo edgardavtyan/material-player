@@ -26,8 +26,9 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 		ColorSelectionView colorSelectionView = new ColorSelectionView(context, null);
 		colorSelectionView.setPadding(padding, 0, padding, 0);
 		colorSelectionView.setColors(controller.getEntries());
-		colorSelectionView.setOnColorSelectedListener(this);
 		colorSelectionView.rebuild();
+		colorSelectionView.setSelectedColor(controller.getSelectedPrefIndex());
+		colorSelectionView.setOnColorSelectedListener(this);
 		builder.setView(colorSelectionView);
 	}
 
