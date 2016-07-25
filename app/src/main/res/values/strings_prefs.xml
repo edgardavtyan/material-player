@@ -40,4 +40,15 @@
 		<item>BlueGray</item>
 		<item>Black</item>
 	</string-array>
+
+
+
+	<string-array name="pref_colors_primary_entries">
+		<item>#cc3100</item>
+		<item>#7b1fa2</item>
+		<item>#293689</item>
+		<item>#a82424</item>
+		<item>#29702d</item>
+		<item>#455a64</item>
+	</string-array>
 </resources>

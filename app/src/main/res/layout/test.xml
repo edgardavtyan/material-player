@@ -59,4 +59,14 @@
 
 	</com.example.custompreference.PreferenceCategory>
 
+	<com.example.custompreference.ColorSelectionPreference
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cp_key="pref_colors_primary"
+		app:cp_title="Colors"
+		app:cp_summary="Colors"
+		app:cp_entries="@array/pref_colors_primary_entries"
+		app:cp_entryValues="@array/pref_colors_primary_entries"
+		/>
+
 </LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	>
+
+	<com.example.custompreference.ColorCircleView
+		android:id="@+id/colorView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:cp_background="#ff0000"
+		/>
+
+	<ImageView
+		android:id="@+id/checkIcon"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:src="@drawable/ic_check"
+		/>
+
+</merge>
