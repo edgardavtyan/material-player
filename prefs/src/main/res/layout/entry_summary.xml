@@ -8,17 +8,15 @@
 		android:id="@+id/title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textColor="?android:colorForeground"
-		android:textSize="16sp"
 		tools:text="Preference title"
+		style="@style/PrefEntry_Title"
 		/>
 
 	<TextView
 		android:id="@+id/summary"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textColor="?android:textColorSecondary"
-		android:textSize="14sp"
+		style="@style/PrefEntry_Summary"
 		tools:text="Lorem ipsum dolor sit amet consectetuer adipisicing elit"
 		/>
 
