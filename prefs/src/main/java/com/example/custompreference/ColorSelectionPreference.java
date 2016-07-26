@@ -10,6 +10,10 @@ import com.example.custompreference.utils.PixelConverter;
 
 public class ColorSelectionPreference extends DialogPreference<ColorSelectionController>
 		implements ColorSelectionView.OnColorSelectedListener {
+
+	private ColorSelectionView colorSelectionView;
+
+
 	public ColorSelectionPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
@@ -23,7 +27,7 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 	protected void createDialogBuilder(AlertDialog.Builder builder) {
 		int padding = PixelConverter.dpToPx(24);
 
-		ColorSelectionView colorSelectionView = new ColorSelectionView(context, null);
+		colorSelectionView = new ColorSelectionView(context, null);
 		colorSelectionView.setPadding(padding, 0, padding, 0);
 		colorSelectionView.setColors(controller.getEntries());
 		colorSelectionView.rebuild();
@@ -46,7 +50,8 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 
 	@Override
 	public void onColorSelected(int color, int position) {
-		Log.i(getClass().getSimpleName(), "color: " + Integer.toString(color));
-		Log.i(getClass().getSimpleName(), "position: " + Integer.toString(position));
+		controller.savePref(position);
+		colorSelectionView.setSelectedColor(position);
+		closeDialog();
 	}
 }
