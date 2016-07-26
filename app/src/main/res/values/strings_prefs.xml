@@ -44,11 +44,11 @@
 
 
 	<array name="pref_colors_primary_entries">
-		<item>@color/primary_blue</item>
-		<item>@color/primary_blueGray</item>
-		<item>@color/primary_green</item>
 		<item>@color/primary_orange</item>
 		<item>@color/primary_purple</item>
+		<item>@color/primary_blue</item>
 		<item>@color/primary_red</item>
+		<item>@color/primary_green</item>
+		<item>@color/primary_blueGray</item>
 	</array>
 </resources>
