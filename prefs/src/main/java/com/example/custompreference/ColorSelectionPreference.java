@@ -67,7 +67,7 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 	}
 
 	@Override
-	public void onColorSelected(int color, int position) {
+	public void onColorSelected(int position) {
 		controller.savePref(position);
 		colorSelectionView.setSelectedColor(position);
 		colorView.setColor(controller.getCurrentColor());

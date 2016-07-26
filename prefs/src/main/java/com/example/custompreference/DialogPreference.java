@@ -28,9 +28,6 @@ public abstract class DialogPreference<TController extends BaseController>
 	protected abstract void createDialogBuilder(AlertDialog.Builder builder);
 
 
-	protected void updateDialog() {
-	}
-
 	protected void closeDialog() {
 		dialog.dismiss();
 	}
@@ -44,8 +41,6 @@ public abstract class DialogPreference<TController extends BaseController>
 			builder.setNegativeButton(android.R.string.cancel, null);
 			createDialogBuilder(builder);
 			dialog = builder.create();
-		} else {
-			updateDialog();
 		}
 
 		dialog.show();

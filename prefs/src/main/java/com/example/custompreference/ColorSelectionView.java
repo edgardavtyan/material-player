@@ -26,7 +26,7 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 
 
 	interface OnColorSelectedListener {
-		void onColorSelected(int color, int position);
+		void onColorSelected(int position);
 	}
 
 
@@ -73,7 +73,7 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 		if (onColorSelectedListener != null) {
 			ColorToggleSelectedView colorView = (ColorToggleSelectedView) v;
 			int color = colorView.getColor();
-			onColorSelectedListener.onColorSelected(color, colors.indexOf(color));
+			onColorSelectedListener.onColorSelected(colors.indexOf(color));
 		}
 	}
 
