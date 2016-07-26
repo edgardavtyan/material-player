@@ -1,9 +1,9 @@
 package com.example.custompreference;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.support.v7.app.AlertDialog;
 
 import com.example.custompreference.utils.PixelConverter;
 
