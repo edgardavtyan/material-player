@@ -15,7 +15,7 @@ public class AttributeResolver {
 		this.context = context;
 	}
 
-	public Drawable getDrawableAttribute(int attrId) {
+	public Drawable getDrawable(int attrId) {
 		@Cleanup("recycle") TypedArray attr = getAttribute(attrId);
 		return attr.getDrawable(0);
 	}
@@ -33,6 +33,6 @@ public class AttributeResolver {
 
 	private TypedArray getAttribute(int attrId) {
 		TypedValue typedValue = new TypedValue();
-		return context.obtainStyledAttributes(typedValue.data, new int[] { attrId });
+		return context.obtainStyledAttributes(typedValue.data, new int[]{attrId});
 	}
 }

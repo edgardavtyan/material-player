@@ -45,7 +45,7 @@ public abstract class SummaryPreference<TController extends SummaryController>
 
 		int height = res.getDimen(R.attr.listPreferredItemHeight);
 		int padding = res.getDimen(R.attr.listPreferredItemPaddingLeft);
-		Drawable background = res.getDrawableAttribute(R.attr.selectableItemBackground);
+		Drawable background = res.getDrawable(R.attr.selectableItemBackground);
 
 		setMinimumHeight(height);
 		setOrientation(VERTICAL);
