@@ -38,6 +38,10 @@ public class ColorSelectionController extends DialogController<ColorSelectionPre
 		return values.indexOf(sharedPrefs.getString(key.toString(), defaultValue.toString()));
 	}
 
+	public int getCurrentColor() {
+		return entries.get(getSelectedPrefIndex());
+	}
+
 	public void savePref(int position) {
 		sharedPrefs.edit().putString(key.toString(), values.get(position).toString()).apply();
 	}
