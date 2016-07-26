@@ -9,4 +9,9 @@ public class PrefActivity extends BaseToolbarActivity {
     public int getLayoutId() {
         return R.layout.activity_pref;
     }
+
+    @Override
+    protected int getToolbarTitleStringId() {
+        return R.string.prefs_title;
+    }
 }
