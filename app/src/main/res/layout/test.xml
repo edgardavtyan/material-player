@@ -26,7 +26,7 @@
 			app:cp_entryValues="@array/prefs_theme_base_entries"
 			/>
 
-		<com.example.custompreference.SimpleListPreference
+		<com.example.custompreference.ColorSelectionPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="pref_theme_primary"
@@ -58,16 +58,5 @@
 			/>
 
 	</com.example.custompreference.PreferenceCategory>
-
-	<com.example.custompreference.ColorSelectionPreference
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:cp_key="pref_theme_primary"
-		app:cp_title="Colors"
-		app:cp_summary="Colors"
-		app:cp_defaultValue="@string/prefs_theme_primary_default"
-		app:cp_entries="@array/pref_colors_primary_entries"
-		app:cp_entryValues="@array/prefs_theme_primary_values"
-		/>
 
 </LinearLayout>
