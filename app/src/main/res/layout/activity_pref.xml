@@ -12,29 +12,29 @@
 	<com.example.custompreference.PreferenceCategory
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:cp_title="Test heading"
+		app:cp_title="@string/pref_category_appearance"
 		>
 
 		<com.example.custompreference.SimpleListPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:cp_key="pref_theme_base"
-			app:cp_title="@string/prefs_theme_base_title"
-			app:cp_summary="@string/prefs_theme_base_summary"
-			app:cp_defaultValue="@string/prefs_theme_base_default"
-			app:cp_entries="@array/prefs_theme_base_entries"
-			app:cp_entryValues="@array/prefs_theme_base_entries"
+			app:cp_key="@string/pref_theme_base_key"
+			app:cp_title="@string/pref_theme_base_title"
+			app:cp_summary="@string/pref_theme_base_summary"
+			app:cp_defaultValue="@string/pref_theme_base_default"
+			app:cp_entries="@array/pref_theme_base_entries"
+			app:cp_entryValues="@array/pref_theme_base_entries"
 			/>
 
 		<com.example.custompreference.ColorSelectionPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:cp_key="pref_theme_primary"
-			app:cp_title="@string/prefs_theme_primary_title"
-			app:cp_summary="@string/prefs_theme_primary_summary"
-			app:cp_defaultValue="@string/prefs_theme_primary_default"
-			app:cp_entries="@array/prefs_theme_primary_entries"
-			app:cp_entryValues="@array/prefs_theme_primary_values"
+			app:cp_key="@string/pref_theme_primary_key"
+			app:cp_title="@string/pref_theme_primary_title"
+			app:cp_summary="@string/pref_theme_primary_summary"
+			app:cp_defaultValue="@string/pref_theme_primary_default"
+			app:cp_entries="@array/pref_theme_primary_entries"
+			app:cp_entryValues="@array/pref_theme_primary_values"
 			/>
 
 	</com.example.custompreference.PreferenceCategory>
@@ -42,7 +42,7 @@
 	<com.example.custompreference.PreferenceCategory
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:cp_title="Audio"
+		app:cp_title="@string/pref_category_audio"
 		>
 
 		<com.example.custompreference.DescriptionListPreference

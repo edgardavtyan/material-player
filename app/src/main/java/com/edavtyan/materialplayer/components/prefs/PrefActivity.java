@@ -12,6 +12,6 @@ public class PrefActivity extends BaseToolbarActivity {
 
     @Override
     protected int getToolbarTitleStringId() {
-        return R.string.prefs_title;
+        return R.string.pref_title;
     }
 }
