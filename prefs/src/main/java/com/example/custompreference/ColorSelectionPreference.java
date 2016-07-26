@@ -50,12 +50,12 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 		int height = attrs.getDimen(android.R.attr.listPreferredItemHeight);
 		setMinimumHeight(height);
 
+		Drawable background = attrs.getDrawableAttribute(android.R.attr.selectableItemBackground);
+		setBackgroundDrawable(background);
+
 		int paddingLeft = attrs.getDimen(android.R.attr.listPreferredItemPaddingLeft);
 		int paddingRight = attrs.getDimen(android.R.attr.listPreferredItemPaddingRight);
 		setPadding(paddingLeft, 0, paddingRight, 0);
-
-		Drawable background = attrs.getDrawableAttribute(android.R.attr.selectableItemBackground);
-		setBackgroundDrawable(background);
 
 		inflate(context, R.layout.entry_color, this);
 
