@@ -41,17 +41,7 @@ public abstract class SummaryPreference<TController extends SummaryController>
 
 	@Override
 	protected void createEntryView() {
-		AttributeResolver res = new AttributeResolver(context);
-
-		int height = res.getDimen(R.attr.listPreferredItemHeight);
-		int padding = res.getDimen(R.attr.listPreferredItemPaddingLeft);
-		Drawable background = res.getDrawable(R.attr.selectableItemBackground);
-
-		setMinimumHeight(height);
 		setOrientation(VERTICAL);
-		setBackgroundDrawable(background);
-		setPadding(padding, 0, padding, 0);
-		setGravity(Gravity.CENTER_VERTICAL);
 
 		inflate(context, R.layout.entry_summary, this);
 
