@@ -47,14 +47,14 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 	protected void createEntryView() {
 		AttributeResolver attrs = new AttributeResolver(context);
 
-		int height = attrs.getDimen(android.R.attr.listPreferredItemHeight);
+		int height = attrs.getDimen(R.attr.listPreferredItemHeight);
 		setMinimumHeight(height);
 
-		Drawable background = attrs.getDrawable(android.R.attr.selectableItemBackground);
+		Drawable background = attrs.getDrawable(R.attr.selectableItemBackground);
 		setBackgroundDrawable(background);
 
-		int paddingLeft = attrs.getDimen(android.R.attr.listPreferredItemPaddingLeft);
-		int paddingRight = attrs.getDimen(android.R.attr.listPreferredItemPaddingRight);
+		int paddingLeft = attrs.getDimen(R.attr.listPreferredItemPaddingLeft);
+		int paddingRight = attrs.getDimen(R.attr.listPreferredItemPaddingRight);
 		setPadding(paddingLeft, 0, paddingRight, 0);
 
 		inflate(context, R.layout.entry_color, this);
