@@ -1,10 +1,10 @@
 package com.edavtyan.custompreference;
 
-import android.support.v7.app.AlertDialog;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
 
@@ -24,12 +24,11 @@ public abstract class ListPreference<TController extends ListController, TAdapte
 
 
 	@Override
-	protected void createDialogBuilder(AlertDialog.Builder builder) {
+	protected View onCreateDialogView() {
 		RecyclerView list = new RecyclerView(context, null);
 		list.setAdapter(createAdapter(controller));
 		list.setLayoutManager(new LinearLayoutManager(context));
 		list.setPadding(0, PixelConverter.dpToPx(8), 0, 0);
-
-		builder.setView(list);
+		return list;
 	}
 }

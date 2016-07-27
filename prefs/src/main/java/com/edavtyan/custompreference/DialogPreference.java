@@ -12,34 +12,41 @@ public abstract class DialogPreference<TController extends BaseController>
 		implements View.OnClickListener {
 
 	private AlertDialog dialog = null;
+	private final AlertDialog.Builder builder;
 
 
 	public DialogPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		builder = new AlertDialog.Builder(context);
+		onCreateDialogBuilder();
 		setOnClickListener(this);
 	}
 
 	public DialogPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		builder = new AlertDialog.Builder(context);
+		onCreateDialogBuilder();
 		setOnClickListener(this);
 	}
 
 
-	protected abstract void createDialogBuilder(AlertDialog.Builder builder);
+	protected abstract View onCreateDialogView();
 
 
 	protected void closeDialog() {
 		dialog.dismiss();
 	}
 
+	protected void onCreateDialogBuilder() {
+		builder.setTitle(controller.getTitle());
+		builder.setNegativeButton(android.R.string.cancel, null);
+		builder.setView(onCreateDialogView());
+	}
+
 
 	@Override
 	public void onClick(View v) {
 		if (dialog == null) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			builder.setTitle(controller.getTitle());
-			builder.setNegativeButton(android.R.string.cancel, null);
-			createDialogBuilder(builder);
 			dialog = builder.create();
 		}
 

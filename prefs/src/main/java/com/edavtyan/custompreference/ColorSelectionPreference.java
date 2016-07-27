@@ -1,8 +1,8 @@
 package com.edavtyan.custompreference;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
@@ -24,7 +24,7 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 
 
 	@Override
-	protected void createDialogBuilder(AlertDialog.Builder builder) {
+	protected View onCreateDialogView() {
 		int padding = PixelConverter.dpToPx(24);
 
 		colorSelectionView = new ColorSelectionView(context, null);
@@ -33,7 +33,7 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 		colorSelectionView.rebuild();
 		colorSelectionView.setSelectedColor(controller.getSelectedPrefIndex());
 		colorSelectionView.setOnColorSelectedListener(this);
-		builder.setView(colorSelectionView);
+		return colorSelectionView;
 	}
 
 	@Override

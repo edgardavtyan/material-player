@@ -1,12 +1,8 @@
 package com.edavtyan.custompreference;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.widget.TextView;
-
-import com.edavtyan.custompreference.utils.AttributeResolver;
 
 public abstract class SummaryPreference<TController extends SummaryController>
 		extends DialogPreference<TController> {
