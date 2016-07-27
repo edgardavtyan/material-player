@@ -20,7 +20,7 @@ public abstract class BasePreference<TController extends BaseController>
 		this.context = context;
 		this.controller = createController(attrs);
 		this.attrs = new AttributeResolver(context);
-		initGeneralEntryViewProperties();
+		initCommonEntryViewProperties();
 		createEntryView();
 	}
 
@@ -29,16 +29,17 @@ public abstract class BasePreference<TController extends BaseController>
 		this.context = context;
 		this.controller = createController(attrs);
 		this.attrs = new AttributeResolver(context);
-		initGeneralEntryViewProperties();
+		initCommonEntryViewProperties();
 		createEntryView();
 	}
 
 
 	protected abstract TController createController(AttributeSet attrs);
+
 	protected abstract void createEntryView();
 
 
-	private void initGeneralEntryViewProperties() {
+	private void initCommonEntryViewProperties() {
 		setBackgroundDrawable(attrs.getDrawable(R.attr.selectableItemBackground));
 		setGravity(Gravity.CENTER_VERTICAL);
 
