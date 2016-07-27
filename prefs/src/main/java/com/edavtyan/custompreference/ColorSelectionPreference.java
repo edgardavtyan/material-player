@@ -1,4 +1,4 @@
-package com.example.custompreference;
+package com.edavtyan.custompreference;
 
 import android.support.v7.app.AlertDialog;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.example.custompreference.utils.AttributeResolver;
-import com.example.custompreference.utils.PixelConverter;
+import com.edavtyan.custompreference.utils.AttributeResolver;
+import com.edavtyan.custompreference.utils.PixelConverter;
 
 public class ColorSelectionPreference extends DialogPreference<ColorSelectionController>
 		implements ColorSelectionView.OnColorSelectedListener {

@@ -1,4 +1,4 @@
-package com.example.custompreference;
+package com.edavtyan.custompreference;
 
 import android.content.Context;
 import android.graphics.Canvas;

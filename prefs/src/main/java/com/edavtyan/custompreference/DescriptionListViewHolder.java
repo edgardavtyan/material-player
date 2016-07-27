@@ -1,4 +1,4 @@
-package com.example.custompreference;
+package com.edavtyan.custompreference;
 
 import android.view.View;
 import android.widget.TextView;

@@ -1,4 +1,4 @@
-package com.example.custompreference;
+package com.edavtyan.custompreference;
 
 public abstract class DialogController<TPreference extends DialogPreference>
 		extends BaseController<TPreference> {

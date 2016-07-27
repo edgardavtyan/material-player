@@ -1,11 +1,11 @@
-package com.example.custompreference;
+package com.edavtyan.custompreference;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.custompreference.utils.PixelConverter;
+import com.edavtyan.custompreference.utils.PixelConverter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.custompreference;
+package com.edavtyan.custompreference;
 
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;

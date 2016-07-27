@@ -14,7 +14,7 @@
 		tools:text="Preference entry title"
 		/>
 
-	<com.example.custompreference.ColorCircleView
+	<com.edavtyan.custompreference.ColorCircleView
 		android:id="@+id/color"
 		android:layout_width="32dp"
 		android:layout_height="32dp"
