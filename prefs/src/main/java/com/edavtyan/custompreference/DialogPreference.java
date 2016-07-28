@@ -7,8 +7,8 @@ import android.support.v7.app.AlertDialog;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
 
-public abstract class DialogPreference<TController extends BaseController>
-		extends BasePreference<TController>
+public abstract class DialogPreference<TController extends BaseController, TEntryView>
+		extends BasePreference<TController, TEntryView>
 		implements View.OnClickListener {
 
 	private AlertDialog dialog = null;

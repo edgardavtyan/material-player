@@ -5,11 +5,10 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 public abstract class SummaryPreference<TController extends SummaryController>
-		extends DialogPreference<TController> {
+		extends DialogPreference<TController, SummaryEntry> {
 
 	protected final String initialSummary;
 	protected TextView titleView;
-	protected TextView summaryView;
 
 
 	public SummaryPreference(Context context, AttributeSet attrs) {
@@ -27,24 +26,22 @@ public abstract class SummaryPreference<TController extends SummaryController>
 
 	public void updateEntry() {
 		if (isInEditMode()) {
-			summaryView.setText(initialSummary.replace("%s", controller.getDefaultValue()));
+			entryView.setSummary(initialSummary.replace("%s", controller.getDefaultValue()));
 			return;
 		}
 
-		summaryView.setText(initialSummary.replace("%s", controller.getCurrentPreference()));
+		entryView.setSummary(initialSummary.replace("%s", controller.getCurrentPreference()));
 	}
 
 
 	@Override
-	protected void createEntryView() {
+	protected int getEntryLayoutId() {
+		return R.layout.entry_summary;
+	}
+
+	@Override
+	protected SummaryEntry onCreateEntryView() {
 		setOrientation(VERTICAL);
-
-		inflate(context, R.layout.entry_summary, this);
-
-		titleView = (TextView) findViewById(R.id.title);
-		titleView.setText(controller.getTitle());
-
-		summaryView = (TextView) findViewById(R.id.summary);
-		summaryView.setText(controller.getSummary());
+		return new SummaryEntry(this, controller);
 	}
 }

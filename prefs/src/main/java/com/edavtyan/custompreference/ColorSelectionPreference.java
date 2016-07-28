@@ -3,15 +3,14 @@ package com.edavtyan.custompreference;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
 
-public class ColorSelectionPreference extends DialogPreference<ColorSelectionController>
+public class ColorSelectionPreference
+		extends DialogPreference<ColorSelectionController, ColorSelectionEntry>
 		implements ColorSelectionView.OnColorSelectedListener {
 
 	private ColorSelectionView colorSelectionView;
-	private ColorCircleView colorView;
 
 
 	public ColorSelectionPreference(Context context, AttributeSet attrs) {
@@ -42,21 +41,20 @@ public class ColorSelectionPreference extends DialogPreference<ColorSelectionCon
 	}
 
 	@Override
-	protected void createEntryView() {
-		inflate(context, R.layout.entry_color, this);
+	protected int getEntryLayoutId() {
+		return R.layout.entry_color;
+	}
 
-		TextView titleView = (TextView) findViewById(R.id.title);
-		titleView.setText(controller.getTitle());
-
-		colorView = (ColorCircleView) findViewById(R.id.color);
-		colorView.setColor(controller.getCurrentColor());
+	@Override
+	protected ColorSelectionEntry onCreateEntryView() {
+		return new ColorSelectionEntry(this, controller);
 	}
 
 	@Override
 	public void onColorSelected(int position) {
 		controller.savePref(position);
 		colorSelectionView.setSelectedColor(position);
-		colorView.setColor(controller.getCurrentColor());
+		entryView.setColor(controller.getCurrentColor());
 		closeDialog();
 	}
 }
