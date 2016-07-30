@@ -1,19 +1,28 @@
 package com.edavtyan.custompreference;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SummaryEntry {
+import lombok.Setter;
+
+public class SummaryEntry implements View.OnClickListener {
 	private final TextView titleView;
 	private final TextView summaryView;
+	private @Setter OnClickListener onClickListener;
 
 
-	public SummaryEntry(View view, SummaryController controller) {
+	interface OnClickListener {
+		void onEntryClick();
+	}
+
+
+	public SummaryEntry(Context context, LinearLayout view) {
+		view.setOrientation(LinearLayout.VERTICAL);
+		view.setOnClickListener(this);
 		titleView = (TextView) view.findViewById(R.id.title);
-		titleView.setText(controller.getTitle());
-
 		summaryView = (TextView) view.findViewById(R.id.summary);
-		summaryView.setText(controller.getSummary());
 	}
 
 
@@ -23,5 +32,13 @@ public class SummaryEntry {
 
 	public void setSummary(CharSequence summary) {
 		summaryView.setText(summary);
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		if (onClickListener != null) {
+			onClickListener.onEntryClick();
+		}
 	}
 }

@@ -3,17 +3,23 @@ package com.edavtyan.custompreference;
 import android.view.View;
 import android.widget.TextView;
 
-public class ColorSelectionEntry {
+import lombok.Setter;
+
+public class ColorSelectionEntry implements View.OnClickListener {
 	private final TextView titleView;
 	private final ColorCircleView colorView;
+	private @Setter OnClickListener onClickListener;
 
 
-	public ColorSelectionEntry(View view, ColorSelectionController controller) {
+	interface OnClickListener {
+		void onEntryClick();
+	}
+
+
+	public ColorSelectionEntry(View view) {
+		view.setOnClickListener(this);
 		titleView = (TextView) view.findViewById(R.id.title);
-		titleView.setText(controller.getTitle());
-
 		colorView = (ColorCircleView) view.findViewById(R.id.color);
-		colorView.setColor(controller.getCurrentColor());
 	}
 
 
@@ -23,5 +29,13 @@ public class ColorSelectionEntry {
 
 	public void setColor(int color) {
 		colorView.setColor(color);
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		if (onClickListener != null) {
+			onClickListener.onEntryClick();
+		}
 	}
 }

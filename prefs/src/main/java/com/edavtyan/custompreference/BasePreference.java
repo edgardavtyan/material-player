@@ -7,44 +7,26 @@ import android.widget.LinearLayout;
 
 import com.edavtyan.custompreference.utils.AttributeResolver;
 
-public abstract class BasePreference<TController extends BaseController, TEntryView>
-		extends LinearLayout {
-
+public abstract class BasePreference extends LinearLayout {
 	protected final Context context;
-	protected final TController controller;
-	protected final TEntryView entryView;
-	protected final AttributeResolver attrs;
 
 
 	public BasePreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		inflate(context, getEntryLayoutId(), this);
 		this.context = context;
-		this.controller = createController(attrs);
-		this.attrs = new AttributeResolver(context);
-		this.entryView = onCreateEntryView();
 		initCommonEntryViewProperties();
 	}
 
 	public BasePreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		inflate(context, getEntryLayoutId(), this);
 		this.context = context;
-		this.controller = createController(attrs);
-		this.attrs = new AttributeResolver(context);
-		this.entryView = onCreateEntryView();
 		initCommonEntryViewProperties();
 	}
 
 
-	protected abstract TController createController(AttributeSet attrs);
-
-	protected abstract TEntryView onCreateEntryView();
-
-	protected abstract int getEntryLayoutId();
-
-
 	private void initCommonEntryViewProperties() {
+		AttributeResolver attrs = new AttributeResolver(context);
+
 		setBackgroundDrawable(attrs.getDrawable(R.attr.selectableItemBackground));
 		setGravity(Gravity.CENTER_VERTICAL);
 

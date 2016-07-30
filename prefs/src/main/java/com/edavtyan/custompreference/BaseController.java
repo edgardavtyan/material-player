@@ -1,16 +1,15 @@
 package com.edavtyan.custompreference;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public abstract class BaseController<TPreference extends BasePreference> {
+public abstract class BaseController {
 	protected final SharedPreferences sharedPrefs;
-	protected final TPreference prefView;
 
 
-	public BaseController(TPreference prefView) {
-		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(prefView.context);
-		this.prefView = prefView;
+	public BaseController(Context context) {
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 
 

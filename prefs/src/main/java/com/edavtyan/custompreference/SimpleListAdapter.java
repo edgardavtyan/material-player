@@ -1,15 +1,25 @@
 package com.edavtyan.custompreference;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SimpleListAdapter extends ListAdapter<SimpleListController, SimpleListViewHolder>
+import lombok.Setter;
+
+public class SimpleListAdapter
+		extends RecyclerView.Adapter<SimpleListViewHolder>
 		implements SimpleListViewHolder.OnHolderClickListener {
 
+	private final Context context;
+	private final SimpleListController controller;
+	private @Setter SimpleListViewHolder.OnHolderClickListener onHolderClickListener;
+
+
 	public SimpleListAdapter(Context context, SimpleListController controller) {
-		super(context, controller);
+		this.context = context;
+		this.controller = controller;
 	}
 
 
@@ -28,9 +38,15 @@ public class SimpleListAdapter extends ListAdapter<SimpleListController, SimpleL
 	}
 
 	@Override
-	public void onHolderClick(CharSequence value) {
-		controller.savePref(value);
-		controller.closeDialog();
-		notifyDataSetChanged();
+	public int getItemCount() {
+		return controller.getEntries().size();
 	}
+
+	@Override
+	public void onHolderClick(CharSequence value) {
+		if (onHolderClickListener != null) {
+			onHolderClickListener.onHolderClick(value);
+		}
+	}
+
 }

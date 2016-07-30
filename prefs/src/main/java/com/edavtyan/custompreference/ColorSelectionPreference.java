@@ -6,55 +6,91 @@ import android.view.View;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
 
+import java.util.List;
+
 public class ColorSelectionPreference
-		extends DialogPreference<ColorSelectionController, ColorSelectionEntry>
-		implements ColorSelectionView.OnColorSelectedListener {
+		extends BasePreference
+		implements ColorSelectionEntry.OnClickListener,
+				   ColorSelectionView.OnColorSelectedListener {
 
-	private ColorSelectionView colorSelectionView;
-
+	private final ColorSelectionEntry entryView;
+	private final BaseDialog dialog;
+	private final ColorSelectionView colorSelectionView;
+	private final ColorSelectionPresenter presenter;
 
 	public ColorSelectionPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		entryView = initEntryView();
+		colorSelectionView = initColorSelectionView();
+		dialog = initDialog();
+		presenter = initPresenter(attrs);
 	}
 
 	public ColorSelectionPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		entryView = initEntryView();
+		colorSelectionView = initColorSelectionView();
+		dialog = initDialog();
+		presenter = initPresenter(attrs);
 	}
 
+	public void setTitle(CharSequence title) {
+		entryView.setTitle(title);
+		dialog.setTitle(title);
+	}
 
-	@Override
-	protected View onCreateDialogView() {
-		int padding = PixelConverter.dpToPx(24);
-
-		colorSelectionView = new ColorSelectionView(context, null);
-		colorSelectionView.setPadding(padding, 0, padding, 0);
-		colorSelectionView.setColors(controller.getEntries());
+	public void setColors(List<Integer> colors) {
+		colorSelectionView.setColors(colors);
 		colorSelectionView.rebuild();
-		colorSelectionView.setSelectedColor(controller.getSelectedPrefIndex());
-		colorSelectionView.setOnColorSelectedListener(this);
-		return colorSelectionView;
+	}
+
+	public void setSelectedColor(int position, int color) {
+		colorSelectionView.setSelectedColor(position);
+		entryView.setColor(color);
+	}
+
+	public void showDialog() {
+		dialog.show();
+	}
+
+	public void closeDialog() {
+		dialog.dismiss();
 	}
 
 	@Override
-	protected ColorSelectionController createController(AttributeSet attrs) {
-		return new ColorSelectionController(this, attrs);
-	}
-
-	@Override
-	protected int getEntryLayoutId() {
-		return R.layout.entry_color;
-	}
-
-	@Override
-	protected ColorSelectionEntry onCreateEntryView() {
-		return new ColorSelectionEntry(this, controller);
+	public void onEntryClick() {
+		presenter.onEntryClick();
 	}
 
 	@Override
 	public void onColorSelected(int position) {
-		controller.savePref(position);
-		colorSelectionView.setSelectedColor(position);
-		entryView.setColor(controller.getCurrentColor());
-		closeDialog();
+		presenter.onColorSelected(position);
+	}
+
+
+	private ColorSelectionEntry initEntryView() {
+		View view = inflate(context, R.layout.entry_color, this);
+		ColorSelectionEntry entryView = new ColorSelectionEntry(view);
+		entryView.setOnClickListener(this);
+		return entryView;
+	}
+
+	private ColorSelectionView initColorSelectionView() {
+		int padding = PixelConverter.dpToPx(24);
+
+		ColorSelectionView colorSelectionView = new ColorSelectionView(context, null);
+		colorSelectionView.setPadding(padding, 0, padding, 0);
+		colorSelectionView.setOnColorSelectedListener(this);
+		return colorSelectionView;
+	}
+
+	private BaseDialog initDialog() {
+		BaseDialog dialog = new BaseDialog(context);
+		dialog.setView(colorSelectionView);
+		return dialog;
+	}
+
+	private ColorSelectionPresenter initPresenter(AttributeSet attributeSet) {
+		return new ColorSelectionPresenter(this, new ColorSelectionController(context, attributeSet));
 	}
 }

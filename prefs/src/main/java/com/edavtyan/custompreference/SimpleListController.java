@@ -1,7 +1,10 @@
 package com.edavtyan.custompreference;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 
 import java.util.Arrays;
@@ -10,7 +13,8 @@ import java.util.List;
 import lombok.Cleanup;
 import lombok.Getter;
 
-public class SimpleListController extends ListController<SimpleListPreference> {
+public class SimpleListController extends ListController {
+	private final SharedPreferences prefs;
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
 	private final @Getter CharSequence summary;
@@ -19,12 +23,14 @@ public class SimpleListController extends ListController<SimpleListPreference> {
 	private final @Getter List<CharSequence> values;
 
 
-	public SimpleListController(SimpleListPreference preference, AttributeSet attributeSet) {
-		super(preference);
+	public SimpleListController(Context context, AttributeSet attributeSet) {
+		super(context);
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")
-		TypedArray attrs = preference.context.obtainStyledAttributes(
+		TypedArray attrs = context.obtainStyledAttributes(
 				attributeSet, R.styleable.SimpleListPreference);
 		key = attrs.getString(R.styleable.SimpleListPreference_cp_key);
 		title = attrs.getString(R.styleable.SimpleListPreference_cp_title);

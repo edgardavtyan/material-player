@@ -1,15 +1,17 @@
 package com.edavtyan.custompreference;
 
+import android.content.Context;
+
 import java.util.List;
 
-public abstract class ListController<TPreference extends ListPreference>
-		extends SummaryController<TPreference> {
+public abstract class ListController extends BaseController {
 
-	public ListController(TPreference preference) {
-		super(preference);
+	public ListController(Context context) {
+		super(context);
 	}
 
 
+	public abstract CharSequence getSummary();
 	public abstract List<CharSequence> getEntries();
 	public abstract List<CharSequence> getValues();
 

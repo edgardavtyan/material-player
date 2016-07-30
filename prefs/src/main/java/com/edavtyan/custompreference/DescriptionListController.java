@@ -1,6 +1,7 @@
 package com.edavtyan.custompreference;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
@@ -11,7 +12,7 @@ import lombok.Cleanup;
 import lombok.Getter;
 
 
-public class DescriptionListController extends ListController<DescriptionListPreference> {
+public class DescriptionListController extends ListController {
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
 	private final @Getter CharSequence summary;
@@ -21,12 +22,12 @@ public class DescriptionListController extends ListController<DescriptionListPre
 	private final @Getter List<CharSequence> summaries;
 
 
-	public DescriptionListController(DescriptionListPreference prefView, AttributeSet attributeSet) {
-		super(prefView);
+	public DescriptionListController(Context context, AttributeSet attributeSet) {
+		super(context);
 
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")
-		TypedArray attrs = prefView.context.obtainStyledAttributes(
+		TypedArray attrs = context.obtainStyledAttributes(
 				attributeSet, R.styleable.DescriptionList);
 		key = attrs.getString(R.styleable.DescriptionList_cp_key);
 		title = attrs.getString(R.styleable.DescriptionList_cp_title);
