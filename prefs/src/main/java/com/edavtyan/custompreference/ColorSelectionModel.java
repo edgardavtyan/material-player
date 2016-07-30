@@ -12,14 +12,14 @@ import java.util.List;
 import lombok.Cleanup;
 import lombok.Getter;
 
-public class ColorSelectionController extends BaseController {
+public class ColorSelectionModel extends BaseModel {
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
 	private final @Getter CharSequence defaultValue;
 	private final @Getter List<Integer> entries;
 	private final @Getter List<CharSequence> values;
 
-	public ColorSelectionController(Context context, AttributeSet attributeSet) {
+	public ColorSelectionModel(Context context, AttributeSet attributeSet) {
 		super(context);
 
 		@Cleanup("recycle")

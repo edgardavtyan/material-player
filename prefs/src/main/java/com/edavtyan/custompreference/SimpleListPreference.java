@@ -18,7 +18,7 @@ public class SimpleListPreference
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		SimpleListController controller = new SimpleListController(context, attrs);
+		SimpleListModel controller = new SimpleListModel(context, attrs);
 
 		entryView = initEntryView();
 		dialogView = initDialogView(controller);
@@ -27,7 +27,7 @@ public class SimpleListPreference
 
 	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		SimpleListController controller = new SimpleListController(context, attrs);
+		SimpleListModel controller = new SimpleListModel(context, attrs);
 
 		entryView = initEntryView();
 		dialogView = initDialogView(controller);
@@ -69,7 +69,7 @@ public class SimpleListPreference
 		return entryView;
 	}
 
-	private BaseDialog initDialogView(SimpleListController model) {
+	private BaseDialog initDialogView(SimpleListModel model) {
 		SimpleListAdapter adapter = new SimpleListAdapter(context, model);
 		adapter.setOnHolderClickListener(this);
 

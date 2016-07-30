@@ -13,7 +13,7 @@ import java.util.List;
 import lombok.Cleanup;
 import lombok.Getter;
 
-public class SimpleListController extends ListController {
+public class SimpleListModel extends ListModel {
 	private final SharedPreferences prefs;
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
@@ -22,7 +22,7 @@ public class SimpleListController extends ListController {
 	private final @Getter List<CharSequence> entries;
 	private final @Getter List<CharSequence> values;
 
-	public SimpleListController(Context context, AttributeSet attributeSet) {
+	public SimpleListModel(Context context, AttributeSet attributeSet) {
 		super(context);
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);

@@ -13,14 +13,14 @@ public class DescriptionListAdapter
 		implements SimpleListViewHolder.OnHolderClickListener {
 
 	private final Context context;
-	private final DescriptionListController model;
+	private final DescriptionListModel model;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	interface OnHolderClickListener {
 		void onHolderClick(CharSequence value);
 	}
 
-	public DescriptionListAdapter(Context context, DescriptionListController model) {
+	public DescriptionListAdapter(Context context, DescriptionListModel model) {
 		this.context = context;
 		this.model = model;
 	}

@@ -2,9 +2,9 @@ package com.edavtyan.custompreference;
 
 public class ColorSelectionPresenter {
 	private final ColorSelectionPreference pref;
-	private final ColorSelectionController model;
+	private final ColorSelectionModel model;
 
-	public ColorSelectionPresenter(ColorSelectionPreference pref, ColorSelectionController model) {
+	public ColorSelectionPresenter(ColorSelectionPreference pref, ColorSelectionModel model) {
 		this.model = model;
 		this.pref = pref;
 		pref.setColors(model.getEntries());

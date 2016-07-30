@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public abstract class BaseController {
+public abstract class BaseModel {
 	protected final SharedPreferences sharedPrefs;
 
-	public BaseController(Context context) {
+	public BaseModel(Context context) {
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 

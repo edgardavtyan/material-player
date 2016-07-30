@@ -11,7 +11,7 @@ import java.util.List;
 import lombok.Cleanup;
 import lombok.Getter;
 
-public class DescriptionListController extends ListController {
+public class DescriptionListModel extends ListModel {
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
 	private final @Getter CharSequence summary;
@@ -20,7 +20,7 @@ public class DescriptionListController extends ListController {
 	private final @Getter List<CharSequence> values;
 	private final @Getter List<CharSequence> summaries;
 
-	public DescriptionListController(Context context, AttributeSet attributeSet) {
+	public DescriptionListModel(Context context, AttributeSet attributeSet) {
 		super(context);
 
 		@Cleanup("recycle")

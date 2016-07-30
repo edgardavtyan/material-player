@@ -2,12 +2,12 @@ package com.edavtyan.custompreference;
 
 public class DescriptionListPresenter {
 	private final DescriptionListPreference pref;
-	private final DescriptionListController model;
+	private final DescriptionListModel model;
 	private final String initialSummary;
 
 	public DescriptionListPresenter(
 			DescriptionListPreference pref,
-			DescriptionListController model) {
+			DescriptionListModel model) {
 		this.model = model;
 		this.initialSummary = model.getSummary().toString();
 

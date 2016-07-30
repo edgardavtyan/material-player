@@ -2,10 +2,10 @@ package com.edavtyan.custompreference;
 
 public class SimpleListPresenter {
 	private final SimpleListPreference pref;
-	private final SimpleListController model;
+	private final SimpleListModel model;
 	private final String initialSummary;
 
-	public SimpleListPresenter(SimpleListPreference pref, SimpleListController model) {
+	public SimpleListPresenter(SimpleListPreference pref, SimpleListModel model) {
 		this.model = model;
 		this.initialSummary = model.getSummary().toString();
 

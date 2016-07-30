@@ -13,10 +13,10 @@ public class SimpleListAdapter
 		implements SimpleListViewHolder.OnHolderClickListener {
 
 	private final Context context;
-	private final SimpleListController controller;
+	private final SimpleListModel controller;
 	private @Setter SimpleListViewHolder.OnHolderClickListener onHolderClickListener;
 
-	public SimpleListAdapter(Context context, SimpleListController controller) {
+	public SimpleListAdapter(Context context, SimpleListModel controller) {
 		this.context = context;
 		this.controller = controller;
 	}

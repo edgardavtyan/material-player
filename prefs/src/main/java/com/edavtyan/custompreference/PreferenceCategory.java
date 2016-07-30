@@ -10,19 +10,19 @@ import com.edavtyan.custompreference.utils.AttributeResolver;
 
 public class PreferenceCategory extends LinearLayout {
 	private final Context context;
-	private final PreferenceCategoryController controller;
+	private final PreferenceCategoryModel controller;
 
 	public PreferenceCategory(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
-		this.controller = new PreferenceCategoryController(context, attrs);
+		this.controller = new PreferenceCategoryModel(context, attrs);
 		init();
 	}
 
 	public PreferenceCategory(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		this.context = context;
-		this.controller = new PreferenceCategoryController(context, attrs);
+		this.controller = new PreferenceCategoryModel(context, attrs);
 		init();
 	}
 

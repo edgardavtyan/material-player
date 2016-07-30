@@ -4,8 +4,8 @@ import android.content.Context;
 
 import java.util.List;
 
-public abstract class ListController extends BaseController {
-	public ListController(Context context) {
+public abstract class ListModel extends BaseModel {
+	public ListModel(Context context) {
 		super(context);
 	}
 

@@ -19,7 +19,7 @@ public class DescriptionListPreference
 
 	public DescriptionListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		DescriptionListController model = initModel(attrs);
+		DescriptionListModel model = initModel(attrs);
 		entryView = initEntryView();
 		adapter = initAdapter(model);
 		dialog = initDialog();
@@ -28,7 +28,7 @@ public class DescriptionListPreference
 
 	public DescriptionListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		DescriptionListController model = initModel(attrs);
+		DescriptionListModel model = initModel(attrs);
 		entryView = initEntryView();
 		adapter = initAdapter(model);
 		dialog = initDialog();
@@ -73,7 +73,7 @@ public class DescriptionListPreference
 		return entryView;
 	}
 
-	private DescriptionListAdapter initAdapter(DescriptionListController model) {
+	private DescriptionListAdapter initAdapter(DescriptionListModel model) {
 		DescriptionListAdapter adapter = new DescriptionListAdapter(context, model);
 		adapter.setOnHolderClickListener(this);
 		return adapter;
@@ -90,12 +90,12 @@ public class DescriptionListPreference
 		return dialog;
 	}
 
-	private DescriptionListPresenter initPresenter(DescriptionListController model) {
+	private DescriptionListPresenter initPresenter(DescriptionListModel model) {
 		DescriptionListPresenter presenter = new DescriptionListPresenter(this, model);
 		return presenter;
 	}
 
-	private DescriptionListController initModel(AttributeSet attributeSet) {
-		return new DescriptionListController(context, attributeSet);
+	private DescriptionListModel initModel(AttributeSet attributeSet) {
+		return new DescriptionListModel(context, attributeSet);
 	}
 }

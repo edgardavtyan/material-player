@@ -90,6 +90,6 @@ public class ColorSelectionPreference
 	}
 
 	private ColorSelectionPresenter initPresenter(AttributeSet attributeSet) {
-		return new ColorSelectionPresenter(this, new ColorSelectionController(context, attributeSet));
+		return new ColorSelectionPresenter(this, new ColorSelectionModel(context, attributeSet));
 	}
 }
