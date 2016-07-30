@@ -10,13 +10,11 @@ import com.edavtyan.custompreference.utils.PixelConverter;
 public class BaseDialog {
 	private final AlertDialog dialog;
 
-
 	public BaseDialog(Context context) {
 		dialog = new AlertDialog.Builder(context)
 				.setNegativeButton(android.R.string.cancel, null)
 				.create();
 	}
-
 
 	public void setTitle(CharSequence title) {
 		dialog.setTitle(title);

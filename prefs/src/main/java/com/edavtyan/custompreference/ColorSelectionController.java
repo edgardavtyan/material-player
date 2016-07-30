@@ -19,7 +19,6 @@ public class ColorSelectionController extends BaseController {
 	private final @Getter List<Integer> entries;
 	private final @Getter List<CharSequence> values;
 
-
 	public ColorSelectionController(Context context, AttributeSet attributeSet) {
 		super(context);
 
@@ -34,7 +33,6 @@ public class ColorSelectionController extends BaseController {
 		values = Arrays.asList(attrs.getTextArray(R.styleable.ColorSelectionPreference_cp_entryValues));
 	}
 
-
 	public int getSelectedPrefIndex() {
 		return values.indexOf(sharedPrefs.getString(key.toString(), defaultValue.toString()));
 	}
@@ -46,7 +44,6 @@ public class ColorSelectionController extends BaseController {
 	public void savePref(int position) {
 		sharedPrefs.edit().putString(key.toString(), values.get(position).toString()).apply();
 	}
-
 
 	private List<Integer> getEntries(Context context, TypedArray attrs) {
 		int entriesId = attrs.getResourceId(R.styleable.ColorSelectionPreference_cp_entries, 0);

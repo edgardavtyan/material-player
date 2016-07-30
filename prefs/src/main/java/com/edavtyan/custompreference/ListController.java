@@ -5,16 +5,15 @@ import android.content.Context;
 import java.util.List;
 
 public abstract class ListController extends BaseController {
-
 	public ListController(Context context) {
 		super(context);
 	}
 
-
 	public abstract CharSequence getSummary();
-	public abstract List<CharSequence> getEntries();
-	public abstract List<CharSequence> getValues();
 
+	public abstract List<CharSequence> getEntries();
+
+	public abstract List<CharSequence> getValues();
 
 	public boolean getPrefSelectedAtIndex(int position) {
 		return getValues().get(position).equals(getCurrentPreference());

@@ -10,7 +10,6 @@ import com.edavtyan.custompreference.utils.AttributeResolver;
 public abstract class BasePreference extends LinearLayout {
 	protected final Context context;
 
-
 	public BasePreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
@@ -22,7 +21,6 @@ public abstract class BasePreference extends LinearLayout {
 		this.context = context;
 		initCommonEntryViewProperties();
 	}
-
 
 	private void initCommonEntryViewProperties() {
 		AttributeResolver attrs = new AttributeResolver(context);

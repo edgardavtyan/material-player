@@ -10,18 +10,15 @@ public class ColorSelectionEntry implements View.OnClickListener {
 	private final ColorCircleView colorView;
 	private @Setter OnClickListener onClickListener;
 
-
 	interface OnClickListener {
 		void onEntryClick();
 	}
-
 
 	public ColorSelectionEntry(View view) {
 		view.setOnClickListener(this);
 		titleView = (TextView) view.findViewById(R.id.title);
 		colorView = (ColorCircleView) view.findViewById(R.id.color);
 	}
-
 
 	public void setTitle(CharSequence title) {
 		titleView.setText(title);
@@ -30,7 +27,6 @@ public class ColorSelectionEntry implements View.OnClickListener {
 	public void setColor(int color) {
 		colorView.setColor(color);
 	}
-
 
 	@Override
 	public void onClick(View v) {

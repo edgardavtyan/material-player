@@ -24,11 +24,9 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 	private @Setter int totalWidth;
 	private @Setter OnColorSelectedListener onColorSelectedListener;
 
-
 	interface OnColorSelectedListener {
 		void onColorSelected(int position);
 	}
-
 
 	public ColorSelectionView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -67,7 +65,6 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 		colorViews.get(position).setChecked(true);
 	}
 
-
 	@Override
 	public void onClick(View v) {
 		if (onColorSelectedListener != null) {
@@ -76,7 +73,6 @@ public class ColorSelectionView extends LinearLayout implements View.OnClickList
 			onColorSelectedListener.onColorSelected(colors.indexOf(color));
 		}
 	}
-
 
 	private void init() {
 		setOrientation(VERTICAL);

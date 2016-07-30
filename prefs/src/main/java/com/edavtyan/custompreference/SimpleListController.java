@@ -22,7 +22,6 @@ public class SimpleListController extends ListController {
 	private final @Getter List<CharSequence> entries;
 	private final @Getter List<CharSequence> values;
 
-
 	public SimpleListController(Context context, AttributeSet attributeSet) {
 		super(context);
 

@@ -11,7 +11,6 @@ import java.util.List;
 import lombok.Cleanup;
 import lombok.Getter;
 
-
 public class DescriptionListController extends ListController {
 	private final @Getter CharSequence key;
 	private final @Getter CharSequence title;
@@ -20,7 +19,6 @@ public class DescriptionListController extends ListController {
 	private final @Getter List<CharSequence> entries;
 	private final @Getter List<CharSequence> values;
 	private final @Getter List<CharSequence> summaries;
-
 
 	public DescriptionListController(Context context, AttributeSet attributeSet) {
 		super(context);

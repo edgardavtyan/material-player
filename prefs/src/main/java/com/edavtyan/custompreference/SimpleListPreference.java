@@ -62,7 +62,6 @@ public class SimpleListPreference
 		dialogView.dismiss();
 	}
 
-
 	private SummaryEntry initEntryView() {
 		inflate(context, R.layout.entry_summary, this);
 		SummaryEntry entryView = new SummaryEntry(context, this);

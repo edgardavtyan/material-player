@@ -10,7 +10,6 @@ public class ColorCircleView extends View {
 	private final Paint paint;
 	private final ColorCircleAttributes attrs;
 
-
 	public ColorCircleView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.attrs = new ColorCircleAttributes(context, attrs);
@@ -23,15 +22,13 @@ public class ColorCircleView extends View {
 		this.paint = initPaint();
 	}
 
-
-	public void setColor(int color) {
-		paint.setColor(color);
-	}
-
 	public int getColor() {
 		return paint.getColor();
 	}
 
+	public void setColor(int color) {
+		paint.setColor(color);
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -40,7 +37,6 @@ public class ColorCircleView extends View {
 		int center = getWidth() / 2;
 		canvas.drawCircle(center, center, center, paint);
 	}
-
 
 	private Paint initPaint() {
 		Paint paint = new Paint();

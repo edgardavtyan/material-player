@@ -10,7 +10,6 @@ import lombok.Cleanup;
 public class AttributeResolver {
 	private final Context context;
 
-
 	public AttributeResolver(Context context) {
 		this.context = context;
 	}
@@ -29,7 +28,6 @@ public class AttributeResolver {
 		@Cleanup("recycle") TypedArray attr = getAttribute(attrId);
 		return attr.getColor(0, 0);
 	}
-
 
 	private TypedArray getAttribute(int attrId) {
 		TypedValue typedValue = new TypedValue();

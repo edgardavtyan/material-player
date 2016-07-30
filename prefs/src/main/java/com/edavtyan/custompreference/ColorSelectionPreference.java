@@ -67,7 +67,6 @@ public class ColorSelectionPreference
 		presenter.onColorSelected(position);
 	}
 
-
 	private ColorSelectionEntry initEntryView() {
 		View view = inflate(context, R.layout.entry_color, this);
 		ColorSelectionEntry entryView = new ColorSelectionEntry(view);

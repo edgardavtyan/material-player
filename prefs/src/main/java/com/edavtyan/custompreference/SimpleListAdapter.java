@@ -16,12 +16,10 @@ public class SimpleListAdapter
 	private final SimpleListController controller;
 	private @Setter SimpleListViewHolder.OnHolderClickListener onHolderClickListener;
 
-
 	public SimpleListAdapter(Context context, SimpleListController controller) {
 		this.context = context;
 		this.controller = controller;
 	}
-
 
 	@Override
 	public SimpleListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

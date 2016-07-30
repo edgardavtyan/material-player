@@ -11,7 +11,6 @@ import lombok.Getter;
 public class PreferenceCategoryController {
 	private final @Getter CharSequence title;
 
-
 	public PreferenceCategoryController(Context context, AttributeSet attributeSet) {
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")

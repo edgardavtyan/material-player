@@ -12,11 +12,9 @@ public class SummaryEntry implements View.OnClickListener {
 	private final TextView summaryView;
 	private @Setter OnClickListener onClickListener;
 
-
 	interface OnClickListener {
 		void onEntryClick();
 	}
-
 
 	public SummaryEntry(Context context, LinearLayout view) {
 		view.setOrientation(LinearLayout.VERTICAL);
@@ -25,7 +23,6 @@ public class SummaryEntry implements View.OnClickListener {
 		summaryView = (TextView) view.findViewById(R.id.summary);
 	}
 
-
 	public void setTitle(CharSequence title) {
 		titleView.setText(title);
 	}
@@ -33,7 +30,6 @@ public class SummaryEntry implements View.OnClickListener {
 	public void setSummary(CharSequence summary) {
 		summaryView.setText(summary);
 	}
-
 
 	@Override
 	public void onClick(View v) {

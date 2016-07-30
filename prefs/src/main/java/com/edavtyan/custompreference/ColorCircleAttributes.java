@@ -11,7 +11,6 @@ import lombok.Getter;
 public class ColorCircleAttributes {
 	private final @Getter int backgroundColor;
 
-
 	public ColorCircleAttributes(Context context, AttributeSet attributeSet) {
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")

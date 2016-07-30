@@ -16,17 +16,14 @@ public class DescriptionListAdapter
 	private final DescriptionListController model;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
-
 	interface OnHolderClickListener {
 		void onHolderClick(CharSequence value);
 	}
-
 
 	public DescriptionListAdapter(Context context, DescriptionListController model) {
 		this.context = context;
 		this.model = model;
 	}
-
 
 	@Override
 	public DescriptionListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,7 +44,6 @@ public class DescriptionListAdapter
 	public int getItemCount() {
 		return model.getEntries().size();
 	}
-
 
 	@Override
 	public void onHolderClick(CharSequence value) {

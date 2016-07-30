@@ -11,7 +11,6 @@ public class ColorToggleSelectedView extends FrameLayout {
 	private final ColorCircleView colorView;
 	private final ImageView checkIcon;
 
-
 	public ColorToggleSelectedView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		inflate(context, R.layout.view_color_toggle, this);
@@ -26,17 +25,16 @@ public class ColorToggleSelectedView extends FrameLayout {
 		checkIcon = (ImageView) findViewById(R.id.checkIcon);
 	}
 
-
 	public void setChecked(boolean checked) {
 		checkIcon.setVisibility(checked ? VISIBLE : INVISIBLE);
 	}
 
-	public void setColor(int color) {
-		colorView.setColor(color);
-	}
-
 	public int getColor() {
 		return colorView.getColor();
+	}
+
+	public void setColor(int color) {
+		colorView.setColor(color);
 	}
 
 	@Override
