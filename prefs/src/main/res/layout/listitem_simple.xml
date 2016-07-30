@@ -18,8 +18,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
-		tools:text="List item title"
 		style="@style/DialogListItem_Title"
+		tools:text="List item title"
 		/>
 
 </LinearLayout>
