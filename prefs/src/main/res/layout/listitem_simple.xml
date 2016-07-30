@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="?android:listPreferredItemHeightSmall"
+	android:orientation="horizontal"
+	style="@style/DialogListItem_Container"
+	>
+
+	<RadioButton
+		android:id="@+id/radioButton"
+		style="@style/DialogListItem_RadioButton"
+		/>
+
+	<TextView
+		android:id="@+id/title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		tools:text="List item title"
+		style="@style/DialogListItem_Title"
+		/>
+
+</LinearLayout>
