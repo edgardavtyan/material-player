@@ -228,7 +228,7 @@
                 <rule>
                   <match>
                     <AND>
-                      <NAME>style:</NAME>
+                      <NAME>style</NAME>
                       <XML_ATTRIBUTE />
                     </AND>
                   </match>
