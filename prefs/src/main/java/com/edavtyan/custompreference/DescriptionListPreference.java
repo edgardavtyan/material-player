@@ -7,8 +7,10 @@ import android.util.AttributeSet;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
 
-public class DescriptionListPreference extends BasePreference
-		implements DescriptionListAdapter.OnHolderClickListener, SummaryEntry.OnClickListener {
+public class DescriptionListPreference
+		extends BasePreference
+		implements DescriptionListAdapter.OnHolderClickListener,
+				   SummaryEntry.OnClickListener {
 
 	private final SummaryEntry entryView;
 	private final BaseDialog dialog;
