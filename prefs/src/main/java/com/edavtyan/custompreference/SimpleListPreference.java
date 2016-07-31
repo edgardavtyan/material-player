@@ -9,8 +9,7 @@ import com.edavtyan.custompreference.utils.PixelConverter;
 
 public class SimpleListPreference
 		extends BasePreference
-		implements SummaryEntry.OnClickListener,
-				   SimpleListViewHolder.OnHolderClickListener {
+		implements SummaryEntry.OnClickListener {
 
 	private final SummaryEntry entryView;
 	private final BaseDialog dialogView;
@@ -18,20 +17,18 @@ public class SimpleListPreference
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		SimpleListModel model = new SimpleListModel(context, attrs);
-
+		presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 		entryView = initEntryView();
-		dialogView = initDialogView(model);
-		presenter = new SimpleListPresenter(this, model);
+		dialogView = initDialogView();
+		presenter.onViewsInit();
 	}
 
 	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		SimpleListModel controller = new SimpleListModel(context, attrs);
-
+		presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 		entryView = initEntryView();
-		dialogView = initDialogView(controller);
-		presenter = new SimpleListPresenter(this, controller);
+		dialogView = initDialogView();
+		presenter.onViewsInit();
 	}
 
 	public void openDialog() {
@@ -56,12 +53,6 @@ public class SimpleListPreference
 		presenter.onEntryClicked();
 	}
 
-	@Override
-	public void onHolderClick(CharSequence value) {
-		presenter.onListItemSelected(value);
-		dialogView.dismiss();
-	}
-
 	private SummaryEntry initEntryView() {
 		inflate(context, R.layout.entry_summary, this);
 		SummaryEntry entryView = new SummaryEntry(context, this);
@@ -69,13 +60,10 @@ public class SimpleListPreference
 		return entryView;
 	}
 
-	private BaseDialog initDialogView(SimpleListModel model) {
-		SimpleListAdapter adapter = new SimpleListAdapter(context, model);
-		adapter.setOnHolderClickListener(this);
-
+	private BaseDialog initDialogView() {
 		RecyclerView list = new RecyclerView(context);
 		list.setLayoutManager(new LinearLayoutManager(context));
-		list.setAdapter(adapter);
+		list.setAdapter(new SimpleListAdapter(context, presenter));
 		list.setPadding(0, PixelConverter.dpToPx(16), 0, 0);
 
 		BaseDialog dialog = new BaseDialog(context);

@@ -8,8 +8,10 @@ public class SimpleListPresenter {
 	public SimpleListPresenter(SimpleListPreference pref, SimpleListModel model) {
 		this.model = model;
 		this.initialSummary = model.getSummary().toString();
-
 		this.pref = pref;
+	}
+
+	public void onViewsInit() {
 		this.pref.setTitle(model.getTitle());
 		this.pref.setSummary(getFormattedSummary());
 	}
@@ -26,5 +28,15 @@ public class SimpleListPresenter {
 
 	private String getFormattedSummary() {
 		return initialSummary.replace("%s", model.getCurrentPreference());
+	}
+
+	public void bindViewHolder(SimpleListViewHolder holder, int position) {
+		holder.setTitle(model.getEntries().get(position));
+		holder.setChecked(model.getPrefSelectedAtIndex(position));
+		holder.setValue(model.getValues().get(position));
+	}
+
+	public int getItemCount() {
+		return model.getEntries().size();
 	}
 }

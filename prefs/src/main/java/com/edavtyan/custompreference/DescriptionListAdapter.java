@@ -6,23 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import lombok.Setter;
-
 public class DescriptionListAdapter
 		extends RecyclerView.Adapter<DescriptionListViewHolder>
 		implements SimpleListViewHolder.OnHolderClickListener {
 
 	private final Context context;
-	private final DescriptionListModel model;
-	private @Setter OnHolderClickListener onHolderClickListener;
+	private final DescriptionListPresenter presenter;
 
-	interface OnHolderClickListener {
-		void onHolderClick(CharSequence value);
-	}
-
-	public DescriptionListAdapter(Context context, DescriptionListModel model) {
+	public DescriptionListAdapter(Context context, DescriptionListPresenter presenter) {
 		this.context = context;
-		this.model = model;
+		this.presenter = presenter;
 	}
 
 	@Override
@@ -33,22 +26,18 @@ public class DescriptionListAdapter
 
 	@Override
 	public void onBindViewHolder(DescriptionListViewHolder holder, int position) {
-		holder.setTitle(model.getEntries().get(position));
-		holder.setDescription(model.getSummaries().get(position));
-		holder.setChecked(model.getPrefSelectedAtIndex(position));
-		holder.setValue(model.getValues().get(position));
+		presenter.bindViewHolder(holder, position);
 		holder.setOnHolderClickListener(this);
 	}
 
 	@Override
 	public int getItemCount() {
-		return model.getEntries().size();
+		return presenter.getItemCount();
 	}
 
 	@Override
 	public void onHolderClick(CharSequence value) {
-		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(value);
-		}
+		presenter.onListItemSelected(value);
+		notifyDataSetChanged();
 	}
 }

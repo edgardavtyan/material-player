@@ -6,19 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import lombok.Setter;
-
 public class SimpleListAdapter
 		extends RecyclerView.Adapter<SimpleListViewHolder>
 		implements SimpleListViewHolder.OnHolderClickListener {
 
 	private final Context context;
-	private final SimpleListModel model;
-	private @Setter SimpleListViewHolder.OnHolderClickListener onHolderClickListener;
+	private final SimpleListPresenter presenter;
 
-	public SimpleListAdapter(Context context, SimpleListModel model) {
+	public SimpleListAdapter(Context context, SimpleListPresenter presenter) {
 		this.context = context;
-		this.model = model;
+		this.presenter = presenter;
 	}
 
 	@Override
@@ -29,22 +26,19 @@ public class SimpleListAdapter
 
 	@Override
 	public void onBindViewHolder(SimpleListViewHolder holder, int position) {
-		holder.setTitle(model.getEntries().get(position).toString());
-		holder.setChecked(model.getPrefSelectedAtIndex(position));
-		holder.setValue(model.getValues().get(position));
+		presenter.bindViewHolder(holder, position);
 		holder.setOnHolderClickListener(this);
 	}
 
 	@Override
 	public int getItemCount() {
-		return model.getEntries().size();
+		return presenter.getItemCount();
 	}
 
 	@Override
 	public void onHolderClick(CharSequence value) {
-		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(value);
-		}
+		presenter.onListItemSelected(value);
+		notifyDataSetChanged();
 	}
 
 }
