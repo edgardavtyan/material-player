@@ -63,7 +63,7 @@ public class DescriptionListPreference
 		RecyclerView list = new RecyclerView(context);
 		list.setLayoutManager(new LinearLayoutManager(context));
 		list.setAdapter(new DescriptionListAdapter(context, presenter));
-		list.setPadding(0, PixelConverter.dpToPx(16), 0, 0);
+		list.setPadding(0, PixelConverter.dpToPx(8), 0, 0);
 
 		BaseDialog dialog = new BaseDialog(context);
 		dialog.setView(list);
