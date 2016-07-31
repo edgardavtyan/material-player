@@ -13,12 +13,12 @@ public class SimpleListAdapter
 		implements SimpleListViewHolder.OnHolderClickListener {
 
 	private final Context context;
-	private final SimpleListModel controller;
+	private final SimpleListModel model;
 	private @Setter SimpleListViewHolder.OnHolderClickListener onHolderClickListener;
 
-	public SimpleListAdapter(Context context, SimpleListModel controller) {
+	public SimpleListAdapter(Context context, SimpleListModel model) {
 		this.context = context;
-		this.controller = controller;
+		this.model = model;
 	}
 
 	@Override
@@ -29,15 +29,15 @@ public class SimpleListAdapter
 
 	@Override
 	public void onBindViewHolder(SimpleListViewHolder holder, int position) {
-		holder.setTitle(controller.getEntries().get(position).toString());
-		holder.setChecked(controller.getPrefSelectedAtIndex(position));
-		holder.setValue(controller.getValues().get(position));
+		holder.setTitle(model.getEntries().get(position).toString());
+		holder.setChecked(model.getPrefSelectedAtIndex(position));
+		holder.setValue(model.getValues().get(position));
 		holder.setOnHolderClickListener(this);
 	}
 
 	@Override
 	public int getItemCount() {
-		return controller.getEntries().size();
+		return model.getEntries().size();
 	}
 
 	@Override

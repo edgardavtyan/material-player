@@ -18,11 +18,11 @@ public class SimpleListPreference
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		SimpleListModel controller = new SimpleListModel(context, attrs);
+		SimpleListModel model = new SimpleListModel(context, attrs);
 
 		entryView = initEntryView();
-		dialogView = initDialogView(controller);
-		presenter = new SimpleListPresenter(this, controller);
+		dialogView = initDialogView(model);
+		presenter = new SimpleListPresenter(this, model);
 	}
 
 	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
