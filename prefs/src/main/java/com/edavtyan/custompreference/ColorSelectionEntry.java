@@ -1,6 +1,9 @@
 package com.edavtyan.custompreference;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import lombok.Setter;
@@ -14,7 +17,8 @@ public class ColorSelectionEntry implements View.OnClickListener {
 		void onEntryClick();
 	}
 
-	public ColorSelectionEntry(View view) {
+	public ColorSelectionEntry(Context context, LinearLayout view) {
+		LayoutInflater.from(context).inflate(R.layout.entry_color, view, true);
 		view.setOnClickListener(this);
 		titleView = (TextView) view.findViewById(R.id.title);
 		colorView = (ColorCircleView) view.findViewById(R.id.color);

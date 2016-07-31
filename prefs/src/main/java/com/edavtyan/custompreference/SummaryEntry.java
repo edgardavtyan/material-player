@@ -1,6 +1,7 @@
 package com.edavtyan.custompreference;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class SummaryEntry implements View.OnClickListener {
 	}
 
 	public SummaryEntry(Context context, LinearLayout view) {
+		LayoutInflater.from(context).inflate(R.layout.entry_summary, view, true);
 		view.setOrientation(LinearLayout.VERTICAL);
 		view.setOnClickListener(this);
 		titleView = (TextView) view.findViewById(R.id.title);

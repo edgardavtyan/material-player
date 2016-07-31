@@ -2,7 +2,6 @@ package com.edavtyan.custompreference;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 
 import com.edavtyan.custompreference.utils.PixelConverter;
 
@@ -68,8 +67,7 @@ public class ColorSelectionPreference
 	}
 
 	private ColorSelectionEntry initEntryView() {
-		View view = inflate(context, R.layout.entry_color, this);
-		ColorSelectionEntry entryView = new ColorSelectionEntry(view);
+		ColorSelectionEntry entryView = new ColorSelectionEntry(context, this);
 		entryView.setOnClickListener(this);
 		return entryView;
 	}
