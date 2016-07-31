@@ -8,9 +8,9 @@ public class DescriptionListPresenter {
 	public DescriptionListPresenter(
 			DescriptionListPreference pref,
 			DescriptionListModel model) {
+		this.pref = pref;
 		this.model = model;
 		this.initialSummary = model.getSummary().toString();
-		this.pref = pref;
 	}
 
 	public void onViewsInit() {

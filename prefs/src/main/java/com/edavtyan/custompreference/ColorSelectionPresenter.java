@@ -5,8 +5,8 @@ public class ColorSelectionPresenter {
 	private final ColorSelectionModel model;
 
 	public ColorSelectionPresenter(ColorSelectionPreference pref, ColorSelectionModel model) {
-		this.model = model;
 		this.pref = pref;
+		this.model = model;
 		pref.setColors(model.getEntries());
 		pref.setTitle(model.getTitle());
 		pref.setSelectedColor(model.getSelectedPrefIndex(), model.getCurrentColor());

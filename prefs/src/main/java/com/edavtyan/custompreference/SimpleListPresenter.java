@@ -6,9 +6,9 @@ public class SimpleListPresenter {
 	private final String initialSummary;
 
 	public SimpleListPresenter(SimpleListPreference pref, SimpleListModel model) {
+		this.pref = pref;
 		this.model = model;
 		this.initialSummary = model.getSummary().toString();
-		this.pref = pref;
 	}
 
 	public void onViewsInit() {
