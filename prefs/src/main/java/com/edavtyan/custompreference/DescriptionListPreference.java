@@ -19,7 +19,7 @@ public class DescriptionListPreference
 		super(context, attrs);
 		presenter = initPresenter(initModel(attrs));
 		entryView = initEntryView();
-		dialog = initDialog();
+		dialog = initDialog(presenter);
 		presenter.onViewsInit();
 	}
 
@@ -27,7 +27,7 @@ public class DescriptionListPreference
 		super(context, attrs, defStyleAttr);
 		presenter = initPresenter(initModel(attrs));
 		entryView = initEntryView();
-		dialog = initDialog();
+		dialog = initDialog(presenter);
 		presenter.onViewsInit();
 	}
 
@@ -60,7 +60,7 @@ public class DescriptionListPreference
 		return entryView;
 	}
 
-	private BaseDialog initDialog() {
+	private BaseDialog initDialog(DescriptionListPresenter presenter) {
 		RecyclerView list = new RecyclerView(context);
 		list.setLayoutManager(new LinearLayoutManager(context));
 		list.setAdapter(new DescriptionListAdapter(context, presenter));

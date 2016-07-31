@@ -19,7 +19,7 @@ public class SimpleListPreference
 		super(context, attrs);
 		presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 		entryView = initEntryView();
-		dialogView = initDialogView();
+		dialogView = initDialogView(presenter);
 		presenter.onViewsInit();
 	}
 
@@ -27,7 +27,7 @@ public class SimpleListPreference
 		super(context, attrs, defStyleAttr);
 		presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 		entryView = initEntryView();
-		dialogView = initDialogView();
+		dialogView = initDialogView(presenter);
 		presenter.onViewsInit();
 	}
 
@@ -60,7 +60,7 @@ public class SimpleListPreference
 		return entryView;
 	}
 
-	private BaseDialog initDialogView() {
+	private BaseDialog initDialogView(SimpleListPresenter presenter) {
 		RecyclerView list = new RecyclerView(context);
 		list.setLayoutManager(new LinearLayoutManager(context));
 		list.setAdapter(new SimpleListAdapter(context, presenter));
