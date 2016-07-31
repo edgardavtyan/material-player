@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="attrs">
+		<attr name="cp_key" format="string" />
+		<attr name="cp_title" format="string" />
+		<attr name="cp_summary" format="string" />
+		<attr name="cp_defaultValue" format="string" />
+		<attr name="cp_entries" format="reference" />
+		<attr name="cp_entryValues" format="reference" />
+	</declare-styleable>
+
+	<declare-styleable name="SimpleListPreference">
+		<attr name="cp_key" />
+		<attr name="cp_title" />
+		<attr name="cp_summary" />
+		<attr name="cp_defaultValue" />
+		<attr name="cp_entries" />
+		<attr name="cp_entryValues" />
+	</declare-styleable>
+
+	<declare-styleable name="DescriptionList">
+		<attr name="cp_key" />
+		<attr name="cp_title" />
+		<attr name="cp_summary" />
+		<attr name="cp_defaultValue" />
+		<attr name="cp_entries" />
+		<attr name="cp_entryValues" />
+		<attr name="cp_summaries" format="reference" />
+	</declare-styleable>
+
+	<declare-styleable name="ColorSelectionPreference">
+		<attr name="cp_key" />
+		<attr name="cp_title" />
+		<attr name="cp_summary" />
+		<attr name="cp_defaultValue" />
+		<attr name="cp_entries" />
+		<attr name="cp_entryValues" />
+	</declare-styleable>
+
+	<declare-styleable name="PreferenceCategory">
+		<attr name="cp_title" />
+	</declare-styleable>
+
+	<declare-styleable name="ColorCircleView">
+		<attr name="cp_background" format="color" />
+	</declare-styleable>
+
+</resources>

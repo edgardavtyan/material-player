@@ -19,6 +19,8 @@
 	<color name="primary_blueGray">#607d8b</color>
 	<color name="primary_dark_blueGray">#455a64</color>
 
+	<color name="primary_black">#000000</color>
+
 	<color name="accent">#ffc107</color>
 
 	<color name="transparent_gray_light">#3000</color>

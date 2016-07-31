@@ -11,9 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.utils.ThemeUtils;
-import com.edavtyan.materialplayer.components.prefs.PrefActivity;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
+import com.edavtyan.materialplayer.components.prefs.PrefActivity;
+import com.edavtyan.materialplayer.utils.ThemeUtils;
 
 public abstract class BaseActivity
 		extends AppCompatActivity

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="PrefEntry_Title">
+		<item name="android:textColor">?android:colorForeground</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+
+	<style name="PrefEntry_Summary">
+		<item name="android:textColor">?android:textColorSecondary</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+
+</resources>
