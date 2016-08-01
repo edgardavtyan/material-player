@@ -7,14 +7,14 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
 
 import lombok.Getter;
 
-public class NowPlayingActivity2 extends AppCompatActivity implements ServiceConnection {
+public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceConnection {
 
 	private NowPlayingPresenter presenter;
 	private @Getter NowPlayingInfoView infoView;
@@ -26,8 +26,6 @@ public class NowPlayingActivity2 extends AppCompatActivity implements ServiceCon
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_nowplaying_2);
-
 		presenter = new NowPlayingPresenter();
 		infoView = new NowPlayingInfoView(this);
 	}
@@ -44,6 +42,16 @@ public class NowPlayingActivity2 extends AppCompatActivity implements ServiceCon
 	protected void onStop() {
 		super.onStop();
 		unbindService(this);
+	}
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_nowplaying_2;
+	}
+
+	@Override
+	protected int getToolbarTitleStringId() {
+		return R.string.nowplaying_toolbar_title;
 	}
 
 	@Override
