@@ -18,6 +18,7 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 
 	private NowPlayingPresenter presenter;
 	private @Getter NowPlayingInfoView infoView;
+	private @Getter NowPlayingControlsView controlsView;
 
 	public static void startActivity(Context context) {
 		context.startActivity(new Intent(context, NowPlayingActivity2.class));
@@ -28,6 +29,7 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 		super.onCreate(savedInstanceState);
 		presenter = new NowPlayingPresenter();
 		infoView = new NowPlayingInfoView(this);
+		controlsView = new NowPlayingControlsView(this, presenter);
 	}
 
 	@Override

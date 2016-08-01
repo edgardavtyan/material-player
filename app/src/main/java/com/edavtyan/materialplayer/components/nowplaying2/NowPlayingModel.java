@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.nowplaying2;
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.components.player.MusicPlayer;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
+import com.edavtyan.materialplayer.components.player.RepeatMode;
 
 public class NowPlayingModel {
 	private MusicPlayerService service;
@@ -24,5 +25,47 @@ public class NowPlayingModel {
 
 	public CharSequence getAlbumTitle() {
 		return queue.getCurrentTrack().getAlbumTitle();
+	}
+
+	/*
+	 * Player Controls
+	 */
+
+	public void toggleShuffle() {
+		queue.toggleShuffling();
+	}
+
+	public boolean isShuffling() {
+		return queue.isShuffling();
+	}
+
+	public void toggleRepeat() {
+		queue.toggleRepeatMode();
+	}
+
+	public RepeatMode getRepeatMode() {
+		return queue.getRepeatMode();
+	}
+
+	public void rewind() {
+		player.movePrev();
+		player.prepare();
+	}
+
+	public boolean isPlaying() {
+		return player.isPlaying();
+	}
+
+	public void pause() {
+		player.pause();
+	}
+
+	public void resume() {
+		player.resume();
+	}
+
+	public void fastForward() {
+		player.moveNext();
+		player.prepare();
 	}
 }
