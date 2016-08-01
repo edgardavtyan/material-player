@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.nowplaying2;
 
+import android.util.Log;
+
 public class NowPlayingPresenter {
 
 	private NowPlayingActivity2 view;
@@ -15,6 +17,11 @@ public class NowPlayingPresenter {
 		view.getInfoView().setTitle(model.getTrackTitle());
 		view.getInfoView().setInfo(model.getArtistTitle(), model.getAlbumTitle());
 		view.getArtView().setArt(model.getArt());
+
+		view.getSeekbarView().setMax(model.getDuration());
+		view.getSeekbarView().setProgress(model.getPosition());
+		view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
+		view.getSeekbarView().setTotalTime(formatTime(model.getDuration()));
 	}
 
 	public void toggleShuffle() {
@@ -51,5 +58,23 @@ public class NowPlayingPresenter {
 
 	public void fastForward() {
 		model.fastForward();
+	}
+
+	public void onSeekTo(int progress) {
+		model.seekTo(progress);
+	}
+
+	private String formatTime(int time) {
+		Log.d(getClass().getSimpleName(), Integer.toString(time));
+		time /= 1000;
+		int seconds = time % 60;
+		int minutes = time / 60;
+		int hours = time / 3600;
+
+		if (hours == 0) {
+			return String.format("%d:%02d", minutes, seconds);
+		} else {
+			return String.format("%d:%d:%02d", hours, minutes, seconds);
+		}
 	}
 }

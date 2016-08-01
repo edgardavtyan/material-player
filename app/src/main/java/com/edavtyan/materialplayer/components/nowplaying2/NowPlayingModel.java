@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.utils.ArtProvider;
 import java.io.File;
 
 public class NowPlayingModel {
-	private MusicPlayerService service;
 	private MusicPlayer player;
 	private NowPlayingQueue queue;
 
@@ -74,5 +73,17 @@ public class NowPlayingModel {
 
 	public File getArt() {
 		return ArtProvider.fromTrack(queue.getCurrentTrack());
+	}
+
+	public int getDuration() {
+		return player.getDuration();
+	}
+
+	public int getPosition() {
+		return player.getPosition();
+	}
+
+	public void seekTo(int progress) {
+		player.setPosition(progress);
 	}
 }
