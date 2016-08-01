@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
+import com.edavtyan.materialplayer.components.nowplaying2.NowPlayingActivity2;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerServiceCursorAdapter;
 import com.edavtyan.materialplayer.lib.models.CursorDB;
 
@@ -33,7 +33,7 @@ public abstract class TracksAdapter<THolder extends TracksViewHolder>
 		THolder holder = createViewHolder(view);
 
 		holder.setOnClickListener(itemView -> {
-			NowPlayingActivity.startActivity(context);
+			NowPlayingActivity2.startActivity(context);
 			service.getQueue().setTracks(trackDB.getAllTracks(), holder.getAdapterPosition());
 			service.getPlayer().prepare();
 		});

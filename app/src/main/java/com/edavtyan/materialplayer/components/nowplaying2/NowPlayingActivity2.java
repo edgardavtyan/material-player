@@ -19,6 +19,10 @@ public class NowPlayingActivity2 extends AppCompatActivity implements ServiceCon
 	private NowPlayingPresenter presenter;
 	private @Getter NowPlayingInfoView infoView;
 
+	public static void startActivity(Context context) {
+		context.startActivity(new Intent(context, NowPlayingActivity2.class));
+	}
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
