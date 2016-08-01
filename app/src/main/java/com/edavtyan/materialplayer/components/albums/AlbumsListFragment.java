@@ -1,11 +1,10 @@
-package com.edavtyan.materialplayer.components.albums.views.list;
+package com.edavtyan.materialplayer.components.albums;
 
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.Loader;
 
-import com.edavtyan.materialplayer.components.albums.models.AlbumDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.lib.fragments.ListFragment;
 

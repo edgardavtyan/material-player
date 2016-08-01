@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.albums.models;
+package com.edavtyan.materialplayer.components.albums;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.tracks.views.list;
+package com.edavtyan.materialplayer.components.tracks;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
-import com.edavtyan.materialplayer.components.tracks.models.Track;
-import com.edavtyan.materialplayer.components.tracks.models.TrackDB;
 
 public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 	public TracksListAdapter(Context context, TrackDB trackDB) {

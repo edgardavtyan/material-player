@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.artists.views.list;
+package com.edavtyan.materialplayer.components.artists;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.artists.models.Artist;
-import com.edavtyan.materialplayer.components.artists.models.ArtistDB;
-import com.edavtyan.materialplayer.components.artists.views.detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.lib.models.CursorDB;
 

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.artists.models;
+package com.edavtyan.materialplayer.components.artists;
 
 import lombok.Data;
 

@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.utils;
 
 import android.media.MediaMetadataRetriever;
 
-import com.edavtyan.materialplayer.components.tracks.models.Track;
+import com.edavtyan.materialplayer.components.tracks.Track;
 import com.esotericsoftware.wildcard.Paths;
 
 import java.io.File;

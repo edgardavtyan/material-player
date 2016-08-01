@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.tracks.views.list;
+package com.edavtyan.materialplayer.components.tracks;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.tracks.models.TrackDB;
 import com.edavtyan.materialplayer.lib.decorators.DividerItemDecoration;
 import com.edavtyan.materialplayer.utils.AppColors;
 

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.tracks.models;
+package com.edavtyan.materialplayer.components.tracks;
 
 import lombok.Data;
 

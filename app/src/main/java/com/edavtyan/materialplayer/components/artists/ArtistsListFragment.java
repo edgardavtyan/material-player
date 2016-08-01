@@ -1,11 +1,10 @@
-package com.edavtyan.materialplayer.components.artists.views.list;
+package com.edavtyan.materialplayer.components.artists;
 
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.Loader;
 
-import com.edavtyan.materialplayer.components.artists.models.ArtistDB;
 import com.edavtyan.materialplayer.lib.adapters.RecyclerViewCursorAdapter;
 import com.edavtyan.materialplayer.lib.fragments.ListFragment;
 

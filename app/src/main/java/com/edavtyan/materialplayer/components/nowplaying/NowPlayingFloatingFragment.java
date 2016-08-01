@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.nowplaying.fragments;
+package com.edavtyan.materialplayer.components.nowplaying;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,15 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
-import com.edavtyan.materialplayer.lib.fragments.ServiceFragment;
-import com.edavtyan.materialplayer.components.tracks.models.Track;
-import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.MusicPlayerService;
+import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.lib.fragments.ServiceFragment;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.wnafee.vector.MorphButton;
 
-public class FloatingNowPlayingFragment
+public class NowPlayingFloatingFragment
 		extends ServiceFragment
 		implements View.OnClickListener {
 	private ImageView artView;
