@@ -7,15 +7,16 @@
 
 	<style name="NowPlaying_TrackInfo_Container">
 		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
+		<item name="android:gravity">center_vertical</item>
 	</style>
-	
+
 	<style name="NowPlaying_TrackInfo_Title">
 		<item name="android:textSize">@dimen/font_big</item>
 		<item name="android:textColor">?textColorContrastPrimary</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
 	</style>
-	
+
 	<style name="NowPlaying_TrackInfo_Info" parent="NowPlaying_TrackInfo_Title">
 		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorContrastSecondary</item>
@@ -29,5 +30,5 @@
 		<item name="android:layout_weight">1</item>
 		<item name="android:tint">?textColorContrastPrimary</item>
 	</style>
-	
+
 </resources>
