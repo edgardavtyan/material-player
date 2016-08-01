@@ -14,6 +14,7 @@ public class NowPlayingPresenter {
 	public void initView() {
 		view.getInfoView().setTitle(model.getTrackTitle());
 		view.getInfoView().setInfo(model.getArtistTitle(), model.getAlbumTitle());
+		view.getArtView().setArt(model.getArt());
 	}
 
 	public void toggleShuffle() {

@@ -4,6 +4,9 @@ import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.components.player.MusicPlayer;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
+import com.edavtyan.materialplayer.utils.ArtProvider;
+
+import java.io.File;
 
 public class NowPlayingModel {
 	private MusicPlayerService service;
@@ -67,5 +70,9 @@ public class NowPlayingModel {
 	public void fastForward() {
 		player.moveNext();
 		player.prepare();
+	}
+
+	public File getArt() {
+		return ArtProvider.fromTrack(queue.getCurrentTrack());
 	}
 }
