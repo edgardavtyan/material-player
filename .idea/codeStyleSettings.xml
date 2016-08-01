@@ -318,6 +318,13 @@
               <section>
                 <rule>
                   <match>
+                    <ENUM>true</ENUM>
+                  </match>
+                </rule>
+              </section>
+              <section>
+                <rule>
+                  <match>
                     <CONSTRUCTOR>true</CONSTRUCTOR>
                   </match>
                 </rule>
@@ -336,13 +343,6 @@
                 <rule>
                   <match>
                     <METHOD>true</METHOD>
-                  </match>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
-                    <ENUM>true</ENUM>
                   </match>
                 </rule>
               </section>
