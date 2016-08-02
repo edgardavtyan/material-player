@@ -6,8 +6,11 @@
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Container">
-		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
 		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingLeft">@dimen/spacing_medium</item>
+		<item name="android:paddingRight">@dimen/spacing_medium</item>
+		<item name="android:paddingBottom">@dimen/spacing_medium</item>
+		<item name="android:paddingTop">@dimen/spacing_tiny</item>
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Title">
