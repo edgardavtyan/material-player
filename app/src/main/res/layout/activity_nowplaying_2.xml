@@ -16,7 +16,7 @@
 		android:layout_height="wrap_content"
 		>
 
-		<ImageView
+		<com.edavtyan.materialplayer.lib.views.SquareImageView
 			android:id="@+id/art"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
