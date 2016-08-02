@@ -1,144 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
-	style="@style/NowPlaying_Container"
 	>
 
-	<include layout="@layout/partial_appbar" />
-
-	<FrameLayout
-		android:layout_width="match_parent"
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		>
-
-		<com.edavtyan.materialplayer.lib.views.SquareImageView
-			android:id="@+id/art"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:src="@drawable/fallback_cover"
-			/>
-
-		<include layout="@layout/shadow_bottom_small" />
-
-	</FrameLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		style="@style/NowPlaying_TrackInfo_Container"
-		>
-
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			style="@style/NowPlaying_TrackInfo_Title"
-			tools:text="Now Playing Track Title"
-			/>
-
-		<TextView
-			android:id="@+id/info"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			style="@style/NowPlaying_TrackInfo_Info"
-			tools:text="Now Playing Track Info"
-			/>
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="?colorPrimary"
-		android:paddingTop="@dimen/spacing_tiny"
-		android:paddingBottom="@dimen/spacing_tiny"
-		android:layout_marginBottom="-9dp"
-		>
-
-		<TextView
-			android:id="@+id/timeCurrent"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="@dimen/spacing_medium"
-			android:layout_marginStart="@dimen/spacing_medium"
-			android:layout_weight="1"
-			android:textColor="?textColorContrastPrimary"
-			tools:text="1:14"
-			/>
-
-		<TextView
-			android:id="@+id/timeTotal"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginRight="@dimen/spacing_medium"
-			android:layout_marginEnd="@dimen/spacing_medium"
-			android:layout_weight="1"
-			android:gravity="right"
-			android:textColor="?textColorContrastPrimary"
-			tools:text="6:44"
-			/>
-
-	</LinearLayout>
-
-	<app.minimize.com.seek_bar_compat.SeekBarCompat
-		android:id="@+id/seekbar"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="-9dp"
-		android:paddingStart="0dp"
-		android:paddingEnd="0dp"
-		app:paddingEnd="0dp"
-		app:paddingStart="0dp"
-		app:thumbColor="?colorAccent"
-		app:progressBackgroundColor="?colorAccent"
-		app:progressColor="?colorAccent"
-		tools:progress="30"
+		android:layout_margin="@dimen/spacing_medium"
+		android:src="@drawable/ic_list"
+		app:layout_anchor="@+id/infoWrapper"
+		app:layout_anchorGravity="right"
 		/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		android:layout_marginTop="@dimen/spacing_tiny"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		style="@style/NowPlaying_Container"
 		>
 
-		<ImageButton
-			android:id="@+id/shuffle"
-			android:src="@drawable/ic_shuffle"
-			style="@style/NowPlaying_Control"
+		<include layout="@layout/partial_appbar" />
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			>
+
+			<com.edavtyan.materialplayer.lib.views.SquareImageView
+				android:id="@+id/art"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				tools:src="@drawable/fallback_cover"
+				/>
+
+			<include layout="@layout/shadow_bottom_small" />
+
+		</FrameLayout>
+
+		<LinearLayout
+			android:id="@+id/infoWrapper"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			style="@style/NowPlaying_TrackInfo_Container"
+			>
+
+			<TextView
+				android:id="@+id/title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				style="@style/NowPlaying_TrackInfo_Title"
+				tools:text="Now Playing Track Title"
+				/>
+
+			<TextView
+				android:id="@+id/info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				style="@style/NowPlaying_TrackInfo_Info"
+				tools:text="Now Playing Track Info"
+				/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="-9dp"
+			android:background="?colorPrimary"
+			android:paddingTop="@dimen/spacing_tiny"
+			android:paddingBottom="@dimen/spacing_tiny"
+			>
+
+			<TextView
+				android:id="@+id/timeCurrent"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="@dimen/spacing_medium"
+				android:layout_marginStart="@dimen/spacing_medium"
+				android:layout_weight="1"
+				android:textColor="?textColorContrastPrimary"
+				tools:text="1:14"
+				/>
+
+			<TextView
+				android:id="@+id/timeTotal"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="@dimen/spacing_medium"
+				android:layout_marginEnd="@dimen/spacing_medium"
+				android:layout_weight="1"
+				android:gravity="right"
+				android:textColor="?textColorContrastPrimary"
+				tools:text="6:44"
+				/>
+
+		</LinearLayout>
+
+		<app.minimize.com.seek_bar_compat.SeekBarCompat
+			android:id="@+id/seekbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="-9dp"
+			android:paddingStart="0dp"
+			android:paddingEnd="0dp"
+			app:paddingEnd="0dp"
+			app:paddingStart="0dp"
+			app:thumbColor="?colorAccent"
+			app:progressBackgroundColor="?colorAccent"
+			app:progressColor="?colorAccent"
+			tools:progress="30"
 			/>
 
-		<ImageButton
-			android:id="@+id/rewind"
-			android:src="@drawable/ic_rewind"
-			style="@style/NowPlaying_Control"
-			/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="@dimen/spacing_tiny"
+			android:layout_weight="1"
+			>
 
-		<ImageButton
-			android:id="@+id/playPause"
-			android:src="@drawable/ic_play_pause"
-			style="@style/NowPlaying_Control"
-			/>
+			<ImageButton
+				android:id="@+id/shuffle"
+				android:src="@drawable/ic_shuffle"
+				style="@style/NowPlaying_Control"
+				/>
 
-		<ImageButton
-			android:id="@+id/fastForward"
-			android:src="@drawable/ic_fast_forward"
-			style="@style/NowPlaying_Control"
-			/>
+			<ImageButton
+				android:id="@+id/rewind"
+				android:src="@drawable/ic_rewind"
+				style="@style/NowPlaying_Control"
+				/>
 
-		<ImageButton
-			android:id="@+id/repeat"
-			android:src="@drawable/ic_repeat"
-			style="@style/NowPlaying_Control"
-			/>
+			<ImageButton
+				android:id="@+id/playPause"
+				android:src="@drawable/ic_play_pause"
+				style="@style/NowPlaying_Control"
+				/>
+
+			<ImageButton
+				android:id="@+id/fastForward"
+				android:src="@drawable/ic_fast_forward"
+				style="@style/NowPlaying_Control"
+				/>
+
+			<ImageButton
+				android:id="@+id/repeat"
+				android:src="@drawable/ic_repeat"
+				style="@style/NowPlaying_Control"
+				/>
+
+		</LinearLayout>
 
 	</LinearLayout>
 
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

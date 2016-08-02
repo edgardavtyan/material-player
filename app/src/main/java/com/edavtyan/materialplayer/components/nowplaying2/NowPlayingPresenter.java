@@ -78,6 +78,10 @@ public class NowPlayingPresenter {
 		view.getSeekbarView().setCurrentTime(formatTime(progress));
 	}
 
+	public void onPlaylistOpen() {
+		view.openPlaylist();
+	}
+
 	private String formatTime(int time) {
 		Log.d(getClass().getSimpleName(), Integer.toString(time));
 		time /= 1000;

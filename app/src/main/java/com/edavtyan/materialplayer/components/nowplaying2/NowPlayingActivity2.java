@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.playlist.PlaylistActivity;
 import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
 
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 	private @Getter NowPlayingControlsView controlsView;
 	private @Getter NowPlayingArtView artView;
 	private @Getter NowPlayingSeekbarView seekbarView;
+	private @Getter NowPlayingFabView fabView;
 
 	public static void startActivity(Context context) {
 		context.startActivity(new Intent(context, NowPlayingActivity2.class));
@@ -34,6 +36,12 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 		controlsView = new NowPlayingControlsView(this, presenter);
 		artView = new NowPlayingArtView(this);
 		seekbarView = new NowPlayingSeekbarView(this, presenter);
+		fabView = new NowPlayingFabView(this, presenter);
+	}
+
+	@Override
+	protected int getToolbarTitleStringId() {
+		return R.string.nowplaying_toolbar_title;
 	}
 
 	@Override
@@ -55,9 +63,8 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 		return R.layout.activity_nowplaying_2;
 	}
 
-	@Override
-	protected int getToolbarTitleStringId() {
-		return R.string.nowplaying_toolbar_title;
+	public void openPlaylist() {
+		PlaylistActivity.startActivity(this);
 	}
 
 	@Override
