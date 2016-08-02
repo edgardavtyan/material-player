@@ -32,27 +32,19 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 		view.getSeekbarView().setTotalTime(formatTime(model.getDuration()));
 		seekbarTimer.run();
 
-		view.getControlsView().setIsPlaying(model.isPlaying());
+		syncPlayPauseButton();
+		syncShuffleButton();
+		syncRepeatButton();
 	}
 
 	public void toggleShuffle() {
 		model.toggleShuffle();
-		view.getControlsView().setShuffling(model.isShuffling());
+		syncShuffleButton();
 	}
 
 	public void toggleRepeat() {
 		model.toggleRepeat();
-		switch (model.getRepeatMode()) {
-		case NO_REPEAT:
-			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.NO_REPEAT);
-			break;
-		case REPEAT:
-			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.REPEAT_ALL);
-			break;
-		case REPEAT_ONE:
-			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.REPEAT_ONE);
-			break;
-		}
+		syncRepeatButton();
 	}
 
 	public void rewind() {
@@ -68,7 +60,7 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 			seekbarTimer.run();
 		}
 
-		view.getControlsView().setIsPlaying(model.isPlaying());
+		syncPlayPauseButton();
 	}
 
 	public void fastForward() {
@@ -90,6 +82,28 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 	@Override
 	public void onNewTrack() {
 		initView();
+	}
+
+	private void syncRepeatButton() {
+		switch (model.getRepeatMode()) {
+		case NO_REPEAT:
+			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.NO_REPEAT);
+			break;
+		case REPEAT:
+			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.REPEAT_ALL);
+			break;
+		case REPEAT_ONE:
+			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.REPEAT_ONE);
+			break;
+		}
+	}
+
+	private void syncShuffleButton() {
+		view.getControlsView().setShuffling(model.isShuffling());
+	}
+
+	private void syncPlayPauseButton() {
+		view.getControlsView().setIsPlaying(model.isPlaying());
 	}
 
 	private String formatTime(int time) {
