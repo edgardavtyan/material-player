@@ -4,8 +4,17 @@ import android.util.Log;
 
 public class NowPlayingPresenter {
 
+	private static final int SEEK_INTERVAL = 1000;
+	private final Timer seekbarTimer;
 	private NowPlayingActivity2 view;
 	private NowPlayingModel model;
+
+	public NowPlayingPresenter() {
+		seekbarTimer = new Timer(SEEK_INTERVAL, () -> {
+			view.getSeekbarView().setProgress(model.getPosition());
+			view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
+		});
+	}
 
 	public void bind(NowPlayingActivity2 view, NowPlayingModel model) {
 		this.view = view;
@@ -22,6 +31,7 @@ public class NowPlayingPresenter {
 		view.getSeekbarView().setProgress(model.getPosition());
 		view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
 		view.getSeekbarView().setTotalTime(formatTime(model.getDuration()));
+		seekbarTimer.run();
 	}
 
 	public void toggleShuffle() {
@@ -51,8 +61,10 @@ public class NowPlayingPresenter {
 	public void playPause() {
 		if (model.isPlaying()) {
 			model.pause();
+			seekbarTimer.stop();
 		} else {
 			model.resume();
+			seekbarTimer.run();
 		}
 	}
 
