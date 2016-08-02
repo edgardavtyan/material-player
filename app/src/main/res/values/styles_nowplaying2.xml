@@ -24,7 +24,6 @@
 	<style name="NowPlaying_TrackInfo_Info" parent="NowPlaying_TrackInfo_Title">
 		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorContrastSecondary</item>
-		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
 	</style>
 
 	<style name="NowPlaying_Seekbar">
