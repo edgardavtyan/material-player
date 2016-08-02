@@ -29,6 +29,10 @@ public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 		this.queue = service.getQueue();
 	}
 
+	/*
+	 * Track info
+	 */
+
 	public CharSequence getTrackTitle() {
 		return queue.getCurrentTrack().getTitle();
 	}
@@ -41,8 +45,20 @@ public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 		return queue.getCurrentTrack().getAlbumTitle();
 	}
 
+	public File getArt() {
+		return ArtProvider.fromTrack(queue.getCurrentTrack());
+	}
+
+	public int getDuration() {
+		return player.getDuration();
+	}
+
+	public int getPosition() {
+		return player.getPosition();
+	}
+
 	/*
-	 * Player Controls
+	 * Player controls
 	 */
 
 	public void toggleShuffle() {
@@ -66,10 +82,6 @@ public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 		player.prepare();
 	}
 
-	public boolean isPlaying() {
-		return player.isPlaying();
-	}
-
 	public void pause() {
 		player.pause();
 	}
@@ -83,21 +95,17 @@ public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 		player.prepare();
 	}
 
-	public File getArt() {
-		return ArtProvider.fromTrack(queue.getCurrentTrack());
-	}
-
-	public int getDuration() {
-		return player.getDuration();
-	}
-
-	public int getPosition() {
-		return player.getPosition();
+	public boolean isPlaying() {
+		return player.isPlaying();
 	}
 
 	public void seekTo(int progress) {
 		player.setPosition(progress);
 	}
+
+	/*
+	 * Events
+	 */
 
 	@Override
 	public void onPrepared() {
