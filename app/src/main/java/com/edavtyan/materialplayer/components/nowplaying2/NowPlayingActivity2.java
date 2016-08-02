@@ -28,6 +28,20 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 		context.startActivity(new Intent(context, NowPlayingActivity2.class));
 	}
 
+	public void openPlaylist() {
+		PlaylistActivity.startActivity(this);
+	}
+
+	@Override
+	protected int getToolbarTitleStringId() {
+		return R.string.nowplaying_toolbar_title;
+	}
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_nowplaying_2;
+	}
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,11 +51,6 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 		artView = new NowPlayingArtView(this);
 		seekbarView = new NowPlayingSeekbarView(this, presenter);
 		fabView = new NowPlayingFabView(this, presenter);
-	}
-
-	@Override
-	protected int getToolbarTitleStringId() {
-		return R.string.nowplaying_toolbar_title;
 	}
 
 	@Override
@@ -59,15 +68,6 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 	}
 
 	@Override
-	public int getLayoutId() {
-		return R.layout.activity_nowplaying_2;
-	}
-
-	public void openPlaylist() {
-		PlaylistActivity.startActivity(this);
-	}
-
-	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
 		MusicPlayerService service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
 		presenter.bind(this, new NowPlayingModel(service));
@@ -75,6 +75,5 @@ public class NowPlayingActivity2 extends BaseToolbarActivity implements ServiceC
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
-
 	}
 }
