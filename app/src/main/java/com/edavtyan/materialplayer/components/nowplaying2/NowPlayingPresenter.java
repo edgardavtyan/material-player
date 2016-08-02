@@ -5,16 +5,14 @@ import android.util.Log;
 public class NowPlayingPresenter {
 
 	private static final int SEEK_INTERVAL = 1000;
-	private final Timer seekbarTimer;
+
 	private NowPlayingActivity2 view;
 	private NowPlayingModel model;
 
-	public NowPlayingPresenter() {
-		seekbarTimer = new Timer(SEEK_INTERVAL, () -> {
-			view.getSeekbarView().setProgress(model.getPosition());
-			view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
-		});
-	}
+	private final Timer seekbarTimer = new Timer(SEEK_INTERVAL, () -> {
+		view.getSeekbarView().setProgress(model.getPosition());
+		view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
+	});
 
 	public void bind(NowPlayingActivity2 view, NowPlayingModel model) {
 		this.view = view;
