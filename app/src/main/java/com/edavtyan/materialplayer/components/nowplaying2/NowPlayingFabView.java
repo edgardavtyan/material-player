@@ -18,6 +18,6 @@ public class NowPlayingFabView implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		presenter.onPlaylistOpen();
+		presenter.openPlaylist();
 	}
 }

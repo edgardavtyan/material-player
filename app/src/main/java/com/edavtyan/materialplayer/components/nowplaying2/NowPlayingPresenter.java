@@ -67,15 +67,15 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 		model.fastForward();
 	}
 
-	public void onSeekTo(int progress) {
+	public void seekTo(int progress) {
 		model.seekTo(progress);
 	}
 
-	public void onMoveSeek(int progress) {
+	public void moveSeek(int progress) {
 		view.getSeekbarView().setCurrentTime(formatTime(progress));
 	}
 
-	public void onPlaylistOpen() {
+	public void openPlaylist() {
 		view.openPlaylist();
 	}
 
