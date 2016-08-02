@@ -38,6 +38,7 @@ public class NowPlayingSeekbarView implements SeekBar.OnSeekBarChangeListener {
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		if (fromUser) presenter.onMoveSeek(progress);
 	}
 
 	@Override

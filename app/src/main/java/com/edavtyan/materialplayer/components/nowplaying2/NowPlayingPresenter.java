@@ -74,6 +74,10 @@ public class NowPlayingPresenter {
 		model.seekTo(progress);
 	}
 
+	public void onMoveSeek(int progress) {
+		view.getSeekbarView().setCurrentTime(formatTime(progress));
+	}
+
 	private String formatTime(int time) {
 		Log.d(getClass().getSimpleName(), Integer.toString(time));
 		time /= 1000;
