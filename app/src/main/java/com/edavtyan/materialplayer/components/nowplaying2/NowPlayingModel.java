@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.nowplaying2;
 
+import android.content.Intent;
+
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.components.player.MusicPlayer;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
@@ -13,6 +15,7 @@ import lombok.Setter;
 public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 	private MusicPlayer player;
 	private NowPlayingQueue queue;
+	private MusicPlayerService service;
 	private @Setter OnNewTrackListener onNewTrackListener;
 
 	interface OnNewTrackListener {
@@ -20,6 +23,7 @@ public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 	}
 
 	public NowPlayingModel(MusicPlayerService service) {
+		this.service = service;
 		this.player = service.getPlayer();
 		this.player.setOnPreparedListener(this);
 		this.queue = service.getQueue();
@@ -100,5 +104,7 @@ public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 		if (onNewTrackListener != null) {
 			onNewTrackListener.onNewTrack();
 		}
+
+		service.sendBroadcast(new Intent(MusicPlayerService.SEND_NEW_TRACK));
 	}
 }
