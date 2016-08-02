@@ -2,15 +2,16 @@
 <resources>
 
 	<style name="NowPlaying_Container">
-		<item name="android:background">?colorPrimary</item>
+		<item name="android:background">?colorPrimaryDark</item>
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Container">
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingLeft">@dimen/spacing_medium</item>
 		<item name="android:paddingRight">@dimen/spacing_medium</item>
-		<item name="android:paddingBottom">@dimen/spacing_medium</item>
-		<item name="android:paddingTop">@dimen/spacing_tiny</item>
+		<item name="android:paddingBottom">@dimen/spacing_tiny</item>
+		<item name="android:paddingTop">@dimen/spacing_medium</item>
+		<item name="android:background">?colorPrimary</item>
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Title">
