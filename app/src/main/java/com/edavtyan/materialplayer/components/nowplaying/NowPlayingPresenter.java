@@ -24,6 +24,10 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 		initView();
 	}
 
+	public void unbind() {
+		this.model.setOnNewTrackListener(null);
+	}
+
 	public void initView() {
 		view.getInfo().setTitle(model.getTrackTitle());
 		view.getInfo().setInfo(model.getArtistTitle(), model.getAlbumTitle());

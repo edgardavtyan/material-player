@@ -73,6 +73,12 @@ public class NowPlayingActivity extends BaseToolbarActivity implements ServiceCo
 	}
 
 	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		presenter.unbind();
+	}
+
+	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
 		MusicPlayerService service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
 		presenter.bind(this, new NowPlayingModel(service));
