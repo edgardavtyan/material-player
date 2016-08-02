@@ -308,6 +308,13 @@
               <section>
                 <rule>
                   <match>
+                    <INTERFACE>true</INTERFACE>
+                  </match>
+                </rule>
+              </section>
+              <section>
+                <rule>
+                  <match>
                     <CONSTRUCTOR>true</CONSTRUCTOR>
                   </match>
                 </rule>
@@ -333,6 +340,16 @@
                 <rule>
                   <match>
                     <OVERRIDDEN />
+                  </match>
+                </rule>
+              </section>
+              <section>
+                <rule>
+                  <match>
+                    <AND>
+                      <METHOD>true</METHOD>
+                      <PRIVATE>true</PRIVATE>
+                    </AND>
                   </match>
                 </rule>
               </section>
