@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.nowplaying;
 
-import android.util.Log;
-
 import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingControls;
 import com.edavtyan.materialplayer.utils.Timer;
 
@@ -114,7 +112,6 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 	}
 
 	private String formatTime(int time) {
-		Log.d(getClass().getSimpleName(), Integer.toString(time));
 		time /= 1000;
 		int seconds = time % 60;
 		int minutes = time / 60;
