@@ -8,12 +8,20 @@ import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import java.io.File;
 
-public class NowPlayingModel {
+import lombok.Setter;
+
+public class NowPlayingModel implements MusicPlayer.OnPreparedListener {
 	private MusicPlayer player;
 	private NowPlayingQueue queue;
+	private @Setter OnNewTrackListener onNewTrackListener;
+
+	interface OnNewTrackListener {
+		void onNewTrack();
+	}
 
 	public NowPlayingModel(MusicPlayerService service) {
 		this.player = service.getPlayer();
+		this.player.setOnPreparedListener(this);
 		this.queue = service.getQueue();
 	}
 
@@ -85,5 +93,12 @@ public class NowPlayingModel {
 
 	public void seekTo(int progress) {
 		player.setPosition(progress);
+	}
+
+	@Override
+	public void onPrepared() {
+		if (onNewTrackListener != null) {
+			onNewTrackListener.onNewTrack();
+		}
 	}
 }

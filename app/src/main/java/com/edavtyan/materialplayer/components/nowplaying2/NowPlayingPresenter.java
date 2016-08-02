@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.nowplaying2;
 
 import android.util.Log;
 
-public class NowPlayingPresenter {
+public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 
 	private static final int SEEK_INTERVAL = 1000;
 
@@ -17,6 +17,7 @@ public class NowPlayingPresenter {
 	public void bind(NowPlayingActivity2 view, NowPlayingModel model) {
 		this.view = view;
 		this.model = model;
+		this.model.setOnNewTrackListener(this);
 		initView();
 	}
 
@@ -80,6 +81,11 @@ public class NowPlayingPresenter {
 
 	public void onPlaylistOpen() {
 		view.openPlaylist();
+	}
+
+	@Override
+	public void onNewTrack() {
+		initView();
 	}
 
 	private String formatTime(int time) {
