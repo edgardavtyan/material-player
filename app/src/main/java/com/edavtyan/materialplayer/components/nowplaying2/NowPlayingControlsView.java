@@ -2,10 +2,12 @@ package com.edavtyan.materialplayer.components.nowplaying2;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.utils.AppColors;
+import com.wnafee.vector.MorphButton;
 
 public class NowPlayingControlsView implements View.OnClickListener {
 	private final NowPlayingPresenter presenter;
@@ -56,6 +58,10 @@ public class NowPlayingControlsView implements View.OnClickListener {
 			repeatButton.setColorFilter(colors.accent);
 			break;
 		}
+	}
+
+	public void setIsPlaying(boolean isPlaying) {
+		playPauseButton.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
 	}
 
 	@Override

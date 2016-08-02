@@ -31,6 +31,8 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 		view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
 		view.getSeekbarView().setTotalTime(formatTime(model.getDuration()));
 		seekbarTimer.run();
+
+		view.getControlsView().setIsPlaying(model.isPlaying());
 	}
 
 	public void toggleShuffle() {
@@ -65,6 +67,8 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 			model.resume();
 			seekbarTimer.run();
 		}
+
+		view.getControlsView().setIsPlaying(model.isPlaying());
 	}
 
 	public void fastForward() {

@@ -123,7 +123,7 @@
 
 			<ImageButton
 				android:id="@+id/playPause"
-				android:src="@drawable/ic_play_pause"
+				android:src="@drawable/ic_play"
 				style="@style/NowPlaying_Control"
 				/>
 
