@@ -58,7 +58,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.nowplaying2.NowPlayingActivity2"
+			android:name=".components.nowplaying.NowPlayingActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

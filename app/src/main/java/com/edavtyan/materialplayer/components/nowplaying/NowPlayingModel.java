@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.nowplaying2;
+package com.edavtyan.materialplayer.components.nowplaying;
 
 import android.content.Intent;
 

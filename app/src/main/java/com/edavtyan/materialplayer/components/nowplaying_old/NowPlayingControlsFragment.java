@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.nowplaying;
+package com.edavtyan.materialplayer.components.nowplaying_old;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

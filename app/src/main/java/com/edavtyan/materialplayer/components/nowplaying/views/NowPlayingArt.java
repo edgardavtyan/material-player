@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.nowplaying2;
+package com.edavtyan.materialplayer.components.nowplaying.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,11 +9,11 @@ import com.edavtyan.materialplayer.R;
 
 import java.io.File;
 
-public class NowPlayingArtView {
+public class NowPlayingArt {
 	private final Context context;
 	private final ImageView art;
 
-	public NowPlayingArtView(Activity activity) {
+	public NowPlayingArt(Activity activity) {
 		this.context = activity;
 		art = (ImageView) activity.findViewById(R.id.art);
 	}

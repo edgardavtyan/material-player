@@ -1,15 +1,14 @@
-package com.edavtyan.materialplayer.components.nowplaying2;
+package com.edavtyan.materialplayer.components.nowplaying.views;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.nowplaying.NowPlayingPresenter;
 import com.edavtyan.materialplayer.utils.AppColors;
-import com.wnafee.vector.MorphButton;
 
-public class NowPlayingControlsView implements View.OnClickListener {
+public class NowPlayingControls implements View.OnClickListener {
 	private final NowPlayingPresenter presenter;
 	private final AppColors colors;
 
@@ -23,7 +22,7 @@ public class NowPlayingControlsView implements View.OnClickListener {
 		NO_REPEAT, REPEAT_ONE, REPEAT_ALL
 	}
 
-	public NowPlayingControlsView(Activity view, NowPlayingPresenter presenter) {
+	public NowPlayingControls(Activity view, NowPlayingPresenter presenter) {
 		this.presenter = presenter;
 		this.colors = new AppColors(view);
 

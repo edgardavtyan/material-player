@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.nowplaying;
+package com.edavtyan.materialplayer.components.nowplaying_old;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.nowplaying2.NowPlayingActivity2;
+import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.fragments.ServiceFragment;
 import com.edavtyan.materialplayer.utils.ArtProvider;
@@ -140,7 +140,7 @@ public class NowPlayingFloatingFragment
 		case R.id.title:
 		case R.id.info:
 		case R.id.art:
-			NowPlayingActivity2.startActivity(getContext());
+			NowPlayingActivity.startActivity(getContext());
 			break;
 
 		case R.id.play_pause:

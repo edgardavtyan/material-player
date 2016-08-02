@@ -1,20 +1,23 @@
-package com.edavtyan.materialplayer.components.nowplaying2;
+package com.edavtyan.materialplayer.components.nowplaying;
 
 import android.util.Log;
+
+import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingControls;
+import com.edavtyan.materialplayer.utils.Timer;
 
 public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 
 	private static final int SEEK_INTERVAL = 1000;
 
-	private NowPlayingActivity2 view;
+	private NowPlayingActivity view;
 	private NowPlayingModel model;
 
 	private final Timer seekbarTimer = new Timer(SEEK_INTERVAL, () -> {
-		view.getSeekbarView().setProgress(model.getPosition());
-		view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
+		view.getSeekbar().setProgress(model.getPosition());
+		view.getSeekbar().setCurrentTime(formatTime(model.getPosition()));
 	});
 
-	public void bind(NowPlayingActivity2 view, NowPlayingModel model) {
+	public void bind(NowPlayingActivity view, NowPlayingModel model) {
 		this.view = view;
 		this.model = model;
 		this.model.setOnNewTrackListener(this);
@@ -22,14 +25,14 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 	}
 
 	public void initView() {
-		view.getInfoView().setTitle(model.getTrackTitle());
-		view.getInfoView().setInfo(model.getArtistTitle(), model.getAlbumTitle());
-		view.getArtView().setArt(model.getArt());
+		view.getInfo().setTitle(model.getTrackTitle());
+		view.getInfo().setInfo(model.getArtistTitle(), model.getAlbumTitle());
+		view.getArt().setArt(model.getArt());
 
-		view.getSeekbarView().setMax(model.getDuration());
-		view.getSeekbarView().setProgress(model.getPosition());
-		view.getSeekbarView().setCurrentTime(formatTime(model.getPosition()));
-		view.getSeekbarView().setTotalTime(formatTime(model.getDuration()));
+		view.getSeekbar().setMax(model.getDuration());
+		view.getSeekbar().setProgress(model.getPosition());
+		view.getSeekbar().setCurrentTime(formatTime(model.getPosition()));
+		view.getSeekbar().setTotalTime(formatTime(model.getDuration()));
 		seekbarTimer.run();
 
 		syncPlayPauseButton();
@@ -72,7 +75,7 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 	}
 
 	public void moveSeek(int progress) {
-		view.getSeekbarView().setCurrentTime(formatTime(progress));
+		view.getSeekbar().setCurrentTime(formatTime(progress));
 	}
 
 	public void openPlaylist() {
@@ -87,23 +90,23 @@ public class NowPlayingPresenter implements NowPlayingModel.OnNewTrackListener {
 	private void syncRepeatButton() {
 		switch (model.getRepeatMode()) {
 		case NO_REPEAT:
-			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.NO_REPEAT);
+			view.getControls().setRepeatState(NowPlayingControls.RepeatState.NO_REPEAT);
 			break;
 		case REPEAT:
-			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.REPEAT_ALL);
+			view.getControls().setRepeatState(NowPlayingControls.RepeatState.REPEAT_ALL);
 			break;
 		case REPEAT_ONE:
-			view.getControlsView().setRepeatState(NowPlayingControlsView.RepeatState.REPEAT_ONE);
+			view.getControls().setRepeatState(NowPlayingControls.RepeatState.REPEAT_ONE);
 			break;
 		}
 	}
 
 	private void syncShuffleButton() {
-		view.getControlsView().setShuffling(model.isShuffling());
+		view.getControls().setShuffling(model.isShuffling());
 	}
 
 	private void syncPlayPauseButton() {
-		view.getControlsView().setIsPlaying(model.isPlaying());
+		view.getControls().setIsPlaying(model.isPlaying());
 	}
 
 	private String formatTime(int time) {

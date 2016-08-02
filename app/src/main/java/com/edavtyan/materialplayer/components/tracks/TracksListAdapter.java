@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.nowplaying2.NowPlayingActivity2;
+import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 
 public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 	public TracksListAdapter(Context context, TrackDB trackDB) {
@@ -38,7 +38,7 @@ public class TracksListAdapter extends TracksAdapter<TracksListViewHolder> {
 		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
 
 		holder.setOnClickListener(view -> {
-			Intent i = new Intent(context, NowPlayingActivity2.class);
+			Intent i = new Intent(context, NowPlayingActivity.class);
 			context.startActivity(i);
 			service.getQueue().setTracks(
 					trackDB.getAllTracks(),

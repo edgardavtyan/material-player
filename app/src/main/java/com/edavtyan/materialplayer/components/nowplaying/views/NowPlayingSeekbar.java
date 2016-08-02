@@ -1,18 +1,19 @@
-package com.edavtyan.materialplayer.components.nowplaying2;
+package com.edavtyan.materialplayer.components.nowplaying.views;
 
 import android.app.Activity;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.nowplaying.NowPlayingPresenter;
 
-public class NowPlayingSeekbarView implements SeekBar.OnSeekBarChangeListener {
+public class NowPlayingSeekbar implements SeekBar.OnSeekBarChangeListener {
 	private final SeekBar seekbar;
 	private final TextView currentTimeView;
 	private final TextView totalTimeView;
 	private final NowPlayingPresenter presenter;
 
-	public NowPlayingSeekbarView(Activity activity, NowPlayingPresenter presenter) {
+	public NowPlayingSeekbar(Activity activity, NowPlayingPresenter presenter) {
 		this.presenter = presenter;
 		seekbar = (SeekBar) activity.findViewById(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);
