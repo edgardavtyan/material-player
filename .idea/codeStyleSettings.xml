@@ -97,16 +97,6 @@
             <option name="USE_TAB_CHARACTER" value="true" />
           </indentOptions>
           <arrangement>
-            <groups>
-              <group>
-                <type>GETTERS_AND_SETTERS</type>
-                <order>KEEP</order>
-              </group>
-              <group>
-                <type>OVERRIDDEN_METHODS</type>
-                <order>KEEP</order>
-              </group>
-            </groups>
             <rules>
               <section>
                 <rule>
@@ -311,6 +301,13 @@
               <section>
                 <rule>
                   <match>
+                    <ENUM>true</ENUM>
+                  </match>
+                </rule>
+              </section>
+              <section>
+                <rule>
+                  <match>
                     <INTERFACE>true</INTERFACE>
                   </match>
                 </rule>
@@ -342,7 +339,7 @@
               <section>
                 <rule>
                   <match>
-                    <ENUM>true</ENUM>
+                    <OVERRIDDEN />
                   </match>
                 </rule>
               </section>
@@ -350,16 +347,9 @@
                 <rule>
                   <match>
                     <AND>
-                      <CLASS>true</CLASS>
-                      <STATIC>true</STATIC>
+                      <METHOD>true</METHOD>
+                      <PRIVATE>true</PRIVATE>
                     </AND>
-                  </match>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
-                    <CLASS>true</CLASS>
                   </match>
                 </rule>
               </section>

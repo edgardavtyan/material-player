@@ -1,30 +1,24 @@
-package com.edavtyan.materialplayer.components.nowplaying;
+package com.edavtyan.materialplayer.components.nowplaying_old;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.bumptech.glide.DrawableRequestBuilder;
-import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.fragments.ServiceFragment;
 import com.edavtyan.materialplayer.components.tracks.Track;
-import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.MusicPlayerService;
 
-import java.io.File;
-
-public class NowPlayingArtFragment extends ServiceFragment {
-	private ImageView artView;
-	private ImageView backView;
+public class NowPlayingInfoFragment extends ServiceFragment {
+	private TextView titleView;
+	private TextView infoView;
 
 	/*
 	 * BroadcastReceivers
@@ -38,36 +32,16 @@ public class NowPlayingArtFragment extends ServiceFragment {
 	};
 
 	/*
-	 * AsyncTasks
-	 */
-
-	private class ArtLoadTask extends AsyncTask<Track, Void, DrawableRequestBuilder> {
-		@Override
-		protected DrawableRequestBuilder doInBackground(Track... tracks) {
-			File artFile = ArtProvider.fromTrack(tracks[0]);
-			return Glide.with(getActivity())
-					.load(artFile)
-					.error(R.drawable.fallback_cover);
-		}
-
-		@Override
-		protected void onPostExecute(DrawableRequestBuilder artRequest) {
-			artRequest.into(artView);
-			artRequest.into(backView);
-		}
-	}
-
-	/*
 	 * ServiceFragment
 	 */
 
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_nowplaying_art, container, false);
+		View view = inflater.inflate(R.layout.fragment_nowplaying_info, container, false);
 
-		artView = (ImageView) view.findViewById(R.id.art);
-		backView = (ImageView) view.findViewById(R.id.back);
+		titleView = (TextView) view.findViewById(R.id.title);
+		infoView = (TextView) view.findViewById(R.id.info);
 
 		return view;
 	}
@@ -78,6 +52,9 @@ public class NowPlayingArtFragment extends ServiceFragment {
 		getActivity().registerReceiver(
 				newTrackReceiver,
 				new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
+		getActivity().bindService(
+				new Intent(getActivity(), MusicPlayerService.class),
+				this, Context.BIND_AUTO_CREATE);
 	}
 
 	@Override
@@ -88,7 +65,6 @@ public class NowPlayingArtFragment extends ServiceFragment {
 
 	@Override
 	public void onServiceConnected() {
-		super.onServiceConnected();
 		syncWithService();
 	}
 
@@ -97,6 +73,13 @@ public class NowPlayingArtFragment extends ServiceFragment {
 	 */
 
 	private void syncWithService() {
-		new ArtLoadTask().execute(getService().getQueue().getCurrentTrack());
+		Track track = getService().getQueue().getCurrentTrack();
+		String trackMetadata = getResources().getString(
+				R.string.nowplaying_info_pattern,
+				track.getArtistTitle(),
+				track.getAlbumTitle());
+
+		titleView.setText(track.getTitle());
+		infoView.setText(trackMetadata);
 	}
 }

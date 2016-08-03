@@ -1,67 +1,90 @@
 package com.edavtyan.materialplayer.components.nowplaying;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.view.Menu;
-import android.view.MenuItem;
 
+import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.utils.DeviceUtils;
-import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
+import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingArt;
+import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingControls;
+import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingFab;
+import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingInfo;
+import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.components.playlist.PlaylistActivity;
+import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
 
-public class NowPlayingActivity extends BaseToolbarActivity {
+import lombok.Getter;
+
+public class NowPlayingActivity extends BaseToolbarActivity implements ServiceConnection {
+
+	private NowPlayingPresenter presenter;
+	private @Getter NowPlayingInfo info;
+	private @Getter NowPlayingControls controls;
+	private @Getter NowPlayingArt art;
+	private @Getter NowPlayingSeekbar seekbar;
+	private @Getter NowPlayingFab fab;
+
 	public static void startActivity(Context context) {
-		Intent intent = new Intent(context, NowPlayingActivity.class);
-		context.startActivity(intent);
+		context.startActivity(new Intent(context, NowPlayingActivity.class));
 	}
 
-	//---
+	public void openPlaylist() {
+		PlaylistActivity.startActivity(this);
+	}
+
+	@Override
+	protected int getToolbarTitleStringId() {
+		return R.string.nowplaying_toolbar_title;
+	}
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_nowplaying_2;
+	}
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		if (DeviceUtils.isPortrait(getResources())) {
-			FloatingActionButton playlistFab = (FloatingActionButton) findViewById(R.id.fab_playlist);
-			playlistFab.setOnClickListener(view -> PlaylistActivity.startActivity(this));
-		}
+		presenter = new NowPlayingPresenter();
+		info = new NowPlayingInfo(this);
+		controls = new NowPlayingControls(this, presenter);
+		art = new NowPlayingArt(this);
+		seekbar = new NowPlayingSeekbar(this, presenter);
+		fab = new NowPlayingFab(this, presenter);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		if (DeviceUtils.isLandscape(getResources())) {
-			getMenuInflater().inflate(R.menu.menu_playlist, menu);
-		}
-		return true;
+	protected void onStart() {
+		super.onStart();
+		bindService(
+				new Intent(this, MusicPlayerService.class),
+				this, Context.BIND_AUTO_CREATE);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_playlist:
-			PlaylistActivity.startActivity(this);
-			break;
-		}
-
-		return super.onOptionsItemSelected(item);
+	protected void onStop() {
+		super.onStop();
+		unbindService(this);
 	}
 
-	/* BaseActivity */
-
 	@Override
-	public int getLayoutId() {
-		return R.layout.activity_nowplaying;
+	protected void onDestroy() {
+		super.onDestroy();
+		presenter.unbind();
 	}
 
-	/* BaseToolbarActivity */
+	@Override
+	public void onServiceConnected(ComponentName name, IBinder binder) {
+		MusicPlayerService service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
+		presenter.bind(this, new NowPlayingModel(service));
+	}
 
 	@Override
-	public int getToolbarTitleStringId() {
-		return R.string.nowplaying_toolbar_title;
+	public void onServiceDisconnected(ComponentName name) {
 	}
 }
