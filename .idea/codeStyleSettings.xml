@@ -339,13 +339,6 @@
               <section>
                 <rule>
                   <match>
-                    <OVERRIDDEN />
-                  </match>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
                     <AND>
                       <METHOD>true</METHOD>
                       <PRIVATE>true</PRIVATE>
