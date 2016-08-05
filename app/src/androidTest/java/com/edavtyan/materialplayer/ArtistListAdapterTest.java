@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListAdapter;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistsListViewHolder;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,20 +20,20 @@ public class ArtistListAdapterTest extends BaseTest {
 
 	private ArtistListMvp.Presenter presenter;
 	private ArtistListAdapter adapter;
-	private ArtistsListViewHolder holder;
+	private ArtistListViewHolder holder;
 
 	@Before
 	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(ArtistListMvp.Presenter.class);
 		adapter = new ArtistListAdapter(context, presenter);
-		holder = mock(ArtistsListViewHolder.class);
+		holder = mock(ArtistListViewHolder.class);
 	}
 
 	@Test
 	public void onCreateViewHolder_createsHolder() {
 		ViewGroup parent = mock(ViewGroup.class);
-		ArtistsListViewHolder holder = adapter.onCreateViewHolder(parent, 0);
+		ArtistListViewHolder holder = adapter.onCreateViewHolder(parent, 0);
 		assertThat(holder).isNotNull();
 	}
 

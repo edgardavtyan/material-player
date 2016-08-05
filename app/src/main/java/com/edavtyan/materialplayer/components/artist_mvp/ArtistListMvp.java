@@ -4,9 +4,9 @@ import com.edavtyan.materialplayer.components.artists.Artist;
 
 public interface ArtistListMvp {
 	interface Presenter {
-		void bindViewHolder(ArtistsListViewHolder holder, int position);
+		void bindViewHolder(ArtistListViewHolder holder, int position);
 		int getItemCount();
-		void onHolderClicked(ArtistsListViewHolder holder, int position);
+		void onHolderClicked(ArtistListViewHolder holder, int position);
 	}
 
 	interface Model {

@@ -12,7 +12,7 @@ public class ArtistListPresenter implements ArtistListMvp.Presenter {
 	}
 
 	@Override
-	public void bindViewHolder(ArtistsListViewHolder holder, int position) {
+	public void bindViewHolder(ArtistListViewHolder holder, int position) {
 		Artist artist = model.getArtistAtIndex(position);
 		holder.setTitle(artist.getTitle());
 		holder.setInfo(artist.getAlbumsCount(), artist.getTracksCount());
@@ -24,7 +24,7 @@ public class ArtistListPresenter implements ArtistListMvp.Presenter {
 	}
 
 	@Override
-	public void onHolderClicked(ArtistsListViewHolder holder, int position) {
+	public void onHolderClicked(ArtistListViewHolder holder, int position) {
 		view.goToArtistDetail(holder.getTitle());
 	}
 }

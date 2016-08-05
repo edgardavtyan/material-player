@@ -4,7 +4,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.widget.TextView;
 
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistsListViewHolder;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,13 +18,13 @@ import static org.mockito.Mockito.verify;
 public class ArtistListViewHolderTest extends BaseTest {
 
 	private View itemView;
-	private ArtistsListViewHolder holder;
+	private ArtistListViewHolder holder;
 
 	@Before
 	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_artist, null);
-		holder = new ArtistsListViewHolder(itemView);
+		holder = new ArtistListViewHolder(itemView);
 	}
 
 	@Test

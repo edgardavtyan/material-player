@@ -10,17 +10,17 @@ import com.edavtyan.materialplayer.R;
 
 import lombok.Setter;
 
-public class ArtistsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ArtistListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 	private final TextView titleView;
 	private final TextView infoView;
 	private @Setter int position;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	interface OnHolderClickListener {
-		void onHolderClick(ArtistsListViewHolder holder, int position);
+		void onHolderClick(ArtistListViewHolder holder, int position);
 	}
 
-	public ArtistsListViewHolder(View itemView) {
+	public ArtistListViewHolder(View itemView) {
 		super(itemView);
 		itemView.setOnClickListener(this);
 		titleView = (TextView) itemView.findViewById(R.id.title);

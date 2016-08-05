@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer;
 
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListPresenter;
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistsListViewHolder;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder;
 import com.edavtyan.materialplayer.components.artists.Artist;
 
 import org.junit.Before;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 public class ArtistListPresenterTest extends BaseTest {
 	private ArtistListMvp.Model model;
 	private ArtistListMvp.View view;
-	private ArtistsListViewHolder holder;
+	private ArtistListViewHolder holder;
 	private ArtistListPresenter presenter;
 
 	@Override
@@ -26,7 +26,7 @@ public class ArtistListPresenterTest extends BaseTest {
 		super.beforeEach();
 		model = mock(ArtistListMvp.Model.class);
 		view = mock(ArtistListMvp.View.class);
-		holder = mock(ArtistsListViewHolder.class);
+		holder = mock(ArtistListViewHolder.class);
 		presenter = new ArtistListPresenter(model, view);
 	}
 

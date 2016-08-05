@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.R;
 
 public class ArtistListAdapter
-		extends RecyclerView.Adapter<ArtistsListViewHolder>
-		implements ArtistsListViewHolder.OnHolderClickListener {
+		extends RecyclerView.Adapter<ArtistListViewHolder>
+		implements ArtistListViewHolder.OnHolderClickListener {
 
 	private final ArtistListMvp.Presenter presenter;
 	private final Context context;
@@ -20,13 +20,13 @@ public class ArtistListAdapter
 	}
 
 	@Override
-	public ArtistsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public ArtistListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = View.inflate(context, R.layout.listitem_artist, parent);
-		return new ArtistsListViewHolder(view);
+		return new ArtistListViewHolder(view);
 	}
 
 	@Override
-	public void onBindViewHolder(ArtistsListViewHolder holder, int position) {
+	public void onBindViewHolder(ArtistListViewHolder holder, int position) {
 		presenter.bindViewHolder(holder, position);
 		holder.setOnHolderClickListener(this);
 	}
@@ -37,7 +37,7 @@ public class ArtistListAdapter
 	}
 
 	@Override
-	public void onHolderClick(ArtistsListViewHolder holder, int position) {
+	public void onHolderClick(ArtistListViewHolder holder, int position) {
 		presenter.onHolderClicked(holder, position);
 	}
 }
