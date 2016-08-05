@@ -37,7 +37,7 @@ public class ArtistListAdapter
 	}
 
 	@Override
-	public void onHolderClick(int position) {
-		presenter.onHolderClicked(position);
+	public void onHolderClick(ArtistsListViewHolder holder, int position) {
+		presenter.onHolderClicked(holder, position);
 	}
 }

@@ -57,7 +57,7 @@ public class ArtistListAdapterTest extends BaseTest {
 
 	@Test
 	public void onClick_callPresenter() {
-		adapter.onHolderClick(3);
-		verify(presenter).onHolderClicked(3);
+		adapter.onHolderClick(holder, 3);
+		verify(presenter).onHolderClicked(holder, 3);
 	}
 }

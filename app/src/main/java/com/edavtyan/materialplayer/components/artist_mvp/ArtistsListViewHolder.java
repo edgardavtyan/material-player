@@ -17,7 +17,7 @@ public class ArtistsListViewHolder extends RecyclerView.ViewHolder implements Vi
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	interface OnHolderClickListener {
-		void onHolderClick(int position);
+		void onHolderClick(ArtistsListViewHolder holder, int position);
 	}
 
 	public ArtistsListViewHolder(View itemView) {
@@ -29,8 +29,8 @@ public class ArtistsListViewHolder extends RecyclerView.ViewHolder implements Vi
 
 	//---
 
-	public CharSequence getTitle() {
-		return titleView.getText();
+	public String getTitle() {
+		return titleView.getText().toString();
 	}
 
 	public void setTitle(String title) {
@@ -56,7 +56,7 @@ public class ArtistsListViewHolder extends RecyclerView.ViewHolder implements Vi
 	@Override
 	public void onClick(View v) {
 		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(position);
+			onHolderClickListener.onHolderClick(this, position);
 		}
 	}
 }
