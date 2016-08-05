@@ -31,7 +31,7 @@ public class ArtistListAdapterTest extends BaseTest {
 	}
 
 	@Test
-	public void onCreateViewHolder_createsHolder() {
+	public void onCreateViewHolder_createHolder() {
 		ViewGroup parent = mock(ViewGroup.class);
 		ArtistListViewHolder holder = adapter.onCreateViewHolder(parent, 0);
 		assertThat(holder).isNotNull();

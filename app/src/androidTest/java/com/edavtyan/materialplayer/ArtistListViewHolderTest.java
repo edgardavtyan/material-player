@@ -28,7 +28,7 @@ public class ArtistListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void setters_setsAllValues() {
+	public void setters_setAllValues() {
 		TextView titleView = (TextView) itemView.findViewById(R.id.title);
 		TextView infoView = (TextView) itemView.findViewById(R.id.info);
 
@@ -40,7 +40,7 @@ public class ArtistListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void setOnClickListener_viewClicked_getsCalled() {
+	public void setOnClickListener_viewClicked_callOnClick() {
 		View.OnClickListener clickListener = mock(View.OnClickListener.class);
 		holder.setOnClickListener(clickListener);
 

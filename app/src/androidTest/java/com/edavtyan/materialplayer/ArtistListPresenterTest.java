@@ -31,7 +31,7 @@ public class ArtistListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void getItemCount_returnCountFromModel() {
+	public void getItemCount_countFromModel() {
 		when(model.getArtistCount()).thenReturn(5);
 
 		assertThat(presenter.getItemCount()).isEqualTo(5);
