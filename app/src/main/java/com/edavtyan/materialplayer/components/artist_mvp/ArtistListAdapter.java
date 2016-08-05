@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.artist_mvp;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,7 +22,8 @@ public class ArtistListAdapter
 
 	@Override
 	public ArtistListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		View view = View.inflate(context, R.layout.listitem_artist, parent);
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = inflater.inflate(R.layout.listitem_artist, parent, false);
 		return new ArtistListViewHolder(view);
 	}
 

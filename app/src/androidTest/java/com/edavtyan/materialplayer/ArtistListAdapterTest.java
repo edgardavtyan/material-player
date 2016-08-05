@@ -1,7 +1,12 @@
 package com.edavtyan.materialplayer;
 
+import android.content.Context;
 import android.support.test.runner.AndroidJUnit4;
+import android.test.mock.MockContext;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListAdapter;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
@@ -12,8 +17,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
 public class ArtistListAdapterTest extends BaseTest {
@@ -32,9 +42,24 @@ public class ArtistListAdapterTest extends BaseTest {
 
 	@Test
 	public void onCreateViewHolder_createHolder() {
-		ViewGroup parent = mock(ViewGroup.class);
+		ViewGroup parent = new LinearLayout(context);
 		ArtistListViewHolder holder = adapter.onCreateViewHolder(parent, 0);
 		assertThat(holder).isNotNull();
+	}
+
+	@Test
+	public void onCreateViewHolder_notAttachToRoot() {
+		LayoutInflater inflater = mock(LayoutInflater.class);
+		when(inflater.inflate(anyInt(), any())).thenReturn(new View(context));
+		when(inflater.inflate(anyInt(), any(), anyBoolean())).thenReturn(new View(context));
+
+		MockContext context = mock(MockContext.class);
+		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
+
+		ArtistListAdapter adapter = new ArtistListAdapter(context, presenter);
+		adapter.onCreateViewHolder(null, 0);
+
+		verify(inflater).inflate(anyInt(), any(), eq(false));
 	}
 
 	@Test
