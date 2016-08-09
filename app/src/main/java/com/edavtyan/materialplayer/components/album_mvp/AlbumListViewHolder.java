@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.album_mvp;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,6 +66,10 @@ public class AlbumListViewHolder
 		titleView.setText(title);
 	}
 
+	public String getTitle() {
+		return titleView.getText().toString();
+	}
+
 	public void setInfo(int tracksCount, String artist) {
 		Resources res = context.getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
@@ -72,11 +77,19 @@ public class AlbumListViewHolder
 		infoView.setText(info);
 	}
 
+	public String getInfo() {
+		return infoView.getText().toString();
+	}
+
 	public void setArt(File artFile) {
 		Glide.with(context)
 				.load(artFile)
 				.error(R.drawable.fallback_cover_listitem)
 				.into(artView);
+	}
+
+	public Drawable getArt() {
+		return artView.getDrawable();
 	}
 
 	public void setOnClickListener(View.OnClickListener listener) {

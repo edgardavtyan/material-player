@@ -1,5 +1,8 @@
 package com.edavtyan.materialplayer;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,6 +45,19 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 		assertThat(titleView.getText()).isEqualTo("title");
 		assertThat(infoView.getText()).isEqualTo("artist | 7 Tracks");
+	}
+
+	@Test
+	@SuppressLint("SetTextI18n")
+	public void getters_returnCorrectValues() {
+		Drawable bitmap = ContextCompat.getDrawable(context, android.R.drawable.btn_default);
+		titleView.setText("title");
+		infoView.setText("info");
+		artView.setImageDrawable(bitmap);
+
+		assertThat(holder.getTitle()).isEqualTo("title");
+		assertThat(holder.getInfo()).isEqualTo("info");
+		assertThat(holder.getArt()).isEqualTo(bitmap);
 	}
 
 	@Test
