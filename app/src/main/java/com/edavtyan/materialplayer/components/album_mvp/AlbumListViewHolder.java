@@ -16,6 +16,7 @@ import com.edavtyan.materialplayer.R;
 
 import java.io.File;
 
+import lombok.Getter;
 import lombok.Setter;
 
 public class AlbumListViewHolder
@@ -30,7 +31,7 @@ public class AlbumListViewHolder
 	private final ImageButton menuButton;
 	private final View itemView;
 	private final PopupMenu popupMenu;
-	private @Setter int albumId;
+	private @Getter @Setter int albumId;
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
 
