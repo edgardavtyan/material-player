@@ -34,4 +34,14 @@ public class AlbumListPresenter implements AlbumListMvp.Presenter {
 	public void addToPlaylist(int albumId) {
 		model.addToPlaylist(albumId);
 	}
+
+	@Override
+	public void onCreate() {
+
+	}
+
+	@Override
+	public void onDestroy() {
+
+	}
 }

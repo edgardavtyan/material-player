@@ -8,6 +8,8 @@ public interface AlbumListMvp {
 		int getItemCount();
 		void onItemClicked(int albumId);
 		void addToPlaylist(int albumId);
+		void onCreate();
+		void onDestroy();
 	}
 
 	interface Model {
@@ -18,5 +20,6 @@ public interface AlbumListMvp {
 
 	interface View {
 		void goToAlbumDetail(int albumId);
+		void notifyDataChanged();
 	}
 }
