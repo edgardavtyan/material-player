@@ -6,12 +6,14 @@ import android.support.v7.view.ContextThemeWrapper;
 
 import org.junit.Before;
 
+import static org.mockito.Mockito.spy;
+
 public class BaseTest {
 	protected ContextThemeWrapper context;
 
 	@Before
 	public void beforeEach() {
 		Context appContext = InstrumentationRegistry.getTargetContext();
-		context = new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange);
+		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
 	}
 }

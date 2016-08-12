@@ -31,10 +31,9 @@ public class AlbumListAdapterTest extends BaseTest {
 	@Test
 	public void onCreateViewHolder_specifyContainerAndNotAttachToRoot() {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
-		Context spyContext = spy(context);
-		when(spyContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
+		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
-		AlbumListAdapter adapter = new AlbumListAdapter(spyContext, presenter);
+		AlbumListAdapter adapter = new AlbumListAdapter(context, presenter);
 		LinearLayout expectedViewGroup = new LinearLayout(context);
 		adapter.onCreateViewHolder(expectedViewGroup, 0);
 

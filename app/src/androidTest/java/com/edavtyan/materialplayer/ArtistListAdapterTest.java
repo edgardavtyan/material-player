@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer;
 
 import android.content.Context;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.mock.MockContext;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +49,10 @@ public class ArtistListAdapterTest extends BaseTest {
 	@Test
 	public void onCreateViewHolder_notAttachToRoot() {
 		LayoutInflater inflater = mock(LayoutInflater.class);
-		when(inflater.inflate(anyInt(), any())).thenReturn(new View(context));
-		when(inflater.inflate(anyInt(), any(), anyBoolean())).thenReturn(new View(context));
+		View view = new View(context);
+		when(inflater.inflate(anyInt(), any())).thenReturn(view);
+		when(inflater.inflate(anyInt(), any(), anyBoolean())).thenReturn(view);
 
-		MockContext context = mock(MockContext.class);
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
 		ArtistListAdapter adapter = new ArtistListAdapter(context, presenter);
