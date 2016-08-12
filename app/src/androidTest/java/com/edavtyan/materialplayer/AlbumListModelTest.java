@@ -1,14 +1,11 @@
 package com.edavtyan.materialplayer;
 
-import android.content.Context;
-
 import com.edavtyan.materialplayer.components.album_mvp.AlbumDB;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListModel;
 import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
 import com.edavtyan.materialplayer.components.albums.Album;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
 import com.edavtyan.materialplayer.components.tracks.Track;
-import com.github.javafaker.Faker;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,7 +23,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class AlbumListModelTest extends BaseTest {
-	private static Faker faker;
 	private static List<Album> albums;
 	private static List<Track> tracks;
 	private AlbumDB albumDB;
@@ -36,8 +32,6 @@ public class AlbumListModelTest extends BaseTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		faker = new Faker();
-
 		albums = new ArrayList<>();
 		for (int i = 0; i < 10; i++) albums.add(new Album());
 
@@ -57,12 +51,11 @@ public class AlbumListModelTest extends BaseTest {
 		MusicPlayerService.MusicPlayerBinder binder = mock(MusicPlayerService.MusicPlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
-		Context mockContext = mock(Context.class);
-		model = new AlbumListModel(mockContext, albumDB, trackDB);
+		model = new AlbumListModel(context, albumDB, trackDB);
 		doAnswer(invocationOnMock -> {
 			model.onServiceConnected(null, binder);
 			return null;
-		}).when(mockContext).bindService(any(), any(), anyInt());
+		}).when(context).bindService(any(), any(), anyInt());
 	}
 
 	@Test
