@@ -63,6 +63,7 @@ dependencies {
     androidTestCompile 'junit:junit:4.12'
     androidTestCompile "org.mockito:mockito-core:1.9.5"
     androidTestCompile 'org.assertj:assertj-core:2.5.0'
+    androidTestCompile 'com.github.javafaker:javafaker:0.10'
     androidTestCompile 'com.crittercism.dexmaker:dexmaker:1.4'
     androidTestCompile 'com.crittercism.dexmaker:dexmaker-mockito:1.4'
     androidTestCompile 'com.crittercism.dexmaker:dexmaker-dx:1.4'

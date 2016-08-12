@@ -27,7 +27,9 @@ public class AlbumListFragment extends Fragment implements AlbumListMvp.View {
 		// Do not reassign presenter if it has already been set by unit test
 		// For testing purposes only!
 		if (presenter == null) {
-			AlbumListMvp.Model model = new AlbumListModel();
+			AlbumDB albumDB = new AlbumDB();
+			TrackDB trackDB = new TrackDB();
+			AlbumListMvp.Model model = new AlbumListModel(getActivity(), albumDB, trackDB);
 			presenter = new AlbumListPresenter(model, this);
 		}
 
