@@ -70,4 +70,17 @@ public class AlbumListPresenterTest extends BaseTest {
 		presenter.addToPlaylist(0);
 		verify(model).addToPlaylist(0);
 	}
+
+	@Test
+	public void onCreate_prepareModel() {
+		presenter.onCreate();
+		verify(model).update();
+		verify(model).bindService();
+	}
+
+	@Test
+	public void onDestroy_releaseModel() {
+		presenter.onDestroy();
+		verify(model).unbindService();
+	}
 }

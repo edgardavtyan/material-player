@@ -18,6 +18,7 @@ public interface AlbumListMvp {
 		void addToPlaylist(int albumId);
 		void update();
 		void bindService();
+		void unbindService();
 	}
 
 	interface View {

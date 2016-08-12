@@ -37,11 +37,12 @@ public class AlbumListPresenter implements AlbumListMvp.Presenter {
 
 	@Override
 	public void onCreate() {
-
+		model.update();
+		model.bindService();
 	}
 
 	@Override
 	public void onDestroy() {
-
+		model.unbindService();
 	}
 }
