@@ -14,33 +14,43 @@ import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 
 import org.junit.After;
-import org.junit.Rule;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 @RunWith(AndroidJUnit4.class)
 public class AlbumListFragmentTest extends BaseTest {
 
-	@Rule public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
-	private AlbumListFragment fragment;
+	@ClassRule
+	public static ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+
+	private static AppCompatActivity activity;
 	private AlbumListMvp.Presenter presenter;
-	private AppCompatActivity activity;
 	private FragmentManager fragmentManager;
+	private AlbumListFragment fragment;
+
+	@BeforeClass
+	public static void beforeClass() {
+		activity = spy(activityRule.getActivity());
+
+	}
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		activity = spy(activityRule.getActivity());
 		presenter = mock(AlbumListMvp.Presenter.class);
 		fragmentManager = activity.getSupportFragmentManager();
 		fragment = new AlbumListFragment();
 		fragment.setPresenter(presenter);
+		reset(activity, presenter);
 	}
 
 	@After
