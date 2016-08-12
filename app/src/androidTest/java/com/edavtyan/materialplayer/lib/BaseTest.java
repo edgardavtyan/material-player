@@ -1,8 +1,10 @@
-package com.edavtyan.materialplayer;
+package com.edavtyan.materialplayer.lib;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.v7.view.ContextThemeWrapper;
+
+import com.edavtyan.materialplayer.R;
 
 import org.junit.Before;
 

@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer;
 
 import com.edavtyan.materialplayer.components.album_mvp.AlbumDB;
 import com.edavtyan.materialplayer.components.albums.Album;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
 

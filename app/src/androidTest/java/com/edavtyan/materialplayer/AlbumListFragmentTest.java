@@ -12,6 +12,7 @@ import com.edavtyan.materialplayer.components.album_mvp.AlbumListAdapter;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListFragment;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.components.main.MainActivity;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.After;
 import org.junit.BeforeClass;

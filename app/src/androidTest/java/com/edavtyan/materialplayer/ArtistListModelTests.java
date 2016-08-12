@@ -6,6 +6,7 @@ import android.test.mock.MockContentResolver;
 
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListModel;
 import com.edavtyan.materialplayer.components.artists.Artist;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -4,6 +4,7 @@ import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListPresenter;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder;
 import com.edavtyan.materialplayer.components.artists.Artist;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Before;
 import org.junit.Test;

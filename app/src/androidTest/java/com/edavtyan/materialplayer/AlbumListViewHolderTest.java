@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListViewHolder;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
 

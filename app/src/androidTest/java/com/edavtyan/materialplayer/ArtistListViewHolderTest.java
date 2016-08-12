@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Before;
 import org.junit.Test;

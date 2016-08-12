@@ -6,6 +6,7 @@ import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
 import com.edavtyan.materialplayer.components.albums.Album;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
 import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
