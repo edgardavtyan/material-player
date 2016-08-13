@@ -4,21 +4,30 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
+
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.spy;
 
 public abstract class FragmentTest<TFragment extends Fragment> extends BaseTest {
 	@ClassRule
 	public static ActivityTestRule<TestActivity> activityRule = new ActivityTestRule<>(TestActivity.class);
 
-	protected TestActivity activity;
+	protected static TestActivity activity;
 	protected TFragment fragment;
 	private FragmentManager fragmentManager;
+
+	@BeforeClass
+	public static void beforeClass() {
+		activity = spy(activityRule.getActivity());
+	}
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		activity = activityRule.getActivity();
 		fragmentManager = activity.getSupportFragmentManager();
+		reset(activity);
 	}
 
 	@SuppressWarnings("EmptyCatchBlock")
