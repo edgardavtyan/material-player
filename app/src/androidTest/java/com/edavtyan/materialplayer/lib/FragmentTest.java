@@ -4,15 +4,13 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.edavtyan.materialplayer.components.main.MainActivity;
-
 import org.junit.ClassRule;
 
 public abstract class FragmentTest<TFragment extends Fragment> extends BaseTest {
 	@ClassRule
-	public static ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+	public static ActivityTestRule<TestActivity> activityRule = new ActivityTestRule<>(TestActivity.class);
 
-	protected MainActivity activity;
+	protected TestActivity activity;
 	protected TFragment fragment;
 	private FragmentManager fragmentManager;
 
