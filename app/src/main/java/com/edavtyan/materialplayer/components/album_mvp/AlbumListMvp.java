@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.album_mvp;
 
-import com.edavtyan.materialplayer.components.albums.Album;
-
 public interface AlbumListMvp {
 	interface Presenter {
 		void bindViewHolder(AlbumListViewHolder holder, int position);

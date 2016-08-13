@@ -1,14 +1,12 @@
 package com.edavtyan.materialplayer;
 
+import com.edavtyan.materialplayer.components.album_mvp.Album;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListPresenter;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListViewHolder;
-import com.edavtyan.materialplayer.components.albums.Album;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
-
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -34,14 +32,12 @@ public class AlbumListPresenterTest extends BaseTest {
 
 	@Test
 	public void bindViewHolder_setAllHolderValues() {
-		File artFile = mock(File.class);
-
 		Album album = new Album();
 		album.setId(0);
 		album.setTitle("title");
 		album.setTracksCount(3);
 		album.setArtistTitle("artist");
-		album.setArt(artFile);
+		album.setArt("file");
 
 		when(model.getAlbumAtIndex(0)).thenReturn(album);
 
@@ -50,7 +46,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		verify(holder).setAlbumId(0);
 		verify(holder).setTitle("title");
 		verify(holder).setInfo(3, "artist");
-		verify(holder).setArt(artFile);
+		verify(holder).setArt("file");
 		verifyNoMoreInteractions(holder);
 	}
 

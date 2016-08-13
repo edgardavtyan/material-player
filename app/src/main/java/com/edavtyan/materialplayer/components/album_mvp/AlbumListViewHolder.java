@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
 
-import java.io.File;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -82,9 +80,9 @@ public class AlbumListViewHolder
 		return infoView.getText().toString();
 	}
 
-	public void setArt(File artFile) {
+	public void setArt(String artPath) {
 		Glide.with(context)
-				.load(artFile)
+				.load(artPath)
 				.error(R.drawable.fallback_cover_listitem)
 				.into(artView);
 	}

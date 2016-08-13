@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.edavtyan.materialplayer.components.albums.Album;
-import com.edavtyan.materialplayer.utils.ArtProvider;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +51,7 @@ public class AlbumDB {
 		album.setId(cursor.getInt(INDEX_ID));
 		album.setTitle(cursor.getString(INDEX_TITLE));
 		album.setArtistTitle(cursor.getString(INDEX_ARTIST_TITLE));
-		album.setArt(ArtProvider.fromPath(cursor.getString(INDEX_ART)));
+		album.setArt(cursor.getString(INDEX_ART));
 		album.setTracksCount(cursor.getInt(INDEX_TRACKS_COUNT));
 		return album;
 	}

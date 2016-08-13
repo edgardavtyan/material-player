@@ -7,7 +7,6 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.components.albums.Album;
 
 import java.util.ArrayList;
 import java.util.List;
