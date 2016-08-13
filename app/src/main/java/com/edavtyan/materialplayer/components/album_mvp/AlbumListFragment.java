@@ -28,7 +28,7 @@ public class AlbumListFragment extends Fragment implements AlbumListMvp.View {
 		// For testing purposes only!
 		if (presenter == null) {
 			AlbumDB albumDB = new AlbumDB(getActivity());
-			TrackDB trackDB = new TrackDB();
+			TrackDB trackDB = new TrackDB(getActivity());
 			AlbumListMvp.Model model = new AlbumListModel(getActivity(), albumDB, trackDB);
 			presenter = new AlbumListPresenter(model, this);
 		}
