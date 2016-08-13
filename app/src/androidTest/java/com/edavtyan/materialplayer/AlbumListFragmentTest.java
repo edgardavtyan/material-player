@@ -9,10 +9,8 @@ import com.edavtyan.materialplayer.components.album_mvp.AlbumListFragment;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -30,11 +28,6 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 		initFragmentTest(AlbumListFragment.class);
 		presenter = mock(AlbumListMvp.Presenter.class);
 		fragment.setPresenter(presenter);
-	}
-
-	@After
-	public void validate() {
-		Mockito.validateMockitoUsage();
 	}
 
 	@Test
