@@ -1,31 +1,27 @@
 package com.edavtyan.materialplayer.lib;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
+import org.junit.Rule;
 
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 
 public abstract class FragmentTest<TFragment extends Fragment> extends BaseTest {
-	@ClassRule
-	public static ActivityTestRule<TestActivity> activityRule = new ActivityTestRule<>(TestActivity.class);
+	@Rule
+	public ActivityTestRule<TestActivity> activityRule = new ActivityTestRule<>(TestActivity.class);
 
 	protected static TestActivity activity;
 	protected TFragment fragment;
 	private FragmentManager fragmentManager;
 
-	@BeforeClass
-	public static void beforeClass() {
-		activity = spy(activityRule.getActivity());
-	}
-
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
+		activity = spy(activityRule.getActivity());
 		fragmentManager = activity.getSupportFragmentManager();
 		reset(activity);
 	}
@@ -46,9 +42,8 @@ public abstract class FragmentTest<TFragment extends Fragment> extends BaseTest 
 	}
 
 	protected void execTransactionsAndRunTask(Runnable task) {
-		activity.runOnUiThread(() -> {
-			fragmentManager.executePendingTransactions();
-			task.run();
-		});
+		activity.runOnUiThread(() -> fragmentManager.executePendingTransactions());
+		InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+		task.run();
 	}
 }

@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer;
 
-import android.support.test.annotation.UiThreadTest;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -55,7 +54,6 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 		removeFragment(fragment);
 		execTransactionsAndRunTask(() -> {
 			verify(presenter).onDestroy();
-			verifyNoMoreInteractions(presenter);
 		});
 	}
 
@@ -70,7 +68,6 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 	}
 
 	@Test
-	@UiThreadTest
 	public void notifyDataChanged_callAdapter() {
 		attachFragment(fragment);
 		execTransactionsAndRunTask(() -> {

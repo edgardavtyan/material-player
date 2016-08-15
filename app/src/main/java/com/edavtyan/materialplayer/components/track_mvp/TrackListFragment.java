@@ -43,7 +43,7 @@ public class TrackListFragment extends Fragment implements TrackListMvp.View {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		presenter.onDestroy();
+		if (presenter != null) presenter.onDestroy();
 	}
 
 	@Override
