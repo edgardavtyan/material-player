@@ -1,15 +1,15 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.album_mvp.TestableRecyclerAdapter;
 
 public class TrackListAdapter
-		extends RecyclerView.Adapter<TrackListViewHolder>
+		extends TestableRecyclerAdapter<TrackListViewHolder>
 		implements TrackListViewHolder.OnHolderMenuItemClickListener,
 				   TrackListViewHolder.OnHolderClickListener {
 
