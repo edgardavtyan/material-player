@@ -70,6 +70,10 @@ public class TrackDB {
 		return tracks;
 	}
 
+	public List<Track> getAllTracks() {
+		return null;
+	}
+
 	private Track getTrackFromCursor(Cursor cursor) {
 		Track track = new Track();
 		track.setId(cursor.getInt(INDEX_ID));

@@ -10,7 +10,7 @@ public interface TrackListMvp {
 
 		Track getTrackAtIndex(int position);
 		int getItemCount();
-		Void playQueue(int position);
+		void playQueue(int position);
 		void addToQueue(int position);
 		void bindService();
 		void unbindService();

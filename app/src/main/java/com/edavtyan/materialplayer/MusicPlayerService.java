@@ -16,15 +16,18 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.HQEqualizer;
-import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
-import com.edavtyan.materialplayer.components.player.engines.BasicAudioEngine;
 import com.edavtyan.materialplayer.components.player.MusicPlayer;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
-import com.edavtyan.materialplayer.components.player.engines.OpenSLAudioEngine;
 import com.edavtyan.materialplayer.components.player.PlaybackState;
+import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
+import com.edavtyan.materialplayer.components.player.engines.BasicAudioEngine;
+import com.edavtyan.materialplayer.components.player.engines.OpenSLAudioEngine;
+import com.edavtyan.materialplayer.components.tracks.Track;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
+
+import java.util.List;
 
 import lombok.Getter;
 
@@ -185,5 +188,16 @@ public class MusicPlayerService
 		} else if (audioEnginePref.equals(openslEnginePref)) {
 			player.setAudioEngine(openslAudioEngine);
 		}
+	}
+
+	/* Public methods */
+
+	public void playQueue(List<Track> tracks, int position) {
+		queue.setTracks(tracks, position);
+		player.prepare();
+	}
+
+	public void addToQueue(Track track) {
+		queue.add(track);
 	}
 }
