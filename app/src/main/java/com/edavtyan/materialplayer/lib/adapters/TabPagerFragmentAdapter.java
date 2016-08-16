@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListFragment;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListFragment;
-import com.edavtyan.materialplayer.components.tracks.TracksListFragment;
+import com.edavtyan.materialplayer.components.track_mvp.TrackListFragment;
 
 public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
 	private final String[] tabNames = {
@@ -36,7 +36,7 @@ public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
 			case 1:
 				return new AlbumListFragment();
 			case 2:
-				return new TracksListFragment();
+				return new TrackListFragment();
 			default:
 				return null;
 

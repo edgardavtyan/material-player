@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 
 import lombok.Getter;
@@ -22,6 +23,8 @@ public class TrackListFragment extends Fragment implements TrackListMvp.View {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		TrackListModel model = new TrackListModel(getContext(), new TrackDB(getContext()));
+		if (presenter == null) presenter = new TrackListPresenter(this, model);
 		if (adapter == null) adapter = new TrackListAdapter(getActivity(), presenter);
 		if (presenter != null) presenter.onCreate();
 	}

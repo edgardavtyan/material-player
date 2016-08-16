@@ -43,6 +43,7 @@ public class TrackListPresenter implements TrackListMvp.Presenter,
 	public void onCreate() {
 		model.bindService();
 		model.update();
+		view.notifyDataChanged();
 	}
 
 	@Override
@@ -53,6 +54,6 @@ public class TrackListPresenter implements TrackListMvp.Presenter,
 
 	@Override
 	public void onServiceConnected() {
-
+		view.notifyDataChanged();
 	}
 }
