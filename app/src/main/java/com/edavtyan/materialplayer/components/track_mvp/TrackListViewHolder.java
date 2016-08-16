@@ -52,7 +52,7 @@ public class TrackListViewHolder
 		titleView.setText(title);
 	}
 
-	public void setInfo(int duration, String artist, String album) {
+	public void setInfo(long duration, String artist, String album) {
 		String durationStr = DurationUtils.toStringUntilHours(duration);
 		String info = context.getString(R.string.pattern_track_info, durationStr, artist, album);
 		infoView.setText(info);
