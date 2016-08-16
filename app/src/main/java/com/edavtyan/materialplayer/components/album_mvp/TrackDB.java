@@ -71,7 +71,14 @@ public class TrackDB {
 	}
 
 	public List<Track> getAllTracks() {
-		return null;
+		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, null, null, KEY_TITLE);
+		List<Track> tracks = new ArrayList<>();
+
+		while (cursor.moveToNext()) {
+			tracks.add(getTrackFromCursor(cursor));
+		}
+
+		return tracks;
 	}
 
 	private Track getTrackFromCursor(Cursor cursor) {
