@@ -59,26 +59,11 @@ public class TrackDB {
 	public List<Track> getTracksWithAlbumId(int albumId) {
 		String selection = KEY_ALBUM_ID + "=?";
 		String[] args = { Integer.toString(albumId) };
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, KEY_TRACK);
-
-		List<Track> tracks = new ArrayList<>();
-
-		while (cursor.moveToNext()) {
-			tracks.add(getTrackFromCursor(cursor));
-		}
-
-		return tracks;
+		return getListOfTracks(selection, args, KEY_TRACK);
 	}
 
 	public List<Track> getAllTracks() {
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, null, null, KEY_TITLE);
-		List<Track> tracks = new ArrayList<>();
-
-		while (cursor.moveToNext()) {
-			tracks.add(getTrackFromCursor(cursor));
-		}
-
-		return tracks;
+		return getListOfTracks(null, null, KEY_TITLE);
 	}
 
 	private Track getTrackFromCursor(Cursor cursor) {
@@ -94,5 +79,16 @@ public class TrackDB {
 		track.setPath(cursor.getString(INDEX_PATH));
 		track.setDateModified(cursor.getLong(INDEX_DATE_MODIFIED) * 1000);
 		return track;
+	}
+
+	private List<Track> getListOfTracks(String selection, String[] args, String sort) {
+		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+		List<Track> tracks = new ArrayList<>();
+
+		while (cursor.moveToNext()) {
+			tracks.add(getTrackFromCursor(cursor));
+		}
+
+		return tracks;
 	}
 }
