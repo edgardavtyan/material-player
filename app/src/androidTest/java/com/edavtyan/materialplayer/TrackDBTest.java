@@ -22,6 +22,15 @@ public class TrackDBTest extends BaseTest {
 		AlbumDB albumDB = new AlbumDB(context);
 		int id = albumDB.getAllAlbums().get(0).getId();
 
-		assertThat(trackDB.getTracksWithAlbumId(id)).hasSize(4);
+		assertThat(trackDB.getTracksWithAlbumId(id))
+				.hasSize(4)
+				.isSortedAccordingTo((lhs, rhs) -> lhs.getTrack() - rhs.getTrack());
+	}
+
+	@Test
+	public void getAllTracks_correctTracks() {
+		assertThat(trackDB.getAllTracks())
+				.hasSize(9)
+				.isSortedAccordingTo((lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle()));
 	}
 }
