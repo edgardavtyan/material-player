@@ -8,17 +8,23 @@ import com.edavtyan.materialplayer.R;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.spy;
 
 public class BaseTest {
-	protected ContextThemeWrapper context;
+	protected static ContextThemeWrapper context;
+
+	@BeforeClass
+	public static void beforeClass() {
+		Context appContext = InstrumentationRegistry.getTargetContext();
+		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
+	}
 
 	@Before
 	public void beforeEach() {
-		Context appContext = InstrumentationRegistry.getTargetContext();
-		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
+
 	}
 
 	@After
