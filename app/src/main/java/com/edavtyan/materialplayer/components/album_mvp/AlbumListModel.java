@@ -8,31 +8,30 @@ import android.os.IBinder;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 	private final Context context;
 	private final AlbumDB albumDB;
-	private final List<Album> albums;
 	private final TrackDB trackDB;
+	private List<Album> albums;
 	private MusicPlayerService service;
 
 	public AlbumListModel(Context context, AlbumDB albumDB, TrackDB trackDB) {
 		this.context = context;
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
-		this.albums = new ArrayList<>();
 	}
 
 	@Override
 	public Album getAlbumAtIndex(int index) {
-		if (albums.size() == 0) return null;
+		if (albums == null) return null;
 		return albums.get(index);
 	}
 
 	@Override
 	public int getAlbumsCount() {
+		if (albums == null) return 0;
 		return albums.size();
 	}
 
@@ -48,8 +47,7 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 
 	@Override
 	public void update() {
-		albums.clear();
-		albums.addAll(albumDB.getAllAlbums());
+		albums = albumDB.getAllAlbums();
 	}
 
 	public void bindService() {
