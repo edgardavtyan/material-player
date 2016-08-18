@@ -33,19 +33,19 @@ public class TrackListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void setTitleViewText() {
+	public void setTitle_setTitleViewText() {
 		holder.setTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
-	public void setFormattedInfoViewText() {
+	public void setInfo_setFormattedInfoViewText() {
 		holder.setInfo(50000, "artist", "album");
 		assertThat(infoView.getText()).isEqualTo("00:50 | artist - album");
 	}
 
 	@Test
-	public void respondToClick() {
+	public void setOnHolderClickListener_respondToClick() {
 		TrackListViewHolder.OnHolderClickListener listener
 				= mock(TrackListViewHolder.OnHolderClickListener.class);
 		holder.setOnHolderClickListener(listener);
@@ -54,7 +54,7 @@ public class TrackListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void respondToMenuItemsClicks() {
+	public void setOnHolderMenuItemClickListener_respondToMenuItemsClicks() {
 		TrackListViewHolder.OnHolderMenuItemClickListener listener
 				= mock(TrackListViewHolder.OnHolderMenuItemClickListener.class);
 		holder.setOnHolderMenuItemClickListener(listener);
