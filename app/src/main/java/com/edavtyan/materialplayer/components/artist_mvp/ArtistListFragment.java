@@ -20,7 +20,8 @@ public class ArtistListFragment extends Fragment implements ArtistListMvp.View {
 							 @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-		ArtistListModel model = new ArtistListModel(getActivity().getContentResolver());
+		ArtistDB db = new ArtistDB(getActivity());
+		ArtistListModel model = new ArtistListModel(db);
 		ArtistListPresenter presenter = new ArtistListPresenter(model, this);
 		ArtistListAdapter adapter = new ArtistListAdapter(getActivity(), presenter);
 

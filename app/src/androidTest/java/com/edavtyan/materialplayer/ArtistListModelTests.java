@@ -1,9 +1,6 @@
 package com.edavtyan.materialplayer;
 
-import android.database.MatrixCursor;
-import android.test.mock.MockContentProvider;
-import android.test.mock.MockContentResolver;
-
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistDB;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListModel;
 import com.edavtyan.materialplayer.components.artists.Artist;
 import com.edavtyan.materialplayer.lib.BaseTest;
@@ -11,61 +8,51 @@ import com.edavtyan.materialplayer.lib.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ArtistListModelTests extends BaseTest {
+	private List artists;
 	private ArtistListModel model;
-	private ArtistListModel mockResolverModel;
-	private MockContentProvider mockProvider;
 
 	@Override
 	@Before
+	@SuppressWarnings("unchecked")
 	public void beforeEach() {
 		super.beforeEach();
-		mockProvider = mock(MockContentProvider.class);
-		MockContentResolver mockResolver = mock(MockContentResolver.class);
-		mockResolver.addProvider("media", mockProvider);
-		mockResolverModel = new ArtistListModel(mockResolver);
-		model = new ArtistListModel(context.getContentResolver());
+		ArtistDB db = mock(ArtistDB.class);
+		artists = mock(List.class);
+		when(db.getAllArtists()).thenReturn(artists);
+		model = new ArtistListModel(db);
 	}
 
 	@Test
 	public void getArtistCount_correctCount() {
+		when(artists.size()).thenReturn(4);
 		model.updateData();
 		assertThat(model.getArtistCount()).isEqualTo(4);
 	}
 
 	@Test
 	public void getArtistCount_noArtists_zero() {
-		MatrixCursor cursor = new MatrixCursor(ArtistListModel.PROJECTION);
-		when(mockProvider.query(any(), any(), any(), any(), any())).thenReturn(cursor);
-
-		assertThat(mockResolverModel.getArtistCount()).isEqualTo(0);
+		assertThat(model.getArtistCount()).isEqualTo(0);
 	}
 
 	@Test
 	public void getArtistAtIndex_correctArtist() {
+		Artist artist = new Artist();
+		when(artists.get(0)).thenReturn(artist);
+
 		model.updateData();
 
-		Artist modelArtist = model.getArtistAtIndex(0);
-
-		Artist artist = new Artist();
-		artist.setId(modelArtist.getId());
-		artist.setTitle("Artist 1");
-		artist.setAlbumsCount(2);
-		artist.setTracksCount(6);
-
-		assertThat(modelArtist).isEqualTo(artist);
+		assertThat(model.getArtistAtIndex(0)).isSameAs(artist);
 	}
 
 	@Test
 	public void getArtistAtIndex_noArtists_null() {
-		MatrixCursor cursor = new MatrixCursor(ArtistListModel.PROJECTION);
-		when(mockProvider.query(any(), any(), any(), any(), any())).thenReturn(cursor);
-
-		assertThat(mockResolverModel.getArtistAtIndex(0)).isNull();
+		assertThat(model.getArtistAtIndex(0)).isNull();
 	}
 }
