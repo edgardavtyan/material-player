@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer;
 
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistDB;
+import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.DBTest;
 import com.edavtyan.materialplayer.db.TestArtistDBHelper;
 import com.edavtyan.materialplayer.db.TestArtistDBProvider;

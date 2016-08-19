@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.albums.AlbumDetailActivity;
+import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 
 import lombok.Getter;
 import lombok.Setter;

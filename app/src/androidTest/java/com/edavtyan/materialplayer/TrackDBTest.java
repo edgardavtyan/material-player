@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer;
 
-import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.db.DBTest;
 import com.edavtyan.materialplayer.db.TestTrackDBHelper;
 import com.edavtyan.materialplayer.db.TestTrackDBProvider;

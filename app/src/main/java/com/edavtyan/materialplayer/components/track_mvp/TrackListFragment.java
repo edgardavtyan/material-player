@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 
 import lombok.Getter;

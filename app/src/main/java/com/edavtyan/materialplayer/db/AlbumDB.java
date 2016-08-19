@@ -1,10 +1,12 @@
-package com.edavtyan.materialplayer.components.album_mvp;
+package com.edavtyan.materialplayer.db;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+
+import com.edavtyan.materialplayer.components.album_mvp.Album;
 
 import java.util.ArrayList;
 import java.util.List;

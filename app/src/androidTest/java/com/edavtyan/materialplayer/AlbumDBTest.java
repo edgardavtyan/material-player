@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.edavtyan.materialplayer.components.album_mvp.AlbumDB;
+import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.DBTest;
 import com.edavtyan.materialplayer.db.TestAlbumDBHelper;
 import com.edavtyan.materialplayer.db.TestAlbumDBProvider;

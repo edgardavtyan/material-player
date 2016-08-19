@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.artists.ArtistDetailActivity;
+import com.edavtyan.materialplayer.db.ArtistDB;
 
 public class ArtistListFragment extends Fragment implements ArtistListMvp.View {
 	@Nullable

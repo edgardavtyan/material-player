@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
-import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListModel;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
 import com.edavtyan.materialplayer.components.tracks.Track;

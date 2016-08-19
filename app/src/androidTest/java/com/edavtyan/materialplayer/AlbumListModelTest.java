@@ -1,9 +1,9 @@
 package com.edavtyan.materialplayer;
 
 import com.edavtyan.materialplayer.components.album_mvp.Album;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumDB;
+import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListModel;
-import com.edavtyan.materialplayer.components.album_mvp.TrackDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
 import com.edavtyan.materialplayer.lib.BaseTest;
 

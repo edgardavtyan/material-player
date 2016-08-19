@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.artist_mvp;
+package com.edavtyan.materialplayer.db;
 
 import android.content.ContentResolver;
 import android.content.Context;
