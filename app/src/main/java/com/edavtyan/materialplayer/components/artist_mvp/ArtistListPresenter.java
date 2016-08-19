@@ -25,6 +25,6 @@ public class ArtistListPresenter implements ArtistListMvp.Presenter {
 
 	@Override
 	public void onHolderClicked(ArtistListViewHolder holder, int position) {
-		view.goToArtistDetail(holder.getTitle());
+		view.goToArtistDetail(model.getArtistAtIndex(position).getTitle());
 	}
 }

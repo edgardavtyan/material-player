@@ -13,7 +13,6 @@ import lombok.Setter;
 public class ArtistListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 	private final TextView titleView;
 	private final TextView infoView;
-	private @Setter int position;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	interface OnHolderClickListener {
@@ -25,12 +24,6 @@ public class ArtistListViewHolder extends RecyclerView.ViewHolder implements Vie
 		itemView.setOnClickListener(this);
 		titleView = (TextView) itemView.findViewById(R.id.title);
 		infoView = (TextView) itemView.findViewById(R.id.info);
-	}
-
-	//---
-
-	public String getTitle() {
-		return titleView.getText().toString();
 	}
 
 	public void setTitle(String title) {
@@ -45,10 +38,6 @@ public class ArtistListViewHolder extends RecyclerView.ViewHolder implements Vie
 		infoView.setText(info);
 	}
 
-	public CharSequence getInfo() {
-		return infoView.getText();
-	}
-
 	public void setOnClickListener(View.OnClickListener listener) {
 		itemView.setOnClickListener(listener);
 	}
@@ -56,7 +45,7 @@ public class ArtistListViewHolder extends RecyclerView.ViewHolder implements Vie
 	@Override
 	public void onClick(View v) {
 		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this, position);
+			onHolderClickListener.onHolderClick(this, getAdapterPosition());
 		}
 	}
 }

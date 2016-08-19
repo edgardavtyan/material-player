@@ -56,10 +56,11 @@ public class ArtistListPresenterTest extends BaseTest {
 
 	@Test
 	public void onHolderClick_goToArtistDetail() {
-		when(holder.getTitle()).thenReturn("title");
+		Artist artist = mock(Artist.class);
+		when(artist.getTitle()).thenReturn("title");
+		when(model.getArtistAtIndex(3)).thenReturn(artist);
 
-		presenter.onHolderClicked(holder, 0);
-
+		presenter.onHolderClicked(holder, 3);
 		verify(view).goToArtistDetail("title");
 	}
 }
