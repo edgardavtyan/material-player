@@ -22,6 +22,7 @@ import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -31,13 +32,21 @@ public class ArtistListAdapterTest extends BaseTest {
 	private ArtistListMvp.Presenter presenter;
 	private ArtistListAdapter adapter;
 	private ArtistListViewHolder holder;
+	private View holderView;
+	private LayoutInflater inflater;
 
 	@Before
 	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(ArtistListMvp.Presenter.class);
-		adapter = new ArtistListAdapter(context, presenter);
+		adapter = spy(new ArtistListAdapter(context, presenter));
 		holder = mock(ArtistListViewHolder.class);
+
+		inflater = mock(LayoutInflater.class);
+		holderView = new View(context);
+		when(inflater.inflate(anyInt(), any())).thenReturn(holderView);
+		when(inflater.inflate(anyInt(), any(), anyBoolean())).thenReturn(holderView);
+		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 	}
 
 	@Test
@@ -49,29 +58,21 @@ public class ArtistListAdapterTest extends BaseTest {
 
 	@Test
 	public void onCreateViewHolder_notAttachToRoot() {
-		LayoutInflater inflater = mock(LayoutInflater.class);
-		View view = new View(context);
-		when(inflater.inflate(anyInt(), any())).thenReturn(view);
-		when(inflater.inflate(anyInt(), any(), anyBoolean())).thenReturn(view);
-
-		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
-
-		ArtistListAdapter adapter = new ArtistListAdapter(context, presenter);
 		adapter.onCreateViewHolder(null, 0);
-
 		verify(inflater).inflate(anyInt(), any(), eq(false));
+	}
+
+	@Test
+	public void onCreateViewHolder_setClickListener() {
+		adapter.onCreateViewHolder(null, 0);
+		holderView.performClick();
+		verify(adapter).onHolderClick(any(), anyInt());
 	}
 
 	@Test
 	public void onBindViewHolder_callPresenter() {
 		adapter.onBindViewHolder(holder, 0);
 		verify(presenter).bindViewHolder(holder, 0);
-	}
-
-	@Test
-	public void onBindViewHolder_setClickListener() {
-		adapter.onBindViewHolder(holder, 0);
-		verify(holder).setOnHolderClickListener(adapter);
 	}
 
 	@Test
