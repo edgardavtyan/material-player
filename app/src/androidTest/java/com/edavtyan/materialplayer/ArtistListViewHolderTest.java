@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistListViewHolder.OnHolderClickListener;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Before;
@@ -41,12 +42,12 @@ public class ArtistListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void setOnClickListener_viewClicked_callOnClick() {
-		View.OnClickListener clickListener = mock(View.OnClickListener.class);
-		holder.setOnClickListener(clickListener);
+	public void setOnHolderClickListener_viewClicked_callOnClick() {
+		OnHolderClickListener clickListener = mock(OnHolderClickListener.class);
+		holder.setOnHolderClickListener(clickListener);
 
 		itemView.callOnClick();
 
-		verify(clickListener).onClick(itemView);
+		verify(clickListener).onHolderClick(holder, holder.getAdapterPosition());
 	}
 }

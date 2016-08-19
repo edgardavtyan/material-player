@@ -15,7 +15,7 @@ public class ArtistListViewHolder extends RecyclerView.ViewHolder implements Vie
 	private final TextView infoView;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
-	interface OnHolderClickListener {
+	public interface OnHolderClickListener {
 		void onHolderClick(ArtistListViewHolder holder, int position);
 	}
 
@@ -36,10 +36,6 @@ public class ArtistListViewHolder extends RecyclerView.ViewHolder implements Vie
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = res.getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);
 		infoView.setText(info);
-	}
-
-	public void setOnClickListener(View.OnClickListener listener) {
-		itemView.setOnClickListener(listener);
 	}
 
 	@Override
