@@ -61,7 +61,7 @@ public class TestAlbumDBHelper extends TestDBHelper {
 	public void addRandomAlbums(int count) {
 		for (int i = 0; i < count; i++) {
 			Album album = new Album();
-			album.setId((int) faker.number().randomNumber());
+			album.setId(i);
 			album.setTitle(faker.lorem().characters(10));
 			album.setArtistTitle(faker.name().fullName());
 			album.setArt(faker.lorem().characters(10));
