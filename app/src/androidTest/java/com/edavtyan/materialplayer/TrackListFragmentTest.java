@@ -7,7 +7,7 @@ import com.edavtyan.materialplayer.components.track_mvp.TrackListAdapter;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListDI;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListFragment;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
-import com.edavtyan.materialplayer.lib.FragmentTest2;
+import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class TrackListFragmentTest extends FragmentTest2<TrackListFragment> {
+public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 	private TrackListMvp.Presenter presenter;
 	private TrackListAdapter adapter;
 

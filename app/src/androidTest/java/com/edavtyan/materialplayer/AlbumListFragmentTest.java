@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.components.album_mvp.AlbumListAdapter;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListFragment;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
-import com.edavtyan.materialplayer.lib.FragmentTest2;
+import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
-public class AlbumListFragmentTest extends FragmentTest2<AlbumListFragment> {
+public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 
 	private AlbumListMvp.Presenter presenter;
 	private AlbumListAdapter adapter;

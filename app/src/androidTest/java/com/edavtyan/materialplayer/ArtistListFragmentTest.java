@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListAdapter;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListDI;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListFragment;
-import com.edavtyan.materialplayer.lib.FragmentTest2;
+import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ArtistListFragmentTest extends FragmentTest2<ArtistListFragment> {
+public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 	private ArtistListAdapter adapter;
 
 	@Override

@@ -1,49 +1,40 @@
 package com.edavtyan.materialplayer.lib;
 
-import android.support.test.InstrumentationRegistry;
-import android.support.test.rule.ActivityTestRule;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
 
-import org.junit.Rule;
+import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.components.TestableFragment;
 
-import static org.mockito.Mockito.reset;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
-public abstract class FragmentTest<TFragment extends Fragment> extends BaseTest {
-	@Rule
-	public ActivityTestRule<TestActivity> activityRule = new ActivityTestRule<>(TestActivity.class);
-
-	protected static TestActivity activity;
+public class FragmentTest<TFragment extends TestableFragment> extends BaseTest {
+	protected App app;
 	protected TFragment fragment;
-	private FragmentManager fragmentManager;
+	protected AppCompatActivity activity;
+	protected LayoutInflater inflater;
+	protected View fragmentView;
 
-	@Override
-	public void beforeEach() {
-		super.beforeEach();
-		activity = spy(activityRule.getActivity());
-		fragmentManager = activity.getSupportFragmentManager();
-		reset(activity);
-	}
+	protected void initFragment(TFragment fragment) {
+		app = mock(App.class);
 
-	@SuppressWarnings("EmptyCatchBlock")
-	protected void initFragmentTest(Class<TFragment> fragmentClass) {
-		try {
-			fragment = fragmentClass.newInstance();
-		} catch (Exception e) {};
-	}
+		activity = mock(AppCompatActivity.class);
+		doReturn(app).when(activity).getApplicationContext();
 
-	protected void removeFragment(Fragment fragment) {
-		fragmentManager.beginTransaction().remove(fragment).commit();
-	}
+		this.fragment = spy(fragment);
+		doNothing().when(this.fragment).baseOnDestroy();
+		doNothing().when(this.fragment).baseOnCreate(null);
+		doReturn(activity).when(this.fragment).getContext();
 
-	protected void attachFragment(Fragment fragment) {
-		fragmentManager.beginTransaction().add(fragment, null).commit();
-	}
-
-	protected void execTransactionsAndRunTask(Runnable task) {
-		activity.runOnUiThread(() -> fragmentManager.executePendingTransactions());
-		InstrumentationRegistry.getInstrumentation().waitForIdleSync();
-		task.run();
+		fragmentView = mock(View.class);
+		inflater = mock(LayoutInflater.class);
+		doReturn(fragmentView).when(inflater).inflate(anyInt(), any(), anyBoolean());
 	}
 }
