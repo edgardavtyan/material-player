@@ -8,6 +8,8 @@ import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListDI;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
+import com.edavtyan.materialplayer.components.track_mvp.TrackListDI;
+import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
 import com.edavtyan.materialplayer.utils.logging.Logger;
 
@@ -28,6 +30,10 @@ public class App
 
 	public ArtistListDI getArtistListDI(Context context, ArtistListMvp.View view) {
 		return new ArtistListDI(context, view);
+	}
+
+	public TrackListDI getTrackListDI(Context context, TrackListMvp.View view) {
+		return new TrackListDI(context, view);
 	}
 
 	//---

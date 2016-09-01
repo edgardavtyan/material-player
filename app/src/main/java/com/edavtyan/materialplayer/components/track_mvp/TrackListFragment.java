@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.track_mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,23 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.components.BaseFragment;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 
-import lombok.Getter;
-import lombok.Setter;
-
-public class TrackListFragment extends Fragment implements TrackListMvp.View {
-	private @Getter @Setter TrackListMvp.Presenter presenter;
-	private @Getter @Setter TrackListAdapter adapter;
+public class TrackListFragment extends BaseFragment implements TrackListMvp.View {
+	private TrackListMvp.Presenter presenter;
+	private TrackListAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		TrackListModel model = new TrackListModel(getContext(), new TrackDB(getContext()));
-		if (presenter == null) presenter = new TrackListPresenter(this, model);
-		if (adapter == null) adapter = new TrackListAdapter(getActivity(), presenter);
-		if (presenter != null) presenter.onCreate();
+
+		TrackListDI trackListDI = app.getTrackListDI(getContext(), this);
+		presenter = trackListDI.providePresenter();
+		adapter = trackListDI.provideAdapter();
+
+		presenter.onCreate();
 	}
 
 	@Nullable
@@ -46,7 +44,7 @@ public class TrackListFragment extends Fragment implements TrackListMvp.View {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		if (presenter != null) presenter.onDestroy();
+		presenter.onDestroy();
 	}
 
 	@Override

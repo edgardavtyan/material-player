@@ -4,75 +4,69 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.components.track_mvp.TrackListAdapter;
+import com.edavtyan.materialplayer.components.track_mvp.TrackListDI;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListFragment;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
-import com.edavtyan.materialplayer.lib.FragmentTest;
+import com.edavtyan.materialplayer.lib.FragmentTest2;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
-public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
+public class TrackListFragmentTest extends FragmentTest2<TrackListFragment> {
 	private TrackListMvp.Presenter presenter;
 	private TrackListAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		initFragmentTest(TrackListFragment.class);
+
+		initFragment(new TrackListFragment());
 
 		presenter = mock(TrackListMvp.Presenter.class);
 		adapter = mock(TrackListAdapter.class);
-		fragment.setPresenter(presenter);
-		fragment.setAdapter(adapter);
-	}
 
-	@Test
-	public void onCreate_setPresenterAndAdapter() {
-		TrackListFragment fragment = new TrackListFragment();
-		attachFragment(fragment);
-		execTransactionsAndRunTask(() -> {
-			assertThat(fragment.getPresenter()).isNotNull();
-		});
+		TrackListDI mockDI = mock(TrackListDI.class);
+		when(mockDI.providePresenter()).thenReturn(presenter);
+		when(mockDI.provideAdapter()).thenReturn(adapter);
+		when(app.getTrackListDI(any(), any())).thenReturn(mockDI);
 	}
 
 	@Test
 	public void onCreate_callPresenter() {
-		attachFragment(fragment);
-		execTransactionsAndRunTask(() -> {
-			verify(presenter).onCreate();
-			verifyNoMoreInteractions(presenter);
-		});
+		fragment.onCreate(null);
+		verify(presenter).onCreate();
 	}
 
 	@Test
 	public void onDestroy_callPresenter() {
-		attachFragment(fragment);
-		removeFragment(fragment);
-		execTransactionsAndRunTask(() -> {
-			verify(presenter).onDestroy();
-		});
+		fragment.onCreate(null);
+		fragment.onDestroy();
+		verify(presenter).onDestroy();
 	}
 
 	@Test
 	public void onCreateView_initRecyclerView() {
-		attachFragment(fragment);
-		execTransactionsAndRunTask(() -> {
-			RecyclerView list = (RecyclerView) fragment.getView().findViewById(R.id.list);
-			assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
-			assertThat(list.getAdapter()).isInstanceOf(TrackListAdapter.class);
-		});
+		RecyclerView list = new RecyclerView(context);
+		when(fragmentView.findViewById(anyInt())).thenReturn(list);
+
+		fragment.onCreate(null);
+		fragment.onCreateView(inflater, null, null);
+
+		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
+		assertThat(list.getAdapter()).isInstanceOf(TrackListAdapter.class);
 	}
 
 	@Test
 	public void notifyDataChanged_callAdapter() {
-		attachFragment(fragment);
-		execTransactionsAndRunTask(() -> {
-			fragment.notifyDataChanged();
-			verify(adapter).notifyDataSetChangedNonFinal();
-		});
+		fragment.onCreate(null);
+		fragment.notifyDataChanged();
+
+		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 }
