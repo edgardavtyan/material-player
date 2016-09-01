@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistListDI;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
 import com.edavtyan.materialplayer.utils.logging.Logger;
 
@@ -22,6 +24,10 @@ public class App
 
 	public AlbumListDI getAlbumListDI(Context context, AlbumListMvp.View view) {
 		return new AlbumListDI(context, view);
+	}
+
+	public ArtistListDI getArtistListDI(Context context, ArtistListMvp.View view) {
+		return new ArtistListDI(context, view);
 	}
 
 	//---
