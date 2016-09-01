@@ -7,8 +7,8 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.db.AlbumDB;
+import com.edavtyan.materialplayer.lib.db.TrackDB;
 
 import java.util.List;
 

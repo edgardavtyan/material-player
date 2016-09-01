@@ -2,8 +2,8 @@ package com.edavtyan.materialplayer.components.album_mvp;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.db.AlbumDB;
+import com.edavtyan.materialplayer.lib.db.TrackDB;
 
 public class AlbumListDI {
 	private final Context context;

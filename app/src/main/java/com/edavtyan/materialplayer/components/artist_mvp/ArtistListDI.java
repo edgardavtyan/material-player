@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.artist_mvp;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.lib.db.ArtistDB;
 
 public class ArtistListDI {
 	private final Context context;

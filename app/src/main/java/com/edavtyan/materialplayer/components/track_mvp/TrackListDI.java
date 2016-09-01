@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.track_mvp;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.db.TrackDB;
 
 public class TrackListDI {
 	private final Context context;
