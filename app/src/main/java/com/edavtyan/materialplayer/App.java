@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
+import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
 import com.edavtyan.materialplayer.utils.logging.Logger;
 
@@ -17,6 +19,10 @@ public class App
 	//---
 
 	private @Getter static Context context;
+
+	public AlbumListDI getAlbumListDI(Context context, AlbumListMvp.View view) {
+		return new AlbumListDI(context, view);
+	}
 
 	//---
 

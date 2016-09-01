@@ -5,65 +5,69 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListAdapter;
+import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListFragment;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
-import com.edavtyan.materialplayer.lib.FragmentTest;
+import com.edavtyan.materialplayer.lib.FragmentTest2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
-public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
+public class AlbumListFragmentTest extends FragmentTest2<AlbumListFragment> {
 
 	private AlbumListMvp.Presenter presenter;
+	private AlbumListAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		initFragmentTest(AlbumListFragment.class);
-		presenter = mock(AlbumListMvp.Presenter.class);
-		fragment.setPresenter(presenter);
-	}
 
-	@Test
-	public void onCreate_setPresenter() {
-		AlbumListFragment localFragment = new AlbumListFragment();
-		attachFragment(localFragment);
-		execTransactionsAndRunTask(() -> assertThat(localFragment.getPresenter()).isNotNull());
+		initFragment(new AlbumListFragment());
+
+		presenter = mock(AlbumListMvp.Presenter.class);
+		adapter = mock(AlbumListAdapter.class);
+
+		AlbumListDI mockDI = mock(AlbumListDI.class);
+		when(mockDI.providePresenter()).thenReturn(presenter);
+		when(mockDI.provideAdapter()).thenReturn(adapter);
+		when(app.getAlbumListDI(any(), any())).thenReturn(mockDI);
 	}
 
 	@Test
 	public void onCreate_callPresenter() {
-		attachFragment(fragment);
-		execTransactionsAndRunTask(() -> verify(presenter).onCreate());
+		fragment.onCreate(null);
+		verify(presenter).onCreate();
 	}
 
 	@Test
 	public void onCreateView_setRecyclerViewAdapter() {
-		attachFragment(fragment);
-		execTransactionsAndRunTask(() -> {
-			RecyclerView list = (RecyclerView) fragment.getView().findViewById(R.id.list);
-			assertThat(list.getAdapter()).isOfAnyClassIn(AlbumListAdapter.class);
-			assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
-		});
+		RecyclerView list = new RecyclerView(context);
+		when(fragmentView.findViewById(R.id.list)).thenReturn(list);
+
+		fragment.onCreate(null);
+		fragment.onCreateView(inflater, null, null);
+
+		assertThat(list.getAdapter()).isEqualTo(adapter);
+		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 	}
 
 	@Test
 	public void onDestroy_callPresenter() {
-		attachFragment(fragment);
-		removeFragment(fragment);
-		execTransactionsAndRunTask(() -> verify(presenter).onDestroy());
+		fragment.onCreate(null);
+		fragment.onDestroy();
+		verify(presenter).onDestroy();
 	}
 
 	@Test
 	public void notifyDataChanged_callAdapter() {
-		AlbumListAdapter adapter = spy(new AlbumListAdapter(activity, presenter));
-		fragment.setAdapter(adapter);
+		fragment.onCreate(null);
 		fragment.notifyDataChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();
 	}

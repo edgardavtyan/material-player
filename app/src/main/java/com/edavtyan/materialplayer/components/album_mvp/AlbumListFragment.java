@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.album_mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,30 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.BaseFragment;
 import com.edavtyan.materialplayer.components.albums.AlbumDetailActivity;
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
 
-import lombok.Getter;
-import lombok.Setter;
-
-public class AlbumListFragment extends Fragment implements AlbumListMvp.View {
-	// Getters and setters are for testing purposes only!
-	private @Getter @Setter AlbumListMvp.Presenter presenter;
-	private @Getter @Setter AlbumListAdapter adapter;
+public class AlbumListFragment extends BaseFragment implements AlbumListMvp.View {
+	private AlbumListMvp.Presenter presenter;
+	private AlbumListAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// Do not reassign presenter if it has already been set by unit test
-		// For testing purposes only!
-		if (presenter == null) {
-			AlbumDB albumDB = new AlbumDB(getActivity());
-			TrackDB trackDB = new TrackDB(getActivity());
-			AlbumListMvp.Model model = new AlbumListModel(getActivity(), albumDB, trackDB);
-			presenter = new AlbumListPresenter(model, this);
-		}
+		AlbumListDI albumListDI = app.getAlbumListDI(getActivity(), this);
+		presenter = albumListDI.providePresenter();
+		adapter = albumListDI.provideAdapter();
 
 		presenter.onCreate();
 	}
@@ -45,7 +34,6 @@ public class AlbumListFragment extends Fragment implements AlbumListMvp.View {
 							 @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-		adapter = new AlbumListAdapter(getActivity(), presenter);
 		RecyclerView list = (RecyclerView) view.findViewById(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(getActivity()));
 		list.setAdapter(adapter);
