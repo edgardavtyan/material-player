@@ -3,10 +3,6 @@ package com.edavtyan.materialplayer.components.track_mvp;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.edavtyan.materialplayer.components.track_mvp.TrackListAdapter;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListDI;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListFragment;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
@@ -59,14 +55,6 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 		fragment.onCreateView(inflater, null, null);
 
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
-		assertThat(list.getAdapter()).isInstanceOf(TrackListAdapter.class);
-	}
-
-	@Test
-	public void notifyDataChanged_callAdapter() {
-		fragment.onCreate(null);
-		fragment.notifyDataChanged();
-
-		verify(adapter).notifyDataSetChangedNonFinal();
+		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 }

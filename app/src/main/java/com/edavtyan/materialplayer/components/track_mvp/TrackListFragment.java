@@ -48,11 +48,6 @@ public class TrackListFragment extends BaseFragment implements TrackListMvp.View
 	}
 
 	@Override
-	public void notifyDataChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
-
-	@Override
 	public void goToNowPlaying() {
 		NowPlayingActivity.startActivity(getActivity());
 	}

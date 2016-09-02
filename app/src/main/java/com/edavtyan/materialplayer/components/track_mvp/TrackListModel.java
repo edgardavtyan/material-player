@@ -19,7 +19,6 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 	private final TrackDB db;
 	private List<Track> tracks;
 	private MusicPlayerService service;
-	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
 	public TrackListModel(Context context, TrackDB db) {
 		this.context = context;
@@ -73,9 +72,6 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
 		service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
-		if (onServiceConnectedListener != null) {
-			onServiceConnectedListener.onServiceConnected();
-		}
 	}
 
 	@Override

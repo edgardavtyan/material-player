@@ -5,9 +5,9 @@ import android.content.Intent;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
-import com.edavtyan.materialplayer.lib.db.TrackDB;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.lib.db.TrackDB;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 
 public class TrackListModelTest extends BaseTest {
 	private List tracks;
-	private TrackDB db;
 	private TrackListModel model;
 	private MusicPlayerService service;
 	private MusicPlayerBinder binder;
@@ -40,7 +39,7 @@ public class TrackListModelTest extends BaseTest {
 		mockContext = mock(Context.class);
 
 		tracks = mock(List.class);
-		db = mock(TrackDB.class);
+		TrackDB db = mock(TrackDB.class);
 		when(db.getAllTracks()).thenReturn(tracks);
 
 		model = spy(new TrackListModel(mockContext, db));
@@ -136,16 +135,5 @@ public class TrackListModelTest extends BaseTest {
 	public void unbindService_callContextAndUnbindService() {
 		model.unbindService();
 		verify(mockContext).unbindService(model);
-	}
-
-	@Test
-	public void setOnServiceConnectedListener_callWhenServiceConnects() {
-		TrackListMvp.Model.OnServiceConnectedListener listener
-				= mock(TrackListMvp.Model.OnServiceConnectedListener.class);
-		model.setOnServiceConnectedListener(listener);
-
-		model.bindService();
-
-		verify(listener).onServiceConnected();
 	}
 }

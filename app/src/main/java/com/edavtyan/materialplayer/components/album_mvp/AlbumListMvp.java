@@ -21,6 +21,5 @@ public interface AlbumListMvp {
 
 	interface View {
 		void goToAlbumDetail(int albumId);
-		void notifyDataChanged();
 	}
 }

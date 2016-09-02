@@ -5,10 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListAdapter;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListFragment;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
@@ -64,12 +60,5 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 		fragment.onCreate(null);
 		fragment.onDestroy();
 		verify(presenter).onDestroy();
-	}
-
-	@Test
-	public void notifyDataChanged_callAdapter() {
-		fragment.onCreate(null);
-		fragment.notifyDataChanged();
-		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 }

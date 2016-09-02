@@ -51,9 +51,4 @@ public class AlbumListFragment extends BaseFragment implements AlbumListMvp.View
 	public void goToAlbumDetail(int albumId) {
 		AlbumDetailActivity.startActivity(getActivity(), albumId);
 	}
-
-	@Override
-	public void notifyDataChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
 }

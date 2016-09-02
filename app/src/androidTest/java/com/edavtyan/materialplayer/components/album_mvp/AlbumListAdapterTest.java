@@ -4,9 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListAdapter;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListViewHolder;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;

@@ -1,8 +1,5 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
-import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListPresenter;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListViewHolder;
 import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
@@ -10,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
@@ -85,10 +81,5 @@ public class TrackListPresenterTest extends BaseTest {
 		presenter.onDestroy();
 		verify(model).unbindService();
 		verify(model).close();
-	}
-
-	@Test
-	public void setOnServiceConnectedListener() {
-		verify(model).setOnServiceConnectedListener(any());
 	}
 }

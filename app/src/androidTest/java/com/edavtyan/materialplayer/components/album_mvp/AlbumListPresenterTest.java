@@ -1,9 +1,5 @@
 package com.edavtyan.materialplayer.components.album_mvp;
 
-import com.edavtyan.materialplayer.components.album_mvp.Album;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListPresenter;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListViewHolder;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;

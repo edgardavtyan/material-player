@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.components.album_mvp;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.lib.db.AlbumDB;
-import com.edavtyan.materialplayer.lib.db.TrackDB;
 import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.lib.db.AlbumDB;
+import com.edavtyan.materialplayer.lib.db.TrackDB;
 
 import org.junit.Test;
 

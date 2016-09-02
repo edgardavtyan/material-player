@@ -4,10 +4,6 @@ import com.edavtyan.materialplayer.components.tracks.Track;
 
 public interface TrackListMvp {
 	interface Model {
-		interface OnServiceConnectedListener {
-			void onServiceConnected();
-		}
-
 		Track getTrackAtIndex(int position);
 		int getItemCount();
 		void playQueue(int position);
@@ -16,7 +12,6 @@ public interface TrackListMvp {
 		void unbindService();
 		void update();
 		void close();
-		void setOnServiceConnectedListener(OnServiceConnectedListener listener);
 	}
 
 	interface Presenter {
@@ -29,7 +24,6 @@ public interface TrackListMvp {
 	}
 
 	interface View {
-		void notifyDataChanged();
 		void goToNowPlaying();
 	}
 }

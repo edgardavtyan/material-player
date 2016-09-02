@@ -2,15 +2,13 @@ package com.edavtyan.materialplayer.components.track_mvp;
 
 import com.edavtyan.materialplayer.components.tracks.Track;
 
-public class TrackListPresenter implements TrackListMvp.Presenter,
-										   TrackListMvp.Model.OnServiceConnectedListener {
+public class TrackListPresenter implements TrackListMvp.Presenter {
 	private final TrackListMvp.View view;
 	private final TrackListMvp.Model model;
 
 	public TrackListPresenter(TrackListMvp.View view, TrackListMvp.Model model) {
 		this.view = view;
 		this.model = model;
-		this.model.setOnServiceConnectedListener(this);
 	}
 
 	@Override
@@ -43,17 +41,11 @@ public class TrackListPresenter implements TrackListMvp.Presenter,
 	public void onCreate() {
 		model.bindService();
 		model.update();
-		view.notifyDataChanged();
 	}
 
 	@Override
 	public void onDestroy() {
 		model.unbindService();
 		model.close();
-	}
-
-	@Override
-	public void onServiceConnected() {
-		view.notifyDataChanged();
 	}
 }

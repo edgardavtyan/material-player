@@ -6,9 +6,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListAdapter;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListViewHolder;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
