@@ -1,13 +1,11 @@
 package com.edavtyan.materialplayer.components.album_mvp;
 
+import com.edavtyan.materialplayer.components.ListPresenter;
+
 public interface AlbumListMvp {
-	interface Presenter {
-		void bindViewHolder(AlbumListViewHolder holder, int position);
-		int getItemCount();
+	interface Presenter extends ListPresenter<AlbumListViewHolder> {
 		void onItemClicked(int albumId);
 		void addToPlaylist(int albumId);
-		void onCreate();
-		void onDestroy();
 	}
 
 	interface Model {

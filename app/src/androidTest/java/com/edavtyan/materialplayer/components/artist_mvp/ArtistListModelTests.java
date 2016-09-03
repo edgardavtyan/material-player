@@ -31,7 +31,7 @@ public class ArtistListModelTests extends BaseTest {
 	@Test
 	public void getArtistCount_correctCount() {
 		when(artists.size()).thenReturn(4);
-		model.updateData();
+		model.update();
 		assertThat(model.getArtistCount()).isEqualTo(4);
 	}
 
@@ -45,7 +45,7 @@ public class ArtistListModelTests extends BaseTest {
 		Artist artist = new Artist();
 		when(artists.get(0)).thenReturn(artist);
 
-		model.updateData();
+		model.update();
 
 		assertThat(model.getArtistAtIndex(0)).isSameAs(artist);
 	}

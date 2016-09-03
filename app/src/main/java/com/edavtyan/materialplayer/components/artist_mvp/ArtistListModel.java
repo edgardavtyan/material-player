@@ -11,10 +11,10 @@ public class ArtistListModel implements ArtistListMvp.Model {
 
 	public ArtistListModel(ArtistDB db) {
 		this.db = db;
-		updateData();
 	}
 
-	public void updateData() {
+	@Override
+	public void update() {
 		artists = db.getAllArtists();
 	}
 

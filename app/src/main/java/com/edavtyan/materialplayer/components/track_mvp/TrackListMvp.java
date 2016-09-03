@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
+import com.edavtyan.materialplayer.components.ListPresenter;
 import com.edavtyan.materialplayer.components.tracks.Track;
 
 public interface TrackListMvp {
@@ -14,13 +15,9 @@ public interface TrackListMvp {
 		void close();
 	}
 
-	interface Presenter {
-		void bindViewHolder(TrackListViewHolder holder, int position);
-		int getItemCount();
+	interface Presenter extends ListPresenter<TrackListViewHolder> {
 		void onHolderClick(int position);
 		void onAddToPlaylist(int position);
-		void onCreate();
-		void onDestroy();
 	}
 
 	interface View {
