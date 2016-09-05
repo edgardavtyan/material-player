@@ -11,6 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(AndroidJUnit4.class)
@@ -37,5 +39,14 @@ public class AlbumDBTest extends DBTest {
 		assertThat(albumDB.getAllAlbums())
 				.hasSize(10)
 				.isSortedAccordingTo((lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle()));
+	}
+
+	@Test
+	public void getAlbumsWithArtistTitle_albumsWithSpecifiedTitle() {
+		List<Album> albums = testAlbumDBHelper.addRandomAlbumsWhereSomeWithArtistTitle(10, "title", 4);
+		assertThat(albumDB.getAlbumsWithArtistTitle("title"))
+				.hasSize(4)
+				.containsAll(albums);
+
 	}
 }

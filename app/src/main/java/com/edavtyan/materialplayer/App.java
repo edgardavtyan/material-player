@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistDetailDI;
+import com.edavtyan.materialplayer.components.artist_mvp.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListDI;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListDI;
@@ -30,6 +32,13 @@ public class App
 
 	public ArtistListDI getArtistListDI(Context context, ArtistListMvp.View view) {
 		return new ArtistListDI(context, view);
+	}
+
+	public ArtistDetailDI getArtistDetailDI(
+			Context context,
+			ArtistDetailMvp.View view,
+			String artistTitle) {
+		return new ArtistDetailDI(context, view, artistTitle);
 	}
 
 	public TrackListDI getTrackListDI(Context context, TrackListMvp.View view) {

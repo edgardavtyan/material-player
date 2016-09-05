@@ -42,10 +42,13 @@ public class AlbumDB {
 	}
 
 	public List<Album> getAllAlbums() {
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, null, null, KEY_TITLE);
-		List<Album> albums = new ArrayList<>();
-		while (cursor.moveToNext()) albums.add(getAlbumFromCursor(cursor));
-		return albums;
+		return getListOfAlbums(null, null, KEY_TITLE);
+	}
+
+	public List<Album> getAlbumsWithArtistTitle(String artistTitle) {
+		String selection = KEY_ARTIST_TITLE + "=?";
+		String[] args = {artistTitle};
+		return getListOfAlbums(selection, args, KEY_TITLE);
 	}
 
 	private Album getAlbumFromCursor(Cursor cursor) {
@@ -56,5 +59,12 @@ public class AlbumDB {
 		album.setArt(cursor.getString(INDEX_ART));
 		album.setTracksCount(cursor.getInt(INDEX_TRACKS_COUNT));
 		return album;
+	}
+
+	private List<Album> getListOfAlbums(String selection, String[] args, String order) {
+		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order);
+		List<Album> albums = new ArrayList<>();
+		while (cursor.moveToNext()) albums.add(getAlbumFromCursor(cursor));
+		return albums;
 	}
 }

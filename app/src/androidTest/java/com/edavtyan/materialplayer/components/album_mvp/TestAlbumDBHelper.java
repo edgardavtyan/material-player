@@ -8,6 +8,9 @@ import android.provider.MediaStore;
 import com.edavtyan.materialplayer.lib.db.TestDBHelper;
 import com.github.javafaker.Faker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestAlbumDBHelper extends TestDBHelper {
 	private static final String DATABASE_NAME = "testMediaStore_Albums.db";
 	private static final int DATABASE_VERSION = 1;
@@ -60,13 +63,36 @@ public class TestAlbumDBHelper extends TestDBHelper {
 
 	public void addRandomAlbums(int count) {
 		for (int i = 0; i < count; i++) {
-			Album album = new Album();
+			Album album = createRandomAlbum();
 			album.setId(i);
-			album.setTitle(faker.lorem().characters(10));
-			album.setArtistTitle(faker.name().fullName());
-			album.setArt(faker.lorem().characters(10));
-			album.setTracksCount((int) faker.number().randomNumber());
 			addAlbum(album);
 		}
+	}
+
+	public List<Album> addRandomAlbumsWhereSomeWithArtistTitle(int count, String title, int withArtistCount) {
+		for (int i = 0; i < count - withArtistCount; i++) {
+			addAlbum(createRandomAlbum());
+		}
+
+		List<Album> albums = new ArrayList<>();
+
+		for (int i = 0; i < withArtistCount; i++) {
+			Album album = createRandomAlbum();
+			album.setArtistTitle(title);
+			addAlbum(album);
+			albums.add(album);
+		}
+
+		return albums;
+	}
+
+	private Album createRandomAlbum() {
+		Album album = new Album();
+		album.setId((int) faker.number().randomNumber());
+		album.setTitle(faker.lorem().characters(10));
+		album.setArtistTitle(faker.name().fullName());
+		album.setArt(faker.lorem().characters(10));
+		album.setTracksCount((int) faker.number().randomNumber());
+		return album;
 	}
 }

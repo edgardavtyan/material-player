@@ -49,9 +49,10 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 
 	@Override
 	public void update() {
-		albums = albumDB.getAllAlbums();
+		albums = queryAlbums();
 	}
 
+	@Override
 	public void bindService() {
 		context.bindService(
 				new Intent(context, MusicPlayerService.class),
@@ -71,5 +72,9 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
 		service = null;
+	}
+
+	protected List<Album> queryAlbums() {
+		return albumDB.getAllAlbums();
 	}
 }

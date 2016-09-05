@@ -46,6 +46,16 @@ public class ArtistDB {
 		return artists;
 	}
 
+	public Artist getArtistWithTitle(String artistTitle) {
+		String selection = KEY_TITLE + "=?";
+		String[] args = {artistTitle};
+
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, null);
+		cursor.moveToFirst();
+		return getArtistFromCursor(cursor);
+	}
+
 	private Artist getArtistFromCursor(Cursor cursor) {
 		Artist artist = new Artist();
 		artist.setId(cursor.getInt(INDEX_ID));

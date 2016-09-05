@@ -52,6 +52,12 @@ public class TestArtistDBHelper extends TestDBHelper {
 		getWritableDatabase().insert(TABLE_NAME, null, values);
 	}
 
+	public Artist addRandomArtist() {
+		Artist artist = createRandomArtist();
+		addArtist(artist);
+		return artist;
+	}
+
 	public void addRandomArtists(int count) {
 		for (int i = 0; i < count; i++) {
 			addArtist(createRandomArtist());
