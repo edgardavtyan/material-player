@@ -12,7 +12,6 @@ public class AlbumListPresenter implements AlbumListMvp.Presenter {
 	@Override
 	public void bindViewHolder(AlbumListViewHolder holder, int position) {
 		Album album = model.getAlbumAtIndex(position);
-		holder.setAlbumId(album.getId());
 		holder.setTitle(album.getTitle());
 		holder.setInfo(album.getTracksCount(), album.getArtistTitle());
 		holder.setArt(album.getArt());
@@ -24,12 +23,14 @@ public class AlbumListPresenter implements AlbumListMvp.Presenter {
 	}
 
 	@Override
-	public void onItemClicked(int albumId) {
+	public void onItemClicked(int position) {
+		int albumId = model.getAlbumAtIndex(position).getId();
 		view.goToAlbumDetail(albumId);
 	}
 
 	@Override
-	public void addToPlaylist(int albumId) {
+	public void addToPlaylist(int position) {
+		int albumId = model.getAlbumAtIndex(position).getId();
 		model.addToPlaylist(albumId);
 	}
 

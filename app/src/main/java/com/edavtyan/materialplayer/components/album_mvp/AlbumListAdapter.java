@@ -40,12 +40,12 @@ public class AlbumListAdapter
 	}
 
 	@Override
-	public void onHolderClick(int albumId) {
-		presenter.onItemClicked(albumId);
+	public void onHolderClick(AlbumListViewHolder holder) {
+		presenter.onItemClicked(holder.getAdapterPositionNonFinal());
 	}
 
 	@Override
-	public void onMenuAddToPlaylistClick(int albumId) {
-		presenter.addToPlaylist(albumId);
+	public void onMenuAddToPlaylistClick(AlbumListViewHolder holder) {
+		presenter.addToPlaylist(holder.getAdapterPositionNonFinal());
 	}
 }

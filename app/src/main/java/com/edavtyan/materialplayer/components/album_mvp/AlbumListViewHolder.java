@@ -2,8 +2,6 @@ package com.edavtyan.materialplayer.components.album_mvp;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,12 +11,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.TestableViewHolder;
 
-import lombok.Getter;
 import lombok.Setter;
 
 public class AlbumListViewHolder
-		extends RecyclerView.ViewHolder
+		extends TestableViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
@@ -29,16 +27,15 @@ public class AlbumListViewHolder
 	private final ImageButton menuButton;
 	private final View itemView;
 	private final PopupMenu popupMenu;
-	private @Getter @Setter int albumId;
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
 
 	public interface OnHolderClickListener {
-		void onHolderClick(int albumId);
+		void onHolderClick(AlbumListViewHolder holder);
 	}
 
 	public interface OnHolderMenuItemClickListener {
-		void onMenuAddToPlaylistClick(int albumId);
+		void onMenuAddToPlaylistClick(AlbumListViewHolder holder);
 	}
 
 	public AlbumListViewHolder(Context context, View itemView) {
@@ -65,19 +62,11 @@ public class AlbumListViewHolder
 		titleView.setText(title);
 	}
 
-	public String getTitle() {
-		return titleView.getText().toString();
-	}
-
 	public void setInfo(int tracksCount, String artist) {
 		Resources res = context.getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = res.getString(R.string.pattern_album_info, artist, tracksCountStr);
 		infoView.setText(info);
-	}
-
-	public String getInfo() {
-		return infoView.getText().toString();
 	}
 
 	public void setArt(String artPath) {
@@ -87,18 +76,10 @@ public class AlbumListViewHolder
 				.into(artView);
 	}
 
-	public Drawable getArt() {
-		return artView.getDrawable();
-	}
-
-	public void setOnClickListener(View.OnClickListener listener) {
-		itemView.setOnClickListener(listener);
-	}
-
 	@Override
 	public void onClick(View v) {
 		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(albumId);
+			onHolderClickListener.onHolderClick(this);
 		}
 	}
 
@@ -108,7 +89,7 @@ public class AlbumListViewHolder
 
 		switch (item.getItemId()) {
 		case R.id.menu_addToPlaylist:
-			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(albumId);
+			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(this);
 			return true;
 		default:
 			return false;

@@ -39,7 +39,6 @@ public class AlbumListPresenterTest extends BaseTest {
 
 		presenter.bindViewHolder(holder, 0);
 
-		verify(holder).setAlbumId(0);
 		verify(holder).setTitle("title");
 		verify(holder).setInfo(3, "artist");
 		verify(holder).setArt("file");
@@ -54,14 +53,22 @@ public class AlbumListPresenterTest extends BaseTest {
 
 	@Test
 	public void onItemClick_goToAlbumDetail() {
-		presenter.onItemClicked(0);
-		verify(view).goToAlbumDetail(0);
+		Album album = new Album();
+		album.setId(7);
+		when(model.getAlbumAtIndex(3)).thenReturn(album);
+
+		presenter.onItemClicked(3);
+		verify(view).goToAlbumDetail(7);
 	}
 
 	@Test
 	public void addToPlaylist_callModel() {
-		presenter.addToPlaylist(0);
-		verify(model).addToPlaylist(0);
+		Album album = new Album();
+		album.setId(7);
+		when(model.getAlbumAtIndex(3)).thenReturn(album);
+
+		presenter.addToPlaylist(3);
+		verify(model).addToPlaylist(7);
 	}
 
 	@Test

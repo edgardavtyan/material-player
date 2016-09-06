@@ -18,11 +18,13 @@ import static org.mockito.Mockito.when;
 public class AlbumListAdapterTest extends BaseTest {
 	private AlbumListAdapter adapter;
 	private AlbumListMvp.Presenter presenter;
+	private AlbumListViewHolder holder;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(AlbumListMvp.Presenter.class);
+		holder = mock(AlbumListViewHolder.class);
 		adapter = new AlbumListAdapter(context, presenter);
 	}
 
@@ -48,14 +50,16 @@ public class AlbumListAdapterTest extends BaseTest {
 
 	@Test
 	public void onClick_callPresenter() {
-		adapter.onHolderClick(0);
-		verify(presenter).onItemClicked(0);
+		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
+		adapter.onHolderClick(holder);
+		verify(presenter).onItemClicked(7);
 	}
 
 	@Test
 	public void onMenuAddToPlaylistClick_callPresenter() {
-		adapter.onMenuAddToPlaylistClick(0);
-		verify(presenter).addToPlaylist(0);
+		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
+		adapter.onMenuAddToPlaylistClick(holder);
+		verify(presenter).addToPlaylist(7);
 	}
 
 	@Test
