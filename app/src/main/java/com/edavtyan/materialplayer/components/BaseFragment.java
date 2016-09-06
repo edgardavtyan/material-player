@@ -2,11 +2,17 @@ package com.edavtyan.materialplayer.components;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.edavtyan.materialplayer.App;
 
 public class BaseFragment extends TestableFragment {
 	protected App app;
+
+	@SuppressWarnings("unchecked")
+	public <T> T findView(View rootView, int resId) {
+		return (T) rootView.findViewById(resId);
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {

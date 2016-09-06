@@ -1,16 +1,16 @@
 package com.edavtyan.materialplayer.components.artist_mvp;
 
 import android.content.res.Resources;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.BaseViewHolder;
 
 import lombok.Setter;
 
-public class ArtistListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ArtistListViewHolder extends BaseViewHolder implements View.OnClickListener {
 	private final TextView titleView;
 	private final TextView infoView;
 	private @Setter OnHolderClickListener onHolderClickListener;
@@ -22,8 +22,8 @@ public class ArtistListViewHolder extends RecyclerView.ViewHolder implements Vie
 	public ArtistListViewHolder(View itemView) {
 		super(itemView);
 		itemView.setOnClickListener(this);
-		titleView = (TextView) itemView.findViewById(R.id.title);
-		infoView = (TextView) itemView.findViewById(R.id.info);
+		titleView = findView(R.id.title);
+		infoView = findView(R.id.info);
 	}
 
 	public void setTitle(String title) {

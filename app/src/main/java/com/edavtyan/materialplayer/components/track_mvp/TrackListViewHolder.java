@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -9,12 +8,13 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.BaseViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import lombok.Setter;
 
 public class TrackListViewHolder
-		extends RecyclerView.ViewHolder
+		extends BaseViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
@@ -38,9 +38,9 @@ public class TrackListViewHolder
 		super(itemView);
 		itemView.setOnClickListener(this);
 		this.context = context;
-		this.titleView = (TextView) itemView.findViewById(R.id.title);
-		this.infoView = (TextView) itemView.findViewById(R.id.info);
-		this.menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+		this.titleView = findView(R.id.title);
+		this.infoView = findView(R.id.info);
+		this.menuButton = findView(R.id.menu);
 
 		PopupMenu popupMenu = new PopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_track);

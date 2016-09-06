@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.TestableViewHolder;
+import com.edavtyan.materialplayer.components.BaseViewHolder;
 
 import lombok.Setter;
 
 public class AlbumListViewHolder
-		extends TestableViewHolder
+		extends BaseViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
@@ -46,10 +46,10 @@ public class AlbumListViewHolder
 		this.itemView = itemView;
 		this.itemView.setOnClickListener(this);
 
-		titleView = (TextView) itemView.findViewById(R.id.title);
-		infoView = (TextView) itemView.findViewById(R.id.info);
-		artView = (ImageView) itemView.findViewById(R.id.art);
-		menuButton = (ImageButton) itemView.findViewById(R.id.menu);
+		titleView = findView(R.id.title);
+		infoView = findView(R.id.info);
+		artView = findView(R.id.art);
+		menuButton = findView(R.id.menu);
 
 		popupMenu = new PopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_track);

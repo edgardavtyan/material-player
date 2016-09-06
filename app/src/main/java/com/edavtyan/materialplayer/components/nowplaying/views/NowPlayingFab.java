@@ -1,19 +1,19 @@
 package com.edavtyan.materialplayer.components.nowplaying.views;
 
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingPresenter;
+import com.edavtyan.materialplayer.lib.activities.BaseActivity;
 
 public class NowPlayingFab implements View.OnClickListener {
 	private final FloatingActionButton fab;
 	private final NowPlayingPresenter presenter;
 
-	public NowPlayingFab(Activity activity, NowPlayingPresenter presenter) {
+	public NowPlayingFab(BaseActivity activity, NowPlayingPresenter presenter) {
 		this.presenter = presenter;
-		fab = (FloatingActionButton) activity.findViewById(R.id.fab);
+		fab = activity.findView(R.id.fab);
 		fab.setOnClickListener(this);
 	}
 

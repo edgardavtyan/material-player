@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 
-import lombok.Setter;
-
 public abstract class ListFragment<TPresenter extends ListPresenter> extends BaseFragment {
 	protected RecyclerView.Adapter adapter;
 	protected TPresenter presenter;
@@ -30,7 +28,7 @@ public abstract class ListFragment<TPresenter extends ListPresenter> extends Bas
 			@Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-		RecyclerView list = (RecyclerView) view.findViewById(R.id.list);
+		RecyclerView list = findView(view, R.id.list);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 

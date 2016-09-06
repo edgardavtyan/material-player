@@ -1,11 +1,11 @@
 package com.edavtyan.materialplayer.components.nowplaying.views;
 
-import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingPresenter;
+import com.edavtyan.materialplayer.lib.activities.BaseActivity;
 import com.edavtyan.materialplayer.utils.AppColors;
 
 public class NowPlayingControls implements View.OnClickListener {
@@ -22,19 +22,23 @@ public class NowPlayingControls implements View.OnClickListener {
 		NO_REPEAT, REPEAT_ONE, REPEAT_ALL
 	}
 
-	public NowPlayingControls(Activity view, NowPlayingPresenter presenter) {
+	public NowPlayingControls(BaseActivity view, NowPlayingPresenter presenter) {
 		this.presenter = presenter;
 		this.colors = new AppColors(view);
 
-		shuffleButton = (ImageView) view.findViewById(R.id.shuffle);
+		shuffleButton = view.findView(R.id.shuffle);
 		shuffleButton.setOnClickListener(this);
-		rewindButton = (ImageView) view.findViewById(R.id.rewind);
+
+		rewindButton = view.findView(R.id.rewind);
 		rewindButton.setOnClickListener(this);
-		playPauseButton = (ImageView) view.findViewById(R.id.playPause);
+
+		playPauseButton = view.findView(R.id.playPause);
 		playPauseButton.setOnClickListener(this);
-		fastForwardButton = (ImageView) view.findViewById(R.id.fastForward);
+
+		fastForwardButton = view.findView(R.id.fastForward);
 		fastForwardButton.setOnClickListener(this);
-		repeatButton = (ImageView) view.findViewById(R.id.repeat);
+
+		repeatButton = view.findView(R.id.repeat);
 		repeatButton.setOnClickListener(this);
 	}
 
