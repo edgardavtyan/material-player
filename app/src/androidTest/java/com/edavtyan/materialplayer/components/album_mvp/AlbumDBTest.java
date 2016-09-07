@@ -49,4 +49,24 @@ public class AlbumDBTest extends DBTest {
 				.containsAll(albums);
 
 	}
+
+	@Test
+	public void getAlbumWithAlbumId_albumWithSpecifiedId() {
+		Album album = new Album();
+		album.setId(3);
+		album.setTitle("title");
+		album.setArtistTitle("artist");
+		album.setTracksCount(9);
+		album.setArt("art");
+
+		testAlbumDBHelper.addAlbum(album);
+
+		Album albumFromDB = albumDB.getAlbumWithAlbumId(3);
+
+		assertThat(albumFromDB.getId()).isEqualTo(3);
+		assertThat(albumFromDB.getTitle()).isEqualTo("title");
+		assertThat(albumFromDB.getArtistTitle()).isEqualTo("artist");
+		assertThat(albumFromDB.getTracksCount()).isEqualTo(9);
+		assertThat(albumFromDB.getArt()).isEqualTo("art");
+	}
 }

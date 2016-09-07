@@ -38,16 +38,6 @@
 		</activity>
 
 		<activity
-			android:name=".components.artists.ArtistDetailActivity"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
-		<activity
 			android:name=".components.artist_mvp.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>
@@ -58,7 +48,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.albums.AlbumDetailActivity"
+			android:name=".components.album_mvp.AlbumDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

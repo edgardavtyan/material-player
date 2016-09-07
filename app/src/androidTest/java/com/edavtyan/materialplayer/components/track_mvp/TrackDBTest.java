@@ -1,11 +1,16 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
-import com.edavtyan.materialplayer.lib.db.TrackDB;
+import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.DBTest;
+import com.edavtyan.materialplayer.lib.db.TrackDB;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,5 +46,16 @@ public class TrackDBTest extends DBTest {
 		assertThat(trackDB.getAllTracks())
 				.hasSize(10)
 				.isSortedAccordingTo((lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle()));
+	}
+
+	@Test
+	public void getFirstAlbumTrack_correctTrack() {
+		Comparator<Track> comparator = (lhs, rhs) -> lhs.getTrack() - rhs.getTrack();
+		List<Track> tracks = testTrackDB.addRandomTracksWhereSomeHaveSameAlbumId(5, 5);
+		Collections.sort(tracks, comparator);
+
+		Track track = tracks.get(0);
+
+		assertThat(trackDB.getFirstTrackWithAlbumId(5)).isEqualTo(track);
 	}
 }

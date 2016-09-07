@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.artist_mvp;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListPresenter;
-import com.edavtyan.materialplayer.components.artists.Artist;
 
 public class ArtistDetailPresenter
 		extends AlbumListPresenter

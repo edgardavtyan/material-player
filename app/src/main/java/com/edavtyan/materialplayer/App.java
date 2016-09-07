@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.edavtyan.materialplayer.components.album_mvp.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.album_mvp.AlbumDetailDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
 import com.edavtyan.materialplayer.components.artist_mvp.ArtistDetailDI;
@@ -28,6 +30,10 @@ public class App
 
 	public AlbumListDI getAlbumListDI(Context context, AlbumListMvp.View view) {
 		return new AlbumListDI(context, view);
+	}
+
+	public AlbumDetailDI getAlbumDetailDI(AlbumDetailActivity albumDetailActivity, int albumId) {
+		return new AlbumDetailDI(albumDetailActivity, albumId);
 	}
 
 	public ArtistListDI getArtistListDI(Context context, ArtistListMvp.View view) {

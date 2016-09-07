@@ -41,9 +41,8 @@ public class ParallaxHeaderListActivityTest extends ActivityTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		activity = startActivity(new Intent(context, TestParallaxHeaderListActivity.class));
-		runOnUiThread(() -> activity.init(adapter, presenter));
 		reset(adapter, presenter);
+		activity = startActivity(new Intent(context, TestParallaxHeaderListActivity.class));
 	}
 
 	@Test

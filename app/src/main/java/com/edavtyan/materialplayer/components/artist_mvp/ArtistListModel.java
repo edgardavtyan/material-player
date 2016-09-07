@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.artist_mvp;
 
-import com.edavtyan.materialplayer.components.artists.Artist;
 import com.edavtyan.materialplayer.lib.db.ArtistDB;
 
 import java.util.List;

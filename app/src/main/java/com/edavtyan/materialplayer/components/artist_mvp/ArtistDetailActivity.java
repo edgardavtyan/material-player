@@ -3,14 +3,14 @@ package com.edavtyan.materialplayer.components.artist_mvp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.components.albums.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.album_mvp.AlbumDetailActivity;
 
 public class ArtistDetailActivity
 		extends ParallaxHeaderListActivity
@@ -39,8 +39,8 @@ public class ArtistDetailActivity
 	}
 
 	@Override
-	public void setArtistImage(Drawable drawable, int fallbackImage) {
-		setHeaderImage(drawable, fallbackImage);
+	public void setArtistImage(Bitmap art, int fallbackImage) {
+		setHeaderImage(art, fallbackImage);
 	}
 
 	@Override

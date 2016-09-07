@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.components.ListFragment;
-import com.edavtyan.materialplayer.components.albums.AlbumDetailActivity;
 
 public class AlbumListFragment
 		extends ListFragment<AlbumListMvp.Presenter>

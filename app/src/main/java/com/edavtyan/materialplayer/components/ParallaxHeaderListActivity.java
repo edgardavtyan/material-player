@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -36,8 +36,14 @@ public class ParallaxHeaderListActivity extends BaseToolbarActivity {
 		infoView.setText(info);
 	}
 
-	protected void setHeaderImage(Drawable image, int fallback) {
-		imageView.setImageResource(fallback);
+	protected void setHeaderImage(Bitmap image, int fallback) {
+		if (image != null) {
+			imageView.setImageBitmap(image);
+			backImageView.setImageBitmap(image);
+		} else {
+			imageView.setImageResource(fallback);
+			backImageView.setImageResource(fallback);
+		}
 	}
 
 	protected void init(RecyclerView.Adapter adapter, ParallaxHeaderListPresenter presenter) {

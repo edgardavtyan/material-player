@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.components.album_mvp.Album;
 import com.edavtyan.materialplayer.components.album_mvp.AlbumListModel;
-import com.edavtyan.materialplayer.components.artists.Artist;
 import com.edavtyan.materialplayer.lib.db.AlbumDB;
 import com.edavtyan.materialplayer.lib.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.db.TrackDB;

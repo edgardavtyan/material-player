@@ -19,6 +19,7 @@
 		</activity>
 
 		<activity android:name=".components.ParallaxHeaderListActivityTest$TestParallaxHeaderListActivity" />
+		<activity android:name=".components.album_mvp.AlbumDetailActivityTest$TestAlbumDetailActivity" />
 
 	</application>
 

@@ -1,8 +1,5 @@
 package com.edavtyan.materialplayer.components.artist_mvp;
 
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListViewHolder;
-import com.edavtyan.materialplayer.components.artists.Artist;
-
 public class ArtistListPresenter implements ArtistListMvp.Presenter {
 	private final ArtistListMvp.Model model;
 	private final ArtistListMvp.View view;

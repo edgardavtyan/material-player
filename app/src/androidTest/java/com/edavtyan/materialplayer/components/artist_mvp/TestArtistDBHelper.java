@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
 
-import com.edavtyan.materialplayer.components.artists.Artist;
 import com.edavtyan.materialplayer.lib.db.TestDBHelper;
 import com.github.javafaker.Faker;
 

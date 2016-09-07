@@ -9,6 +9,9 @@ import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.db.TestDBHelper;
 import com.github.javafaker.Faker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestTrackDBHelper extends TestDBHelper {
 	private static final String DATABASE_NAME = "testdb_tracks.db";
 	private static final int DATABASE_VERSION = 1;
@@ -79,11 +82,14 @@ public class TestTrackDBHelper extends TestDBHelper {
 		}
 	}
 
-	public void addRandomTracksWhereSomeHaveSameAlbumId(int id, int count) {
+	public List<Track> addRandomTracksWhereSomeHaveSameAlbumId(int id, int count) {
+		List<Track> tracks = new ArrayList<>();
+
 		for (int i = 0; i < count; i++) {
 			Track track = createRandomTrack();
 			track.setAlbumId(id);
 			addTrack(track);
+			tracks.add(track);
 		}
 
 		for (int i = 0; i < 5; i++) {
@@ -91,6 +97,8 @@ public class TestTrackDBHelper extends TestDBHelper {
 			if (track.getAlbumId() == id) track.setAlbumId(id + 1);
 			addTrack(track);
 		}
+
+		return tracks;
 	}
 
 	private Track createRandomTrack() {
