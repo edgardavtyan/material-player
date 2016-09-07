@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,20 +8,16 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
 
 import java.io.File;
 
 public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailMvp.View {
 
-	private static final String EXTRA_ALBUM_ID = "extra_albumId";
+	public static final String EXTRA_ALBUM_ID = "extra_albumId";
 
-	public static void startActivity(Context context, int albumId) {
-		Intent intent = new Intent(context, AlbumDetailActivity.class);
-		intent.putExtra(EXTRA_ALBUM_ID, albumId);
-		context.startActivity(intent);
-	}
+	private Navigator navigator;
 
 	public void setAlbumTitle(String title) {
 		setHeaderTitle(title);
@@ -47,15 +41,16 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 
 		AlbumDetailDI di = getDI();
 		init(di.provideAdapter(), di.providePresenter());
+		navigator = di.provideNavigator();
+	}
+
+	@Override
+	public void goToNowPlaying() {
+		navigator.gotoNowPlaying();
 	}
 
 	protected AlbumDetailDI getDI() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
 		return ((App) getApplicationContext()).getAlbumDetailDI(this, albumId);
-	}
-
-	@Override
-	public void goToNowPlaying() {
-		NowPlayingActivity.startActivity(this);
 	}
 }

@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -9,8 +7,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 
 public class ArtistDetailActivity
 		extends ParallaxHeaderListActivity
@@ -18,11 +16,7 @@ public class ArtistDetailActivity
 
 	public static final String EXTRA_ARTIST_TITLE = "extra_artistTitle";
 
-	public static void startActivity(Context context, String artistTitle) {
-		Intent intent = new Intent(context, ArtistDetailActivity.class);
-		intent.putExtra(EXTRA_ARTIST_TITLE, artistTitle);
-		context.startActivity(intent);
-	}
+	private Navigator navigator;
 
 	@Override
 	public void setArtistTitle(String title) {
@@ -49,11 +43,12 @@ public class ArtistDetailActivity
 
 		ArtistDetailDI di = getDI();
 		init(di.provideAdapter(), di.providePresenter());
+		navigator = di.provideNavigator();
 	}
 
 	@Override
 	public void goToAlbumDetail(int albumId) {
-		AlbumDetailActivity.startActivity(this, albumId);
+		navigator.gotoAlbumDetail(albumId);
 	}
 
 	protected ArtistDetailDI getDI() {

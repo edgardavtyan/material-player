@@ -6,10 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailAdapter;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailDI;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.db.ActivityTest;
 
 import org.junit.Test;
@@ -24,20 +21,23 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	private static AlbumDetailAdapter adapter;
 	private static AlbumDetailMvp.Presenter presenter;
 	private static AlbumDetailDI di;
+	private static Navigator navigator;
 
 	static {
 		adapter = mock(AlbumDetailAdapter.class);
 		presenter = mock(AlbumDetailMvp.Presenter.class);
+		navigator = mock(Navigator.class);
 		di = mock(AlbumDetailDI.class);
 		doReturn(adapter).when(di).provideAdapter();
 		doReturn(presenter).when(di).providePresenter();
+		doReturn(navigator).when(di).provideNavigator();
 	}
-
 	public static class TestAlbumDetailActivity extends AlbumDetailActivity {
 		@Override
 		protected AlbumDetailDI getDI() {
 			return di;
 		}
+
 	}
 
 	@Override
@@ -79,5 +79,11 @@ public class AlbumDetailActivityTest extends ActivityTest {
 		TextView infoView = activity.findView(R.id.info);
 		runOnUiThread(() -> activity.setAlbumInfo("artist", 9));
 		assertThat(infoView.getText()).isEqualTo("artist | 9 Tracks");
+	}
+
+	@Test
+	public void goToNowPlaying_callNavigator() {
+		runOnUiThread(() -> activity.goToNowPlaying());
+		verify(navigator).gotoNowPlaying();
 	}
 }

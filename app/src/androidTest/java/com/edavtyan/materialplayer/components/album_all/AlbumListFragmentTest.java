@@ -5,10 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
-import com.edavtyan.materialplayer.components.album_all.AlbumListDI;
-import com.edavtyan.materialplayer.components.album_all.AlbumListFragment;
-import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
@@ -25,6 +22,7 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 
 	private AlbumListMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
@@ -34,10 +32,12 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 
 		presenter = mock(AlbumListMvp.Presenter.class);
 		adapter = mock(AlbumListAdapter.class);
+		navigator = mock(Navigator.class);
 
 		AlbumListDI mockDI = mock(AlbumListDI.class);
 		when(mockDI.providePresenter()).thenReturn(presenter);
 		when(mockDI.provideAdapter()).thenReturn(adapter);
+		when(mockDI.provideNavigator()).thenReturn(navigator);
 		when(app.getAlbumListDI(any(), any())).thenReturn(mockDI);
 	}
 
@@ -64,5 +64,12 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 		fragment.onCreate(null);
 		fragment.onDestroy();
 		verify(presenter).onDestroy();
+	}
+
+	@Test
+	public void goToAlbumDetail_callNavigator() {
+		fragment.onCreate(null);
+		fragment.goToAlbumDetail(7);
+		verify(navigator).gotoAlbumDetail(7);
 	}
 }

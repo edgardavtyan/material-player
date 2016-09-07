@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.track_all;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.when;
 public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 	private TrackListMvp.Presenter presenter;
 	private TrackListAdapter adapter;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
@@ -26,10 +28,12 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 
 		presenter = mock(TrackListMvp.Presenter.class);
 		adapter = mock(TrackListAdapter.class);
+		navigator  =mock(Navigator.class);
 
 		TrackListDI mockDI = mock(TrackListDI.class);
 		when(mockDI.providePresenter()).thenReturn(presenter);
 		when(mockDI.provideAdapter()).thenReturn(adapter);
+		when(mockDI.provideNavigator()).thenReturn(navigator);
 		when(app.getTrackListDI(any(), any())).thenReturn(mockDI);
 	}
 
@@ -56,5 +60,12 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
+	}
+
+	@Test
+	public void goToNowPlaying_callNavigator() {
+		fragment.onCreate(null);
+		fragment.goToNowPlaying();
+		verify(navigator).gotoNowPlaying();
 	}
 }

@@ -3,10 +3,7 @@ package com.edavtyan.materialplayer.components.artist_all;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.edavtyan.materialplayer.components.artist_all.ArtistListAdapter;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListDI;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListFragment;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
@@ -21,6 +18,7 @@ import static org.mockito.Mockito.when;
 public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 	private ArtistListAdapter adapter;
 	private ArtistListMvp.Presenter presenter;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
@@ -30,10 +28,12 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 
 		adapter = mock(ArtistListAdapter.class);
 		presenter = mock(ArtistListMvp.Presenter.class);
+		navigator = mock(Navigator.class);
 
 		ArtistListDI mockDI = mock(ArtistListDI.class);
 		when(mockDI.provideAdapter()).thenReturn(adapter);
 		when(mockDI.providePresenter()).thenReturn(presenter);
+		when(mockDI.provideNavigator()).thenReturn(navigator);
 		when(app.getArtistListDI(any(), any())).thenReturn(mockDI);
 	}
 
@@ -60,5 +60,12 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
+	}
+
+	@Test
+	public void goToArtistDetail_callNavigator() {
+		fragment.onCreate(null);
+		fragment.goToArtistDetail("title");
+		verify(navigator).gotoArtistDetail("title");
 	}
 }
