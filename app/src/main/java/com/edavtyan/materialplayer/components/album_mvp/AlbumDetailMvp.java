@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.album_mvp;
 
 import com.edavtyan.materialplayer.components.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
-import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.track_mvp.Track;
 
 import java.io.File;
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
-import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.lib.db.TrackDB;
 

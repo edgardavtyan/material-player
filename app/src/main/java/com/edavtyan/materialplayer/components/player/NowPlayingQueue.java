@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.track_mvp.Track;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
-import com.edavtyan.materialplayer.components.tracks.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Before;

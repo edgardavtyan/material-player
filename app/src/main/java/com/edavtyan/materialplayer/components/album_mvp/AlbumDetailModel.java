@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.album_mvp;
 
 import com.edavtyan.materialplayer.components.track_mvp.TrackListModel;
-import com.edavtyan.materialplayer.components.tracks.Track;
+import com.edavtyan.materialplayer.components.track_mvp.Track;
 import com.edavtyan.materialplayer.lib.db.AlbumDB;
 import com.edavtyan.materialplayer.lib.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.db.TrackDB;

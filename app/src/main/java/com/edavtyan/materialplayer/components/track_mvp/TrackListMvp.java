@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
 import com.edavtyan.materialplayer.components.ListPresenter;
-import com.edavtyan.materialplayer.components.tracks.Track;
 
 public interface TrackListMvp {
 	interface Model {

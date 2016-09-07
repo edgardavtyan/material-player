@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.track_mvp;
 
-import com.edavtyan.materialplayer.components.tracks.Track;
-
 public class TrackListPresenter implements TrackListMvp.Presenter {
 	private final TrackListMvp.View view;
 	private final TrackListMvp.Model model;
