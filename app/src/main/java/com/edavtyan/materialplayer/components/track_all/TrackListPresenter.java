@@ -12,7 +12,7 @@ public class TrackListPresenter implements TrackListMvp.Presenter {
 	}
 
 	@Override
-	public void bindViewHolder(TrackListViewHolder holder, int position) {
+	public void onBindViewHolder(TrackListViewHolder holder, int position) {
 		Track track = model.getTrackAtIndex(position);
 
 		if (track == null) return;

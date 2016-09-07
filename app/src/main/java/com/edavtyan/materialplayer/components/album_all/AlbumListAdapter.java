@@ -30,7 +30,7 @@ public class AlbumListAdapter
 
 	@Override
 	public void onBindViewHolder(AlbumListViewHolder holder, int position) {
-		presenter.bindViewHolder(holder, position);
+		presenter.onBindViewHolder(holder, position);
 		holder.setOnHolderClickListener(this);
 		holder.setOnHolderMenuItemClickListener(this);
 	}
@@ -42,11 +42,11 @@ public class AlbumListAdapter
 
 	@Override
 	public void onHolderClick(AlbumListViewHolder holder) {
-		presenter.onItemClicked(holder.getAdapterPositionNonFinal());
+		presenter.onHolderClick(holder.getAdapterPositionNonFinal());
 	}
 
 	@Override
 	public void onMenuAddToPlaylistClick(AlbumListViewHolder holder) {
-		presenter.addToPlaylist(holder.getAdapterPositionNonFinal());
+		presenter.onAddToPlaylist(holder.getAdapterPositionNonFinal());
 	}
 }

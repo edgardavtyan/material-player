@@ -1,8 +1,5 @@
 package com.edavtyan.materialplayer.components.album_all;
 
-import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
-import com.edavtyan.materialplayer.components.album_all.AlbumListPresenter;
-import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
@@ -41,7 +38,7 @@ public class AlbumListPresenterTest extends BaseTest {
 
 		when(model.getAlbumAtIndex(0)).thenReturn(album);
 
-		presenter.bindViewHolder(holder, 0);
+		presenter.onBindViewHolder(holder, 0);
 
 		verify(holder).setTitle("title");
 		verify(holder).setInfo(3, "artist");
@@ -61,7 +58,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
 
-		presenter.onItemClicked(3);
+		presenter.onHolderClick(3);
 		verify(view).goToAlbumDetail(7);
 	}
 
@@ -71,7 +68,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
 
-		presenter.addToPlaylist(3);
+		presenter.onAddToPlaylist(3);
 		verify(model).addToPlaylist(7);
 	}
 

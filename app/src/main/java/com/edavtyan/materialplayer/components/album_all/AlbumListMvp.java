@@ -5,8 +5,8 @@ import com.edavtyan.materialplayer.db.Album;
 
 public interface AlbumListMvp {
 	interface Presenter extends ListPresenter<AlbumListViewHolder> {
-		void onItemClicked(int albumId);
-		void addToPlaylist(int albumId);
+		void onHolderClick(int albumId);
+		void onAddToPlaylist(int albumId);
 	}
 
 	interface Model {

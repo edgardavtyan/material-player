@@ -48,6 +48,6 @@ public class ArtistListViewHolderTest extends BaseTest {
 
 		itemView.callOnClick();
 
-		verify(clickListener).onHolderClick(holder, holder.getAdapterPosition());
+		verify(clickListener).onHolderClick(holder);
 	}
 }

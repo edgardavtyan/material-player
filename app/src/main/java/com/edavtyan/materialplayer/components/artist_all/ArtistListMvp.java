@@ -1,11 +1,11 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
-import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 public interface ArtistListMvp {
 	interface Presenter extends ListPresenter<ArtistListViewHolder> {
-		void onHolderClicked(ArtistListViewHolder holder, int position);
+		void onHolderClick(int position);
 	}
 
 	interface Model {

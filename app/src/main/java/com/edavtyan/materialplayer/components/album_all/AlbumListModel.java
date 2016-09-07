@@ -42,7 +42,7 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 	public void addToPlaylist(int albumId) throws IllegalStateException {
 		if (service == null) {
 			throw new IllegalStateException(
-					"'bindService' should be called before calling 'addToPlaylist'");
+					"'bindService' should be called before calling 'onAddToPlaylist'");
 		}
 
 		service.getQueue().addAll(trackDB.getTracksWithAlbumId(albumId));

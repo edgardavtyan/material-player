@@ -31,7 +31,7 @@ public class TrackListViewHolder
 	}
 
 	public interface OnHolderMenuItemClickListener {
-		void onAddToPlaylistMenuItemClick(TrackListViewHolder holder);
+		void onMenuAddToPlaylistClick(TrackListViewHolder holder);
 	}
 
 	public TrackListViewHolder(Context context, View itemView) {
@@ -69,7 +69,7 @@ public class TrackListViewHolder
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_addToPlaylist:
-			onHolderMenuItemClickListener.onAddToPlaylistMenuItemClick(this);
+			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(this);
 			return true;
 		default:
 			return false;

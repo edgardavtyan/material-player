@@ -31,7 +31,7 @@ public class ArtistListAdapter
 
 	@Override
 	public void onBindViewHolder(ArtistListViewHolder holder, int position) {
-		presenter.bindViewHolder(holder, position);
+		presenter.onBindViewHolder(holder, position);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ArtistListAdapter
 	}
 
 	@Override
-	public void onHolderClick(ArtistListViewHolder holder, int position) {
-		presenter.onHolderClicked(holder, position);
+	public void onHolderClick(ArtistListViewHolder holder) {
+		presenter.onHolderClick(holder.getAdapterPositionNonFinal());
 	}
 }

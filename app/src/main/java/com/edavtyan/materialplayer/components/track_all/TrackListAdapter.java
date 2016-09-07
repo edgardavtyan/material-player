@@ -10,8 +10,8 @@ import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 public class TrackListAdapter
 		extends TestableRecyclerAdapter<TrackListViewHolder>
-		implements TrackListViewHolder.OnHolderMenuItemClickListener,
-				   TrackListViewHolder.OnHolderClickListener {
+		implements TrackListViewHolder.OnHolderClickListener,
+				   TrackListViewHolder.OnHolderMenuItemClickListener {
 
 	private final Context context;
 	private final TrackListMvp.Presenter presenter;
@@ -23,15 +23,14 @@ public class TrackListAdapter
 
 	@Override
 	public TrackListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		LayoutInflater inflater
-				= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.listitem_track, parent, false);
 		return new TrackListViewHolder(context, view);
 	}
 
 	@Override
 	public void onBindViewHolder(TrackListViewHolder holder, int position) {
-		presenter.bindViewHolder(holder, position);
+		presenter.onBindViewHolder(holder, position);
 		holder.setOnHolderClickListener(this);
 		holder.setOnHolderMenuItemClickListener(this);
 	}
@@ -43,11 +42,11 @@ public class TrackListAdapter
 
 	@Override
 	public void onHolderClick(TrackListViewHolder holder) {
-		presenter.onHolderClick(holder.getAdapterPosition());
+		presenter.onHolderClick(holder.getAdapterPositionNonFinal());
 	}
 
 	@Override
-	public void onAddToPlaylistMenuItemClick(TrackListViewHolder holder) {
-		presenter.onAddToPlaylist(holder.getAdapterPosition());
+	public void onMenuAddToPlaylistClick(TrackListViewHolder holder) {
+		presenter.onAddToPlaylist(holder.getAdapterPositionNonFinal());
 	}
 }

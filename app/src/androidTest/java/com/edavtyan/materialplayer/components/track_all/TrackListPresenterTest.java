@@ -36,7 +36,7 @@ public class TrackListPresenterTest extends BaseTest {
 		when(model.getTrackAtIndex(0)).thenReturn(track);
 
 		TrackListViewHolder holder = mock(TrackListViewHolder.class);
-		presenter.bindViewHolder(holder, 0);
+		presenter.onBindViewHolder(holder, 0);
 
 		verify(holder).setTitle(track.getTitle());
 		verify(holder).setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
@@ -45,7 +45,7 @@ public class TrackListPresenterTest extends BaseTest {
 	@Test
 	public void bindViewHolder_modelNotUpdated_doNothing() {
 		TrackListViewHolder holder = mock(TrackListViewHolder.class);
-		presenter.bindViewHolder(holder, 0);
+		presenter.onBindViewHolder(holder, 0);
 		verifyZeroInteractions(holder);
 	}
 

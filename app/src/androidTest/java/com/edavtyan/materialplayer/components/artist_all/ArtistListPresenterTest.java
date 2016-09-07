@@ -1,8 +1,5 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
-import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListPresenter;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListViewHolder;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
@@ -47,7 +44,7 @@ public class ArtistListPresenterTest extends BaseTest {
 
 		when(model.getArtistAtIndex(0)).thenReturn(artist);
 
-		presenter.bindViewHolder(holder, 0);
+		presenter.onBindViewHolder(holder, 0);
 
 		verify(holder).setTitle("title");
 		verify(holder).setInfo(3, 11);
@@ -60,7 +57,7 @@ public class ArtistListPresenterTest extends BaseTest {
 		when(artist.getTitle()).thenReturn("title");
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
 
-		presenter.onHolderClicked(holder, 3);
+		presenter.onHolderClick(3);
 		verify(view).goToArtistDetail("title");
 	}
 }

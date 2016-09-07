@@ -16,7 +16,7 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	public interface OnHolderClickListener {
-		void onHolderClick(ArtistListViewHolder holder, int position);
+		void onHolderClick(ArtistListViewHolder holder);
 	}
 
 	public ArtistListViewHolder(View itemView) {
@@ -41,7 +41,7 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 	@Override
 	public void onClick(View v) {
 		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this, getAdapterPosition());
+			onHolderClickListener.onHolderClick(this);
 		}
 	}
 }
