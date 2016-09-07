@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 
 import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.adapters.TabPagerFragmentAdapter;
 
 public class MainActivity extends BaseToolbarActivity {

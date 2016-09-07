@@ -8,18 +8,8 @@
 
 	<application android:name="com.edavtyan.materialplayer.App">
 
-		<activity
-			android:name=".components.artist_mvp.ArtistDetailActivityTest$TestArtistDetailActivity"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
-		<activity android:name=".components.ParallaxHeaderListActivityTest$TestParallaxHeaderListActivity" />
-		<activity android:name=".components.album_mvp.AlbumDetailActivityTest$TestAlbumDetailActivity" />
+		<activity android:name=".components.artist_detail.ArtistDetailActivityTest$TestArtistDetailActivity" />
+		<activity android:name=".components.album_detail.AlbumDetailActivityTest$TestAlbumDetailActivity" />
 
 	</application>
 

@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.utils.AppColors;
-import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.decorators.DividerItemDecoration;
 
 public class PlaylistActivity extends BaseToolbarActivity {

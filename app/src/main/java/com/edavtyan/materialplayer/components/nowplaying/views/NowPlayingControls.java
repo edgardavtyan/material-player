@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingPresenter;
-import com.edavtyan.materialplayer.lib.activities.BaseActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.utils.AppColors;
 
 public class NowPlayingControls implements View.OnClickListener {

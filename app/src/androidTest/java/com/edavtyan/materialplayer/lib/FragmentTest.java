@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.components.TestableFragment;
+import com.edavtyan.materialplayer.lib.testable.TestableFragment;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;

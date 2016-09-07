@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.nowplaying.NowPlayingPresenter;
-import com.edavtyan.materialplayer.lib.activities.BaseActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
 
 public class NowPlayingSeekbar implements SeekBar.OnSeekBarChangeListener {
 	private final SeekBar seekbar;

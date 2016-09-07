@@ -16,7 +16,7 @@ import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingFab;
 import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.components.playlist.PlaylistActivity;
-import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import lombok.Getter;
 

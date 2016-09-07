@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.activities.BaseActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
 
 import java.io.File;
 

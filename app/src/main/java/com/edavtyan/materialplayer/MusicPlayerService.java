@@ -22,7 +22,7 @@ import com.edavtyan.materialplayer.components.player.PlaybackState;
 import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.components.player.engines.BasicAudioEngine;
 import com.edavtyan.materialplayer.components.player.engines.OpenSLAudioEngine;
-import com.edavtyan.materialplayer.components.track_mvp.Track;
+import com.edavtyan.materialplayer.db.Track;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;

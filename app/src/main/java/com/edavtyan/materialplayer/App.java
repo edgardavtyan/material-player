@@ -4,16 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
-import com.edavtyan.materialplayer.components.album_mvp.AlbumDetailActivity;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumDetailDI;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListDI;
-import com.edavtyan.materialplayer.components.album_mvp.AlbumListMvp;
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistDetailDI;
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistDetailMvp;
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistListDI;
-import com.edavtyan.materialplayer.components.artist_mvp.ArtistListMvp;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListDI;
-import com.edavtyan.materialplayer.components.track_mvp.TrackListMvp;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailDI;
+import com.edavtyan.materialplayer.components.album_all.AlbumListDI;
+import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
+import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailDI;
+import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
+import com.edavtyan.materialplayer.components.artist_all.ArtistListDI;
+import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
+import com.edavtyan.materialplayer.components.track_all.TrackListDI;
+import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
 import com.edavtyan.materialplayer.utils.logging.Logger;
 
