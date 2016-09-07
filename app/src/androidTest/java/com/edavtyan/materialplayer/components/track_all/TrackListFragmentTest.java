@@ -30,11 +30,11 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 		adapter = mock(TrackListAdapter.class);
 		navigator  =mock(Navigator.class);
 
-		TrackListDI mockDI = mock(TrackListDI.class);
-		when(mockDI.providePresenter()).thenReturn(presenter);
-		when(mockDI.provideAdapter()).thenReturn(adapter);
-		when(mockDI.provideNavigator()).thenReturn(navigator);
-		when(app.getTrackListDI(any(), any())).thenReturn(mockDI);
+		TrackListFactory factory = mock(TrackListFactory.class);
+		when(factory.providePresenter()).thenReturn(presenter);
+		when(factory.provideAdapter()).thenReturn(adapter);
+		when(factory.provideNavigator()).thenReturn(navigator);
+		when(app.getTrackListDI(any(), any())).thenReturn(factory);
 	}
 
 	@Test

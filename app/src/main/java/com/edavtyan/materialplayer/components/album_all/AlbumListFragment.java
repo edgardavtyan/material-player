@@ -15,9 +15,9 @@ public class AlbumListFragment
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		AlbumListDI albumListDI = app.getAlbumListDI(getActivity(), this);
-		initListView(albumListDI.providePresenter(), albumListDI.provideAdapter());
-		navigator = albumListDI.provideNavigator();
+		AlbumListFactory factory = app.getAlbumListDI(getActivity(), this);
+		initListView(factory.providePresenter(), factory.provideAdapter());
+		navigator = factory.provideNavigator();
 	}
 
 	@Override

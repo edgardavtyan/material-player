@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.track_all;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseDI;
+import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class TrackListDI extends BaseDI {
+public class TrackListFactory extends BaseFactory {
 	private final Context context;
 	private final TrackListMvp.View view;
 	private TrackListModel model;
@@ -13,7 +13,7 @@ public class TrackListDI extends BaseDI {
 	private TrackListPresenter presenter;
 	private TrackListAdapter adapter;
 
-	public TrackListDI(Context context, TrackListMvp.View view) {
+	public TrackListFactory(Context context, TrackListMvp.View view) {
 		super(context);
 		this.context = context;
 		this.view = view;

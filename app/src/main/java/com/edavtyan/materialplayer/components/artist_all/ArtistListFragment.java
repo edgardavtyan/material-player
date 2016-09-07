@@ -15,9 +15,9 @@ public class ArtistListFragment
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ArtistListDI artistListDI = app.getArtistListDI(getContext(), this);
-		initListView(artistListDI.providePresenter(), artistListDI.provideAdapter());
-		navigator = artistListDI.provideNavigator();
+		ArtistListFactory factory = app.getArtistListDI(getContext(), this);
+		initListView(factory.providePresenter(), factory.provideAdapter());
+		navigator = factory.provideNavigator();
 	}
 
 	@Override

@@ -30,11 +30,11 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 		presenter = mock(ArtistListMvp.Presenter.class);
 		navigator = mock(Navigator.class);
 
-		ArtistListDI mockDI = mock(ArtistListDI.class);
-		when(mockDI.provideAdapter()).thenReturn(adapter);
-		when(mockDI.providePresenter()).thenReturn(presenter);
-		when(mockDI.provideNavigator()).thenReturn(navigator);
-		when(app.getArtistListDI(any(), any())).thenReturn(mockDI);
+		ArtistListFactory factory = mock(ArtistListFactory.class);
+		when(factory.provideAdapter()).thenReturn(adapter);
+		when(factory.providePresenter()).thenReturn(presenter);
+		when(factory.provideNavigator()).thenReturn(navigator);
+		when(app.getArtistListDI(any(), any())).thenReturn(factory);
 	}
 
 	@Test

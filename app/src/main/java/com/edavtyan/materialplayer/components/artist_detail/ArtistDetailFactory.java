@@ -6,9 +6,9 @@ import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseDI;
+import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class ArtistDetailDI extends BaseDI {
+public class ArtistDetailFactory extends BaseFactory {
 	private final Context context;
 	private final String artistTitle;
 	private ArtistDetailMvp.Model model;
@@ -16,7 +16,7 @@ public class ArtistDetailDI extends BaseDI {
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
 
-	public ArtistDetailDI(Context context, ArtistDetailMvp.View view, String artistTitle) {
+	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
 		super(context);
 		this.context = context;
 		this.view = view;

@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class ArtistDetailActivityTest extends ActivityTest {
 
-	private static ArtistDetailDI di = mock(ArtistDetailDI.class);
+	private static ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
 	private TestArtistDetailActivity activity;
@@ -27,8 +27,8 @@ public class ArtistDetailActivityTest extends ActivityTest {
 
 	public static class TestArtistDetailActivity extends ArtistDetailActivity {
 		@Override
-		protected ArtistDetailDI getDI() {
-			return di;
+		protected ArtistDetailFactory getDI() {
+			return factory;
 		}
 	}
 
@@ -40,9 +40,9 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		adapter = mock(AlbumListAdapter.class);
 		navigator = mock(Navigator.class);
 
-		when(di.providePresenter()).thenReturn(presenter);
-		when(di.provideAdapter()).thenReturn(adapter);
-		when(di.provideNavigator()).thenReturn(navigator);
+		when(factory.providePresenter()).thenReturn(presenter);
+		when(factory.provideAdapter()).thenReturn(adapter);
+		when(factory.provideNavigator()).thenReturn(navigator);
 
 		activity = startActivity(new Intent(context, TestArtistDetailActivity.class));
 	}

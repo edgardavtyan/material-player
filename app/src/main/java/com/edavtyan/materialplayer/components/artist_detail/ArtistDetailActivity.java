@@ -41,9 +41,9 @@ public class ArtistDetailActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		ArtistDetailDI di = getDI();
-		init(di.provideAdapter(), di.providePresenter());
-		navigator = di.provideNavigator();
+		ArtistDetailFactory factory = getDI();
+		init(factory.provideAdapter(), factory.providePresenter());
+		navigator = factory.provideNavigator();
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class ArtistDetailActivity
 		navigator.gotoAlbumDetail(albumId);
 	}
 
-	protected ArtistDetailDI getDI() {
+	protected ArtistDetailFactory getDI() {
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
 		return ((App) getApplication()).getArtistDetailDI(this, this, artistTitle);
 	}

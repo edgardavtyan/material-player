@@ -15,9 +15,9 @@ public class TrackListFragment
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		TrackListDI trackListDI = app.getTrackListDI(getContext(), this);
-		initListView(trackListDI.providePresenter(), trackListDI.provideAdapter());
-		navigator = trackListDI.provideNavigator();
+		TrackListFactory factory = app.getTrackListDI(getContext(), this);
+		initListView(factory.providePresenter(), factory.provideAdapter());
+		navigator = factory.provideNavigator();
 	}
 
 	@Override

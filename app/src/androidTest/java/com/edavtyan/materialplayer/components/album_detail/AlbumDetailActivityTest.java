@@ -20,22 +20,22 @@ import static org.mockito.Mockito.verify;
 public class AlbumDetailActivityTest extends ActivityTest {
 	private static AlbumDetailAdapter adapter;
 	private static AlbumDetailMvp.Presenter presenter;
-	private static AlbumDetailDI di;
+	private static AlbumDetailFactory factory;
 	private static Navigator navigator;
 
 	static {
 		adapter = mock(AlbumDetailAdapter.class);
 		presenter = mock(AlbumDetailMvp.Presenter.class);
 		navigator = mock(Navigator.class);
-		di = mock(AlbumDetailDI.class);
-		doReturn(adapter).when(di).provideAdapter();
-		doReturn(presenter).when(di).providePresenter();
-		doReturn(navigator).when(di).provideNavigator();
+		factory = mock(AlbumDetailFactory.class);
+		doReturn(adapter).when(factory).provideAdapter();
+		doReturn(presenter).when(factory).providePresenter();
+		doReturn(navigator).when(factory).provideNavigator();
 	}
 	public static class TestAlbumDetailActivity extends AlbumDetailActivity {
 		@Override
-		protected AlbumDetailDI getDI() {
-			return di;
+		protected AlbumDetailFactory getDI() {
+			return factory;
 		}
 
 	}

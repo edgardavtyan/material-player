@@ -4,11 +4,11 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.components.Navigator;
 
-public abstract class BaseDI {
+public abstract class BaseFactory {
 	private final Context context;
 	private Navigator navigator;
 
-	public BaseDI(Context context) {
+	public BaseFactory(Context context) {
 		this.context = context;
 	}
 

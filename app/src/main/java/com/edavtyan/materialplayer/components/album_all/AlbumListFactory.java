@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseDI;
+import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class AlbumListDI extends BaseDI {
+public class AlbumListFactory extends BaseFactory {
 	private final Context context;
 	private AlbumListModel model;
 	private AlbumListMvp.View view;
@@ -15,7 +15,7 @@ public class AlbumListDI extends BaseDI {
 	private AlbumDB albumDB;
 	private TrackDB trackDB;
 
-	public AlbumListDI(Context context, AlbumListMvp.View view) {
+	public AlbumListFactory(Context context, AlbumListMvp.View view) {
 		super(context);
 		this.context = context;
 		this.view = view;

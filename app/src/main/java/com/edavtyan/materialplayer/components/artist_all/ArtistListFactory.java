@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.artist_all;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.lib.base.BaseDI;
+import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class ArtistListDI extends BaseDI {
+public class ArtistListFactory extends BaseFactory {
 	private final Context context;
 	private final ArtistListMvp.View view;
 	private ArtistListModel model;
@@ -13,7 +13,7 @@ public class ArtistListDI extends BaseDI {
 	private ArtistListPresenter presenter;
 	private ArtistListAdapter adapter;
 
-	public ArtistListDI(Context context, ArtistListMvp.View view) {
+	public ArtistListFactory(Context context, ArtistListMvp.View view) {
 		super(context);
 		this.context = context;
 		this.view = view;

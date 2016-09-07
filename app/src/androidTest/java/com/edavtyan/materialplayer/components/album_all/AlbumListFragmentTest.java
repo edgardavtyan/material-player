@@ -34,11 +34,11 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 		adapter = mock(AlbumListAdapter.class);
 		navigator = mock(Navigator.class);
 
-		AlbumListDI mockDI = mock(AlbumListDI.class);
-		when(mockDI.providePresenter()).thenReturn(presenter);
-		when(mockDI.provideAdapter()).thenReturn(adapter);
-		when(mockDI.provideNavigator()).thenReturn(navigator);
-		when(app.getAlbumListDI(any(), any())).thenReturn(mockDI);
+		AlbumListFactory factory = mock(AlbumListFactory.class);
+		when(factory.providePresenter()).thenReturn(presenter);
+		when(factory.provideAdapter()).thenReturn(adapter);
+		when(factory.provideNavigator()).thenReturn(navigator);
+		when(app.getAlbumListDI(any(), any())).thenReturn(factory);
 	}
 
 	@Test

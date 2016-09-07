@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.album_detail;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseDI;
+import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class AlbumDetailDI extends BaseDI {
+public class AlbumDetailFactory extends BaseFactory {
 	private final AlbumDetailActivity view;
 	private final int albumId;
 	private AlbumDetailAdapter adapter;
@@ -15,7 +15,7 @@ public class AlbumDetailDI extends BaseDI {
 	private AlbumDB albumDB;
 	private TrackDB trackDB;
 
-	public AlbumDetailDI(AlbumDetailActivity view, int albumId) {
+	public AlbumDetailFactory(AlbumDetailActivity view, int albumId) {
 		super(view);
 		this.view = view;
 		this.albumId = albumId;

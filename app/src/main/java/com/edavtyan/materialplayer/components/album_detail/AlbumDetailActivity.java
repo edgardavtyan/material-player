@@ -39,9 +39,9 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		AlbumDetailDI di = getDI();
-		init(di.provideAdapter(), di.providePresenter());
-		navigator = di.provideNavigator();
+		AlbumDetailFactory factory = getDI();
+		init(factory.provideAdapter(), factory.providePresenter());
+		navigator = factory.provideNavigator();
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		navigator.gotoNowPlaying();
 	}
 
-	protected AlbumDetailDI getDI() {
+	protected AlbumDetailFactory getDI() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
 		return ((App) getApplicationContext()).getAlbumDetailDI(this, albumId);
 	}
