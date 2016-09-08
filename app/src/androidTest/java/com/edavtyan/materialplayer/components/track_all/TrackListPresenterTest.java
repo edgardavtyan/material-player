@@ -3,25 +3,25 @@ package com.edavtyan.materialplayer.components.track_all;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 public class TrackListPresenterTest extends BaseTest {
 	private TrackListMvp.Model model;
 	private TrackListMvp.View view;
+	private TrackListViewHolder holder;
 	private TrackListPresenter presenter;
 
-	@Before
+	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		model = mock(TrackListMvp.Model.class);
 		view = mock(TrackListMvp.View.class);
+		holder = mock(TrackListViewHolder.class);
 		presenter = new TrackListPresenter(view, model);
 	}
 
@@ -35,7 +35,6 @@ public class TrackListPresenterTest extends BaseTest {
 
 		when(model.getTrackAtIndex(0)).thenReturn(track);
 
-		TrackListViewHolder holder = mock(TrackListViewHolder.class);
 		presenter.onBindViewHolder(holder, 0);
 
 		verify(holder).setTitle(track.getTitle());
@@ -43,17 +42,9 @@ public class TrackListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void bindViewHolder_modelNotUpdated_doNothing() {
-		TrackListViewHolder holder = mock(TrackListViewHolder.class);
-		presenter.onBindViewHolder(holder, 0);
-		verifyZeroInteractions(holder);
-	}
-
-	@Test
 	public void getItemCount_callModel() {
 		when(model.getItemCount()).thenReturn(9);
 		assertThat(presenter.getItemCount()).isEqualTo(9);
-		verify(model).getItemCount();
 	}
 
 	@Test

@@ -8,22 +8,20 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 public class AlbumListPresenterTest extends BaseTest {
-
-	private AlbumListViewHolder holder;
 	private AlbumListMvp.Model model;
 	private AlbumListMvp.View view;
+	private AlbumListViewHolder holder;
 	private AlbumListPresenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		holder = mock(AlbumListViewHolder.class);
 		model = mock(AlbumListMvp.Model.class);
 		view = mock(AlbumListMvp.View.class);
+		holder = mock(AlbumListViewHolder.class);
 		presenter = new AlbumListPresenter(model, view);
 	}
 
@@ -43,7 +41,6 @@ public class AlbumListPresenterTest extends BaseTest {
 		verify(holder).setTitle("title");
 		verify(holder).setInfo(3, "artist");
 		verify(holder).setArt("file");
-		verifyNoMoreInteractions(holder);
 	}
 
 	@Test
@@ -53,7 +50,7 @@ public class AlbumListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onItemClick_goToAlbumDetail() {
+	public void onHolderClick_goToAlbumDetail() {
 		Album album = new Album();
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
