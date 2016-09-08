@@ -10,16 +10,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArtistDetailPresenterTest extends BaseTest {
-	private ArtistDetailModel model;
-	private ArtistDetailPresenter presenter;
-	private ArtistDetailActivity view;
+	private ArtistDetailMvp.Model model;
+	private ArtistDetailMvp.View view;
+	private ArtistDetailMvp.Presenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(ArtistDetailModel.class);
-		view = mock(ArtistDetailActivity.class);
+		model = mock(ArtistDetailMvp.Model.class);
+		view = mock(ArtistDetailMvp.View.class);
 		presenter = new ArtistDetailPresenter(model, view);
 	}
 
@@ -29,7 +29,6 @@ public class ArtistDetailPresenterTest extends BaseTest {
 		artist.setTitle("title");
 		artist.setAlbumsCount(3);
 		artist.setTracksCount(9);
-
 		when(model.getArtist()).thenReturn(artist);
 
 		presenter.onCreate();

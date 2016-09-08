@@ -12,48 +12,45 @@ import com.edavtyan.materialplayer.lib.db.ActivityTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class AlbumDetailActivityTest extends ActivityTest {
-	private static AlbumDetailAdapter adapter;
-	private static AlbumDetailMvp.Presenter presenter;
-	private static AlbumDetailFactory factory;
-	private static Navigator navigator;
+	private static AlbumDetailFactory factory = mock(AlbumDetailFactory.class);
 
-	static {
-		adapter = mock(AlbumDetailAdapter.class);
-		presenter = mock(AlbumDetailMvp.Presenter.class);
-		navigator = mock(Navigator.class);
-		factory = mock(AlbumDetailFactory.class);
-		doReturn(adapter).when(factory).provideAdapter();
-		doReturn(presenter).when(factory).providePresenter();
-		doReturn(navigator).when(factory).provideNavigator();
-	}
 	public static class TestAlbumDetailActivity extends AlbumDetailActivity {
 		@Override
 		protected AlbumDetailFactory getDI() {
 			return factory;
 		}
-
 	}
+
+	private AlbumDetailMvp.Presenter presenter;
+	private AlbumDetailAdapter adapter;
+	private TestAlbumDetailActivity activity;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		reset(adapter, presenter);
+
+		presenter = mock(AlbumDetailMvp.Presenter.class);
+		adapter = mock(AlbumDetailAdapter.class);
+		navigator = mock(Navigator.class);
+
+		when(factory.providePresenter()).thenReturn(presenter);
+		when(factory.provideAdapter()).thenReturn(adapter);
+		when(factory.provideNavigator()).thenReturn(navigator);
+
 		activity = startActivity(new Intent(context, TestAlbumDetailActivity.class));
 	}
-
-	private TestAlbumDetailActivity activity;
 
 	@Test
 	public void onCreate_initListView() {
 		RecyclerView list = activity.findView(R.id.list);
-		assertThat(list.getAdapter()).isEqualTo(adapter);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
+		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 
 	@Test

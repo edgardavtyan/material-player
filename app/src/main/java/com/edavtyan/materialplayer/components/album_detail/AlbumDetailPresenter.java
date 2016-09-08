@@ -10,7 +10,7 @@ public class AlbumDetailPresenter extends TrackListPresenter implements AlbumDet
 	private final AlbumDetailMvp.View view;
 	private final AlbumDetailMvp.Model model;
 
-	public AlbumDetailPresenter(AlbumDetailMvp.View view, AlbumDetailMvp.Model model) {
+	public AlbumDetailPresenter(AlbumDetailMvp.Model model, AlbumDetailMvp.View view) {
 		super(view, model);
 		this.view = view;
 		this.model = model;

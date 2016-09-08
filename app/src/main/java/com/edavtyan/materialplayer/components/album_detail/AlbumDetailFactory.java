@@ -55,7 +55,7 @@ public class AlbumDetailFactory extends BaseFactory {
 	}
 
 	public AlbumDetailMvp.Presenter providePresenter() {
-		if (presenter == null) presenter = new AlbumDetailPresenter(view, provideModel());
+		if (presenter == null) presenter = new AlbumDetailPresenter(provideModel(), view);
 		return presenter;
 	}
 }

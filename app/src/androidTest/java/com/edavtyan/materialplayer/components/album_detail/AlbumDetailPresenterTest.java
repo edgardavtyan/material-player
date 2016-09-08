@@ -20,7 +20,7 @@ public class AlbumDetailPresenterTest extends BaseTest {
 
 		model = mock(AlbumDetailMvp.Model.class);
 		view = mock(AlbumDetailMvp.View.class);
-		presenter = new AlbumDetailPresenter(view, model);
+		presenter = new AlbumDetailPresenter(model, view);
 	}
 
 	@Test

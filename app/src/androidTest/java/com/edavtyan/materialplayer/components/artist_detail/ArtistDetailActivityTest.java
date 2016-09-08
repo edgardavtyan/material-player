@@ -18,12 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArtistDetailActivityTest extends ActivityTest {
-
 	private static ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
-	private ArtistDetailMvp.Presenter presenter;
-	private AlbumListAdapter adapter;
-	private TestArtistDetailActivity activity;
-	private Navigator navigator;
 
 	public static class TestArtistDetailActivity extends ArtistDetailActivity {
 		@Override
@@ -31,6 +26,11 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			return factory;
 		}
 	}
+
+	private ArtistDetailMvp.Presenter presenter;
+	private AlbumListAdapter adapter;
+	private TestArtistDetailActivity activity;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
@@ -48,8 +48,8 @@ public class ArtistDetailActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void onCreate_initRecyclerView() {
-		RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
+	public void onCreate_initList() {
+		RecyclerView list = activity.findView(R.id.list);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
@@ -67,14 +67,14 @@ public class ArtistDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void setArtistTitle_setTitleViewText() {
-		TextView titleView = (TextView) activity.findViewById(R.id.title);
+		TextView titleView = activity.findView(R.id.title);
 		runOnUiThread(() -> activity.setArtistTitle("title"));
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
 	public void setArtistInfo_setInfoViewTextWithPattern() {
-		TextView infoView = (TextView) activity.findViewById(R.id.info);
+		TextView infoView = activity.findView(R.id.info);
 		runOnUiThread(() -> activity.setArtistInfo(3, 9));
 		assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
 	}
