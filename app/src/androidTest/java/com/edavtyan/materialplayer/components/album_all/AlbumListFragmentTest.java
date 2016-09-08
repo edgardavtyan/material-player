@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.album_all;
 
-import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -9,7 +8,6 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.FragmentTest;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -17,11 +15,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(AndroidJUnit4.class)
 public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
-
-	private AlbumListMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
+	private AlbumListMvp.Presenter presenter;
 	private Navigator navigator;
 
 	@Override
@@ -30,13 +26,13 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 
 		initFragment(new AlbumListFragment());
 
-		presenter = mock(AlbumListMvp.Presenter.class);
 		adapter = mock(AlbumListAdapter.class);
+		presenter = mock(AlbumListMvp.Presenter.class);
 		navigator = mock(Navigator.class);
 
 		AlbumListFactory factory = mock(AlbumListFactory.class);
-		when(factory.providePresenter()).thenReturn(presenter);
 		when(factory.provideAdapter()).thenReturn(adapter);
+		when(factory.providePresenter()).thenReturn(presenter);
 		when(factory.provideNavigator()).thenReturn(navigator);
 		when(app.getAlbumListDI(any(), any())).thenReturn(factory);
 	}
@@ -48,7 +44,7 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 	}
 
 	@Test
-	public void onCreateView_setRecyclerViewAdapter() {
+	public void onCreateView_initList() {
 		RecyclerView list = new RecyclerView(context);
 		when(fragmentView.findViewById(R.id.list)).thenReturn(list);
 
@@ -56,7 +52,7 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 		fragment.onCreateView(inflater, null, null);
 
 		assertThat(list.getAdapter()).isEqualTo(adapter);
-		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
+		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 	}
 
 	@Test
