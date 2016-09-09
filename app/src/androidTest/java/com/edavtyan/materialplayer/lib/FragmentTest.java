@@ -31,6 +31,8 @@ public class FragmentTest<TFragment extends TestableFragment> extends BaseTest {
 		this.fragment = spy(fragment);
 		doNothing().when(this.fragment).baseOnDestroy();
 		doNothing().when(this.fragment).baseOnCreate(null);
+		doNothing().when(this.fragment).baseOnStart();
+		doNothing().when(this.fragment).baseOnStop();
 		doReturn(activity).when(this.fragment).getContext();
 
 		fragmentView = mock(View.class);

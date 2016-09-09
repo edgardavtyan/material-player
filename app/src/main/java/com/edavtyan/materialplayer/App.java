@@ -12,6 +12,8 @@ import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailFactory;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
+import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
+import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
@@ -49,6 +51,12 @@ public class App
 
 	public TrackListFactory getTrackListDI(Context context, TrackListMvp.View view) {
 		return new TrackListFactory(context, view);
+	}
+
+	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(
+			Context context,
+			NowPlayingFloatingMvp.View view) {
+		return new NowPlayingFloatingFactory(context, view);
 	}
 
 	//---

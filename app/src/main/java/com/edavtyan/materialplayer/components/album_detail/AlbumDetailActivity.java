@@ -50,7 +50,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	}
 
 	protected AlbumDetailFactory getDI() {
-		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, 0);
-		return ((App) getApplicationContext()).getAlbumDetailDI(this, albumId);
+		String albumId = getIntent().getStringExtra(EXTRA_ALBUM_ID);
+		return ((App) getApplicationContext()).getAlbumDetailDI(this, Integer.parseInt(albumId));
 	}
 }
