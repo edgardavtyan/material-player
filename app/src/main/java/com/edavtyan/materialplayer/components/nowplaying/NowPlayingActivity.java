@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingControl
 import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingFab;
 import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.nowplaying.views.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.components.playlist.PlaylistActivity;
+import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class NowPlayingActivity extends BaseToolbarActivity implements ServiceCo
 	}
 
 	public void openPlaylist() {
-		PlaylistActivity.startActivity(this);
+		startActivity(new Intent(this, PlaylistActivity.class));
 	}
 
 	@Override

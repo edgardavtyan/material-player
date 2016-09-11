@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.album_all.AlbumListFactory;
@@ -14,6 +15,8 @@ import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
+import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistFactory;
+import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistMvp;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
@@ -57,6 +60,14 @@ public class App
 			Context context,
 			NowPlayingFloatingMvp.View view) {
 		return new NowPlayingFloatingFactory(context, view);
+	}
+
+	public PlaylistFactory getPlaylistFactory(Context context, PlaylistMvp.View view) {
+		return new PlaylistFactory(context, view);
+	}
+
+	public SdkFactory getSdkFactory() {
+		return new SdkFactory();
 	}
 
 	//---

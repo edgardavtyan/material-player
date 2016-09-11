@@ -68,7 +68,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.playlist.PlaylistActivity"
+			android:name=".components.now_playing_queue.PlaylistActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

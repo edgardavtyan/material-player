@@ -59,6 +59,23 @@ public class MusicPlayerService
 	private @Getter Amplifier amplifier;
 	private @Getter BassBoost bassBoost;
 
+	public void switchQueueTrackToPosition(int position) {
+		queue.setCurrentTrackIndex(position);
+		player.prepare();
+	}
+
+	public void removeQueueTrackAtPosition(int position) {
+		queue.remove(position);
+	}
+
+	public Track getQueueTrackAt(int position) {
+		return queue.get(position);
+	}
+
+	public int getQueueCount() {
+		return queue.size();
+	}
+
 	/*
 	 * Broadcast Receivers
 	 */

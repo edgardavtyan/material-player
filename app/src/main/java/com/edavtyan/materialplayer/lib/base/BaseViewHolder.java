@@ -5,7 +5,7 @@ import android.view.View;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 
 public abstract class BaseViewHolder extends TestableViewHolder {
-	private final View itemView;
+	protected final View itemView;
 
 	public BaseViewHolder(View itemView) {
 		super(itemView);

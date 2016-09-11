@@ -10,4 +10,8 @@ public abstract class TestableRecyclerAdapter<VH extends RecyclerView.ViewHolder
 	public void notifyDataSetChangedNonFinal() {
 		notifyDataSetChanged();
 	}
+
+	public void notifyItemRemovedNonFinal(int position) {
+		notifyItemRemoved(position);
+	}
 }
