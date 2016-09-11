@@ -35,6 +35,7 @@ public class NowPlayingActivity extends BaseToolbarActivity implements ServiceCo
 
 	public void openPlaylist() {
 		startActivity(new Intent(this, PlaylistActivity.class));
+		overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
 	}
 
 	@Override
