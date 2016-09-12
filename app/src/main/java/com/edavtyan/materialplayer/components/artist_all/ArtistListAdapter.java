@@ -24,6 +24,7 @@ public class ArtistListAdapter
 	public ArtistListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.listitem_artist, parent, false);
+
 		ArtistListViewHolder holder = new ArtistListViewHolder(view);
 		holder.setOnHolderClickListener(this);
 		return holder;

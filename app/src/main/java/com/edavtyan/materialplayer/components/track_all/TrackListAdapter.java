@@ -25,14 +25,15 @@ public class TrackListAdapter
 	public TrackListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.listitem_track, parent, false);
-		return new TrackListViewHolder(context, view);
+		TrackListViewHolder holder = new TrackListViewHolder(context, view);
+		holder.setOnHolderClickListener(this);
+		holder.setOnHolderMenuItemClickListener(this);
+		return holder;
 	}
 
 	@Override
 	public void onBindViewHolder(TrackListViewHolder holder, int position) {
 		presenter.onBindViewHolder(holder, position);
-		holder.setOnHolderClickListener(this);
-		holder.setOnHolderMenuItemClickListener(this);
 	}
 
 	@Override

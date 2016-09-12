@@ -25,14 +25,16 @@ public class AlbumListAdapter
 	public AlbumListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.listitem_album, parent, false);
-		return new AlbumListViewHolder(context, view);
+
+		AlbumListViewHolder holder = new AlbumListViewHolder(context, view);
+		holder.setOnHolderClickListener(this);
+		holder.setOnHolderMenuItemClickListener(this);
+		return holder;
 	}
 
 	@Override
 	public void onBindViewHolder(AlbumListViewHolder holder, int position) {
 		presenter.onBindViewHolder(holder, position);
-		holder.setOnHolderClickListener(this);
-		holder.setOnHolderMenuItemClickListener(this);
 	}
 
 	@Override
