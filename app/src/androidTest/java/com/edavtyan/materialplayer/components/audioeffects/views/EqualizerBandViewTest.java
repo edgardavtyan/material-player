@@ -3,9 +3,8 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.BaseTest;
-
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView.OnBandChangedListener;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
 
@@ -70,6 +69,12 @@ public class EqualizerBandViewTest extends BaseTest {
 	public void setFrequency_frequencyIsThousandOrBigger_setFrequencyAsKiloHertzRoundedToFirstDecimal() {
 		equalizerView.setFrequency(14789);
 		assertThat(frequencyView.getText()).isEqualTo("14.8 kHz");
+	}
+
+	@Test
+	public void setFrequency_frequencyIsDivisibleByThousand_setFrequencyWithoutDecimalPoint() {
+		equalizerView.setFrequency(16000);
+		assertThat(frequencyView.getText()).isEqualTo("16 kHz");
 	}
 
 	@Test

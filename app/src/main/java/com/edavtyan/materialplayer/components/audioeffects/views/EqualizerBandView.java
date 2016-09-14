@@ -49,7 +49,10 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 
 		if (isKHz(frequency)) {
 			frequencyConverted = hzToKHz(frequency);
-			frequencyFormat = R.string.equalizer_frequency_khz;
+
+			frequencyFormat = isWholeKHz(frequency)
+					? R.string.equalizer_frequency_khz_whole
+					: R.string.equalizer_frequency_khz;
 		} else {
 			frequencyConverted = frequency;
 			frequencyFormat = R.string.equalizer_frequency_hz;
@@ -87,5 +90,9 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 
 	private boolean isKHz(int frequency) {
 		return frequency >= 1000;
+	}
+
+	private boolean isWholeKHz(int frequency) {
+		return frequency % 1000 == 0;
 	}
 }

@@ -5,6 +5,7 @@
 
 	<string name="equalizer_frequency_hz">%1$.0f Hz</string>
 	<string name="equalizer_frequency_khz">%1$.1f kHz</string>
+	<string name="equalizer_frequency_khz_whole">%1$.0f kHz</string>
 	<string name="equalizer_format_gain">%1$d dB</string>
 	<string name="equalizer_format_gain_positive">+%1$d dB</string>
 
