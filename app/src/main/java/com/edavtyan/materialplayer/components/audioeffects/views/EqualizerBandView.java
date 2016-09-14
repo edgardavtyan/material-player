@@ -15,6 +15,7 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 	private TextView frequencyView;
 	private TextView gainView;
 	private DoubleSeekbar bandView;
+
 	private @Setter OnBandChangedListener onBandChangedListener;
 
 	public interface OnBandChangedListener {
@@ -47,10 +48,12 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 		int frequencyFormat;
 		double frequencyConverted;
 
-		if (isKHz(frequency)) {
-			frequencyConverted = hzToKHz(frequency);
+		boolean isKHz = frequency >= 1000;
+		if (isKHz) {
+			frequencyConverted = frequency / 1000f;
 
-			frequencyFormat = isWholeKHz(frequency)
+			boolean isWholeKHz = frequency % 1000 == 0;
+			frequencyFormat = isWholeKHz
 					? R.string.equalizer_frequency_khz_whole
 					: R.string.equalizer_frequency_khz;
 		} else {
@@ -82,17 +85,5 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 				: R.string.equalizer_format_gain;
 
 		return getResources().getString(gainStringFormatId, gain);
-	}
-
-	private double hzToKHz(int frequency) {
-		return frequency / 1000f;
-	}
-
-	private boolean isKHz(int frequency) {
-		return frequency >= 1000;
-	}
-
-	private boolean isWholeKHz(int frequency) {
-		return frequency % 1000 == 0;
 	}
 }
