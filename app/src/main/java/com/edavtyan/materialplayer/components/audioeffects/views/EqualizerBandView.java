@@ -4,22 +4,29 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 
+import lombok.Getter;
 import lombok.Setter;
 
-public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
+public class EqualizerBandView
+		extends FrameLayout
+		implements DoubleSeekbar2.OnProgressChangedListener,
+				   DoubleSeekbar2.OnStopTrackingTouchListener {
+
+	private int frequency;
+	private @Getter @Setter int index;
+
 	private TextView frequencyView;
 	private TextView gainView;
-	private DoubleSeekbar bandView;
+	private DoubleSeekbar2 bandView;
 
 	private @Setter OnBandChangedListener onBandChangedListener;
 
 	public interface OnBandChangedListener {
-		void OnBandStopTracking();
+		void OnBandStopTracking(EqualizerBandView band);
 		void onBandChanged(EqualizerBandView band, int gain);
 	}
 
@@ -31,12 +38,21 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 		frequencyView = (TextView) findViewById(R.id.frequency);
 		gainView = (TextView) findViewById(R.id.gain);
 
-		bandView = (DoubleSeekbar) findViewById(R.id.band);
-		bandView.setOnSeekBarChangeListener(this);
+		bandView = (DoubleSeekbar2) findViewById(R.id.band);
+		bandView.setOnProgressChangedListener(this);
+		bandView.setOnStopTrackingTouchListener(this);
+	}
+
+	public int getGainLimit() {
+		return bandView.getMax();
 	}
 
 	public void setGainLimit(int gain) {
 		bandView.setMax(gain);
+	}
+
+	public int getGain() {
+		return bandView.getProgress();
 	}
 
 	public void setGain(int gain) {
@@ -44,7 +60,13 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 		gainView.setText(getGainStr(gain));
 	}
 
+	public int getFrequency() {
+		return frequency;
+	}
+
 	public void setFrequency(int frequency) {
+		this.frequency = frequency;
+
 		int frequencyFormat;
 		double frequencyConverted;
 
@@ -65,18 +87,18 @@ public class EqualizerBandView extends FrameLayout implements SeekBar.OnSeekBarC
 	}
 
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+	public void onStopTrackingTouch(DoubleSeekbar2 seekBar) {
+		if (onBandChangedListener != null) {
+			onBandChangedListener.OnBandStopTracking(this);
+		}
+	}
+
+	@Override
+	public void onProgressChanged(DoubleSeekbar2 seekbar, int progress, boolean fromUser) {
 		gainView.setText(getGainStr(progress));
-		if (onBandChangedListener != null) onBandChangedListener.onBandChanged(this, progress);
-	}
-
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-	}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
-		if (onBandChangedListener != null) onBandChangedListener.OnBandStopTracking();
+		if (onBandChangedListener != null) {
+			onBandChangedListener.onBandChanged(this, progress);
+		}
 	}
 
 	private String getGainStr(int gain) {

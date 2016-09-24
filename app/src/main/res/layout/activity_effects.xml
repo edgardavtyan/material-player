@@ -30,7 +30,7 @@
 
 		</LinearLayout>
 
-		<com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView
+		<com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView2
 			android:id="@+id/equalizer"
 			style="@style/AudioEffects_Equalizer"
 			/>

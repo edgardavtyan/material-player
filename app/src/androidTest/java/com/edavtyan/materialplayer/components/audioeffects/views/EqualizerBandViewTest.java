@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 public class EqualizerBandViewTest extends BaseTest {
 
 	private EqualizerBandView equalizerView;
-	private DoubleSeekbar bandView;
+	private DoubleSeekbar2 bandView;
 	private TextView gainView;
 	private TextView frequencyView;
 
@@ -23,22 +23,21 @@ public class EqualizerBandViewTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		equalizerView = new EqualizerBandView(context, null);
-		bandView = (DoubleSeekbar) equalizerView.findViewById(R.id.band);
+		bandView = (DoubleSeekbar2) equalizerView.findViewById(R.id.band);
 		gainView = (TextView) equalizerView.findViewById(R.id.gain);
 		frequencyView = (TextView) equalizerView.findViewById(R.id.frequency);
 	}
 
 	@Test
-	public void setGainLimit_setTwiceAsMuchSeekbarMax() {
+	public void setGainLimit_setSeekbarMax() {
 		equalizerView.setGainLimit(30);
-		assertThat(bandView.getMax()).isEqualTo(60);
+		assertThat(bandView.getMax()).isEqualTo(30);
 	}
 
 	@Test
-	public void setGain_setBandProgressPlusMax() {
-		bandView.setMax(30);
+	public void setGain_setBandProgress() {
 		equalizerView.setGain(25);
-		assertThat(bandView.getProgress()).isEqualTo(55);
+		assertThat(bandView.getProgress()).isEqualTo(25);
 	}
 
 	@Test
@@ -108,6 +107,6 @@ public class EqualizerBandViewTest extends BaseTest {
 		OnBandChangedListener listener = mock(OnBandChangedListener.class);
 		equalizerView.setOnBandChangedListener(listener);
 		equalizerView.onStopTrackingTouch(bandView);
-		verify(listener).OnBandStopTracking();
+		verify(listener).OnBandStopTracking(equalizerView);
 	}
 }

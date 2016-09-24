@@ -15,18 +15,19 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
-import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
+import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
+import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView2;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 public class AudioEffectsActivity
 		extends BaseToolbarActivity
 		implements ServiceConnection,
-		           EqualizerView.OnBandChangedListener,
+		           EqualizerView2.OnBandChangedListener,
 		           TitledSeekbar.OnProgressChangedListener,
 		           CompoundButton.OnCheckedChangeListener {
 	private SwitchCompat equalizerSwitch;
-	private EqualizerView equalizerView;
+	private EqualizerView2 equalizerView;
 	private TitledSeekbar bassBoostView;
 	private TitledSeekbar amplifierView;
 	private TitledSeekbar surroundView;
@@ -46,7 +47,7 @@ public class AudioEffectsActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		equalizerView = (EqualizerView) findViewById(R.id.equalizer);
+		equalizerView = (EqualizerView2) findViewById(R.id.equalizer);
 		equalizerView.setOnBandChangedListener(this);
 
 		equalizerSwitch = (SwitchCompat) findViewById(R.id.equalizerSwitch);
@@ -91,11 +92,11 @@ public class AudioEffectsActivity
 		MusicPlayerService service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
 
 		equalizer = service.getEqualizer();
-		equalizerView.setGainLimit(equalizer.getGainLimit());
 		equalizerView.setBands(
 				equalizer.getBandsCount(),
 				equalizer.getFrequencies(),
-				equalizer.getGains());
+				equalizer.getGains(),
+				equalizer.getGainLimit());
 		equalizerSwitch.setChecked(equalizer.isEnabled());
 
 		bassBoost = service.getBassBoost();
@@ -123,12 +124,12 @@ public class AudioEffectsActivity
 	}
 
 	@Override
-	public void onBandChanged(int band, int gain) {
-		equalizer.setBandGain(band, gain);
+	public void onBandChanged(EqualizerBandView bandView) {
+		equalizer.setBandGain(bandView.getIndex(), bandView.getGain());
 	}
 
 	@Override
-	public void onBandStopTracking() {
+	public void onBandStopTracking(EqualizerBandView bandView) {
 		equalizer.saveSettings();
 	}
 
