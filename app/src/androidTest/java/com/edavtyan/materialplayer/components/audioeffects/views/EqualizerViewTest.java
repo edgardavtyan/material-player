@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 
 import android.widget.LinearLayout;
 
-import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView2.OnBandChangedListener;
+import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView.OnBandChangedListener;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
@@ -12,12 +12,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class EqualizerViewTest extends BaseTest {
-	private EqualizerView2 equalizerView;
+	private EqualizerView equalizerView;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		equalizerView = new EqualizerView2(context, null);
+		equalizerView = new EqualizerView(context, null);
 	}
 
 	@Test
@@ -57,10 +57,10 @@ public class EqualizerViewTest extends BaseTest {
 
 		EqualizerBandView band = (EqualizerBandView) equalizerView.getChildAt(3);
 
-		band.onProgressChanged(mock(DoubleSeekbar2.class), 30, true);
+		band.onProgressChanged(mock(DoubleSeekbar.class), 30, true);
 		verify(listener).onBandChanged(band);
 
-		band.onStopTrackingTouch(mock(DoubleSeekbar2.class));
+		band.onStopTrackingTouch(mock(DoubleSeekbar.class));
 		verify(listener).onBandStopTracking(band);
 	}
 }

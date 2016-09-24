@@ -16,18 +16,18 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
-import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView2;
+import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 public class AudioEffectsActivity
 		extends BaseToolbarActivity
 		implements ServiceConnection,
-		           EqualizerView2.OnBandChangedListener,
-		           TitledSeekbar.OnProgressChangedListener,
-		           CompoundButton.OnCheckedChangeListener {
+				   EqualizerView.OnBandChangedListener,
+				   TitledSeekbar.OnProgressChangedListener,
+				   CompoundButton.OnCheckedChangeListener {
 	private SwitchCompat equalizerSwitch;
-	private EqualizerView2 equalizerView;
+	private EqualizerView equalizerView;
 	private TitledSeekbar bassBoostView;
 	private TitledSeekbar amplifierView;
 	private TitledSeekbar surroundView;
@@ -47,7 +47,7 @@ public class AudioEffectsActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		equalizerView = (EqualizerView2) findViewById(R.id.equalizer);
+		equalizerView = (EqualizerView) findViewById(R.id.equalizer);
 		equalizerView.setOnBandChangedListener(this);
 
 		equalizerSwitch = (SwitchCompat) findViewById(R.id.equalizerSwitch);

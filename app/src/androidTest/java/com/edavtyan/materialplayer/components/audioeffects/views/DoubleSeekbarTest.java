@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar2.OnProgressChangedListener;
-import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar2.OnStartTrackingTouchListener;
-import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar2.OnStopTrackingTouchListener;
+import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnProgressChangedListener;
+import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnStartTrackingTouchListener;
+import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnStopTrackingTouchListener;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
@@ -16,14 +16,14 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class DoubleSeekbarTest extends BaseTest {
-	private DoubleSeekbar2 doubleSeekbar;
+	private DoubleSeekbar doubleSeekbar;
 	private SeekBar innerSeekbar;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		doubleSeekbar = new DoubleSeekbar2(context, null);
+		doubleSeekbar = new DoubleSeekbar(context, null);
 		innerSeekbar = (SeekBar) doubleSeekbar.findViewById(R.id.seekbar);
 	}
 

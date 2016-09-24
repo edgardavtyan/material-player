@@ -13,15 +13,15 @@ import lombok.Setter;
 
 public class EqualizerBandView
 		extends FrameLayout
-		implements DoubleSeekbar2.OnProgressChangedListener,
-				   DoubleSeekbar2.OnStopTrackingTouchListener {
+		implements DoubleSeekbar.OnProgressChangedListener,
+				   DoubleSeekbar.OnStopTrackingTouchListener {
 
 	private int frequency;
 	private @Getter @Setter int index;
 
 	private TextView frequencyView;
 	private TextView gainView;
-	private DoubleSeekbar2 bandView;
+	private DoubleSeekbar bandView;
 
 	private @Setter OnBandChangedListener onBandChangedListener;
 
@@ -38,7 +38,7 @@ public class EqualizerBandView
 		frequencyView = (TextView) findViewById(R.id.frequency);
 		gainView = (TextView) findViewById(R.id.gain);
 
-		bandView = (DoubleSeekbar2) findViewById(R.id.band);
+		bandView = (DoubleSeekbar) findViewById(R.id.band);
 		bandView.setOnProgressChangedListener(this);
 		bandView.setOnStopTrackingTouchListener(this);
 	}
@@ -87,14 +87,14 @@ public class EqualizerBandView
 	}
 
 	@Override
-	public void onStopTrackingTouch(DoubleSeekbar2 seekBar) {
+	public void onStopTrackingTouch(DoubleSeekbar seekBar) {
 		if (onBandChangedListener != null) {
 			onBandChangedListener.OnBandStopTracking(this);
 		}
 	}
 
 	@Override
-	public void onProgressChanged(DoubleSeekbar2 seekbar, int progress, boolean fromUser) {
+	public void onProgressChanged(DoubleSeekbar seekbar, int progress, boolean fromUser) {
 		gainView.setText(getGainStr(progress));
 		if (onBandChangedListener != null) {
 			onBandChangedListener.onBandChanged(this, progress);

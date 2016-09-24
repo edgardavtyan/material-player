@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 public class EqualizerBandViewTest extends BaseTest {
 
 	private EqualizerBandView equalizerView;
-	private DoubleSeekbar2 bandView;
+	private DoubleSeekbar bandView;
 	private TextView gainView;
 	private TextView frequencyView;
 
@@ -23,7 +23,7 @@ public class EqualizerBandViewTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		equalizerView = new EqualizerBandView(context, null);
-		bandView = (DoubleSeekbar2) equalizerView.findViewById(R.id.band);
+		bandView = (DoubleSeekbar) equalizerView.findViewById(R.id.band);
 		gainView = (TextView) equalizerView.findViewById(R.id.gain);
 		frequencyView = (TextView) equalizerView.findViewById(R.id.frequency);
 	}
