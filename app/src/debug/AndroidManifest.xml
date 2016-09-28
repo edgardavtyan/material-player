@@ -11,6 +11,7 @@
 		<activity android:name=".components.artist_detail.ArtistDetailActivityTest$TestArtistDetailActivity" />
 		<activity android:name=".components.album_detail.AlbumDetailActivityTest$TestAlbumDetailActivity" />
 		<activity android:name=".components.now_playing_queue.PlaylistActivityTest$TestPlaylistActivity" />
+		<activity android:name=".components.audioeffects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
 
 	</application>
 

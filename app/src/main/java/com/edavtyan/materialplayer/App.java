@@ -5,14 +5,16 @@ import android.content.Context;
 import android.util.Log;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.album_all.AlbumListFactory;
 import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
-import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailFactory;
-import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
+import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailFactory;
+import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsFactory;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsMvp;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistFactory;
@@ -64,6 +66,10 @@ public class App
 
 	public PlaylistFactory getPlaylistFactory(Context context, PlaylistMvp.View view) {
 		return new PlaylistFactory(context, view);
+	}
+
+	public AudioEffectsFactory getAudioEffectsFactory(Context context, AudioEffectsMvp.View view) {
+		return new AudioEffectsFactory(context, view);
 	}
 
 	public SdkFactory getSdkFactory() {

@@ -14,7 +14,7 @@ public abstract class TestableActivity extends BaseToolbarActivity {
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		baseOnDestroy();
 	}
 

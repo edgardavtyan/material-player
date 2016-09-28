@@ -11,7 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity2;
 import com.edavtyan.materialplayer.components.prefs.PrefActivity;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 
@@ -49,7 +49,7 @@ public abstract class BaseActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_effects:
-			startActivity(new Intent(this, AudioEffectsActivity.class));
+			startActivity(new Intent(this, AudioEffectsActivity2.class));
 			return true;
 
 		case R.id.menu_settings:
