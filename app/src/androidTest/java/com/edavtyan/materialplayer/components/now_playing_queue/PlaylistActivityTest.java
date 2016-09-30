@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressLint("StaticFieldLeak")
 public class PlaylistActivityTest extends ActivityTest {
 	private static PlaylistFactory factory = mock(PlaylistFactory.class);
 

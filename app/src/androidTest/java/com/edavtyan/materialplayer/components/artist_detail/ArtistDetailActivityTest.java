@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityTest extends ActivityTest {
 	private static ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
 

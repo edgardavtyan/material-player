@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityTest extends ActivityTest {
 	private static AlbumDetailFactory factory = mock(AlbumDetailFactory.class);
 
@@ -47,7 +49,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void onCreate_initListView() {
+	public void onCreate_initList() {
 		RecyclerView list = activity.findView(R.id.list);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
@@ -60,7 +62,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void onStop_callPresenter() {
-		activity.finish();
+		instrumentation.callActivityOnStop(activity);
 		verify(presenter).onDestroy();
 	}
 
