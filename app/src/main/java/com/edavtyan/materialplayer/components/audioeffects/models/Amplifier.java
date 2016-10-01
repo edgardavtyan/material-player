@@ -1,8 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.h6ah4i.android.media.audiofx.IPreAmp;
 
@@ -12,21 +10,21 @@ import com.h6ah4i.android.media.audiofx.IPreAmp;
 // where 0 is 1.0f - 100% volume, and 100 is 2.0f - 200% volume
 
 public class Amplifier {
-	private static final String PREF_STRENGTH = "pref_amplifier_strength";
-	private static final float MAX_STRENGTH_FLOAT = 2.0f;
-	private static final int MAX_STRENGTH = 100;
-	private static final int DEFAULT_STRENGTH = 0;
+	public static final String PREF_STRENGTH = "pref_amplifier_strength";
+	public static final float MAX_STRENGTH_FLOAT = 2.0f;
+	public static final int MAX_STRENGTH = 100;
+	public static final int DEFAULT_STRENGTH = 0;
 
 
 	private final IPreAmp amplifier;
 	private final SharedPreferences prefs;
 
 
-	public Amplifier(Context context, IPreAmp amplifier) {
+	public Amplifier(IPreAmp amplifier, SharedPreferences prefs) {
 		this.amplifier = amplifier;
 		this.amplifier.setEnabled(true);
 
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		this.prefs = prefs;
 		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
 	}
 
@@ -38,7 +36,7 @@ public class Amplifier {
 	// Converts float volume to integer.
 	// For example 1.4f -> 40, 1.9 -> 90
 	public int getStrength() {
-		return (int) ((amplifier.getLevel() - 1) * MAX_STRENGTH);
+		return Math.round((amplifier.getLevel() - 1) * MAX_STRENGTH);
 	}
 
 	// Converts integer volume to float.

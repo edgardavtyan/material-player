@@ -1,36 +1,37 @@
 package com.edavtyan.materialplayer.components.audioeffects.models.equalizer;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-import com.google.gson.Gson;
 import com.h6ah4i.android.media.audiofx.IEqualizer;
 
 public class HQEqualizer implements Equalizer {
-	private static final String PREF_GAINS = "pref_equalizer_gains";
-	private static final String PREF_ENABLED = "pref_equalizer_enabled";
+	public static final String PREF_GAINS = "pref_equalizer_gains";
+	public static final String PREF_ENABLED = "pref_equalizer_enabled";
 
 
 	private final IEqualizer equalizer;
-	private final Gson gson;
 	private final SharedPreferences prefs;
 	private final int[] frequencies;
 	private final int[] gains;
 
 
-	public HQEqualizer(Context context, IEqualizer equalizer) {
+	public HQEqualizer(IEqualizer equalizer, SharedPreferences prefs) {
 		this.equalizer = equalizer;
-		gson = new Gson();
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		this.prefs = prefs;
 
 		frequencies = new int[equalizer.getNumberOfBands()];
 		for (int i = 0; i < frequencies.length; i++) {
 			frequencies[i] = equalizer.getCenterFreq((short) i) / 1000;
 		}
 
-		int[] gainsFromPref = gson.fromJson(prefs.getString(PREF_GAINS, null), int[].class);
-		gains = (gainsFromPref != null) ? gainsFromPref : new int[getBandsCount()];
+		gains = new int[equalizer.getNumberOfBands()];
+		String gainsStrFromPrefs = prefs.getString(PREF_GAINS, null);
+		if (gainsStrFromPrefs != null) {
+			String[] gainsArrayStr = gainsStrFromPrefs.split(",");
+			for (int i = 0; i < gains.length; i++) {
+				gains[i] = Integer.parseInt(gainsArrayStr[i]);
+			}
+		}
 
 		equalizer.setEnabled(prefs.getBoolean(PREF_ENABLED, true));
 	}
@@ -54,7 +55,7 @@ public class HQEqualizer implements Equalizer {
 
 	@Override
 	public int getGainLimit() {
-		return equalizer.getBandLevelRange()[1] / 100;
+		return Math.abs(equalizer.getBandLevelRange()[0] / 100);
 	}
 
 	@Override
@@ -65,7 +66,13 @@ public class HQEqualizer implements Equalizer {
 
 	@Override
 	public void saveSettings() {
-		prefs.edit().putString(PREF_GAINS, gson.toJson(gains)).apply();
+		String gainsStr = "";
+		for (int i = 0; i < gains.length; i++) {
+			gainsStr += gains[i];
+			if (i < gains.length  -1) gainsStr += ",";
+		}
+
+		prefs.edit().putString(PREF_GAINS, gainsStr).apply();
 	}
 
 	@Override

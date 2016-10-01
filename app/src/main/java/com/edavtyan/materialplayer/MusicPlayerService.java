@@ -151,6 +151,8 @@ public class MusicPlayerService
 	public void onCreate() {
 		super.onCreate();
 
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
 		OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
 		params.options =
 				OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER |
@@ -161,10 +163,10 @@ public class MusicPlayerService
 		params.longFadeDuration = 200;
 		OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
 		IBasicMediaPlayer basicPlayer = factory.createMediaPlayer();
-		equalizer = new HQEqualizer(this, factory.createHQEqualizer());
-		surround = new Surround(this, factory.createVirtualizer(basicPlayer));
-		amplifier = new Amplifier(this, factory.createPreAmp());
-		bassBoost = new BassBoost(this, factory.createBassBoost(basicPlayer));
+		equalizer = new HQEqualizer(factory.createHQEqualizer(), prefs);
+		surround = new Surround(factory.createVirtualizer(basicPlayer), prefs);
+		amplifier = new Amplifier(factory.createPreAmp(), prefs);
+		bassBoost = new BassBoost(factory.createBassBoost(basicPlayer), prefs);
 
 		queue = new NowPlayingQueue(this);
 		openslAudioEngine = new OpenSLAudioEngine(basicPlayer);
@@ -176,7 +178,6 @@ public class MusicPlayerService
 
 		notification = new NowPlayingNotification(this);
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		registerReceiver(new PlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
