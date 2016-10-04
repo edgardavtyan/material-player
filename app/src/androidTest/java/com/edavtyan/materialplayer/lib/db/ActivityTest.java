@@ -17,9 +17,9 @@ public class ActivityTest extends BaseTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> T startActivity(Intent intent) {
+	protected static <T> T startActivity(Intent intent) {
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		return (T) instrumentation.startActivitySync(intent);
+		return (T) InstrumentationRegistry.getInstrumentation().startActivitySync(intent);
 	}
 
 	protected void runOnUiThread(Runnable runnable) {

@@ -2,10 +2,13 @@ package com.edavtyan.materialplayer.components;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
-import com.edavtyan.materialplayer.components.nowplaying.NowPlayingActivity;
+import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 
 public class Navigator {
 	private final Context context;
@@ -29,5 +32,11 @@ public class Navigator {
 	public void gotoNowPlaying() {
 		Intent intent = new Intent(context, NowPlayingActivity.class);
 		context.startActivity(intent);
+	}
+
+	public void gotoNowPlayingQueue() {
+		Intent intent = new Intent(context, PlaylistActivity.class);
+		context.startActivity(intent);
+		((AppCompatActivity) context).overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
 	}
 }

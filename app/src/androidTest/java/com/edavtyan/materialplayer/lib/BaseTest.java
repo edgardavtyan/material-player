@@ -37,4 +37,8 @@ public class BaseTest {
 	public void afterEach() {
 		Mockito.validateMockitoUsage();
 	}
+
+	protected void runOnUiThread(Runnable runnable) {
+		InstrumentationRegistry.getInstrumentation().runOnMainSync(runnable);
+	}
 }

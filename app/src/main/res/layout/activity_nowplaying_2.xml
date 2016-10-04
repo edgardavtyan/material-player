@@ -109,31 +109,31 @@
 			android:layout_weight="1"
 			>
 
-			<ImageButton
+			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/shuffle"
 				android:src="@drawable/ic_shuffle"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<ImageButton
+			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/rewind"
 				android:src="@drawable/ic_rewind"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<ImageButton
+			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/playPause"
 				android:src="@drawable/ic_play"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<ImageButton
+			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/fastForward"
 				android:src="@drawable/ic_fast_forward"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<ImageButton
+			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/repeat"
 				android:src="@drawable/ic_repeat"
 				style="@style/NowPlaying_Control"
