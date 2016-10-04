@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.album_detail;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -24,6 +25,7 @@ public class AlbumDetailPresenterTest extends BaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void onCreate_setViewInfo() {
 		Album album = new Album();
 		album.setTitle("title");
