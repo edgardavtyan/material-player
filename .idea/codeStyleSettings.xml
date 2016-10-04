@@ -287,14 +287,14 @@
               <section>
                 <rule>
                   <match>
-                    <ENUM>true</ENUM>
+                    <INTERFACE>true</INTERFACE>
                   </match>
                 </rule>
               </section>
               <section>
                 <rule>
                   <match>
-                    <INTERFACE>true</INTERFACE>
+                    <ENUM>true</ENUM>
                   </match>
                 </rule>
               </section>
