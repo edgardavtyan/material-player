@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import android.content.SharedPreferences;
-
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IVirtualizer;
 
 public class Surround {
@@ -10,10 +9,10 @@ public class Surround {
 	public static final int DEFAULT_STRENGTH = 0;
 
 	private final IVirtualizer surround;
-	private final SharedPreferences prefs;
+	private final AdvancedSharedPrefs prefs;
 
 
-	public Surround(IVirtualizer surround, SharedPreferences prefs) {
+	public Surround(IVirtualizer surround, AdvancedSharedPrefs prefs) {
 		this.surround = surround;
 		this.surround.setEnabled(true);
 		this.prefs = prefs;

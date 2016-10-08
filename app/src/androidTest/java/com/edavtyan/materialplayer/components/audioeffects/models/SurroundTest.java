@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IVirtualizer;
 
 import org.junit.Test;
@@ -20,13 +20,13 @@ import static org.mockito.Mockito.when;
 public class SurroundTest extends BaseTest {
 	private Surround surround;
 	private IVirtualizer baseSurround;
-	private SharedPreferences prefs;
+	private AdvancedSharedPrefs prefs;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		baseSurround = mock(IVirtualizer.class);
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
 		surround = spy(new Surround(baseSurround, prefs));
 	}
 

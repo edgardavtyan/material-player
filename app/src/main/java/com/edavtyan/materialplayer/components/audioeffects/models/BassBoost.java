@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import android.content.SharedPreferences;
-
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IBassBoost;
 
 public class BassBoost {
@@ -11,10 +10,10 @@ public class BassBoost {
 
 
 	private IBassBoost bassBoost;
-	private SharedPreferences prefs;
+	private AdvancedSharedPrefs prefs;
 
 
-	public BassBoost(IBassBoost bassBoost, SharedPreferences prefs) {
+	public BassBoost(IBassBoost bassBoost, AdvancedSharedPrefs prefs) {
 		this.bassBoost = bassBoost;
 		this.bassBoost.setEnabled(true);
 		this.prefs = prefs;

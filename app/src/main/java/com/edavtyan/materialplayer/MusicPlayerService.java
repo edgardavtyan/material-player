@@ -23,6 +23,7 @@ import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.components.player.engines.BasicAudioEngine;
 import com.edavtyan.materialplayer.components.player.engines.OpenSLAudioEngine;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
@@ -152,6 +153,7 @@ public class MusicPlayerService
 		super.onCreate();
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		AdvancedSharedPrefs advancedPrefs = new AdvancedSharedPrefs(prefs);
 
 		OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
 		params.options =
@@ -163,10 +165,10 @@ public class MusicPlayerService
 		params.longFadeDuration = 200;
 		OpenSLMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(this, params);
 		IBasicMediaPlayer basicPlayer = factory.createMediaPlayer();
-		equalizer = new HQEqualizer(factory.createHQEqualizer(), prefs);
-		surround = new Surround(factory.createVirtualizer(basicPlayer), prefs);
-		amplifier = new Amplifier(factory.createPreAmp(), prefs);
-		bassBoost = new BassBoost(factory.createBassBoost(basicPlayer), prefs);
+		equalizer = new HQEqualizer(factory.createHQEqualizer(), advancedPrefs);
+		surround = new Surround(factory.createVirtualizer(basicPlayer), advancedPrefs);
+		amplifier = new Amplifier(factory.createPreAmp(), advancedPrefs);
+		bassBoost = new BassBoost(factory.createBassBoost(basicPlayer), advancedPrefs);
 
 		queue = new NowPlayingQueue(this);
 		openslAudioEngine = new OpenSLAudioEngine(basicPlayer);

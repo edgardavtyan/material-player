@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models.equalizer;
 
-import android.content.SharedPreferences;
-
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IEqualizer;
 
 public class HQEqualizer implements Equalizer {
@@ -10,12 +9,12 @@ public class HQEqualizer implements Equalizer {
 
 
 	private final IEqualizer equalizer;
-	private final SharedPreferences prefs;
+	private final AdvancedSharedPrefs prefs;
 	private final int[] frequencies;
 	private final int[] gains;
 
 
-	public HQEqualizer(IEqualizer equalizer, SharedPreferences prefs) {
+	public HQEqualizer(IEqualizer equalizer, AdvancedSharedPrefs prefs) {
 		this.equalizer = equalizer;
 		this.prefs = prefs;
 

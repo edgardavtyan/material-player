@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IBassBoost;
 
 import org.junit.Test;
@@ -20,13 +20,13 @@ import static org.mockito.Mockito.when;
 public class BassBoostTest extends BaseTest {
 	private BassBoost bassBoost;
 	private IBassBoost baseBassBoost;
-	private SharedPreferences prefs;
+	private AdvancedSharedPrefs prefs;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		baseBassBoost = mock(IBassBoost.class);
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
 		bassBoost = spy(new BassBoost(baseBassBoost, prefs));
 		reset(baseBassBoost);
 	}

@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import android.content.SharedPreferences;
-
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IPreAmp;
 
 // This class acts as a decorator for OpenSL amplifier. The OpenSL amplifier accepts float values
@@ -17,10 +16,10 @@ public class Amplifier {
 
 
 	private final IPreAmp amplifier;
-	private final SharedPreferences prefs;
+	private final AdvancedSharedPrefs prefs;
 
 
-	public Amplifier(IPreAmp amplifier, SharedPreferences prefs) {
+	public Amplifier(IPreAmp amplifier, AdvancedSharedPrefs prefs) {
 		this.amplifier = amplifier;
 		this.amplifier.setEnabled(true);
 

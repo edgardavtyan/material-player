@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IPreAmp;
 
 import org.junit.Test;
@@ -20,13 +21,13 @@ import static org.mockito.Mockito.when;
 public class AmplifierTest extends BaseTest {
 	private Amplifier amplifier;
 	private IPreAmp preAmp;
-	private SharedPreferences prefs;
+	private AdvancedSharedPrefs prefs;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		preAmp = mock(IPreAmp.class);
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
 		amplifier = spy(new Amplifier(preAmp, prefs));
 	}
 

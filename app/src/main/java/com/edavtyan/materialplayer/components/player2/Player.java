@@ -1,8 +1,7 @@
 package com.edavtyan.materialplayer.components.player2;
 
-import android.content.SharedPreferences;
-
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.List;
 
@@ -20,12 +19,12 @@ public class Player
 	public Player(
 			PlayerMvp.AudioEngine audioEngine,
 			PlayerMvp.Queue queue,
-			SharedPreferences prefs) {
+			AdvancedSharedPrefs prefs) {
 		this.audioEngine = audioEngine;
 		this.audioEngine.setOnPreparedListener(this);
 
-		RepeatMode repeatMode = RepeatMode.valueOf(prefs.getString(PREF_REPEAT_MODE, DEFAULT_REPEAT_MODE));
-		ShuffleMode shuffleMode = ShuffleMode.valueOf(prefs.getString(PREF_SHUFFLE_MODE, DEFAULT_SHUFFLE_MODE));
+		RepeatMode repeatMode = prefs.getEnum(PREF_REPEAT_MODE, DEFAULT_REPEAT_MODE);
+		ShuffleMode shuffleMode = prefs.getEnum(PREF_SHUFFLE_MODE, DEFAULT_SHUFFLE_MODE);
 		this.queue = queue;
 		this.queue.setRepeatMode(repeatMode);
 		this.queue.setShuffleMode(shuffleMode);

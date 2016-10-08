@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.HQEqualizer;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.audiofx.IBassBoost;
 import com.h6ah4i.android.media.audiofx.IEqualizer;
@@ -24,15 +25,17 @@ import java.util.ArrayList;
 public class PlayerFactory extends BaseFactory {
 	private final OpenSLMediaPlayerFactory factory;
 	private final Context context;
+
 	private Player player;
 	private Queue queue;
-	private OpenSLAudioEngine audioEngine;
 	private HQEqualizer equalizer;
 	private Amplifier amplifier;
 	private BassBoost bassBoost;
-	private Surround surround;
 	private NowPlayingNotification notification;
-	private SharedPreferences prefs;
+
+	private Surround surround;
+	private OpenSLAudioEngine audioEngine;
+	private AdvancedSharedPrefs prefs;
 	private IBasicMediaPlayer basePlayer;
 
 	public PlayerFactory(Context context, OpenSLMediaPlayerContext.Parameters params) {
@@ -50,7 +53,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public PlayerMvp.Player providePlayer() {
 		if (player == null) {
-			player = new Player(provideAudioEngine(), provideQueue(), provideSharedPrefs());
+			player = new Player(provideAudioEngine(), provideQueue(), providePrefs());
 		}
 
 		return player;
@@ -59,7 +62,7 @@ public class PlayerFactory extends BaseFactory {
 	public Equalizer provideEqualizer() {
 		if (equalizer == null) {
 			IEqualizer baseEqualizer = factory.createHQEqualizer();
-			equalizer = new HQEqualizer(baseEqualizer, provideSharedPrefs());
+			equalizer = new HQEqualizer(baseEqualizer, providePrefs());
 		}
 
 		return equalizer;
@@ -68,7 +71,7 @@ public class PlayerFactory extends BaseFactory {
 	public Amplifier provideAmplifier() {
 		if (amplifier == null) {
 			IPreAmp baseAmplifier = factory.createPreAmp();
-			amplifier = new Amplifier(baseAmplifier, provideSharedPrefs());
+			amplifier = new Amplifier(baseAmplifier, providePrefs());
 		}
 
 		return amplifier;
@@ -77,7 +80,7 @@ public class PlayerFactory extends BaseFactory {
 	public BassBoost provideBassBoost() {
 		if (bassBoost == null) {
 			IBassBoost baseBassBoost = factory.createBassBoost(provideBasePlayer());
-			bassBoost = new BassBoost(baseBassBoost, provideSharedPrefs());
+			bassBoost = new BassBoost(baseBassBoost, providePrefs());
 		}
 
 		return bassBoost;
@@ -86,7 +89,7 @@ public class PlayerFactory extends BaseFactory {
 	public Surround provideSurround() {
 		if (surround == null) {
 			IVirtualizer baseSurround = factory.createVirtualizer(provideBasePlayer());
-			surround = new Surround(baseSurround, provideSharedPrefs());
+			surround = new Surround(baseSurround, providePrefs());
 		}
 
 		return surround;
@@ -112,8 +115,12 @@ public class PlayerFactory extends BaseFactory {
 		return basePlayer;
 	}
 
-	private SharedPreferences provideSharedPrefs() {
-		if (prefs == null) prefs = PreferenceManager.getDefaultSharedPreferences(context);
+	private AdvancedSharedPrefs providePrefs() {
+		if (prefs == null) {
+			SharedPreferences basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+			prefs = new AdvancedSharedPrefs(basePrefs);
+		}
+
 		return prefs;
 	}
 }

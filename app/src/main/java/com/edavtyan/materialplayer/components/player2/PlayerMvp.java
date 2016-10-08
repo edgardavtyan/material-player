@@ -8,8 +8,8 @@ public interface PlayerMvp {
 	interface Player {
 		String PREF_REPEAT_MODE = "pref_repeatMode";
 		String PREF_SHUFFLE_MODE = "pref_shuffleMode";
-		String DEFAULT_REPEAT_MODE = RepeatMode.DISABLED.name();
-		String DEFAULT_SHUFFLE_MODE = ShuffleMode.DISABLED.name();
+		RepeatMode DEFAULT_REPEAT_MODE = RepeatMode.DISABLED;
+		ShuffleMode DEFAULT_SHUFFLE_MODE = ShuffleMode.DISABLED;
 
 		interface OnNewTrackListener {
 			void onNewTrack();
