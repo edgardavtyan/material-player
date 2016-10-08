@@ -3,6 +3,9 @@ package com.edavtyan.materialplayer.components.now_playing;
 import android.content.ServiceConnection;
 import android.widget.SeekBar;
 
+import com.edavtyan.materialplayer.components.player2.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.ShuffleMode;
+
 import java.io.File;
 
 public interface NowPlayingMvp {
@@ -14,12 +17,12 @@ public interface NowPlayingMvp {
 		void setOnModelBoundListener(OnModelBoundListener listener);
 		void bind();
 		void unbind();
-		RepeatState getRepeatMode();
-		ShuffleState getShuffleMode();
-		PlayPauseState getPlayPauseMode();
+		RepeatMode getRepeatMode();
+		ShuffleMode getShuffleMode();
 		void toggleRepeatMode();
 		void toggleShuffleMode();
-		void togglePlayPauseMode();
+		boolean isPlaying();
+		void playPause();
 		String getTitle();
 		String getArtist();
 		String getAlbum();
@@ -33,9 +36,9 @@ public interface NowPlayingMvp {
 
 	interface View {
 		interface Controls {
-			void setShuffleState(ShuffleState shuffleState);
-			void setRepeatState(RepeatState repeatState);
-			void setPlayPauseState(PlayPauseState playPauseState);
+			void setShuffleMode(ShuffleMode shuffleMode);
+			void setRepeatMode(RepeatMode repeatMode);
+			void setIsPlaying(boolean isPlaying);
 		}
 
 		interface Info {
@@ -76,17 +79,5 @@ public interface NowPlayingMvp {
 		void onRepeatClick();
 		void onTrackSeekChanged(int progress);
 		void onTrackSeekStop(int position);
-	}
-
-	enum ShuffleState {
-		ENABLED, DISABLED
-	}
-
-	enum RepeatState {
-		REPEAT_ALL, REPEAT_ONE, DISABLED
-	}
-
-	enum PlayPauseState {
-		PAUSED, PLAYING
 	}
 }

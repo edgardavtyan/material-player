@@ -3,12 +3,10 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnServiceConnectedListener;
-import com.edavtyan.materialplayer.components.player.MusicPlayer;
-import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
@@ -24,11 +22,9 @@ import static org.mockito.Mockito.when;
 
 public class NowPlayingFloatingModelTest extends BaseTest {
 	private Context context;
-	private MusicPlayerService service;
-	private MusicPlayerBinder binder;
+	private PlayerService.PlayerBinder binder;
 	private NowPlayingFloatingModel model;
-	private NowPlayingQueue queue;
-	private MusicPlayer player;
+	private PlayerMvp.Player player;
 
 	@Override
 	public void beforeEach() {
@@ -37,15 +33,13 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		context = mock(Context.class);
 		model = new NowPlayingFloatingModel(context);
 
-		service = mock(MusicPlayerService.class);
-		binder = mock(MusicPlayerBinder.class);
-		when(binder.getService()).thenReturn(service);
+		player = mock(PlayerMvp.Player.class);
 
-		queue = mock(NowPlayingQueue.class);
-		player = mock(MusicPlayer.class);
-
+		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);
-		when(service.getQueue()).thenReturn(queue);
+
+		binder = mock(PlayerService.PlayerBinder.class);
+		when(binder.getService()).thenReturn(service);
 	}
 
 	@Test
@@ -55,7 +49,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		assertThat(intentCaptor.getValue()).classEqualTo(MusicPlayerService.class);
+		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
 	@Test
@@ -67,11 +61,11 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	@Test
 	public void getNowPlayingTrack_getTrackFromService() {
 		Track track = new Track();
-		when(queue.getCurrentTrack()).thenReturn(track);
+		when(player.getCurrentTrack()).thenReturn(track);
 		model.onServiceConnected(null, binder);
 
 		assertThat(model.getNowPlayingTrack()).isSameAs(track);
-		verify(queue).getCurrentTrack();
+		verify(player).getCurrentTrack();
 	}
 
 	@Test
@@ -84,29 +78,16 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	}
 
 	@Test
-	public void togglePlayPause_isPlaying_pause() {
-		when(player.isPlaying()).thenReturn(true);
+	public void togglePlayPause_playPausePlayer() {
 		model.onServiceConnected(null, binder);
-
 		model.togglePlayPause();
-
-		verify(player).pause();
-	}
-
-	@Test
-	public void togglePlayPause_notIsPlaying_resume() {
-		when(player.isPlaying()).thenReturn(false);
-		model.onServiceConnected(null, binder);
-
-		model.togglePlayPause();
-
-		verify(player).resume();
+		verify(player).playPause();
 	}
 
 	@Test
 	public void onServiceConnected_setOnPreparedListener() {
 		model.onServiceConnected(null, binder);
-		verify(player).setOnPreparedListener(model);
+		verify(player).setOnNewTrackListener(model);
 	}
 
 	@Test
@@ -115,7 +96,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		model.setOnNewTrackListener(listener);
 		model.onServiceConnected(null, binder);
 
-		model.onPrepared();
+		model.onNewTrack();
 
 		verify(listener).onNewTrack();
 	}

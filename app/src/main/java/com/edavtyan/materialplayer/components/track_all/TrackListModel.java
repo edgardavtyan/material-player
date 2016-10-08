@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 
@@ -16,7 +16,7 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 	private final Context context;
 	private final TrackDB db;
 	private List<Track> tracks;
-	private MusicPlayerService service;
+	private PlayerService service;
 
 	public TrackListModel(Context context, TrackDB db) {
 		this.context = context;
@@ -37,18 +37,18 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 
 	@Override
 	public void playQueue(int position) {
-		service.playQueue(tracks, position);
+		service.getPlayer().playNewTracks(tracks, position);
 	}
 
 	@Override
 	public void addToQueue(int position) {
-		service.addToQueue(tracks.get(position));
+		service.getPlayer().addTrack(tracks.get(position));
 	}
 
 	@Override
 	public void bindService() {
 		context.bindService(
-				new Intent(context, MusicPlayerService.class),
+				new Intent(context, PlayerService.class),
 				this, Context.BIND_AUTO_CREATE);
 	}
 
@@ -69,7 +69,7 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
+		service = ((PlayerService.PlayerBinder) binder).getService();
 	}
 
 	@Override

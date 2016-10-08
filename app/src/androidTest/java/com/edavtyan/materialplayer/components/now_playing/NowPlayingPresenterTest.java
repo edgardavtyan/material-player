@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
+import com.edavtyan.materialplayer.components.player2.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
@@ -61,9 +63,9 @@ public class NowPlayingPresenterTest extends BaseTest {
 	public void onModelConnected_initView() {
 		File artFile = mock(File.class);
 
-		when(model.getRepeatMode()).thenReturn(NowPlayingMvp.RepeatState.REPEAT_ALL);
-		when(model.getShuffleMode()).thenReturn(NowPlayingMvp.ShuffleState.ENABLED);
-		when(model.getPlayPauseMode()).thenReturn(NowPlayingMvp.PlayPauseState.PLAYING);
+		when(model.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
+		when(model.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
+		when(model.isPlaying()).thenReturn(true);
 		when(model.getTitle()).thenReturn("title");
 		when(model.getArtist()).thenReturn("artist");
 		when(model.getAlbum()).thenReturn("album");
@@ -73,9 +75,9 @@ public class NowPlayingPresenterTest extends BaseTest {
 
 		presenter.onModelBound();
 
-		verify(controls).setRepeatState(NowPlayingMvp.RepeatState.REPEAT_ALL);
-		verify(controls).setShuffleState(NowPlayingMvp.ShuffleState.ENABLED);
-		verify(controls).setPlayPauseState(NowPlayingMvp.PlayPauseState.PLAYING);
+		verify(controls).setRepeatMode(RepeatMode.REPEAT_ALL);
+		verify(controls).setShuffleMode(ShuffleMode.ENABLED);
+		verify(controls).setIsPlaying(true);
 		verify(info).setTitle("title");
 		verify(info).setInfo("artist", "album");
 		verify(seekbar).setTrackDuration(8000);
@@ -104,16 +106,16 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onShuffleClick_toggleShuffleState() {
+	public void onShuffleClick_toggleShuffleMode() {
 		presenter.onShuffleClick();
 		verify(model).toggleShuffleMode();
 	}
 
 	@Test
-	public void onShuffleClick_setShuffleViewState() {
-		when(model.getShuffleMode()).thenReturn(NowPlayingMvp.ShuffleState.ENABLED);
+	public void onShuffleClick_setShuffleViewMode() {
+		when(model.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
 		presenter.onShuffleClick();
-		verify(controls).setShuffleState(model.getShuffleMode());
+		verify(controls).setShuffleMode(model.getShuffleMode());
 	}
 
 	@Test
@@ -128,17 +130,17 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onPlayPauseClick_togglePlayPauseState() {
-		when(model.getPlayPauseMode()).thenReturn(NowPlayingMvp.PlayPauseState.PLAYING);
+	public void onPlayPauseClick_togglePlayPauseMode() {
+		when(model.isPlaying()).thenReturn(true);
 		presenter.onPlayPauseClick();
-		verify(model).togglePlayPauseMode();
+		verify(model).playPause();
 	}
 
 	@Test
-	public void onPlayPauseClick_setPlayPauseViewState() {
-		when(model.getPlayPauseMode()).thenReturn(NowPlayingMvp.PlayPauseState.PLAYING);
+	public void onPlayPauseClick_setPlayPauseViewMode() {
+		when(model.isPlaying()).thenReturn(true);
 		presenter.onPlayPauseClick();
-		verify(controls).setPlayPauseState(model.getPlayPauseMode());
+		verify(controls).setIsPlaying(model.isPlaying());
 	}
 
 	@Test
@@ -153,16 +155,16 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onRepeatClick_toggleRepeatState() {
+	public void onRepeatClick_toggleRepeatMode() {
 		presenter.onRepeatClick();
 		verify(model).toggleRepeatMode();
 	}
 
 	@Test
-	public void onRepeatClick_setRepeatViewState() {
-		when(model.getRepeatMode()).thenReturn(NowPlayingMvp.RepeatState.REPEAT_ALL);
+	public void onRepeatClick_setRepeatViewMode() {
+		when(model.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		presenter.onRepeatClick();
-		verify(controls).setRepeatState(model.getRepeatMode());
+		verify(controls).setRepeatMode(model.getRepeatMode());
 	}
 
 	private void testViewUpdate(Runnable presenterCall) {

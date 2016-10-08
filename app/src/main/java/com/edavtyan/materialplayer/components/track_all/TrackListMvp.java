@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.track_all;
 
-import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 public interface TrackListMvp {
 	interface Model {

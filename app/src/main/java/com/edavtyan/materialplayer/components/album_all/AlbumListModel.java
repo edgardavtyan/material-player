@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -18,7 +18,7 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
 	private List<Album> albums;
-	private MusicPlayerService service;
+	private PlayerService service;
 
 	public AlbumListModel(Context context, AlbumDB albumDB, TrackDB trackDB) {
 		this.context = context;
@@ -45,7 +45,7 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 					"'bindService' should be called before calling 'onAddToPlaylist'");
 		}
 
-		service.getQueue().addAll(trackDB.getTracksWithAlbumId(albumId));
+		service.getPlayer().addManyTracks(trackDB.getTracksWithAlbumId(albumId));
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 	@Override
 	public void bindService() {
 		context.bindService(
-				new Intent(context, MusicPlayerService.class),
+				new Intent(context, PlayerService.class),
 				this, Context.BIND_AUTO_CREATE);
 	}
 
@@ -67,7 +67,7 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
+		service = ((PlayerService.PlayerBinder) binder).getService();
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.components.now_playing.models;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
+import com.edavtyan.materialplayer.components.player2.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 import com.edavtyan.materialplayer.utils.AppColors;
@@ -89,47 +91,47 @@ public class NowPlayingControlsTest extends BaseTest {
 	}
 
 	@Test
-	public void setShuffleState_enabled_setShuffleButtonColorFilterToAccent() {
-		controls.setShuffleState(NowPlayingMvp.ShuffleState.ENABLED);
+	public void setShuffleMode_enabled_setShuffleButtonColorFilterToAccent() {
+		controls.setShuffleMode(ShuffleMode.ENABLED);
 		verify(shuffleButton).setColorFilterNonFinal(colors.accent);
 	}
 
 	@Test
-	public void setShuffleState_disabled_setShuffleButtonColorFilterToContrast() {
-		controls.setShuffleState(NowPlayingMvp.ShuffleState.DISABLED);
+	public void setShuffleMode_disabled_setShuffleButtonColorFilterToContrast() {
+		controls.setShuffleMode(ShuffleMode.DISABLED);
 		verify(shuffleButton).setColorFilterNonFinal(colors.textPrimary);
 	}
 
 	@Test
-	public void setRepeatState_repeatAll_setRepeatButtonColorFilterAndIcon() {
-		controls.setRepeatState(NowPlayingMvp.RepeatState.REPEAT_ALL);
+	public void setRepeatMode_repeatAll_setRepeatButtonColorFilterAndIcon() {
+		controls.setRepeatMode(RepeatMode.REPEAT_ALL);
 		verify(repeatButton).setColorFilterNonFinal(colors.accent);
 		verify(repeatButton).setImageResource(R.drawable.ic_repeat);
 	}
 
 	@Test
-	public void setRepeatState_repeatOne_setRepeatButtonColorFilterAndIcon() {
-		controls.setRepeatState(NowPlayingMvp.RepeatState.REPEAT_ONE);
+	public void setRepeatMode_repeatOne_setRepeatButtonColorFilterAndIcon() {
+		controls.setRepeatMode(RepeatMode.REPEAT_ONE);
 		verify(repeatButton).setColorFilterNonFinal(colors.accent);
 		verify(repeatButton).setImageResource(R.drawable.ic_repeat_one);
 	}
 
 	@Test
-	public void setRepeatState_disabled_setRepeatButtonColorFilterAndIcon() {
-		controls.setRepeatState(NowPlayingMvp.RepeatState.DISABLED);
+	public void setRepeatMode_disabled_setRepeatButtonColorFilterAndIcon() {
+		controls.setRepeatMode(RepeatMode.DISABLED);
 		verify(repeatButton).setColorFilterNonFinal(colors.textPrimary);
 		verify(repeatButton).setImageResource(R.drawable.ic_repeat);
 	}
 
 	@Test
-	public void setPlayPauseState_playing_setPlayPauseIconToPause() {
-		controls.setPlayPauseState(NowPlayingMvp.PlayPauseState.PLAYING);
+	public void setPlayPauseMode_playing_setPlayPauseIconToPause() {
+		controls.setIsPlaying(true);
 		verify(playPauseButton).setImageResource(R.drawable.ic_pause);
 	}
 
 	@Test
-	public void setPlayPauseState_paused_setPlayPauseIconToPlay() {
-		controls.setPlayPauseState(NowPlayingMvp.PlayPauseState.PAUSED);
+	public void setPlayPauseMode_paused_setPlayPauseIconToPlay() {
+		controls.setIsPlaying(false);
 		verify(playPauseButton).setImageResource(R.drawable.ic_play);
 	}
 }

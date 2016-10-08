@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.view.ContextThemeWrapper;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
@@ -24,8 +24,8 @@ import static org.mockito.Mockito.when;
 
 public class AudioEffectsModelTest extends BaseTest {
 	private AudioEffectsMvp.Model model;
-	private MusicPlayerService service;
-	private MusicPlayerBinder binder;
+	private PlayerService service;
+	private PlayerBinder binder;
 
 	@Override
 	public void beforeEach() {
@@ -33,8 +33,8 @@ public class AudioEffectsModelTest extends BaseTest {
 
 		context = mock(ContextThemeWrapper.class);
 		model = new AudioEffectsModel(context);
-		service = mock(MusicPlayerService.class);
-		binder = mock(MusicPlayerBinder.class);
+		service = mock(PlayerService.class);
+		binder = mock(PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 	}
 
@@ -45,7 +45,7 @@ public class AudioEffectsModelTest extends BaseTest {
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		assertThat(intentCaptor.getValue()).classEqualTo(MusicPlayerService.class);
+		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
 	@Test

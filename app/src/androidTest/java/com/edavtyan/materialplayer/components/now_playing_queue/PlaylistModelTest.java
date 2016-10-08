@@ -3,7 +3,8 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
@@ -19,15 +20,19 @@ import static org.mockito.Mockito.when;
 
 public class PlaylistModelTest extends BaseTest {
 	private PlaylistMvp.Model model;
-	private MusicPlayerService.MusicPlayerBinder binder;
-	private MusicPlayerService service;
+	private PlayerService.PlayerBinder binder;
+	private PlayerMvp.Player player;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		service = mock(MusicPlayerService.class);
-		binder = mock(MusicPlayerService.MusicPlayerBinder.class);
+		player = mock(PlayerMvp.Player.class);
+
+		PlayerService service = mock(PlayerService.class);
+		when(service.getPlayer()).thenReturn(player);
+
+		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
 		model = new PlaylistModel(context);
@@ -40,7 +45,7 @@ public class PlaylistModelTest extends BaseTest {
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		assertThat(intentCaptor.getValue()).classEqualTo(MusicPlayerService.class);
+		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
 	@Test
@@ -51,23 +56,23 @@ public class PlaylistModelTest extends BaseTest {
 	}
 
 	@Test
-	public void playItemAtPosition_switchNowPlayingQueueTrackViaService() {
+	public void playItemAtPosition_callPlayer() {
 		model.onServiceConnected(null, binder);
 		model.playItemAtPosition(7);
-		verify(service).switchQueueTrackToPosition(7);
+		verify(player).playTrackAt(7);
 	}
 
 	@Test
-	public void removeItemAtPosition_removeItemFromNowPlayingQueueViaService() {
+	public void removeItemAtPosition_callService() {
 		model.onServiceConnected(null, binder);
 		model.removeItemAtPosition(7);
-		verify(service).removeQueueTrackAtPosition(7);
+		verify(player).removeTrackAt(7);
 	}
 
 	@Test
 	public void getTrackAtPosition_serviceConnected_getTrackFromService() {
 		Track track = mock(Track.class);
-		when(service.getQueueTrackAt(7)).thenReturn(track);
+		when(player.getTrackAt(7)).thenReturn(track);
 
 		model.onServiceConnected(null, binder);
 
@@ -76,10 +81,10 @@ public class PlaylistModelTest extends BaseTest {
 
 	@Test
 	public void getTrackCount_serviceConnected_getCountFromService() {
-		when(service.getQueueCount()).thenReturn(7);
+		when(player.getTracksCount()).thenReturn(7);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getTrackCount()).isEqualTo(7);
-		verify(service).getQueueCount();
+		verify(player).getTracksCount();
 	}
 
 	@Test

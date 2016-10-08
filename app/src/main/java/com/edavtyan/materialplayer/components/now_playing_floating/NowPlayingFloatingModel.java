@@ -5,18 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.components.player.MusicPlayer;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 
 import lombok.Setter;
 
 public class NowPlayingFloatingModel
 		implements NowPlayingFloatingMvp.Model,
-				   MusicPlayer.OnPreparedListener {
+				   PlayerMvp.Player.OnNewTrackListener {
 
 	private final Context context;
-	private MusicPlayerService service;
+	private PlayerService service;
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
@@ -26,7 +26,7 @@ public class NowPlayingFloatingModel
 
 	@Override
 	public void bind() {
-		Intent intent = new Intent(context, MusicPlayerService.class);
+		Intent intent = new Intent(context, PlayerService.class);
 		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 	}
 
@@ -37,7 +37,7 @@ public class NowPlayingFloatingModel
 
 	@Override
 	public Track getNowPlayingTrack() {
-		return service.getQueue().getCurrentTrack();
+		return service.getPlayer().getCurrentTrack();
 	}
 
 	@Override
@@ -47,22 +47,18 @@ public class NowPlayingFloatingModel
 
 	@Override
 	public void togglePlayPause() {
-		if (isPlaying()) {
-			service.getPlayer().pause();
-		} else {
-			service.getPlayer().resume();
-		}
+		service.getPlayer().playPause();
 	}
 
 	@Override
 	public boolean hasData() {
-		return service.getQueue().hasData();
+		return service.getPlayer().hasData();
 	}
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
-		service.getPlayer().setOnPreparedListener(this);
+		service = ((PlayerService.PlayerBinder) binder).getService();
+		service.getPlayer().setOnNewTrackListener(this);
 
 		if (onServiceConnectedListener != null) {
 			onServiceConnectedListener.onServiceConnected();
@@ -74,8 +70,7 @@ public class NowPlayingFloatingModel
 
 	}
 
-	@Override
-	public void onPrepared() {
+	@Override public void onNewTrack() {
 		if (onNewTrackListener != null) {
 			onNewTrackListener.onNewTrack();
 		}

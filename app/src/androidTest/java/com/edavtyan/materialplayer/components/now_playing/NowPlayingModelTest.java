@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
-import com.edavtyan.materialplayer.components.player.MusicPlayer;
-import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
-import com.edavtyan.materialplayer.components.player.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player2.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.lib.asertions.IntentAssert;
@@ -24,25 +23,21 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-//TODO: unify repeat, shuffle and play-pause modes
 public class NowPlayingModelTest extends BaseTest {
 	private NowPlayingMvp.Model model;
-	private MusicPlayerBinder binder;
-	private NowPlayingQueue queue;
-	private MusicPlayer player;
+	private PlayerService.PlayerBinder binder;
+	private PlayerMvp.Player player;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		queue = mock(NowPlayingQueue.class);
-		player = mock(MusicPlayer.class);
+		player = mock(PlayerMvp.Player.class);
 
-		MusicPlayerService service = mock(MusicPlayerService.class);
-		when(service.getQueue()).thenReturn(queue);
+		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);
 
-		binder = mock(MusicPlayerBinder.class);
+		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
 		InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
@@ -60,7 +55,7 @@ public class NowPlayingModelTest extends BaseTest {
 		model.bind();
 
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		IntentAssert.assertThat(intentCaptor.getValue()).classEqualTo(MusicPlayerService.class);
+		IntentAssert.assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
 	@Test
@@ -71,71 +66,48 @@ public class NowPlayingModelTest extends BaseTest {
 	}
 
 	@Test
-	public void getRepeatMode_noRepeat_returnDisabled() {
-		testRepeatMode(RepeatMode.NO_REPEAT, NowPlayingMvp.RepeatState.DISABLED);
-	}
-
-	@Test
-	public void getRepeatMode_repeatOne_returnRepeatOne() {
-		testRepeatMode(RepeatMode.REPEAT_ONE, NowPlayingMvp.RepeatState.REPEAT_ONE);
-	}
-
-	@Test
-	public void getRepeatMode_repeat_returnRepeatAll() {
-		testRepeatMode(RepeatMode.REPEAT, NowPlayingMvp.RepeatState.REPEAT_ALL);
+	public void getRepeatMode_returnRepeatModeFromPlayer() {
+		RepeatMode repeatMode = RepeatMode.REPEAT_ALL;
+		when(player.getRepeatMode()).thenReturn(repeatMode);
+		assertThat(model.getRepeatMode()).isSameAs(repeatMode);
 	}
 
 	@Test
 	public void toggleRepeatMode_callService() {
 		model.toggleRepeatMode();
-		verify(queue).toggleRepeatMode();
+		verify(player).toggleRepeatMode();
 	}
 
 	@Test
-	public void getShuffleMode_true_returnEnabled() {
-		testShuffleMode(true, NowPlayingMvp.ShuffleState.ENABLED);
-	}
-
-	@Test
-	public void getShuffleMode_false_returnDisabled() {
-		testShuffleMode(false, NowPlayingMvp.ShuffleState.DISABLED);
+	public void getShuffleMode_returnShuffleModeFromPlayer() {
+		ShuffleMode shuffleMode = ShuffleMode.ENABLED;
+		when(player.getShuffleMode()).thenReturn(shuffleMode);
+		assertThat(model.getShuffleMode()).isSameAs(shuffleMode);
 	}
 
 	@Test
 	public void toggleShuffle() {
 		model.toggleShuffleMode();
-		verify(queue).toggleShuffling();
+		verify(player).toggleShuffleMode();
 	}
 
 	@Test
-	public void getPlayPauseMode_true_returnPlaying() {
-		testPlayPauseMode(true, NowPlayingMvp.PlayPauseState.PLAYING);
-	}
-
-	@Test
-	public void getPlayPauseMode_false_returnPaused() {
-		testPlayPauseMode(false, NowPlayingMvp.PlayPauseState.PAUSED);
-	}
-
-	@Test
-	public void togglePlayPause_playing_pausePlayer() {
+	public void isPlaying_returnIsPlayingFromPlayer() {
 		when(player.isPlaying()).thenReturn(true);
-		model.togglePlayPauseMode();
-		verify(player).pause();
+		assertThat(model.isPlaying()).isTrue();
 	}
 
 	@Test
-	public void togglePlayPause_paused_resumePlayer() {
-		when(player.isPlaying()).thenReturn(false);
-		model.togglePlayPauseMode();
-		verify(player).resume();
+	public void togglePlayPause_playPausePlayer() {
+		model.playPause();
+		verify(player).playPause();
 	}
 
 	@Test
 	public void getTitle_returnTitleOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setTitle("title");
-		when(queue.getCurrentTrack()).thenReturn(track);
+		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getTitle()).isEqualTo("title");
 	}
 
@@ -143,7 +115,7 @@ public class NowPlayingModelTest extends BaseTest {
 	public void getArtist_returnArtistTitleOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setArtistTitle("artist");
-		when(queue.getCurrentTrack()).thenReturn(track);
+		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getArtist()).isEqualTo("artist");
 	}
 
@@ -151,7 +123,7 @@ public class NowPlayingModelTest extends BaseTest {
 	public void getAlbum_returnAlbumTitleOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setAlbumTitle("album");
-		when(queue.getCurrentTrack()).thenReturn(track);
+		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getAlbum()).isEqualTo("album");
 	}
 
@@ -159,13 +131,13 @@ public class NowPlayingModelTest extends BaseTest {
 	public void getDuration_returnDurationOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setDuration(1234);
-		when(queue.getCurrentTrack()).thenReturn(track);
+		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getDuration()).isEqualTo(1234);
 	}
 
 	@Test
 	public void getPosition_returnPositionOfNowPlayingTrack() {
-		when(player.getPosition()).thenReturn(5678);
+		when(player.getPosition()).thenReturn(5678L);
 		assertThat(model.getPosition()).isEqualTo(5678);
 	}
 
@@ -183,15 +155,13 @@ public class NowPlayingModelTest extends BaseTest {
 	@Test
 	public void rewind_rewindPlayerViaService() {
 		model.rewind();
-		verify(player).movePrev();
-		verify(player).prepare();
+		verify(player).rewind();
 	}
 
 	@Test
 	public void fastForward_fastForwardPlayerViaService() {
 		model.fastForward();
-		verify(player).moveNext();
-		verify(player).prepare();
+		verify(player).playNext();
 	}
 
 	@Test
@@ -200,20 +170,5 @@ public class NowPlayingModelTest extends BaseTest {
 		model.setOnModelBoundListener(listener);
 		model.onServiceConnected(null, binder);
 		verify(listener).onModelBound();
-	}
-
-	private void testPlayPauseMode(boolean actual, NowPlayingMvp.PlayPauseState expected) {
-		when(player.isPlaying()).thenReturn(actual);
-		assertThat(model.getPlayPauseMode()).isEqualTo(expected);
-	}
-
-	private void testRepeatMode(RepeatMode actual, NowPlayingMvp.RepeatState expected) {
-		when(queue.getRepeatMode()).thenReturn(actual);
-		assertThat(model.getRepeatMode()).isEqualTo(expected);
-	}
-
-	private void testShuffleMode(boolean actual, NowPlayingMvp.ShuffleState expected) {
-		when(queue.isShuffling()).thenReturn(actual);
-		assertThat(model.getShuffleMode()).isEqualTo(expected);
 	}
 }

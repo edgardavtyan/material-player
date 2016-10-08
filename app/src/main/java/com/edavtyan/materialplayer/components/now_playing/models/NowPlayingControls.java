@@ -5,6 +5,8 @@ import android.view.View;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
+import com.edavtyan.materialplayer.components.player2.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 import com.edavtyan.materialplayer.utils.AppColors;
 
@@ -61,8 +63,8 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	}
 
 	@Override
-	public void setShuffleState(NowPlayingMvp.ShuffleState shuffleState) {
-		switch (shuffleState) {
+	public void setShuffleMode(ShuffleMode shuffleMode) {
+		switch (shuffleMode) {
 		case ENABLED:
 			shuffleButton.setColorFilterNonFinal(colors.accent);
 			break;
@@ -73,8 +75,8 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	}
 
 	@Override
-	public void setRepeatState(NowPlayingMvp.RepeatState repeatState) {
-		switch (repeatState) {
+	public void setRepeatMode(RepeatMode repeatMode) {
+		switch (repeatMode) {
 		case REPEAT_ALL:
 			repeatButton.setColorFilterNonFinal(colors.accent);
 			repeatButton.setImageResource(R.drawable.ic_repeat);
@@ -91,14 +93,7 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	}
 
 	@Override
-	public void setPlayPauseState(NowPlayingMvp.PlayPauseState playPauseState) {
-		switch (playPauseState) {
-		case PLAYING:
-			playPauseButton.setImageResource(R.drawable.ic_pause);
-			break;
-		case PAUSED:
-			playPauseButton.setImageResource(R.drawable.ic_play);
-			break;
-		}
+	public void setIsPlaying(boolean isPlaying) {
+		playPauseButton.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
 	}
 }

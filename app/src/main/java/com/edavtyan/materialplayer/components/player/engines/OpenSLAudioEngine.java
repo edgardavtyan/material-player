@@ -17,7 +17,7 @@ public class OpenSLAudioEngine
 		player.setOnPreparedListener(this);
 	}
 
-	/* AudioEngine */
+	/* OpenSLAudioEngine */
 
 	@Override
 	public void reset() {

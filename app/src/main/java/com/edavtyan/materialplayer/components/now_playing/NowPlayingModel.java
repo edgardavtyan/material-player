@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player2.RepeatMode;
+import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import java.io.File;
@@ -15,7 +17,7 @@ import lombok.Setter;
 public class NowPlayingModel implements NowPlayingMvp.Model {
 	private final Context context;
 
-	private MusicPlayerService service;
+	private PlayerService service;
 
 	@Setter OnModelBoundListener onModelBoundListener;
 
@@ -25,7 +27,7 @@ public class NowPlayingModel implements NowPlayingMvp.Model {
 
 	@Override
 	public void bind() {
-		Intent intent = new Intent(context, MusicPlayerService.class);
+		Intent intent = new Intent(context, PlayerService.class);
 		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 	}
 
@@ -35,80 +37,63 @@ public class NowPlayingModel implements NowPlayingMvp.Model {
 	}
 
 	@Override
-	public NowPlayingMvp.RepeatState getRepeatMode() {
-		switch (service.getQueue().getRepeatMode()) {
-		case NO_REPEAT:
-			return NowPlayingMvp.RepeatState.DISABLED;
-		case REPEAT:
-			return NowPlayingMvp.RepeatState.REPEAT_ALL;
-		case REPEAT_ONE:
-			return NowPlayingMvp.RepeatState.REPEAT_ONE;
-		default:
-			return NowPlayingMvp.RepeatState.DISABLED;
-		}
+	public RepeatMode getRepeatMode() {
+		return service.getPlayer().getRepeatMode();
 	}
 
 	@Override
-	public NowPlayingMvp.PlayPauseState getPlayPauseMode() {
-		return service.getPlayer().isPlaying()
-				? NowPlayingMvp.PlayPauseState.PLAYING
-				: NowPlayingMvp.PlayPauseState.PAUSED;
+	public boolean isPlaying() {
+		return service.getPlayer().isPlaying();
 	}
 
 	@Override
-	public NowPlayingMvp.ShuffleState getShuffleMode() {
-		return service.getQueue().isShuffling()
-				? NowPlayingMvp.ShuffleState.ENABLED
-				: NowPlayingMvp.ShuffleState.DISABLED;
+	public ShuffleMode getShuffleMode() {
+		return service.getPlayer().getShuffleMode();
 	}
 
 	@Override
 	public void toggleRepeatMode() {
-		service.getQueue().toggleRepeatMode();
+		service.getPlayer().toggleRepeatMode();
 	}
 
 	@Override
 	public void toggleShuffleMode() {
-		service.getQueue().toggleShuffling();
+		service.getPlayer().toggleShuffleMode();
 	}
 
 	@Override
-	public void togglePlayPauseMode() {
-		if (service.getPlayer().isPlaying()) {
-			service.getPlayer().pause();
-		} else {
-			service.getPlayer().resume();
-		}
+	public void playPause() {
+		service.getPlayer().playPause();
 	}
 
 	@Override
 	public String getTitle() {
-		return service.getQueue().getCurrentTrack().getTitle();
+		return service.getPlayer().getCurrentTrack().getTitle();
 	}
 
 	@Override
 	public String getArtist() {
-		return service.getQueue().getCurrentTrack().getArtistTitle();
+		return service.getPlayer().getCurrentTrack().getArtistTitle();
 	}
 
 	@Override
 	public String getAlbum() {
-		return service.getQueue().getCurrentTrack().getAlbumTitle();
+		return service.getPlayer().getCurrentTrack().getAlbumTitle();
 	}
 
 	@Override
 	public int getDuration() {
-		return (int) service.getQueue().getCurrentTrack().getDuration();
+		return (int) service.getPlayer().getCurrentTrack().getDuration();
 	}
 
 	@Override
 	public int getPosition() {
-		return service.getPlayer().getPosition();
+		return (int) service.getPlayer().getPosition();
 	}
 
 	@Override
 	public File getArt() {
-		return ArtProvider.fromTrack(service.getQueue().getCurrentTrack());
+		return ArtProvider.fromTrack(service.getPlayer().getCurrentTrack());
 	}
 
 	@Override
@@ -118,19 +103,17 @@ public class NowPlayingModel implements NowPlayingMvp.Model {
 
 	@Override
 	public void rewind() {
-		service.getPlayer().movePrev();
-		service.getPlayer().prepare();
+		service.getPlayer().rewind();
 	}
 
 	@Override
 	public void fastForward() {
-		service.getPlayer().moveNext();
-		service.getPlayer().prepare();
+		service.getPlayer().playNext();
 	}
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
+		service = ((PlayerService.PlayerBinder) binder).getService();
 		if (onModelBoundListener != null) {
 			onModelBoundListener.onModelBound();
 		}

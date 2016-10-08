@@ -1,11 +1,9 @@
 package com.edavtyan.materialplayer;
 
 import android.app.Notification;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,19 +12,21 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.widget.RemoteViews;
 
-import com.edavtyan.materialplayer.utils.ArtProvider;
-import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.components.main.MainActivity;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.utils.PendingIntents;
 
-public class NowPlayingNotification implements ServiceConnection {
+public class NowPlayingNotification implements ServiceConnection,
+											   PlayerMvp.Player.OnNewTrackListener {
 	private static final int NOTIFICATION_ID = 1;
 
 	private final NotificationCompat.Builder builder;
 	private final NotificationManagerCompat manager;
 	private final Context context;
-	private MusicPlayerService service;
-
+	private PlayerService service;
 
 	public NowPlayingNotification(Context newContext) {
 		context = newContext;
@@ -35,21 +35,8 @@ public class NowPlayingNotification implements ServiceConnection {
 				.setSmallIcon(R.mipmap.ic_launcher)
 				.setContent(buildView());
 		context.bindService(
-				new Intent(context, MusicPlayerService.class),
+				new Intent(context, PlayerService.class),
 				this, Context.BIND_AUTO_CREATE);
-
-
-		BroadcastReceiver newTrackReceiver = new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				Notification notification = build();
-				manager.notify(NOTIFICATION_ID, notification);
-			}
-		};
-
-		context.registerReceiver(
-				newTrackReceiver,
-				new IntentFilter(MusicPlayerService.SEND_NEW_TRACK));
 	}
 
 	/*
@@ -58,17 +45,14 @@ public class NowPlayingNotification implements ServiceConnection {
 
 	@Override
 	public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-		service = ((MusicPlayerService.MusicPlayerBinder) iBinder).getService();
+		service = ((PlayerService.PlayerBinder) iBinder).getService();
+		service.getPlayer().setOnNewTrackListener(this);
 		builder.setContent(buildView());
 	}
 
 	@Override
 	public void onServiceDisconnected(ComponentName componentName) {
 	}
-
-	/*
-	 * Methods
-	 */
 
 	public Notification build() {
 		Notification notification = builder
@@ -77,6 +61,11 @@ public class NowPlayingNotification implements ServiceConnection {
 				.build();
 		notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
 		return notification;
+	}
+
+	@Override public void onNewTrack() {
+		Notification notification = build();
+		manager.notify(NOTIFICATION_ID, notification);
 	}
 
 	private RemoteViews buildView() {
@@ -91,18 +80,18 @@ public class NowPlayingNotification implements ServiceConnection {
 		view.setOnClickPendingIntent(
 				R.id.info_wrapper,
 				PendingIntents.fromIntent(context, notificationIntent));
-		view.setOnClickPendingIntent(
-				R.id.play_pause,
-				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_PLAY_PAUSE));
-		view.setOnClickPendingIntent(
-				R.id.fast_forward,
-				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_FAST_FORWARD));
-		view.setOnClickPendingIntent(
-				R.id.rewind,
-				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_REWIND));
+//		view.setOnClickPendingIntent(
+//				R.id.play_pause,
+//				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_PLAY_PAUSE));
+//		view.setOnClickPendingIntent(
+//				R.id.fast_forward,
+//				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_FAST_FORWARD));
+//		view.setOnClickPendingIntent(
+//				R.id.rewind,
+//				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_REWIND));
 
-		if (service != null && service.getQueue().hasData()) {
-			Track track = service.getQueue().getCurrentTrack();
+		if (service != null && service.getPlayer().hasData()) {
+			Track track = service.getPlayer().getCurrentTrack();
 			view.setTextViewText(R.id.title, track.getTitle());
 			view.setTextViewText(R.id.info, track.getAlbumTitle());
 

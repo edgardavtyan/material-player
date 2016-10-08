@@ -39,16 +39,16 @@ public class NowPlayingPresenter implements NowPlayingMvp.Presenter {
 
 	@Override
 	public void onModelBound() {
-		view.getControls().setShuffleState(model.getShuffleMode());
-		view.getControls().setRepeatState(model.getRepeatMode());
-		view.getControls().setPlayPauseState(model.getPlayPauseMode());
+		view.getControls().setShuffleMode(model.getShuffleMode());
+		view.getControls().setRepeatMode(model.getRepeatMode());
+		view.getControls().setIsPlaying(model.isPlaying());
 		updateViewInfo();
 	}
 
 	@Override
 	public void onShuffleClick() {
 		model.toggleShuffleMode();
-		view.getControls().setShuffleState(model.getShuffleMode());
+		view.getControls().setShuffleMode(model.getShuffleMode());
 	}
 
 	@Override
@@ -59,16 +59,13 @@ public class NowPlayingPresenter implements NowPlayingMvp.Presenter {
 
 	@Override
 	public void onPlayPauseClick() {
-		model.togglePlayPauseMode();
-		view.getControls().setPlayPauseState(model.getPlayPauseMode());
+		model.playPause();
+		view.getControls().setIsPlaying(model.isPlaying());
 
-		switch (model.getPlayPauseMode()) {
-		case PAUSED:
-			seekbarTimer.stop();
-			break;
-		case PLAYING:
+		if (model.isPlaying()) {
 			seekbarTimer.run();
-			break;
+		} else {
+			seekbarTimer.stop();
 		}
 	}
 
@@ -81,7 +78,7 @@ public class NowPlayingPresenter implements NowPlayingMvp.Presenter {
 	@Override
 	public void onRepeatClick() {
 		model.toggleRepeatMode();
-		view.getControls().setRepeatState(model.getRepeatMode());
+		view.getControls().setRepeatMode(model.getRepeatMode());
 	}
 
 	@Override

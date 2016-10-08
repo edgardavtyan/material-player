@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.components.album_all;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
-import com.edavtyan.materialplayer.components.player.NowPlayingQueue;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
 
@@ -27,7 +26,7 @@ public class AlbumListModelTest extends BaseTest {
 	private AlbumDB albumDB;
 	private TrackDB trackDB;
 	private AlbumListModel model;
-	private MusicPlayerService service;
+	private PlayerService service;
 
 	@Override
 	@SuppressWarnings({"WrongConstant", "unchecked"})
@@ -43,10 +42,9 @@ public class AlbumListModelTest extends BaseTest {
 		when(trackDB.getAllTracks()).thenReturn(tracks);
 
 		model = new AlbumListModel(context, albumDB, trackDB);
-		service = mock(MusicPlayerService.class);
+		service = mock(PlayerService.class);
 
-		MusicPlayerService.MusicPlayerBinder binder
-				= mock(MusicPlayerService.MusicPlayerBinder.class);
+		PlayerService.PlayerBinder binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
 		model = new AlbumListModel(context, albumDB, trackDB);
@@ -86,21 +84,18 @@ public class AlbumListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void addToPlaylist_bindServiceCalled_callService() {
-		NowPlayingQueue queue = mock(NowPlayingQueue.class);
-		when(service.getQueue()).thenReturn(queue);
+	public void addToPlaylist_bindServiceCalled_addTracksToPlayer() {
+		PlayerMvp.Player player = mock(PlayerMvp.Player.class);
+		when(service.getPlayer()).thenReturn(player);
 
 		model.bindService();
 		model.addToPlaylist(0);
 
-		verify(queue).addAll(any());
+		verify(player).addManyTracks(any());
 	}
 
 	@Test
 	public void addToPlaylist_bindServiceNotCalled_throwException() {
-		NowPlayingQueue queue = mock(NowPlayingQueue.class);
-		when(service.getQueue()).thenReturn(queue);
-
 		assertThatThrownBy(() -> model.addToPlaylist(0))
 				.isInstanceOf(IllegalStateException.class);
 	}

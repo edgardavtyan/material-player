@@ -5,18 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 
 import lombok.Setter;
 
 public class AudioEffectsModel implements AudioEffectsMvp.Model {
 	private final Context context;
 
-	private MusicPlayerService service;
+	private PlayerService service;
 
 	private @Setter ServiceConnectionListener onServiceConnectedListener;
 
@@ -26,7 +26,7 @@ public class AudioEffectsModel implements AudioEffectsMvp.Model {
 
 	@Override
 	public void init() {
-		Intent intent = new Intent(context, MusicPlayerService.class);
+		Intent intent = new Intent(context, PlayerService.class);
 		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 	}
 
@@ -57,7 +57,7 @@ public class AudioEffectsModel implements AudioEffectsMvp.Model {
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((MusicPlayerService.MusicPlayerBinder) binder).getService();
+		service = ((PlayerService.PlayerBinder) binder).getService();
 
 		if (onServiceConnectedListener != null) {
 			onServiceConnectedListener.onServiceConnected();

@@ -3,11 +3,12 @@ package com.edavtyan.materialplayer.components.track_all;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
-import com.edavtyan.materialplayer.MusicPlayerService.MusicPlayerBinder;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -27,9 +28,9 @@ import static org.mockito.Mockito.when;
 public class TrackListModelTest extends BaseTest {
 	private List tracks;
 	private TrackListModel model;
-	private MusicPlayerService service;
-	private MusicPlayerBinder binder;
+	private PlayerBinder binder;
 	private Context mockContext;
+	private PlayerMvp.Player player;
 
 	@Override
 	@SuppressWarnings({"unchecked", "WrongConstant"})
@@ -43,8 +44,13 @@ public class TrackListModelTest extends BaseTest {
 		when(db.getAllTracks()).thenReturn(tracks);
 
 		model = spy(new TrackListModel(mockContext, db));
-		service = mock(MusicPlayerService.class);
-		binder = mock(MusicPlayerBinder.class);
+
+		player = mock(PlayerMvp.Player.class);
+
+		PlayerService service = mock(PlayerService.class);
+		when(service.getPlayer()).thenReturn(player);
+
+		binder = mock(PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
 		doAnswer(invocationOnMock -> {
@@ -108,7 +114,7 @@ public class TrackListModelTest extends BaseTest {
 
 		model.playQueue(0);
 
-		verify(service).playQueue(tracks, 0);
+		verify(player).playNewTracks(tracks, 0);
 	}
 
 	@Test
@@ -120,7 +126,7 @@ public class TrackListModelTest extends BaseTest {
 
 		model.addToQueue(0);
 
-		verify(service).addToQueue(track);
+		verify(player).addTrack(track);
 	}
 
 	@Test
