@@ -34,7 +34,7 @@ public class PlayerService extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		startForeground(0, notification.build());
+		startForeground(1, notification.build());
 		return START_NOT_STICKY;
 	}
 
