@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
+import android.content.Context;
+
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.components.track_all.TrackListModel;
 import com.edavtyan.materialplayer.db.Track;
@@ -15,12 +17,12 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 	private final int albumId;
 
 	public AlbumDetailModel(
-			AlbumDetailActivity view,
+			Context context,
 			ArtistDB artistDB,
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			int albumId) {
-		super(view, trackDB);
+		super(context, trackDB);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
 		this.albumId = albumId;

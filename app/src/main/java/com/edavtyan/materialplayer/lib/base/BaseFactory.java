@@ -12,6 +12,10 @@ public abstract class BaseFactory {
 		this.context = context;
 	}
 
+	public Context provideContext() {
+		return context;
+	}
+
 	public Navigator provideNavigator() {
 		if (navigator == null) navigator = new Navigator(context);
 		return navigator;

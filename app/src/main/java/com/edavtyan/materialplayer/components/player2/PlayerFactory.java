@@ -10,117 +10,134 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.HQEqualizer;
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
-import com.h6ah4i.android.media.audiofx.IBassBoost;
-import com.h6ah4i.android.media.audiofx.IEqualizer;
-import com.h6ah4i.android.media.audiofx.IPreAmp;
-import com.h6ah4i.android.media.audiofx.IVirtualizer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerFactory extends BaseFactory {
-	private final OpenSLMediaPlayerFactory factory;
-	private final Context context;
-
+	private AdvancedSharedPrefs prefs;
+	private Amplifier amplifier;
+	private ArrayList<Track> queueList;
+	private BassBoost bassBoost;
+	private HQEqualizer equalizer;
+	private IBasicMediaPlayer openslPlayer;
+	private NowPlayingNotification notification;
+	private OpenSLAudioEngine audioEngine;
+	private OpenSLMediaPlayerContext.Parameters params;
+	private OpenSLMediaPlayerFactory openslFactory;
 	private Player player;
 	private Queue queue;
-	private HQEqualizer equalizer;
-	private Amplifier amplifier;
-	private BassBoost bassBoost;
-	private NowPlayingNotification notification;
-
+	private SharedPreferences basePrefs;
 	private Surround surround;
-	private OpenSLAudioEngine audioEngine;
-	private AdvancedSharedPrefs prefs;
-	private IBasicMediaPlayer basePlayer;
 
-	public PlayerFactory(Context context, OpenSLMediaPlayerContext.Parameters params) {
+	public PlayerFactory(Context context) {
 		super(context);
-		this.context = context;
-
-		params.options =
-				OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER
-				| OpenSLMediaPlayerContext.OPTION_USE_BASSBOOST
-				| OpenSLMediaPlayerContext.OPTION_USE_PREAMP
-				| OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER;
-
-		factory = new OpenSLMediaPlayerFactory(context, params);
 	}
 
 	public PlayerMvp.Player providePlayer() {
-		if (player == null) {
-			player = new Player(provideAudioEngine(), provideQueue(), providePrefs());
-		}
-
+		if (player == null)
+			player = new Player(
+					provideAudioEngine(),
+					provideQueue(),
+					providePrefs());
 		return player;
 	}
 
 	public Equalizer provideEqualizer() {
-		if (equalizer == null) {
-			IEqualizer baseEqualizer = factory.createHQEqualizer();
-			equalizer = new HQEqualizer(baseEqualizer, providePrefs());
-		}
-
+		if (equalizer == null)
+			equalizer = new HQEqualizer(
+					provideOpenSLFactory().createHQEqualizer(),
+					providePrefs());
 		return equalizer;
 	}
 
 	public Amplifier provideAmplifier() {
-		if (amplifier == null) {
-			IPreAmp baseAmplifier = factory.createPreAmp();
-			amplifier = new Amplifier(baseAmplifier, providePrefs());
-		}
-
+		if (amplifier == null)
+			amplifier = new Amplifier(
+					provideOpenSLFactory().createPreAmp(),
+					providePrefs());
 		return amplifier;
 	}
 
 	public BassBoost provideBassBoost() {
-		if (bassBoost == null) {
-			IBassBoost baseBassBoost = factory.createBassBoost(provideBasePlayer());
-			bassBoost = new BassBoost(baseBassBoost, providePrefs());
-		}
-
+		if (bassBoost == null)
+			bassBoost = new BassBoost(
+					provideOpenSLFactory().createBassBoost(provideOpenSLPlayer()),
+					providePrefs());
 		return bassBoost;
 	}
 
 	public Surround provideSurround() {
-		if (surround == null) {
-			IVirtualizer baseSurround = factory.createVirtualizer(provideBasePlayer());
-			surround = new Surround(baseSurround, providePrefs());
-		}
-
+		if (surround == null)
+			surround = new Surround(
+					provideOpenSLFactory().createVirtualizer(provideOpenSLPlayer()),
+					providePrefs());
 		return surround;
 	}
 
 	public NowPlayingNotification provideNotification() {
-		if (notification == null) notification = new NowPlayingNotification(context);
+		if (notification == null)
+			notification = new NowPlayingNotification(provideContext());
 		return notification;
 	}
 
-	private PlayerMvp.AudioEngine provideAudioEngine() {
-		if (audioEngine == null) audioEngine = new OpenSLAudioEngine(provideBasePlayer());
-		return audioEngine;
+	private OpenSLMediaPlayerContext.Parameters provideOpenSLParams() {
+		if (params == null) {
+			params = new OpenSLMediaPlayerContext.Parameters();
+			params.options =
+					OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER
+					| OpenSLMediaPlayerContext.OPTION_USE_BASSBOOST
+					| OpenSLMediaPlayerContext.OPTION_USE_PREAMP
+					| OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER;
+		}
+		return params;
 	}
 
-	private PlayerMvp.Queue provideQueue() {
-		if (queue == null) queue = new Queue(new ArrayList<>());
-		return queue;
-	}
-
-	private IBasicMediaPlayer provideBasePlayer() {
-		if (basePlayer == null) basePlayer = factory.createMediaPlayer();
-		return basePlayer;
+	private SharedPreferences provideBasePrefs() {
+		if (basePrefs == null)
+			basePrefs = PreferenceManager.getDefaultSharedPreferences(provideContext());
+		return basePrefs;
 	}
 
 	private AdvancedSharedPrefs providePrefs() {
-		if (prefs == null) {
-			SharedPreferences basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
-			prefs = new AdvancedSharedPrefs(basePrefs);
-		}
-
+		if (prefs == null)
+			prefs = new AdvancedSharedPrefs(provideBasePrefs());
 		return prefs;
+	}
+
+	private OpenSLMediaPlayerFactory provideOpenSLFactory() {
+		if (openslFactory == null)
+			openslFactory = new OpenSLMediaPlayerFactory(provideContext(), provideOpenSLParams());
+		return openslFactory;
+	}
+
+	private List<Track> provideQueueList() {
+		if (queueList == null)
+			queueList = new ArrayList<>();
+		return queueList;
+	}
+
+	private PlayerMvp.Queue provideQueue() {
+		if (queue == null)
+			queue = new Queue(provideQueueList());
+		return queue;
+	}
+
+	private PlayerMvp.AudioEngine provideAudioEngine() {
+		if (audioEngine == null)
+			audioEngine = new OpenSLAudioEngine(provideOpenSLPlayer());
+		return audioEngine;
+	}
+
+	private IBasicMediaPlayer provideOpenSLPlayer() {
+		if (openslPlayer == null)
+			openslPlayer = provideOpenSLFactory().createMediaPlayer();
+		return openslPlayer;
 	}
 }

@@ -27,7 +27,6 @@ import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
 import com.edavtyan.materialplayer.utils.logging.Logger;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 
 import lombok.Getter;
 
@@ -83,8 +82,8 @@ public class App
 		return new AudioEffectsFactory(context, view);
 	}
 
-	public PlayerFactory getPlayerFactory(Context context, OpenSLMediaPlayerContext.Parameters params) {
-		return new PlayerFactory(context, params);
+	public PlayerFactory getPlayerFactory(Context context) {
+		return new PlayerFactory(context);
 	}
 
 	public SdkFactory getSdkFactory() {

@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 public class ArtistDetailFactory extends BaseFactory {
-	private final Context context;
 	private final String artistTitle;
 	private ArtistDetailMvp.Model model;
 	private ArtistDetailMvp.View view;
@@ -18,17 +17,16 @@ public class ArtistDetailFactory extends BaseFactory {
 
 	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
 		super(context);
-		this.context = context;
 		this.view = view;
 		this.artistTitle = artistTitle;
 	}
 
 	public ArtistDetailMvp.Model provideModel() {
 		if (model == null) {
-			AlbumDB albumDB = new AlbumDB(context);
-			TrackDB trackDB = new TrackDB(context);
-			ArtistDB artistDB = new ArtistDB(context);
-			model = new ArtistDetailModel(context, artistDB, albumDB, trackDB, artistTitle);
+			AlbumDB albumDB = new AlbumDB(provideContext());
+			TrackDB trackDB = new TrackDB(provideContext());
+			ArtistDB artistDB = new ArtistDB(provideContext());
+			model = new ArtistDetailModel(provideContext(), artistDB, albumDB, trackDB, artistTitle);
 		}
 
 		return model;
@@ -39,12 +37,14 @@ public class ArtistDetailFactory extends BaseFactory {
 	}
 
 	public ArtistDetailMvp.Presenter providePresenter() {
-		if (presenter == null) presenter = new ArtistDetailPresenter(provideModel(), provideView());
+		if (presenter == null)
+			presenter = new ArtistDetailPresenter(provideModel(), provideView());
 		return presenter;
 	}
 
 	public AlbumListAdapter provideAdapter() {
-		if (adapter == null) adapter = new AlbumListAdapter(context, providePresenter());
+		if (adapter == null)
+			adapter = new AlbumListAdapter(provideContext(), providePresenter());
 		return adapter;
 	}
 }

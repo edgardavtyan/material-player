@@ -6,7 +6,6 @@ import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 public class ArtistListFactory extends BaseFactory {
-	private final Context context;
 	private final ArtistListMvp.View view;
 	private ArtistListModel model;
 	private ArtistDB artistDB;
@@ -15,8 +14,11 @@ public class ArtistListFactory extends BaseFactory {
 
 	public ArtistListFactory(Context context, ArtistListMvp.View view) {
 		super(context);
-		this.context = context;
 		this.view = view;
+	}
+
+	public ArtistListMvp.View provideView() {
+		return view;
 	}
 
 	public ArtistListMvp.Model provideModel() {
@@ -25,21 +27,19 @@ public class ArtistListFactory extends BaseFactory {
 	}
 
 	public ArtistDB provideArtistDB() {
-		if (artistDB == null) artistDB = new ArtistDB(context);
+		if (artistDB == null) artistDB = new ArtistDB(provideContext());
 		return artistDB;
 	}
 
-	public ArtistListMvp.View provideView() {
-		return view;
-	}
-
 	public ArtistListMvp.Presenter providePresenter() {
-		if (presenter == null) presenter = new ArtistListPresenter(provideModel(), provideView());
+		if (presenter == null)
+			presenter = new ArtistListPresenter(provideModel(), provideView());
 		return presenter;
 	}
 
 	public ArtistListAdapter provideAdapter() {
-		if (adapter == null) adapter = new ArtistListAdapter(context, providePresenter());
+		if (adapter == null)
+			adapter = new ArtistListAdapter(provideContext(), providePresenter());
 		return adapter;
 	}
 }

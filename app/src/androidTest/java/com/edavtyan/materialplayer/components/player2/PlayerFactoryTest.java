@@ -6,20 +6,17 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.lib.BaseTest;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext.Parameters;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 public class PlayerFactoryTest extends BaseTest {
 	private PlayerFactory playerFactory;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-		Parameters params = mock(Parameters.class);
-		playerFactory = new PlayerFactory(context, params);
+		playerFactory = new PlayerFactory(context);
 	}
 
 	@Test public void providePlayer_returnSamePlayerEveryTime() {

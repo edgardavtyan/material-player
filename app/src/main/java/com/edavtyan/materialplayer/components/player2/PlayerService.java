@@ -11,7 +11,6 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 
 import lombok.Getter;
 
@@ -43,8 +42,7 @@ public class PlayerService extends Service {
 		super.onCreate();
 
 		App app = (App) getApplicationContext();
-		OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
-		PlayerFactory playerFactory = app.getPlayerFactory(this, params);
+		PlayerFactory playerFactory = app.getPlayerFactory(this);
 		player = playerFactory.providePlayer();
 		equalizer = playerFactory.provideEqualizer();
 		amplifier = playerFactory.provideAmplifier();
