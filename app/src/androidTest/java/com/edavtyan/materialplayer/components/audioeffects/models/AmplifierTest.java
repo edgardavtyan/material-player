@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.BaseTest;
