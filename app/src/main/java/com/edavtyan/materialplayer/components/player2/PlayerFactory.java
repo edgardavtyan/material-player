@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.NowPlayingNotification;
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -27,7 +26,6 @@ public class PlayerFactory extends BaseFactory {
 	private BassBoost bassBoost;
 	private HQEqualizer equalizer;
 	private IBasicMediaPlayer openslPlayer;
-	private NowPlayingNotification notification;
 	private OpenSLAudioEngine audioEngine;
 	private OpenSLMediaPlayerContext.Parameters params;
 	private OpenSLMediaPlayerFactory openslFactory;
@@ -79,12 +77,6 @@ public class PlayerFactory extends BaseFactory {
 					provideOpenSLFactory().createVirtualizer(provideOpenSLPlayer()),
 					providePrefs());
 		return surround;
-	}
-
-	public NowPlayingNotification provideNotification() {
-		if (notification == null)
-			notification = new NowPlayingNotification(provideContext());
-		return notification;
 	}
 
 	private OpenSLMediaPlayerContext.Parameters provideOpenSLParams() {

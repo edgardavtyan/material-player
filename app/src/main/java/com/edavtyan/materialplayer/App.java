@@ -23,6 +23,7 @@ import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFlo
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistFactory;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerFactory;
+import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
@@ -84,6 +85,12 @@ public class App
 
 	public PlayerFactory getPlayerFactory(Context context) {
 		return new PlayerFactory(context);
+	}
+
+	public PlayerNotificationFactory getPlayerNotificationFactory(
+			Context context,
+			int layoutId) {
+		return new PlayerNotificationFactory(context, layoutId);
 	}
 
 	public SdkFactory getSdkFactory() {

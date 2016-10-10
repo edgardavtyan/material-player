@@ -1,0 +1,35 @@
+package com.edavtyan.materialplayer.components.player_notification;
+
+import android.app.Notification;
+import android.content.ServiceConnection;
+
+import com.edavtyan.materialplayer.db.Track;
+
+public interface PlayerNotificationMvp extends ServiceConnection {
+	interface Model extends ServiceConnection {
+		interface OnNewTrackListener {
+			void onNewTrack();
+		}
+
+		void setOnNewTrackListener(OnNewTrackListener listener);
+		void bind();
+		void unbind();
+		boolean isPlaying();
+		Track getTrack();
+	}
+
+	interface View {
+		void setTitle(String title);
+		void setInfo(String artist, String album);
+		void setArt(Track track);
+		void setIsPlaying(boolean isPlaying);
+		void update();
+		Notification getNotification();
+	}
+
+	interface Presenter {
+		void onCreate();
+		void onDestroy();
+		void onNewTrack();
+	}
+}

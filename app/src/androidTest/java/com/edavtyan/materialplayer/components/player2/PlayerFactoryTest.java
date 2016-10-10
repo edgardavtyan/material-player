@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.player2;
 
-import com.edavtyan.materialplayer.NowPlayingNotification;
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -56,14 +55,6 @@ public class PlayerFactoryTest extends BaseTest {
 			Surround firstSurround = playerFactory.provideSurround();
 			Surround secondSurround = playerFactory.provideSurround();
 			assertThat(firstSurround).isSameAs(secondSurround);
-		});
-	}
-
-	@Test public void provideNotification_returnSameNotificationEveryTime() {
-		runOnUiThread(() -> {
-			NowPlayingNotification firstNotification = playerFactory.provideNotification();
-			NowPlayingNotification secondNotification = playerFactory.provideNotification();
-			assertThat(firstNotification).isSameAs(secondNotification);
 		});
 	}
 }

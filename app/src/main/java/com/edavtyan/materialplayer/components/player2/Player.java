@@ -3,9 +3,8 @@ package com.edavtyan.materialplayer.components.player2;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import lombok.Setter;
 
 public class Player
 		implements PlayerMvp.Player,
@@ -13,8 +12,7 @@ public class Player
 
 	private final PlayerMvp.AudioEngine audioEngine;
 	private final PlayerMvp.Queue queue;
-
-	private @Setter OnNewTrackListener onNewTrackListener;
+	private final List<OnNewTrackListener> onNewTrackListeners;
 
 	public Player(
 			PlayerMvp.AudioEngine audioEngine,
@@ -28,6 +26,12 @@ public class Player
 		this.queue = queue;
 		this.queue.setRepeatMode(repeatMode);
 		this.queue.setShuffleMode(shuffleMode);
+
+		onNewTrackListeners = new ArrayList<>();
+	}
+
+	@Override public void setOnNewTrackListener(OnNewTrackListener listener) {
+		onNewTrackListeners.add(listener);
 	}
 
 	@Override public void addTrack(Track track) {
@@ -127,6 +131,8 @@ public class Player
 	}
 
 	@Override public void onPrepared() {
-		if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
+		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
+			onNewTrackListener.onNewTrack();
+		}
 	}
 }

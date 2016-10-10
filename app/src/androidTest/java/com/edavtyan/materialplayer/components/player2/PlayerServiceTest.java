@@ -6,9 +6,10 @@ import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.NowPlayingNotification;
-import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
+import com.edavtyan.materialplayer.components.player_notification.PlayerNotification;
+import com.edavtyan.materialplayer.lib.BaseTest;
+
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,12 +32,11 @@ public class PlayerServiceTest extends BaseTest {
 
 		player = mock(PlayerMvp.Player.class);
 		notification = mock(Notification.class);
-		NowPlayingNotification nowPlayingNotification = mock(NowPlayingNotification.class);
-		when(nowPlayingNotification.build()).thenReturn(notification);
+		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
+		when(nowPlayingNotification.getNotification()).thenReturn(notification);
 
 		PlayerFactory playerFactory = mock(PlayerFactory.class);
 		when(playerFactory.providePlayer()).thenReturn(player);
-		when(playerFactory.provideNotification()).thenReturn(nowPlayingNotification);
 
 		App app = mock(App.class);
 		when(app.getPlayerFactory(any())).thenReturn(playerFactory);
