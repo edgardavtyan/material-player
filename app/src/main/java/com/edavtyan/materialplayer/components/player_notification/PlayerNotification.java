@@ -8,6 +8,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
@@ -39,6 +40,10 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
 				.setContent(remoteViews)
 				.build();
+
+		remoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
+		remoteViews.setOnClickBroadcast(R.id.play_pause, PlayerService.ACTION_PLAY_PAUSE);
+		remoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
 	}
 
 	@Override public void setTitle(String title) {
