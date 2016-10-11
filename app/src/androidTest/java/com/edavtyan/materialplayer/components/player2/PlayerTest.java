@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.components.player2.PlayerMvp.Player.OnNewTrackListener;
+import com.edavtyan.materialplayer.components.player2.PlayerMvp.Player.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -202,6 +203,13 @@ public class PlayerTest extends BaseTest {
 	@Test public void playPause_callEngine() {
 		player.playPause();
 		verify(audioEngine).playPause();
+	}
+
+	@Test public void playPause_callOnPlayPauseListener() {
+		OnPlayPauseListener listener = mock(OnPlayPauseListener.class);
+		player.setOnPlayPauseListener(listener);
+		player.playPause();
+		verify(listener).onPlayPause();
 	}
 
 	@Test public void hasData_returnFromQueue() {

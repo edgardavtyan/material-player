@@ -14,13 +14,14 @@ import lombok.Setter;
 
 public class PlayerNotificationModel
 		implements ServiceConnection, PlayerNotificationMvp.Model,
-				   PlayerMvp.Player.OnNewTrackListener {
+				   PlayerMvp.Player.OnNewTrackListener, PlayerMvp.Player.OnPlayPauseListener {
 
 	private final Context context;
 
 	private PlayerService service;
 
 	private @Setter OnNewTrackListener onNewTrackListener;
+	private @Setter OnPlayPauseListener onPlayPauseListener;
 
 	public PlayerNotificationModel(Context context) {
 		this.context = context;
@@ -46,6 +47,7 @@ public class PlayerNotificationModel
 	@Override public void onServiceConnected(ComponentName name, IBinder binder) {
 		service = ((PlayerService.PlayerBinder) binder).getService();
 		service.getPlayer().setOnNewTrackListener(this);
+		service.getPlayer().setOnPlayPauseListener(this);
 	}
 
 	@Override public void onServiceDisconnected(ComponentName name) {
@@ -53,5 +55,9 @@ public class PlayerNotificationModel
 
 	@Override public void onNewTrack() {
 		if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
+	}
+
+	@Override public void onPlayPause() {
+		if (onPlayPauseListener != null) onPlayPauseListener.onPlayPause();
 	}
 }

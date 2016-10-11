@@ -11,7 +11,13 @@ public interface PlayerNotificationMvp extends ServiceConnection {
 			void onNewTrack();
 		}
 
+		interface OnPlayPauseListener {
+			void onPlayPause();
+		}
+
 		void setOnNewTrackListener(OnNewTrackListener listener);
+		void setOnPlayPauseListener(OnPlayPauseListener listener);
+
 		void bind();
 		void unbind();
 		boolean isPlaying();

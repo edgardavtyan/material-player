@@ -4,7 +4,8 @@ import com.edavtyan.materialplayer.db.Track;
 
 public class PlayerNotificationPresenter
 		implements PlayerNotificationMvp.Presenter,
-				   PlayerNotificationMvp.Model.OnNewTrackListener {
+				   PlayerNotificationMvp.Model.OnNewTrackListener,
+				   PlayerNotificationMvp.Model.OnPlayPauseListener {
 
 	private final PlayerNotificationMvp.Model model;
 	private final PlayerNotificationMvp.View view;
@@ -14,6 +15,7 @@ public class PlayerNotificationPresenter
 			PlayerNotificationMvp.View view) {
 		this.model = model;
 		this.model.setOnNewTrackListener(this);
+		this.model.setOnPlayPauseListener(this);
 		this.view = view;
 	}
 
@@ -31,6 +33,11 @@ public class PlayerNotificationPresenter
 		view.setInfo(track.getArtistTitle(), track.getAlbumTitle());
 		view.setIsPlaying(model.isPlaying());
 		view.setArt(track);
+		view.update();
+	}
+
+	@Override public void onPlayPause() {
+		view.setIsPlaying(model.isPlaying());
 		view.update();
 	}
 }

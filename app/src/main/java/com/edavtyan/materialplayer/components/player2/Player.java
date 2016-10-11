@@ -13,6 +13,7 @@ public class Player
 	private final PlayerMvp.AudioEngine audioEngine;
 	private final PlayerMvp.Queue queue;
 	private final List<OnNewTrackListener> onNewTrackListeners;
+	private final List<OnPlayPauseListener> onPlayPauseListeners;
 
 	public Player(
 			PlayerMvp.AudioEngine audioEngine,
@@ -28,10 +29,15 @@ public class Player
 		this.queue.setShuffleMode(shuffleMode);
 
 		onNewTrackListeners = new ArrayList<>();
+		onPlayPauseListeners = new ArrayList<>();
 	}
 
 	@Override public void setOnNewTrackListener(OnNewTrackListener listener) {
 		onNewTrackListeners.add(listener);
+	}
+
+	@Override public void setOnPlayPauseListener(OnPlayPauseListener listener) {
+		onPlayPauseListeners.add(listener);
 	}
 
 	@Override public void addTrack(Track track) {
@@ -84,6 +90,10 @@ public class Player
 
 	@Override public void playPause() {
 		audioEngine.playPause();
+
+		for (OnPlayPauseListener onPlayPauseListener : onPlayPauseListeners) {
+			onPlayPauseListener.onPlayPause();
+		}
 	}
 
 	@Override public void playNext() {

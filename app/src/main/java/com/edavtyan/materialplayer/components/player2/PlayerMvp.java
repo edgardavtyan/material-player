@@ -15,7 +15,12 @@ public interface PlayerMvp {
 			void onNewTrack();
 		}
 
+		interface OnPlayPauseListener {
+			void onPlayPause();
+		}
+
 		void setOnNewTrackListener(OnNewTrackListener listener);
+		void setOnPlayPauseListener(OnPlayPauseListener listener);
 
 		void addTrack(Track track);
 		void addManyTracks(List<Track> tracks);
