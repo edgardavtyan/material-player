@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
@@ -13,14 +13,16 @@ import lombok.Setter;
 public class ArtistListViewHolder extends BaseViewHolder implements View.OnClickListener {
 	private final TextView titleView;
 	private final TextView infoView;
+	private final Context context;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	public interface OnHolderClickListener {
 		void onHolderClick(ArtistListViewHolder holder);
 	}
 
-	public ArtistListViewHolder(View itemView) {
+	public ArtistListViewHolder(Context context, View itemView) {
 		super(itemView);
+		this.context = context;
 		itemView.setOnClickListener(this);
 		titleView = findView(R.id.title);
 		infoView = findView(R.id.info);
@@ -31,7 +33,7 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 	}
 
 	public void setInfo(int albumsCount, int tracksCount) {
-		Resources res = App.getContext().getResources();
+		Resources res = context.getResources();
 		String albumsCountStr = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = res.getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);

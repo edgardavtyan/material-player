@@ -29,16 +29,10 @@ import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.utils.logging.FileLogger;
 import com.edavtyan.materialplayer.utils.logging.Logger;
 
-import lombok.Getter;
-
 public class App
 		extends Application
 		implements Thread.UncaughtExceptionHandler {
 	private Logger logger;
-
-	//---
-
-	private @Getter static Context context;
 
 	public AlbumListFactory getAlbumListDI(Context context, AlbumListMvp.View view) {
 		return new AlbumListFactory(context, view);
@@ -103,7 +97,6 @@ public class App
 	public void onCreate() {
 		super.onCreate();
 		logger = new FileLogger();
-		context = getApplicationContext();
 		Thread.setDefaultUncaughtExceptionHandler(this);
 	}
 
