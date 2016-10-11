@@ -7,10 +7,12 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.utils.PendingIntents;
 
 import java.io.File;
 
@@ -28,11 +30,16 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 			Context context,
 			AdvancedRemoteViews remoteViews,
 			TestableNotificationManager manager,
-			NotificationCompat.Builder builder) {
+			NotificationCompat.Builder builder,
+			PendingIntents pendingIntents
+	) {
 		this.context = context;
 		this.manager = manager;
-		this.notification = builder.setSmallIcon(R.drawable.ic_status).build();
-		this.notification.contentView = remoteViews;
+		this.notification = builder
+				.setSmallIcon(R.drawable.ic_status)
+				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
+				.setContent(remoteViews)
+				.build();
 	}
 
 	@Override public void setTitle(String title) {

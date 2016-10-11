@@ -17,7 +17,6 @@ import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.utils.ArtProvider;
-import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class NowPlayingNotification implements ServiceConnection,
 											   PlayerMvp.Player.OnNewTrackListener {
@@ -74,12 +73,12 @@ public class NowPlayingNotification implements ServiceConnection,
 		notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
 		RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.notification);
-		view.setOnClickPendingIntent(
-				R.id.art,
-				PendingIntents.fromIntent(context, notificationIntent));
-		view.setOnClickPendingIntent(
-				R.id.info_wrapper,
-				PendingIntents.fromIntent(context, notificationIntent));
+//		view.setOnClickPendingIntent(
+//				R.id.art,
+//				PendingIntents.fromIntent(context, notificationIntent));
+//		view.setOnClickPendingIntent(
+//				R.id.info_wrapper,
+//				PendingIntents.fromIntent(context, notificationIntent));
 //		view.setOnClickPendingIntent(
 //				R.id.play_pause,
 //				PendingIntents.getBroadcast(context, MusicPlayerService.ACTION_PLAY_PAUSE));

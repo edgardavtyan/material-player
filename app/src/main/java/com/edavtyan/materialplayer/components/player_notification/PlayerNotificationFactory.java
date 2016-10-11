@@ -7,6 +7,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
+import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class PlayerNotificationFactory extends BaseFactory {
 
@@ -18,6 +19,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 	private NotificationCompat.Builder builder;
 	private PlayerNotificationMvp.Model model;
 	private PlayerNotificationMvp.Presenter presenter;
+	private PendingIntents pendingIntents;
 
 	public PlayerNotificationFactory(Context context, int layoutId) {
 		super(context);
@@ -34,8 +36,15 @@ public class PlayerNotificationFactory extends BaseFactory {
 					provideContext(),
 					provideRemoteViews(),
 					provideManager(),
-					provideBuilder());
+					provideBuilder(),
+					providePendingIntents());
 		return notification;
+	}
+
+	public PendingIntents providePendingIntents() {
+		if (pendingIntents == null)
+			pendingIntents = new PendingIntents(provideContext());
+		return pendingIntents;
 	}
 
 	public AdvancedRemoteViews provideRemoteViews() {
