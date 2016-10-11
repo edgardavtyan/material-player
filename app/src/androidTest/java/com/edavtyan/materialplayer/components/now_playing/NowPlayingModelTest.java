@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnNewTrackListener;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnPlayPauseListener;
 import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player2.RepeatMode;
@@ -18,13 +20,14 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingModelTest extends BaseTest {
-	private NowPlayingMvp.Model model;
+	private NowPlayingModel model;
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
 
@@ -170,5 +173,35 @@ public class NowPlayingModelTest extends BaseTest {
 		model.setOnModelBoundListener(listener);
 		model.onServiceConnected(null, binder);
 		verify(listener).onModelBound();
+	}
+
+	@Test public void onNewTrackListener_calledWhenOnNewTrackCalled() {
+		OnNewTrackListener listener = mock(OnNewTrackListener.class);
+		model.setOnNewTrackListener(listener);
+		model.onNewTrack();
+		verify(listener).onNewTrack();
+	}
+
+	@Test public void onNewTrackListener_notCalledIfNotSet() {
+		try {
+			model.onNewTrack();
+		} catch (NullPointerException e) {
+			fail("NullPointerException because onNewTrackListener not set");
+		}
+	}
+
+	@Test public void onPlayPauseListener_calledWhenOnPlayPauseCalled() {
+		OnPlayPauseListener listener = mock(OnPlayPauseListener.class);
+		model.setOnPlayPauseListener(listener);
+		model.onPlayPause();
+		verify(listener).onPlayPause();
+	}
+
+	@Test public void onPlayPauseListener_notCalledIfNotSet() {
+		try {
+			model.onPlayPause();
+		} catch (NullPointerException e) {
+			fail("NullPointerException because onPlayPauseListener not set");
+		}
 	}
 }

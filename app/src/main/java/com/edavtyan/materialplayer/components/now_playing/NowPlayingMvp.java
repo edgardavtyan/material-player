@@ -14,7 +14,18 @@ public interface NowPlayingMvp {
 			void onModelBound();
 		}
 
+		interface OnNewTrackListener {
+			void onNewTrack();
+		}
+
+		interface OnPlayPauseListener {
+			void onPlayPause();
+		}
+
 		void setOnModelBoundListener(OnModelBoundListener listener);
+		void setOnNewTrackListener(OnNewTrackListener listener);
+		void setOnPlayPauseListener(OnPlayPauseListener listener);
+
 		void bind();
 		void unbind();
 		RepeatMode getRepeatMode();
@@ -68,7 +79,10 @@ public interface NowPlayingMvp {
 		void gotoPlaylistScreen();
 	}
 
-	interface Presenter extends Model.OnModelBoundListener {
+	interface Presenter
+			extends Model.OnModelBoundListener,
+					Model.OnNewTrackListener,
+					Model.OnPlayPauseListener {
 		void bind();
 		void unbind();
 		void onFabClick();

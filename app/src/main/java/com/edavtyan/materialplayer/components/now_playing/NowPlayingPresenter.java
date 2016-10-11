@@ -2,7 +2,11 @@ package com.edavtyan.materialplayer.components.now_playing;
 
 import com.edavtyan.materialplayer.utils.Timer;
 
-public class NowPlayingPresenter implements NowPlayingMvp.Presenter {
+public class NowPlayingPresenter
+		implements NowPlayingMvp.Presenter,
+				   NowPlayingMvp.Model.OnNewTrackListener,
+				   NowPlayingMvp.Model.OnPlayPauseListener {
+
 	private static final int SEEK_INTERVAL = 1000;
 
 	private final NowPlayingMvp.Model model;
@@ -13,6 +17,8 @@ public class NowPlayingPresenter implements NowPlayingMvp.Presenter {
 	public NowPlayingPresenter(NowPlayingMvp.Model model, NowPlayingMvp.View view) {
 		this.model = model;
 		this.model.setOnModelBoundListener(this);
+		this.model.setOnNewTrackListener(this);
+		this.model.setOnPlayPauseListener(this);
 		this.view = view;
 
 		//TODO: find out how to DI this
@@ -89,6 +95,14 @@ public class NowPlayingPresenter implements NowPlayingMvp.Presenter {
 	@Override
 	public void onTrackSeekStop(int position) {
 		model.seek(position);
+	}
+
+	@Override public void onNewTrack() {
+		updateViewInfo();
+	}
+
+	@Override public void onPlayPause() {
+		view.getControls().setIsPlaying(model.isPlaying());
 	}
 
 	private void updateViewInfo() {

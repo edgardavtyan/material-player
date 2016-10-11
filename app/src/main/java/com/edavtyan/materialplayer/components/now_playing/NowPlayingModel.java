@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player2.RepeatMode;
 import com.edavtyan.materialplayer.components.player2.ShuffleMode;
@@ -14,12 +15,15 @@ import java.io.File;
 
 import lombok.Setter;
 
-public class NowPlayingModel implements NowPlayingMvp.Model {
+public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.OnNewTrackListener,
+										PlayerMvp.Player.OnPlayPauseListener {
 	private final Context context;
 
 	private PlayerService service;
 
 	@Setter OnModelBoundListener onModelBoundListener;
+	@Setter OnNewTrackListener onNewTrackListener;
+	@Setter OnPlayPauseListener onPlayPauseListener;
 
 	public NowPlayingModel(Context context) {
 		this.context = context;
@@ -114,6 +118,8 @@ public class NowPlayingModel implements NowPlayingMvp.Model {
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
 		service = ((PlayerService.PlayerBinder) binder).getService();
+		service.getPlayer().setOnNewTrackListener(this);
+		service.getPlayer().setOnPlayPauseListener(this);
 		if (onModelBoundListener != null) {
 			onModelBoundListener.onModelBound();
 		}
@@ -121,5 +127,13 @@ public class NowPlayingModel implements NowPlayingMvp.Model {
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
+	}
+
+	@Override public void onNewTrack() {
+		if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
+	}
+
+	@Override public void onPlayPause() {
+		if (onPlayPauseListener != null) onPlayPauseListener.onPlayPause();
 	}
 }

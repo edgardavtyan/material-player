@@ -87,6 +87,16 @@ public class NowPlayingPresenterTest extends BaseTest {
 		verify(art).setArt(artFile);
 	}
 
+	@Test public void onNewTrack_updateView() {
+		testViewUpdate(presenter::onNewTrack);
+	}
+
+	@Test public void onPlayPause_updatePlayPauseIcon() {
+		when(model.isPlaying()).thenReturn(true);
+		presenter.onPlayPause();
+		verify(controls).setIsPlaying(true);
+	}
+
 	@Test
 	public void onFabClick_gotoPlaylistScreen() {
 		presenter.onFabClick();
