@@ -79,7 +79,7 @@ public class PlayerService extends Service {
 		surround = playerFactory.provideSurround();
 
 		PlayerNotificationFactory notificationFactory
-				= new PlayerNotificationFactory(this, R.layout.notification);
+				= app.getPlayerNotificationFactory(this, R.layout.notification);
 		notification = notificationFactory.provideNotification();
 		presenter = notificationFactory.providePresenter();
 		presenter.onCreate();
