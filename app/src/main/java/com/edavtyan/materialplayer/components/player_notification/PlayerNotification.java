@@ -24,7 +24,6 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 	private final Context context;
 	private final TestableNotificationManager manager;
 	private final @Getter Notification notification;
-	private PlayerNotificationMvp.Presenter presenter;
 
 	public PlayerNotification(
 			Context context,
@@ -53,7 +52,6 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 
 	@Override public void setArt(Track track) {
 		File artFile = ArtProvider.fromTrack(track);
-		;
 		Bitmap art = BitmapFactory.decodeFile(artFile.getAbsolutePath());
 
 		if (art != null) {
