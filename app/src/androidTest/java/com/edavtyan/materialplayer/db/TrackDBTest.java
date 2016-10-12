@@ -20,6 +20,7 @@ public class TrackDBTest extends DBTest {
 
 	@BeforeClass
 	public static void beforeClass() {
+		DBTest.beforeClass();
 		initProvider(TrackDBProvider.class);
 		trackDB = new TrackDB(context);
 		testTrackDB = new TrackDBHelper(context);
