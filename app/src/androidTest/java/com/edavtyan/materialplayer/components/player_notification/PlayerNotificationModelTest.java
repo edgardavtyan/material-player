@@ -7,14 +7,16 @@ import android.support.v7.view.ContextThemeWrapper;
 import com.edavtyan.materialplayer.components.player2.Player;
 import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.lib.asertions.IntentAssert;
-
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnNewTrackListener;
+import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+
+import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -26,6 +28,7 @@ import static org.mockito.Mockito.when;
 public class PlayerNotificationModelTest extends BaseTest {
 	private PlayerNotificationModel model;
 	private PlayerMvp.Player player;
+	private ArtProvider2 artProvider;
 	private PlayerService.PlayerBinder binder;
 	private Track track;
 
@@ -33,7 +36,8 @@ public class PlayerNotificationModelTest extends BaseTest {
 		super.beforeEach();
 		context = mock(ContextThemeWrapper.class);
 		player = mock(Player.class);
-		model = new PlayerNotificationModel(context);
+		artProvider = mock(ArtProvider2.class);
+		model = new PlayerNotificationModel(context, artProvider);
 
 		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);
@@ -67,6 +71,17 @@ public class PlayerNotificationModelTest extends BaseTest {
 		when(player.getCurrentTrack()).thenReturn(track);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getTrack()).isEqualTo(track);
+	}
+
+	@Test public void getArt_returnArtFromArtProvider() {
+		Track track = mock(Track.class);
+		File artFile = mock(File.class);
+		when(player.getCurrentTrack()).thenReturn(track);
+		when(artFile.getAbsolutePath()).thenReturn("artPath");
+		when(artProvider.load(track)).thenReturn(artFile);
+		model.onServiceConnected(null, binder);
+
+		assertThat(model.getArtPath()).isSameAs("artPath");
 	}
 
 	@Test public void onNewTrack_listenerNotSet_notThrowException() {

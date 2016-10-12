@@ -1,10 +1,8 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.components.track_all.TrackListPresenter;
-import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.db.Album;
 
 public class AlbumDetailPresenter extends TrackListPresenter implements AlbumDetailMvp.Presenter {
 	private final AlbumDetailMvp.View view;
@@ -21,9 +19,8 @@ public class AlbumDetailPresenter extends TrackListPresenter implements AlbumDet
 		super.onCreate();
 
 		Album album = model.getAlbum();
-		Track track = model.getFirstAlbumTrack();
 		view.setAlbumTitle(album.getTitle());
 		view.setAlbumInfo(album.getArtistTitle(), album.getTracksCount());
-		view.setAlbumImage(ArtProvider.fromTrack(track), R.drawable.fallback_cover);
+		view.setAlbumImage(model.getAlbumArt(), R.drawable.fallback_cover);
 	}
 }

@@ -14,10 +14,12 @@ import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.lib.asertions.IntentAssert;
+import com.edavtyan.materialplayer.utils.ArtProvider2;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+
+import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -30,6 +32,7 @@ public class NowPlayingModelTest extends BaseTest {
 	private NowPlayingModel model;
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
+	private ArtProvider2 artProvider;
 
 	@Override
 	public void beforeEach() {
@@ -43,8 +46,10 @@ public class NowPlayingModelTest extends BaseTest {
 		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
+		artProvider = mock(ArtProvider2.class);
+
 		InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
-			model = new NowPlayingModel(context);
+			model = new NowPlayingModel(context, artProvider);
 			model.onServiceConnected(null, binder);
 		});
 	}
@@ -54,7 +59,7 @@ public class NowPlayingModelTest extends BaseTest {
 	public void bind_bindServiceWithCorrectIntent() {
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 
-		NowPlayingMvp.Model model = new NowPlayingModel(context);
+		NowPlayingMvp.Model model = new NowPlayingModel(context, artProvider);
 		model.bind();
 
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
@@ -145,8 +150,15 @@ public class NowPlayingModelTest extends BaseTest {
 	}
 
 	@Test
-	@Ignore("Unit test not implemented")
-	public void getTrackArt() throws Exception {
+	public void getTrackArt_returnArtFromArtProvider() {
+		Track track = new Track();
+		track.setAlbumId(123);
+		when(player.getCurrentTrack()).thenReturn(track);
+
+		File artFile = mock(File.class);
+		when(artProvider.load(track)).thenReturn(artFile);
+
+		assertThat(model.getArt()).isSameAs(artFile);
 	}
 
 	@Test

@@ -43,7 +43,7 @@ public class NowPlayingFactory extends BaseFactory {
 
 	public NowPlayingMvp.Model provideModel() {
 		if (model == null)
-			model = new NowPlayingModel(provideActivity());
+			model = new NowPlayingModel(provideActivity(), provideArtProvider());
 		return model;
 	}
 

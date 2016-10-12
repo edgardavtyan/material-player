@@ -73,7 +73,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 
 	public PlayerNotificationMvp.Model provideModel() {
 		if (model == null)
-			model = new PlayerNotificationModel(provideContext());
+			model = new PlayerNotificationModel(provideContext(), provideArtProvider());
 		return model;
 	}
 

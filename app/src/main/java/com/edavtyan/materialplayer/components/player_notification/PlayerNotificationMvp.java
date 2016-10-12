@@ -22,12 +22,13 @@ public interface PlayerNotificationMvp extends ServiceConnection {
 		void unbind();
 		boolean isPlaying();
 		Track getTrack();
+		String getArtPath();
 	}
 
 	interface View {
 		void setTitle(String title);
 		void setInfo(String artist, String album);
-		void setArt(Track track);
+		void setArt(String artPath);
 		void setIsPlaying(boolean isPlaying);
 		void update();
 		Notification getNotification();

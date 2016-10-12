@@ -9,6 +9,7 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import lombok.Setter;
 
@@ -17,14 +18,16 @@ public class PlayerNotificationModel
 				   PlayerMvp.Player.OnNewTrackListener, PlayerMvp.Player.OnPlayPauseListener {
 
 	private final Context context;
+	private final ArtProvider2 artProvider;
 
 	private PlayerService service;
 
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnPlayPauseListener onPlayPauseListener;
 
-	public PlayerNotificationModel(Context context) {
+	public PlayerNotificationModel(Context context, ArtProvider2 artProvider) {
 		this.context = context;
+		this.artProvider = artProvider;
 	}
 
 	@Override public void bind() {
@@ -42,6 +45,10 @@ public class PlayerNotificationModel
 
 	@Override public Track getTrack() {
 		return service.getPlayer().getCurrentTrack();
+	}
+
+	@Override public String getArtPath() {
+		return artProvider.load(getTrack()).getAbsolutePath();
 	}
 
 	@Override public void onServiceConnected(ComponentName name, IBinder binder) {

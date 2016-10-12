@@ -1,16 +1,15 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
-import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPresenter;
-import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.Album;
+import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPresenter;
 
 import java.io.File;
 
 public interface AlbumDetailMvp {
 	interface Model extends TrackListMvp.Model {
 		Album getAlbum();
-		Track getFirstAlbumTrack();
+		File getAlbumArt();
 	}
 
 	interface View extends TrackListMvp.View {

@@ -1,9 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
-import android.graphics.BitmapFactory;
-
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.utils.ArtProvider;
 
 public class NowPlayingFloatingPresenter implements NowPlayingFloatingMvp.Presenter {
 	private final NowPlayingFloatingMvp.Model model;
@@ -54,7 +51,7 @@ public class NowPlayingFloatingPresenter implements NowPlayingFloatingMvp.Presen
 			Track track = model.getNowPlayingTrack();
 			view.setTrackTitle(track.getTitle());
 			view.setTrackInfo(track.getArtistTitle(), track.getAlbumTitle());
-			view.setArt(BitmapFactory.decodeFile(ArtProvider.fromTrack(track).getAbsolutePath()));
+			view.setArt(model.getNowPlayingTrackArtPath());
 			view.setIsPlaying(model.isPlaying());
 			view.setIsVisible(true);
 		} else {

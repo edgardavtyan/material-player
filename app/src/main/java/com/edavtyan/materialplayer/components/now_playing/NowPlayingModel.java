@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player2.RepeatMode;
 import com.edavtyan.materialplayer.components.player2.ShuffleMode;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import java.io.File;
 
@@ -18,6 +18,7 @@ import lombok.Setter;
 public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.OnNewTrackListener,
 										PlayerMvp.Player.OnPlayPauseListener {
 	private final Context context;
+	private final ArtProvider2 artProvider;
 
 	private PlayerService service;
 
@@ -25,8 +26,9 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	@Setter OnNewTrackListener onNewTrackListener;
 	@Setter OnPlayPauseListener onPlayPauseListener;
 
-	public NowPlayingModel(Context context) {
+	public NowPlayingModel(Context context, ArtProvider2 artProvider) {
 		this.context = context;
+		this.artProvider = artProvider;
 	}
 
 	@Override
@@ -97,7 +99,7 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 
 	@Override
 	public File getArt() {
-		return ArtProvider.fromTrack(service.getPlayer().getCurrentTrack());
+		return artProvider.load(service.getPlayer().getCurrentTrack());
 	}
 
 	@Override

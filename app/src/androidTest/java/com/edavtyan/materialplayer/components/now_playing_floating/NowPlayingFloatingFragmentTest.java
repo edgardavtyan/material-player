@@ -15,6 +15,7 @@ import com.edavtyan.materialplayer.lib.FragmentTest;
 import org.junit.Test;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -105,12 +106,11 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 
 	@Test
 	public void setArt_bitmapIsNotNull_setBitmap() {
-		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_4444);
 		fragment.onCreateView(inflater, null, null);
 
-		fragment.setArt(bitmap);
+		fragment.setArt(getClass().getClassLoader().getResource("blank.png").getPath());
 
-		verify(artView).setImageBitmap(bitmap);
+		verify(artView).setImageBitmap(isA(Bitmap.class));
 	}
 
 	@Test

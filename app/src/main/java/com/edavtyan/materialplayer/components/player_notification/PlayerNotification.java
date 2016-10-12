@@ -9,13 +9,9 @@ import android.support.v4.app.NotificationCompat;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
-import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
-import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.utils.PendingIntents;
-
-import java.io.File;
 
 import lombok.Getter;
 
@@ -55,10 +51,8 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		notification.contentView.setTextViewText(R.id.info, info);
 	}
 
-	@Override public void setArt(Track track) {
-		File artFile = ArtProvider.fromTrack(track);
-		Bitmap art = BitmapFactory.decodeFile(artFile.getAbsolutePath());
-
+	@Override public void setArt(String artPath) {
+		Bitmap art = BitmapFactory.decodeFile(artPath);
 		if (art != null) {
 			notification.contentView.setImageViewBitmap(R.id.art, art);
 		} else {

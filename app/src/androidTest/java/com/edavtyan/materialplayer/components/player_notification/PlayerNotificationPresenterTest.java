@@ -39,12 +39,13 @@ public class PlayerNotificationPresenterTest extends BaseTest {
 		track.setPath("path");
 		when(model.getTrack()).thenReturn(track);
 		when(model.isPlaying()).thenReturn(true);
+		when(model.getArtPath()).thenReturn("artPath");
 
 		presenter.onNewTrack();
 
 		verify(view).setTitle("title");
 		verify(view).setInfo("artist", "album");
-		verify(view).setArt(track);
+		verify(view).setArt("artPath");
 		verify(view).setIsPlaying(true);
 		verify(view).update();
 	}

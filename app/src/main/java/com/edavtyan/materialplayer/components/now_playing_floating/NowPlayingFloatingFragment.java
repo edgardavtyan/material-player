@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -42,9 +43,10 @@ public class NowPlayingFloatingFragment
 	}
 
 	@Override
-	public void setArt(Bitmap bitmap) {
-		if (bitmap != null) {
-			artView.setImageBitmap(bitmap);
+	public void setArt(String artPath) {
+		Bitmap art = BitmapFactory.decodeFile(artPath);
+		if (art != null) {
+			artView.setImageBitmap(art);
 		} else {
 			artView.setImageResource(R.drawable.fallback_cover_listitem);
 		}

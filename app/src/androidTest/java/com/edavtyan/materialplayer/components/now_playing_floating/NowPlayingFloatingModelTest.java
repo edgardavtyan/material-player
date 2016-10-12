@@ -9,9 +9,12 @@ import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+
+import java.io.File;
 
 import static com.edavtyan.materialplayer.lib.asertions.IntentAssert.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +25,7 @@ import static org.mockito.Mockito.when;
 
 public class NowPlayingFloatingModelTest extends BaseTest {
 	private Context context;
+	private ArtProvider2 artProvider;
 	private PlayerService.PlayerBinder binder;
 	private NowPlayingFloatingModel model;
 	private PlayerMvp.Player player;
@@ -31,7 +35,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		super.beforeEach();
 
 		context = mock(Context.class);
-		model = new NowPlayingFloatingModel(context);
+		artProvider = mock(ArtProvider2.class);
+		model = new NowPlayingFloatingModel(context, artProvider);
 
 		player = mock(PlayerMvp.Player.class);
 
@@ -66,6 +71,17 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 
 		assertThat(model.getNowPlayingTrack()).isSameAs(track);
 		verify(player).getCurrentTrack();
+	}
+
+	@Test public void getNowPlayingTrackArt_getArtFromArtProvider() {
+		Track track = new Track();
+		when(player.getCurrentTrack()).thenReturn(track);
+		File artFile = mock(File.class);
+		when(artFile.getAbsolutePath()).thenReturn("artPath");
+		when(artProvider.load(track)).thenReturn(artFile);
+		model.onServiceConnected(null, binder);
+
+		assertThat(model.getNowPlayingTrackArtPath()).isSameAs("artPath");
 	}
 
 	@Test

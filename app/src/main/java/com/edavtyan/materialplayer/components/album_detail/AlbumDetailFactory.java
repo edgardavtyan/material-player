@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
@@ -11,7 +10,6 @@ public class AlbumDetailFactory extends BaseFactory {
 	private AlbumDetailAdapter adapter;
 	private AlbumDetailMvp.Presenter presenter;
 	private AlbumDetailMvp.Model model;
-	private ArtistDB artistDB;
 	private AlbumDB albumDB;
 	private TrackDB trackDB;
 
@@ -29,18 +27,12 @@ public class AlbumDetailFactory extends BaseFactory {
 		if (model == null)
 			model = new AlbumDetailModel(
 					provideContext(),
-					provideArtistDB(),
 					provideAlbumDB(),
 					provideTrackDB(),
+					provideArtProvider(),
 					albumId);
 
 		return model;
-	}
-
-	private ArtistDB provideArtistDB() {
-		if (artistDB == null)
-			artistDB = new ArtistDB(provideContext());
-		return artistDB;
 	}
 
 	private AlbumDB provideAlbumDB() {

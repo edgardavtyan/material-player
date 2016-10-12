@@ -20,7 +20,7 @@ public class NowPlayingFloatingFactory extends BaseFactory {
 
 	public NowPlayingFloatingMvp.Model provideModel() {
 		if (model == null)
-			model = new NowPlayingFloatingModel(provideContext());
+			model = new NowPlayingFloatingModel(provideContext(), provideArtProvider());
 		return model;
 	}
 

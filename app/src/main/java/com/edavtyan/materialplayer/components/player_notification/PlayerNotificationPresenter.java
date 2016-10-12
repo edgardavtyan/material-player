@@ -32,7 +32,7 @@ public class PlayerNotificationPresenter
 		view.setTitle(track.getTitle());
 		view.setInfo(track.getArtistTitle(), track.getAlbumTitle());
 		view.setIsPlaying(model.isPlaying());
-		view.setArt(track);
+		view.setArt(model.getArtPath());
 		view.update();
 	}
 
