@@ -6,7 +6,6 @@ import com.edavtyan.materialplayer.lib.DBTest;
 
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -50,7 +49,6 @@ public class TrackDBTest extends DBTest {
 	}
 
 	@Test
-	@Ignore
 	public void getFirstAlbumTrack_correctTrack() {
 		Comparator<Track> comparator = (lhs, rhs) -> lhs.getTrack() - rhs.getTrack();
 		List<Track> tracks = testTrackDB.addRandomTracksWhereSomeHaveSameAlbumId(5, 5);

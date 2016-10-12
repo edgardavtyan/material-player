@@ -60,7 +60,9 @@ public class ArtistDBHelper extends TestDBHelper {
 
 	public void addRandomArtists(int count) {
 		for (int i = 0; i < count; i++) {
-			addArtist(createRandomArtist());
+			Artist artist = createRandomArtist();
+			artist.setId(i);
+			addArtist(artist);
 		}
 	}
 

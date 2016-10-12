@@ -85,7 +85,7 @@ public class TrackDB {
 		track.setArtistId(cursor.getInt(INDEX_ARTIST_ID));
 		track.setArtistTitle(cursor.getString(INDEX_ARTIST));
 		track.setPath(cursor.getString(INDEX_PATH));
-		track.setDateModified(cursor.getLong(INDEX_DATE_MODIFIED) * 1000);
+		track.setDateModified(cursor.getLong(INDEX_DATE_MODIFIED));
 		return track;
 	}
 
