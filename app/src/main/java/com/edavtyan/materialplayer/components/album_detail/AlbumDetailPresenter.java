@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
-import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.track_all.TrackListPresenter;
 import com.edavtyan.materialplayer.db.Album;
 
@@ -21,6 +20,6 @@ public class AlbumDetailPresenter extends TrackListPresenter implements AlbumDet
 		Album album = model.getAlbum();
 		view.setAlbumTitle(album.getTitle());
 		view.setAlbumInfo(album.getArtistTitle(), album.getTracksCount());
-		view.setAlbumImage(model.getAlbumArt(), R.drawable.fallback_cover);
+		view.setAlbumImage(model.getAlbumArt());
 	}
 }

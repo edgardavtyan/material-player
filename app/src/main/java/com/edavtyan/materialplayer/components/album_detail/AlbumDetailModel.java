@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
-import java.io.File;
 import java.util.List;
 
 public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.Model {
@@ -37,8 +36,8 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 	}
 
 	@Override
-	public File getAlbumArt() {
-		return artProvider.load(getTrackAtIndex(0));
+	public String getAlbumArt() {
+		return artProvider.load(getTrackAtIndex(0)).getAbsolutePath();
 	}
 
 	@Override

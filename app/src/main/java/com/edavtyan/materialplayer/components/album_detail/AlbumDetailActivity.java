@@ -31,9 +31,9 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		setHeaderInfo(info);
 	}
 
-	public void setAlbumImage(File artFile, int fallbackImage) {
-		Bitmap art = bitmapFactory.fromPath(artFile.getAbsolutePath());
-		setHeaderImage(art, fallbackImage);
+	public void setAlbumImage(String artPath) {
+		Bitmap art = bitmapFactory.fromPath(artPath);
+		setHeaderImage(art, R.drawable.fallback_cover);
 	}
 
 	@Override

@@ -42,7 +42,8 @@ public class AlbumDetailModelTest extends BaseTest {
 
 	@Test public void getAlbumArt_getArtFromArtProvider() {
 		File artFile = mock(File.class);
+		when(artFile.getAbsolutePath()).thenReturn("path");
 		when(artProvider.load(any())).thenReturn(artFile);
-		assertThat(model.getAlbumArt()).isSameAs(artFile);
+		assertThat(model.getAlbumArt()).isEqualTo("path");
 	}
 }

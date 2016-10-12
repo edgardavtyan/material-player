@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.album_detail;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -25,17 +24,18 @@ public class AlbumDetailPresenterTest extends BaseTest {
 	}
 
 	@Test
-	@Ignore
 	public void onCreate_setViewInfo() {
 		Album album = new Album();
 		album.setTitle("title");
 		album.setArtistTitle("artist");
 		album.setTracksCount(9);
 		when(model.getAlbum()).thenReturn(album);
+		when(model.getAlbumArt()).thenReturn("path");
 
 		presenter.onCreate();
 
 		verify(view).setAlbumTitle("title");
 		verify(view).setAlbumInfo("artist", 9);
+		verify(view).setAlbumImage("path");
 	}
 }
