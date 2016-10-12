@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.FragmentTest;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 import org.junit.Test;
 
@@ -31,6 +32,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 	private ImageButton playPauseView;
 	private LinearLayout infoWrapper;
 	private LinearLayout mainWrapper;
+	private TestableBitmapFactory bitmapFactory;
 
 	@Override
 	public void beforeEach() {
@@ -41,10 +43,12 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 
 		presenter = mock(NowPlayingFloatingMvp.Presenter.class);
 		navigator = mock(Navigator.class);
+		bitmapFactory = mock(TestableBitmapFactory.class);
 
 		NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);
 		when(factory.providePresenter()).thenReturn(presenter);
 		when(factory.provideNavigator()).thenReturn(navigator);
+		when(factory.provideBitmapFactory()).thenReturn(bitmapFactory);
 		when(app.getNowPlayingFloatingFactory(any(), any())).thenReturn(factory);
 
 		infoView = spy(new TextView(context));
@@ -106,15 +110,20 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 
 	@Test
 	public void setArt_bitmapIsNotNull_setBitmap() {
+		Bitmap art = Bitmap.createBitmap(1,1, Bitmap.Config.ALPHA_8);
+		when(bitmapFactory.fromPath("path")).thenReturn(art);
+
+		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 
-		fragment.setArt(getClass().getClassLoader().getResource("blank.png").getPath());
+		fragment.setArt("path");
 
 		verify(artView).setImageBitmap(isA(Bitmap.class));
 	}
 
 	@Test
 	public void setArt_bitmapIsNull_setFallbackImage() {
+		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 		fragment.setArt(null);
 		verify(artView).setImageResource(R.drawable.fallback_cover_listitem);

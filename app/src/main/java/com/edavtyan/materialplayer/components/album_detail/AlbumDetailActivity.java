@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.album_detail;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -10,6 +9,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 import java.io.File;
 
@@ -18,6 +18,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	public static final String EXTRA_ALBUM_ID = "extra_albumId";
 
 	private Navigator navigator;
+	private TestableBitmapFactory bitmapFactory;
 
 	public void setAlbumTitle(String title) {
 		setHeaderTitle(title);
@@ -31,7 +32,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	}
 
 	public void setAlbumImage(File artFile, int fallbackImage) {
-		Bitmap art = BitmapFactory.decodeFile(artFile.getAbsolutePath());
+		Bitmap art = bitmapFactory.fromPath(artFile.getAbsolutePath());
 		setHeaderImage(art, fallbackImage);
 	}
 
@@ -42,6 +43,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		AlbumDetailFactory factory = getDI();
 		init(factory.provideAdapter(), factory.providePresenter());
 		navigator = factory.provideNavigator();
+		bitmapFactory = factory.provideBitmapFactory();
 	}
 
 	@Override

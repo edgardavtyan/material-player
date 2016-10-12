@@ -3,13 +3,13 @@ package com.edavtyan.materialplayer.components.player_notification;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
@@ -20,6 +20,7 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 
 	private final Context context;
 	private final TestableNotificationManager manager;
+	private final TestableBitmapFactory bitmapFactory;
 	private final @Getter Notification notification;
 
 	public PlayerNotification(
@@ -27,10 +28,12 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 			AdvancedRemoteViews remoteViews,
 			TestableNotificationManager manager,
 			NotificationCompat.Builder builder,
-			PendingIntents pendingIntents
+			PendingIntents pendingIntents,
+			TestableBitmapFactory bitmapFactory
 	) {
 		this.context = context;
 		this.manager = manager;
+		this.bitmapFactory = bitmapFactory;
 		this.notification = builder
 				.setSmallIcon(R.drawable.ic_status)
 				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
@@ -52,7 +55,7 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 	}
 
 	@Override public void setArt(String artPath) {
-		Bitmap art = BitmapFactory.decodeFile(artPath);
+		Bitmap art = bitmapFactory.fromPath(artPath);
 		if (art != null) {
 			notification.contentView.setImageViewBitmap(R.id.art, art);
 		} else {

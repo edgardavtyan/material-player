@@ -37,7 +37,8 @@ public class PlayerNotificationFactory extends BaseFactory {
 					provideRemoteViews(),
 					provideManager(),
 					provideBuilder(),
-					providePendingIntents());
+					providePendingIntents(),
+					provideBitmapFactory());
 		return notification;
 	}
 

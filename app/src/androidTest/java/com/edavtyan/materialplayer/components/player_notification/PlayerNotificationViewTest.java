@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.player_notification;
 
 import android.app.PendingIntent;
+import android.graphics.Bitmap;
 import android.support.v4.app.NotificationCompat;
 
 import com.edavtyan.materialplayer.R;
@@ -8,6 +9,7 @@ import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
@@ -26,6 +28,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 	private NotificationCompat.Builder builder;
 	private PendingIntents pendingIntents;
 	private PlayerNotificationMvp.View view;
+	private TestableBitmapFactory bitmapFactory;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -33,7 +36,10 @@ public class PlayerNotificationViewTest extends BaseTest {
 		manager = mock(TestableNotificationManager.class);
 		builder = spy(new NotificationCompat.Builder(context));
 		pendingIntents = mock(PendingIntents.class);
-		view = new PlayerNotification(context, remoteViews, manager, builder, pendingIntents);
+		bitmapFactory = mock(TestableBitmapFactory.class);
+		view = new PlayerNotification(
+				context, remoteViews, manager,
+				builder, pendingIntents, bitmapFactory);
 	}
 
 	@Test public void constructor_buildNotificationWithCorrectValues() {
@@ -41,7 +47,9 @@ public class PlayerNotificationViewTest extends BaseTest {
 		when(pendingIntents.getActivity(MainActivity.class)).thenReturn(contentIntent);
 		reset(builder);
 
-		view = new PlayerNotification(context, remoteViews, manager, builder, pendingIntents);
+		view = new PlayerNotification(
+				context, remoteViews, manager,
+				builder, pendingIntents, bitmapFactory);
 
 		verify(builder).setSmallIcon(R.drawable.ic_status);
 		verify(builder).setContentIntent(contentIntent);
@@ -64,8 +72,11 @@ public class PlayerNotificationViewTest extends BaseTest {
 		verify(remoteViews).setTextViewText(R.id.info, "artist - album");
 	}
 
-	@Ignore
 	@Test public void setArt_setArtOnRemoteViewsFromArtProvider() {
+		Bitmap art = Bitmap.createBitmap(1,1, Bitmap.Config.ALPHA_8);
+		when(bitmapFactory.fromPath("path")).thenReturn(art);
+		view.setArt("path");
+		verify(remoteViews).setImageViewBitmap(R.id.art, art);
 	}
 
 	@Test public void isPlaying_true_setPlayPauseIconToPause() {

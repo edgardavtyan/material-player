@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 public class NowPlayingFloatingFragment
 		extends BaseFragment
@@ -29,6 +29,7 @@ public class NowPlayingFloatingFragment
 	private ImageButton playPauseView;
 	private LinearLayout infoWrapper;
 	private LinearLayout mainWrapper;
+	private TestableBitmapFactory bitmapFactory;
 
 	@Override
 	public void setTrackTitle(String title) {
@@ -44,7 +45,7 @@ public class NowPlayingFloatingFragment
 
 	@Override
 	public void setArt(String artPath) {
-		Bitmap art = BitmapFactory.decodeFile(artPath);
+		Bitmap art = bitmapFactory.fromPath(artPath);
 		if (art != null) {
 			artView.setImageBitmap(art);
 		} else {
@@ -74,6 +75,7 @@ public class NowPlayingFloatingFragment
 		NowPlayingFloatingFactory factory = app.getNowPlayingFloatingFactory(getContext(), this);
 		navigator = factory.provideNavigator();
 		presenter = factory.providePresenter();
+		bitmapFactory = factory.provideBitmapFactory();
 	}
 
 	@Nullable
