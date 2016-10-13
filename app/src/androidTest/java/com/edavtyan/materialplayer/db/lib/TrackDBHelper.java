@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.db.TestDBHelper;
-import com.github.javafaker.Faker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +28,8 @@ public class TrackDBHelper extends TestDBHelper {
 	private static final String KEY_ARTIST_TITLE = MediaStore.Audio.Media.ARTIST;
 	private static final String KEY_DATE_MODIFIED = MediaStore.Audio.Media.DATE_MODIFIED;
 
-	private Faker faker;
-
 	public TrackDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		faker = new Faker();
 	}
 
 	@Override
@@ -103,15 +99,15 @@ public class TrackDBHelper extends TestDBHelper {
 
 	private Track createRandomTrack() {
 		Track track = new Track();
-		track.setId((int) faker.number().randomNumber(10, false));
-		track.setTitle(faker.lorem().characters(10));
-		track.setTrack(faker.number().randomDigit());
-		track.setAlbumId((int) faker.number().randomNumber(10, false));
-		track.setAlbumTitle(faker.lorem().characters(10));
-		track.setArtistId((int) faker.number().randomNumber(10, false));
-		track.setArtistTitle(faker.lorem().characters(10));
-		track.setDuration(faker.number().randomNumber());
-		track.setDateModified(faker.number().randomNumber());
+		track.setId(RNG.number());
+		track.setTitle(RNG.string());
+		track.setTrack(RNG.number());
+		track.setAlbumId(RNG.number());
+		track.setAlbumTitle(RNG.string());
+		track.setArtistId(RNG.number());
+		track.setArtistTitle(RNG.string());
+		track.setDuration(RNG.number());
+		track.setDateModified(RNG.number());
 		return track;
 	}
 }

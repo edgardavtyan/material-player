@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.db.TestDBHelper;
-import com.github.javafaker.Faker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,8 @@ public class AlbumDBHelper extends TestDBHelper {
 	private static final String COLUMN_ART = MediaStore.Audio.Albums.ALBUM_ART;
 	private static final String COLUMN_TRACKS_COUNT = MediaStore.Audio.Albums.NUMBER_OF_SONGS;
 
-	private final Faker faker;
-
 	public AlbumDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		faker = new Faker();
 	}
 
 	@Override
@@ -89,11 +85,11 @@ public class AlbumDBHelper extends TestDBHelper {
 
 	private Album createRandomAlbum() {
 		Album album = new Album();
-		album.setId((int) faker.number().randomNumber());
-		album.setTitle(faker.lorem().characters(10));
-		album.setArtistTitle(faker.name().fullName());
-		album.setArt(faker.lorem().characters(10));
-		album.setTracksCount((int) faker.number().randomNumber());
+		album.setId(RNG.number());
+		album.setTitle(RNG.string());
+		album.setArtistTitle(RNG.string());
+		album.setArt(RNG.string());
+		album.setTracksCount(RNG.number());
 		return album;
 	}
 }

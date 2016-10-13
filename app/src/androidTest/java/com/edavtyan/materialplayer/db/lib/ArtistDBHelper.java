@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.db.TestDBHelper;
-import com.github.javafaker.Faker;
 
 public class ArtistDBHelper extends TestDBHelper {
 	private static final String TABLE_NAME = "Artists";
@@ -18,11 +17,9 @@ public class ArtistDBHelper extends TestDBHelper {
 	private static final String ALBUMS_COUNT = MediaStore.Audio.Artists.NUMBER_OF_ALBUMS;
 	private static final String TRACKS_COUNT = MediaStore.Audio.Artists.NUMBER_OF_TRACKS;
 
-	private Faker faker;
 
 	public ArtistDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		faker = new Faker();
 	}
 
 	@Override
@@ -68,10 +65,10 @@ public class ArtistDBHelper extends TestDBHelper {
 
 	private Artist createRandomArtist() {
 		Artist artist = new Artist();
-		artist.setId((int) faker.number().randomNumber());
-		artist.setTitle(faker.name().fullName());
-		artist.setAlbumsCount((int) faker.number().randomNumber());
-		artist.setTracksCount((int) faker.number().randomNumber());
+		artist.setId(RNG.number());
+		artist.setTitle(RNG.string());
+		artist.setAlbumsCount(RNG.number());
+		artist.setTracksCount(RNG.number());
 		return artist;
 	}
 }
