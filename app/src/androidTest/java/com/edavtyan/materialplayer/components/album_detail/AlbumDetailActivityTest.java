@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,24 +29,28 @@ public class AlbumDetailActivityTest extends ActivityTest {
 		}
 	}
 
-	private AlbumDetailMvp.Presenter presenter;
-	private AlbumDetailAdapter adapter;
-	private TestAlbumDetailActivity activity;
-	private Navigator navigator;
+	private static AlbumDetailMvp.Presenter presenter;
+	private static AlbumDetailAdapter adapter;
+	private static TestAlbumDetailActivity activity;
+	private static Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		presenter = mock(AlbumDetailMvp.Presenter.class);
-		adapter = mock(AlbumDetailAdapter.class);
-		navigator = mock(Navigator.class);
+		if (activity == null) {
+			presenter = mock(AlbumDetailMvp.Presenter.class);
+			adapter = mock(AlbumDetailAdapter.class);
+			navigator = mock(Navigator.class);
 
-		when(factory.providePresenter()).thenReturn(presenter);
-		when(factory.provideAdapter()).thenReturn(adapter);
-		when(factory.provideNavigator()).thenReturn(navigator);
+			when(factory.providePresenter()).thenReturn(presenter);
+			when(factory.provideAdapter()).thenReturn(adapter);
+			when(factory.provideNavigator()).thenReturn(navigator);
 
-		activity = startActivity(new Intent(context, TestAlbumDetailActivity.class));
+			activity = startActivity(new Intent(context, TestAlbumDetailActivity.class));
+		} else {
+			reset(adapter, presenter, navigator);
+		}
 	}
 
 	@Test

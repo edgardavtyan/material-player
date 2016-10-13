@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,24 +30,28 @@ public class PlaylistActivityTest extends ActivityTest {
 		}
 	}
 
-	private PlaylistActivity activity;
-	private PlaylistAdapter adapter;
-	private PlaylistMvp.Presenter presenter;
+	private static PlaylistActivity activity;
+	private static PlaylistAdapter adapter;
+	private static PlaylistMvp.Presenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		adapter = mock(PlaylistAdapter.class);
-		presenter = mock(PlaylistMvp.Presenter.class);
+		if (activity == null) {
+			adapter = mock(PlaylistAdapter.class);
+			presenter = mock(PlaylistMvp.Presenter.class);
 
-		when(factory.provideAdapter()).thenReturn(adapter);
-		when(factory.providePresenter()).thenReturn(presenter);
-		when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
+			when(factory.provideAdapter()).thenReturn(adapter);
+			when(factory.providePresenter()).thenReturn(presenter);
+			when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
 
-		activity = spy(startActivity(new Intent(new Intent(context, TestPlaylistActivity.class))));
-		doNothing().when(activity).baseOnCreate(any());
-		doNothing().when(activity).baseOnDestroy();
+			activity = spy(startActivity(new Intent(new Intent(context, TestPlaylistActivity.class))));
+			doNothing().when(activity).baseOnCreate(any());
+			doNothing().when(activity).baseOnDestroy();
+		} else {
+			reset(adapter, presenter);
+		}
 	}
 
 	@Test
