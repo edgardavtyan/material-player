@@ -14,8 +14,7 @@ public class ArtistDetailPresenterTest extends BaseTest {
 	private ArtistDetailMvp.View view;
 	private ArtistDetailMvp.Presenter presenter;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		model = mock(ArtistDetailMvp.Model.class);
@@ -23,8 +22,7 @@ public class ArtistDetailPresenterTest extends BaseTest {
 		presenter = new ArtistDetailPresenter(model, view);
 	}
 
-	@Test
-	public void onCreate_setViewTitleAndInfo() {
+	@Test public void onCreate_setViewTitleAndInfo() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		artist.setAlbumsCount(3);

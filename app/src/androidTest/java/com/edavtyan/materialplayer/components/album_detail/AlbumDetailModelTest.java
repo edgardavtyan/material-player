@@ -22,8 +22,7 @@ public class AlbumDetailModelTest extends BaseTest {
 	private TrackDB trackDB;
 	private ArtProvider2 artProvider;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
@@ -34,8 +33,7 @@ public class AlbumDetailModelTest extends BaseTest {
 		model = new AlbumDetailModel(view, albumDB, trackDB, artProvider, ALBUM_ID);
 	}
 
-	@Test
-	public void update_callTracksDB() {
+	@Test public void update_callTracksDB() {
 		model.update();
 		verify(trackDB).getTracksWithAlbumId(ALBUM_ID);
 	}

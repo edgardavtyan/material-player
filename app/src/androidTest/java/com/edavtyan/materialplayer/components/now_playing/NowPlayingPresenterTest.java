@@ -16,14 +16,12 @@ public class NowPlayingPresenterTest extends BaseTest {
 	private NowPlayingMvp.Model model;
 	private NowPlayingMvp.View view;
 	private NowPlayingMvp.Presenter presenter;
-
 	private NowPlayingMvp.View.Controls controls;
 	private NowPlayingMvp.View.Info info;
 	private NowPlayingMvp.View.Art art;
 	private NowPlayingMvp.View.Seekbar seekbar;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		model = mock(NowPlayingMvp.Model.class);
@@ -42,25 +40,21 @@ public class NowPlayingPresenterTest extends BaseTest {
 		runOnUiThread(() -> presenter = new NowPlayingPresenter(model, view));
 	}
 
-	@Test
-	public void constructor_setOnModelBoundListener() {
+	@Test public void constructor_setOnModelBoundListener() {
 		verify(model).setOnModelBoundListener(presenter);
 	}
 
-	@Test
-	public void bind_bindModel() {
+	@Test public void bind_bindModel() {
 		presenter.bind();
 		verify(model).bind();
 	}
 
-	@Test
-	public void unbind_unbindModel() {
+	@Test public void unbind_unbindModel() {
 		presenter.unbind();
 		verify(model).unbind();
 	}
 
-	@Test
-	public void onModelConnected_initView() {
+	@Test public void onModelConnected_initView() {
 		File artFile = mock(File.class);
 
 		when(model.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
@@ -97,81 +91,68 @@ public class NowPlayingPresenterTest extends BaseTest {
 		verify(controls).setIsPlaying(true);
 	}
 
-	@Test
-	public void onFabClick_gotoPlaylistScreen() {
+	@Test public void onFabClick_gotoPlaylistScreen() {
 		presenter.onFabClick();
 		verify(view).gotoPlaylistScreen();
 	}
 
-	@Test
-	public void onTrackSeekChanged_setTrackPositionText() {
+	@Test public void onTrackSeekChanged_setTrackPositionText() {
 		presenter.onTrackSeekChanged(9000);
 		verify(seekbar).setTrackPositionText(9000);
 	}
 
-	@Test
-	public void onTrackSeekStop_seekTrack() {
+	@Test public void onTrackSeekStop_seekTrack() {
 		presenter.onTrackSeekStop(9000);
 		verify(model).seek(9000);
 	}
 
-	@Test
-	public void onShuffleClick_toggleShuffleMode() {
+	@Test public void onShuffleClick_toggleShuffleMode() {
 		presenter.onShuffleClick();
 		verify(model).toggleShuffleMode();
 	}
 
-	@Test
-	public void onShuffleClick_setShuffleViewMode() {
+	@Test public void onShuffleClick_setShuffleViewMode() {
 		when(model.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
 		presenter.onShuffleClick();
 		verify(controls).setShuffleMode(model.getShuffleMode());
 	}
 
-	@Test
-	public void onRewindClick_rewindTrackViaModel() {
+	@Test public void onRewindClick_rewindTrackViaModel() {
 		presenter.onRewindClick();
 		verify(model).rewind();
 	}
 
-	@Test
-	public void onRewindClick_updateView() {
+	@Test public void onRewindClick_updateView() {
 		testViewUpdate(() -> presenter.onRewindClick());
 	}
 
-	@Test
-	public void onPlayPauseClick_togglePlayPauseMode() {
+	@Test public void onPlayPauseClick_togglePlayPauseMode() {
 		when(model.isPlaying()).thenReturn(true);
 		presenter.onPlayPauseClick();
 		verify(model).playPause();
 	}
 
-	@Test
-	public void onPlayPauseClick_setPlayPauseViewMode() {
+	@Test public void onPlayPauseClick_setPlayPauseViewMode() {
 		when(model.isPlaying()).thenReturn(true);
 		presenter.onPlayPauseClick();
 		verify(controls).setIsPlaying(model.isPlaying());
 	}
 
-	@Test
-	public void onFastForwardClick_fastForwardTrackViaModel() {
+	@Test public void onFastForwardClick_fastForwardTrackViaModel() {
 		presenter.onFastForwardClick();
 		verify(model).fastForward();
 	}
 
-	@Test
-	public void onFastForwardClick_updateView() {
+	@Test public void onFastForwardClick_updateView() {
 		testViewUpdate(() -> presenter.onFastForwardClick());
 	}
 
-	@Test
-	public void onRepeatClick_toggleRepeatMode() {
+	@Test public void onRepeatClick_toggleRepeatMode() {
 		presenter.onRepeatClick();
 		verify(model).toggleRepeatMode();
 	}
 
-	@Test
-	public void onRepeatClick_setRepeatViewMode() {
+	@Test public void onRepeatClick_setRepeatViewMode() {
 		when(model.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		presenter.onRepeatClick();
 		verify(controls).setRepeatMode(model.getRepeatMode());

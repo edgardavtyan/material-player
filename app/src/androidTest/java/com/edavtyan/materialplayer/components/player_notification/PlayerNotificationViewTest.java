@@ -13,7 +13,6 @@ import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -73,7 +72,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 	}
 
 	@Test public void setArt_setArtOnRemoteViewsFromArtProvider() {
-		Bitmap art = Bitmap.createBitmap(1,1, Bitmap.Config.ALPHA_8);
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 		when(bitmapFactory.fromPath("path")).thenReturn(art);
 		view.setArt("path");
 		verify(remoteViews).setImageViewBitmap(R.id.art, art);

@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.audioeffects.models.equalizer;
 
-import android.annotation.SuppressLint;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.BaseTest;
@@ -19,8 +18,7 @@ public class HQEqualizerTest extends BaseTest {
 	private IEqualizer baseEqualizer;
 	private AdvancedSharedPrefs prefs;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		baseEqualizer = mock(IEqualizer.class);
 		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
@@ -29,37 +27,24 @@ public class HQEqualizerTest extends BaseTest {
 		equalizer = new HQEqualizer(baseEqualizer, prefs);
 	}
 
-	@Override
-	public void afterEach() {
+	@Override public void afterEach() {
 		super.afterEach();
 		resetPrefs();
 	}
 
-	@SuppressLint("CommitPrefEdits")
-	private void resetPrefs() {
-		prefs.edit()
-				.putString(HQEqualizer.PREF_GAINS, null)
-				.putBoolean(HQEqualizer.PREF_ENABLED, false)
-				.commit();
-	}
-
-	@Test
-	@SuppressLint("CommitPrefEdits")
-	public void constructor_setGainsFromPref() {
+	@Test public void constructor_setGainsFromPref() {
 		when(baseEqualizer.getNumberOfBands()).thenReturn((short) 4);
 		prefs.edit().putString(HQEqualizer.PREF_GAINS, "10,20,30,40").commit();
 		equalizer = new HQEqualizer(baseEqualizer, prefs);
 		assertThat(equalizer.getGains()).containsExactly(10, 20, 30, 40);
 	}
 
-	@Test
-	public void getBandsCount_returnBandsCountFromBaseClass() {
+	@Test public void getBandsCount_returnBandsCountFromBaseClass() {
 		when(baseEqualizer.getNumberOfBands()).thenReturn((short) 7);
 		assertThat(equalizer.getBandsCount()).isEqualTo(7);
 	}
 
-	@Test
-	public void getFrequencies_returnFrequenciesFromBaseClass() {
+	@Test public void getFrequencies_returnFrequenciesFromBaseClass() {
 		when(baseEqualizer.getNumberOfBands()).thenReturn((short) 4);
 		when(baseEqualizer.getCenterFreq((short) 0)).thenReturn(15000);
 		when(baseEqualizer.getCenterFreq((short) 1)).thenReturn(25000);
@@ -72,7 +57,6 @@ public class HQEqualizerTest extends BaseTest {
 	}
 
 	@Test
-	@SuppressLint("CommitPrefEdits")
 	public void getGains_returnGainsFromPrefs() {
 		when(baseEqualizer.getNumberOfBands()).thenReturn((short) 4);
 		prefs.edit().putString(HQEqualizer.PREF_GAINS, "30,60,90,120").commit();
@@ -80,14 +64,12 @@ public class HQEqualizerTest extends BaseTest {
 		assertThat(equalizer.getGains()).containsExactly(30, 60, 90, 120);
 	}
 
-	@Test
-	public void getGainLimit_returnConvertedGainLimitFromBaseClass() {
+	@Test public void getGainLimit_returnConvertedGainLimitFromBaseClass() {
 		when(baseEqualizer.getBandLevelRange()).thenReturn(new short[]{1500});
 		assertThat(equalizer.getGainLimit()).isEqualTo(15);
 	}
 
-	@Test
-	public void setBandGain_setConvertedBaseClassBandGain() {
+	@Test public void setBandGain_setConvertedBaseClassBandGain() {
 		when(baseEqualizer.getNumberOfBands()).thenReturn((short) 4);
 		equalizer = new HQEqualizer(baseEqualizer, prefs);
 
@@ -96,8 +78,7 @@ public class HQEqualizerTest extends BaseTest {
 		verify(baseEqualizer).setBandLevel((short) 3, (short) 1200);
 	}
 
-	@Test
-	public void saveSettings_saveGainsToPrefs() {
+	@Test public void saveSettings_saveGainsToPrefs() {
 		when(baseEqualizer.getNumberOfBands()).thenReturn((short) 3);
 		equalizer = new HQEqualizer(baseEqualizer, prefs);
 		equalizer.setBandGain(0, 3);
@@ -109,21 +90,25 @@ public class HQEqualizerTest extends BaseTest {
 		assertThat(prefs.getString(HQEqualizer.PREF_GAINS, null)).isEqualTo("3,5,8");
 	}
 
-	@Test
-	public void isEnabled_returnEnabledStatusFromBaseClass() {
+	@Test public void isEnabled_returnEnabledStatusFromBaseClass() {
 		when(baseEqualizer.getEnabled()).thenReturn(true);
 		assertThat(equalizer.isEnabled()).isTrue();
 	}
 
-	@Test
-	public void setEnabled_setBaseClassEnabledStatus() {
+	@Test public void setEnabled_setBaseClassEnabledStatus() {
 		equalizer.setEnabled(true);
 		verify(baseEqualizer).setEnabled(true);
 	}
 
-	@Test
-	public void setEnabled_saveEnabledStatusToPrefs() {
+	@Test public void setEnabled_saveEnabledStatusToPrefs() {
 		equalizer.setEnabled(true);
 		assertThat(prefs.getBoolean(HQEqualizer.PREF_ENABLED, false)).isTrue();
+	}
+
+	private void resetPrefs() {
+		prefs.edit()
+				.putString(HQEqualizer.PREF_GAINS, null)
+				.putBoolean(HQEqualizer.PREF_ENABLED, false)
+				.commit();
 	}
 }

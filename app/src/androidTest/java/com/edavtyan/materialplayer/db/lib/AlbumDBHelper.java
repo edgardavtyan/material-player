@@ -27,8 +27,7 @@ public class AlbumDBHelper extends TestDBHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
+	@Override public void onCreate(SQLiteDatabase db) {
 		String CREATE_TABLE
 				= "CREATE TABLE " + TABLE_NAME + "("
 				+ COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -41,8 +40,7 @@ public class AlbumDBHelper extends TestDBHelper {
 		db.execSQL(CREATE_TABLE);
 	}
 
-	@Override
-	public String getTableName() {
+	@Override public String getTableName() {
 		return TABLE_NAME;
 	}
 

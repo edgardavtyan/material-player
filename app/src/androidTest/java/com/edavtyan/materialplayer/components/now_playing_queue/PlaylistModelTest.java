@@ -23,8 +23,7 @@ public class PlaylistModelTest extends BaseTest {
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		player = mock(PlayerMvp.Player.class);
@@ -38,8 +37,7 @@ public class PlaylistModelTest extends BaseTest {
 		model = new PlaylistModel(context);
 	}
 
-	@Test
-	@SuppressWarnings("WrongConstant")
+	@Test @SuppressWarnings("WrongConstant")
 	public void bind_bindServiceWithCorrectParameters() {
 		model.bind();
 
@@ -48,29 +46,25 @@ public class PlaylistModelTest extends BaseTest {
 		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
-	@Test
-	public void unbind_unbindService() {
+	@Test public void unbind_unbindService() {
 		model.bind();
 		model.unbind();
 		verify(context).unbindService(model);
 	}
 
-	@Test
-	public void playItemAtPosition_callPlayer() {
+	@Test public void playItemAtPosition_callPlayer() {
 		model.onServiceConnected(null, binder);
 		model.playItemAtPosition(7);
 		verify(player).playTrackAt(7);
 	}
 
-	@Test
-	public void removeItemAtPosition_callService() {
+	@Test public void removeItemAtPosition_callService() {
 		model.onServiceConnected(null, binder);
 		model.removeItemAtPosition(7);
 		verify(player).removeTrackAt(7);
 	}
 
-	@Test
-	public void getTrackAtPosition_serviceConnected_getTrackFromService() {
+	@Test public void getTrackAtPosition_serviceConnected_getTrackFromService() {
 		Track track = mock(Track.class);
 		when(player.getTrackAt(7)).thenReturn(track);
 
@@ -79,16 +73,14 @@ public class PlaylistModelTest extends BaseTest {
 		assertThat(model.getTrackAtPosition(7)).isEqualTo(track);
 	}
 
-	@Test
-	public void getTrackCount_serviceConnected_getCountFromService() {
+	@Test public void getTrackCount_serviceConnected_getCountFromService() {
 		when(player.getTracksCount()).thenReturn(7);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getTrackCount()).isEqualTo(7);
 		verify(player).getTracksCount();
 	}
 
-	@Test
-	public void getTrackCount_serviceNotConnected_zero() {
+	@Test public void getTrackCount_serviceNotConnected_zero() {
 		assertThat(model.getTrackCount()).isZero();
 	}
 }

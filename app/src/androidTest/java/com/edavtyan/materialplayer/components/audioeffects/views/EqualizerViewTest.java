@@ -14,19 +14,16 @@ import static org.mockito.Mockito.verify;
 public class EqualizerViewTest extends BaseTest {
 	private EqualizerView equalizerView;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		equalizerView = new EqualizerView(context, null);
 	}
 
-	@Test
-	public void constructor_initRootLayout() {
+	@Test public void constructor_initRootLayout() {
 		assertThat(equalizerView.getOrientation()).isEqualTo(LinearLayout.VERTICAL);
 	}
 
-	@Test
-	public void setBands_setCorrectBands() {
+	@Test public void setBands_setCorrectBands() {
 		int count = 5;
 		int limit = 10;
 		int[] frequencies = {5, 11, 19, 26, 30};
@@ -44,8 +41,7 @@ public class EqualizerViewTest extends BaseTest {
 		}
 	}
 
-	@Test
-	public void onBandChanged_listenerSetAndBandProgressChanged_called() {
+	@Test public void onBandChanged_listenerSetAndBandProgressChanged_called() {
 		int count = 5;
 		int limit = 10;
 		int[] frequencies = {5, 11, 19, 26, 30};

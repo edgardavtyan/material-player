@@ -12,8 +12,7 @@ public abstract class TestDBHelper extends SQLiteOpenHelper {
 
 	public abstract String getTableName();
 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	@Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		if (oldVersion != newVersion) {
 			db.execSQL("DROP TABLE IF EXISTS " + getTableName());
 			onCreate(db);
@@ -22,7 +21,7 @@ public abstract class TestDBHelper extends SQLiteOpenHelper {
 
 	public Cursor query(String[] projection, String selection, String[] args, String order) {
 		return getWritableDatabase().query(getTableName(), projection, selection, args, null, null, order);
-	};
+	}
 
 	public void reset() {
 		getWritableDatabase().delete(getTableName(), null, null);

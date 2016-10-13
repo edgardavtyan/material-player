@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
-import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
+import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
@@ -21,16 +21,14 @@ public class NavigatorTest extends BaseTest {
 	private Navigator navigator;
 	private ArgumentCaptor<Intent> intentCaptor;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		activity = mock(AppCompatActivity.class);
 		navigator = new Navigator(activity);
 		intentCaptor = ArgumentCaptor.forClass(Intent.class);
 	}
 
-	@Test
-	public void gotoArtistDetail_startActivityWithCorrectParameters() {
+	@Test public void gotoArtistDetail_startActivityWithCorrectParameters() {
 		navigator.gotoArtistDetail("title");
 
 		verify(activity).startActivity(intentCaptor.capture());
@@ -40,8 +38,7 @@ public class NavigatorTest extends BaseTest {
 				.hasExtra(ArtistDetailActivity.EXTRA_ARTIST_TITLE, "title");
 	}
 
-	@Test
-	public void gotoAlbumDetail_startAlbumDetailActivityWithCorrectParameters() {
+	@Test public void gotoAlbumDetail_startAlbumDetailActivityWithCorrectParameters() {
 		navigator.gotoAlbumDetail(7);
 
 		verify(activity).startActivity(intentCaptor.capture());
@@ -51,8 +48,7 @@ public class NavigatorTest extends BaseTest {
 				.hasExtra(AlbumDetailActivity.EXTRA_ALBUM_ID, "7");
 	}
 
-	@Test
-	public void gotoNowPlaying_startNowPlayingActivityWithCorrectParameters() {
+	@Test public void gotoNowPlaying_startNowPlayingActivityWithCorrectParameters() {
 		navigator.gotoNowPlaying();
 
 		verify(activity).startActivity(intentCaptor.capture());
@@ -61,8 +57,7 @@ public class NavigatorTest extends BaseTest {
 				.classEqualTo(NowPlayingActivity.class);
 	}
 
-	@Test
-	public void gotoNowPlayingQueue_startPlaylistActivity() {
+	@Test public void gotoNowPlayingQueue_startPlaylistActivity() {
 		navigator.gotoNowPlayingQueue();
 
 		verify(activity).startActivity(intentCaptor.capture());

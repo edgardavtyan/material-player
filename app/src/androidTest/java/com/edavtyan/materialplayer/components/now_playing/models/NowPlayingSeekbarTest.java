@@ -20,13 +20,11 @@ import static org.mockito.Mockito.when;
 public class NowPlayingSeekbarTest extends BaseTest {
 	private NowPlayingMvp.View.Seekbar seekbar;
 	private NowPlayingMvp.Presenter presenter;
-
 	private SeekBar seekbarView;
 	private TextView currentTimeView;
 	private TextView totalTimeView;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		seekbarView = spy(new SeekBar(context));
@@ -42,44 +40,37 @@ public class NowPlayingSeekbarTest extends BaseTest {
 		seekbar = new NowPlayingSeekbar(activity, presenter);
 	}
 
-	@Test
-	public void setTrackPosition_setSeekbarViewProgress() {
+	@Test public void setTrackPosition_setSeekbarViewProgress() {
 		seekbar.setTrackPosition(50);
 		assertThat(seekbarView.getProgress()).isEqualTo(50);
 	}
 
-	@Test
-	public void setTrackPositionText_setCurrentTimeViewText() {
+	@Test public void setTrackPositionText_setCurrentTimeViewText() {
 		seekbar.setTrackPositionText(14800);
 		assertThat(currentTimeView.getText()).isEqualTo("00:14");
 	}
 
-	@Test
-	public void setTrackDuration_setSeekbarViewMax() {
+	@Test public void setTrackDuration_setSeekbarViewMax() {
 		seekbar.setTrackDuration(600);
 		assertThat(seekbarView.getMax()).isEqualTo(600);
 	}
 
-	@Test
-	public void setTrackDurationText_setTotalTimeViewText() {
+	@Test public void setTrackDurationText_setTotalTimeViewText() {
 		seekbar.setTrackDurationText(8000);
 		assertThat(totalTimeView.getText()).isEqualTo("00:08");
 	}
 
-	@Test
-	public void onProgressChanged_fromUser_callPresenter() {
+	@Test public void onProgressChanged_fromUser_callPresenter() {
 		seekbar.onProgressChanged(seekbarView, 30, true);
 		verify(presenter).onTrackSeekChanged(30);
 	}
 
-	@Test
-	public void onProgressChanged_notFromUser_notCallPresenter() {
+	@Test public void onProgressChanged_notFromUser_notCallPresenter() {
 		seekbar.onProgressChanged(seekbarView, 40, false);
 		verify(presenter, never()).onTrackSeekChanged(40);
 	}
 
-	@Test
-	public void onStopTrackingTouch_callPresenter() {
+	@Test public void onStopTrackingTouch_callPresenter() {
 		when(seekbarView.getProgress()).thenReturn(9000);
 		seekbar.onStopTrackingTouch(seekbarView);
 		verify(presenter).onTrackSeekStop(9000);

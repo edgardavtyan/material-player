@@ -16,8 +16,7 @@ public class ArtistListPresenterTest extends BaseTest {
 	private ArtistListViewHolder holder;
 	private ArtistListPresenter presenter;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		model = mock(ArtistListMvp.Model.class);
 		view = mock(ArtistListMvp.View.class);
@@ -25,8 +24,7 @@ public class ArtistListPresenterTest extends BaseTest {
 		presenter = new ArtistListPresenter(model, view);
 	}
 
-	@Test
-	public void bindViewHolder_setAllHolderValues() {
+	@Test public void bindViewHolder_setAllHolderValues() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		artist.setAlbumsCount(3);
@@ -40,14 +38,12 @@ public class ArtistListPresenterTest extends BaseTest {
 		verify(holder).setInfo(artist.getAlbumsCount(), artist.getTracksCount());
 	}
 
-	@Test
-	public void getItemCount_countFromModel() {
+	@Test public void getItemCount_countFromModel() {
 		when(model.getArtistCount()).thenReturn(5);
 		assertThat(presenter.getItemCount()).isEqualTo(5);
 	}
 
-	@Test
-	public void onHolderClick_goToArtistDetail() {
+	@Test public void onHolderClick_goToArtistDetail() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
@@ -56,8 +52,7 @@ public class ArtistListPresenterTest extends BaseTest {
 		verify(view).goToArtistDetail("title");
 	}
 
-	@Test
-	public void onCreate_initModel() {
+	@Test public void onCreate_initModel() {
 		presenter.onCreate();
 		verify(model).update();
 	}

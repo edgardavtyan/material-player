@@ -32,9 +32,8 @@ public class TrackListModelTest extends BaseTest {
 	private Context mockContext;
 	private PlayerMvp.Player player;
 
-	@Override
 	@SuppressWarnings({"unchecked", "WrongConstant"})
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		mockContext = mock(Context.class);
@@ -59,8 +58,7 @@ public class TrackListModelTest extends BaseTest {
 		}).when(mockContext).bindService(any(), any(), anyInt());
 	}
 
-	@Test
-	@SuppressWarnings("unchecked")
+	@Test @SuppressWarnings("unchecked")
 	public void getTrackAtIndex_modelUpdated_trackAtGivenIndex() {
 		Track track = new Track();
 		when(tracks.get(3)).thenReturn(track);
@@ -70,20 +68,17 @@ public class TrackListModelTest extends BaseTest {
 		assertThat(model.getTrackAtIndex(3)).isSameAs(track);
 	}
 
-	@Test
-	public void getTrackAtIndex_modelNotUpdated_null() {
+	@Test public void getTrackAtIndex_modelNotUpdated_null() {
 		assertThat(model.getTrackAtIndex(0)).isNull();
 	}
 
-	@Test
-	public void getTrackAtIndex_modelClosed_null() {
+	@Test public void getTrackAtIndex_modelClosed_null() {
 		model.update();
 		model.close();
 		assertThat(model.getTrackAtIndex(0)).isNull();
 	}
 
-	@Test
-	@SuppressWarnings("unchecked")
+	@Test @SuppressWarnings("unchecked")
 	public void getItemCount_modelUpdated_tracksCount() {
 		when(tracks.size()).thenReturn(8);
 
@@ -92,22 +87,19 @@ public class TrackListModelTest extends BaseTest {
 		assertThat(model.getItemCount()).isEqualTo(8);
 	}
 
-	@Test
-	public void getItemCount_modelNotUpdated_zero() {
+	@Test public void getItemCount_modelNotUpdated_zero() {
 		when(tracks.size()).thenReturn(8);
 		assertThat(model.getItemCount()).isZero();
 	}
 
-	@Test
-	public void getItemCount_modelClosed_zero() {
+	@Test public void getItemCount_modelClosed_zero() {
 		when(tracks.size()).thenReturn(8);
 		model.update();
 		model.close();
 		assertThat(model.getItemCount()).isZero();
 	}
 
-	@Test
-	@SuppressWarnings("unchecked")
+	@Test @SuppressWarnings("unchecked")
 	public void playQueue_serviceBound_updateService() {
 		model.bindService();
 		model.update();
@@ -117,8 +109,7 @@ public class TrackListModelTest extends BaseTest {
 		verify(player).playNewTracks(tracks, 0);
 	}
 
-	@Test
-	public void addToQueue_serviceBound_updateService() {
+	@Test public void addToQueue_serviceBound_updateService() {
 		Track track = new Track();
 		when(tracks.get(0)).thenReturn(track);
 		model.bindService();
@@ -129,16 +120,14 @@ public class TrackListModelTest extends BaseTest {
 		verify(player).addTrack(track);
 	}
 
-	@Test
-	@SuppressWarnings("WrongConstant")
+	@Test @SuppressWarnings("WrongConstant")
 	public void bindService_callContextAndBindService() {
 		model.bindService();
 		verify(mockContext)
 				.bindService(Mockito.isA(Intent.class), eq(model), eq(Context.BIND_AUTO_CREATE));
 	}
 
-	@Test
-	public void unbindService_callContextAndUnbindService() {
+	@Test public void unbindService_callContextAndUnbindService() {
 		model.unbindService();
 		verify(mockContext).unbindService(model);
 	}

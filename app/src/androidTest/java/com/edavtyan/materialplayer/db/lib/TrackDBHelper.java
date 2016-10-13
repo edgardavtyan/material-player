@@ -32,26 +32,24 @@ public class TrackDBHelper extends TestDBHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	@Override
-	public String getTableName() {
+	@Override public String getTableName() {
 		return TABLE_NAME;
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
+	@Override public void onCreate(SQLiteDatabase db) {
 		String CREATE_SQL
 				= "CREATE TABLE " + TABLE_NAME + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY,"
-				+ KEY_TRACK + " INTEGER,"
-				+ KEY_TITLE + " TEXT,"
-				+ KEY_DURATION + " LONG,"
-				+ KEY_PATH + " TEXT,"
-				+ KEY_ALBUM_ID + " INTEGER,"
-				+ KEY_ALBUM_TITLE + " TEXT,"
-				+ KEY_ARTIST_ID + " INTEGER,"
-				+ KEY_ARTIST_TITLE + " TEXT,"
-				+ KEY_DATE_MODIFIED + " LONG"
-				+ ");";
+				  + KEY_ID + " INTEGER PRIMARY KEY,"
+				  + KEY_TRACK + " INTEGER,"
+				  + KEY_TITLE + " TEXT,"
+				  + KEY_DURATION + " LONG,"
+				  + KEY_PATH + " TEXT,"
+				  + KEY_ALBUM_ID + " INTEGER,"
+				  + KEY_ALBUM_TITLE + " TEXT,"
+				  + KEY_ARTIST_ID + " INTEGER,"
+				  + KEY_ARTIST_TITLE + " TEXT,"
+				  + KEY_DATE_MODIFIED + " LONG"
+				  + ");";
 
 		db.execSQL(CREATE_SQL);
 	}

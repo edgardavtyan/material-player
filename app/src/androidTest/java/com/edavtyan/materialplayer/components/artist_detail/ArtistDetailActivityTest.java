@@ -23,9 +23,11 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityTest extends ActivityTest {
-	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
-
 	private static ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
+	private static ArtistDetailMvp.Presenter presenter;
+	private static AlbumListAdapter adapter;
+	private static TestArtistDetailActivity activity;
+	private static Navigator navigator;
 
 	public static class TestArtistDetailActivity extends ArtistDetailActivity {
 		@Override
@@ -34,13 +36,9 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		}
 	}
 
-	private static ArtistDetailMvp.Presenter presenter;
-	private static AlbumListAdapter adapter;
-	private static TestArtistDetailActivity activity;
-	private static Navigator navigator;
+	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -58,40 +56,34 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		}
 	}
 
-	@Test
-	public void onCreate_initList() {
+	@Test public void onCreate_initList() {
 		RecyclerView list = activity.findView(R.id.list);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 
-	@Test
-	public void onStart_callPresenter() {
+	@Test public void onStart_callPresenter() {
 		verify(presenter).onCreate();
 	}
 
-	@Test
-	public void onStop_callPresenter() {
+	@Test public void onStop_callPresenter() {
 		instrumentation.callActivityOnStop(activity);
 		verify(presenter).onDestroy();
 	}
 
-	@Test
-	public void setArtistTitle_setTitleViewText() {
+	@Test public void setArtistTitle_setTitleViewText() {
 		TextView titleView = activity.findView(R.id.title);
 		activity.setArtistTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
-	@Test
-	public void setArtistInfo_setInfoViewTextWithPattern() {
+	@Test public void setArtistInfo_setInfoViewTextWithPattern() {
 		TextView infoView = activity.findView(R.id.info);
 		activity.setArtistInfo(3, 9);
 		assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
 	}
 
-	@Test
-	public void goToAlbumDetail_callNavigator() {
+	@Test public void goToAlbumDetail_callNavigator() {
 		activity.goToAlbumDetail(3);
 		verify(navigator).gotoAlbumDetail(3);
 	}

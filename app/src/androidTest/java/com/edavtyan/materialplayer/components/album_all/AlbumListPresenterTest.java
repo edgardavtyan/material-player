@@ -16,8 +16,7 @@ public class AlbumListPresenterTest extends BaseTest {
 	private AlbumListViewHolder holder;
 	private AlbumListPresenter presenter;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		model = mock(AlbumListMvp.Model.class);
 		view = mock(AlbumListMvp.View.class);
@@ -25,8 +24,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		presenter = new AlbumListPresenter(model, view);
 	}
 
-	@Test
-	public void bindViewHolder_setAllHolderValues() {
+	@Test public void bindViewHolder_setAllHolderValues() {
 		Album album = new Album();
 		album.setId(0);
 		album.setTitle("title");
@@ -43,14 +41,12 @@ public class AlbumListPresenterTest extends BaseTest {
 		verify(holder).setArt("file");
 	}
 
-	@Test
-	public void getItemCount_albumsCountFromModel() {
+	@Test public void getItemCount_albumsCountFromModel() {
 		when(model.getAlbumsCount()).thenReturn(10);
 		assertThat(presenter.getItemCount()).isEqualTo(model.getAlbumsCount());
 	}
 
-	@Test
-	public void onHolderClick_goToAlbumDetail() {
+	@Test public void onHolderClick_goToAlbumDetail() {
 		Album album = new Album();
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
@@ -59,8 +55,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		verify(view).goToAlbumDetail(7);
 	}
 
-	@Test
-	public void addToPlaylist_callModel() {
+	@Test public void addToPlaylist_callModel() {
 		Album album = new Album();
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
@@ -69,15 +64,13 @@ public class AlbumListPresenterTest extends BaseTest {
 		verify(model).addToPlaylist(7);
 	}
 
-	@Test
-	public void onCreate_prepareModel() {
+	@Test public void onCreate_prepareModel() {
 		presenter.onCreate();
 		verify(model).update();
 		verify(model).bindService();
 	}
 
-	@Test
-	public void onDestroy_releaseModel() {
+	@Test public void onDestroy_releaseModel() {
 		presenter.onDestroy();
 		verify(model).unbindService();
 	}

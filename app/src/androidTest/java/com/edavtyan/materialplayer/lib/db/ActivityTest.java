@@ -9,8 +9,7 @@ import com.edavtyan.materialplayer.lib.BaseTest;
 public class ActivityTest extends BaseTest {
 	protected Instrumentation instrumentation;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		instrumentation = InstrumentationRegistry.getInstrumentation();

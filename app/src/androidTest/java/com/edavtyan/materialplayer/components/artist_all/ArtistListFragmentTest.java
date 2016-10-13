@@ -20,8 +20,7 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 	private ArtistListMvp.Presenter presenter;
 	private Navigator navigator;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		initFragment(new ArtistListFragment());
@@ -37,14 +36,12 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 		when(app.getArtistListDI(any(), any())).thenReturn(factory);
 	}
 
-	@Test
-	public void onCreate_callPresenter() {
+	@Test public void onCreate_callPresenter() {
 		fragment.onCreate(null);
 		verify(presenter).onCreate();
 	}
 
-	@Test
-	public void onCreateView_initList() {
+	@Test public void onCreateView_initList() {
 		RecyclerView list = new RecyclerView(context);
 		when(fragmentView.findViewById(R.id.list)).thenReturn(list);
 
@@ -55,15 +52,13 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 	}
 
-	@Test
-	public void onDestroy_callPresenter() {
+	@Test public void onDestroy_callPresenter() {
 		fragment.onCreate(null);
 		fragment.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
-	@Test
-	public void goToArtistDetail_callNavigator() {
+	@Test public void goToArtistDetail_callNavigator() {
 		fragment.onCreate(null);
 		fragment.goToArtistDetail("title");
 		verify(navigator).gotoArtistDetail("title");

@@ -28,9 +28,8 @@ public class AlbumListModelTest extends BaseTest {
 	private AlbumListModel model;
 	private PlayerService service;
 
-	@Override
 	@SuppressWarnings({"WrongConstant", "unchecked"})
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		albums = mock(List.class);
@@ -54,13 +53,11 @@ public class AlbumListModelTest extends BaseTest {
 		}).when(context).bindService(any(), any(), anyInt());
 	}
 
-	@Test
-	public void getAlbumAtIndex_dataNotUpdated_null() {
+	@Test public void getAlbumAtIndex_dataNotUpdated_null() {
 		assertThat(model.getAlbumAtIndex(0)).isNull();
 	}
 
-	@Test
-	public void getAlbumAtIndex_dataUpdated_correctAlbum() {
+	@Test public void getAlbumAtIndex_dataUpdated_correctAlbum() {
 		Album album = mock(Album.class);
 		when(albums.get(2)).thenReturn(album);
 
@@ -69,13 +66,11 @@ public class AlbumListModelTest extends BaseTest {
 		assertThat(model.getAlbumAtIndex(2)).isSameAs(albums.get(2));
 	}
 
-	@Test
-	public void getAlbumsCount_dataNotUpdated_zero() {
+	@Test public void getAlbumsCount_dataNotUpdated_zero() {
 		assertThat(model.getAlbumsCount()).isEqualTo(0);
 	}
 
-	@Test
-	public void getAlbumsCount_dataUpdated_correctCount() {
+	@Test public void getAlbumsCount_dataUpdated_correctCount() {
 		when(albums.size()).thenReturn(10);
 
 		model.update();
@@ -83,8 +78,7 @@ public class AlbumListModelTest extends BaseTest {
 		assertThat(model.getAlbumsCount()).isEqualTo(10);
 	}
 
-	@Test
-	public void addToPlaylist_bindServiceCalled_addTracksToPlayer() {
+	@Test public void addToPlaylist_bindServiceCalled_addTracksToPlayer() {
 		PlayerMvp.Player player = mock(PlayerMvp.Player.class);
 		when(service.getPlayer()).thenReturn(player);
 
@@ -94,8 +88,7 @@ public class AlbumListModelTest extends BaseTest {
 		verify(player).addManyTracks(any());
 	}
 
-	@Test
-	public void addToPlaylist_bindServiceNotCalled_throwException() {
+	@Test public void addToPlaylist_bindServiceNotCalled_throwException() {
 		assertThatThrownBy(() -> model.addToPlaylist(0))
 				.isInstanceOf(IllegalStateException.class);
 	}

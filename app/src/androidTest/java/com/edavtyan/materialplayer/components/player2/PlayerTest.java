@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.player2;
 
-import android.annotation.SuppressLint;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.components.player2.PlayerMvp.Player.OnNewTrackListener;
@@ -24,7 +23,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unchecked")
-@SuppressLint("CommitPrefEdits")
 public class PlayerTest extends BaseTest {
 	private AdvancedSharedPrefs prefs;
 	private PlayerMvp.AudioEngine audioEngine;

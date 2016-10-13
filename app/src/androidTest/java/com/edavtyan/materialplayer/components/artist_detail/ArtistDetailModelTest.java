@@ -1,11 +1,10 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
-import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailModel;
-import com.edavtyan.materialplayer.db.Artist;
-import com.edavtyan.materialplayer.lib.BaseTest;
 import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.BaseTest;
 
 import org.junit.Test;
 
@@ -17,8 +16,7 @@ public class ArtistDetailModelTest extends BaseTest {
 	private ArtistDB artistDB;
 	private ArtistDetailModel model;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		artistDB = mock(ArtistDB.class);
@@ -30,9 +28,7 @@ public class ArtistDetailModelTest extends BaseTest {
 				"title");
 	}
 
-	@Test
-	public void getArtist_existingArtist_correctArtist()
-	{
+	@Test public void getArtist_existingArtist_correctArtist() {
 		Artist artist = new Artist();
 		artist.setId(3);
 		artist.setTitle("title");

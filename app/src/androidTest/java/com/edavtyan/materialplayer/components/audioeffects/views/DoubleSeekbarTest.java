@@ -19,71 +19,61 @@ public class DoubleSeekbarTest extends BaseTest {
 	private DoubleSeekbar doubleSeekbar;
 	private SeekBar innerSeekbar;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		doubleSeekbar = new DoubleSeekbar(context, null);
 		innerSeekbar = (SeekBar) doubleSeekbar.findViewById(R.id.seekbar);
 	}
 
-	@Test
-	public void setMax_setDoubledMax() {
+	@Test public void setMax_setDoubledMax() {
 		doubleSeekbar.setMax(100);
 		assertThat(innerSeekbar.getMax()).isEqualTo(200);
 	}
 
-	@Test
-	public void getMax_returnSetMax() {
+	@Test public void getMax_returnSetMax() {
 		doubleSeekbar.setMax(150);
 		assertThat(doubleSeekbar.getMax()).isEqualTo(150);
 	}
 
-	@Test
-	public void setProgress_setProgressPlusMax() {
+	@Test public void setProgress_setProgressPlusMax() {
 		doubleSeekbar.setMax(100);
 		doubleSeekbar.setProgress(-25);
 		assertThat(innerSeekbar.getProgress()).isEqualTo(75);
 	}
 
-	@Test
-	public void getProgress_returnSetProgress() {
+	@Test public void getProgress_returnSetProgress() {
 		doubleSeekbar.setProgress(-40);
 		assertThat(doubleSeekbar.getProgress()).isEqualTo(-40);
 	}
 
-	@Test
-	public void onStartTrackingTouch_set_callOnStartTrackingTouchListener() {
+	@Test public void onStartTrackingTouch_set_callOnStartTrackingTouchListener() {
 		OnStartTrackingTouchListener listener = mock(OnStartTrackingTouchListener.class);
 		doubleSeekbar.setOnStartTrackingTouchListener(listener);
 		doubleSeekbar.onStartTrackingTouch(innerSeekbar);
 		verify(listener).onStartTrackingTouch(doubleSeekbar);
 	}
 
-	@Test
-	public void onStartTrackingTouch_notSet_notCallOnStartTrackingTouchListener() {
+	@Test public void onStartTrackingTouch_notSet_notCallOnStartTrackingTouchListener() {
 		OnStartTrackingTouchListener listener = mock(OnStartTrackingTouchListener.class);
 		doubleSeekbar.onStartTrackingTouch(innerSeekbar);
 		verify(listener, never()).onStartTrackingTouch(doubleSeekbar);
 	}
 
-	@Test
-	public void onStopTrackingTouch_set_callOnStopTrackingTouchListener() {
+	@Test public void onStopTrackingTouch_set_callOnStopTrackingTouchListener() {
 		OnStopTrackingTouchListener listener = mock(OnStopTrackingTouchListener.class);
 		doubleSeekbar.setOnStopTrackingTouchListener(listener);
 		doubleSeekbar.onStopTrackingTouch(innerSeekbar);
 		verify(listener).onStopTrackingTouch(doubleSeekbar);
 	}
 
-	@Test
-	public void onStopTrackingTouch_notSet_notCallOnStopTrackingTouchListener() {
+	@Test public void onStopTrackingTouch_notSet_notCallOnStopTrackingTouchListener() {
 		OnStopTrackingTouchListener listener = mock(OnStopTrackingTouchListener.class);
 		doubleSeekbar.onStopTrackingTouch(innerSeekbar);
 		verify(listener, never()).onStopTrackingTouch(doubleSeekbar);
 	}
 
-	@Test
-	public void onProgressChanged_set_callOnProgressChangedListenerWithProgressPlusMax() {
+	@Test public void onProgressChanged_set_callOnProgressChangedListenerWithProgressPlusMax() {
 		OnProgressChangedListener listener = mock(OnProgressChangedListener.class);
 		doubleSeekbar.setMax(100);
 		doubleSeekbar.setProgress(-20);

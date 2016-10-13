@@ -17,14 +17,12 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	private AudioEffectsMvp.Presenter presenter;
 	private AudioEffectsMvp.View view;
 	private AudioEffectsMvp.Model model;
-
 	private Equalizer equalizer;
 	private BassBoost bassBoost;
 	private Amplifier amplifier;
 	private Surround surround;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		model = mock(AudioEffectsMvp.Model.class);
 		view = mock(AudioEffectsMvp.View.class);
@@ -41,8 +39,7 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		when(model.getSurround()).thenReturn(surround);
 	}
 
-	@Test
-	public void onServiceConnected_initViewUsingModelData() {
+	@Test public void onServiceConnected_initViewUsingModelData() {
 		when(equalizer.isEnabled()).thenReturn(true);
 		when(equalizer.getGains()).thenReturn(new int[]{4, 5, 6, 7, 8});
 		when(equalizer.getFrequencies()).thenReturn(new int[]{10, 20, 30, 40, 50});
@@ -64,26 +61,22 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		verify(view).initAmplifier(300, 23);
 	}
 
-	@Test
-	public void onCreate_initModel() {
+	@Test public void onCreate_initModel() {
 		presenter.onCreate();
 		verify(model).init();
 	}
 
-	@Test
-	public void onDestroy_closeModel() {
+	@Test public void onDestroy_closeModel() {
 		presenter.onDestroy();
 		verify(model).close();
 	}
 
-	@Test
-	public void onEqualizerEnabledChanged_callModel() {
+	@Test public void onEqualizerEnabledChanged_callModel() {
 		presenter.onEqualizerEnabledChanged(true);
 		verify(equalizer).setEnabled(true);
 	}
 
-	@Test
-	public void onEqualizerBandChanged_setBandGainViaModel() {
+	@Test public void onEqualizerBandChanged_setBandGainViaModel() {
 		EqualizerBandView band = mock(EqualizerBandView.class);
 		when(band.getIndex()).thenReturn(3);
 		when(band.getGain()).thenReturn(9);
@@ -91,32 +84,27 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		verify(equalizer).setBandGain(3, 9);
 	}
 
-	@Test
-	public void onEqualizerBandStopTracking_saveEqualizerGainSettingsViaModel() {
+	@Test public void onEqualizerBandStopTracking_saveEqualizerGainSettingsViaModel() {
 		presenter.onEqualizerBandStopTracking();
 		verify(equalizer).saveSettings();
 	}
 
-	@Test
-	public void onBassBoostStrengthChanged_setBassBoostStrengthViaModel() {
+	@Test public void onBassBoostStrengthChanged_setBassBoostStrengthViaModel() {
 		presenter.onBassBoostStrengthChanged(30);
 		verify(bassBoost).setStrength(30);
 	}
 
-	@Test
-	public void onBassBoostStrengthStopChanging_saveBassBoostStrengthViaModel() {
+	@Test public void onBassBoostStrengthStopChanging_saveBassBoostStrengthViaModel() {
 		presenter.onBassBoostStrengthStopChanging();
 		verify(bassBoost).saveSettings();
 	}
 
-	@Test
-	public void onAmplifierStrengthChanged_setAmplifierStrengthViaModel() {
+	@Test public void onAmplifierStrengthChanged_setAmplifierStrengthViaModel() {
 		presenter.onAmplifierStrengthChanged(30);
 		verify(amplifier).setStrength(30);
 	}
 
-	@Test
-	public void onSurroundStrengthStopChanging_saveSurroundStrengthViaModel() {
+	@Test public void onSurroundStrengthStopChanging_saveSurroundStrengthViaModel() {
 		presenter.onSurroundStrengthStopChanging();
 		verify(surround).saveSettings();
 	}

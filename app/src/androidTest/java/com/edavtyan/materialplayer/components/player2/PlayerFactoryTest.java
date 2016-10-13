@@ -13,9 +13,9 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerFactoryTest extends BaseTest {
-	private PlayerFactory playerFactory;
-
 	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
+
+	private PlayerFactory playerFactory;
 
 	@Override public void beforeEach() {
 		super.beforeEach();

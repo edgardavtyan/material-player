@@ -22,13 +22,11 @@ public class ArtistDBHelper extends TestDBHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	@Override
-	public String getTableName() {
+	@Override public String getTableName() {
 		return TABLE_NAME;
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
+	@Override public void onCreate(SQLiteDatabase db) {
 		String CREATE_SQL
 				= "CREATE TABLE " + TABLE_NAME + "("
 				+ ID + " INTEGER PRIMARY KEY,"

@@ -24,6 +24,9 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class PlaylistActivityTest extends ActivityTest {
 	private static PlaylistFactory factory = mock(PlaylistFactory.class);
+	private static PlaylistActivity activity;
+	private static PlaylistAdapter adapter;
+	private static PlaylistMvp.Presenter presenter;
 
 	public static class TestPlaylistActivity extends PlaylistActivity {
 		@Override
@@ -32,14 +35,9 @@ public class PlaylistActivityTest extends ActivityTest {
 		}
 	}
 
-	private static PlaylistActivity activity;
-	private static PlaylistAdapter adapter;
-	private static PlaylistMvp.Presenter presenter;
-
 	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -58,13 +56,11 @@ public class PlaylistActivityTest extends ActivityTest {
 		}
 	}
 
-	@Test
-	public void getLayoutId_returnCorrectId() {
+	@Test public void getLayoutId_returnCorrectId() {
 		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_playlist);
 	}
 
-	@Test
-	public void onCreate_initList() {
+	@Test public void onCreate_initList() {
 		RecyclerView list = activity.findView(R.id.list);
 
 		activity.onCreate(null);
@@ -73,13 +69,11 @@ public class PlaylistActivityTest extends ActivityTest {
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 
-	@Test
-	public void onCreate_initPresenter() {
+	@Test public void onCreate_initPresenter() {
 		verify(presenter).onCreate();
 	}
 
-	@Test
-	public void onDestroy_closePresenter() {
+	@Test public void onDestroy_closePresenter() {
 		activity.onDestroy();
 		verify(presenter).onDestroy();
 	}

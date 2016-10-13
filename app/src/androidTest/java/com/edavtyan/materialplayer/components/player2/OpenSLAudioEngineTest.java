@@ -1,9 +1,8 @@
 package com.edavtyan.materialplayer.components.player2;
 
+import com.edavtyan.materialplayer.components.player2.PlayerMvp.AudioEngine.OnPreparedListener;
 import com.edavtyan.materialplayer.lib.BaseTest;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
-
-import com.edavtyan.materialplayer.components.player2.PlayerMvp.AudioEngine.OnPreparedListener;
 
 import org.junit.Test;
 import org.mockito.InOrder;

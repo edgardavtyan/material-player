@@ -34,8 +34,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 	private LinearLayout mainWrapper;
 	private TestableBitmapFactory bitmapFactory;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		initFragment(new NowPlayingFloatingFragment());
@@ -66,22 +65,19 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		when(fragmentView.findViewById(R.id.container)).thenReturn(mainWrapper);
 	}
 
-	@Test
-	public void onStart_callPresenter() {
+	@Test public void onStart_callPresenter() {
 		fragment.onCreate(null);
 		fragment.onStart();
 		verify(presenter).onCreate();
 	}
 
-	@Test
-	public void onStop_callPresenter() {
+	@Test public void onStop_callPresenter() {
 		fragment.onCreate(null);
 		fragment.onStop();
 		verify(presenter).onDestroy();
 	}
 
-	@Test
-	public void onCreateView_inflateViewWithCorrectParameters() {
+	@Test public void onCreateView_inflateViewWithCorrectParameters() {
 		LinearLayout container = new LinearLayout(context);
 
 		fragment.onCreate(null);
@@ -90,27 +86,24 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		verify(inflater).inflate(R.layout.fragment_nowplaying_floating, container, false);
 	}
 
-	@Test
 	@SuppressLint("SetTextI18n")
-	public void setTrackTitle_setTitleViewText() {
+	@Test public void setTrackTitle_setTitleViewText() {
 		fragment.onCreateView(inflater, null, null);
 		fragment.setTrackTitle("title");
 
 		verify(titleView).setText("title");
 	}
 
-	@Test
 	@SuppressLint("SetTextI18n")
-	public void setTrackInfo_setInfoViewTextWithPattern() {
+	@Test public void setTrackInfo_setInfoViewTextWithPattern() {
 		fragment.onCreateView(inflater, null, null);
 		fragment.setTrackInfo("artist", "album");
 
 		verify(infoView).setText("artist - album");
 	}
 
-	@Test
-	public void setArt_bitmapIsNotNull_setBitmap() {
-		Bitmap art = Bitmap.createBitmap(1,1, Bitmap.Config.ALPHA_8);
+	@Test public void setArt_bitmapIsNotNull_setBitmap() {
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 		when(bitmapFactory.fromPath("path")).thenReturn(art);
 
 		fragment.onCreate(null);
@@ -121,23 +114,20 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		verify(artView).setImageBitmap(isA(Bitmap.class));
 	}
 
-	@Test
-	public void setArt_bitmapIsNull_setFallbackImage() {
+	@Test public void setArt_bitmapIsNull_setFallbackImage() {
 		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 		fragment.setArt(null);
 		verify(artView).setImageResource(R.drawable.fallback_cover_listitem);
 	}
 
-	@Test
-	public void setIsPlaying_true_setIconToPause() {
+	@Test public void setIsPlaying_true_setIconToPause() {
 		fragment.onCreateView(inflater, null, null);
 		fragment.setIsPlaying(true);
 		verify(playPauseView).setImageResource(R.drawable.ic_pause);
 	}
 
-	@Test
-	public void setIsPlaying_false_setIconToPlay() {
+	@Test public void setIsPlaying_false_setIconToPlay() {
 		ImageButton playPauseButton = mock(ImageButton.class);
 		when(fragmentView.findViewById(R.id.playPause)).thenReturn(playPauseButton);
 
@@ -147,15 +137,13 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		verify(playPauseButton).setImageResource(R.drawable.ic_play);
 	}
 
-	@Test
-	public void setIsVisible_true_setVisibilityToVisible() {
+	@Test public void setIsVisible_true_setVisibilityToVisible() {
 		fragment.onCreateView(inflater, null, null);
 		fragment.setIsVisible(true);
 		verify(mainWrapper).setVisibility(View.VISIBLE);
 	}
 
-	@Test
-	public void onClickListener_artClicked_called() {
+	@Test public void onClickListener_artClicked_called() {
 		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 		artView.setId(R.id.art);
@@ -164,8 +152,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		verify(presenter).onViewClick();
 	}
 
-	@Test
-	public void onClickListener_infoWrapperClicked_called() {
+	@Test public void onClickListener_infoWrapperClicked_called() {
 		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 		infoWrapper.setId(R.id.infoWrapper);
@@ -174,8 +161,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		verify(presenter).onViewClick();
 	}
 
-	@Test
-	public void onPlayPauseClick_playPauseClicked_called() {
+	@Test public void onPlayPauseClick_playPauseClicked_called() {
 		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 		playPauseView.setId(R.id.playPause);
@@ -184,8 +170,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		verify(presenter).onPlayPauseClick();
 	}
 
-	@Test
-	public void gotoNowPlaying_callNavigator() {
+	@Test public void gotoNowPlaying_callNavigator() {
 		fragment.onCreate(null);
 		fragment.gotoNowPlaying();
 		verify(navigator).gotoNowPlaying();

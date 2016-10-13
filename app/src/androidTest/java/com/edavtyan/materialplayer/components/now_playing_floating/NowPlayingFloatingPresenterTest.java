@@ -15,8 +15,7 @@ public class NowPlayingFloatingPresenterTest extends BaseTest {
 	private NowPlayingFloatingMvp.Model model;
 	private NowPlayingFloatingMvp.View view;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		model = mock(NowPlayingFloatingMvp.Model.class);
@@ -24,8 +23,7 @@ public class NowPlayingFloatingPresenterTest extends BaseTest {
 		presenter = new NowPlayingFloatingPresenter(model, view);
 	}
 
-	@Test
-	public void onCreate_bindModel() {
+	@Test public void onCreate_bindModel() {
 		presenter.onCreate();
 
 		verify(model).bind();
@@ -33,14 +31,12 @@ public class NowPlayingFloatingPresenterTest extends BaseTest {
 		verify(model).setOnServiceConnectedListener(presenter);
 	}
 
-	@Test
-	public void onDestroy_unbindModel() {
+	@Test public void onDestroy_unbindModel() {
 		presenter.onDestroy();
 		verify(model).unbind();
 	}
 
-	@Test
-	public void onServiceConnected_updateViewAndModel() {
+	@Test public void onServiceConnected_updateViewAndModel() {
 		Track track = new Track();
 		track.setTitle("title");
 		track.setArtistTitle("artist");
@@ -58,14 +54,12 @@ public class NowPlayingFloatingPresenterTest extends BaseTest {
 		verify(view).setIsVisible(true);
 	}
 
-	@Test
-	public void onViewClick_gotoNowPlaying() {
+	@Test public void onViewClick_gotoNowPlaying() {
 		presenter.onViewClick();
 		verify(view).gotoNowPlaying();
 	}
 
-	@Test
-	public void onPlayPauseClick_updateModelAndView() {
+	@Test public void onPlayPauseClick_updateModelAndView() {
 		when(model.isPlaying()).thenReturn(true);
 
 		presenter.onPlayPauseClick();
@@ -74,8 +68,7 @@ public class NowPlayingFloatingPresenterTest extends BaseTest {
 		verify(view).setIsPlaying(true);
 	}
 
-	@Test
-	public void onNewTrack_hasData_updateView() {
+	@Test public void onNewTrack_hasData_updateView() {
 		Track track = new Track();
 		track.setTitle("title");
 		track.setArtistTitle("artist");

@@ -18,8 +18,7 @@ public class NowPlayingInfoTest extends BaseTest {
 	private TextView titleView;
 	private TextView infoView;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		titleView = new TextView(context);
@@ -33,14 +32,12 @@ public class NowPlayingInfoTest extends BaseTest {
 		info = new NowPlayingInfo(activity);
 	}
 
-	@Test
-	public void setTitle_setTitleViewText() {
+	@Test public void setTitle_setTitleViewText() {
 		info.setTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
-	@Test
-	public void setInfo_setInfoViewTextWithPattern() {
+	@Test public void setInfo_setInfoViewTextWithPattern() {
 		info.setInfo("artist", "album");
 		assertThat(infoView.getText()).isEqualTo("artist - album");
 	}

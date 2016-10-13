@@ -1,11 +1,9 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
-import com.edavtyan.materialplayer.components.artist_all.ArtistListModel;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.BaseTest;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -17,11 +15,9 @@ import static org.mockito.Mockito.when;
 public class ArtistListModelTests extends BaseTest {
 	private List artists;
 	private ArtistListModel model;
-
-	@Override
-	@Before
+	
 	@SuppressWarnings("unchecked")
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 		ArtistDB db = mock(ArtistDB.class);
 		artists = mock(List.class);
@@ -29,20 +25,17 @@ public class ArtistListModelTests extends BaseTest {
 		model = new ArtistListModel(db);
 	}
 
-	@Test
-	public void getArtistCount_correctCount() {
+	@Test public void getArtistCount_correctCount() {
 		when(artists.size()).thenReturn(4);
 		model.update();
 		assertThat(model.getArtistCount()).isEqualTo(4);
 	}
 
-	@Test
-	public void getArtistCount_noArtists_zero() {
+	@Test public void getArtistCount_noArtists_zero() {
 		assertThat(model.getArtistCount()).isEqualTo(0);
 	}
 
-	@Test
-	public void getArtistAtIndex_correctArtist() {
+	@Test public void getArtistAtIndex_correctArtist() {
 		Artist artist = new Artist();
 		when(artists.get(0)).thenReturn(artist);
 
@@ -51,8 +44,7 @@ public class ArtistListModelTests extends BaseTest {
 		assertThat(model.getArtistAtIndex(0)).isSameAs(artist);
 	}
 
-	@Test
-	public void getArtistAtIndex_noArtists_null() {
+	@Test public void getArtistAtIndex_noArtists_null() {
 		assertThat(model.getArtistAtIndex(0)).isNull();
 	}
 }

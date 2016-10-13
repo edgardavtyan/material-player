@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.now_playing;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.test.InstrumentationRegistry;
 
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnNewTrackListener;
@@ -34,8 +33,7 @@ public class NowPlayingModelTest extends BaseTest {
 	private PlayerMvp.Player player;
 	private ArtProvider2 artProvider;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		player = mock(PlayerMvp.Player.class);
@@ -48,14 +46,13 @@ public class NowPlayingModelTest extends BaseTest {
 
 		artProvider = mock(ArtProvider2.class);
 
-		InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+		runOnUiThread(() -> {
 			model = new NowPlayingModel(context, artProvider);
 			model.onServiceConnected(null, binder);
 		});
 	}
 
-	@Test
-	@SuppressWarnings("WrongConstant")
+	@Test @SuppressWarnings("WrongConstant")
 	public void bind_bindServiceWithCorrectIntent() {
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 
@@ -66,91 +63,78 @@ public class NowPlayingModelTest extends BaseTest {
 		IntentAssert.assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
-	@Test
-	public void unbind_unbindService() {
+	@Test public void unbind_unbindService() {
 		model.bind();
 		model.unbind();
 		verify(context).unbindService(model);
 	}
 
-	@Test
-	public void getRepeatMode_returnRepeatModeFromPlayer() {
+	@Test public void getRepeatMode_returnRepeatModeFromPlayer() {
 		RepeatMode repeatMode = RepeatMode.REPEAT_ALL;
 		when(player.getRepeatMode()).thenReturn(repeatMode);
 		assertThat(model.getRepeatMode()).isSameAs(repeatMode);
 	}
 
-	@Test
-	public void toggleRepeatMode_callService() {
+	@Test public void toggleRepeatMode_callService() {
 		model.toggleRepeatMode();
 		verify(player).toggleRepeatMode();
 	}
 
-	@Test
-	public void getShuffleMode_returnShuffleModeFromPlayer() {
+	@Test public void getShuffleMode_returnShuffleModeFromPlayer() {
 		ShuffleMode shuffleMode = ShuffleMode.ENABLED;
 		when(player.getShuffleMode()).thenReturn(shuffleMode);
 		assertThat(model.getShuffleMode()).isSameAs(shuffleMode);
 	}
 
-	@Test
-	public void toggleShuffle() {
+	@Test public void toggleShuffle() {
 		model.toggleShuffleMode();
 		verify(player).toggleShuffleMode();
 	}
 
-	@Test
-	public void isPlaying_returnIsPlayingFromPlayer() {
+	@Test public void isPlaying_returnIsPlayingFromPlayer() {
 		when(player.isPlaying()).thenReturn(true);
 		assertThat(model.isPlaying()).isTrue();
 	}
 
-	@Test
-	public void togglePlayPause_playPausePlayer() {
+	@Test public void togglePlayPause_playPausePlayer() {
 		model.playPause();
 		verify(player).playPause();
 	}
 
-	@Test
-	public void getTitle_returnTitleOfNowPlayingTrack() {
+	@Test public void getTitle_returnTitleOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setTitle("title");
 		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getTitle()).isEqualTo("title");
 	}
 
-	@Test
-	public void getArtist_returnArtistTitleOfNowPlayingTrack() {
+	@Test public void getArtist_returnArtistTitleOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setArtistTitle("artist");
 		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getArtist()).isEqualTo("artist");
 	}
 
-	@Test
-	public void getAlbum_returnAlbumTitleOfNowPlayingTrack() {
+	@Test public void getAlbum_returnAlbumTitleOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setAlbumTitle("album");
 		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getAlbum()).isEqualTo("album");
 	}
 
-	@Test
-	public void getDuration_returnDurationOfNowPlayingTrack() {
+	@Test public void getDuration_returnDurationOfNowPlayingTrack() {
 		Track track = new Track();
 		track.setDuration(1234);
 		when(player.getCurrentTrack()).thenReturn(track);
 		assertThat(model.getDuration()).isEqualTo(1234);
 	}
 
-	@Test
-	public void getPosition_returnPositionOfNowPlayingTrack() {
+	@Test public void getPosition_returnPositionOfNowPlayingTrack() {
 		when(player.getPosition()).thenReturn(5678L);
 		assertThat(model.getPosition()).isEqualTo(5678);
 	}
 
-	@Test
-	public void getTrackArt_returnArtFromArtProvider() {
+	@Test public void getTrackArt_returnArtFromArtProvider() {
 		Track track = new Track();
 		track.setAlbumId(123);
 		when(player.getCurrentTrack()).thenReturn(track);
@@ -161,26 +145,22 @@ public class NowPlayingModelTest extends BaseTest {
 		assertThat(model.getArt()).isSameAs(artFile);
 	}
 
-	@Test
-	public void seek_setPlayerPosition() {
+	@Test public void seek_setPlayerPosition() {
 		model.seek(1357);
 		verify(player).setPosition(1357);
 	}
 
-	@Test
-	public void rewind_rewindPlayerViaService() {
+	@Test public void rewind_rewindPlayerViaService() {
 		model.rewind();
 		verify(player).rewind();
 	}
 
-	@Test
-	public void fastForward_fastForwardPlayerViaService() {
+	@Test public void fastForward_fastForwardPlayerViaService() {
 		model.fastForward();
 		verify(player).playNext();
 	}
 
-	@Test
-	public void onServiceConnected_callOnModelConnectedListener() {
+	@Test public void onServiceConnected_callOnModelConnectedListener() {
 		OnModelBoundListener listener = mock(OnModelBoundListener.class);
 		model.setOnModelBoundListener(listener);
 		model.onServiceConnected(null, binder);

@@ -15,8 +15,7 @@ public class PlaylistPresenterTest extends BaseTest {
 	private PlaylistMvp.Model model;
 	private PlaylistMvp.View view;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		model = mock(PlaylistMvp.Model.class);
@@ -24,32 +23,27 @@ public class PlaylistPresenterTest extends BaseTest {
 		presenter = new PlaylistPresenter(model, view);
 	}
 
-	@Test
-	public void onCreate_bindModel() {
+	@Test public void onCreate_bindModel() {
 		presenter.onCreate();
 		verify(model).bind();
 	}
 
-	@Test
-	public void onDestroy_unbindModel() {
+	@Test public void onDestroy_unbindModel() {
 		presenter.onDestroy();
 		verify(model).unbind();
 	}
 
-	@Test
-	public void onItemClick_playItemViaModel() {
+	@Test public void onItemClick_playItemViaModel() {
 		presenter.onItemClick(7);
 		verify(model).playItemAtPosition(7);
 	}
 
-	@Test
-	public void onRemoveItemClicked_removeItemViaModel() {
+	@Test public void onRemoveItemClicked_removeItemViaModel() {
 		presenter.onRemoveItemClick(7);
 		verify(model).removeItemAtPosition(7);
 	}
 
-	@Test
-	public void onBindViewHolder_setHolderData() {
+	@Test public void onBindViewHolder_setHolderData() {
 		Track track = new Track();
 		track.setTitle("title");
 		track.setArtistTitle("artist");
@@ -64,8 +58,7 @@ public class PlaylistPresenterTest extends BaseTest {
 		verify(holder).setInfo(657, "artist", "album");
 	}
 
-	@Test
-	public void getItemCount_getItemCountFromModel() {
+	@Test public void getItemCount_getItemCountFromModel() {
 		when(model.getTrackCount()).thenReturn(7);
 		assertThat(presenter.getItemCount()).isEqualTo(7);
 		verify(model).getTrackCount();

@@ -30,8 +30,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	private NowPlayingFloatingModel model;
 	private PlayerMvp.Player player;
 
-	@Override
-	public void beforeEach() {
+	@Override public void beforeEach() {
 		super.beforeEach();
 
 		context = mock(Context.class);
@@ -47,9 +46,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		when(binder.getService()).thenReturn(service);
 	}
 
-	@Test
 	@SuppressWarnings("WrongConstant")
-	public void bind_bindMusicPlayerService() {
+	@Test public void bind_bindMusicPlayerService() {
 		model.bind();
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
@@ -57,14 +55,12 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
-	@Test
-	public void unbind_unbindMusicPlayerService() {
+	@Test public void unbind_unbindMusicPlayerService() {
 		model.unbind();
 		verify(context).unbindService(model);
 	}
 
-	@Test
-	public void getNowPlayingTrack_getTrackFromService() {
+	@Test public void getNowPlayingTrack_getTrackFromService() {
 		Track track = new Track();
 		when(player.getCurrentTrack()).thenReturn(track);
 		model.onServiceConnected(null, binder);
@@ -84,8 +80,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		assertThat(model.getNowPlayingTrackArtPath()).isSameAs("artPath");
 	}
 
-	@Test
-	public void isPlaying_getFromService() {
+	@Test public void isPlaying_getFromService() {
 		when(player.isPlaying()).thenReturn(true);
 		model.onServiceConnected(null, binder);
 
@@ -93,21 +88,18 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(player).isPlaying();
 	}
 
-	@Test
-	public void togglePlayPause_playPausePlayer() {
+	@Test public void togglePlayPause_playPausePlayer() {
 		model.onServiceConnected(null, binder);
 		model.togglePlayPause();
 		verify(player).playPause();
 	}
 
-	@Test
-	public void onServiceConnected_setOnPreparedListener() {
+	@Test public void onServiceConnected_setOnPreparedListener() {
 		model.onServiceConnected(null, binder);
 		verify(player).setOnNewTrackListener(model);
 	}
 
-	@Test
-	public void onNewTrackListener_newTrackIsPlayed_called() {
+	@Test public void onNewTrackListener_newTrackIsPlayed_called() {
 		OnNewTrackListener listener = mock(OnNewTrackListener.class);
 		model.setOnNewTrackListener(listener);
 		model.onServiceConnected(null, binder);
@@ -117,8 +109,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(listener).onNewTrack();
 	}
 
-	@Test
-	public void onServiceConnectedListener_serviceConnected_called() {
+	@Test public void onServiceConnectedListener_serviceConnected_called() {
 		OnServiceConnectedListener listener = mock(OnServiceConnectedListener.class);
 		model.setOnServiceConnectedListener(listener);
 
