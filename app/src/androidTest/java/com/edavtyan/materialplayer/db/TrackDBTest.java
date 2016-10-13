@@ -5,18 +5,16 @@ import com.edavtyan.materialplayer.db.lib.TrackDBProvider;
 import com.edavtyan.materialplayer.testlib.tests.DBTest;
 
 import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrackDBTest extends DBTest {
-	private static TrackDB trackDB;
-	private static TrackDBHelper testTrackDB;
+	private TrackDB trackDB;
+	private TrackDBHelper testTrackDB;
 
-	@BeforeClass public static void beforeClass() {
-		DBTest.beforeClass();
-		initProvider(TrackDBProvider.class);
+	@Override public void beforeEach() {
+		initProvider(new TrackDBProvider());
 		trackDB = new TrackDB(context);
 		testTrackDB = new TrackDBHelper(context);
 	}

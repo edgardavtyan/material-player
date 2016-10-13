@@ -4,18 +4,16 @@ import com.edavtyan.materialplayer.db.lib.ArtistDBHelper;
 import com.edavtyan.materialplayer.db.lib.ArtistDBProvider;
 import com.edavtyan.materialplayer.testlib.tests.DBTest;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArtistDBTest extends DBTest {
-	private static ArtistDB db;
-	private static ArtistDBHelper testArtistDB;
+	private ArtistDB db;
+	private ArtistDBHelper testArtistDB;
 
-	@BeforeClass
-	public static void beforeClass() {
-		initProvider(ArtistDBProvider.class);
+	@Override public void beforeEach() {
+		initProvider(new ArtistDBProvider());
 		db = new ArtistDB(context);
 		testArtistDB = new ArtistDBHelper(context);
 	}

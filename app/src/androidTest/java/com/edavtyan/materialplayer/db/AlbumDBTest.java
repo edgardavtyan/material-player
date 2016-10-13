@@ -2,10 +2,8 @@ package com.edavtyan.materialplayer.db;
 
 import com.edavtyan.materialplayer.db.lib.AlbumDBHelper;
 import com.edavtyan.materialplayer.db.lib.AlbumDBProvider;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.testlib.tests.DBTest;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
@@ -13,12 +11,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AlbumDBTest extends DBTest {
-	private static AlbumDB albumDB;
-	private static AlbumDBHelper albumDBHelper;
+	private AlbumDB albumDB;
+	private AlbumDBHelper albumDBHelper;
 
-	@BeforeClass public static void beforeClass() {
-		BaseTest.beforeClass();
-		initProvider(AlbumDBProvider.class);
+	@Override public void beforeEach() {
+		initProvider(new AlbumDBProvider());
 		albumDB = new AlbumDB(context);
 		albumDBHelper = new AlbumDBHelper(context);
 	}
