@@ -72,7 +72,7 @@ public class EqualizerViewTest extends BaseTest {
 
 	@Test public void onBandStopTracking_listenerNotSet_notThrowException() {
 		try {
-			equalizerView.OnBandStopTracking(null);
+			equalizerView.onBandStopTracking(null);
 		} catch (NullPointerException e) {
 			fail("Expected onBandStopTracking to not throw NullPointerException"
 				 + "if OnBandChangedListener not set");

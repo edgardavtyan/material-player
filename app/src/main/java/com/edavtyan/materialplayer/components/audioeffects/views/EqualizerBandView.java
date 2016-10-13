@@ -26,7 +26,7 @@ public class EqualizerBandView
 	private @Setter OnBandChangedListener onBandChangedListener;
 
 	public interface OnBandChangedListener {
-		void OnBandStopTracking(EqualizerBandView band);
+		void onBandStopTracking(EqualizerBandView band);
 		void onBandChanged(EqualizerBandView band, int gain);
 	}
 
@@ -89,7 +89,7 @@ public class EqualizerBandView
 	@Override
 	public void onStopTrackingTouch(DoubleSeekbar seekBar) {
 		if (onBandChangedListener != null) {
-			onBandChangedListener.OnBandStopTracking(this);
+			onBandChangedListener.onBandStopTracking(this);
 		}
 	}
 

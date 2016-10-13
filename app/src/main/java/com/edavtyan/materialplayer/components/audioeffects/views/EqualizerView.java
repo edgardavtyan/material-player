@@ -37,7 +37,7 @@ public class EqualizerView
 	}
 
 	@Override
-	public void OnBandStopTracking(EqualizerBandView band) {
+	public void onBandStopTracking(EqualizerBandView band) {
 		if (onBandChangedListener != null) {
 			onBandChangedListener.onBandStopTracking(band);
 		}
