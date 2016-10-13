@@ -63,17 +63,17 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		doReturn(bassBoostView).when(activity).findViewById(R.id.bassBoost);
 		doReturn(amplifierView).when(activity).findViewById(R.id.amplifier);
 		doReturn(surroundView).when(activity).findViewById(R.id.surround);
+
+		activity.onCreate(null);
 	}
 
 	@Test
 	public void onCreate_initPresenter() {
-		activity.onCreate(null);
 		verify(presenter).onCreate();
 	}
 
 	@Test
 	public void onCreate_setEventListeners() {
-		activity.onCreate(null);
 		verify(equalizerSwitch).setOnCheckedChangeListener(activity);
 		verify(equalizerView).setOnBandChangedListener(activity);
 		verify(bassBoostView).setOnProgressChangedListener(activity);
@@ -83,27 +83,23 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 	@Test
 	public void onDestroy_disposePresenter() {
-		activity.onCreate(null);
 		activity.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
 	@Test
 	public void getLayoutId_returnCorrectLayoutId() {
-		activity.onCreate(null);
 		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_effects);
 	}
 
 	@Test
 	public void setEqualizerEnabled_true_setSwitchToEnabled() {
-		activity.onCreate(null);
 		activity.setEqualizerEnabled(true);
 		verify(equalizerSwitch).setChecked(true);
 	}
 
 	@Test
 	public void equalizerSwitchClicked_switchEqualizerViaPresenter() {
-		activity.onCreate(null);
 		equalizerSwitch.performClick();
 		verify(presenter).onEqualizerEnabledChanged(true);
 	}
@@ -115,7 +111,6 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		final int[] frequencies = {31, 62, 125, 250, 500};
 		final int[] gains = {-15, -5, 0, 4, 10};
 
-		activity.onCreate(null);
 		activity.setEqualizerBands(count, gainLimit, frequencies, gains);
 
 		verify(equalizerView).setBands(count, frequencies, gains, gainLimit);
@@ -124,21 +119,18 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	@Test
 	public void onBandChanged_callPresenter() {
 		EqualizerBandView band = mock(EqualizerBandView.class);
-		activity.onCreate(null);
 		activity.onBandChanged(band);
 		verify(presenter).onEqualizerBandChanged(band);
 	}
 
 	@Test
 	public void onBandStopTracking_callPresenter() {
-		activity.onCreate(null);
 		activity.onBandStopTracking(mock(EqualizerBandView.class));
 		verify(presenter).onEqualizerBandStopTracking();
 	}
 
 	@Test
 	public void setBassBoostStrength_setBassBoostSeekbarMaxAndProgress() {
-		activity.onCreate(null);
 		activity.initBassBoost(100, 45);
 		verify(bassBoostView).setMax(100);
 		verify(bassBoostView).setProgress(45);
@@ -146,21 +138,18 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 	@Test
 	public void onProgressChanged_bassBoostId_changeBassBoostStrengthViaPresenter() {
-		activity.onCreate(null);
 		activity.onProgressChange(R.id.bassBoost, 90);
 		verify(presenter).onBassBoostStrengthChanged(90);
 	}
 
 	@Test
 	public void onStopTrackingTouch_bassBoostId_callPresenter() {
-		activity.onCreate(null);
 		activity.onStopTrackingTouch(R.id.bassBoost);
 		verify(presenter).onBassBoostStrengthStopChanging();
 	}
 
 	@Test
 	public void initAmplifier_setAmplifierSeekbarMaxAndProgress() {
-		activity.onCreate(null);
 		activity.initAmplifier(200, 55);
 		verify(amplifierView).setMax(200);
 		verify(amplifierView).setProgress(55);
@@ -168,21 +157,18 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 	@Test
 	public void onProgressChanged_amplifierId_changAmplifierStrengthViaPresenter() {
-		activity.onCreate(null);
 		activity.onProgressChange(R.id.amplifier, 90);
 		verify(presenter).onAmplifierStrengthChanged(90);
 	}
 
 	@Test
 	public void onStopTrackingTouch_amplifierId_callPresenter() {
-		activity.onCreate(null);
 		activity.onStopTrackingTouch(R.id.amplifier);
 		verify(presenter).onAmplifierStrengthStopChanging();
 	}
 
 	@Test
 	public void setSurroundStrength_setSurroundSeekbarMaxAndProgress() {
-		activity.onCreate(null);
 		activity.initSurround(300, 65);
 		verify(surroundView).setProgress(65);
 		verify(surroundView).setMax(300);
@@ -190,14 +176,12 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 	@Test
 	public void onProgressChanged_surroundId_changAmplifierStrengthViaPresenter() {
-		activity.onCreate(null);
 		activity.onProgressChange(R.id.surround, 90);
 		verify(presenter).onSurroundStrengthChanged(90);
 	}
 
 	@Test
 	public void onStopTrackingTouch_surroundId_callPresenter() {
-		activity.onCreate(null);
 		activity.onStopTrackingTouch(R.id.surround);
 		verify(presenter).onSurroundStrengthStopChanging();
 	}
