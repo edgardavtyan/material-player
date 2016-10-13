@@ -16,7 +16,7 @@ public class TrackTest extends BaseTest {
 		second = createTrack();
 	}
 
-	@Test public void equals_equalTracks_true() {
+	@Test public void equals_allFieldsEqual_true() {
 		assertThat(first.equals(second)).isTrue();
 	}
 
@@ -35,17 +35,17 @@ public class TrackTest extends BaseTest {
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_firstTitleIsNull_false() {
+	@Test public void equals_firstTitleNull_false() {
 		first.setTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_secondTitleIsNull_false() {
+	@Test public void equals_secondTitleNull_false() {
 		second.setTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_bothTitlesAreNull_true() {
+	@Test public void equals_bothTitlesNull_true() {
 		first.setTitle(null);
 		second.setTitle(null);
 		assertThat(first.equals(second)).isTrue();
@@ -57,17 +57,17 @@ public class TrackTest extends BaseTest {
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_firstPathIsNull_false() {
+	@Test public void equals_firstPathNull_false() {
 		first.setPath(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_secondPathIsNull_false() {
+	@Test public void equals_secondPathNull_false() {
 		second.setPath(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_bothPathsAreNull_true() {
+	@Test public void equals_bothPathsNull_true() {
 		first.setPath(null);
 		second.setPath(null);
 		assertThat(first.equals(second)).isTrue();
@@ -93,17 +93,17 @@ public class TrackTest extends BaseTest {
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_firstArtistTitleIsNull_false() {
+	@Test public void equals_firstArtistTitleNull_false() {
 		first.setArtistTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_secondArtistTitleIsNull_false() {
+	@Test public void equals_secondArtistTitleNull_false() {
 		second.setArtistTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_bothArtistTitlesAreNull_true() {
+	@Test public void equals_bothArtistTitlesNull_true() {
 		first.setArtistTitle(null);
 		second.setArtistTitle(null);
 		assertThat(first.equals(second)).isTrue();
@@ -119,17 +119,17 @@ public class TrackTest extends BaseTest {
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_firstAlbumTitleIsNull_false() {
+	@Test public void equals_firstAlbumTitleNull_false() {
 		first.setAlbumTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_secondAlbumTitleIsNull_false() {
+	@Test public void equals_secondAlbumTitleNull_false() {
 		second.setAlbumTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_bothAlbumTitlesAreNull_true() {
+	@Test public void equals_bothAlbumTitlesNull_true() {
 		first.setAlbumTitle(null);
 		second.setAlbumTitle(null);
 		assertThat(first.equals(second)).isTrue();
@@ -141,11 +141,11 @@ public class TrackTest extends BaseTest {
 	}
 
 	@SuppressWarnings("ObjectEqualsNull")
-	@Test public void equals_null_false() {
+	@Test public void equals_firstArtistNull_false() {
 		assertThat(second.equals(null)).isFalse();
 	}
 
-	@Test public void toString_returnFormattedString() {
+	@Test public void toString_formattedString() {
 		String trackAsString =
 				"Track("
 				+ "id=0, "
@@ -163,23 +163,23 @@ public class TrackTest extends BaseTest {
 		assertThat(first.toString()).isEqualTo(trackAsString);
 	}
 
-	@Test public void hashCode_equalTracks_equalHashCode() {
+	@Test public void hashCode_equalTracks_equalHashCodes() {
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void hashCode_nullTitle_equalHashCode() {
+	@Test public void hashCode_nullTitle_equalHashCodes() {
 		first.setTitle(null);
 		second.setTitle(null);
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void hashCode_nullPath_equalHashCode() {
+	@Test public void hashCode_nullPath_equalHashCodes() {
 		first.setPath(null);
 		second.setPath(null);
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void hashCode_nullArtistTitle_equalHashCode() {
+	@Test public void hashCode_nullArtistTitle_equalHashCodes() {
 		first.setArtistTitle(null);
 		second.setArtistTitle(null);
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());

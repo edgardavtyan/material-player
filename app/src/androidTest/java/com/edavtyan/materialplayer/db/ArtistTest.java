@@ -16,7 +16,7 @@ public class ArtistTest extends BaseTest {
 		second = createArtist();
 	}
 
-	@Test public void equals_equalArtists_true() {
+	@Test public void equals_allFieldsEqual_true() {
 		assertThat(first.equals(second)).isTrue();
 	}
 
@@ -30,7 +30,7 @@ public class ArtistTest extends BaseTest {
 		assertThat(first.equals(second)).isFalse();
 	}
 
-	@Test public void equals_titleIsNull_false() {
+	@Test public void equals_titleNull_false() {
 		first.setTitle(null);
 		assertThat(first.equals(second)).isFalse();
 	}
@@ -57,7 +57,7 @@ public class ArtistTest extends BaseTest {
 		assertThat(first.equals(string)).isFalse();
 	}
 
-	@Test public void hashCode_equalArtists_equalHashCodes() {
+	@Test public void hashCode_allFieldsEqual_equalHashCodes() {
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
@@ -67,7 +67,7 @@ public class ArtistTest extends BaseTest {
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void toString_returnFormattedString() {
+	@Test public void toString_formattedString() {
 		String artistAsString = "Artist(id=0, title=first, albumsCount=1, tracksCount=2)";
 		assertThat(first.toString()).isEqualTo(artistAsString);
 	}
