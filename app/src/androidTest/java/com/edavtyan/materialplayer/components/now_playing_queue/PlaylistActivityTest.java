@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.db.ActivityTest;
+import com.edavtyan.materialplayer.lib.rules.UiThreadRule;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +35,8 @@ public class PlaylistActivityTest extends ActivityTest {
 	private static PlaylistActivity activity;
 	private static PlaylistAdapter adapter;
 	private static PlaylistMvp.Presenter presenter;
+
+	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
 
 	@Override
 	public void beforeEach() {
@@ -63,7 +67,7 @@ public class PlaylistActivityTest extends ActivityTest {
 	public void onCreate_initList() {
 		RecyclerView list = activity.findView(R.id.list);
 
-		runOnUiThread(() -> activity.onCreate(null));
+		activity.onCreate(null);
 
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);

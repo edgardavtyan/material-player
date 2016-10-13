@@ -9,7 +9,9 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.db.ActivityTest;
+import com.edavtyan.materialplayer.lib.rules.UiThreadRule;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +35,8 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	private static AlbumDetailAdapter adapter;
 	private static TestAlbumDetailActivity activity;
 	private static Navigator navigator;
+
+	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
 
 	@Override
 	public void beforeEach() {
@@ -74,20 +78,20 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	@Test
 	public void setAlbumTitle_setTitleViewText() {
 		TextView titleView = activity.findView(R.id.title);
-		runOnUiThread(() -> activity.setAlbumTitle("title"));
+		activity.setAlbumTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
 	public void setAlbumInfo_setInfoTextWithPattern() {
 		TextView infoView = activity.findView(R.id.info);
-		runOnUiThread(() -> activity.setAlbumInfo("artist", 9));
+		activity.setAlbumInfo("artist", 9);
 		assertThat(infoView.getText()).isEqualTo("artist | 9 Tracks");
 	}
 
 	@Test
 	public void goToNowPlaying_callNavigator() {
-		runOnUiThread(() -> activity.goToNowPlaying());
+		activity.goToNowPlaying();
 		verify(navigator).gotoNowPlaying();
 	}
 }

@@ -10,7 +10,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.db.ActivityTest;
+import com.edavtyan.materialplayer.lib.rules.UiThreadRule;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,6 +23,8 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityTest extends ActivityTest {
+	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
+
 	private static ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
 
 	public static class TestArtistDetailActivity extends ArtistDetailActivity {
@@ -75,20 +79,20 @@ public class ArtistDetailActivityTest extends ActivityTest {
 	@Test
 	public void setArtistTitle_setTitleViewText() {
 		TextView titleView = activity.findView(R.id.title);
-		runOnUiThread(() -> activity.setArtistTitle("title"));
+		activity.setArtistTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
 	public void setArtistInfo_setInfoViewTextWithPattern() {
 		TextView infoView = activity.findView(R.id.info);
-		runOnUiThread(() -> activity.setArtistInfo(3, 9));
+		activity.setArtistInfo(3, 9);
 		assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
 	}
 
 	@Test
 	public void goToAlbumDetail_callNavigator() {
-		runOnUiThread(() -> activity.goToAlbumDetail(3));
+		activity.goToAlbumDetail(3);
 		verify(navigator).gotoAlbumDetail(3);
 	}
 }
