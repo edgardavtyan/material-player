@@ -114,7 +114,7 @@ public class TrackTest extends BaseTest {
 	@Test public void toString_returnFormattedString() {
 		first = createFirstTrack();
 		String trackAsString =
-				"com.edavtyan.materialplayer.db.Track("
+				"Track("
 				+ "id=0, "
 				+ "track=1, "
 				+ "title=title, "
