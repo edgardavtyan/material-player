@@ -9,6 +9,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -89,10 +90,28 @@ public class EqualizerBandViewTest extends BaseTest {
 		verify(listener).onBandChanged(equalizerView, 20);
 	}
 
+	@Test public void onProgressChanged_onBandChangedListenerNotSet_notThrowException() {
+		try {
+			equalizerView.onProgressChanged(null, 0, false);
+		} catch (NullPointerException e) {
+			fail("Expected OnProgressChanged to not throw NullPointerException"
+				 + "if OnBandChangedListener is not set");
+		}
+	}
+
 	@Test public void onStopTrackingTouch_onBandChangedListenerSet_callOnBandStopTracking() {
 		OnBandChangedListener listener = mock(OnBandChangedListener.class);
 		equalizerView.setOnBandChangedListener(listener);
 		equalizerView.onStopTrackingTouch(bandView);
-		verify(listener).OnBandStopTracking(equalizerView);
+		verify(listener).onBandStopTracking(equalizerView);
+	}
+
+	@Test public void onStopTrackingTouch_onBandChangedListenerNotSet_notThrowException() {
+		try {
+			equalizerView.onStopTrackingTouch(null);
+		} catch (NullPointerException e) {
+			fail("Expected onStopTrackingTouch to not throw NullPointerException"
+				 + "if onBandChangedListener is not set");
+		}
 	}
 }

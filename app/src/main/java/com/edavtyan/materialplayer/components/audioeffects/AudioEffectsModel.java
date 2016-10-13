@@ -66,6 +66,5 @@ public class AudioEffectsModel implements AudioEffectsMvp.Model {
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
-
 	}
 }

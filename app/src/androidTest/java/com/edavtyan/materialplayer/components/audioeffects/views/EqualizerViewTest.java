@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -58,5 +59,23 @@ public class EqualizerViewTest extends BaseTest {
 
 		band.onStopTrackingTouch(mock(DoubleSeekbar.class));
 		verify(listener).onBandStopTracking(band);
+	}
+
+	@Test public void onBandChanged_listenerNotSet_notThrowException() {
+		try {
+			equalizerView.onBandChanged(null, 0);
+		} catch (NullPointerException e) {
+			fail("Expected onBandChanged to not throw NullPointerException"
+				 + "if OnBandChangedListener not set");
+		}
+	}
+
+	@Test public void onBandStopTracking_listenerNotSet_notThrowException() {
+		try {
+			equalizerView.OnBandStopTracking(null);
+		} catch (NullPointerException e) {
+			fail("Expected onBandStopTracking to not throw NullPointerException"
+				 + "if OnBandChangedListener not set");
+		}
 	}
 }

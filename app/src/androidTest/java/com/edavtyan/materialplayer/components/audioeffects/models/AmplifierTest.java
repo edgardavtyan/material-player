@@ -49,6 +49,11 @@ public class AmplifierTest extends BaseTest {
 		verify(preAmp).setLevel(1.35f);
 	}
 
+	@Test public void setStrength_biggerThanMax_setConvertedStrengthToMax() {
+		amplifier.setStrength(450);
+		verify(preAmp).setLevel(2.0f);
+	}
+
 	@Test public void saveSettings_saveStrengthToPrefs() {
 		doReturn(25).when(amplifier).getStrength();
 		amplifier.saveSettings();
