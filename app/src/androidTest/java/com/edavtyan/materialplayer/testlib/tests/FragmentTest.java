@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib;
+package com.edavtyan.materialplayer.testlib.tests;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;

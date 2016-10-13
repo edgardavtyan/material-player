@@ -1,9 +1,9 @@
-package com.edavtyan.materialplayer.lib;
+package com.edavtyan.materialplayer.testlib.tests;
 
 import android.provider.MediaStore;
 import android.test.mock.MockContentResolver;
 
-import com.edavtyan.materialplayer.lib.db.TestProvider;
+import com.edavtyan.materialplayer.testlib.db.TestProvider;
 
 import static org.mockito.Mockito.when;
 

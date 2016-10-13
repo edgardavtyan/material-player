@@ -7,12 +7,12 @@ import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import static com.edavtyan.materialplayer.lib.asertions.IntentAssert.assertThat;
+import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 

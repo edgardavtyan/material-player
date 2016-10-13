@@ -5,7 +5,7 @@ import android.preference.PreferenceManager;
 import com.edavtyan.materialplayer.components.player2.PlayerMvp.Player.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.player2.PlayerMvp.Player.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import org.junit.Test;

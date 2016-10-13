@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.album_detail;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;

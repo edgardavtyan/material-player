@@ -5,7 +5,7 @@ import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.player2.RepeatMode;
 import com.edavtyan.materialplayer.components.player2.ShuffleMode;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 import com.edavtyan.materialplayer.utils.AppColors;
 

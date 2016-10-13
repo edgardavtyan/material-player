@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.FragmentTest;
+import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 import org.junit.Test;

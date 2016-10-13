@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.db.lib;
 
-import com.edavtyan.materialplayer.lib.db.TestProvider;
+import com.edavtyan.materialplayer.testlib.db.TestProvider;
 
 public class ArtistDBProvider extends TestProvider<ArtistDBHelper> {
 	public ArtistDBProvider() {

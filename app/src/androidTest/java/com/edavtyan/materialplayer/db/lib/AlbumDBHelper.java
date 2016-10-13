@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
 
 import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.lib.db.TestDBHelper;
+import com.edavtyan.materialplayer.testlib.db.TestDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;

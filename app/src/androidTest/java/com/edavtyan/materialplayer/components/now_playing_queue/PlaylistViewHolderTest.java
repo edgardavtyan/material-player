@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistViewHolder.OnHolderClickListener;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistViewHolder.OnMenuClickListener;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

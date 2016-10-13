@@ -4,7 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

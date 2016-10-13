@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
 import com.edavtyan.materialplayer.db.Artist;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

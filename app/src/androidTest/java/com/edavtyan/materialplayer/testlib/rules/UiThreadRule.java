@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.rules;
+package com.edavtyan.materialplayer.testlib.rules;
 
 import android.app.Instrumentation;
 import android.support.test.InstrumentationRegistry;

@@ -11,8 +11,8 @@ import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player2.RepeatMode;
 import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.BaseTest;
-import com.edavtyan.materialplayer.lib.asertions.IntentAssert;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;

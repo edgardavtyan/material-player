@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotification;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationPresenter;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

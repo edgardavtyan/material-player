@@ -6,7 +6,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnProgressChangedListener;
 import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnStartTrackingTouchListener;
 import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnStopTrackingTouchListener;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

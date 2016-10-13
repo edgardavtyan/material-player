@@ -2,8 +2,8 @@ package com.edavtyan.materialplayer.db;
 
 import com.edavtyan.materialplayer.db.lib.AlbumDBHelper;
 import com.edavtyan.materialplayer.db.lib.AlbumDBProvider;
-import com.edavtyan.materialplayer.lib.BaseTest;
-import com.edavtyan.materialplayer.lib.DBTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.DBTest;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

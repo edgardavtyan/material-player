@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFlo
 import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
@@ -16,7 +16,7 @@ import org.mockito.ArgumentCaptor;
 
 import java.io.File;
 
-import static com.edavtyan.materialplayer.lib.asertions.IntentAssert.assertThat;
+import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;

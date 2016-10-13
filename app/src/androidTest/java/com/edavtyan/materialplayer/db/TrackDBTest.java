@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.db;
 
 import com.edavtyan.materialplayer.db.lib.TrackDBHelper;
 import com.edavtyan.materialplayer.db.lib.TrackDBProvider;
-import com.edavtyan.materialplayer.lib.DBTest;
+import com.edavtyan.materialplayer.testlib.tests.DBTest;
 
 import org.junit.After;
 import org.junit.BeforeClass;

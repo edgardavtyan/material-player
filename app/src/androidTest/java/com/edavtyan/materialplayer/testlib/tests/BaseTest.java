@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib;
+package com.edavtyan.materialplayer.testlib.tests;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

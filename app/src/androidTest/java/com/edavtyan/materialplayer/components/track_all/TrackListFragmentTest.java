@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.FragmentTest;
+import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
 
 import org.junit.Test;
 

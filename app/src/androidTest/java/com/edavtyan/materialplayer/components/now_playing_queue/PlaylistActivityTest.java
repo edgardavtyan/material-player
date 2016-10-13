@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.db.ActivityTest;
-import com.edavtyan.materialplayer.lib.rules.UiThreadRule;
+import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
+import com.edavtyan.materialplayer.testlib.rules.UiThreadRule;
 
 import org.junit.Rule;
 import org.junit.Test;

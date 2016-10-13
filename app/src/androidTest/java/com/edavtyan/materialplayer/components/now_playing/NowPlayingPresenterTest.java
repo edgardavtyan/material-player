@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.now_playing;
 
 import com.edavtyan.materialplayer.components.player2.RepeatMode;
 import com.edavtyan.materialplayer.components.player2.ShuffleMode;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

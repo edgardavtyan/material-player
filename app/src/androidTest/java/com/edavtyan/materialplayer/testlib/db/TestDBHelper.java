@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.db;
+package com.edavtyan.materialplayer.testlib.db;
 
 import android.content.Context;
 import android.database.Cursor;

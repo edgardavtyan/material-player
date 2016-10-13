@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
 
 import com.edavtyan.materialplayer.db.Artist;
-import com.edavtyan.materialplayer.lib.db.TestDBHelper;
+import com.edavtyan.materialplayer.testlib.db.TestDBHelper;
 
 public class ArtistDBHelper extends TestDBHelper {
 	private static final String TABLE_NAME = "Artists";

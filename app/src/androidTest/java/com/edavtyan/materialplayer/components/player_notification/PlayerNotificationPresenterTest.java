@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.player_notification;
 
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

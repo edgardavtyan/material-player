@@ -4,8 +4,8 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
-import com.edavtyan.materialplayer.lib.BaseTest;
-import com.edavtyan.materialplayer.lib.rules.UiThreadRule;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.testlib.rules.UiThreadRule;
 
 import org.junit.Rule;
 import org.junit.Test;

@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView.OnBandChangedListener;
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 

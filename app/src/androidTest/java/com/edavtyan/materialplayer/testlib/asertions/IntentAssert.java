@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.asertions;
+package com.edavtyan.materialplayer.testlib.asertions;
 
 import android.content.Intent;
 

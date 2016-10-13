@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
-import com.edavtyan.materialplayer.lib.db.ActivityTest;
+import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
 

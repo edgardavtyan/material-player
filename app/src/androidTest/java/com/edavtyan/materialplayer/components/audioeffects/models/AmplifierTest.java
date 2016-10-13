@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.lib.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IPreAmp;
 

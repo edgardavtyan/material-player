@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.db;
 
 import com.edavtyan.materialplayer.db.lib.ArtistDBHelper;
 import com.edavtyan.materialplayer.db.lib.ArtistDBProvider;
-import com.edavtyan.materialplayer.lib.DBTest;
+import com.edavtyan.materialplayer.testlib.tests.DBTest;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

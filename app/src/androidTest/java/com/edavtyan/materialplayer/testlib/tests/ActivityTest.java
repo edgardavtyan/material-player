@@ -1,10 +1,8 @@
-package com.edavtyan.materialplayer.lib.db;
+package com.edavtyan.materialplayer.testlib.tests;
 
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-
-import com.edavtyan.materialplayer.lib.BaseTest;
 
 public class ActivityTest extends BaseTest {
 	protected Instrumentation instrumentation;
