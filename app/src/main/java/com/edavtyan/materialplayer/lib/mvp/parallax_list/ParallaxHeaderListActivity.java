@@ -17,7 +17,6 @@ import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.ColorUtils;
 import com.edavtyan.materialplayer.utils.CustomColor;
-import com.edavtyan.materialplayer.utils.DeviceUtils;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 public class ParallaxHeaderListActivity extends BaseToolbarActivity {
@@ -68,7 +67,7 @@ public class ParallaxHeaderListActivity extends BaseToolbarActivity {
 		list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 
-		if (DeviceUtils.isPortrait(getResources())) {
+		if (WindowUtils.isPortrait(getResources())) {
 			WindowUtils.makeStatusBarTransparent(getWindow());
 
 			LinearLayout appbarWrapper = findView(R.id.appbar_wrapper);
