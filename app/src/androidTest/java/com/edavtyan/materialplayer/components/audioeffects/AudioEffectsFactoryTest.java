@@ -1,36 +1,23 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-public class AudioEffectsFactoryTest extends BaseTest {
+public class AudioEffectsFactoryTest extends FactoryTest {
 	private AudioEffectsFactory factory;
-	private AudioEffectsMvp.View view;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-		view = mock(AudioEffectsMvp.View.class);
+		AudioEffectsMvp.View view = mock(AudioEffectsMvp.View.class);
 		factory = new AudioEffectsFactory(context, view);
 	}
 
-	@Test public void provideView_givenViewEachTime() {
-		assertThat(factory.provideView()).isSameAs(view);
-		assertThat(factory.provideView()).isSameAs(view);
-	}
-
-	@Test public void providePresenter_samePresenterEachTime() {
-		AudioEffectsMvp.Presenter first = factory.providePresenter();
-		AudioEffectsMvp.Presenter second = factory.providePresenter();
-		assertThat(first).isSameAs(second);
-	}
-
-	@Test public void provideModel_sameModelEachTime() {
-		AudioEffectsMvp.Model first = factory.provideModel();
-		AudioEffectsMvp.Model second = factory.provideModel();
-		assertThat(first).isSameAs(second);
+	@Test public void testProviders() throws Exception {
+		testFactoryMethod(factory::provideView);
+		testFactoryMethod(factory::providePresenter);
+		testFactoryMethod(factory::provideModel);
 	}
 }

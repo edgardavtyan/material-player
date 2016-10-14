@@ -1,16 +1,12 @@
 package com.edavtyan.materialplayer.components.player2;
 
 import com.edavtyan.materialplayer.testlib.rules.UiThreadRule;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.concurrent.Callable;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class PlayerFactoryTest extends BaseTest {
+public class PlayerFactoryTest extends FactoryTest {
 	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
 
 	private PlayerFactory playerFactory;
@@ -35,9 +31,5 @@ public class PlayerFactoryTest extends BaseTest {
 		testFactoryMethod(playerFactory::provideSurround);
 		testFactoryMethod(playerFactory::provideBasePrefs);
 		testFactoryMethod(playerFactory::providePrefs);
-	}
-
-	private <T> void testFactoryMethod(Callable<T> callable) throws Exception {
-		assertThat(callable.call()).isSameAs(callable.call());
 	}
 }

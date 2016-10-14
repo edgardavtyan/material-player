@@ -23,7 +23,7 @@ public class AlbumDetailFactory extends BaseFactory {
 		return view;
 	}
 
-	private AlbumDetailMvp.Model provideModel() {
+	public AlbumDetailMvp.Model provideModel() {
 		if (model == null)
 			model = new AlbumDetailModel(
 					provideContext(),
@@ -35,13 +35,13 @@ public class AlbumDetailFactory extends BaseFactory {
 		return model;
 	}
 
-	private AlbumDB provideAlbumDB() {
+	public AlbumDB provideAlbumDB() {
 		if (albumDB == null)
 			albumDB = new AlbumDB(provideContext());
 		return albumDB;
 	}
 
-	private TrackDB provideTrackDB() {
+	public TrackDB provideTrackDB() {
 		if (trackDB == null)
 			trackDB = new TrackDB(provideContext());
 		return trackDB;
