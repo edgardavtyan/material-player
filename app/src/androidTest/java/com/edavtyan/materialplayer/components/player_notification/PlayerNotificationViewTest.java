@@ -8,9 +8,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
 import org.junit.Test;
@@ -71,11 +71,16 @@ public class PlayerNotificationViewTest extends BaseTest {
 		verify(remoteViews).setTextViewText(R.id.info, "artist - album");
 	}
 
-	@Test public void setArt_setArtOnRemoteViewsFromArtProvider() {
+	@Test public void setArt_artExists_setArtOnRemoteViewsFromArtProvider() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 		when(bitmapFactory.fromPath("path")).thenReturn(art);
 		view.setArt("path");
 		verify(remoteViews).setImageViewBitmap(R.id.art, art);
+	}
+
+	@Test public void setArt_artNotExists_setFallbackImage() {
+		view.setArt("123");
+		verify(remoteViews).setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
 	}
 
 	@Test public void isPlaying_true_setPlayPauseIconToPause() {

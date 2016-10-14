@@ -8,9 +8,10 @@ import com.edavtyan.materialplayer.components.player2.Player;
 import com.edavtyan.materialplayer.components.player2.PlayerMvp;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnNewTrackListener;
+import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
@@ -97,5 +98,21 @@ public class PlayerNotificationModelTest extends BaseTest {
 		model.setOnNewTrackListener(listener);
 		model.onNewTrack();
 		verify(listener).onNewTrack();
+	}
+
+	@Test public void onPlayPause_listenerSet_callListener() {
+		OnPlayPauseListener listener = mock(OnPlayPauseListener.class);
+		model.setOnPlayPauseListener(listener);
+		model.onPlayPause();
+		verify(listener).onPlayPause();
+	}
+
+	@Test public void onPlayPause_listenerNotSet_notThrowException() {
+		try {
+			model.onPlayPause();
+		} catch (NullPointerException e) {
+			fail("Expected onPlayPause to not throw NullPointerException"
+				 + "event if OnPlayPauseListener not set");
+		}
 	}
 }

@@ -49,6 +49,10 @@ public class PlayerNotificationFactoryTest extends BaseTest {
 		testFactoryMethod(factory::providePresenter);
 	}
 
+	@Test public void providePendingIntents_returnSamePendingIntentsEachTime() throws Exception {
+		testFactoryMethod(factory::providePendingIntents);
+	}
+
 	private <T> void testFactoryMethod(Callable<T> callable) throws Exception {
 		assertThat(callable.call()).isSameAs(callable.call());
 	}

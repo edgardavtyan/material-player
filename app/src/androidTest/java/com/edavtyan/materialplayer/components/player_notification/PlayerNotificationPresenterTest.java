@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class PlayerNotificationPresenterTest extends BaseTest {
-	private PlayerNotificationMvp.Presenter presenter;
+	private PlayerNotificationPresenter presenter;
 	private PlayerNotificationMvp.View view;
 	private PlayerNotificationMvp.Model model;
 
@@ -46,6 +46,15 @@ public class PlayerNotificationPresenterTest extends BaseTest {
 		verify(view).setTitle("title");
 		verify(view).setInfo("artist", "album");
 		verify(view).setArt("artPath");
+		verify(view).setIsPlaying(true);
+		verify(view).update();
+	}
+
+	@Test public void onPlayPause_updateView() {
+		when(model.isPlaying()).thenReturn(true);
+
+		presenter.onPlayPause();
+
 		verify(view).setIsPlaying(true);
 		verify(view).update();
 	}
