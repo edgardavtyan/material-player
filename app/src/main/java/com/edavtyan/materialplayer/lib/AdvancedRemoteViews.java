@@ -17,11 +17,6 @@ public class AdvancedRemoteViews extends RemoteViews {
 	public void setOnClickBroadcast(int viewId, String action) {
 		Intent intent = new Intent(action);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-		setOnClickPendingIntent(viewId, pendingIntent);
-	}
-
-	public void setOnClickIntent(int viewId, Intent intent) {
-		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-		setOnClickPendingIntent(viewId, pendingIntent);
+		super.setOnClickPendingIntent(viewId, pendingIntent);
 	}
 }
