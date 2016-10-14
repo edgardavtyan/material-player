@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.album_all.AlbumListFactory;
@@ -26,13 +25,8 @@ import com.edavtyan.materialplayer.components.player2.PlayerFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
-import com.edavtyan.materialplayer.utils.logging.FileLogger;
-import com.edavtyan.materialplayer.utils.logging.Logger;
 
-public class App
-		extends Application
-		implements Thread.UncaughtExceptionHandler {
-	private Logger logger;
+public class App extends Application {
 
 	public AlbumListFactory getAlbumListDI(Context context, AlbumListMvp.View view) {
 		return new AlbumListFactory(context, view);
@@ -89,23 +83,5 @@ public class App
 
 	public SdkFactory getSdkFactory() {
 		return new SdkFactory();
-	}
-
-	//---
-
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		logger = new FileLogger();
-		Thread.setDefaultUncaughtExceptionHandler(this);
-	}
-
-	//---
-
-	@Override
-	public void uncaughtException(Thread thread, Throwable throwable) {
-		logger.log(throwable);
-		Log.e("MaterialPlayer", "Uncaught exception", throwable);
-		System.exit(1);
 	}
 }
