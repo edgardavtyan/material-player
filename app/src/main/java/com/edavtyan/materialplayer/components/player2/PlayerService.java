@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.player2;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Binder;
@@ -38,24 +37,6 @@ public class PlayerService extends Service {
 	private @Getter Surround surround;
 	private @Getter BassBoost bassBoost;
 
-	private BroadcastReceiver playPauseReceiver = new BroadcastReceiver() {
-		@Override public void onReceive(Context context, Intent intent) {
-			player.playPause();
-		}
-	};
-
-	private BroadcastReceiver fastForwardReceiver = new BroadcastReceiver() {
-		@Override public void onReceive(Context context, Intent intent) {
-			player.playNext();
-		}
-	};
-
-	private BroadcastReceiver rewindReceiver = new BroadcastReceiver() {
-		@Override public void onReceive(Context context, Intent intent) {
-			player.rewind();
-		}
-	};
-
 	@Override
 	public IBinder onBind(Intent intent) {
 		return new PlayerBinder();
@@ -78,15 +59,19 @@ public class PlayerService extends Service {
 		bassBoost = playerFactory.provideBassBoost();
 		surround = playerFactory.provideSurround();
 
+		BroadcastReceiver rewindReceiver = playerFactory.provideRewindReceiver();
+		BroadcastReceiver playPauseReceiver = playerFactory.providePlayPauseReceiver();
+		BroadcastReceiver fastForwardReceiver = playerFactory.provideFastForwardReceiver();
+
+		registerReceiver(rewindReceiver, new IntentFilter(ACTION_REWIND));
+		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
+		registerReceiver(fastForwardReceiver, new IntentFilter(ACTION_FAST_FORWARD));
+
 		PlayerNotificationFactory notificationFactory
 				= app.getPlayerNotificationFactory(this, R.layout.notification);
 		notification = notificationFactory.provideNotification();
 		presenter = notificationFactory.providePresenter();
 		presenter.onCreate();
-
-		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
-		registerReceiver(fastForwardReceiver, new IntentFilter(ACTION_FAST_FORWARD));
-		registerReceiver(rewindReceiver, new IntentFilter(ACTION_REWIND));
 	}
 
 	@Override public void onDestroy() {

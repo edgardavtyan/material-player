@@ -1,14 +1,12 @@
 package com.edavtyan.materialplayer.components.player2;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
-import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.testlib.rules.UiThreadRule;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.concurrent.Callable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,33 +20,24 @@ public class PlayerFactoryTest extends BaseTest {
 		playerFactory = new PlayerFactory(context);
 	}
 
-	@Test public void providePlayer_returnSamePlayerEveryTime() {
-		PlayerMvp.Player firstPlayer = playerFactory.providePlayer();
-		PlayerMvp.Player secondPlayer = playerFactory.providePlayer();
-		assertThat(firstPlayer).isSameAs(secondPlayer);
+	@Test public void factoryTest() throws Exception {
+		testFactoryMethod(playerFactory::providePlayer);
+		testFactoryMethod(playerFactory::provideRewindReceiver);
+		testFactoryMethod(playerFactory::providePlayPauseReceiver);
+		testFactoryMethod(playerFactory::provideFastForwardReceiver);
+		testFactoryMethod(playerFactory::provideQueue);
+		testFactoryMethod(playerFactory::provideQueueList);
+		testFactoryMethod(playerFactory::provideAudioEngine);
+		testFactoryMethod(playerFactory::provideOpenSLParams);
+		testFactoryMethod(playerFactory::provideEqualizer);
+		testFactoryMethod(playerFactory::provideAmplifier);
+		testFactoryMethod(playerFactory::provideBassBoost);
+		testFactoryMethod(playerFactory::provideSurround);
+		testFactoryMethod(playerFactory::provideBasePrefs);
+		testFactoryMethod(playerFactory::providePrefs);
 	}
 
-	@Test public void provideEqualizer_returnSameEqualizerEveryTime() {
-		Equalizer firstEqualizer = playerFactory.provideEqualizer();
-		Equalizer secondEqualizer = playerFactory.provideEqualizer();
-		assertThat(firstEqualizer).isSameAs(secondEqualizer);
-	}
-
-	@Test public void provideAmplifier_returnSameAmplifierEveryTime() {
-		Amplifier firstAmplifier = playerFactory.provideAmplifier();
-		Amplifier secondAmplifier = playerFactory.provideAmplifier();
-		assertThat(firstAmplifier).isSameAs(secondAmplifier);
-	}
-
-	@Test public void provideBassBoost_returnSameBassBoostEveryTime() {
-		BassBoost firstBassBoost = playerFactory.provideBassBoost();
-		BassBoost secondBassBoost = playerFactory.provideBassBoost();
-		assertThat(firstBassBoost).isSameAs(secondBassBoost);
-	}
-
-	@Test public void provideSurround_returnSameSurroundEveryTime() {
-		Surround firstSurround = playerFactory.provideSurround();
-		Surround secondSurround = playerFactory.provideSurround();
-		assertThat(firstSurround).isSameAs(secondSurround);
+	private <T> void testFactoryMethod(Callable<T> callable) throws Exception {
+		assertThat(callable.call()).isSameAs(callable.call());
 	}
 }

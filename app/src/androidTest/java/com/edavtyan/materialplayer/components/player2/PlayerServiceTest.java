@@ -3,7 +3,9 @@ package com.edavtyan.materialplayer.components.player2;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ServiceTestRule;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
@@ -29,15 +31,19 @@ public class PlayerServiceTest extends BaseTest {
 	private PlayerService playerService;
 	private PlayerMvp.Player player;
 	private Notification notification;
+	private PlayerNotificationPresenter notificationPresenter;
+	private LocalBroadcastManager broadcastManager;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
+
+		broadcastManager = LocalBroadcastManager.getInstance(InstrumentationRegistry.getTargetContext());
 
 		notification = mock(Notification.class);
 		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
 		when(nowPlayingNotification.getNotification()).thenReturn(notification);
 
-		PlayerNotificationPresenter notificationPresenter = mock(PlayerNotificationPresenter.class);
+		notificationPresenter = mock(PlayerNotificationPresenter.class);
 		PlayerNotificationFactory notificationFactory = mock(PlayerNotificationFactory.class);
 		when(notificationFactory.provideNotification()).thenReturn(nowPlayingNotification);
 		when(notificationFactory.providePresenter()).thenReturn(notificationPresenter);
@@ -76,5 +82,11 @@ public class PlayerServiceTest extends BaseTest {
 
 	@Test public void onStartCommand_returnStartNotSticky() {
 		assertThat(playerService.onStartCommand(null, 0, 0)).isEqualTo(Service.START_NOT_STICKY);
+	}
+
+	@Test public void onDestroy_destroyPresenter() {
+		playerService.onCreate();
+		playerService.onDestroy();
+		verify(notificationPresenter).onDestroy();
 	}
 }

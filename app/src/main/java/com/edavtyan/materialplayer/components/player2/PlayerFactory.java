@@ -9,6 +9,9 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.HQEqualizer;
+import com.edavtyan.materialplayer.components.player2.receivers.FastForwardReceiver;
+import com.edavtyan.materialplayer.components.player2.receivers.PlayPauseReceiver;
+import com.edavtyan.materialplayer.components.player2.receivers.RewindReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -33,9 +36,30 @@ public class PlayerFactory extends BaseFactory {
 	private Queue queue;
 	private SharedPreferences basePrefs;
 	private Surround surround;
+	private FastForwardReceiver fastForwardReceiver;
+	private RewindReceiver rewindReceiver;
+	private PlayPauseReceiver playPauseReceiver;
 
 	public PlayerFactory(Context context) {
 		super(context);
+	}
+
+	public FastForwardReceiver provideFastForwardReceiver() {
+		if (fastForwardReceiver == null)
+			fastForwardReceiver = new FastForwardReceiver(providePlayer());
+		return fastForwardReceiver;
+	}
+
+	public RewindReceiver provideRewindReceiver() {
+		if (rewindReceiver == null)
+			rewindReceiver = new RewindReceiver(providePlayer());
+		return rewindReceiver;
+	}
+
+	public PlayPauseReceiver providePlayPauseReceiver() {
+		if (playPauseReceiver == null)
+			playPauseReceiver = new PlayPauseReceiver(providePlayer());
+		return playPauseReceiver;
 	}
 
 	public PlayerMvp.Player providePlayer() {
@@ -79,7 +103,7 @@ public class PlayerFactory extends BaseFactory {
 		return surround;
 	}
 
-	private OpenSLMediaPlayerContext.Parameters provideOpenSLParams() {
+	public OpenSLMediaPlayerContext.Parameters provideOpenSLParams() {
 		if (params == null) {
 			params = new OpenSLMediaPlayerContext.Parameters();
 			params.options =
@@ -91,43 +115,43 @@ public class PlayerFactory extends BaseFactory {
 		return params;
 	}
 
-	private SharedPreferences provideBasePrefs() {
+	public SharedPreferences provideBasePrefs() {
 		if (basePrefs == null)
 			basePrefs = PreferenceManager.getDefaultSharedPreferences(provideContext());
 		return basePrefs;
 	}
 
-	private AdvancedSharedPrefs providePrefs() {
+	public AdvancedSharedPrefs providePrefs() {
 		if (prefs == null)
 			prefs = new AdvancedSharedPrefs(provideBasePrefs());
 		return prefs;
 	}
 
-	private OpenSLMediaPlayerFactory provideOpenSLFactory() {
+	public OpenSLMediaPlayerFactory provideOpenSLFactory() {
 		if (openslFactory == null)
 			openslFactory = new OpenSLMediaPlayerFactory(provideContext(), provideOpenSLParams());
 		return openslFactory;
 	}
 
-	private List<Track> provideQueueList() {
+	public List<Track> provideQueueList() {
 		if (queueList == null)
 			queueList = new ArrayList<>();
 		return queueList;
 	}
 
-	private PlayerMvp.Queue provideQueue() {
+	public PlayerMvp.Queue provideQueue() {
 		if (queue == null)
 			queue = new Queue(provideQueueList());
 		return queue;
 	}
 
-	private PlayerMvp.AudioEngine provideAudioEngine() {
+	public PlayerMvp.AudioEngine provideAudioEngine() {
 		if (audioEngine == null)
 			audioEngine = new OpenSLAudioEngine(provideOpenSLPlayer());
 		return audioEngine;
 	}
 
-	private IBasicMediaPlayer provideOpenSLPlayer() {
+	public IBasicMediaPlayer provideOpenSLPlayer() {
 		if (openslPlayer == null)
 			openslPlayer = provideOpenSLFactory().createMediaPlayer();
 		return openslPlayer;
