@@ -12,6 +12,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -37,5 +44,25 @@ public class BaseTest {
 
 	protected void runOnUiThread(Runnable runnable) {
 		InstrumentationRegistry.getInstrumentation().runOnMainSync(runnable);
+	}
+
+	protected byte[] getResourceAsByteArray(String resName) throws IOException {
+		InputStream resStream = getClass().getClassLoader().getResourceAsStream(resName);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		int next = resStream.read();
+		while (next > -1) {
+			bos.write(next);
+			next = resStream.read();
+		}
+		bos.flush();
+		return bos.toByteArray();
+	}
+
+	protected File copyResourceToFileSystem(String name, File file) throws IOException {
+		byte[] resBytes = getResourceAsByteArray(name);
+		OutputStream outputStream = new FileOutputStream(file);
+		outputStream.write(resBytes, 0, resBytes.length);
+		outputStream.close();
+		return file;
 	}
 }
