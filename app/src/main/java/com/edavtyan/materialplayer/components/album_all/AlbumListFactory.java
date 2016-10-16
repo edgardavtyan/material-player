@@ -32,13 +32,13 @@ public class AlbumListFactory extends BaseFactory {
 	public AlbumDB provideAlbumDB() {
 		if (albumDB == null)
 			albumDB = new AlbumDB(provideContext());
-		return new AlbumDB(provideContext());
+		return albumDB;
 	}
 
 	public TrackDB provideTrackDB() {
 		if (trackDB == null)
 			trackDB = new TrackDB(provideContext());
-		return new TrackDB(provideContext());
+		return trackDB;
 	}
 
 	public AlbumListMvp.Presenter providePresenter() {

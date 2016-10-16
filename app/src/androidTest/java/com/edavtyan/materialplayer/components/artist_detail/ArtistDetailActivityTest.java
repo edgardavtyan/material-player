@@ -10,9 +10,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
-import com.edavtyan.materialplayer.testlib.rules.UiThreadRule;
 
-import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,8 +33,6 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			return factory;
 		}
 	}
-
-	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -72,15 +68,19 @@ public class ArtistDetailActivityTest extends ActivityTest {
 	}
 
 	@Test public void setArtistTitle_setTitleViewText() {
-		TextView titleView = activity.findView(R.id.title);
-		activity.setArtistTitle("title");
-		assertThat(titleView.getText()).isEqualTo("title");
+		runOnUiThread(() -> {
+			TextView titleView = activity.findView(R.id.title);
+			activity.setArtistTitle("title");
+			assertThat(titleView.getText()).isEqualTo("title");
+		});
 	}
 
 	@Test public void setArtistInfo_setInfoViewTextWithPattern() {
-		TextView infoView = activity.findView(R.id.info);
-		activity.setArtistInfo(3, 9);
-		assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
+		runOnUiThread(() -> {
+			TextView infoView = activity.findView(R.id.info);
+			activity.setArtistInfo(3, 9);
+			assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
+		});
 	}
 
 	@Test public void goToAlbumDetail_callNavigator() {

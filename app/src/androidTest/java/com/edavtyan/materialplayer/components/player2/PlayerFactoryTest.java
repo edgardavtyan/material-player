@@ -1,14 +1,10 @@
 package com.edavtyan.materialplayer.components.player2;
 
-import com.edavtyan.materialplayer.testlib.rules.UiThreadRule;
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
-import org.junit.Rule;
 import org.junit.Test;
 
 public class PlayerFactoryTest extends FactoryTest {
-	@Rule public UiThreadRule uiThreadRule = new UiThreadRule();
-
 	private PlayerFactory playerFactory;
 
 	@Override public void beforeEach() {
