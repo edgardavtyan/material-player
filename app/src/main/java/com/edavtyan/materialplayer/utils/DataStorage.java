@@ -5,7 +5,7 @@ import android.os.Environment;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public final class DataStorage {
+public class DataStorage {
 	public static final File DIR_BASE = Environment.getExternalStorageDirectory();
 	public static final File DIR_DATA = new File(DIR_BASE, "MaterialPlayer");
 	public static final File DIR_ART = new File(DIR_DATA, "artwork");
