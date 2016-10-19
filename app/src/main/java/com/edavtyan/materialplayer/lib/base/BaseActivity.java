@@ -13,11 +13,17 @@ import android.view.MenuItem;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity2;
 import com.edavtyan.materialplayer.components.prefs.PrefActivity;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public abstract class BaseActivity
 		extends AppCompatActivity
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+	private ThemeUtils themeUtils;
+
 	public abstract int getLayoutId();
 
 	@SuppressWarnings("unchecked")
@@ -29,12 +35,16 @@ public abstract class BaseActivity
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		setTheme(ThemeUtils.fromRes(this));
 		super.onCreate(savedInstanceState);
+
+		SharedPreferences basePrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(basePrefs);
+		themeUtils = new ThemeUtils(prefs);
+		themeUtils.setTheme(this);
+
 		setContentView(getLayoutId());
 
-		PreferenceManager
-				.getDefaultSharedPreferences(this)
+		getDefaultSharedPreferences(this)
 				.registerOnSharedPreferenceChangeListener(this);
 	}
 
@@ -64,6 +74,6 @@ public abstract class BaseActivity
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		ThemeUtils.setTheme(this, key);
+		themeUtils.setThemeAndRecreate(this, key);
 	}
 }
