@@ -70,7 +70,7 @@ public class BaseToolbarActivityTest extends ActivityTest {
 
 	@Test public void onOptionsItemSelected_backIconPressed_callOnBackPressed() {
 		runOnUiThread(() -> callOnOptionsItemSelectedWithMenuItemId(android.R.id.home));
-		verify(activity).onBackPressed();
+		verify(activity).finish();
 	}
 
 	@Test public void onOptionsItemSelected_otherButtonPressed_returnFalse() {
