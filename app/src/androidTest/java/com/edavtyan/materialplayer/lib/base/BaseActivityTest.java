@@ -93,14 +93,18 @@ public class BaseActivityTest extends ActivityTest {
 		verify(navigator).gotoSettings();
 	}
 
+	@Test public void onOptionsItemSelected_otherMenuItem_returnFalse() {
+		assertThat(callOnOptionsItemSelectedWithMenuId(0)).isFalse();
+	}
+
 	@Test public void onSharedPreferencesChanged_setTheme() {
 		activity.onSharedPreferenceChanged(null, "key");
 		verify(themeUtils).setThemeAndRecreate(activity, "key");
 	}
 
-	private void callOnOptionsItemSelectedWithMenuId(int menuId) {
+	private boolean callOnOptionsItemSelectedWithMenuId(int menuId) {
 		MenuItem menuItem = mock(MenuItem.class);
 		when(menuItem.getItemId()).thenReturn(menuId);
-		activity.onOptionsItemSelected(menuItem);
+		return activity.onOptionsItemSelected(menuItem);
 	}
 }
