@@ -69,11 +69,13 @@ public class AdvancedSharedPrefsTest extends BaseTest {
 		assertThat(prefs.getBoolean("key_boolean", false)).isFalse();
 	}
 
-	@Test public void registerOnSharedPreferencesChangedListener_callBasePrefs() {
+	@Test public void registerOnSharedPreferencesChangedListener_callBasePrefs()
+	throws InterruptedException {
 		OnSharedPreferenceChangeListener listener = mock(OnSharedPreferenceChangeListener.class);
 		prefs.registerOnSharedPreferenceChangeListener(listener);
 
-		basePrefs.edit().putString("key", "value").commit();
+		basePrefs.edit().putString("key", "value").apply();
+		Thread.sleep(100);
 
 		verify(listener).onSharedPreferenceChanged(basePrefs, "key");
 	}
