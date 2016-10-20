@@ -67,7 +67,7 @@ public class ParallaxHeaderListActivity extends BaseToolbarActivity {
 		list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 
-		if (WindowUtils.isPortrait(getResources())) {
+		if (WindowUtils.isPortrait(this)) {
 			WindowUtils.makeStatusBarTransparent(getWindow());
 
 			LinearLayout appbarWrapper = findView(R.id.appbar_wrapper);

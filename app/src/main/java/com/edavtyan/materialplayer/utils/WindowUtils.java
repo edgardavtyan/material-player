@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.utils;
 
+import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
@@ -20,7 +20,8 @@ public final class WindowUtils {
 		}
 	}
 
-	public static boolean isPortrait(Resources res) {
-		return res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+	public static boolean isPortrait(Context context) {
+		Configuration configuration = context.getResources().getConfiguration();
+		return configuration.orientation == Configuration.ORIENTATION_PORTRAIT;
 	}
 }

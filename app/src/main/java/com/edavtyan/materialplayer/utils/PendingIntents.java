@@ -13,11 +13,6 @@ public class PendingIntents {
 		this.context = context;
 	}
 
-	public PendingIntent getBroadcast(String action) {
-		Intent intent = new Intent(action);
-		return PendingIntent.getBroadcast(context, 0, intent, 0);
-	}
-
 	public PendingIntent getActivity(Class<? extends AppCompatActivity> activityClass) {
 		Intent intent = new Intent(context, activityClass);
 		intent.setAction(Intent.ACTION_MAIN);
