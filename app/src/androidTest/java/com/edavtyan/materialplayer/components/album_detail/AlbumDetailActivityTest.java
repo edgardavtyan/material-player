@@ -13,8 +13,10 @@ import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +46,8 @@ public class AlbumDetailActivityTest extends ActivityTest {
 			when(factory.provideAdapter()).thenReturn(adapter);
 			when(factory.provideNavigator()).thenReturn(navigator);
 
-			activity = startActivity(new Intent(context, TestAlbumDetailActivity.class));
+			activity = spy(startActivity(new Intent(context, TestAlbumDetailActivity.class)));
+			doNothing().when(activity).baseOnStop();
 		} else {
 			reset(adapter, presenter, navigator);
 		}

@@ -17,11 +17,19 @@ public abstract class TestableActivity extends AppCompatActivity {
 		baseOnDestroy();
 	}
 
+	@Override protected void onStop() {
+		baseOnStop();
+	}
+
 	public void baseOnCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
 
 	public void baseOnDestroy() {
 		super.onDestroy();
+	}
+
+	public void baseOnStop() {
+		super.onStop();
 	}
 }
