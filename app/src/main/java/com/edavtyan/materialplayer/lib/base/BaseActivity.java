@@ -1,28 +1,26 @@
 package com.edavtyan.materialplayer.lib.base;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity2;
-import com.edavtyan.materialplayer.components.prefs.PrefActivity;
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.testable.TestableActivity;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
-
 public abstract class BaseActivity
-		extends AppCompatActivity
+		extends TestableActivity
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 	private ThemeUtils themeUtils;
+	private App app;
+	private Navigator navigator;
 
 	public abstract int getLayoutId();
 
@@ -34,23 +32,26 @@ public abstract class BaseActivity
 	/* AppCompatActivity */
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		SharedPreferences basePrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(basePrefs);
-		themeUtils = new ThemeUtils(prefs);
+		app = (App) getApplicationContext();
+		BaseFactory factory = app.getBaseFactory(this);
+
+		themeUtils = factory.provideThemeUtils();
 		themeUtils.setTheme(this);
 
-		setContentView(getLayoutId());
+		navigator = factory.provideNavigator();
 
-		getDefaultSharedPreferences(this)
-				.registerOnSharedPreferenceChangeListener(this);
+		AdvancedSharedPrefs prefs = factory.providePrefs();
+		prefs.registerOnSharedPreferenceChangeListener(this);
+
+		setContentView(getLayoutId());
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = new MenuInflater(this);
+		MenuInflater inflater = app.getSdkFactory().createMenuInflater(this);
 		inflater.inflate(R.menu.menu_base, menu);
 		return true;
 	}
@@ -59,11 +60,10 @@ public abstract class BaseActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_effects:
-			startActivity(new Intent(this, AudioEffectsActivity2.class));
+			navigator.gotoAudioEffects();
 			return true;
-
 		case R.id.menu_settings:
-			startActivity(new Intent(this, PrefActivity.class));
+			navigator.gotoSettings();
 			return true;
 		}
 

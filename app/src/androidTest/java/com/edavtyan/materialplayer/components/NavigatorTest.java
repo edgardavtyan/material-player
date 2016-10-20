@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity2;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
+import com.edavtyan.materialplayer.components.prefs.PrefActivity;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -64,5 +66,19 @@ public class NavigatorTest extends BaseTest {
 
 		assertThat(intentCaptor.getValue())
 				.classEqualTo(PlaylistActivity.class);
+	}
+
+	@Test public void gotoAudioEffects_startAudioEffectsActivity() {
+		navigator.gotoAudioEffects();
+		verify(activity).startActivity(intentCaptor.capture());
+		assertThat(intentCaptor.getValue())
+				.classEqualTo(AudioEffectsActivity2.class);
+	}
+
+	@Test public void gotoSetting_startSettingActivity() {
+		navigator.gotoSettings();
+		verify(activity).startActivity(intentCaptor.capture());
+		assertThat(intentCaptor.getValue())
+				.classEqualTo(PrefActivity.class);
 	}
 }

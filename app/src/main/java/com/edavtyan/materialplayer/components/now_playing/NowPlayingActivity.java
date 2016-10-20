@@ -6,9 +6,9 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.testable.TestableActivity;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
-public class NowPlayingActivity extends TestableActivity implements NowPlayingMvp.View {
+public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayingMvp.View {
 	private NowPlayingMvp.Presenter presenter;
 	private Navigator navigator;
 

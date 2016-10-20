@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.R;
 
 public abstract class BaseToolbarActivity extends BaseActivity {
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		toolbar.setTitle(getResources().getString(getToolbarTitleStringId()));

@@ -56,7 +56,7 @@ public class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	}
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		titleView = findView(R.id.title);

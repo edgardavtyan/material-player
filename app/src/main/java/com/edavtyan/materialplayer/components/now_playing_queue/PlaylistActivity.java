@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.testable.TestableActivity;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
-public class PlaylistActivity extends TestableActivity implements PlaylistMvp.View {
+public class PlaylistActivity extends BaseToolbarActivity implements PlaylistMvp.View {
 	private PlaylistMvp.Presenter presenter;
 	private PlaylistAdapter adapter;
 

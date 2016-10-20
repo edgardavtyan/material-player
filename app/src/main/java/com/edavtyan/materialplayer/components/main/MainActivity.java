@@ -12,7 +12,7 @@ import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 public class MainActivity extends BaseToolbarActivity {
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		ViewPager viewPager = findView(R.id.view_pager);

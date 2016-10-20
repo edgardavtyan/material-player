@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.lib.prefs;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -9,6 +10,8 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @SuppressLint("CommitPrefEdits")
 public class AdvancedSharedPrefsTest extends BaseTest {
@@ -64,5 +67,14 @@ public class AdvancedSharedPrefsTest extends BaseTest {
 
 	@Test public void getBoolean_prefNotSaved_returnDefaultPref() {
 		assertThat(prefs.getBoolean("key_boolean", false)).isFalse();
+	}
+
+	@Test public void registerOnSharedPreferencesChangedListener_callBasePrefs() {
+		OnSharedPreferenceChangeListener listener = mock(OnSharedPreferenceChangeListener.class);
+		prefs.registerOnSharedPreferenceChangeListener(listener);
+
+		basePrefs.edit().putString("key", "value").commit();
+
+		verify(listener).onSharedPreferenceChanged(basePrefs, "key");
 	}
 }

@@ -11,8 +11,6 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
-import java.io.File;
-
 public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailMvp.View {
 
 	public static final String EXTRA_ALBUM_ID = "extra_albumId";
@@ -37,7 +35,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	}
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		AlbumDetailFactory factory = getDI();

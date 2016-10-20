@@ -30,4 +30,9 @@ public class AdvancedSharedPrefs {
 	public boolean getBoolean(String key, boolean defValue) {
 		return basePrefs.getBoolean(key, defValue);
 	}
+
+	public void registerOnSharedPreferenceChangeListener(
+			SharedPreferences.OnSharedPreferenceChangeListener listener) {
+		basePrefs.registerOnSharedPreferenceChangeListener(listener);
+	}
 }

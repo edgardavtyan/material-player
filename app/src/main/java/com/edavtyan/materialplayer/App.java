@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
@@ -25,8 +26,13 @@ import com.edavtyan.materialplayer.components.player2.PlayerFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
+import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 public class App extends Application {
+
+	public BaseFactory getBaseFactory(Activity activity) {
+		return new BaseFactory(activity);
+	}
 
 	public AlbumListFactory getAlbumListDI(Context context, AlbumListMvp.View view) {
 		return new AlbumListFactory(context, view);
