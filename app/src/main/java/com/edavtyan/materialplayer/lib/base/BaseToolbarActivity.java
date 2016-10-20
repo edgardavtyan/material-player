@@ -11,7 +11,7 @@ public abstract class BaseToolbarActivity extends BaseActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findView(R.id.toolbar);
 		toolbar.setTitle(getResources().getString(getToolbarTitleStringId()));
 		setSupportActionBar(toolbar);
 		if (isBackIconEnabled()) getSupportActionBar().setDisplayHomeAsUpEnabled(true);

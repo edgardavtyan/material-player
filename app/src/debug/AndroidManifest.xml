@@ -13,6 +13,7 @@
 		<activity android:name=".components.now_playing_queue.PlaylistActivityTest$TestPlaylistActivity" />
 		<activity android:name=".components.audioeffects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
 		<activity android:name=".lib.base.BaseActivityTest$TestBaseActivity" />
+		<activity android:name=".lib.base.BaseToolbarActivityTest$TestBaseToolbarActivity" />
 
 	</application>
 
