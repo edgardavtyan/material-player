@@ -64,7 +64,7 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		doReturn(amplifierView).when(activity).findViewById(R.id.amplifier);
 		doReturn(surroundView).when(activity).findViewById(R.id.surround);
 
-		activity.onCreate(null);
+		runOnUiThread(() -> activity.onCreate(null));
 	}
 
 	@Test public void onCreate_initPresenter() {
