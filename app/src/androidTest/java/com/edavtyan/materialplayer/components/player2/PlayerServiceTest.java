@@ -3,9 +3,7 @@ package com.edavtyan.materialplayer.components.player2;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ServiceTestRule;
-import android.support.v4.content.LocalBroadcastManager;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
@@ -35,9 +33,6 @@ public class PlayerServiceTest extends BaseTest {
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-
-		LocalBroadcastManager broadcastManager =
-				LocalBroadcastManager.getInstance(InstrumentationRegistry.getTargetContext());
 
 		notification = mock(Notification.class);
 		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
