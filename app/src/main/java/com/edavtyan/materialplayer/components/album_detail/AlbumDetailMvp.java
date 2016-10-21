@@ -4,6 +4,7 @@ import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPresenter;
 
+@SuppressWarnings("unused")
 public interface AlbumDetailMvp {
 	interface Model extends TrackListMvp.Model {
 		Album getAlbum();

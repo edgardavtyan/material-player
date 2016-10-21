@@ -14,7 +14,7 @@ public class EqualizerView
 
 	public interface OnBandChangedListener {
 		void onBandChanged(EqualizerBandView band);
-		void onBandStopTracking(EqualizerBandView band);
+		void onBandStopTracking();
 	}
 
 	public EqualizerView(Context context, AttributeSet attrs) {
@@ -37,14 +37,14 @@ public class EqualizerView
 	}
 
 	@Override
-	public void onBandStopTracking(EqualizerBandView band) {
+	public void onBandStopTracking() {
 		if (onBandChangedListener != null) {
-			onBandChangedListener.onBandStopTracking(band);
+			onBandChangedListener.onBandStopTracking();
 		}
 	}
 
 	@Override
-	public void onBandChanged(EqualizerBandView band, int gain) {
+	public void onBandChanged(EqualizerBandView band) {
 		if (onBandChangedListener != null) {
 			onBandChangedListener.onBandChanged(band);
 		}

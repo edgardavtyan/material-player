@@ -16,18 +16,17 @@ public class EqualizerBandView
 		implements DoubleSeekbar.OnProgressChangedListener,
 				   DoubleSeekbar.OnStopTrackingTouchListener {
 
+	private final TextView frequencyView;
+	private final TextView gainView;
+	private final DoubleSeekbar bandView;
+
 	private int frequency;
 	private @Getter @Setter int index;
-
-	private TextView frequencyView;
-	private TextView gainView;
-	private DoubleSeekbar bandView;
-
 	private @Setter OnBandChangedListener onBandChangedListener;
 
 	public interface OnBandChangedListener {
-		void onBandStopTracking(EqualizerBandView band);
-		void onBandChanged(EqualizerBandView band, int gain);
+		void onBandStopTracking();
+		void onBandChanged(EqualizerBandView band);
 	}
 
 	public EqualizerBandView(Context context, AttributeSet attrs) {
@@ -87,17 +86,17 @@ public class EqualizerBandView
 	}
 
 	@Override
-	public void onStopTrackingTouch(DoubleSeekbar seekBar) {
+	public void onStopTrackingTouch() {
 		if (onBandChangedListener != null) {
-			onBandChangedListener.onBandStopTracking(this);
+			onBandChangedListener.onBandStopTracking();
 		}
 	}
 
 	@Override
-	public void onProgressChanged(DoubleSeekbar seekbar, int progress, boolean fromUser) {
+	public void onProgressChanged(int progress) {
 		gainView.setText(getGainStr(progress));
 		if (onBandChangedListener != null) {
-			onBandChangedListener.onBandChanged(this, progress);
+			onBandChangedListener.onBandChanged(this);
 		}
 	}
 

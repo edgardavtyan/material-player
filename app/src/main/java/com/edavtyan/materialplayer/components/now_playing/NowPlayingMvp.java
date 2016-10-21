@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.components.player2.ShuffleMode;
 
 import java.io.File;
 
+@SuppressWarnings("unused")
 public interface NowPlayingMvp {
 	interface Model extends ServiceConnection {
 		interface OnModelBoundListener {
@@ -75,7 +76,6 @@ public interface NowPlayingMvp {
 		Info getInfo();
 		Art getArt();
 		Seekbar getSeekbar();
-		Fab getFab();
 		void gotoPlaylistScreen();
 	}
 

@@ -116,7 +116,7 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	}
 
 	@Test public void onBandStopTracking_callPresenter() {
-		activity.onBandStopTracking(mock(EqualizerBandView.class));
+		activity.onBandStopTracking();
 		verify(presenter).onEqualizerBandStopTracking();
 	}
 

@@ -14,10 +14,8 @@ public class Amplifier {
 	public static final int MAX_STRENGTH = 100;
 	public static final int DEFAULT_STRENGTH = 0;
 
-
 	private final IPreAmp amplifier;
 	private final AdvancedSharedPrefs prefs;
-
 
 	public Amplifier(IPreAmp amplifier, AdvancedSharedPrefs prefs) {
 		this.amplifier = amplifier;
@@ -26,7 +24,6 @@ public class Amplifier {
 		this.prefs = prefs;
 		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
 	}
-
 
 	public int getMaxStrength() {
 		return MAX_STRENGTH;

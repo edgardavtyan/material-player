@@ -69,30 +69,30 @@ public class EqualizerBandViewTest extends BaseTest {
 	}
 
 	@Test public void onProgressChanged_progressIsPositive_setGainViewTextWithPlusSign() {
-		equalizerView.onProgressChanged(bandView, 45, true);
+		equalizerView.onProgressChanged(45);
 		assertThat(gainView.getText()).isEqualTo("+45 dB");
 	}
 
 	@Test public void onProgressChanged_progressIsZero_setGainViewTextWithoutSign() {
-		equalizerView.onProgressChanged(bandView, 0, true);
+		equalizerView.onProgressChanged(0);
 		assertThat(gainView.getText()).isEqualTo("0 dB");
 	}
 
 	@Test public void onProgressChanged_progressIsNegative_setGainViewTextWithMinusSign() {
-		equalizerView.onProgressChanged(bandView, -30, true);
+		equalizerView.onProgressChanged(-30);
 		assertThat(gainView.getText()).isEqualTo("-30 dB");
 	}
 
 	@Test public void onProgressChanged_onBandChangedListenerSet_callOnBandChangedWithEqualizerViewAndProgress() {
 		OnBandChangedListener listener = mock(OnBandChangedListener.class);
 		equalizerView.setOnBandChangedListener(listener);
-		equalizerView.onProgressChanged(bandView, 20, true);
-		verify(listener).onBandChanged(equalizerView, 20);
+		equalizerView.onProgressChanged(20);
+		verify(listener).onBandChanged(equalizerView);
 	}
 
 	@Test public void onProgressChanged_onBandChangedListenerNotSet_notThrowException() {
 		try {
-			equalizerView.onProgressChanged(null, 0, false);
+			equalizerView.onProgressChanged(0);
 		} catch (NullPointerException e) {
 			fail("Expected OnProgressChanged to not throw NullPointerException"
 				 + "if OnBandChangedListener is not set");
@@ -102,13 +102,13 @@ public class EqualizerBandViewTest extends BaseTest {
 	@Test public void onStopTrackingTouch_onBandChangedListenerSet_callOnBandStopTracking() {
 		OnBandChangedListener listener = mock(OnBandChangedListener.class);
 		equalizerView.setOnBandChangedListener(listener);
-		equalizerView.onStopTrackingTouch(bandView);
-		verify(listener).onBandStopTracking(equalizerView);
+		equalizerView.onStopTrackingTouch();
+		verify(listener).onBandStopTracking();
 	}
 
 	@Test public void onStopTrackingTouch_onBandChangedListenerNotSet_notThrowException() {
 		try {
-			equalizerView.onStopTrackingTouch(null);
+			equalizerView.onStopTrackingTouch();
 		} catch (NullPointerException e) {
 			fail("Expected onStopTrackingTouch to not throw NullPointerException"
 				 + "if onBandChangedListener is not set");

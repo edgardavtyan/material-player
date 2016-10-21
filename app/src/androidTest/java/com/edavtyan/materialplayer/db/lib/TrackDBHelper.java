@@ -8,9 +8,6 @@ import android.provider.MediaStore;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.db.TestDBHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TrackDBHelper extends TestDBHelper {
 	private static final String DATABASE_NAME = "testdb_tracks.db";
 	private static final int DATABASE_VERSION = 1;
@@ -29,7 +26,7 @@ public class TrackDBHelper extends TestDBHelper {
 	private static final String KEY_DATE_MODIFIED = MediaStore.Audio.Media.DATE_MODIFIED;
 
 	public TrackDBHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, DATABASE_NAME, DATABASE_VERSION);
 	}
 
 	@Override public String getTableName() {
@@ -76,14 +73,11 @@ public class TrackDBHelper extends TestDBHelper {
 		}
 	}
 
-	public List<Track> addRandomTracksWhereSomeHaveSameAlbumId(int id, int count) {
-		List<Track> tracks = new ArrayList<>();
-
+	public void addRandomTracksWhereSomeHaveSameAlbumId(int id, int count) {
 		for (int i = 0; i < count; i++) {
 			Track track = createRandomTrack();
 			track.setAlbumId(id);
 			addTrack(track);
-			tracks.add(track);
 		}
 
 		for (int i = 0; i < 5; i++) {
@@ -91,8 +85,6 @@ public class TrackDBHelper extends TestDBHelper {
 			if (track.getAlbumId() == id) track.setAlbumId(id + 1);
 			addTrack(track);
 		}
-
-		return tracks;
 	}
 
 	private Track createRandomTrack() {

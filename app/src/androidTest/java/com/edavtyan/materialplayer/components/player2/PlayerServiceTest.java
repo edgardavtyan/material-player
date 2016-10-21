@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class PlayerServiceTest extends BaseTest {
-	ServiceTestRule serviceTestRule = new ServiceTestRule();
+	private final ServiceTestRule serviceTestRule = new ServiceTestRule();
 
 	private PlayerService playerService;
 	private PlayerMvp.Player player;

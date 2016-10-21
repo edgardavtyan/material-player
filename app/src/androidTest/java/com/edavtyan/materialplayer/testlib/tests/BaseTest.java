@@ -24,6 +24,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
+@SuppressWarnings("unused")
 public class BaseTest {
 	protected static ContextThemeWrapper context;
 	protected App app;

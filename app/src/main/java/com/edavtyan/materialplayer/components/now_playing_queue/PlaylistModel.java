@@ -8,9 +8,13 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 
+import lombok.Setter;
+
 public class PlaylistModel implements PlaylistMvp.Model {
 	private final Context context;
 	private PlayerService service;
+
+	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
 	public PlaylistModel(Context context) {
 		this.context = context;

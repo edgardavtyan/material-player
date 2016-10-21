@@ -19,7 +19,7 @@ public class ArtistDBHelper extends TestDBHelper {
 
 
 	public ArtistDBHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, DATABASE_NAME, DATABASE_VERSION);
 	}
 
 	@Override public String getTableName() {

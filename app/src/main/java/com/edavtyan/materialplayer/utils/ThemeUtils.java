@@ -13,7 +13,7 @@ public class ThemeUtils {
 	private static final String THEME_BASE_DEFAULT = "Light";
 	private static final String THEME_PRIMARY_DEFAULT = "Orange";
 
-	private AdvancedSharedPrefs prefs;
+	private final AdvancedSharedPrefs prefs;
 
 	public ThemeUtils(AdvancedSharedPrefs prefs) {
 		this.prefs = prefs;

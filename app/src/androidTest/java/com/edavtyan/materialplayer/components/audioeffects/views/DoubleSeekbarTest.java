@@ -64,13 +64,13 @@ public class DoubleSeekbarTest extends BaseTest {
 		OnStopTrackingTouchListener listener = mock(OnStopTrackingTouchListener.class);
 		doubleSeekbar.setOnStopTrackingTouchListener(listener);
 		doubleSeekbar.onStopTrackingTouch(innerSeekbar);
-		verify(listener).onStopTrackingTouch(doubleSeekbar);
+		verify(listener).onStopTrackingTouch();
 	}
 
 	@Test public void onStopTrackingTouch_notSet_notCallOnStopTrackingTouchListener() {
 		OnStopTrackingTouchListener listener = mock(OnStopTrackingTouchListener.class);
 		doubleSeekbar.onStopTrackingTouch(innerSeekbar);
-		verify(listener, never()).onStopTrackingTouch(doubleSeekbar);
+		verify(listener, never()).onStopTrackingTouch();
 	}
 
 	@Test public void onProgressChanged_set_callOnProgressChangedListenerWithProgressPlusMax() {
@@ -79,6 +79,6 @@ public class DoubleSeekbarTest extends BaseTest {
 		doubleSeekbar.setProgress(-20);
 		doubleSeekbar.setOnProgressChangedListener(listener);
 		doubleSeekbar.onProgressChanged(innerSeekbar, -20, true);
-		verify(listener).onProgressChanged(doubleSeekbar, -20, true);
+		verify(listener).onProgressChanged(-20);
 	}
 }

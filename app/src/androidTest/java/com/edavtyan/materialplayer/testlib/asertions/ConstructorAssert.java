@@ -14,6 +14,7 @@ public class ConstructorAssert<T> extends AbstractAssert<ConstructorAssert<T>, C
 		return new ConstructorAssert<>(actual, ConstructorAssert.class);
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public ConstructorAssert isPrivate() {
 		isNotNull();
 

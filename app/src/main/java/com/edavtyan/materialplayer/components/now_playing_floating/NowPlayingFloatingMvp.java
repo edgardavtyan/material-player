@@ -4,6 +4,7 @@ import android.content.ServiceConnection;
 
 import com.edavtyan.materialplayer.db.Track;
 
+@SuppressWarnings("unused")
 public interface NowPlayingFloatingMvp {
 	interface Model extends ServiceConnection {
 		interface OnNewTrackListener {

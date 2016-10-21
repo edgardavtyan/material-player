@@ -8,10 +8,8 @@ public class BassBoost {
 	public static final int DEFAULT_STRENGTH = 0;
 	public static final int MAX_STRENGTH = 1000;
 
-
-	private IBassBoost bassBoost;
-	private AdvancedSharedPrefs prefs;
-
+	private final IBassBoost bassBoost;
+	private final AdvancedSharedPrefs prefs;
 
 	public BassBoost(IBassBoost bassBoost, AdvancedSharedPrefs prefs) {
 		this.bassBoost = bassBoost;
@@ -20,7 +18,6 @@ public class BassBoost {
 
 		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
 	}
-
 
 	public int getMaxStrength() {
 		return MAX_STRENGTH;

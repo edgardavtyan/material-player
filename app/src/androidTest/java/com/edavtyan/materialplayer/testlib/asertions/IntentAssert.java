@@ -28,6 +28,7 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public IntentAssert hasExtra(String extraName, String extraValue) {
 		isNotNull();
 

@@ -6,6 +6,7 @@ import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPrese
 import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
 import com.edavtyan.materialplayer.db.Artist;
 
+@SuppressWarnings("unused")
 public interface ArtistDetailMvp {
 	interface Model extends AlbumListMvp.Model {
 		Artist getArtist();

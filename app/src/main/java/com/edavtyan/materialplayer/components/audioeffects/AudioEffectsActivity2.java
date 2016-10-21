@@ -102,7 +102,7 @@ public class AudioEffectsActivity2
 	}
 
 	@Override
-	public void onBandStopTracking(EqualizerBandView band) {
+	public void onBandStopTracking() {
 		presenter.onEqualizerBandStopTracking();
 	}
 

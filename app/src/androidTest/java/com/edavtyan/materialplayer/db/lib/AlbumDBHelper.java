@@ -24,7 +24,7 @@ public class AlbumDBHelper extends TestDBHelper {
 	private static final String COLUMN_TRACKS_COUNT = MediaStore.Audio.Albums.NUMBER_OF_SONGS;
 
 	public AlbumDBHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, DATABASE_NAME, DATABASE_VERSION);
 	}
 
 	@Override public void onCreate(SQLiteDatabase db) {

@@ -16,7 +16,6 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 	private Info info;
 	private Art art;
 	private Seekbar seekbar;
-	private Fab fab;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,8 +28,8 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 		info = factory.provideInfo();
 		art = factory.provideArt();
 		seekbar = factory.provideSeekbar();
-		fab = factory.provideFab();
 		navigator = factory.provideNavigator();
+		factory.provideFab();
 
 		presenter.bind();
 	}
@@ -69,11 +68,6 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 	@Override
 	public Seekbar getSeekbar() {
 		return seekbar;
-	}
-
-	@Override
-	public Fab getFab() {
-		return fab;
 	}
 
 	@Override

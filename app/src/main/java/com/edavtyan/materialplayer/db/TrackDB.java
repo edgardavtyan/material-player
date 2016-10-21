@@ -64,16 +64,6 @@ public class TrackDB {
 		return getListOfTracks(null, null, KEY_TITLE);
 	}
 
-	public Track getFirstTrackWithAlbumId(int albumId) {
-		String selection = KEY_ALBUM_ID + "=?";
-		String[] args = { Integer.toString(albumId) };
-
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, KEY_TRACK);
-		cursor.moveToFirst();
-		return getTrackFromCursor(cursor);
-	}
-
 	private Track getTrackFromCursor(Cursor cursor) {
 		Track track = new Track();
 		track.setId(cursor.getInt(INDEX_ID));

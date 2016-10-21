@@ -11,7 +11,6 @@ public class Surround {
 	private final IVirtualizer surround;
 	private final AdvancedSharedPrefs prefs;
 
-
 	public Surround(IVirtualizer surround, AdvancedSharedPrefs prefs) {
 		this.surround = surround;
 		this.surround.setEnabled(true);
@@ -19,7 +18,6 @@ public class Surround {
 
 		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
 	}
-
 
 	public int getMaxStrength() {
 		return MAX_STRENGTH;

@@ -54,16 +54,16 @@ public class EqualizerViewTest extends BaseTest {
 
 		EqualizerBandView band = (EqualizerBandView) equalizerView.getChildAt(3);
 
-		band.onProgressChanged(mock(DoubleSeekbar.class), 30, true);
+		band.onProgressChanged(30);
 		verify(listener).onBandChanged(band);
 
-		band.onStopTrackingTouch(mock(DoubleSeekbar.class));
-		verify(listener).onBandStopTracking(band);
+		band.onStopTrackingTouch();
+		verify(listener).onBandStopTracking();
 	}
 
 	@Test public void onBandChanged_listenerNotSet_notThrowException() {
 		try {
-			equalizerView.onBandChanged(null, 0);
+			equalizerView.onBandChanged(null);
 		} catch (NullPointerException e) {
 			fail("Expected onBandChanged to not throw NullPointerException"
 				 + "if OnBandChangedListener not set");
@@ -72,7 +72,7 @@ public class EqualizerViewTest extends BaseTest {
 
 	@Test public void onBandStopTracking_listenerNotSet_notThrowException() {
 		try {
-			equalizerView.onBandStopTracking(null);
+			equalizerView.onBandStopTracking();
 		} catch (NullPointerException e) {
 			fail("Expected onBandStopTracking to not throw NullPointerException"
 				 + "if OnBandChangedListener not set");

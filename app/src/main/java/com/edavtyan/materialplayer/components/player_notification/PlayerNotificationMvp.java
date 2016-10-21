@@ -5,6 +5,7 @@ import android.content.ServiceConnection;
 
 import com.edavtyan.materialplayer.db.Track;
 
+@SuppressWarnings("unused")
 public interface PlayerNotificationMvp extends ServiceConnection {
 	interface Model extends ServiceConnection {
 		interface OnNewTrackListener {
@@ -34,9 +35,8 @@ public interface PlayerNotificationMvp extends ServiceConnection {
 		Notification getNotification();
 	}
 
-	interface Presenter {
+	interface Presenter extends Model.OnNewTrackListener, Model.OnPlayPauseListener {
 		void onCreate();
 		void onDestroy();
-		void onNewTrack();
 	}
 }

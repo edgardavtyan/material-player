@@ -12,7 +12,7 @@ import com.edavtyan.materialplayer.R;
 import lombok.Setter;
 
 public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-	private AppCompatSeekBar seekbar;
+	private final AppCompatSeekBar seekbar;
 
 	private @Setter OnStartTrackingTouchListener onStartTrackingTouchListener;
 	private @Setter OnStopTrackingTouchListener onStopTrackingTouchListener;
@@ -23,11 +23,11 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 	}
 
 	interface OnStopTrackingTouchListener {
-		void onStopTrackingTouch(DoubleSeekbar seekbar);
+		void onStopTrackingTouch();
 	}
 
 	interface OnProgressChangedListener {
-		void onProgressChanged(DoubleSeekbar seekbar, int progress, boolean fromUser);
+		void onProgressChanged(int progress);
 	}
 
 	public DoubleSeekbar(Context context, AttributeSet attrs) {
@@ -58,7 +58,7 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		if (onProgressChangedListener != null) {
-			onProgressChangedListener.onProgressChanged(this, getProgress(), fromUser);
+			onProgressChangedListener.onProgressChanged(getProgress());
 		}
 	}
 
@@ -72,7 +72,7 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		if (onStopTrackingTouchListener != null) {
-			onStopTrackingTouchListener.onStopTrackingTouch(this);
+			onStopTrackingTouchListener.onStopTrackingTouch();
 		}
 	}
 }

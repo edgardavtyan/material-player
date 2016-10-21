@@ -27,7 +27,7 @@ public class ArtistDB {
 			KEY_ID, KEY_TITLE, KEY_ALBUMS_COUNT, KEY_TRACKS_COUNT
 	};
 
-	private ContentResolver resolver;
+	private final ContentResolver resolver;
 
 	public ArtistDB(Context context) {
 		resolver = context.getContentResolver();

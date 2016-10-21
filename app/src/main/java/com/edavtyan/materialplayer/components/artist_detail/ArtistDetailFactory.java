@@ -10,8 +10,8 @@ import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 public class ArtistDetailFactory extends BaseFactory {
 	private final String artistTitle;
+	private final ArtistDetailMvp.View view;
 	private ArtistDetailMvp.Model model;
-	private ArtistDetailMvp.View view;
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
 

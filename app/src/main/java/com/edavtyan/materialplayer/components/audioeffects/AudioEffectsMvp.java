@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 
+@SuppressWarnings("unused")
 public interface AudioEffectsMvp {
 	interface Model extends ServiceConnection {
 		interface ServiceConnectionListener {

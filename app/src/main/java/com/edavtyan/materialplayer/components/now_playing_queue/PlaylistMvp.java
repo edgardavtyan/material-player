@@ -4,11 +4,14 @@ import android.content.ServiceConnection;
 
 import com.edavtyan.materialplayer.db.Track;
 
+@SuppressWarnings("unused")
 public interface PlaylistMvp {
 	interface Model extends ServiceConnection {
 		interface OnServiceConnectedListener {
 			void onServiceConnected();
 		}
+
+		void setOnServiceConnectedListener(OnServiceConnectedListener listener);
 
 		void bind();
 		void unbind();

@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.track_all;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
+@SuppressWarnings("unused")
 public interface TrackListMvp {
 	interface Model {
 		Track getTrackAtIndex(int position);

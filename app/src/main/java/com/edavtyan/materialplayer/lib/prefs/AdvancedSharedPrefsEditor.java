@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.lib.prefs;
 import android.content.SharedPreferences;
 
 public class AdvancedSharedPrefsEditor {
-	private SharedPreferences.Editor baseEditor;
+	private final SharedPreferences.Editor baseEditor;
 
 	public AdvancedSharedPrefsEditor(SharedPreferences.Editor baseEditor) {
 		this.baseEditor = baseEditor;

@@ -18,7 +18,7 @@ public class TitledSeekbar
 		extends LinearLayout
 		implements AppCompatSeekBar.OnSeekBarChangeListener {
 
-	private AppCompatSeekBar seekbar;
+	private final AppCompatSeekBar seekbar;
 
 	private @Setter OnProgressChangedListener onProgressChangedListener;
 

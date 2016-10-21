@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityTest extends ActivityTest {
-	private static AlbumDetailFactory factory = mock(AlbumDetailFactory.class);
+	private static final AlbumDetailFactory factory = mock(AlbumDetailFactory.class);
 	private static AlbumDetailMvp.Presenter presenter;
 	private static AlbumDetailAdapter adapter;
 	private static TestAlbumDetailActivity activity;

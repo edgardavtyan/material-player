@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class PlaylistActivityTest extends ActivityTest {
-	private static PlaylistFactory factory = mock(PlaylistFactory.class);
+	private static final PlaylistFactory factory = mock(PlaylistFactory.class);
 	private static PlaylistActivity activity;
 	private static PlaylistAdapter adapter;
 	private static PlaylistMvp.Presenter presenter;

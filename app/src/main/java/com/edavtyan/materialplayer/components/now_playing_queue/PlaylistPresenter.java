@@ -8,6 +8,7 @@ public class PlaylistPresenter implements PlaylistMvp.Presenter {
 
 	public PlaylistPresenter(PlaylistMvp.Model model, PlaylistMvp.View view) {
 		this.model = model;
+		this.model.setOnServiceConnectedListener(this);
 		this.view = view;
 	}
 
