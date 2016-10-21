@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="audio_effects_title">Audio Effects</string>
-
 	<string name="equalizer_frequency_hz">%1$.0f Hz</string>
 	<string name="equalizer_frequency_khz">%1$.1f kHz</string>
 	<string name="equalizer_frequency_khz_whole">%1$.0f kHz</string>
