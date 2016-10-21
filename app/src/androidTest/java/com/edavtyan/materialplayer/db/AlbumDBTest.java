@@ -15,6 +15,7 @@ public class AlbumDBTest extends DBTest {
 	private AlbumDBHelper albumDBHelper;
 
 	@Override public void beforeEach() {
+		super.beforeEach();
 		initProvider(new AlbumDBProvider());
 		albumDB = new AlbumDB(context);
 		albumDBHelper = new AlbumDBHelper(context);

@@ -13,6 +13,7 @@ public class ArtistDBTest extends DBTest {
 	private ArtistDBHelper testArtistDB;
 
 	@Override public void beforeEach() {
+		super.beforeEach();
 		initProvider(new ArtistDBProvider());
 		db = new ArtistDB(context);
 		testArtistDB = new ArtistDBHelper(context);

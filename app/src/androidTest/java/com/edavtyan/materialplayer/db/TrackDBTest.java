@@ -14,6 +14,7 @@ public class TrackDBTest extends DBTest {
 	private TrackDBHelper testTrackDB;
 
 	@Override public void beforeEach() {
+		super.beforeEach();
 		initProvider(new TrackDBProvider());
 		trackDB = new TrackDB(context);
 		testTrackDB = new TrackDBHelper(context);

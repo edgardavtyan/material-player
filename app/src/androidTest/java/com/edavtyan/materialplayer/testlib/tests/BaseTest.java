@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.R;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
 import java.io.ByteArrayOutputStream;
@@ -26,15 +25,12 @@ import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unused")
 public class BaseTest {
-	protected static ContextThemeWrapper context;
+	protected ContextThemeWrapper context;
 	protected App app;
 
-	@BeforeClass public static void beforeClass() {
+	@Before public void beforeEach() {
 		Context appContext = InstrumentationRegistry.getTargetContext();
 		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
-	}
-
-	@Before public void beforeEach() {
 		app = mock(App.class, CALLS_REAL_METHODS);
 		when(context.getApplicationContext()).thenReturn(app);
 	}
