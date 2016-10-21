@@ -21,7 +21,6 @@ public class TrackListViewHolder
 	private final Context context;
 	private final TextView titleView;
 	private final TextView infoView;
-	private final ImageButton menuButton;
 
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
@@ -40,8 +39,8 @@ public class TrackListViewHolder
 		this.context = context;
 		this.titleView = findView(R.id.title);
 		this.infoView = findView(R.id.info);
-		this.menuButton = findView(R.id.menu);
 
+		ImageButton menuButton = findView(R.id.menu);
 		PopupMenu popupMenu = new PopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_track);
 		popupMenu.setOnMenuItemClickListener(this);

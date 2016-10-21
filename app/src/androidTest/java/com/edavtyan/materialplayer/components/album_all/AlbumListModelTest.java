@@ -22,9 +22,6 @@ import static org.mockito.Mockito.when;
 
 public class AlbumListModelTest extends BaseTest {
 	private static List albums;
-	private static List tracks;
-	private AlbumDB albumDB;
-	private TrackDB trackDB;
 	private AlbumListModel model;
 	private PlayerService service;
 
@@ -32,19 +29,15 @@ public class AlbumListModelTest extends BaseTest {
 	@Override public void beforeEach() {
 		super.beforeEach();
 
-		albums = mock(List.class);
-		albumDB = mock(AlbumDB.class);
-		when(albumDB.getAllAlbums()).thenReturn(albums);
-
-		tracks = mock(List.class);
-		trackDB = mock(TrackDB.class);
-		when(trackDB.getAllTracks()).thenReturn(tracks);
-
-		model = new AlbumListModel(context, albumDB, trackDB);
 		service = mock(PlayerService.class);
-
 		PlayerService.PlayerBinder binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
+
+		albums = mock(List.class);
+		AlbumDB albumDB = mock(AlbumDB.class);
+		when(albumDB.getAllAlbums()).thenReturn(albums);
+
+		TrackDB trackDB = mock(TrackDB.class);
 
 		model = new AlbumListModel(context, albumDB, trackDB);
 		doAnswer(invocationOnMock -> {

@@ -13,14 +13,12 @@ import static org.mockito.Mockito.when;
 public class PlaylistPresenterTest extends BaseTest {
 	private PlaylistMvp.Presenter presenter;
 	private PlaylistMvp.Model model;
-	private PlaylistMvp.View view;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
 
 		model = mock(PlaylistMvp.Model.class);
-		view = mock(PlaylistMvp.View.class);
-		presenter = new PlaylistPresenter(model, view);
+		presenter = new PlaylistPresenter(model, mock(PlaylistMvp.View.class));
 	}
 
 	@Test public void onCreate_bindModel() {

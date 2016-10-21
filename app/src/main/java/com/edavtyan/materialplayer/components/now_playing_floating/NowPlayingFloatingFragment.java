@@ -27,7 +27,6 @@ public class NowPlayingFloatingFragment
 	private TextView infoView;
 	private ImageView artView;
 	private ImageButton playPauseView;
-	private LinearLayout infoWrapper;
 	private LinearLayout mainWrapper;
 	private TestableBitmapFactory bitmapFactory;
 
@@ -92,9 +91,10 @@ public class NowPlayingFloatingFragment
 		playPauseView.setOnClickListener(this);
 		artView = findView(view, R.id.art);
 		artView.setOnClickListener(this);
-		infoWrapper = findView(view, R.id.infoWrapper);
-		infoWrapper.setOnClickListener(this);
 		mainWrapper = findView(view, R.id.container);
+
+		LinearLayout infoWrapper = findView(view, R.id.infoWrapper);
+		infoWrapper.setOnClickListener(this);
 
 		return view;
 	}

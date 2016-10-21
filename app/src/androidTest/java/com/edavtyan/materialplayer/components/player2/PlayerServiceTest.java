@@ -32,12 +32,12 @@ public class PlayerServiceTest extends BaseTest {
 	private PlayerMvp.Player player;
 	private Notification notification;
 	private PlayerNotificationPresenter notificationPresenter;
-	private LocalBroadcastManager broadcastManager;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
 
-		broadcastManager = LocalBroadcastManager.getInstance(InstrumentationRegistry.getTargetContext());
+		LocalBroadcastManager broadcastManager =
+				LocalBroadcastManager.getInstance(InstrumentationRegistry.getTargetContext());
 
 		notification = mock(Notification.class);
 		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);

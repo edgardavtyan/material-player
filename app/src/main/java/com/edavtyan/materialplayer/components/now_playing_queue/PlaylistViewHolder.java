@@ -23,7 +23,6 @@ public class PlaylistViewHolder
 	private final Context context;
 	private final TextView titleView;
 	private final TextView infoView;
-	private final ImageButton menuButton;
 
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnMenuClickListener onMenuClickListener;
@@ -45,11 +44,11 @@ public class PlaylistViewHolder
 
 		titleView = findView(R.id.title);
 		infoView = findView(R.id.info);
-		menuButton = findView(R.id.menu);
 
 		App app = (App) context.getApplicationContext();
 		SdkFactory sdkFactory = app.getSdkFactory();
 
+		ImageButton menuButton = findView(R.id.menu);
 		PopupMenu popupMenu = sdkFactory.createPopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_queue);
 		popupMenu.setOnMenuItemClickListener(this);

@@ -24,8 +24,6 @@ public class AlbumListViewHolder
 	private final TextView titleView;
 	private final TextView infoView;
 	private final ImageView artView;
-	private final ImageButton menuButton;
-	private final View itemView;
 	private final PopupMenu popupMenu;
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
@@ -43,14 +41,13 @@ public class AlbumListViewHolder
 
 		this.context = context;
 
-		this.itemView = itemView;
-		this.itemView.setOnClickListener(this);
+		itemView.setOnClickListener(this);
 
 		titleView = findView(R.id.title);
 		infoView = findView(R.id.info);
 		artView = findView(R.id.art);
-		menuButton = findView(R.id.menu);
 
+		ImageButton menuButton = findView(R.id.menu);
 		popupMenu = new PopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_track);
 		popupMenu.setOnMenuItemClickListener(this);
