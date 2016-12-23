@@ -34,9 +34,7 @@ public class OpenSLAudioEngine implements PlayerMvp.AudioEngine {
 	//todo: handle IOException properly
 	@Override public void playTrack(String trackPath) {
 		try {
-			if (isPlaying()) {
-				baseEngine.reset();
-			}
+			baseEngine.reset();
 			baseEngine.setDataSource(trackPath);
 			baseEngine.prepare();
 			baseEngine.start();
