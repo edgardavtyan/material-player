@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
-import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLAmplifier;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -18,9 +18,9 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	private AudioEffectsMvp.View view;
 	private AudioEffectsMvp.Model model;
 	private Equalizer equalizer;
-	private BassBoost bassBoost;
-	private Amplifier amplifier;
-	private Surround surround;
+	private OpenSLBassBoost bassBoost;
+	private OpenSLAmplifier amplifier;
+	private OpenSLSurround surround;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -29,9 +29,9 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		presenter = new AudioEffectsPresenter(model, view);
 
 		equalizer = mock(Equalizer.class);
-		bassBoost = mock(BassBoost.class);
-		amplifier = mock(Amplifier.class);
-		surround = mock(Surround.class);
+		bassBoost = mock(OpenSLBassBoost.class);
+		amplifier = mock(OpenSLAmplifier.class);
+		surround = mock(OpenSLSurround.class);
 
 		when(model.getEqualizer()).thenReturn(equalizer);
 		when(model.getBassBoost()).thenReturn(bassBoost);

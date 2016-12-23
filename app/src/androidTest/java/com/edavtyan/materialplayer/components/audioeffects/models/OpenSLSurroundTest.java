@@ -16,8 +16,8 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class SurroundTest extends BaseTest {
-	private Surround surround;
+public class OpenSLSurroundTest extends BaseTest {
+	private OpenSLSurround surround;
 	private IVirtualizer baseSurround;
 	private AdvancedSharedPrefs prefs;
 
@@ -25,18 +25,18 @@ public class SurroundTest extends BaseTest {
 		super.beforeEach();
 		baseSurround = mock(IVirtualizer.class);
 		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		surround = spy(new Surround(baseSurround, prefs));
+		surround = spy(new OpenSLSurround(baseSurround, prefs));
 	}
 
 	@Test public void constructor_setStrengthFromPrefs() {
 		reset(baseSurround);
-		prefs.edit().putInt(Surround.PREF_STRENGTH, 125).commit();
-		surround = new Surround(baseSurround, prefs);
+		prefs.edit().putInt(OpenSLSurround.PREF_STRENGTH, 125).commit();
+		surround = new OpenSLSurround(baseSurround, prefs);
 		verify(baseSurround).setStrength((short) 125);
 	}
 
 	@Test public void getMaxStrength_returnConstantMaxStrength() {
-		assertThat(surround.getMaxStrength()).isEqualTo(Surround.MAX_STRENGTH);
+		assertThat(surround.getMaxStrength()).isEqualTo(OpenSLSurround.MAX_STRENGTH);
 	}
 
 	@Test public void getStrength_returnStrengthFromBaseClass() {
@@ -52,6 +52,6 @@ public class SurroundTest extends BaseTest {
 	@Test public void saveSettings_saveStrengthToPrefs() {
 		doReturn(155).when(surround).getStrength();
 		surround.saveSettings();
-		assertThat(prefs.getInt(Surround.PREF_STRENGTH, Surround.DEFAULT_STRENGTH)).isEqualTo(155);
+		assertThat(prefs.getInt(OpenSLSurround.PREF_STRENGTH, OpenSLSurround.DEFAULT_STRENGTH)).isEqualTo(155);
 	}
 }

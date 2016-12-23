@@ -6,6 +6,9 @@ import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLAmplifier;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.HQEqualizer;
@@ -81,7 +84,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public Amplifier provideAmplifier() {
 		if (amplifier == null)
-			amplifier = new Amplifier(
+			amplifier = new OpenSLAmplifier(
 					provideOpenSLFactory().createPreAmp(),
 					providePrefs());
 		return amplifier;
@@ -89,7 +92,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public BassBoost provideBassBoost() {
 		if (bassBoost == null)
-			bassBoost = new BassBoost(
+			bassBoost = new OpenSLBassBoost(
 					provideOpenSLFactory().createBassBoost(provideOpenSLPlayer()),
 					providePrefs());
 		return bassBoost;
@@ -97,7 +100,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public Surround provideSurround() {
 		if (surround == null)
-			surround = new Surround(
+			surround = new OpenSLSurround(
 					provideOpenSLFactory().createVirtualizer(provideOpenSLPlayer()),
 					providePrefs());
 		return surround;

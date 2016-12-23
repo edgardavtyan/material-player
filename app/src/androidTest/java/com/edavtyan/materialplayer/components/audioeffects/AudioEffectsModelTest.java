@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.view.ContextThemeWrapper;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
-import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLAmplifier;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
@@ -59,21 +59,21 @@ public class AudioEffectsModelTest extends BaseTest {
 	}
 
 	@Test public void getBassBoost_returnBassBoostFromService() {
-		BassBoost bassBoost = mock(BassBoost.class);
+		OpenSLBassBoost bassBoost = mock(OpenSLBassBoost.class);
 		when(service.getBassBoost()).thenReturn(bassBoost);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getBassBoost()).isEqualTo(bassBoost);
 	}
 
 	@Test public void getAmplifier_returnAmplifierFromService() {
-		Amplifier amplifier = mock(Amplifier.class);
+		OpenSLAmplifier amplifier = mock(OpenSLAmplifier.class);
 		when(service.getAmplifier()).thenReturn(amplifier);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getAmplifier()).isEqualTo(amplifier);
 	}
 
 	@Test public void getSurround_returnSurroundFromService() {
-		Surround surround = mock(Surround.class);
+		OpenSLSurround surround = mock(OpenSLSurround.class);
 		when(service.getSurround()).thenReturn(surround);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getSurround()).isEqualTo(surround);

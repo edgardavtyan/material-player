@@ -16,8 +16,8 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class BassBoostTest extends BaseTest {
-	private BassBoost bassBoost;
+public class OpenSLBassBoostTest extends BaseTest {
+	private OpenSLBassBoost bassBoost;
 	private IBassBoost baseBassBoost;
 	private AdvancedSharedPrefs prefs;
 
@@ -25,19 +25,19 @@ public class BassBoostTest extends BaseTest {
 		super.beforeEach();
 		baseBassBoost = mock(IBassBoost.class);
 		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		bassBoost = spy(new BassBoost(baseBassBoost, prefs));
+		bassBoost = spy(new OpenSLBassBoost(baseBassBoost, prefs));
 		reset(baseBassBoost);
 	}
 
 	@Test public void constructor_setStrengthFromPrefs() {
 		reset(baseBassBoost);
-		prefs.edit().putInt(BassBoost.PREF_STRENGTH, 45).commit();
-		new BassBoost(baseBassBoost, prefs);
+		prefs.edit().putInt(OpenSLBassBoost.PREF_STRENGTH, 45).commit();
+		new OpenSLBassBoost(baseBassBoost, prefs);
 		verify(baseBassBoost).setStrength((short) 45);
 	}
 
 	@Test public void getMaxStrength_returnConstantMaxStrength() {
-		assertThat(bassBoost.getMaxStrength()).isEqualTo(BassBoost.MAX_STRENGTH);
+		assertThat(bassBoost.getMaxStrength()).isEqualTo(OpenSLBassBoost.MAX_STRENGTH);
 	}
 
 	@Test public void getStrength_returnStrengthFromBaseClass() {
@@ -53,6 +53,6 @@ public class BassBoostTest extends BaseTest {
 	@Test public void saveSettings_saveStrengthToPrefs() {
 		doReturn(65).when(bassBoost).getStrength();
 		bassBoost.saveSettings();
-		assertThat(prefs.getInt(BassBoost.PREF_STRENGTH, BassBoost.DEFAULT_STRENGTH)).isEqualTo(65);
+		assertThat(prefs.getInt(OpenSLBassBoost.PREF_STRENGTH, OpenSLBassBoost.DEFAULT_STRENGTH)).isEqualTo(65);
 	}
 }

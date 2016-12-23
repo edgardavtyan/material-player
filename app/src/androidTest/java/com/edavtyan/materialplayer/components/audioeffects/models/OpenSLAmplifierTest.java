@@ -16,8 +16,8 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class AmplifierTest extends BaseTest {
-	private Amplifier amplifier;
+public class OpenSLAmplifierTest extends BaseTest {
+	private OpenSLAmplifier amplifier;
 	private IPreAmp preAmp;
 	private AdvancedSharedPrefs prefs;
 
@@ -25,18 +25,18 @@ public class AmplifierTest extends BaseTest {
 		super.beforeEach();
 		preAmp = mock(IPreAmp.class);
 		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		amplifier = spy(new Amplifier(preAmp, prefs));
+		amplifier = spy(new OpenSLAmplifier(preAmp, prefs));
 	}
 
 	@Test public void constructor_strengthPreviouslySet_setStrengthFromPrefs() {
 		reset(preAmp);
-		prefs.edit().putInt(Amplifier.PREF_STRENGTH, 25).commit();
-		amplifier = new Amplifier(preAmp, prefs);
+		prefs.edit().putInt(OpenSLAmplifier.PREF_STRENGTH, 25).commit();
+		amplifier = new OpenSLAmplifier(preAmp, prefs);
 		verify(preAmp).setLevel(1.25f);
 	}
 
 	@Test public void getMaxStrength_returnMaxAmplifierStrength() {
-		assertThat(amplifier.getMaxStrength()).isEqualTo(Amplifier.MAX_STRENGTH);
+		assertThat(amplifier.getMaxStrength()).isEqualTo(OpenSLAmplifier.MAX_STRENGTH);
 	}
 
 	@Test public void getStrength_returnConvertedStrength() {
@@ -57,6 +57,6 @@ public class AmplifierTest extends BaseTest {
 	@Test public void saveSettings_saveStrengthToPrefs() {
 		doReturn(25).when(amplifier).getStrength();
 		amplifier.saveSettings();
-		assertThat(prefs.getInt(Amplifier.PREF_STRENGTH, Amplifier.DEFAULT_STRENGTH)).isEqualTo(25);
+		assertThat(prefs.getInt(OpenSLAmplifier.PREF_STRENGTH, OpenSLAmplifier.DEFAULT_STRENGTH)).isEqualTo(25);
 	}
 }
