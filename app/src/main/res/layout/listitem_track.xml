@@ -38,7 +38,6 @@
 	</LinearLayout>
 
 	<ImageView
-		android:id="@+id/nowPlaying"
 		android:layout_width="@dimen/size_medium"
 		android:layout_height="match_parent"
 		android:src="@drawable/ic_equalizer"

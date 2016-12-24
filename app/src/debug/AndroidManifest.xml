@@ -1,0 +1,20 @@
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.edavtyan.materialplayer"
+	>
+
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+	<application android:name="com.edavtyan.materialplayer.App">
+
+		<activity android:name=".components.artist_detail.ArtistDetailActivityTest$TestArtistDetailActivity" />
+		<activity android:name=".components.album_detail.AlbumDetailActivityTest$TestAlbumDetailActivity" />
+		<activity android:name=".components.now_playing_queue.PlaylistActivityTest$TestPlaylistActivity" />
+		<activity android:name=".components.audioeffects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
+		<activity android:name=".lib.base.BaseActivityTest$TestBaseActivity" />
+		<activity android:name=".lib.base.BaseToolbarActivityTest$TestBaseToolbarActivity" />
+
+	</application>
+
+</manifest>

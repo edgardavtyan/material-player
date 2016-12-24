@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="audio_effects_title">Audio Effects</string>
-
-	<string name="equalizer_frequency_hz">%1$d Hz</string>
-	<string name="equalizer_frequency_khz">%1$d kHz</string>
-	<string name="equalizer_format_gain">%1$d Db</string>
-	<string name="equalizer_format_gain_positive">+%1$d Db</string>
+	<string name="equalizer_frequency_hz">%1$.0f Hz</string>
+	<string name="equalizer_frequency_khz">%1$.1f kHz</string>
+	<string name="equalizer_frequency_khz_whole">%1$.0f kHz</string>
+	<string name="equalizer_format_gain">%1$d dB</string>
+	<string name="equalizer_format_gain_positive">+%1$d dB</string>
 
 	<string name="equalizer_title">Equalizer</string>
 	<string name="surround_title">Surround</string>

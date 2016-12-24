@@ -9,13 +9,12 @@
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
-		android:tint="?textColorContrastSecondary"
-		tools:background="#333"
 		style="@style/nowplayingBar_art"
+		tools:background="#333"
 		/>
 
 	<LinearLayout
-		android:id="@+id/info_wrapper"
+		android:id="@+id/infoWrapper"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
@@ -24,20 +23,20 @@
 
 		<TextView
 			android:id="@+id/title"
-			tools:text="Current Track Title"
 			style="@style/nowplayingBar_title"
+			tools:text="Current Track Title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			tools:text="Current Artist - Current Album"
 			style="@style/nowplayingBar_info"
+			tools:text="Current Artist - Current Album"
 			/>
 
 	</LinearLayout>
 
-	<com.wnafee.vector.MorphButton
-		android:id="@+id/play_pause"
+	<ImageButton
+		android:id="@+id/playPause"
 		android:layout_width="@dimen/size_medium"
 		android:layout_height="match_parent"
 		style="@style/nowplayingBar_playPause"

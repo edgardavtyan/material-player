@@ -52,34 +52,6 @@
         <JavaCodeStyleSettings>
           <option name="DO_NOT_WRAP_AFTER_SINGLE_ANNOTATION" value="true" />
         </JavaCodeStyleSettings>
-        <Objective-C-extensions>
-          <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
-          <option name="RELEASE_STYLE" value="IVAR" />
-          <option name="TYPE_QUALIFIERS_PLACEMENT" value="BEFORE" />
-          <file>
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Macro" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Typedef" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Enum" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Constant" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Global" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Struct" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="FunctionPredecl" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Function" />
-          </file>
-          <class>
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Property" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Synthesize" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="InitMethod" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="StaticMethod" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="InstanceMethod" />
-            <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="DeallocMethod" />
-          </class>
-          <extensions>
-            <pair source="cpp" header="h" />
-            <pair source="c" header="h" />
-          </extensions>
-        </Objective-C-extensions>
         <XML>
           <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
@@ -88,10 +60,24 @@
           <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
           <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
           <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
+          <option name="BLANK_LINES_AROUND_METHOD_IN_INTERFACE" value="0" />
           <option name="INDENT_CASE_FROM_SWITCH" value="false" />
+          <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
+          <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+          <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true" />
+          <option name="ALIGN_MULTILINE_THROWS_LIST" value="true" />
+          <option name="ALIGN_THROWS_KEYWORD" value="true" />
           <option name="ALIGN_MULTILINE_EXTENDS_LIST" value="true" />
           <option name="EXTENDS_LIST_WRAP" value="1" />
           <option name="EXTENDS_KEYWORD_WRAP" value="1" />
+          <option name="THROWS_KEYWORD_WRAP" value="1" />
+          <option name="WRAP_FIRST_METHOD_IN_CALL_CHAIN" value="true" />
+          <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
+          <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
+          <option name="KEEP_SIMPLE_LAMBDAS_IN_ONE_LINE" value="true" />
+          <option name="KEEP_SIMPLE_CLASSES_IN_ONE_LINE" value="true" />
+          <option name="KEEP_MULTIPLE_EXPRESSIONS_IN_ONE_LINE" value="true" />
+          <option name="METHOD_ANNOTATION_WRAP" value="0" />
           <option name="FIELD_ANNOTATION_WRAP" value="1" />
           <indentOptions>
             <option name="USE_TAB_CHARACTER" value="true" />
@@ -203,6 +189,13 @@
               <section>
                 <rule>
                   <match>
+                    <CLASS>true</CLASS>
+                  </match>
+                </rule>
+              </section>
+              <section>
+                <rule>
+                  <match>
                     <AND>
                       <FIELD>true</FIELD>
                       <FINAL>true</FINAL>
@@ -301,14 +294,14 @@
               <section>
                 <rule>
                   <match>
-                    <ENUM>true</ENUM>
+                    <INTERFACE>true</INTERFACE>
                   </match>
                 </rule>
               </section>
               <section>
                 <rule>
                   <match>
-                    <INTERFACE>true</INTERFACE>
+                    <ENUM>true</ENUM>
                   </match>
                 </rule>
               </section>
@@ -333,13 +326,6 @@
                 <rule>
                   <match>
                     <METHOD>true</METHOD>
-                  </match>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
-                    <OVERRIDDEN />
                   </match>
                 </rule>
               </section>

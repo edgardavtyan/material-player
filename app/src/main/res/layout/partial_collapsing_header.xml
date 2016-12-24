@@ -22,6 +22,7 @@
 				android:contentDescription="@string/description_art"
 				tools:src="@drawable/fallback_artist"
 				style="@style/collapsingHeader_artBack"
+				android:visibility="gone"
 				/>
 
 			<com.edavtyan.materialplayer.lib.views.SquareImageView

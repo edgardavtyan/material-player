@@ -5,23 +5,23 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
-import com.edavtyan.materialplayer.MusicPlayerService;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.activities.BaseToolbarActivity;
+import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.lib.adapters.TabPagerFragmentAdapter;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 public class MainActivity extends BaseToolbarActivity {
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+		ViewPager viewPager = findView(R.id.view_pager);
 		viewPager.setAdapter(new TabPagerFragmentAdapter(getSupportFragmentManager()));
 
-		TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+		TabLayout tabLayout = findView(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
 
-		Intent intent = new Intent(this, MusicPlayerService.class);
+		Intent intent = new Intent(this, PlayerService.class);
 		startService(intent);
 	}
 

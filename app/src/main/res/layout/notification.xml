@@ -13,7 +13,6 @@
 		/>
 
 	<LinearLayout
-		android:id="@+id/info_wrapper"
 		style="@style/notification_text_wrapper"
 		>
 

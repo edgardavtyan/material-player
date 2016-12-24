@@ -5,6 +5,7 @@
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
 	<application
 		android:name="com.edavtyan.materialplayer.App"
@@ -38,7 +39,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.artists.ArtistDetailActivity"
+			android:name=".components.artist_detail.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -48,7 +49,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.albums.AlbumDetailActivity"
+			android:name=".components.album_detail.AlbumDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -58,7 +59,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.nowplaying.NowPlayingActivity"
+			android:name=".components.now_playing.NowPlayingActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -68,7 +69,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.playlist.PlaylistActivity"
+			android:name=".components.now_playing_queue.PlaylistActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -78,7 +79,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.audioeffects.AudioEffectsActivity"
+			android:name=".components.audioeffects.AudioEffectsActivity2"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -88,7 +89,7 @@
 		</activity>
 
 		<service
-			android:name="com.edavtyan.materialplayer.MusicPlayerService"
+			android:name="com.edavtyan.materialplayer.components.player2.PlayerService"
 			android:enabled="true"
 			/>
 
