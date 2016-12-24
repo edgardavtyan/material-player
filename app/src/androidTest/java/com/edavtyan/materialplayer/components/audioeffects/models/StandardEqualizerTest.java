@@ -29,7 +29,7 @@ public class StandardEqualizerTest extends BaseTest {
 	}
 
 	@Test public void constructor_initFrequencies() {
-		int[] frequencies = new int[]{60000, 230000, 910000, 3600000, 14000000};
+		int[] frequencies = new int[]{60, 230, 910, 3600, 14000};
 		assertThat(equalizer.getFrequencies()).containsExactly(frequencies);
 	}
 
