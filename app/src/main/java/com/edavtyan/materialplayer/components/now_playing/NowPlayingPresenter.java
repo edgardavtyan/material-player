@@ -106,9 +106,6 @@ public class NowPlayingPresenter
 	private void updateViewInfo() {
 		view.getInfo().setTitle(model.getTitle());
 		view.getInfo().setInfo(model.getArtist(), model.getAlbum());
-		view.getControls().setIsPlaying(model.isPlaying());
-		view.getControls().setRepeatMode(model.getRepeatMode());
-		view.getControls().setShuffleMode(model.getShuffleMode());
 		view.getSeekbar().setTrackDuration(model.getDuration());
 		view.getSeekbar().setTrackDurationText(model.getDuration());
 		view.getArt().setArt(model.getArt());

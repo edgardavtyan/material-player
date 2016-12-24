@@ -122,10 +122,6 @@ public class NowPlayingPresenterTest extends BaseTest {
 		verify(model).rewind();
 	}
 
-	@Test public void onRewindClick_updateView() {
-		testViewUpdate(() -> presenter.onRewindClick());
-	}
-
 	@Test public void onPlayPauseClick_togglePlayPauseMode() {
 		when(model.isPlaying()).thenReturn(true);
 		presenter.onPlayPauseClick();
@@ -141,10 +137,6 @@ public class NowPlayingPresenterTest extends BaseTest {
 	@Test public void onFastForwardClick_fastForwardTrackViaModel() {
 		presenter.onFastForwardClick();
 		verify(model).fastForward();
-	}
-
-	@Test public void onFastForwardClick_updateView() {
-		testViewUpdate(() -> presenter.onFastForwardClick());
 	}
 
 	@Test public void onRepeatClick_toggleRepeatMode() {
