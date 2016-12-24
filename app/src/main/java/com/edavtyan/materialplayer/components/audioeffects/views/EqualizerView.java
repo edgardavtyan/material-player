@@ -21,6 +21,12 @@ public class EqualizerView
 		super(context, attrs);
 
 		setOrientation(VERTICAL);
+
+		if (isInEditMode()) {
+			int[] frequencies = new int[]{60, 230, 910, 3600, 14000};
+			int[] gains = new int[]{0, 6, -9, -2, 12};
+			setBands(5, frequencies, gains, 15);
+		}
 	}
 
 	public void setBands(int count, int[] frequencies, int[] gains, int limit) {
