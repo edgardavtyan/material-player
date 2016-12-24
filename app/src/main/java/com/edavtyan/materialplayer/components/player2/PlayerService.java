@@ -9,10 +9,9 @@ import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
 
@@ -33,7 +32,6 @@ public class PlayerService extends Service {
 	private PlayerNotificationMvp.Presenter presenter;
 	private @Getter PlayerMvp.Player player;
 	private @Getter Equalizer equalizer;
-	private @Getter Amplifier amplifier;
 	private @Getter Surround surround;
 	private @Getter BassBoost bassBoost;
 
@@ -55,7 +53,6 @@ public class PlayerService extends Service {
 		PlayerFactory playerFactory = app.getPlayerFactory(this);
 		player = playerFactory.providePlayer();
 		equalizer = playerFactory.provideEqualizer();
-		amplifier = playerFactory.provideAmplifier();
 		bassBoost = playerFactory.provideBassBoost();
 		surround = playerFactory.provideSurround();
 

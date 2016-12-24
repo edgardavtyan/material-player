@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.lib.prefs;
 
 import android.content.SharedPreferences;
 
+import com.edavtyan.materialplayer.utils.Strings;
+
 public class AdvancedSharedPrefsEditor {
 	private final SharedPreferences.Editor baseEditor;
 
@@ -34,6 +36,12 @@ public class AdvancedSharedPrefsEditor {
 
 	public AdvancedSharedPrefsEditor putBoolean(String key, boolean defValue) {
 		baseEditor.putBoolean(key, defValue);
+		return this;
+	}
+
+	public AdvancedSharedPrefsEditor putIntArray(String key, int[] value) {
+		String arrayAsString = Strings.join(value, ",");
+		baseEditor.putString(key, arrayAsString);
 		return this;
 	}
 }

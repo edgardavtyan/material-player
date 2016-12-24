@@ -22,6 +22,7 @@ public interface PlayerMvp {
 		void setOnNewTrackListener(OnNewTrackListener listener);
 		void setOnPlayPauseListener(OnPlayPauseListener listener);
 
+		int getSessionId();
 		void addTrack(Track track);
 		void addManyTracks(List<Track> tracks);
 		void removeTrackAt(int position);
@@ -53,6 +54,7 @@ public interface PlayerMvp {
 
 		void setOnPreparedListener(OnPreparedListener listener);
 
+		int getSessionId();
 		void play();
 		void pause();
 		void playPause();

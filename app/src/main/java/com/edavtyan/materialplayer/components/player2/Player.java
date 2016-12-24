@@ -40,6 +40,10 @@ public class Player
 		onPlayPauseListeners.add(listener);
 	}
 
+	@Override public int getSessionId() {
+		return audioEngine.getSessionId();
+	}
+
 	@Override public void addTrack(Track track) {
 		queue.addTrack(track);
 	}

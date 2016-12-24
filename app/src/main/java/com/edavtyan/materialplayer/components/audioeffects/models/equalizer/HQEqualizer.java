@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models.equalizer;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.h6ah4i.android.media.audiofx.IEqualizer;
 

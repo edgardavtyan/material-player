@@ -35,4 +35,19 @@ public class AdvancedSharedPrefs {
 			SharedPreferences.OnSharedPreferenceChangeListener listener) {
 		basePrefs.registerOnSharedPreferenceChangeListener(listener);
 	}
+
+	public int[] getIntArray(String key, int arraySize) {
+		String arrayAsString = basePrefs.getString(key, null);
+
+		if (arrayAsString == null) return new int[arraySize];
+
+		String[] elementsAsString = arrayAsString.split(",");
+		int[] elements = new int[elementsAsString.length];
+
+		for (int i = 0; i < elements.length; i++) {
+			elements[i] = Integer.parseInt(elementsAsString[i]);
+		}
+
+		return elements;
+	}
 }

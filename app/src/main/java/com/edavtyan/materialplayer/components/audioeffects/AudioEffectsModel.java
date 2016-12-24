@@ -5,10 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 
 import lombok.Setter;
@@ -43,11 +42,6 @@ public class AudioEffectsModel implements AudioEffectsMvp.Model {
 	@Override
 	public BassBoost getBassBoost() {
 		return service.getBassBoost();
-	}
-
-	@Override
-	public Amplifier getAmplifier() {
-		return service.getAmplifier();
 	}
 
 	@Override

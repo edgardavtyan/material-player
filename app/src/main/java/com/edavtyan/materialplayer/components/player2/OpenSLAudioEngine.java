@@ -15,6 +15,10 @@ public class OpenSLAudioEngine implements PlayerMvp.AudioEngine {
 		this.baseEngine = baseEngine;
 	}
 
+	@Override public int getSessionId() {
+		return baseEngine.getAudioSessionId();
+	}
+
 	@Override public void play() {
 		baseEngine.start();
 	}

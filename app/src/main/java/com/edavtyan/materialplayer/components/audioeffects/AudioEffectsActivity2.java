@@ -23,7 +23,6 @@ public class AudioEffectsActivity2
 	private SwitchCompat equalizerSwitch;
 	private EqualizerView equalizerView;
 	private TitledSeekbar bassBoostView;
-	private TitledSeekbar amplifierView;
 	private TitledSeekbar surroundView;
 
 	@Override
@@ -38,9 +37,6 @@ public class AudioEffectsActivity2
 
 		bassBoostView = findView(R.id.bassBoost);
 		bassBoostView.setOnProgressChangedListener(this);
-
-		amplifierView = findView(R.id.amplifier);
-		amplifierView.setOnProgressChangedListener(this);
 
 		surroundView = findView(R.id.surround);
 		surroundView.setOnProgressChangedListener(this);
@@ -80,12 +76,6 @@ public class AudioEffectsActivity2
 	}
 
 	@Override
-	public void initAmplifier(int max, int strength) {
-		amplifierView.setMax(max);
-		amplifierView.setProgress(strength);
-	}
-
-	@Override
 	public void initSurround(int max, int strength) {
 		surroundView.setMax(max);
 		surroundView.setProgress(strength);
@@ -112,9 +102,6 @@ public class AudioEffectsActivity2
 		case R.id.bassBoost:
 			presenter.onBassBoostStrengthChanged(progress);
 			break;
-		case R.id.amplifier:
-			presenter.onAmplifierStrengthChanged(progress);
-			break;
 		case R.id.surround:
 			presenter.onSurroundStrengthChanged(progress);
 			break;
@@ -126,9 +113,6 @@ public class AudioEffectsActivity2
 		switch (seekbarId) {
 		case R.id.bassBoost:
 			presenter.onBassBoostStrengthStopChanging();
-			break;
-		case R.id.amplifier:
-			presenter.onAmplifierStrengthStopChanging();
 			break;
 		case R.id.surround:
 			presenter.onSurroundStrengthStopChanging();

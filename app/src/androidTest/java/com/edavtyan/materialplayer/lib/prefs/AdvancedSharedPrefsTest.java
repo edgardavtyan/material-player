@@ -69,6 +69,15 @@ public class AdvancedSharedPrefsTest extends BaseTest {
 		assertThat(prefs.getBoolean("key_boolean", false)).isFalse();
 	}
 
+	@Test public void getIntArray_prefSaved_returnSavedPref() {
+		basePrefs.edit().putString("key_array", "1,2,3,4,5").commit();
+		assertThat(prefs.getIntArray("key_array", 5)).containsExactly(1, 2, 3, 4, 5);
+	}
+
+	@Test public void getIntArray_prefNotSaved_returnArrayOfDefaultSize() {
+		assertThat(prefs.getIntArray("key_array", 5)).containsExactly(0, 0, 0, 0, 0);
+	}
+
 	@Test public void registerOnSharedPreferencesChangedListener_callBasePrefs()
 	throws InterruptedException {
 		OnSharedPreferenceChangeListener listener = mock(OnSharedPreferenceChangeListener.class);

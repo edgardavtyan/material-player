@@ -65,4 +65,9 @@ public class AdvancedSharedPrefsEditorTests extends BaseTest {
 	@Test public void putBoolean_returnItself() {
 		assertThat(editor.putBoolean("key", true)).isSameAs(editor);
 	}
+
+	@Test public void putIntArray_callBaseEditor() {
+		editor.putIntArray("key_intArray", new int[]{1, 2, 3, 4, 5});
+		verify(baseEditor).putString("key_intArray", "1,2,3,4,5");
+	}
 }

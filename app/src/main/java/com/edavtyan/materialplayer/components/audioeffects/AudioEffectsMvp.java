@@ -2,10 +2,9 @@ package com.edavtyan.materialplayer.components.audioeffects;
 
 import android.content.ServiceConnection;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 
 @SuppressWarnings("unused")
@@ -20,7 +19,6 @@ public interface AudioEffectsMvp {
 		void close();
 		Equalizer getEqualizer();
 		BassBoost getBassBoost();
-		Amplifier getAmplifier();
 		Surround getSurround();
 	}
 
@@ -28,7 +26,6 @@ public interface AudioEffectsMvp {
 		void setEqualizerEnabled(boolean enabled);
 		void setEqualizerBands(int count, int gainLimit, int[] frequencies, int[] gains);
 		void initBassBoost(int max, int strength);
-		void initAmplifier(int max, int strength);
 		void initSurround(int max, int strength);
 	}
 
@@ -40,8 +37,6 @@ public interface AudioEffectsMvp {
 		void onEqualizerBandStopTracking();
 		void onBassBoostStrengthChanged(int strength);
 		void onBassBoostStrengthStopChanging();
-		void onAmplifierStrengthChanged(int progress);
-		void onAmplifierStrengthStopChanging();
 		void onSurroundStrengthChanged(int progress);
 		void onSurroundStrengthStopChanging();
 	}

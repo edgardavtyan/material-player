@@ -7,7 +7,7 @@ import android.support.v7.view.ContextThemeWrapper;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLSurround;
-import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.player2.PlayerService;
 import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;

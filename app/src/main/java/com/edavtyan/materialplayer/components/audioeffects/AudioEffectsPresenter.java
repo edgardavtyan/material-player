@@ -51,16 +51,6 @@ public class AudioEffectsPresenter
 	}
 
 	@Override
-	public void onAmplifierStrengthChanged(int strength) {
-		model.getAmplifier().setStrength(strength);
-	}
-
-	@Override
-	public void onAmplifierStrengthStopChanging() {
-		model.getAmplifier().saveSettings();
-	}
-
-	@Override
 	public void onSurroundStrengthChanged(int strength) {
 		model.getSurround().setStrength(strength);
 	}
@@ -79,7 +69,6 @@ public class AudioEffectsPresenter
 				model.getEqualizer().getFrequencies(),
 				model.getEqualizer().getGains());
 		view.initBassBoost(model.getBassBoost().getMaxStrength(), model.getBassBoost().getStrength());
-		view.initAmplifier(model.getAmplifier().getMaxStrength(), model.getAmplifier().getStrength());
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
 	}
 }

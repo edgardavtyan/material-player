@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.components.audioeffects;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLSurround;
-import com.edavtyan.materialplayer.components.audioeffects.models.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
