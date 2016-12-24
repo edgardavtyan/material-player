@@ -45,9 +45,6 @@ public class NowPlayingPresenter
 
 	@Override
 	public void onModelBound() {
-		view.getControls().setShuffleMode(model.getShuffleMode());
-		view.getControls().setRepeatMode(model.getRepeatMode());
-		view.getControls().setIsPlaying(model.isPlaying());
 		updateViewInfo();
 	}
 
@@ -109,6 +106,9 @@ public class NowPlayingPresenter
 		view.getSeekbar().setTrackDuration(model.getDuration());
 		view.getSeekbar().setTrackDurationText(model.getDuration());
 		view.getArt().setArt(model.getArt());
+		view.getControls().setShuffleMode(model.getShuffleMode());
+		view.getControls().setRepeatMode(model.getRepeatMode());
+		view.getControls().setIsPlaying(model.isPlaying());
 		seekbarTimer.run();
 	}
 }

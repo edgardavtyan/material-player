@@ -44,4 +44,9 @@ public class AdvancedSharedPrefsEditor {
 		baseEditor.putString(key, arrayAsString);
 		return this;
 	}
+
+	public <T extends Enum<T>> AdvancedSharedPrefsEditor putEnum(String key, T value) {
+		baseEditor.putString(key, value == null ? null : value.name());
+		return this;
+	}
 }

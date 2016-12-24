@@ -11,6 +11,7 @@ public class Player
 				   PlayerMvp.AudioEngine.OnPreparedListener {
 
 	private final PlayerMvp.AudioEngine audioEngine;
+	private final AdvancedSharedPrefs prefs;
 	private final PlayerMvp.Queue queue;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
@@ -20,13 +21,12 @@ public class Player
 			PlayerMvp.Queue queue,
 			AdvancedSharedPrefs prefs) {
 		this.audioEngine = audioEngine;
+		this.prefs = prefs;
 		this.audioEngine.setOnPreparedListener(this);
 
-		RepeatMode repeatMode = prefs.getEnum(PREF_REPEAT_MODE, DEFAULT_REPEAT_MODE);
-		ShuffleMode shuffleMode = prefs.getEnum(PREF_SHUFFLE_MODE, DEFAULT_SHUFFLE_MODE);
 		this.queue = queue;
-		this.queue.setRepeatMode(repeatMode);
-		this.queue.setShuffleMode(shuffleMode);
+		this.queue.setRepeatMode(prefs.getEnum(PREF_REPEAT_MODE, DEFAULT_REPEAT_MODE));
+		this.queue.setShuffleMode(prefs.getEnum(PREF_SHUFFLE_MODE, DEFAULT_SHUFFLE_MODE));
 
 		onNewTrackListeners = new ArrayList<>();
 		onPlayPauseListeners = new ArrayList<>();
@@ -138,10 +138,12 @@ public class Player
 
 	@Override public void toggleShuffleMode() {
 		queue.toggleShuffleMode();
+		prefs.edit().putEnum(PREF_SHUFFLE_MODE, getShuffleMode()).apply();
 	}
 
 	@Override public void toggleRepeatMode() {
 		queue.toggleRepeatMode();
+		prefs.edit().putEnum(PREF_REPEAT_MODE, getRepeatMode()).apply();
 	}
 
 	@Override public void onPrepared() {

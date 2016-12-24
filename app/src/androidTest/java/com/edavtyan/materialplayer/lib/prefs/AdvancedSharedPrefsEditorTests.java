@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.lib.prefs;
 
 import android.content.SharedPreferences;
 
+import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -69,5 +70,10 @@ public class AdvancedSharedPrefsEditorTests extends BaseTest {
 	@Test public void putIntArray_callBaseEditor() {
 		editor.putIntArray("key_intArray", new int[]{1, 2, 3, 4, 5});
 		verify(baseEditor).putString("key_intArray", "1,2,3,4,5");
+	}
+
+	@Test public void putEnum_callBaseEditor() {
+		editor.putEnum("key_enum", RepeatMode.REPEAT_ALL);
+		verify(baseEditor).putString("key_enum", "REPEAT_ALL");
 	}
 }

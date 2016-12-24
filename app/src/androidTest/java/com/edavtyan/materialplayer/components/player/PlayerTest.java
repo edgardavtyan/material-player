@@ -5,8 +5,8 @@ import android.preference.PreferenceManager;
 import com.edavtyan.materialplayer.components.player.PlayerMvp.Player.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.player.PlayerMvp.Player.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -177,6 +177,13 @@ public class PlayerTest extends BaseTest {
 		verify(queue).toggleShuffleMode();
 	}
 
+	@Test public void toggleShuffleMode_saveShuffleMode() {
+		when(queue.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
+		player.toggleShuffleMode();
+		assertThat(prefs.getEnum(PlayerMvp.Player.PREF_SHUFFLE_MODE, ShuffleMode.DISABLED))
+				.isEqualTo(ShuffleMode.ENABLED);
+	}
+
 	@Test public void getRepeatMode_returnModeFromQueue() {
 		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		assertThat(player.getRepeatMode()).isEqualTo(RepeatMode.REPEAT_ALL);
@@ -185,6 +192,13 @@ public class PlayerTest extends BaseTest {
 	@Test public void toggleRepeatMode_callQueue() {
 		player.toggleRepeatMode();
 		verify(queue).toggleRepeatMode();
+	}
+
+	@Test public void toggleRepeatMode_saveRepeatMode() {
+		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
+		player.toggleRepeatMode();
+		assertThat(prefs.getEnum(PlayerMvp.Player.PREF_REPEAT_MODE, RepeatMode.DISABLED))
+				.isEqualTo(RepeatMode.REPEAT_ALL);
 	}
 
 	@Test public void getCurrentTrack_returnTrackFromQueue() {
