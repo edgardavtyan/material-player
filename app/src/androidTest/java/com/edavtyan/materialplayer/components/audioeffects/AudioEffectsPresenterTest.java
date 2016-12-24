@@ -1,9 +1,8 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLAmplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
-import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLSurround;
+import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -18,9 +17,8 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	private AudioEffectsMvp.View view;
 	private AudioEffectsMvp.Model model;
 	private Equalizer equalizer;
-	private OpenSLBassBoost bassBoost;
-	private OpenSLAmplifier amplifier;
-	private OpenSLSurround surround;
+	private BassBoost bassBoost;
+	private Surround surround;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -29,13 +27,11 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		presenter = new AudioEffectsPresenter(model, view);
 
 		equalizer = mock(Equalizer.class);
-		bassBoost = mock(OpenSLBassBoost.class);
-		amplifier = mock(OpenSLAmplifier.class);
-		surround = mock(OpenSLSurround.class);
+		bassBoost = mock(BassBoost.class);
+		surround = mock(Surround.class);
 
 		when(model.getEqualizer()).thenReturn(equalizer);
 		when(model.getBassBoost()).thenReturn(bassBoost);
-		when(model.getAmplifier()).thenReturn(amplifier);
 		when(model.getSurround()).thenReturn(surround);
 	}
 
@@ -49,8 +45,6 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		when(bassBoost.getMaxStrength()).thenReturn(100);
 		when(surround.getStrength()).thenReturn(4);
 		when(surround.getMaxStrength()).thenReturn(200);
-		when(amplifier.getStrength()).thenReturn(23);
-		when(amplifier.getMaxStrength()).thenReturn(300);
 
 		presenter.onServiceConnected();
 
@@ -58,7 +52,6 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		verify(view).setEqualizerBands(5, 15, new int[]{10, 20, 30, 40, 50}, new int[]{4, 5, 6, 7, 8});
 		verify(view).initBassBoost(100, 15);
 		verify(view).initSurround(200, 4);
-		verify(view).initAmplifier(300, 23);
 	}
 
 	@Test public void onCreate_initModel() {
@@ -97,16 +90,6 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	@Test public void onBassBoostStrengthStopChanging_saveBassBoostStrengthViaModel() {
 		presenter.onBassBoostStrengthStopChanging();
 		verify(bassBoost).saveSettings();
-	}
-
-	@Test public void onAmplifierStrengthChanged_setAmplifierStrengthViaModel() {
-		presenter.onAmplifierStrengthChanged(30);
-		verify(amplifier).setStrength(30);
-	}
-
-	@Test public void onAmplifierStrengthStopChanging_saveAmplifierStrengthViaModel() {
-		presenter.onAmplifierStrengthStopChanging();
-		verify(amplifier).saveSettings();
 	}
 
 	@Test public void onSurroundStrengthChanged_setSurroundStrengthViaModel() {

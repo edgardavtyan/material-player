@@ -74,7 +74,6 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		verify(equalizerSwitch).setOnCheckedChangeListener(activity);
 		verify(equalizerView).setOnBandChangedListener(activity);
 		verify(bassBoostView).setOnProgressChangedListener(activity);
-		verify(amplifierView).setOnProgressChangedListener(activity);
 		verify(surroundView).setOnProgressChangedListener(activity);
 	}
 

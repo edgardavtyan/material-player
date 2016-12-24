@@ -20,9 +20,7 @@ public class PlayerFactoryTest extends FactoryTest {
 		testFactoryMethod(playerFactory::provideQueue);
 		testFactoryMethod(playerFactory::provideQueueList);
 		testFactoryMethod(playerFactory::provideAudioEngine);
-		testFactoryMethod(playerFactory::provideOpenSLParams);
 		testFactoryMethod(playerFactory::provideEqualizer);
-		testFactoryMethod(playerFactory::provideAmplifier);
 		testFactoryMethod(playerFactory::provideBassBoost);
 		testFactoryMethod(playerFactory::provideSurround);
 		testFactoryMethod(playerFactory::provideBasePrefs);
