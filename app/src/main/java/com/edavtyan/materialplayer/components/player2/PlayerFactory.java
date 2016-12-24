@@ -114,6 +114,8 @@ public class PlayerFactory extends BaseFactory {
 					| OpenSLMediaPlayerContext.OPTION_USE_BASSBOOST
 					| OpenSLMediaPlayerContext.OPTION_USE_PREAMP
 					| OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER;
+			params.shortFadeDuration = 100;
+			params.longFadeDuration = 100;
 		}
 		return params;
 	}
