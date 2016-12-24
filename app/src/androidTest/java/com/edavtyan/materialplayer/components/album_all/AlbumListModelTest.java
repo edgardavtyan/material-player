@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.album_all;
 
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;

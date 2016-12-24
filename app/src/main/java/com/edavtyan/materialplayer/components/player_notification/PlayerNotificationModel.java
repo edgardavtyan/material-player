@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 

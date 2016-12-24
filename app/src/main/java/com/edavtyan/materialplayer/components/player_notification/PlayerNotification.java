@@ -7,7 +7,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;

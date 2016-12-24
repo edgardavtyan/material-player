@@ -12,7 +12,7 @@ import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
-public class AudioEffectsActivity2
+public class AudioEffectsActivity
 		extends BaseToolbarActivity
 		implements AudioEffectsMvp.View,
 				   CompoundButton.OnCheckedChangeListener,

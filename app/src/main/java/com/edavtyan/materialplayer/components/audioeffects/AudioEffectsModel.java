@@ -8,7 +8,7 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 
 import lombok.Setter;
 

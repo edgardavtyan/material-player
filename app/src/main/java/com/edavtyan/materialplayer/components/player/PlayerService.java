@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player2;
+package com.edavtyan.materialplayer.components.player;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

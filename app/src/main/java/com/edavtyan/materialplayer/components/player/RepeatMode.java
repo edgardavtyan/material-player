@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player2;
+package com.edavtyan.materialplayer.components.player;
 
 public enum RepeatMode {
 	DISABLED, REPEAT_ONE, REPEAT_ALL

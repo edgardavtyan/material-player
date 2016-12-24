@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player2;
+package com.edavtyan.materialplayer.components.player;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,9 +11,9 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBo
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.player2.receivers.FastForwardReceiver;
-import com.edavtyan.materialplayer.components.player2.receivers.PlayPauseReceiver;
-import com.edavtyan.materialplayer.components.player2.receivers.RewindReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.FastForwardReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.RewindReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;

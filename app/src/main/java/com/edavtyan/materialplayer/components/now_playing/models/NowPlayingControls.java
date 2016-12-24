@@ -5,8 +5,8 @@ import android.view.View;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
-import com.edavtyan.materialplayer.components.player2.RepeatMode;
-import com.edavtyan.materialplayer.components.player2.ShuffleMode;
+import com.edavtyan.materialplayer.components.player.RepeatMode;
+import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 import com.edavtyan.materialplayer.utils.AppColors;
 

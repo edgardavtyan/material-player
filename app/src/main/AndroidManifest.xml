@@ -79,7 +79,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.audioeffects.AudioEffectsActivity2"
+			android:name=".components.audioeffects.AudioEffectsActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -89,7 +89,7 @@
 		</activity>
 
 		<service
-			android:name="com.edavtyan.materialplayer.components.player2.PlayerService"
+			android:name="com.edavtyan.materialplayer.components.player.PlayerService"
 			android:enabled="true"
 			/>
 

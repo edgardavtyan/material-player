@@ -1,10 +1,10 @@
-package com.edavtyan.materialplayer.components.player2.receivers;
+package com.edavtyan.materialplayer.components.player.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
 
 public class PlayPauseReceiver extends BroadcastReceiver {
 	private final PlayerMvp.Player player;

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player2;
+package com.edavtyan.materialplayer.components.player;
 
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 

@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
-import com.edavtyan.materialplayer.components.player2.RepeatMode;
-import com.edavtyan.materialplayer.components.player2.ShuffleMode;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.components.player.RepeatMode;
+import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import java.io.File;

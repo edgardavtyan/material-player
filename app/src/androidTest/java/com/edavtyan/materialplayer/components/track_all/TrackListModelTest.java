@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.track_all;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
-import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;

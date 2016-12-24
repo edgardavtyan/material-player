@@ -22,7 +22,7 @@ import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFlo
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistFactory;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistMvp;
-import com.edavtyan.materialplayer.components.player2.PlayerFactory;
+import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;

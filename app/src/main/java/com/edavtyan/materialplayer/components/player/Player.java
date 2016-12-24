@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player2;
+package com.edavtyan.materialplayer.components.player;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;

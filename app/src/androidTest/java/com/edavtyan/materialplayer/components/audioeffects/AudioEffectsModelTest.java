@@ -7,8 +7,8 @@ import android.support.v7.view.ContextThemeWrapper;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
-import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
+import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.view.ContextThemeWrapper;
 
-import com.edavtyan.materialplayer.components.player2.Player;
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player.Player;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;

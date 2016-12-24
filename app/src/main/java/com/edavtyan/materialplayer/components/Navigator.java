@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
-import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity2;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.prefs.PrefActivity;
@@ -43,7 +43,7 @@ public class Navigator {
 	}
 
 	public void gotoAudioEffects() {
-		Intent intent = new Intent(context, AudioEffectsActivity2.class);
+		Intent intent = new Intent(context, AudioEffectsActivity.class);
 		context.startActivity(intent);
 	}
 

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player2;
+package com.edavtyan.materialplayer.components.player;
 
 import android.app.Notification;
 import android.app.Service;
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.components.player2.PlayerService.PlayerBinder;
+import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotification;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationPresenter;

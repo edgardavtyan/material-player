@@ -3,8 +3,8 @@ package com.edavtyan.materialplayer.components.now_playing;
 import android.content.ServiceConnection;
 import android.widget.SeekBar;
 
-import com.edavtyan.materialplayer.components.player2.RepeatMode;
-import com.edavtyan.materialplayer.components.player2.ShuffleMode;
+import com.edavtyan.materialplayer.components.player.RepeatMode;
+import com.edavtyan.materialplayer.components.player.ShuffleMode;
 
 import java.io.File;
 

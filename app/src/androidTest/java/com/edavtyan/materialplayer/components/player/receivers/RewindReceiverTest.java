@@ -1,6 +1,6 @@
-package com.edavtyan.materialplayer.components.player2.receivers;
+package com.edavtyan.materialplayer.components.player.receivers;
 
-import com.edavtyan.materialplayer.components.player2.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

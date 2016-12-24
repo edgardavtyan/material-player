@@ -6,7 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.player2.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.adapters.TabPagerFragmentAdapter;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
