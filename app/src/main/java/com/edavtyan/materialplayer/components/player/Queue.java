@@ -67,8 +67,14 @@ public class Queue implements PlayerMvp.Queue {
 		}
 
 		boolean atLastTrack = position == (tracks.size() - 1);
-		if (atLastTrack && getRepeatMode() == RepeatMode.DISABLED) {
-			isEnded = true;
+
+		if (atLastTrack) {
+			if (getRepeatMode() == RepeatMode.DISABLED) {
+				isEnded = true;
+			} else if (getRepeatMode() == RepeatMode.REPEAT_ALL) {
+				isEnded = false;
+				position = 0;
+			}
 		} else {
 			isEnded = false;
 			position++;

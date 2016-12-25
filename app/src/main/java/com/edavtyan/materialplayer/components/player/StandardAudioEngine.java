@@ -6,14 +6,17 @@ import java.io.IOException;
 
 import lombok.Setter;
 
-public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.OnPreparedListener {
+public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.OnPreparedListener,
+											MediaPlayer.OnCompletionListener {
 	private final MediaPlayer player;
 
 	private @Setter OnPreparedListener onPreparedListener;
+	private @Setter OnCompletedListener onCompletedListener;
 
 	public StandardAudioEngine() {
 		player = new MediaPlayer();
 		player.setOnPreparedListener(this);
+		player.setOnCompletionListener(this);
 	}
 
 	@Override public int getSessionId() {
@@ -57,5 +60,9 @@ public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.O
 	@Override public void onPrepared(MediaPlayer mp) {
 		player.start();
 		if (onPreparedListener != null) onPreparedListener.onPrepared();
+	}
+
+	@Override public void onCompletion(MediaPlayer mp) {
+		if (onCompletedListener != null) onCompletedListener.onCompleted();
 	}
 }

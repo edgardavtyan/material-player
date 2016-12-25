@@ -52,7 +52,12 @@ public interface PlayerMvp {
 			void onPrepared();
 		}
 
+		interface OnCompletedListener {
+			void onCompleted();
+		}
+
 		void setOnPreparedListener(OnPreparedListener listener);
+		void setOnCompletedListener(OnCompletedListener listener);
 
 		int getSessionId();
 		void play();

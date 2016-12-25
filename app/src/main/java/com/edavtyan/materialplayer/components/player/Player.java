@@ -8,7 +8,8 @@ import java.util.List;
 
 public class Player
 		implements PlayerMvp.Player,
-				   PlayerMvp.AudioEngine.OnPreparedListener {
+				   PlayerMvp.AudioEngine.OnPreparedListener,
+				   PlayerMvp.AudioEngine.OnCompletedListener {
 
 	private final PlayerMvp.AudioEngine audioEngine;
 	private final AdvancedSharedPrefs prefs;
@@ -20,9 +21,10 @@ public class Player
 			PlayerMvp.AudioEngine audioEngine,
 			PlayerMvp.Queue queue,
 			AdvancedSharedPrefs prefs) {
-		this.audioEngine = audioEngine;
 		this.prefs = prefs;
+		this.audioEngine = audioEngine;
 		this.audioEngine.setOnPreparedListener(this);
+		this.audioEngine.setOnCompletedListener(this);
 
 		this.queue = queue;
 		this.queue.setRepeatMode(prefs.getEnum(PREF_REPEAT_MODE, DEFAULT_REPEAT_MODE));
@@ -101,9 +103,8 @@ public class Player
 	}
 
 	@Override public void playNext() {
-		if (queue.isEnded()) return;
-
 		queue.moveToNext();
+		if (queue.isEnded()) return;
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
@@ -150,5 +151,9 @@ public class Player
 		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
 			onNewTrackListener.onNewTrack();
 		}
+	}
+
+	@Override public void onCompleted() {
+		playNext();
 	}
 }
