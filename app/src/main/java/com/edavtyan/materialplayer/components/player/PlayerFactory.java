@@ -1,9 +1,7 @@
 package com.edavtyan.materialplayer.components.player;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.media.audiofx.Virtualizer;
-import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
@@ -16,21 +14,18 @@ import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver
 import com.edavtyan.materialplayer.components.player.receivers.RewindReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerFactory extends BaseFactory {
-	private AdvancedSharedPrefs prefs;
 	private ArrayList<Track> queueList;
+	private Queue queue;
 	private BassBoost bassBoost;
 	private Equalizer equalizer;
+	private Surround surround;
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
-	private Queue queue;
-	private SharedPreferences basePrefs;
-	private Surround surround;
 	private FastForwardReceiver fastForwardReceiver;
 	private RewindReceiver rewindReceiver;
 	private PlayPauseReceiver playPauseReceiver;
@@ -88,18 +83,6 @@ public class PlayerFactory extends BaseFactory {
 					new Virtualizer(0, providePlayer().getSessionId()),
 					providePrefs());
 		return surround;
-	}
-
-	public SharedPreferences provideBasePrefs() {
-		if (basePrefs == null)
-			basePrefs = PreferenceManager.getDefaultSharedPreferences(provideContext());
-		return basePrefs;
-	}
-
-	public AdvancedSharedPrefs providePrefs() {
-		if (prefs == null)
-			prefs = new AdvancedSharedPrefs(provideBasePrefs());
-		return prefs;
 	}
 
 	public List<Track> provideQueueList() {
