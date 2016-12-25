@@ -72,10 +72,9 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
-
 	}
 
 	protected List<Track> queryTracks() {
-		return  db.getAllTracks();
+		return db.getAllTracks();
 	}
 }
