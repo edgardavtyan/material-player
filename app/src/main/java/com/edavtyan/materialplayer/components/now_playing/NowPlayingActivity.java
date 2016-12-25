@@ -42,7 +42,7 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 
 	@Override
 	public int getLayoutId() {
-		return R.layout.activity_nowplaying_2;
+		return R.layout.activity_nowplaying;
 	}
 
 	@Override
