@@ -20,17 +20,29 @@ public class ColorSelectionPreference
 	public ColorSelectionPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		entryView = initEntryView();
-		colorSelectionView = initColorSelectionView();
-		dialog = initDialog();
-		presenter = initPresenter(attrs);
+		if (isInEditMode()) {
+			colorSelectionView = null;
+			dialog = null;
+			presenter = null;
+		} else {
+			colorSelectionView = initColorSelectionView();
+			dialog = initDialog();
+			presenter = initPresenter(attrs);
+		}
 	}
 
 	public ColorSelectionPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		entryView = initEntryView();
-		colorSelectionView = initColorSelectionView();
-		dialog = initDialog();
-		presenter = initPresenter(attrs);
+		if (isInEditMode()) {
+			dialog = null;
+			colorSelectionView = null;
+			presenter = null;
+		} else {
+			colorSelectionView = initColorSelectionView();
+			dialog = initDialog();
+			presenter = initPresenter(attrs);
+		}
 	}
 
 	public void setTitle(CharSequence title) {

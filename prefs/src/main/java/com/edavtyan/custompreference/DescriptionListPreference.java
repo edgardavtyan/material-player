@@ -17,18 +17,28 @@ public class DescriptionListPreference
 
 	public DescriptionListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		presenter = initPresenter(initModel(attrs));
 		entryView = initEntryView();
-		dialog = initDialog(presenter);
-		presenter.onViewsInit();
+		if (isInEditMode()) {
+			presenter = null;
+			dialog = null;
+		} else {
+			presenter = initPresenter(initModel(attrs));
+			dialog = initDialog(presenter);
+			presenter.onViewsInit();
+		}
 	}
 
 	public DescriptionListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		presenter = initPresenter(initModel(attrs));
 		entryView = initEntryView();
-		dialog = initDialog(presenter);
-		presenter.onViewsInit();
+		if (isInEditMode()) {
+			presenter = null;
+			dialog = null;
+		} else {
+			presenter = initPresenter(initModel(attrs));
+			dialog = initDialog(presenter);
+			presenter.onViewsInit();
+		}
 	}
 
 	public void showDialog() {

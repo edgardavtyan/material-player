@@ -17,18 +17,28 @@ public class SimpleListPreference
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 		entryView = initEntryView();
-		dialogView = initDialogView(presenter);
-		presenter.onViewsInit();
+		if (isInEditMode()) {
+			presenter = null;
+			dialogView = null;
+		} else {
+			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
+			dialogView = initDialogView(presenter);
+			presenter.onViewsInit();
+		}
 	}
 
 	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 		entryView = initEntryView();
-		dialogView = initDialogView(presenter);
-		presenter.onViewsInit();
+		if (isInEditMode()) {
+			presenter = null;
+			dialogView = null;
+		} else {
+			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
+			dialogView = initDialogView(presenter);
+			presenter.onViewsInit();
+		}
 	}
 
 	public void openDialog() {
