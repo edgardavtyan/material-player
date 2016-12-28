@@ -39,6 +39,7 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 
 	@Override
 	public void unbind() {
+		service.getPlayer().removeOnNewTrackListener(this);
 		context.unbindService(this);
 	}
 

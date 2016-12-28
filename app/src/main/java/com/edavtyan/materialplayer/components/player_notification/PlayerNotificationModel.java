@@ -36,6 +36,7 @@ public class PlayerNotificationModel
 	}
 
 	@Override public void unbind() {
+		service.getPlayer().removeOnNewTrackListener(this);
 		context.unbindService(this);
 	}
 
