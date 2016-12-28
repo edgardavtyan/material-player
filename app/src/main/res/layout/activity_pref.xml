@@ -39,24 +39,4 @@
 
 	</com.edavtyan.custompreference.category.PreferenceCategory>
 
-	<com.edavtyan.custompreference.category.PreferenceCategory
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:cp_title="@string/pref_category_audio"
-		>
-
-		<com.edavtyan.custompreference.description_list.DescriptionListPreference
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:cp_key="@string/pref_audio_engine_key"
-			app:cp_title="@string/pref_audio_engine_title"
-			app:cp_summary="@string/pref_audio_engine_summary"
-			app:cp_defaultValue="@string/pref_audio_engine_default"
-			app:cp_entries="@array/pref_audio_engine_entries"
-			app:cp_entryValues="@array/pref_audio_engine_values"
-			app:cp_summaries="@array/pref_audio_engine_summaries"
-			/>
-
-	</com.edavtyan.custompreference.category.PreferenceCategory>
-
 </LinearLayout>
