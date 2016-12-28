@@ -1,6 +1,5 @@
 package com.edavtyan.custompreference.color;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -26,14 +25,12 @@ public class ColorSelectionModel extends BaseModel {
 		super(context);
 
 		@Cleanup("recycle")
-		@SuppressLint("recycle")
-		TypedArray attrs = context.obtainStyledAttributes(
-				attributeSet, R.styleable.ColorSelectionPreference);
-		key = attrs.getString(R.styleable.ColorSelectionPreference_cp_key);
-		title = attrs.getString(R.styleable.ColorSelectionPreference_cp_title);
-		defaultValue = attrs.getString(R.styleable.ColorSelectionPreference_cp_defaultValue);
+		TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.ColorSelectionPref);
+		key = attrs.getString(R.styleable.ColorSelectionPref_cp_key);
+		title = attrs.getString(R.styleable.ColorSelectionPref_cp_title);
+		defaultValue = attrs.getString(R.styleable.ColorSelectionPref_cp_defaultValue);
 		entries = getEntries(context, attrs);
-		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.ColorSelectionPreference_cp_entryValues));
+		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.ColorSelectionPref_cp_entryValues));
 	}
 
 	public int getSelectedPrefIndex() {
@@ -49,7 +46,7 @@ public class ColorSelectionModel extends BaseModel {
 	}
 
 	private List<Integer> getEntries(Context context, TypedArray attrs) {
-		int entriesId = attrs.getResourceId(R.styleable.ColorSelectionPreference_cp_entries, 0);
+		int entriesId = attrs.getResourceId(R.styleable.ColorSelectionPref_cp_entries, 0);
 		int[] entriesArray = context.getResources().getIntArray(entriesId);
 		List<Integer> entries = new ArrayList<>();
 		for (int entry : entriesArray) entries.add(entry);

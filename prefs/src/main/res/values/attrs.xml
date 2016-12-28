@@ -10,7 +10,7 @@
 		<attr name="cp_entryValues" format="reference" />
 	</declare-styleable>
 
-	<declare-styleable name="SimpleListPreference">
+	<declare-styleable name="SimpleListPref">
 		<attr name="cp_key" />
 		<attr name="cp_title" />
 		<attr name="cp_summary" />
@@ -19,7 +19,7 @@
 		<attr name="cp_entryValues" />
 	</declare-styleable>
 
-	<declare-styleable name="DescriptionList">
+	<declare-styleable name="DescriptionListPref">
 		<attr name="cp_key" />
 		<attr name="cp_title" />
 		<attr name="cp_summary" />
@@ -29,7 +29,7 @@
 		<attr name="cp_summaries" format="reference" />
 	</declare-styleable>
 
-	<declare-styleable name="ColorSelectionPreference">
+	<declare-styleable name="ColorSelectionPref">
 		<attr name="cp_key" />
 		<attr name="cp_title" />
 		<attr name="cp_summary" />

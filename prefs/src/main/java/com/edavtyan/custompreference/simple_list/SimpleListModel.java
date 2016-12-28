@@ -27,13 +27,12 @@ public class SimpleListModel extends ListModel {
 
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")
-		TypedArray attrs = context.obtainStyledAttributes(
-				attributeSet, R.styleable.SimpleListPreference);
-		key = attrs.getString(R.styleable.SimpleListPreference_cp_key);
-		title = attrs.getString(R.styleable.SimpleListPreference_cp_title);
-		summary = attrs.getString(R.styleable.SimpleListPreference_cp_summary);
-		defaultValue = attrs.getString(R.styleable.SimpleListPreference_cp_defaultValue);
-		entries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.SimpleListPreference_cp_entries));
-		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.SimpleListPreference_cp_entryValues));
+		TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.SimpleListPref);
+		key = attrs.getString(R.styleable.SimpleListPref_cp_key);
+		title = attrs.getString(R.styleable.SimpleListPref_cp_title);
+		summary = attrs.getString(R.styleable.SimpleListPref_cp_summary);
+		defaultValue = attrs.getString(R.styleable.SimpleListPref_cp_defaultValue);
+		entries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.SimpleListPref_cp_entries));
+		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.SimpleListPref_cp_entryValues));
 	}
 }

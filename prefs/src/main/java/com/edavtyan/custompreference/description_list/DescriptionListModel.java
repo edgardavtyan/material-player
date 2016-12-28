@@ -28,14 +28,13 @@ public class DescriptionListModel extends ListModel {
 
 		@Cleanup("recycle")
 		@SuppressLint("Recycle")
-		TypedArray attrs = context.obtainStyledAttributes(
-				attributeSet, R.styleable.DescriptionList);
-		key = attrs.getString(R.styleable.DescriptionList_cp_key);
-		title = attrs.getString(R.styleable.DescriptionList_cp_title);
-		summary = attrs.getString(R.styleable.DescriptionList_cp_summary);
-		defaultValue = attrs.getString(R.styleable.DescriptionList_cp_defaultValue);
-		entries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionList_cp_entries));
-		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionList_cp_entryValues));
-		summaries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionList_cp_summaries));
+		TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.DescriptionListPref);
+		key = attrs.getString(R.styleable.DescriptionListPref_cp_key);
+		title = attrs.getString(R.styleable.DescriptionListPref_cp_title);
+		summary = attrs.getString(R.styleable.DescriptionListPref_cp_summary);
+		defaultValue = attrs.getString(R.styleable.DescriptionListPref_cp_defaultValue);
+		entries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionListPref_cp_entries));
+		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionListPref_cp_entryValues));
+		summaries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionListPref_cp_summaries));
 	}
 }
