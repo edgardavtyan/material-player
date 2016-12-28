@@ -53,6 +53,9 @@ public class DescriptionListPreference
 	private void initPreference(AttributeSet attrs) {
 		entryView = initEntryView();
 		if (isInEditMode()) {
+			DescriptionListModel model = new DescriptionListModel(context, attrs);
+			entryView.setTitle(model.getTitle());
+			entryView.setSummary(model.getSummary(), model.getDefaultValue());
 		} else {
 			presenter = initPresenter(initModel(attrs));
 			dialog = initDialog(presenter);
