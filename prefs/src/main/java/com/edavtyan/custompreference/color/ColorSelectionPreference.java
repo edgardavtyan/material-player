@@ -1,13 +1,18 @@
 package com.edavtyan.custompreference.color;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 
+import com.edavtyan.custompreference.R;
 import com.edavtyan.custompreference.base.BaseDialog;
 import com.edavtyan.custompreference.base.BasePreference;
 import com.edavtyan.custompreference.utils.PixelConverter;
 
 import java.util.List;
+
+import lombok.Cleanup;
 
 public class ColorSelectionPreference
 		extends BasePreference
@@ -65,6 +70,11 @@ public class ColorSelectionPreference
 	private void initPreference(AttributeSet attrs) {
 		entryView = initEntryView();
 		if (isInEditMode()) {
+			@Cleanup("recycle")
+			TypedArray typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.ColorSelectionPreference);
+			String title = typedAttrs.getString(R.styleable.ColorSelectionPreference_cp_title);
+			entryView.setTitle(title);
+			entryView.setColor(Color.RED);
 		} else {
 			colorSelectionView = initColorSelectionView();
 			dialog = initDialog();
