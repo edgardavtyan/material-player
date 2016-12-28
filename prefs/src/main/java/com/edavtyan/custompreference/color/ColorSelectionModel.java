@@ -7,9 +7,9 @@ import android.util.AttributeSet;
 
 import com.edavtyan.custompreference.R;
 import com.edavtyan.custompreference.base.BaseModel;
+import com.edavtyan.custompreference.utils.ArrayUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.Cleanup;
@@ -20,7 +20,7 @@ public class ColorSelectionModel extends BaseModel {
 	private final @Getter String title;
 	private final @Getter String defaultValue;
 	private final @Getter List<Integer> entries;
-	private final @Getter List<CharSequence> values;
+	private final @Getter List<String> values;
 
 	public ColorSelectionModel(Context context, AttributeSet attributeSet) {
 		super(context);
@@ -33,7 +33,7 @@ public class ColorSelectionModel extends BaseModel {
 		title = attrs.getString(R.styleable.ColorSelectionPreference_cp_title);
 		defaultValue = attrs.getString(R.styleable.ColorSelectionPreference_cp_defaultValue);
 		entries = getEntries(context, attrs);
-		values = Arrays.asList(attrs.getTextArray(R.styleable.ColorSelectionPreference_cp_entryValues));
+		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.ColorSelectionPreference_cp_entryValues));
 	}
 
 	public int getSelectedPrefIndex() {
@@ -45,7 +45,7 @@ public class ColorSelectionModel extends BaseModel {
 	}
 
 	public void savePref(int position) {
-		sharedPrefs.edit().putString(key, values.get(position).toString()).apply();
+		sharedPrefs.edit().putString(key, values.get(position)).apply();
 	}
 
 	private List<Integer> getEntries(Context context, TypedArray attrs) {

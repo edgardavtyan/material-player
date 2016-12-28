@@ -10,7 +10,7 @@ public class DescriptionListPresenter {
 			DescriptionListModel model) {
 		this.pref = pref;
 		this.model = model;
-		this.initialSummary = model.getSummary().toString();
+		this.initialSummary = model.getSummary();
 	}
 
 	public void onViewsInit() {
@@ -18,7 +18,7 @@ public class DescriptionListPresenter {
 		pref.setSummary(getFormattedSummary());
 	}
 
-	public void onListItemSelected(CharSequence value) {
+	public void onListItemSelected(String value) {
 		model.savePref(value);
 		pref.closeDialog();
 		pref.setSummary(getFormattedSummary());

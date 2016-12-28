@@ -27,11 +27,11 @@ public class SummaryEntry implements View.OnClickListener {
 		summaryView = (TextView) view.findViewById(R.id.summary);
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		titleView.setText(title);
 	}
 
-	public void setSummary(CharSequence summary) {
+	public void setSummary(String summary) {
 		summaryView.setText(summary);
 	}
 

@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 
 import com.edavtyan.custompreference.R;
 import com.edavtyan.custompreference.base.ListModel;
+import com.edavtyan.custompreference.utils.ArrayUtils;
 
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.Cleanup;
@@ -19,8 +19,8 @@ public class SimpleListModel extends ListModel {
 	private final @Getter String title;
 	private final @Getter String summary;
 	private final @Getter String defaultValue;
-	private final @Getter List<CharSequence> entries;
-	private final @Getter List<CharSequence> values;
+	private final @Getter List<String> entries;
+	private final @Getter List<String> values;
 
 	public SimpleListModel(Context context, AttributeSet attributeSet) {
 		super(context);
@@ -33,7 +33,7 @@ public class SimpleListModel extends ListModel {
 		title = attrs.getString(R.styleable.SimpleListPreference_cp_title);
 		summary = attrs.getString(R.styleable.SimpleListPreference_cp_summary);
 		defaultValue = attrs.getString(R.styleable.SimpleListPreference_cp_defaultValue);
-		entries = Arrays.asList(attrs.getTextArray(R.styleable.SimpleListPreference_cp_entries));
-		values = Arrays.asList(attrs.getTextArray(R.styleable.SimpleListPreference_cp_entryValues));
+		entries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.SimpleListPreference_cp_entries));
+		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.SimpleListPreference_cp_entryValues));
 	}
 }

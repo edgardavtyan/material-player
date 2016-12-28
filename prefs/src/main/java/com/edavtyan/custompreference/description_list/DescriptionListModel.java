@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 
 import com.edavtyan.custompreference.R;
 import com.edavtyan.custompreference.base.ListModel;
+import com.edavtyan.custompreference.utils.ArrayUtils;
 
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.Cleanup;
@@ -19,9 +19,9 @@ public class DescriptionListModel extends ListModel {
 	private final @Getter String title;
 	private final @Getter String summary;
 	private final @Getter String defaultValue;
-	private final @Getter List<CharSequence> entries;
-	private final @Getter List<CharSequence> values;
-	private final @Getter List<CharSequence> summaries;
+	private final @Getter List<String> entries;
+	private final @Getter List<String> values;
+	private final @Getter List<String> summaries;
 
 	public DescriptionListModel(Context context, AttributeSet attributeSet) {
 		super(context);
@@ -34,8 +34,8 @@ public class DescriptionListModel extends ListModel {
 		title = attrs.getString(R.styleable.DescriptionList_cp_title);
 		summary = attrs.getString(R.styleable.DescriptionList_cp_summary);
 		defaultValue = attrs.getString(R.styleable.DescriptionList_cp_defaultValue);
-		entries = Arrays.asList(attrs.getTextArray(R.styleable.DescriptionList_cp_entries));
-		values = Arrays.asList(attrs.getTextArray(R.styleable.DescriptionList_cp_entryValues));
-		summaries = Arrays.asList(attrs.getTextArray(R.styleable.DescriptionList_cp_summaries));
+		entries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionList_cp_entries));
+		values = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionList_cp_entryValues));
+		summaries = ArrayUtils.asStringList(attrs.getTextArray(R.styleable.DescriptionList_cp_summaries));
 	}
 }

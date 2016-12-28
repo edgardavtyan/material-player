@@ -36,12 +36,12 @@ public class SimpleListPreference
 		dialogView.dismiss();
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		entryView.setTitle(title);
 		dialogView.setTitle(title);
 	}
 
-	public void setSummary(CharSequence summary) {
+	public void setSummary(String summary) {
 		entryView.setSummary(summary);
 	}
 

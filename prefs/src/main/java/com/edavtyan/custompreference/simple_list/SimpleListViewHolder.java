@@ -14,11 +14,11 @@ public class SimpleListViewHolder extends RecyclerView.ViewHolder implements Vie
 	protected final RadioButton radioButton;
 	protected final TextView titleView;
 
-	protected @Getter @Setter CharSequence value;
+	protected @Getter @Setter String value;
 	protected @Setter OnHolderClickListener onHolderClickListener;
 
 	public interface OnHolderClickListener {
-		void onHolderClick(CharSequence value);
+		void onHolderClick(String value);
 	}
 
 	public SimpleListViewHolder(View itemView) {
@@ -33,7 +33,7 @@ public class SimpleListViewHolder extends RecyclerView.ViewHolder implements Vie
 		radioButton.setChecked(checked);
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		titleView.setText(title);
 	}
 

@@ -39,7 +39,7 @@ public class DescriptionListAdapter
 	}
 
 	@Override
-	public void onHolderClick(CharSequence value) {
+	public void onHolderClick(String value) {
 		presenter.onListItemSelected(value);
 		notifyDataSetChanged();
 	}

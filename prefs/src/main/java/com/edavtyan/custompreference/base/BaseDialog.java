@@ -16,7 +16,7 @@ public class BaseDialog {
 				.create();
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		dialog.setTitle(title);
 	}
 

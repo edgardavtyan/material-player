@@ -8,7 +8,7 @@ public class SimpleListPresenter {
 	public SimpleListPresenter(SimpleListPreference pref, SimpleListModel model) {
 		this.pref = pref;
 		this.model = model;
-		this.initialSummary = model.getSummary().toString();
+		this.initialSummary = model.getSummary();
 	}
 
 	public void onViewsInit() {
@@ -20,7 +20,7 @@ public class SimpleListPresenter {
 		pref.openDialog();
 	}
 
-	public void onListItemSelected(CharSequence value) {
+	public void onListItemSelected(String value) {
 		pref.closeDialog();
 		pref.setSummary(getFormattedSummary());
 		model.savePref(value);

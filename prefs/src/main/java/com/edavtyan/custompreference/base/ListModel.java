@@ -11,15 +11,15 @@ public abstract class ListModel extends BaseModel {
 
 	public abstract String getSummary();
 
-	public abstract List<CharSequence> getEntries();
+	public abstract List<String> getEntries();
 
-	public abstract List<CharSequence> getValues();
+	public abstract List<String> getValues();
 
 	public boolean getPrefSelectedAtIndex(int position) {
 		return getValues().get(position).equals(getCurrentPreference());
 	}
 
-	public void savePref(CharSequence value) {
-		sharedPrefs.edit().putString(getKey(), value.toString()).apply();
+	public void savePref(String value) {
+		sharedPrefs.edit().putString(getKey(), value).apply();
 	}
 }

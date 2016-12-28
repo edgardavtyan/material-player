@@ -11,7 +11,7 @@ import lombok.Cleanup;
 import lombok.Getter;
 
 public class PreferenceCategoryModel {
-	private final @Getter CharSequence title;
+	private final @Getter String title;
 
 	public PreferenceCategoryModel(Context context, AttributeSet attributeSet) {
 		@Cleanup("recycle")
