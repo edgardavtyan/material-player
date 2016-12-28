@@ -46,6 +46,7 @@
 		android:id="@+id/fast_forward"
 		android:src="@drawable/ic_fast_forward"
 		android:contentDescription="@string/description_control_fastForward"
+		android:layout_marginRight="@dimen/spacing_tiny"
 		style="@style/notification_control"
 		/>
 
