@@ -13,7 +13,7 @@ public class SimpleListPresenter {
 
 	public void onViewsInit() {
 		this.pref.setTitle(model.getTitle());
-		this.pref.setSummary(getFormattedSummary());
+		this.pref.setSummary(model.getSummary(), model.getCurrentPreference());
 	}
 
 	public void onEntryClicked() {
@@ -22,7 +22,7 @@ public class SimpleListPresenter {
 
 	public void onListItemSelected(String value) {
 		pref.closeDialog();
-		pref.setSummary(getFormattedSummary());
+		pref.setSummary(model.getSummary(), model.getCurrentPreference());
 		model.savePref(value);
 	}
 

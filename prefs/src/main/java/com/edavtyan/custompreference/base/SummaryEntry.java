@@ -31,8 +31,8 @@ public class SummaryEntry implements View.OnClickListener {
 		titleView.setText(title);
 	}
 
-	public void setSummary(String summary) {
-		summaryView.setText(summary);
+	public void setSummary(String summary, String currentPref) {
+		summaryView.setText(summary.replace("%s", currentPref));
 	}
 
 	@Override

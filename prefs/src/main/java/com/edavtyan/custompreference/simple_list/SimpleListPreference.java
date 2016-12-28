@@ -41,8 +41,8 @@ public class SimpleListPreference
 		dialogView.setTitle(title);
 	}
 
-	public void setSummary(String summary) {
-		entryView.setSummary(summary);
+	public void setSummary(String summary, String currentPref) {
+		entryView.setSummary(summary, currentPref);
 	}
 
 	@Override

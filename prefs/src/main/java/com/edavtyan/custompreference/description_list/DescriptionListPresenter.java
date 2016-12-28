@@ -15,13 +15,13 @@ public class DescriptionListPresenter {
 
 	public void onViewsInit() {
 		pref.setTitle(model.getTitle());
-		pref.setSummary(getFormattedSummary());
+		pref.setSummary(model.getSummary(), model.getCurrentPreference());
 	}
 
 	public void onListItemSelected(String value) {
 		model.savePref(value);
 		pref.closeDialog();
-		pref.setSummary(getFormattedSummary());
+		pref.setSummary(model.getSummary(), model.getCurrentPreference());
 	}
 
 	public void onEntryClicked() {
