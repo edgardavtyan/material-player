@@ -3,17 +3,15 @@ package com.edavtyan.custompreference.simple_list;
 public class SimpleListPresenter {
 	private final SimpleListPreference pref;
 	private final SimpleListModel model;
-	private final String initialSummary;
 
 	public SimpleListPresenter(SimpleListPreference pref, SimpleListModel model) {
 		this.pref = pref;
 		this.model = model;
-		this.initialSummary = model.getSummary();
 	}
 
 	public void onViewsInit() {
-		this.pref.setTitle(model.getTitle());
-		this.pref.setSummary(model.getSummary(), model.getCurrentPreference());
+		pref.setTitle(model.getTitle());
+		pref.setSummary(model.getSummary(), model.getCurrentPreference());
 	}
 
 	public void onEntryClicked() {
@@ -24,10 +22,6 @@ public class SimpleListPresenter {
 		pref.closeDialog();
 		pref.setSummary(model.getSummary(), model.getCurrentPreference());
 		model.savePref(value);
-	}
-
-	private String getFormattedSummary() {
-		return initialSummary.replace("%s", model.getCurrentPreference());
 	}
 
 	public void bindViewHolder(SimpleListViewHolder holder, int position) {
