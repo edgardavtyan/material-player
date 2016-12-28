@@ -64,8 +64,8 @@ public class PlayerService extends Service {
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(fastForwardReceiver, new IntentFilter(ACTION_FAST_FORWARD));
 
-		PlayerNotificationFactory notificationFactory
-				= app.getPlayerNotificationFactory(this, R.layout.notification);
+		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
+				this, R.layout.notification, R.layout.notification_big);
 		notification = notificationFactory.provideNotification();
 		presenter = notificationFactory.providePresenter();
 		presenter.onCreate();

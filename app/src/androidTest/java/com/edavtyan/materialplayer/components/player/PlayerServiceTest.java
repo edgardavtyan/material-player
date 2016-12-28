@@ -49,7 +49,7 @@ public class PlayerServiceTest extends BaseTest {
 
 		App app = mock(App.class);
 		when(app.getPlayerFactory(any())).thenReturn(playerFactory);
-		when(app.getPlayerNotificationFactory(any(), anyInt())).thenReturn(notificationFactory);
+		when(app.getPlayerNotificationFactory(any(), anyInt(), anyInt())).thenReturn(notificationFactory);
 
 		try {
 			Intent intent = new Intent(context, PlayerService.class);

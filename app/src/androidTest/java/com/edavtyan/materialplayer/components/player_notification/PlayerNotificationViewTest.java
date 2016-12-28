@@ -23,6 +23,7 @@ import static org.mockito.Mockito.when;
 
 public class PlayerNotificationViewTest extends BaseTest {
 	private AdvancedRemoteViews remoteViews;
+	private AdvancedRemoteViews bigRemoteViews;
 	private TestableNotificationManager manager;
 	private NotificationCompat.Builder builder;
 	private PendingIntents pendingIntents;
@@ -32,12 +33,13 @@ public class PlayerNotificationViewTest extends BaseTest {
 	@Override public void beforeEach() {
 		super.beforeEach();
 		remoteViews = mock(AdvancedRemoteViews.class);
+		bigRemoteViews = mock(AdvancedRemoteViews.class);
 		manager = mock(TestableNotificationManager.class);
 		builder = spy(new NotificationCompat.Builder(context));
 		pendingIntents = mock(PendingIntents.class);
 		bitmapFactory = mock(TestableBitmapFactory.class);
 		view = new PlayerNotification(
-				context, remoteViews, manager,
+				context, remoteViews, bigRemoteViews, manager,
 				builder, pendingIntents, bitmapFactory);
 	}
 
@@ -47,7 +49,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 		reset(builder);
 
 		view = new PlayerNotification(
-				context, remoteViews, manager,
+				context, remoteViews, bigRemoteViews, manager,
 				builder, pendingIntents, bitmapFactory);
 
 		verify(builder).setSmallIcon(R.drawable.ic_status);

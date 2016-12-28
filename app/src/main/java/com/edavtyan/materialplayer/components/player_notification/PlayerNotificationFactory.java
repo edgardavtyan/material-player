@@ -11,9 +11,11 @@ import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class PlayerNotificationFactory extends BaseFactory {
 
-	private final int layoutId;
+	private final int normalLayoutId;
+	private final int bigLayoutId;
 	private PlayerNotificationMvp.View notification;
 	private AdvancedRemoteViews remoteViews;
+	private AdvancedRemoteViews bigRemoteViews;
 	private NotificationManagerCompat baseManager;
 	private TestableNotificationManager manager;
 	private NotificationCompat.Builder builder;
@@ -21,20 +23,18 @@ public class PlayerNotificationFactory extends BaseFactory {
 	private PlayerNotificationMvp.Presenter presenter;
 	private PendingIntents pendingIntents;
 
-	public PlayerNotificationFactory(Context context, int layoutId) {
+	public PlayerNotificationFactory(Context context, int normalLayoutId, int bigLayoutId) {
 		super(context);
-		this.layoutId = layoutId;
-	}
-
-	public int provideLayoutId() {
-		return layoutId;
+		this.normalLayoutId = normalLayoutId;
+		this.bigLayoutId = bigLayoutId;
 	}
 
 	public PlayerNotificationMvp.View provideNotification() {
 		if (notification == null)
 			notification = new PlayerNotification(
 					provideContext(),
-					provideRemoteViews(),
+					provideNormalRemoteViews(),
+					provideBigRemoteViews(),
 					provideManager(),
 					provideBuilder(),
 					providePendingIntents(),
@@ -48,10 +48,16 @@ public class PlayerNotificationFactory extends BaseFactory {
 		return pendingIntents;
 	}
 
-	public AdvancedRemoteViews provideRemoteViews() {
+	public AdvancedRemoteViews provideNormalRemoteViews() {
 		if (remoteViews == null)
-			remoteViews = new AdvancedRemoteViews(provideContext(), provideLayoutId());
+			remoteViews = new AdvancedRemoteViews(provideContext(), normalLayoutId);
 		return remoteViews;
+	}
+
+	public AdvancedRemoteViews provideBigRemoteViews() {
+		if (bigRemoteViews == null)
+			bigRemoteViews = new AdvancedRemoteViews(provideContext(), bigLayoutId);
+		return bigRemoteViews;
 	}
 
 	public TestableNotificationManager provideManager() {

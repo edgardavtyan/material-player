@@ -7,7 +7,6 @@ public class TestableBitmapFactory {
 	public Bitmap fromPath(String path) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
-		options.inSampleSize = 2;
 		options.inDither = true;
 		return BitmapFactory.decodeFile(path, options);
 	}

@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.player_notification;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 import com.edavtyan.materialplayer.R;
@@ -25,7 +26,8 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 
 	public PlayerNotification(
 			Context context,
-			AdvancedRemoteViews remoteViews,
+			AdvancedRemoteViews normalRemoteViews,
+			AdvancedRemoteViews bigRemoteViews,
 			TestableNotificationManager manager,
 			NotificationCompat.Builder builder,
 			PendingIntents pendingIntents,
@@ -37,37 +39,50 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		this.notification = builder
 				.setSmallIcon(R.drawable.ic_status)
 				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
-				.setContent(remoteViews)
+				.setContent(normalRemoteViews)
+				.setCustomBigContentView(bigRemoteViews)
+				.setPriority(NotificationCompat.PRIORITY_MAX)
 				.build();
 
-		remoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
-		remoteViews.setOnClickBroadcast(R.id.play_pause, PlayerService.ACTION_PLAY_PAUSE);
-		remoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
+		normalRemoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
+		normalRemoteViews.setOnClickBroadcast(R.id.play_pause, PlayerService.ACTION_PLAY_PAUSE);
+		normalRemoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
+
+		bigRemoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
+		bigRemoteViews.setOnClickBroadcast(R.id.play_pause, PlayerService.ACTION_PLAY_PAUSE);
+		bigRemoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
 	}
 
 	@Override public void setTitle(String title) {
 		notification.contentView.setTextViewText(R.id.title, title);
+		notification.bigContentView.setTextViewText(R.id.title, title);
 	}
 
 	@Override public void setInfo(String artist, String album) {
 		String info = context.getString(R.string.nowplaying_info_pattern, artist, album);
 		notification.contentView.setTextViewText(R.id.info, info);
+		notification.bigContentView.setTextViewText(R.id.artist, artist);
+		notification.bigContentView.setTextViewText(R.id.album, album);
 	}
 
 	@Override public void setArt(String artPath) {
 		Bitmap art = bitmapFactory.fromPath(artPath);
 		if (art != null) {
 			notification.contentView.setImageViewBitmap(R.id.art, art);
+			notification.bigContentView.setImageViewBitmap(R.id.art, art);
 		} else {
 			notification.contentView.setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
+			notification.bigContentView.setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
 		}
 	}
 
 	@Override public void setIsPlaying(boolean isPlaying) {
 		if (isPlaying) {
 			notification.contentView.setImageViewResource(R.id.play_pause, R.drawable.ic_pause);
+			notification.bigContentView.setImageViewResource(R.id.play_pause, R.drawable.ic_pause);
 		} else {
 			notification.contentView.setImageViewResource(R.id.play_pause, R.drawable.ic_play);
+			notification.bigContentView.setImageViewResource(R.id.play_pause, R.drawable.ic_play);
 		}
 	}
 
