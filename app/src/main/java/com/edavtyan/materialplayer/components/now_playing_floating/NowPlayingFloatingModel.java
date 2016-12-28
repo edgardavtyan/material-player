@@ -35,6 +35,7 @@ public class NowPlayingFloatingModel
 
 	@Override
 	public void unbind() {
+		service.getPlayer().removeOnNewTrackListener(this);
 		context.unbindService(this);
 	}
 

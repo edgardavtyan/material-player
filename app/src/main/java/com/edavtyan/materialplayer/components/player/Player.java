@@ -38,6 +38,10 @@ public class Player
 		onNewTrackListeners.add(listener);
 	}
 
+	@Override public void removeOnNewTrackListener(OnNewTrackListener listener) {
+		onNewTrackListeners.remove(listener);
+	}
+
 	@Override public void setOnPlayPauseListener(OnPlayPauseListener listener) {
 		onPlayPauseListeners.add(listener);
 	}
