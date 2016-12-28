@@ -14,34 +14,18 @@ public class SimpleListPreference
 		extends BasePreference
 		implements SummaryEntry.OnClickListener {
 
-	private final SummaryEntry entryView;
-	private final BaseDialog dialogView;
-	private final SimpleListPresenter presenter;
+	private SummaryEntry entryView;
+	private BaseDialog dialogView;
+	private SimpleListPresenter presenter;
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		entryView = initEntryView();
-		if (isInEditMode()) {
-			presenter = null;
-			dialogView = null;
-		} else {
-			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
-			dialogView = initDialogView(presenter);
-			presenter.onViewsInit();
-		}
+		initPreference(context, attrs);
 	}
 
 	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		entryView = initEntryView();
-		if (isInEditMode()) {
-			presenter = null;
-			dialogView = null;
-		} else {
-			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
-			dialogView = initDialogView(presenter);
-			presenter.onViewsInit();
-		}
+		initPreference(context, attrs);
 	}
 
 	public void openDialog() {
@@ -64,6 +48,16 @@ public class SimpleListPreference
 	@Override
 	public void onEntryClick() {
 		presenter.onEntryClicked();
+	}
+
+	private void initPreference(Context context, AttributeSet attrs) {
+		entryView = initEntryView();
+		if (isInEditMode()) {
+		} else {
+			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
+			dialogView = initDialogView(presenter);
+			presenter.onViewsInit();
+		}
 	}
 
 	private SummaryEntry initEntryView() {

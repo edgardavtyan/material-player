@@ -14,37 +14,19 @@ public class ColorSelectionPreference
 		implements ColorSelectionEntry.OnClickListener,
 				   ColorSelectionView.OnColorSelectedListener {
 
-	private final ColorSelectionEntry entryView;
-	private final BaseDialog dialog;
-	private final ColorSelectionView colorSelectionView;
-	private final ColorSelectionPresenter presenter;
+	private ColorSelectionEntry entryView;
+	private BaseDialog dialog;
+	private ColorSelectionView colorSelectionView;
+	private ColorSelectionPresenter presenter;
 
 	public ColorSelectionPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		entryView = initEntryView();
-		if (isInEditMode()) {
-			colorSelectionView = null;
-			dialog = null;
-			presenter = null;
-		} else {
-			colorSelectionView = initColorSelectionView();
-			dialog = initDialog();
-			presenter = initPresenter(attrs);
-		}
+		initPreference(attrs);
 	}
 
 	public ColorSelectionPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		entryView = initEntryView();
-		if (isInEditMode()) {
-			dialog = null;
-			colorSelectionView = null;
-			presenter = null;
-		} else {
-			colorSelectionView = initColorSelectionView();
-			dialog = initDialog();
-			presenter = initPresenter(attrs);
-		}
+		initPreference(attrs);
 	}
 
 	public void setTitle(CharSequence title) {
@@ -78,6 +60,16 @@ public class ColorSelectionPreference
 	@Override
 	public void onColorSelected(int position) {
 		presenter.onColorSelected(position);
+	}
+
+	private void initPreference(AttributeSet attrs) {
+		entryView = initEntryView();
+		if (isInEditMode()) {
+		} else {
+			colorSelectionView = initColorSelectionView();
+			dialog = initDialog();
+			presenter = initPresenter(attrs);
+		}
 	}
 
 	private ColorSelectionEntry initEntryView() {

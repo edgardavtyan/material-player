@@ -14,34 +14,18 @@ public class DescriptionListPreference
 		extends BasePreference
 		implements SummaryEntry.OnClickListener {
 
-	private final SummaryEntry entryView;
-	private final BaseDialog dialog;
-	private final DescriptionListPresenter presenter;
+	private SummaryEntry entryView;
+	private BaseDialog dialog;
+	private DescriptionListPresenter presenter;
 
 	public DescriptionListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		entryView = initEntryView();
-		if (isInEditMode()) {
-			presenter = null;
-			dialog = null;
-		} else {
-			presenter = initPresenter(initModel(attrs));
-			dialog = initDialog(presenter);
-			presenter.onViewsInit();
-		}
+		initPreference(attrs);
 	}
 
 	public DescriptionListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		entryView = initEntryView();
-		if (isInEditMode()) {
-			presenter = null;
-			dialog = null;
-		} else {
-			presenter = initPresenter(initModel(attrs));
-			dialog = initDialog(presenter);
-			presenter.onViewsInit();
-		}
+		initPreference(attrs);
 	}
 
 	public void showDialog() {
@@ -64,6 +48,16 @@ public class DescriptionListPreference
 	@Override
 	public void onEntryClick() {
 		presenter.onEntryClicked();
+	}
+
+	private void initPreference(AttributeSet attrs) {
+		entryView = initEntryView();
+		if (isInEditMode()) {
+		} else {
+			presenter = initPresenter(initModel(attrs));
+			dialog = initDialog(presenter);
+			presenter.onViewsInit();
+		}
 	}
 
 	private SummaryEntry initEntryView() {
