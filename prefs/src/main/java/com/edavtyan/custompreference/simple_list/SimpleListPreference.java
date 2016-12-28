@@ -53,6 +53,9 @@ public class SimpleListPreference
 	private void initPreference(Context context, AttributeSet attrs) {
 		entryView = initEntryView();
 		if (isInEditMode()) {
+			SimpleListModel model = new SimpleListModel(context, attrs);
+			entryView.setTitle(model.getTitle());
+			entryView.setSummary(model.getSummary(), model.getDefaultValue());
 		} else {
 			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
 			dialogView = initDialogView(presenter);
