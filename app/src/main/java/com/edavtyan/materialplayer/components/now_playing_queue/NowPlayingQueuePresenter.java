@@ -2,11 +2,11 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import com.edavtyan.materialplayer.db.Track;
 
-public class PlaylistPresenter implements PlaylistMvp.Presenter {
-	private final PlaylistMvp.Model model;
-	private final PlaylistMvp.View view;
+public class NowPlayingQueuePresenter implements NowPlayingQueueMvp.Presenter {
+	private final NowPlayingQueueMvp.Model model;
+	private final NowPlayingQueueMvp.View view;
 
-	public PlaylistPresenter(PlaylistMvp.Model model, PlaylistMvp.View view) {
+	public NowPlayingQueuePresenter(NowPlayingQueueMvp.Model model, NowPlayingQueueMvp.View view) {
 		this.model = model;
 		this.model.setOnServiceConnectedListener(this);
 		this.view = view;
@@ -33,7 +33,7 @@ public class PlaylistPresenter implements PlaylistMvp.Presenter {
 	}
 
 	@Override
-	public void onBindViewHolder(PlaylistViewHolder holder, int position) {
+	public void onBindViewHolder(NowPlayingQueueViewHolder holder, int position) {
 		Track track = model.getTrackAtPosition(position);
 		holder.setTitle(track.getTitle());
 		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());

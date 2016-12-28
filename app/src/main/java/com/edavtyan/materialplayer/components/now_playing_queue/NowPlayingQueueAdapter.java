@@ -8,31 +8,31 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
-public class PlaylistAdapter extends TestableRecyclerAdapter<PlaylistViewHolder>
-		implements PlaylistViewHolder.OnHolderClickListener,
-				   PlaylistViewHolder.OnMenuClickListener {
+public class NowPlayingQueueAdapter extends TestableRecyclerAdapter<NowPlayingQueueViewHolder>
+		implements NowPlayingQueueViewHolder.OnHolderClickListener,
+				   NowPlayingQueueViewHolder.OnMenuClickListener {
 
 	private final Context context;
-	private final PlaylistMvp.Presenter presenter;
+	private final NowPlayingQueueMvp.Presenter presenter;
 
-	public PlaylistAdapter(Context context, PlaylistMvp.Presenter presenter) {
+	public NowPlayingQueueAdapter(Context context, NowPlayingQueueMvp.Presenter presenter) {
 		this.context = context;
 		this.presenter = presenter;
 	}
 
 	@Override
-	public PlaylistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public NowPlayingQueueViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.listitem_track, parent, false);
 
-		PlaylistViewHolder holder = new PlaylistViewHolder(context, view);
+		NowPlayingQueueViewHolder holder = new NowPlayingQueueViewHolder(context, view);
 		holder.setOnHolderClickListener(this);
 		holder.setOnMenuClickListener(this);
 		return holder;
 	}
 
 	@Override
-	public void onBindViewHolder(PlaylistViewHolder holder, int position) {
+	public void onBindViewHolder(NowPlayingQueueViewHolder holder, int position) {
 		presenter.onBindViewHolder(holder, position);
 	}
 
@@ -42,12 +42,12 @@ public class PlaylistAdapter extends TestableRecyclerAdapter<PlaylistViewHolder>
 	}
 
 	@Override
-	public void onHolderClick(PlaylistViewHolder holder) {
+	public void onHolderClick(NowPlayingQueueViewHolder holder) {
 		presenter.onItemClick(holder.getAdapterPositionNonFinal());
 	}
 
 	@Override
-	public void onRemoveFromQueueClick(PlaylistViewHolder holder) {
+	public void onRemoveFromQueueClick(NowPlayingQueueViewHolder holder) {
 		presenter.onRemoveItemClick(holder.getAdapterPositionNonFinal());
 		notifyItemRemovedNonFinal(holder.getAdapterPositionNonFinal());
 	}

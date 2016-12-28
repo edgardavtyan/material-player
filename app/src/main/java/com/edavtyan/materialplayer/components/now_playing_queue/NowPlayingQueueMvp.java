@@ -5,7 +5,7 @@ import android.content.ServiceConnection;
 import com.edavtyan.materialplayer.db.Track;
 
 @SuppressWarnings("unused")
-public interface PlaylistMvp {
+public interface NowPlayingQueueMvp {
 	interface Model extends ServiceConnection {
 		interface OnServiceConnectedListener {
 			void onServiceConnected();
@@ -30,7 +30,7 @@ public interface PlaylistMvp {
 		void onDestroy();
 		void onItemClick(int position);
 		void onRemoveItemClick(int position);
-		void onBindViewHolder(PlaylistViewHolder holder, int position);
+		void onBindViewHolder(NowPlayingQueueViewHolder holder, int position);
 		int getItemCount();
 	}
 }

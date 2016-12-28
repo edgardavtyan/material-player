@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
-import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistActivity;
+import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.prefs.PrefActivity;
 
@@ -37,7 +37,7 @@ public class Navigator {
 	}
 
 	public void gotoNowPlayingQueue() {
-		Intent intent = new Intent(context, PlaylistActivity.class);
+		Intent intent = new Intent(context, NowPlayingQueueActivity.class);
 		context.startActivity(intent);
 		((AppCompatActivity) context).overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
 	}

@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import lombok.Setter;
 
-public class PlaylistViewHolder
+public class NowPlayingQueueViewHolder
 		extends BaseViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
@@ -28,14 +28,14 @@ public class PlaylistViewHolder
 	private @Setter OnMenuClickListener onMenuClickListener;
 
 	interface OnHolderClickListener {
-		void onHolderClick(PlaylistViewHolder holder);
+		void onHolderClick(NowPlayingQueueViewHolder holder);
 	}
 
 	interface OnMenuClickListener {
-		void onRemoveFromQueueClick(PlaylistViewHolder holder);
+		void onRemoveFromQueueClick(NowPlayingQueueViewHolder holder);
 	}
 
-	public PlaylistViewHolder(Context context, View itemView) {
+	public NowPlayingQueueViewHolder(Context context, View itemView) {
 		super(itemView);
 
 		this.context = context;

@@ -20,15 +20,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
-public class PlaylistActivityTest extends ActivityTest {
-	private static final PlaylistFactory factory = mock(PlaylistFactory.class);
-	private static PlaylistActivity activity;
-	private static PlaylistAdapter adapter;
-	private static PlaylistMvp.Presenter presenter;
+public class NowPlayingQueueActivityTest extends ActivityTest {
+	private static final NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
+	private static NowPlayingQueueActivity activity;
+	private static NowPlayingQueueAdapter adapter;
+	private static NowPlayingQueueMvp.Presenter presenter;
 
-	public static class TestPlaylistActivity extends PlaylistActivity {
+	public static class TestNowPlayingQueueActivity extends NowPlayingQueueActivity {
 		@Override
-		protected PlaylistFactory getFactory() {
+		protected NowPlayingQueueFactory getFactory() {
 			return factory;
 		}
 	}
@@ -37,14 +37,14 @@ public class PlaylistActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			adapter = mock(PlaylistAdapter.class);
-			presenter = mock(PlaylistMvp.Presenter.class);
+			adapter = mock(NowPlayingQueueAdapter.class);
+			presenter = mock(NowPlayingQueueMvp.Presenter.class);
 
 			when(factory.provideAdapter()).thenReturn(adapter);
 			when(factory.providePresenter()).thenReturn(presenter);
 			when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
 
-			activity = spy(startActivity(new Intent(new Intent(context, TestPlaylistActivity.class))));
+			activity = spy(startActivity(new Intent(new Intent(context, TestNowPlayingQueueActivity.class))));
 			doNothing().when(activity).baseOnCreate(any());
 			doNothing().when(activity).baseOnDestroy();
 		} else {

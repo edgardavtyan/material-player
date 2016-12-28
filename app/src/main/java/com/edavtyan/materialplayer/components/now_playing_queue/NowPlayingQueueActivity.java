@@ -9,15 +9,15 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
-public class PlaylistActivity extends BaseToolbarActivity implements PlaylistMvp.View {
-	private PlaylistMvp.Presenter presenter;
-	private PlaylistAdapter adapter;
+public class NowPlayingQueueActivity extends BaseToolbarActivity implements NowPlayingQueueMvp.View {
+	private NowPlayingQueueMvp.Presenter presenter;
+	private NowPlayingQueueAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		PlaylistFactory factory = getFactory();
+		NowPlayingQueueFactory factory = getFactory();
 		presenter = factory.providePresenter();
 		adapter = factory.provideAdapter();
 
@@ -44,7 +44,7 @@ public class PlaylistActivity extends BaseToolbarActivity implements PlaylistMvp
 		adapter.notifyDataSetChangedNonFinal();
 	}
 
-	protected PlaylistFactory getFactory() {
+	protected NowPlayingQueueFactory getFactory() {
 		return ((App) getApplicationContext()).getPlaylistFactory(this, this);
 	}
 }

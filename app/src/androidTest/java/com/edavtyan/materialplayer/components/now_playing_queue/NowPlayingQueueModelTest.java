@@ -18,8 +18,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlaylistModelTest extends BaseTest {
-	private PlaylistMvp.Model model;
+public class NowPlayingQueueModelTest extends BaseTest {
+	private NowPlayingQueueMvp.Model model;
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
 
@@ -34,7 +34,7 @@ public class PlaylistModelTest extends BaseTest {
 		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
-		model = new PlaylistModel(context);
+		model = new NowPlayingQueueModel(context);
 	}
 
 	@Test @SuppressWarnings("WrongConstant")

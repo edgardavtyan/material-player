@@ -10,13 +10,13 @@ import com.edavtyan.materialplayer.db.Track;
 
 import lombok.Setter;
 
-public class PlaylistModel implements PlaylistMvp.Model {
+public class NowPlayingQueueModel implements NowPlayingQueueMvp.Model {
 	private final Context context;
 	private PlayerService service;
 
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
-	public PlaylistModel(Context context) {
+	public NowPlayingQueueModel(Context context) {
 		this.context = context;
 	}
 

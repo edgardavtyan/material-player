@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistViewHolder.OnHolderClickListener;
-import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistViewHolder.OnMenuClickListener;
+import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueViewHolder.OnHolderClickListener;
+import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueViewHolder.OnMenuClickListener;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -23,8 +23,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlaylistViewHolderTest extends BaseTest {
-	private PlaylistViewHolder holder;
+public class NowPlayingQueueViewHolderTest extends BaseTest {
+	private NowPlayingQueueViewHolder holder;
 	private View itemView;
 	private SdkFactory sdkFactory;
 	private PopupMenu popupMenu;
@@ -40,7 +40,7 @@ public class PlaylistViewHolderTest extends BaseTest {
 		when(app.getSdkFactory()).thenReturn(sdkFactory);
 
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
-		holder = new PlaylistViewHolder(context, itemView);
+		holder = new NowPlayingQueueViewHolder(context, itemView);
 	}
 
 	@Test public void constructor_initPopupMenu() {

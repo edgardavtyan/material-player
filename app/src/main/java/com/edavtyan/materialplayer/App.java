@@ -20,8 +20,8 @@ import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
-import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistFactory;
-import com.edavtyan.materialplayer.components.now_playing_queue.PlaylistMvp;
+import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueFactory;
+import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueMvp;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
@@ -69,8 +69,8 @@ public class App extends Application {
 		return new NowPlayingFloatingFactory(context, view);
 	}
 
-	public PlaylistFactory getPlaylistFactory(Context context, PlaylistMvp.View view) {
-		return new PlaylistFactory(context, view);
+	public NowPlayingQueueFactory getPlaylistFactory(Context context, NowPlayingQueueMvp.View view) {
+		return new NowPlayingQueueFactory(context, view);
 	}
 
 	public AudioEffectsFactory getAudioEffectsFactory(Context context, AudioEffectsMvp.View view) {

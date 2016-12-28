@@ -10,15 +10,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlaylistPresenterTest extends BaseTest {
-	private PlaylistMvp.Presenter presenter;
-	private PlaylistMvp.Model model;
+public class NowPlayingQueuePresenterTest extends BaseTest {
+	private NowPlayingQueueMvp.Presenter presenter;
+	private NowPlayingQueueMvp.Model model;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(PlaylistMvp.Model.class);
-		presenter = new PlaylistPresenter(model, mock(PlaylistMvp.View.class));
+		model = mock(NowPlayingQueueMvp.Model.class);
+		presenter = new NowPlayingQueuePresenter(model, mock(NowPlayingQueueMvp.View.class));
 	}
 
 	@Test public void onCreate_bindModel() {
@@ -49,7 +49,7 @@ public class PlaylistPresenterTest extends BaseTest {
 		track.setDuration(657);
 		when(model.getTrackAtPosition(7)).thenReturn(track);
 
-		PlaylistViewHolder holder = mock(PlaylistViewHolder.class);
+		NowPlayingQueueViewHolder holder = mock(NowPlayingQueueViewHolder.class);
 		presenter.onBindViewHolder(holder, 7);
 
 		verify(holder).setTitle("title");

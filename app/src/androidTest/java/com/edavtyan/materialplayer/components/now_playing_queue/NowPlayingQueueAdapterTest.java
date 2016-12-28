@@ -16,16 +16,16 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlaylistAdapterTest extends BaseTest {
-	private PlaylistMvp.Presenter presenter;
-	private PlaylistViewHolder holder;
-	private PlaylistAdapter adapter;
+public class NowPlayingQueueAdapterTest extends BaseTest {
+	private NowPlayingQueueMvp.Presenter presenter;
+	private NowPlayingQueueViewHolder holder;
+	private NowPlayingQueueAdapter adapter;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-		presenter = mock(PlaylistMvp.Presenter.class);
-		holder = mock(PlaylistViewHolder.class);
-		adapter = spy(new PlaylistAdapter(context, presenter));
+		presenter = mock(NowPlayingQueueMvp.Presenter.class);
+		holder = mock(NowPlayingQueueViewHolder.class);
+		adapter = spy(new NowPlayingQueueAdapter(context, presenter));
 	}
 
 	@Test public void onCreateViewHolder_inflateViewWithCorrectParams() {
