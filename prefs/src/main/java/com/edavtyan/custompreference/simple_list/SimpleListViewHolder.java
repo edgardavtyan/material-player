@@ -1,9 +1,11 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.simple_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.edavtyan.custompreference.R;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +17,7 @@ public class SimpleListViewHolder extends RecyclerView.ViewHolder implements Vie
 	protected @Getter @Setter CharSequence value;
 	protected @Setter OnHolderClickListener onHolderClickListener;
 
-	interface OnHolderClickListener {
+	public interface OnHolderClickListener {
 		void onHolderClick(CharSequence value);
 	}
 

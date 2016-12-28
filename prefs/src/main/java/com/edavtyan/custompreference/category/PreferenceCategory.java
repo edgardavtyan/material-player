@@ -1,4 +1,4 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.category;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.edavtyan.custompreference.R;
 import com.edavtyan.custompreference.utils.AttributeResolver;
 
 public class PreferenceCategory extends LinearLayout {

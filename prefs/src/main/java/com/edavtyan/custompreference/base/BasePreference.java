@@ -1,10 +1,11 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 
+import com.edavtyan.custompreference.R;
 import com.edavtyan.custompreference.utils.AttributeResolver;
 
 public abstract class BasePreference extends LinearLayout {

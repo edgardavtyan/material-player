@@ -1,4 +1,4 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.color;
 
 public class ColorSelectionPresenter {
 	private final ColorSelectionPreference pref;

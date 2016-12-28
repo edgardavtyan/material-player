@@ -1,4 +1,4 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.base;
 
 import android.content.Context;
 

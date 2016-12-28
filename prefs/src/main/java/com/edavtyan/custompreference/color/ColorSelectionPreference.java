@@ -1,8 +1,10 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.color;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.edavtyan.custompreference.base.BaseDialog;
+import com.edavtyan.custompreference.base.BasePreference;
 import com.edavtyan.custompreference.utils.PixelConverter;
 
 import java.util.List;

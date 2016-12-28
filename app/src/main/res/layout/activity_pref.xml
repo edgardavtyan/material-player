@@ -9,13 +9,13 @@
 
 	<include layout="@layout/partial_appbar" />
 
-	<com.edavtyan.custompreference.PreferenceCategory
+	<com.edavtyan.custompreference.category.PreferenceCategory
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:cp_title="@string/pref_category_appearance"
 		>
 
-		<com.edavtyan.custompreference.SimpleListPreference
+		<com.edavtyan.custompreference.simple_list.SimpleListPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="@string/pref_theme_base_key"
@@ -26,7 +26,7 @@
 			app:cp_entryValues="@array/pref_theme_base_entries"
 			/>
 
-		<com.edavtyan.custompreference.ColorSelectionPreference
+		<com.edavtyan.custompreference.color.ColorSelectionPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="@string/pref_theme_primary_key"
@@ -37,15 +37,15 @@
 			app:cp_entryValues="@array/pref_theme_primary_values"
 			/>
 
-	</com.edavtyan.custompreference.PreferenceCategory>
+	</com.edavtyan.custompreference.category.PreferenceCategory>
 
-	<com.edavtyan.custompreference.PreferenceCategory
+	<com.edavtyan.custompreference.category.PreferenceCategory
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:cp_title="@string/pref_category_audio"
 		>
 
-		<com.edavtyan.custompreference.DescriptionListPreference
+		<com.edavtyan.custompreference.description_list.DescriptionListPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="@string/pref_audio_engine_key"
@@ -57,6 +57,6 @@
 			app:cp_summaries="@array/pref_audio_engine_summaries"
 			/>
 
-	</com.edavtyan.custompreference.PreferenceCategory>
+	</com.edavtyan.custompreference.category.PreferenceCategory>
 
 </LinearLayout>

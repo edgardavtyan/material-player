@@ -1,4 +1,4 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.simple_list;
 
 public class SimpleListPresenter {
 	private final SimpleListPreference pref;

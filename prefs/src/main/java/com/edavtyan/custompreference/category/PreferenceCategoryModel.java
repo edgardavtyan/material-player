@@ -1,9 +1,11 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.category;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+
+import com.edavtyan.custompreference.R;
 
 import lombok.Cleanup;
 import lombok.Getter;

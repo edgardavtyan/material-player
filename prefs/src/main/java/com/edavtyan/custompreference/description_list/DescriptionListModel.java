@@ -1,9 +1,12 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.description_list;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+
+import com.edavtyan.custompreference.R;
+import com.edavtyan.custompreference.base.ListModel;
 
 import java.util.Arrays;
 import java.util.List;

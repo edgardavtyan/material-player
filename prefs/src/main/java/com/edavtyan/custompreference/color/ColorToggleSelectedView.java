@@ -1,10 +1,12 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.color;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.edavtyan.custompreference.R;
 
 public class ColorToggleSelectedView extends FrameLayout {
 

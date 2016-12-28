@@ -1,60 +1,63 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.simple_list;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
+import com.edavtyan.custompreference.base.BaseDialog;
+import com.edavtyan.custompreference.base.BasePreference;
+import com.edavtyan.custompreference.base.SummaryEntry;
 import com.edavtyan.custompreference.utils.PixelConverter;
 
-public class DescriptionListPreference
+public class SimpleListPreference
 		extends BasePreference
 		implements SummaryEntry.OnClickListener {
 
 	private final SummaryEntry entryView;
-	private final BaseDialog dialog;
-	private final DescriptionListPresenter presenter;
+	private final BaseDialog dialogView;
+	private final SimpleListPresenter presenter;
 
-	public DescriptionListPreference(Context context, AttributeSet attrs) {
+	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		entryView = initEntryView();
 		if (isInEditMode()) {
 			presenter = null;
-			dialog = null;
+			dialogView = null;
 		} else {
-			presenter = initPresenter(initModel(attrs));
-			dialog = initDialog(presenter);
+			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
+			dialogView = initDialogView(presenter);
 			presenter.onViewsInit();
 		}
 	}
 
-	public DescriptionListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		entryView = initEntryView();
 		if (isInEditMode()) {
 			presenter = null;
-			dialog = null;
+			dialogView = null;
 		} else {
-			presenter = initPresenter(initModel(attrs));
-			dialog = initDialog(presenter);
+			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
+			dialogView = initDialogView(presenter);
 			presenter.onViewsInit();
 		}
 	}
 
-	public void showDialog() {
-		dialog.show();
+	public void openDialog() {
+		dialogView.show();
 	}
 
 	public void closeDialog() {
-		dialog.dismiss();
+		dialogView.dismiss();
 	}
 
 	public void setTitle(CharSequence title) {
-		dialog.setTitle(title);
 		entryView.setTitle(title);
+		dialogView.setTitle(title);
 	}
 
-	public void setSummary(String summary) {
+	public void setSummary(CharSequence summary) {
 		entryView.setSummary(summary);
 	}
 
@@ -69,23 +72,14 @@ public class DescriptionListPreference
 		return entryView;
 	}
 
-	private BaseDialog initDialog(DescriptionListPresenter presenter) {
+	private BaseDialog initDialogView(SimpleListPresenter presenter) {
 		RecyclerView list = new RecyclerView(context);
 		list.setLayoutManager(new LinearLayoutManager(context));
-		list.setAdapter(new DescriptionListAdapter(context, presenter));
+		list.setAdapter(new SimpleListAdapter(context, presenter));
 		list.setPadding(0, PixelConverter.dpToPx(8), 0, 0);
 
 		BaseDialog dialog = new BaseDialog(context);
 		dialog.setView(list);
 		return dialog;
-	}
-
-	private DescriptionListPresenter initPresenter(DescriptionListModel model) {
-		DescriptionListPresenter presenter = new DescriptionListPresenter(this, model);
-		return presenter;
-	}
-
-	private DescriptionListModel initModel(AttributeSet attributeSet) {
-		return new DescriptionListModel(context, attributeSet);
 	}
 }

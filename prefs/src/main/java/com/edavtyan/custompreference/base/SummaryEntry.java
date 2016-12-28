@@ -1,10 +1,12 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.base;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.edavtyan.custompreference.R;
 
 import lombok.Setter;
 
@@ -13,7 +15,7 @@ public class SummaryEntry implements View.OnClickListener {
 	private final TextView summaryView;
 	private @Setter OnClickListener onClickListener;
 
-	interface OnClickListener {
+	public interface OnClickListener {
 		void onEntryClick();
 	}
 

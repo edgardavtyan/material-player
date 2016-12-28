@@ -1,4 +1,4 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.color;
 
 import android.content.Context;
 import android.util.AttributeSet;

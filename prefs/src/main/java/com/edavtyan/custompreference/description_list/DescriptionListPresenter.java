@@ -1,4 +1,4 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.description_list;
 
 public class DescriptionListPresenter {
 	private final DescriptionListPreference pref;

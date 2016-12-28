@@ -1,10 +1,12 @@
-package com.edavtyan.custompreference;
+package com.edavtyan.custompreference.simple_list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.edavtyan.custompreference.R;
 
 public class SimpleListAdapter
 		extends RecyclerView.Adapter<SimpleListViewHolder>
