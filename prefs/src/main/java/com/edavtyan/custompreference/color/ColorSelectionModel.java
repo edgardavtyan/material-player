@@ -16,9 +16,9 @@ import lombok.Cleanup;
 import lombok.Getter;
 
 public class ColorSelectionModel extends BaseModel {
-	private final @Getter CharSequence key;
-	private final @Getter CharSequence title;
-	private final @Getter CharSequence defaultValue;
+	private final @Getter String key;
+	private final @Getter String title;
+	private final @Getter String defaultValue;
 	private final @Getter List<Integer> entries;
 	private final @Getter List<CharSequence> values;
 
@@ -29,15 +29,15 @@ public class ColorSelectionModel extends BaseModel {
 		@SuppressLint("recycle")
 		TypedArray attrs = context.obtainStyledAttributes(
 				attributeSet, R.styleable.ColorSelectionPreference);
-		key = attrs.getText(R.styleable.ColorSelectionPreference_cp_key);
-		title = attrs.getText(R.styleable.ColorSelectionPreference_cp_title);
-		defaultValue = attrs.getText(R.styleable.ColorSelectionPreference_cp_defaultValue);
+		key = attrs.getString(R.styleable.ColorSelectionPreference_cp_key);
+		title = attrs.getString(R.styleable.ColorSelectionPreference_cp_title);
+		defaultValue = attrs.getString(R.styleable.ColorSelectionPreference_cp_defaultValue);
 		entries = getEntries(context, attrs);
 		values = Arrays.asList(attrs.getTextArray(R.styleable.ColorSelectionPreference_cp_entryValues));
 	}
 
 	public int getSelectedPrefIndex() {
-		return values.indexOf(sharedPrefs.getString(key.toString(), defaultValue.toString()));
+		return values.indexOf(sharedPrefs.getString(key, defaultValue));
 	}
 
 	public int getCurrentColor() {
@@ -45,7 +45,7 @@ public class ColorSelectionModel extends BaseModel {
 	}
 
 	public void savePref(int position) {
-		sharedPrefs.edit().putString(key.toString(), values.get(position).toString()).apply();
+		sharedPrefs.edit().putString(key, values.get(position).toString()).apply();
 	}
 
 	private List<Integer> getEntries(Context context, TypedArray attrs) {

@@ -11,13 +11,13 @@ public abstract class BaseModel {
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 
-	public abstract CharSequence getKey();
+	public abstract String getKey();
 
-	public abstract CharSequence getTitle();
+	public abstract String getTitle();
 
-	public abstract CharSequence getDefaultValue();
+	public abstract String getDefaultValue();
 
-	public CharSequence getCurrentPreference() {
-		return sharedPrefs.getString(getKey().toString(), getDefaultValue().toString());
+	public String getCurrentPreference() {
+		return sharedPrefs.getString(getKey(), getDefaultValue());
 	}
 }

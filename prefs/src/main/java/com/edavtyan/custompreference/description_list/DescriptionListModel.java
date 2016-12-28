@@ -15,10 +15,10 @@ import lombok.Cleanup;
 import lombok.Getter;
 
 public class DescriptionListModel extends ListModel {
-	private final @Getter CharSequence key;
-	private final @Getter CharSequence title;
-	private final @Getter CharSequence summary;
-	private final @Getter CharSequence defaultValue;
+	private final @Getter String key;
+	private final @Getter String title;
+	private final @Getter String summary;
+	private final @Getter String defaultValue;
 	private final @Getter List<CharSequence> entries;
 	private final @Getter List<CharSequence> values;
 	private final @Getter List<CharSequence> summaries;

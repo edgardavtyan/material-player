@@ -29,7 +29,7 @@ public class ColorSelectionPreference
 		initPreference(attrs);
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		entryView.setTitle(title);
 		dialog.setTitle(title);
 	}

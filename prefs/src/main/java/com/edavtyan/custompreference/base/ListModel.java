@@ -9,7 +9,7 @@ public abstract class ListModel extends BaseModel {
 		super(context);
 	}
 
-	public abstract CharSequence getSummary();
+	public abstract String getSummary();
 
 	public abstract List<CharSequence> getEntries();
 
@@ -20,6 +20,6 @@ public abstract class ListModel extends BaseModel {
 	}
 
 	public void savePref(CharSequence value) {
-		sharedPrefs.edit().putString(getKey().toString(), value.toString()).apply();
+		sharedPrefs.edit().putString(getKey(), value.toString()).apply();
 	}
 }

@@ -26,7 +26,7 @@ public class ColorSelectionEntry implements View.OnClickListener {
 		colorView = (ColorCircleView) view.findViewById(R.id.color);
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		titleView.setText(title);
 	}
 
