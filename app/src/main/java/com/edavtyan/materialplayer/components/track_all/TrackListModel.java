@@ -25,11 +25,13 @@ public class TrackListModel implements TrackListMvp.Model, ServiceConnection {
 
 	@Override
 	public Track getTrackAtIndex(int position) {
+		if (tracks == null) return null;
 		return tracks.get(position);
 	}
 
 	@Override
 	public int getItemCount() {
+		if (tracks == null) return 0;
 		return tracks.size();
 	}
 

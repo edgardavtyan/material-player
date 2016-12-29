@@ -28,11 +28,13 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 
 	@Override
 	public Album getAlbumAtIndex(int index) {
+		if (albums == null) return null;
 		return albums.get(index);
 	}
 
 	@Override
 	public int getAlbumsCount() {
+		if (albums == null) return 0;
 		return albums.size();
 	}
 

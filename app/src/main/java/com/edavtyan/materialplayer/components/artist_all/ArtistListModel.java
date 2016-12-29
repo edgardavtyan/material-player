@@ -20,11 +20,13 @@ public class ArtistListModel implements ArtistListMvp.Model {
 
 	@Override
 	public int getArtistCount() {
+		if (artists == null) return 0;
 		return artists.size();
 	}
 
 	@Override
 	public Artist getArtistAtIndex(int position) {
+		if (artists == null) return null;
 		return artists.get(position);
 	}
 }

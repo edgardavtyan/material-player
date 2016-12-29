@@ -56,6 +56,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	}
 
 	@Test public void unbind_unbindMusicPlayerService() {
+		model.onServiceConnected(null, binder);
 		model.unbind();
 		verify(context).unbindService(model);
 	}

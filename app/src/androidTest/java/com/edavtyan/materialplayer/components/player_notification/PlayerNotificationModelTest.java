@@ -57,6 +57,7 @@ public class PlayerNotificationModelTest extends BaseTest {
 	}
 
 	@Test public void unbind_unbindModelFromService() {
+		model.onServiceConnected(null, binder);
 		model.unbind();
 		verify(context).unbindService(model);
 	}
