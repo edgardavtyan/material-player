@@ -28,6 +28,7 @@ public class AudioEffectsPresenter
 	@Override
 	public void onEqualizerEnabledChanged(boolean enabled) {
 		model.getEqualizer().setEnabled(enabled);
+		model.getEqualizer().saveSettings();
 	}
 
 	@Override

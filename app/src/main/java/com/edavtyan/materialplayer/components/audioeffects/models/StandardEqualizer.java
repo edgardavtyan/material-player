@@ -4,6 +4,7 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 public class StandardEqualizer implements Equalizer {
 	public static final String PREF_GAINS = "equalizer_gains";
+	public static final String PREF_ENABLED = "equalizer_enabled";
 
 	private final android.media.audiofx.Equalizer equalizer;
 	private final AdvancedSharedPrefs prefs;
@@ -15,6 +16,8 @@ public class StandardEqualizer implements Equalizer {
 	public StandardEqualizer(android.media.audiofx.Equalizer equalizer, AdvancedSharedPrefs prefs) {
 		this.equalizer = equalizer;
 		this.prefs = prefs;
+
+		setEnabled(prefs.getBoolean(PREF_ENABLED, false));
 
 		bandsCount = equalizer.getNumberOfBands();
 
@@ -47,7 +50,10 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override public void saveSettings() {
-		prefs.edit().putIntArray(PREF_GAINS, gains).apply();
+		prefs.edit()
+			 .putIntArray(PREF_GAINS, gains)
+			 .putBoolean(PREF_ENABLED, isEnabled())
+			 .apply();
 	}
 
 	@Override public int getGainLimit() {
