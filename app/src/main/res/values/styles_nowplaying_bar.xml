@@ -14,7 +14,7 @@
 	</style>
 
 	<style name="nowplayingBar_infoWrapper">
-		<item name="android:paddingLeft">@dimen/spacing_medium</item>
+		<item name="android:paddingLeft">@dimen/spacing_tiny</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:orientation">vertical</item>
 		<item name="android:clickable">true</item>
