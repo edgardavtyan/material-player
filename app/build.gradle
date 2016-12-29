@@ -1,10 +1,12 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
     }
 }
 
@@ -15,6 +17,8 @@ plugins {
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'jacoco-android'
+apply plugin: 'com.jakewharton.hugo'
+
 
 repositories {
     jcenter()
@@ -34,7 +38,7 @@ android {
     }
     buildTypes {
         debug {
-            testCoverageEnabled = true
+            testCoverageEnabled = false
         }
         release {
             minifyEnabled false
