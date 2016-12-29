@@ -8,7 +8,6 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
-import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.PendingIntents;
@@ -28,7 +27,6 @@ public class PlayerNotificationViewTest extends BaseTest {
 	private NotificationCompat.Builder builder;
 	private PendingIntents pendingIntents;
 	private PlayerNotificationMvp.View view;
-	private TestableBitmapFactory bitmapFactory;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -37,10 +35,9 @@ public class PlayerNotificationViewTest extends BaseTest {
 		manager = mock(TestableNotificationManager.class);
 		builder = spy(new NotificationCompat.Builder(context));
 		pendingIntents = mock(PendingIntents.class);
-		bitmapFactory = mock(TestableBitmapFactory.class);
 		view = new PlayerNotification(
 				context, remoteViews, bigRemoteViews, manager,
-				builder, pendingIntents, bitmapFactory);
+				builder, pendingIntents);
 	}
 
 	@Test public void constructor_buildNotificationWithCorrectValues() {
@@ -50,7 +47,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 
 		view = new PlayerNotification(
 				context, remoteViews, bigRemoteViews, manager,
-				builder, pendingIntents, bitmapFactory);
+				builder, pendingIntents);
 
 		verify(builder).setSmallIcon(R.drawable.ic_status);
 		verify(builder).setContentIntent(contentIntent);
