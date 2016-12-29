@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Track;
 
@@ -18,7 +19,7 @@ public interface NowPlayingFloatingMvp {
 		void bind();
 		void unbind();
 		Track getNowPlayingTrack();
-		String getNowPlayingTrackArtPath();
+		Bitmap getNowPlayingTrackArt();
 		boolean isPlaying();
 		void togglePlayPause();
 		boolean hasData();
@@ -29,7 +30,7 @@ public interface NowPlayingFloatingMvp {
 	interface View {
 		void setTrackTitle(String title);
 		void setTrackInfo(String artistTitle, String albumTitle);
-		void setArt(String artpath);
+		void setArt(Bitmap art);
 		void setIsPlaying(boolean isPlaying);
 		void gotoNowPlaying();
 		void setIsVisible(boolean visibility);

@@ -51,7 +51,7 @@ public class NowPlayingFloatingPresenter implements NowPlayingFloatingMvp.Presen
 			Track track = model.getNowPlayingTrack();
 			view.setTrackTitle(track.getTitle());
 			view.setTrackInfo(track.getArtistTitle(), track.getAlbumTitle());
-			view.setArt(model.getNowPlayingTrackArtPath());
+			view.setArt(model.getNowPlayingTrackArt());
 			view.setIsPlaying(model.isPlaying());
 			view.setIsVisible(true);
 		} else {

@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.player_notification;
 
 import android.app.Notification;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Track;
 
@@ -23,13 +24,13 @@ public interface PlayerNotificationMvp extends ServiceConnection {
 		void unbind();
 		boolean isPlaying();
 		Track getTrack();
-		String getArtPath();
+		Bitmap getArt();
 	}
 
 	interface View {
 		void setTitle(String title);
 		void setInfo(String artist, String album);
-		void setArt(String artPath);
+		void setArt(Bitmap art);
 		void setIsPlaying(boolean isPlaying);
 		void update();
 		Notification getNotification();

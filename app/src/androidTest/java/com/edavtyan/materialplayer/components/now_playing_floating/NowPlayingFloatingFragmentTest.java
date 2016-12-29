@@ -103,13 +103,11 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 	}
 
 	@Test public void setArt_bitmapIsNotNull_setBitmap() {
-		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
-		when(bitmapFactory.fromPath("path")).thenReturn(art);
-
 		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 
-		fragment.setArt("path");
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
+		fragment.setArt(art);
 
 		verify(artView).setImageBitmap(isA(Bitmap.class));
 	}

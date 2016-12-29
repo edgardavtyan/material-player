@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnServiceConnectedListener;
@@ -13,8 +14,6 @@ import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-
-import java.io.File;
 
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -73,12 +72,11 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	@Test public void getNowPlayingTrackArt_getArtFromArtProvider() {
 		Track track = new Track();
 		when(player.getCurrentTrack()).thenReturn(track);
-		File artFile = mock(File.class);
-		when(artFile.getAbsolutePath()).thenReturn("artPath");
-		when(artProvider.load(track)).thenReturn(artFile);
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(artProvider.load(track)).thenReturn(art);
 		model.onServiceConnected(null, binder);
 
-		assertThat(model.getNowPlayingTrackArtPath()).isSameAs("artPath");
+		assertThat(model.getNowPlayingTrackArt()).isSameAs(art);
 	}
 
 	@Test public void isPlaying_getFromService() {

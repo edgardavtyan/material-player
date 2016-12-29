@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
@@ -44,8 +45,8 @@ public class NowPlayingFloatingModel
 		return service.getPlayer().getCurrentTrack();
 	}
 
-	@Override public String getNowPlayingTrackArtPath() {
-		return artProvider.load(getNowPlayingTrack()).getAbsolutePath();
+	@Override public Bitmap getNowPlayingTrackArt() {
+		return artProvider.load(getNowPlayingTrack());
 	}
 
 	@Override

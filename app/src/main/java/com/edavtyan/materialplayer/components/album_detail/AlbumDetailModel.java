@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.components.track_all.TrackListModel;
 import com.edavtyan.materialplayer.db.Album;
@@ -36,8 +37,8 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 	}
 
 	@Override
-	public String getAlbumArt() {
-		return artProvider.load(getTrackAtIndex(0)).getAbsolutePath();
+	public Bitmap getAlbumArt() {
+		return artProvider.load(getTrackAtIndex(0));
 	}
 
 	@Override

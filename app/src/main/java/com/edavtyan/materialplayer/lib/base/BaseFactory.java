@@ -40,7 +40,10 @@ public class BaseFactory {
 
 	public ArtProvider2 provideArtProvider() {
 		if (artProvider == null)
-			artProvider = new ArtProvider2(provideDataStorage(), provideMusicTagReader());
+			artProvider = new ArtProvider2(
+					provideDataStorage(),
+					provideMusicTagReader(),
+					provideBitmapFactory());
 		return artProvider;
 	}
 

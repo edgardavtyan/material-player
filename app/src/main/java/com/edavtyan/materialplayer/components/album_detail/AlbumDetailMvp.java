@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPresenter;
@@ -8,13 +10,13 @@ import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPrese
 public interface AlbumDetailMvp {
 	interface Model extends TrackListMvp.Model {
 		Album getAlbum();
-		String getAlbumArt();
+		Bitmap getAlbumArt();
 	}
 
 	interface View extends TrackListMvp.View {
 		void setAlbumTitle(String albumTitle);
 		void setAlbumInfo(String artistTitle, int tracksCount);
-		void setAlbumImage(String artPath);
+		void setAlbumImage(Bitmap art);
 	}
 
 	interface Presenter extends TrackListMvp.Presenter, ParallaxHeaderListPresenter {

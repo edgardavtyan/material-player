@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.now_playing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnNewTrackListener;
@@ -11,14 +12,12 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -139,10 +138,10 @@ public class NowPlayingModelTest extends BaseTest {
 		track.setAlbumId(123);
 		when(player.getCurrentTrack()).thenReturn(track);
 
-		File artFile = mock(File.class);
-		when(artProvider.load(track)).thenReturn(artFile);
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(artProvider.load(track)).thenReturn(art);
 
-		assertThat(model.getArt()).isSameAs(artFile);
+		assertThat(model.getArt()).isSameAs(art);
 	}
 
 	@Test public void seek_setPlayerPosition() {

@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.now_playing;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
@@ -10,8 +11,6 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.utils.ArtProvider2;
-
-import java.io.File;
 
 import lombok.Setter;
 
@@ -99,7 +98,7 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	}
 
 	@Override
-	public File getArt() {
+	public Bitmap getArt() {
 		return artProvider.load(service.getPlayer().getCurrentTrack());
 	}
 

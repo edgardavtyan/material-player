@@ -1,6 +1,9 @@
 package com.edavtyan.materialplayer.utils;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.tag.MusicTagReader;
 
 import java.io.File;
@@ -8,13 +11,18 @@ import java.io.File;
 public class ArtProvider2 {
 	private final DataStorage dataStorage;
 	private final MusicTagReader tagReader;
+	private final TestableBitmapFactory bitmapFactory;
 
-	public ArtProvider2(DataStorage dataStorage, MusicTagReader tagReader) {
+	public ArtProvider2(
+			DataStorage dataStorage,
+			MusicTagReader tagReader,
+			TestableBitmapFactory bitmapFactory) {
 		this.dataStorage = dataStorage;
 		this.tagReader = tagReader;
+		this.bitmapFactory = bitmapFactory;
 	}
 
-	public File load(Track track) {
+	public Bitmap load(Track track) {
 		File artFilePath = dataStorage.getArtFile(track.getAlbumId());
 
 		if (!artFilePath.exists()) {
@@ -26,6 +34,6 @@ public class ArtProvider2 {
 			}
 		}
 
-		return artFilePath;
+		return bitmapFactory.fromPath(artFilePath.getAbsolutePath());
 	}
 }

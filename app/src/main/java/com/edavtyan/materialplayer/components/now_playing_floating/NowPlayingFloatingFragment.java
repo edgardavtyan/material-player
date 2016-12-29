@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
-import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 public class NowPlayingFloatingFragment
 		extends BaseFragment
@@ -28,7 +27,6 @@ public class NowPlayingFloatingFragment
 	private ImageView artView;
 	private ImageButton playPauseView;
 	private LinearLayout mainWrapper;
-	private TestableBitmapFactory bitmapFactory;
 
 	@Override
 	public void setTrackTitle(String title) {
@@ -43,8 +41,7 @@ public class NowPlayingFloatingFragment
 	}
 
 	@Override
-	public void setArt(String artPath) {
-		Bitmap art = bitmapFactory.fromPath(artPath);
+	public void setArt(Bitmap art) {
 		if (art != null) {
 			artView.setImageBitmap(art);
 		} else {
@@ -74,7 +71,6 @@ public class NowPlayingFloatingFragment
 		NowPlayingFloatingFactory factory = app.getNowPlayingFloatingFactory(getContext(), this);
 		navigator = factory.provideNavigator();
 		presenter = factory.providePresenter();
-		bitmapFactory = factory.provideBitmapFactory();
 	}
 
 	@Nullable

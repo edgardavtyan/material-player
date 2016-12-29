@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
@@ -48,8 +49,8 @@ public class PlayerNotificationModel
 		return service.getPlayer().getCurrentTrack();
 	}
 
-	@Override public String getArtPath() {
-		return artProvider.load(getTrack()).getAbsolutePath();
+	@Override public Bitmap getArt() {
+		return artProvider.load(getTrack());
 	}
 
 	@Override public void onServiceConnected(ComponentName name, IBinder binder) {

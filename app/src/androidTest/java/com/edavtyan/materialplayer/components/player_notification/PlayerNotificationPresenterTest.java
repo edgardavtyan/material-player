@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.player_notification;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -37,15 +39,16 @@ public class PlayerNotificationPresenterTest extends BaseTest {
 		track.setArtistTitle("artist");
 		track.setAlbumTitle("album");
 		track.setPath("path");
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(model.getTrack()).thenReturn(track);
 		when(model.isPlaying()).thenReturn(true);
-		when(model.getArtPath()).thenReturn("artPath");
+		when(model.getArt()).thenReturn(art);
 
 		presenter.onNewTrack();
 
 		verify(view).setTitle("title");
 		verify(view).setInfo("artist", "album");
-		verify(view).setArt("artPath");
+		verify(view).setArt(art);
 		verify(view).setIsPlaying(true);
 		verify(view).update();
 	}

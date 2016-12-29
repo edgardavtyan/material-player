@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -27,13 +29,14 @@ public class AlbumDetailPresenterTest extends BaseTest {
 		album.setTitle("title");
 		album.setArtistTitle("artist");
 		album.setTracksCount(9);
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(model.getAlbum()).thenReturn(album);
-		when(model.getAlbumArt()).thenReturn("path");
+		when(model.getAlbumArt()).thenReturn(art);
 
 		presenter.onCreate();
 
 		verify(view).setAlbumTitle("title");
 		verify(view).setAlbumInfo("artist", 9);
-		verify(view).setAlbumImage("path");
+		verify(view).setAlbumImage(art);
 	}
 }

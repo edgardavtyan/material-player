@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
-
-import java.io.File;
 
 @SuppressWarnings("unused")
 public interface NowPlayingMvp {
@@ -40,7 +39,7 @@ public interface NowPlayingMvp {
 		String getAlbum();
 		int getDuration();
 		int getPosition();
-		File getArt();
+		Bitmap getArt();
 		void seek(int positionMillis);
 		void rewind();
 		void fastForward();
@@ -59,7 +58,7 @@ public interface NowPlayingMvp {
 		}
 
 		interface Art {
-			void setArt(File artFile);
+			void setArt(Bitmap artFile);
 		}
 
 		interface Seekbar extends SeekBar.OnSeekBarChangeListener {

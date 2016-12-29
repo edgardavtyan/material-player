@@ -9,14 +9,12 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailMvp.View {
 
 	public static final String EXTRA_ALBUM_ID = "extra_albumId";
 
 	private Navigator navigator;
-	private TestableBitmapFactory bitmapFactory;
 
 	public void setAlbumTitle(String title) {
 		setHeaderTitle(title);
@@ -29,8 +27,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		setHeaderInfo(info);
 	}
 
-	public void setAlbumImage(String artPath) {
-		Bitmap art = bitmapFactory.fromPath(artPath);
+	public void setAlbumImage(Bitmap art) {
 		setHeaderImage(art, R.drawable.fallback_cover);
 	}
 
@@ -41,7 +38,6 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		AlbumDetailFactory factory = getDI();
 		init(factory.provideAdapter(), factory.providePresenter());
 		navigator = factory.provideNavigator();
-		bitmapFactory = factory.provideBitmapFactory();
 	}
 
 	@Override

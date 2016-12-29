@@ -75,13 +75,12 @@ public class PlayerNotificationViewTest extends BaseTest {
 
 	@Test public void setArt_artExists_setArtOnRemoteViewsFromArtProvider() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
-		when(bitmapFactory.fromPath("path")).thenReturn(art);
-		view.setArt("path");
+		view.setArt(art);
 		verify(remoteViews).setImageViewBitmap(R.id.art, art);
 	}
 
 	@Test public void setArt_artNotExists_setFallbackImage() {
-		view.setArt("123");
+		view.setArt(null);
 		verify(remoteViews).setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
 	}
 

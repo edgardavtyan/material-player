@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.player_notification;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.view.ContextThemeWrapper;
 
 import com.edavtyan.materialplayer.components.player.Player;
@@ -16,8 +17,6 @@ import com.edavtyan.materialplayer.utils.ArtProvider2;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -77,13 +76,12 @@ public class PlayerNotificationModelTest extends BaseTest {
 
 	@Test public void getArt_returnArtFromArtProvider() {
 		Track track = mock(Track.class);
-		File artFile = mock(File.class);
 		when(player.getCurrentTrack()).thenReturn(track);
-		when(artFile.getAbsolutePath()).thenReturn("artPath");
-		when(artProvider.load(track)).thenReturn(artFile);
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(artProvider.load(track)).thenReturn(art);
 		model.onServiceConnected(null, binder);
 
-		assertThat(model.getArtPath()).isSameAs("artPath");
+		assertThat(model.getArt()).isSameAs(art);
 	}
 
 	@Test public void onNewTrack_listenerNotSet_notThrowException() {

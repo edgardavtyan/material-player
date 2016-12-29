@@ -1,12 +1,12 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
-
-import java.io.File;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -55,7 +55,7 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	@Test public void onModelConnected_initView() {
-		File artFile = mock(File.class);
+		Bitmap artBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 
 		when(model.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		when(model.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
@@ -65,7 +65,7 @@ public class NowPlayingPresenterTest extends BaseTest {
 		when(model.getAlbum()).thenReturn("album");
 		when(model.getDuration()).thenReturn(8000);
 		when(model.getPosition()).thenReturn(5000);
-		when(model.getArt()).thenReturn(artFile);
+		when(model.getArt()).thenReturn(artBitmap);
 
 		presenter.onModelBound();
 
@@ -78,7 +78,7 @@ public class NowPlayingPresenterTest extends BaseTest {
 		verify(seekbar).setTrackPositionText(5000);
 		verify(seekbar).setTrackPosition(5000);
 		verify(seekbar).setTrackPositionText(5000);
-		verify(art).setArt(artFile);
+		verify(art).setArt(artBitmap);
 	}
 
 	@Test public void onNewTrack_updateView() {
@@ -151,14 +151,14 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	private void testViewUpdate(Runnable presenterCall) {
-		File artFile = mock(File.class);
+		Bitmap artBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 
 		when(model.getTitle()).thenReturn("title");
 		when(model.getArtist()).thenReturn("artist");
 		when(model.getAlbum()).thenReturn("album");
 		when(model.getPosition()).thenReturn(3000);
 		when(model.getDuration()).thenReturn(9000);
-		when(model.getArt()).thenReturn(artFile);
+		when(model.getArt()).thenReturn(artBitmap);
 
 		presenterCall.run();
 
@@ -168,6 +168,6 @@ public class NowPlayingPresenterTest extends BaseTest {
 		verify(seekbar).setTrackPositionText(3000);
 		verify(seekbar).setTrackDuration(9000);
 		verify(seekbar).setTrackDurationText(9000);
-		verify(art).setArt(artFile);
+		verify(art).setArt(artBitmap);
 	}
 }

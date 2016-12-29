@@ -21,7 +21,6 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 
 	private final Context context;
 	private final TestableNotificationManager manager;
-	private final TestableBitmapFactory bitmapFactory;
 	private final @Getter Notification notification;
 
 	public PlayerNotification(
@@ -30,12 +29,10 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 			AdvancedRemoteViews bigRemoteViews,
 			TestableNotificationManager manager,
 			NotificationCompat.Builder builder,
-			PendingIntents pendingIntents,
-			TestableBitmapFactory bitmapFactory
+			PendingIntents pendingIntents
 	) {
 		this.context = context;
 		this.manager = manager;
-		this.bitmapFactory = bitmapFactory;
 		this.notification = builder
 				.setSmallIcon(R.drawable.ic_status)
 				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
@@ -65,8 +62,7 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		notification.bigContentView.setTextViewText(R.id.album, album);
 	}
 
-	@Override public void setArt(String artPath) {
-		Bitmap art = bitmapFactory.fromPath(artPath);
+	@Override public void setArt(Bitmap art) {
 		if (art != null) {
 			notification.contentView.setImageViewBitmap(R.id.art, art);
 			notification.bigContentView.setImageViewBitmap(R.id.art, art);

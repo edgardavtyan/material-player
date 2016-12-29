@@ -65,7 +65,7 @@ public class NowPlayingFactory extends BaseFactory {
 
 	public NowPlayingMvp.View.Art provideArt() {
 		if (art == null)
-			art = new NowPlayingArt(provideActivity(), provideBitmapFactory());
+			art = new NowPlayingArt(provideActivity());
 		return art;
 	}
 
