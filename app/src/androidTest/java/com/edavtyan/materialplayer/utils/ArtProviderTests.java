@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class ArtProviderTests extends BaseTest {
 	private DataStorage dataStorage;
 	private MusicTagReader tagReader;
-	private ArtProvider2 artProvider;
+	private ArtProvider artProvider;
 	private TestableBitmapFactory bitmapFactory;
 	private Track track;
 	private File artFile;
@@ -47,7 +47,7 @@ public class ArtProviderTests extends BaseTest {
 
 		tagReader = mock(MusicTagReader.class);
 
-		artProvider = new ArtProvider2(dataStorage, tagReader, bitmapFactory);
+		artProvider = new ArtProvider(dataStorage, tagReader, bitmapFactory);
 	}
 
 	@Test public void load_artExists_notSaveNewArt() {

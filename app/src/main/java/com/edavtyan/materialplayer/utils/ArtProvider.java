@@ -8,12 +8,12 @@ import com.edavtyan.materialplayer.utils.tag.MusicTagReader;
 
 import java.io.File;
 
-public class ArtProvider2 {
+public class ArtProvider {
 	private final DataStorage dataStorage;
 	private final MusicTagReader tagReader;
 	private final TestableBitmapFactory bitmapFactory;
 
-	public ArtProvider2(
+	public ArtProvider(
 			DataStorage dataStorage,
 			MusicTagReader tagReader,
 			TestableBitmapFactory bitmapFactory) {

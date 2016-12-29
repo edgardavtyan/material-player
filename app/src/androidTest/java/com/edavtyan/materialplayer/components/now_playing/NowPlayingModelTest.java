@@ -14,7 +14,7 @@ import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider2;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -30,7 +30,7 @@ public class NowPlayingModelTest extends BaseTest {
 	private NowPlayingModel model;
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
-	private ArtProvider2 artProvider;
+	private ArtProvider artProvider;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -43,7 +43,7 @@ public class NowPlayingModelTest extends BaseTest {
 		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
-		artProvider = mock(ArtProvider2.class);
+		artProvider = mock(ArtProvider.class);
 
 		runOnUiThread(() -> {
 			model = new NowPlayingModel(context, artProvider);

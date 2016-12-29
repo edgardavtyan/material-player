@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider2;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class AlbumDetailModelTest extends BaseTest {
 
 	private AlbumDetailModel model;
 	private TrackDB trackDB;
-	private ArtProvider2 artProvider;
+	private ArtProvider artProvider;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -28,7 +28,7 @@ public class AlbumDetailModelTest extends BaseTest {
 		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
 		AlbumDB albumDB = mock(AlbumDB.class);
 		trackDB = mock(TrackDB.class);
-		artProvider = mock(ArtProvider2.class);
+		artProvider = mock(ArtProvider.class);
 
 		model = new AlbumDetailModel(view, albumDB, trackDB, artProvider, ALBUM_ID);
 	}

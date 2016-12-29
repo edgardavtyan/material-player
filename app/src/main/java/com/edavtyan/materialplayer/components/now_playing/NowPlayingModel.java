@@ -10,14 +10,14 @@ import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
-import com.edavtyan.materialplayer.utils.ArtProvider2;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import lombok.Setter;
 
 public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.OnNewTrackListener,
 										PlayerMvp.Player.OnPlayPauseListener {
 	private final Context context;
-	private final ArtProvider2 artProvider;
+	private final ArtProvider artProvider;
 
 	private PlayerService service;
 
@@ -25,7 +25,7 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	@Setter OnNewTrackListener onNewTrackListener;
 	@Setter OnPlayPauseListener onPlayPauseListener;
 
-	public NowPlayingModel(Context context, ArtProvider2 artProvider) {
+	public NowPlayingModel(Context context, ArtProvider artProvider) {
 		this.context = context;
 		this.artProvider = artProvider;
 	}

@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.components.player_notification.PlayerNotifica
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider2;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 public class PlayerNotificationModelTest extends BaseTest {
 	private PlayerNotificationModel model;
 	private PlayerMvp.Player player;
-	private ArtProvider2 artProvider;
+	private ArtProvider artProvider;
 	private PlayerService.PlayerBinder binder;
 	private Track track;
 
@@ -36,7 +36,7 @@ public class PlayerNotificationModelTest extends BaseTest {
 		super.beforeEach();
 		context = mock(ContextThemeWrapper.class);
 		player = mock(Player.class);
-		artProvider = mock(ArtProvider2.class);
+		artProvider = mock(ArtProvider.class);
 		model = new PlayerNotificationModel(context, artProvider);
 
 		PlayerService service = mock(PlayerService.class);

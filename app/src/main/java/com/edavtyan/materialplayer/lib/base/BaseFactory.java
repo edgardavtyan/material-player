@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.utils.ArtProvider2;
+import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.utils.DataStorage;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 import com.edavtyan.materialplayer.utils.tag.MusicTagReader;
@@ -17,7 +17,7 @@ import com.edavtyan.materialplayer.utils.tag.VanillaMusicTagReader;
 public class BaseFactory {
 	private final Context context;
 	private Navigator navigator;
-	private ArtProvider2 artProvider;
+	private ArtProvider artProvider;
 	private TestableBitmapFactory bitmapFactory;
 	private DataStorage dataStorage;
 	private MusicTagReader musicTagReader;
@@ -38,9 +38,9 @@ public class BaseFactory {
 		return navigator;
 	}
 
-	public ArtProvider2 provideArtProvider() {
+	public ArtProvider provideArtProvider() {
 		if (artProvider == null)
-			artProvider = new ArtProvider2(
+			artProvider = new ArtProvider(
 					provideDataStorage(),
 					provideMusicTagReader(),
 					provideBitmapFactory());
