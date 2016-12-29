@@ -16,6 +16,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,37 +29,46 @@ public class ArtProviderTests extends BaseTest {
 	private File artFile;
 	private Bitmap art;
 
-	@Override public void beforeEach() {
-		super.beforeEach();
-
-		track = new Track();
-		track.setAlbumId(1);
-		track.setPath("path");
-
-		artFile = mock(File.class);
-		when(artFile.getAbsolutePath()).thenReturn("art_path");
-
-		art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		bitmapFactory = mock(TestableBitmapFactory.class);
-		when(bitmapFactory.fromPath("art_path")).thenReturn(art);
-
-		dataStorage = mock(DataStorage.class);
-		when(dataStorage.getArtFile(1)).thenReturn(artFile);
-
-		tagReader = mock(MusicTagReader.class);
-
-		artProvider = new ArtProvider(dataStorage, tagReader, bitmapFactory);
-	}
-
 	@Test public void load_artExists_notSaveNewArt() {
+		init(1);
 		when(artFile.exists()).thenReturn(true);
 		assertThat(artProvider.load(track)).isSameAs(art);
 		verify(dataStorage, never()).saveFile(eq(artFile), any());
 	}
 
 	@Test public void load_artNotExists_saveNewArt() {
+		init(2);
 		when(artFile.exists()).thenReturn(false);
 		assertThat(artProvider.load(track)).isSameAs(art);
 		verify(dataStorage).saveFile(eq(artFile), any());
+	}
+
+	@Test public void load_getSameArtManyTimes_loadArtFromCache() {
+		init(3);
+		artProvider.load(track);
+		artProvider.load(track);
+		artProvider.load(track);
+		artProvider.load(track);
+		verify(bitmapFactory, times(1)).fromPath("art_path3");
+	}
+
+	private void init(int index) {
+		track = new Track();
+		track.setAlbumId(index);
+		track.setPath("path" + index);
+
+		artFile = mock(File.class);
+		when(artFile.getAbsolutePath()).thenReturn("art_path" + index);
+
+		art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		bitmapFactory = mock(TestableBitmapFactory.class);
+		when(bitmapFactory.fromPath("art_path" + index)).thenReturn(art);
+
+		dataStorage = mock(DataStorage.class);
+		when(dataStorage.getArtFile(index)).thenReturn(artFile);
+
+		tagReader = mock(MusicTagReader.class);
+
+		artProvider = new ArtProvider(dataStorage, tagReader, bitmapFactory);
 	}
 }
