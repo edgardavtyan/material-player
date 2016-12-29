@@ -22,7 +22,6 @@ import static org.mockito.Mockito.when;
 
 public class ArtProviderTests extends BaseTest {
 	private DataStorage dataStorage;
-	private MusicTagReader tagReader;
 	private ArtProvider artProvider;
 	private TestableBitmapFactory bitmapFactory;
 	private Track track;
@@ -67,8 +66,6 @@ public class ArtProviderTests extends BaseTest {
 		dataStorage = mock(DataStorage.class);
 		when(dataStorage.getArtFile(index)).thenReturn(artFile);
 
-		tagReader = mock(MusicTagReader.class);
-
-		artProvider = new ArtProvider(dataStorage, tagReader, bitmapFactory);
+		artProvider = new ArtProvider(dataStorage, mock(MusicTagReader.class), bitmapFactory);
 	}
 }
