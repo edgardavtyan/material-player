@@ -45,7 +45,7 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override public void setBandGain(int band, int gain) {
-		equalizer.setBandLevel((short) band, (short) gain);
+		equalizer.setBandLevel((short) band, (short) (gain * 100));
 		gains[band] = gain;
 	}
 
