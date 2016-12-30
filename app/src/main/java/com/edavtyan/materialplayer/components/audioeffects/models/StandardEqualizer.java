@@ -23,7 +23,8 @@ public class StandardEqualizer implements Equalizer {
 
 		frequencies = new int[bandsCount];
 		for (int i = 0; i < bandsCount; i++) {
-			frequencies[i] = equalizer.getCenterFreq((short) i) / 1000;
+			int reverseIndex = bandsCount - i - 1;
+			frequencies[i] = equalizer.getCenterFreq((short) reverseIndex) / 1000;
 		}
 
 		gains = prefs.getIntArray(PREF_GAINS, bandsCount);
@@ -45,7 +46,8 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override public void setBandGain(int band, int gain) {
-		equalizer.setBandLevel((short) band, (short) (gain * 100));
+		int reverseBand = bandsCount - band - 1;
+		equalizer.setBandLevel((short) reverseBand, (short) (gain * 100));
 		gains[band] = gain;
 	}
 
