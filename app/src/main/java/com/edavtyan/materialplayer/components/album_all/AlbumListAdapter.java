@@ -24,7 +24,7 @@ public class AlbumListAdapter
 	@Override
 	public AlbumListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.listitem_album, parent, false);
+		View view = inflater.inflate(viewType, parent, false);
 
 		AlbumListViewHolder holder = new AlbumListViewHolder(context, view);
 		holder.setOnHolderClickListener(this);
@@ -40,6 +40,12 @@ public class AlbumListAdapter
 	@Override
 	public int getItemCount() {
 		return presenter.getItemCount();
+	}
+
+	@Override public int getItemViewType(int position) {
+		return presenter.isCompactModeEnabled()
+				? R.layout.listitem_album_compact
+				: R.layout.listitem_album;
 	}
 
 	@Override

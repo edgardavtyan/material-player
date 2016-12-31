@@ -26,7 +26,13 @@ public class ArtistDetailFactory extends BaseFactory {
 			AlbumDB albumDB = new AlbumDB(provideContext());
 			TrackDB trackDB = new TrackDB(provideContext());
 			ArtistDB artistDB = new ArtistDB(provideContext());
-			model = new ArtistDetailModel(provideContext(), artistDB, albumDB, trackDB, artistTitle);
+			model = new ArtistDetailModel(
+					provideContext(),
+					artistDB,
+					albumDB,
+					trackDB,
+					providePrefs(),
+					artistTitle);
 		}
 
 		return model;

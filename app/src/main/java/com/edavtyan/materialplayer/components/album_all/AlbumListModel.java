@@ -4,26 +4,44 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.List;
 
-public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
+import lombok.Setter;
+
+public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection,
+									   SharedPreferences.OnSharedPreferenceChangeListener {
+	private static final String PREF_COMPACT_LISTS_KEY = "pref_compactList";
+	private static final boolean PREF_COMPACT_LISTS_DEFAULT = false;
+
 	private final Context context;
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
+	private final AdvancedSharedPrefs prefs;
 	private List<Album> albums;
 	private PlayerService service;
 
-	public AlbumListModel(Context context, AlbumDB albumDB, TrackDB trackDB) {
+	private @Setter OnCompactModeChangedListener onCompactModeChangedListener;
+
+	public AlbumListModel(Context context, AlbumDB albumDB, TrackDB trackDB, AdvancedSharedPrefs prefs) {
 		this.context = context;
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
+		this.prefs = prefs;
+		this.prefs.registerOnSharedPreferenceChangeListener(this);
+	}
+
+	@Override
+	public boolean isCompactModeEnabled() {
+		return prefs.getBoolean(PREF_COMPACT_LISTS_KEY, PREF_COMPACT_LISTS_DEFAULT);
 	}
 
 	@Override
@@ -73,6 +91,13 @@ public class AlbumListModel implements AlbumListMvp.Model, ServiceConnection {
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
 		service = null;
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		if (key.equals(PREF_COMPACT_LISTS_KEY) && onCompactModeChangedListener != null) {
+			onCompactModeChangedListener.onCompactModeChanged(isCompactModeEnabled());
+		}
 	}
 
 	protected List<Album> queryAlbums() {

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="listitem_album_container">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?listPreferredItemHeight</item>
+		<item name="android:background">?selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+	<style name="listitem_album_container.compact">
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="listitem_album_art">
+		<item name="android:layout_width">?listPreferredItemHeight</item>
+		<item name="android:layout_height">?listPreferredItemHeight</item>
+	</style>
+
+	<style name="listitem_album_art.compact">
+		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="listitem_album_infoContainer">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:paddingLeft">?listPreferredItemPaddingLeft</item>
+		<item name="android:paddingRight">?listPreferredItemPaddingRight</item>
+	</style>
+
+	<style name="listitem_album_primary" parent="listitem_primary" />
+
+	<style name="listitem_album_secondary" parent="listitem_secondary" />
+
+	<style name="listitem_album_secondary.compact">
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="listitem_album_menu">
+		<item name="android:layout_width">@dimen/size_medium</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:src">@drawable/ic_more_vert</item>
+		<item name="android:background">@drawable/ripple_base</item>
+		<item name="android:contentDescription">@string/description_moreActions</item>
+		<item name="android:tint">?textColorPrimary</item>
+	</style>
+</resources>

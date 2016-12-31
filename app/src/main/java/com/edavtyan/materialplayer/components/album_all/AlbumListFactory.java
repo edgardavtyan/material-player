@@ -25,7 +25,11 @@ public class AlbumListFactory extends BaseFactory {
 
 	public AlbumListMvp.Model provideModel() {
 		if (model == null)
-			model = new AlbumListModel(provideContext(), provideAlbumDB(), provideTrackDB());
+			model = new AlbumListModel(
+					provideContext(),
+					provideAlbumDB(),
+					provideTrackDB(),
+					providePrefs());
 		return model;
 	}
 

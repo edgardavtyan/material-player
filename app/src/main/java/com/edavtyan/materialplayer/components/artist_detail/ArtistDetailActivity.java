@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
 
 public class ArtistDetailActivity
@@ -17,6 +18,7 @@ public class ArtistDetailActivity
 	public static final String EXTRA_ARTIST_TITLE = "extra_artistTitle";
 
 	private Navigator navigator;
+	private AlbumListAdapter adapter;
 
 	@Override
 	public void setArtistTitle(String title) {
@@ -42,13 +44,18 @@ public class ArtistDetailActivity
 		super.onCreate(savedInstanceState);
 
 		ArtistDetailFactory factory = getDI();
-		init(factory.provideAdapter(), factory.providePresenter());
+		adapter = factory.provideAdapter();
+		init(adapter, factory.providePresenter());
 		navigator = factory.provideNavigator();
 	}
 
 	@Override
 	public void goToAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
+	}
+
+	@Override public void notifyDataSetChanged() {
+		adapter.notifyDataSetChanged();
 	}
 
 	protected ArtistDetailFactory getDI() {
