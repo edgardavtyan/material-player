@@ -56,7 +56,7 @@ public class AlbumListPresenter
 		model.unbindService();
 	}
 
-	@Override public void onCompactModeChanged(boolean isCompactListsEnabled) {
+	@Override public void onCompactModeChanged() {
 		view.notifyDataSetChanged();
 	}
 }

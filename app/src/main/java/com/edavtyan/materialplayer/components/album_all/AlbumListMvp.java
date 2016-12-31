@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.album_all;
 
 import com.edavtyan.materialplayer.db.Album;
+import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
 import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 @SuppressWarnings("unused")
@@ -11,14 +12,7 @@ public interface AlbumListMvp {
 		boolean isCompactModeEnabled();
 	}
 
-	interface Model {
-		interface OnCompactModeChangedListener {
-			void onCompactModeChanged(boolean isCompactListsEnabled);
-		}
-
-		void setOnCompactModeChangedListener(OnCompactModeChangedListener listener);
-
-		boolean isCompactModeEnabled();
+	interface Model extends ListMvp.Model {
 		Album getAlbumAtIndex(int index);
 		int getAlbumsCount();
 		void addToPlaylist(int albumId);

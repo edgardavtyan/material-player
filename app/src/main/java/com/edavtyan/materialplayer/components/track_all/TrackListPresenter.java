@@ -56,7 +56,7 @@ public class TrackListPresenter implements TrackListMvp.Presenter,
 		model.close();
 	}
 
-	@Override public void onCompactModeChanged(boolean isCompactListsEnabled) {
+	@Override public void onCompactModeChanged() {
 		view.notifyDataSetChanged();
 	}
 }

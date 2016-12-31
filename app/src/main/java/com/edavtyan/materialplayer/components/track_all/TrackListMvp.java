@@ -1,18 +1,12 @@
 package com.edavtyan.materialplayer.components.track_all;
 
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
 import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 @SuppressWarnings("unused")
 public interface TrackListMvp {
-	interface Model {
-		interface OnCompactModeChangedListener {
-			void onCompactModeChanged(boolean isCompactListsEnabled);
-		}
-
-		void setOnCompactModeChangedListener(OnCompactModeChangedListener listener);
-
-		boolean isCompactModeEnabled();
+	interface Model extends ListMvp.Model {
 		Track getTrackAtIndex(int position);
 		int getItemCount();
 		void playQueue(int position);

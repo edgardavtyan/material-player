@@ -4,14 +4,14 @@ import com.edavtyan.materialplayer.db.Artist;
 
 public class ArtistListPresenter
 		implements ArtistListMvp.Presenter,
-				   ArtistListMvp.Model.OnCompactListsPrefChangedListener {
+				   ArtistListMvp.Model.OnCompactModeChangedListener {
 
 	private final ArtistListMvp.Model model;
 	private final ArtistListMvp.View view;
 
 	public ArtistListPresenter(ArtistListMvp.Model model, ArtistListMvp.View view) {
 		this.model = model;
-		this.model.setOnCompactListsPrefChangedListener(this);
+		this.model.setOnCompactModeChangedListener(this);
 		this.view = view;
 	}
 
@@ -44,11 +44,11 @@ public class ArtistListPresenter
 
 	@Override
 	public boolean isCompactModeEnabled() {
-		return model.isCompactListsEnabled();
+		return model.isCompactModeEnabled();
 	}
 
 	@Override
-	public void onCompactListsPrefChanged(boolean isCompactListsEnabled) {
+	public void onCompactModeChanged() {
 		view.notifyDataSetChanged();
 	}
 }
