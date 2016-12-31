@@ -2,13 +2,15 @@ package com.edavtyan.materialplayer.components.track_all;
 
 import com.edavtyan.materialplayer.db.Track;
 
-public class TrackListPresenter implements TrackListMvp.Presenter {
+public class TrackListPresenter implements TrackListMvp.Presenter,
+										   TrackListMvp.Model.OnCompactModeChangedListener {
 	private final TrackListMvp.View view;
 	private final TrackListMvp.Model model;
 
 	public TrackListPresenter(TrackListMvp.View view, TrackListMvp.Model model) {
 		this.view = view;
 		this.model = model;
+		this.model.setOnCompactModeChangedListener(this);
 	}
 
 	@Override
@@ -38,6 +40,11 @@ public class TrackListPresenter implements TrackListMvp.Presenter {
 	}
 
 	@Override
+	public boolean isCompactModeEnabled() {
+		return model.isCompactModeEnabled();
+	}
+
+	@Override
 	public void onCreate() {
 		model.bindService();
 		model.update();
@@ -47,5 +54,9 @@ public class TrackListPresenter implements TrackListMvp.Presenter {
 	public void onDestroy() {
 		model.unbindService();
 		model.close();
+	}
+
+	@Override public void onCompactModeChanged(boolean isCompactListsEnabled) {
+		view.notifyDataSetChanged();
 	}
 }

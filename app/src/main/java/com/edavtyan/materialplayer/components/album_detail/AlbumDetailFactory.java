@@ -30,6 +30,7 @@ public class AlbumDetailFactory extends BaseFactory {
 					provideAlbumDB(),
 					provideTrackDB(),
 					provideArtProvider(),
+					providePrefs(),
 					albumId);
 
 		return model;

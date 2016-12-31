@@ -23,7 +23,7 @@ public class TrackListFactory extends BaseFactory {
 
 	public TrackListMvp.Model provideModel() {
 		if (model == null)
-			model = new TrackListModel(provideContext(), provideTrackDB());
+			model = new TrackListModel(provideContext(), provideTrackDB(), providePrefs());
 		return model;
 	}
 

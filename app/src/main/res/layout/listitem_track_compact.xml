@@ -2,7 +2,7 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/listitem_album_container"
+	style="@style/listitem_album_container.compact"
 	>
 
 	<LinearLayout style="@style/listitem_album_infoContainer">
@@ -15,7 +15,7 @@
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/listitem_album_secondary"
+			style="@style/listitem_album_secondary.compact"
 			tools:text="Album title - 3:35"
 			/>
 

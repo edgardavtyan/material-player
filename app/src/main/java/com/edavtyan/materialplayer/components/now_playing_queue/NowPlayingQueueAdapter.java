@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 public class NowPlayingQueueAdapter extends TestableRecyclerAdapter<NowPlayingQueueViewHolder>
@@ -23,7 +22,7 @@ public class NowPlayingQueueAdapter extends TestableRecyclerAdapter<NowPlayingQu
 	@Override
 	public NowPlayingQueueViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.listitem_track, parent, false);
+		View view = inflater.inflate(viewType, parent, false);
 
 		NowPlayingQueueViewHolder holder = new NowPlayingQueueViewHolder(context, view);
 		holder.setOnHolderClickListener(this);

@@ -24,7 +24,7 @@ public class TrackListAdapter
 	@Override
 	public TrackListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.listitem_track, parent, false);
+		View view = inflater.inflate(viewType, parent, false);
 		TrackListViewHolder holder = new TrackListViewHolder(context, view);
 		holder.setOnHolderClickListener(this);
 		holder.setOnHolderMenuItemClickListener(this);
@@ -39,6 +39,13 @@ public class TrackListAdapter
 	@Override
 	public int getItemCount() {
 		return presenter.getItemCount();
+	}
+
+	@Override
+	public int getItemViewType(int position) {
+		return presenter.isCompactModeEnabled()
+				? R.layout.listitem_track_compact
+				: R.layout.listitem_track;
 	}
 
 	@Override

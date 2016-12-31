@@ -15,6 +15,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	public static final String EXTRA_ALBUM_ID = "extra_albumId";
 
 	private Navigator navigator;
+	private AlbumDetailAdapter adapter;
 
 	public void setAlbumTitle(String title) {
 		setHeaderTitle(title);
@@ -36,6 +37,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		super.onCreate(savedInstanceState);
 
 		AlbumDetailFactory factory = getDI();
+		adapter = factory.provideAdapter();
 		init(factory.provideAdapter(), factory.providePresenter());
 		navigator = factory.provideNavigator();
 	}
@@ -43,6 +45,10 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	@Override
 	public void goToNowPlaying() {
 		navigator.gotoNowPlaying();
+	}
+
+	@Override public void notifyDataSetChanged() {
+		adapter.notifyDataSetChanged();
 	}
 
 	protected AlbumDetailFactory getDI() {
