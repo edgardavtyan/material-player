@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 
@@ -27,10 +28,11 @@ public class AlbumDetailModelTest extends BaseTest {
 
 		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
 		AlbumDB albumDB = mock(AlbumDB.class);
+		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
 		trackDB = mock(TrackDB.class);
 		artProvider = mock(ArtProvider.class);
 
-		model = new AlbumDetailModel(view, albumDB, trackDB, artProvider, ALBUM_ID);
+		model = new AlbumDetailModel(view, albumDB, trackDB, artProvider, prefs, ALBUM_ID);
 	}
 
 	@Test public void update_callTracksDB() {

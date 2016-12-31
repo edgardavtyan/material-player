@@ -26,12 +26,12 @@ public class AlbumListAdapterTest extends BaseTest {
 		adapter = new AlbumListAdapter(context, presenter);
 	}
 
-	@Test public void onCreateViewHolder_inflateViewWithCorrectParams() {
+	@Test public void onCreateViewHolder_inflateViewAsViewType() {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
 		LinearLayout parent = new LinearLayout(context);
-		adapter.onCreateViewHolder(parent, 0);
+		adapter.onCreateViewHolder(parent, R.layout.listitem_album);
 
 		verify(inflater).inflate(R.layout.listitem_album, parent, false);
 	}

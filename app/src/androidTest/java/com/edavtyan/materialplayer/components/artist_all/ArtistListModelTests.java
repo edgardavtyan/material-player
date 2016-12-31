@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.artist_all;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -22,7 +23,10 @@ public class ArtistListModelTests extends BaseTest {
 		ArtistDB db = mock(ArtistDB.class);
 		artists = mock(List.class);
 		when(db.getAllArtists()).thenReturn(artists);
-		model = new ArtistListModel(db);
+
+		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
+
+		model = new ArtistListModel(db, prefs);
 	}
 
 	@Test public void getArtistCount_correctCount() {

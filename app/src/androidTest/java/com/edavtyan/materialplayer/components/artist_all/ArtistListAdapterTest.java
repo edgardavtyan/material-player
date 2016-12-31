@@ -31,7 +31,7 @@ public class ArtistListAdapterTest extends BaseTest {
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
 		LinearLayout parent = new LinearLayout(context);
-		adapter.onCreateViewHolder(parent, 0);
+		adapter.onCreateViewHolder(parent, R.layout.listitem_artist);
 
 		verify(inflater).inflate(R.layout.listitem_artist, parent, false);
 	}

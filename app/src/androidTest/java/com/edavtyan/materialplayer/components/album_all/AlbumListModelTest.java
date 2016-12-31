@@ -5,6 +5,7 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -38,8 +39,9 @@ public class AlbumListModelTest extends BaseTest {
 		when(albumDB.getAllAlbums()).thenReturn(albums);
 
 		TrackDB trackDB = mock(TrackDB.class);
+		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
 
-		model = new AlbumListModel(context, albumDB, trackDB);
+		model = new AlbumListModel(context, albumDB, trackDB, prefs);
 		doAnswer(invocationOnMock -> {
 			model.onServiceConnected(null, binder);
 			return null;

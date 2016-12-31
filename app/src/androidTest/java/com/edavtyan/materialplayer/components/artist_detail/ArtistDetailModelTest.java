@@ -4,6 +4,7 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -25,6 +26,7 @@ public class ArtistDetailModelTest extends BaseTest {
 				artistDB,
 				mock(AlbumDB.class),
 				mock(TrackDB.class),
+				mock(AdvancedSharedPrefs.class),
 				"title");
 	}
 
