@@ -37,6 +37,14 @@
 			app:cp_entryValues="@array/pref_theme_primary_values"
 			/>
 
+		<com.edavtyan.custompreference.checkbox.CheckboxPreference
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:cp_key="@string/pref_compactList_key"
+			app:cp_title="@string/pref_compactList_title"
+			app:cp_defaultValue="@bool/pref_compactList_defaultValue"
+			/>
+
 	</com.edavtyan.custompreference.category.PreferenceCategory>
 
 </LinearLayout>

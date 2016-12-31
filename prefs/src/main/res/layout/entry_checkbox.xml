@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+
+	<TextView
+		android:id="@+id/title"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_gravity="center_vertical"
+		style="@style/PrefEntry_Title"
+		tools:text="Preference Title"
+		/>
+
+	<CheckBox
+		android:id="@+id/checkbox"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_gravity="right|center_vertical"
+		/>
+
+</merge>
