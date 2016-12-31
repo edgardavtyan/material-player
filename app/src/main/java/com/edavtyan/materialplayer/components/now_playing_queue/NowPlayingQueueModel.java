@@ -7,16 +7,19 @@ import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import lombok.Setter;
 
-public class NowPlayingQueueModel implements NowPlayingQueueMvp.Model {
+public class NowPlayingQueueModel extends ListModel implements NowPlayingQueueMvp.Model {
 	private final Context context;
 	private PlayerService service;
 
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
-	public NowPlayingQueueModel(Context context) {
+	public NowPlayingQueueModel(Context context, AdvancedSharedPrefs prefs) {
+		super(prefs);
 		this.context = context;
 	}
 

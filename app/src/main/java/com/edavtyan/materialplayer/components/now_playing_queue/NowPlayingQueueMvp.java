@@ -3,10 +3,11 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 import android.content.ServiceConnection;
 
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
 
 @SuppressWarnings("unused")
 public interface NowPlayingQueueMvp {
-	interface Model extends ServiceConnection {
+	interface Model extends ListMvp.Model, ServiceConnection {
 		interface OnServiceConnectedListener {
 			void onServiceConnected();
 		}
@@ -21,11 +22,13 @@ public interface NowPlayingQueueMvp {
 		int getTrackCount();
 	}
 
-	interface View {
-		void update();
+	interface View extends ListMvp.View {
 	}
 
-	interface Presenter extends Model.OnServiceConnectedListener {
+	interface Presenter
+			extends ListMvp.Presenter<NowPlayingQueueViewHolder>,
+					Model.OnServiceConnectedListener {
+
 		void onCreate();
 		void onDestroy();
 		void onItemClick(int position);

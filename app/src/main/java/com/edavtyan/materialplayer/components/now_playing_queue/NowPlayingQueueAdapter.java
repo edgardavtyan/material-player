@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
-import com.edavtyan.materialplayer.R;
-
-public class NowPlayingQueueAdapter extends TestableRecyclerAdapter<NowPlayingQueueViewHolder>
+public class NowPlayingQueueAdapter
+		extends TestableRecyclerAdapter<NowPlayingQueueViewHolder>
 		implements NowPlayingQueueViewHolder.OnHolderClickListener,
 				   NowPlayingQueueViewHolder.OnMenuClickListener {
 
@@ -40,6 +40,12 @@ public class NowPlayingQueueAdapter extends TestableRecyclerAdapter<NowPlayingQu
 	@Override
 	public int getItemCount() {
 		return presenter.getItemCount();
+	}
+
+	@Override public int getItemViewType(int position) {
+		return presenter.isCompactModeEnabled()
+				? R.layout.listitem_track_compact
+				: R.layout.listitem_track;
 	}
 
 	@Override

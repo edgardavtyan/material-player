@@ -1,12 +1,17 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
-public class NowPlayingQueuePresenter implements NowPlayingQueueMvp.Presenter {
+public class NowPlayingQueuePresenter
+		extends ListPresenter<NowPlayingQueueViewHolder>
+		implements NowPlayingQueueMvp.Presenter {
+
 	private final NowPlayingQueueMvp.Model model;
 	private final NowPlayingQueueMvp.View view;
 
 	public NowPlayingQueuePresenter(NowPlayingQueueMvp.Model model, NowPlayingQueueMvp.View view) {
+		super(model, view);
 		this.model = model;
 		this.model.setOnServiceConnectedListener(this);
 		this.view = view;
@@ -46,6 +51,6 @@ public class NowPlayingQueuePresenter implements NowPlayingQueueMvp.Presenter {
 
 	@Override
 	public void onServiceConnected() {
-		view.update();
+		view.notifyDataSetChanged();
 	}
 }

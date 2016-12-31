@@ -9,7 +9,10 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
-public class NowPlayingQueueActivity extends BaseToolbarActivity implements NowPlayingQueueMvp.View {
+public class NowPlayingQueueActivity
+		extends BaseToolbarActivity
+		implements NowPlayingQueueMvp.View {
+
 	private NowPlayingQueueMvp.Presenter presenter;
 	private NowPlayingQueueAdapter adapter;
 
@@ -40,7 +43,7 @@ public class NowPlayingQueueActivity extends BaseToolbarActivity implements NowP
 	}
 
 	@Override
-	public void update() {
+	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
 	}
 

@@ -21,7 +21,7 @@ public class NowPlayingQueueFactory extends BaseFactory {
 
 	public NowPlayingQueueMvp.Model provideModel() {
 		if (model == null)
-			model = new NowPlayingQueueModel(provideContext());
+			model = new NowPlayingQueueModel(provideContext(), providePrefs());
 		return model;
 	}
 
