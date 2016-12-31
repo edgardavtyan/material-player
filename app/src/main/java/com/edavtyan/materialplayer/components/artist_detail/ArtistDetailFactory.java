@@ -6,9 +6,9 @@ import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
-public class ArtistDetailFactory extends BaseFactory {
+public class ArtistDetailFactory extends ListFactory {
 	private final String artistTitle;
 	private final ArtistDetailMvp.View view;
 	private ArtistDetailMvp.Model model;
@@ -31,7 +31,7 @@ public class ArtistDetailFactory extends BaseFactory {
 					artistDB,
 					albumDB,
 					trackDB,
-					providePrefs(),
+					provideCompactListPref(),
 					artistTitle);
 		}
 

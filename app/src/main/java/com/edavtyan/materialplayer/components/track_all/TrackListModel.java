@@ -9,8 +9,8 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ public class TrackListModel
 	private List<Track> tracks;
 	private PlayerService service;
 
-	public TrackListModel(Context context, TrackDB db, AdvancedSharedPrefs prefs) {
-		super(prefs);
+	public TrackListModel(Context context, TrackDB db, CompactListPref compactListPref) {
+		super(compactListPref);
 		this.context = context;
 		this.db = db;
 	}

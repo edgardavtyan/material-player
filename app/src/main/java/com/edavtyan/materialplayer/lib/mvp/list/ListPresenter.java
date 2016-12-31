@@ -13,6 +13,10 @@ public abstract class ListPresenter<VH>
 		this.view = view;
 	}
 
+	@Override public void onUpdateCompactMode() {
+
+	}
+
 	@Override
 	public boolean isCompactModeEnabled() {
 		return model.isCompactModeEnabled();

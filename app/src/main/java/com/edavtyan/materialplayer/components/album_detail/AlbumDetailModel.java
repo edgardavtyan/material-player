@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			ArtProvider artProvider,
-			AdvancedSharedPrefs prefs,
+			CompactListPref prefs,
 			int albumId) {
 		super(context, trackDB, prefs);
 		this.albumDB = albumDB;

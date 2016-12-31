@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.track_all;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
-public class TrackListFactory extends BaseFactory {
+public class TrackListFactory extends ListFactory {
 	private final TrackListMvp.View view;
 	private TrackListModel model;
 	private TrackDB trackDB;
@@ -23,7 +23,7 @@ public class TrackListFactory extends BaseFactory {
 
 	public TrackListMvp.Model provideModel() {
 		if (model == null)
-			model = new TrackListModel(provideContext(), provideTrackDB(), providePrefs());
+			model = new TrackListModel(provideContext(), provideTrackDB(), provideCompactListPref());
 		return model;
 	}
 

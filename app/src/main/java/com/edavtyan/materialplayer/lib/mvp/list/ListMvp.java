@@ -16,6 +16,7 @@ public interface ListMvp {
 		int getItemCount();
 		void onCreate();
 		void onDestroy();
+		void onUpdateCompactMode();
 		boolean isCompactModeEnabled();
 	}
 

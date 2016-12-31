@@ -2,8 +2,8 @@ package com.edavtyan.materialplayer.components.artist_all;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ public class ArtistListModel
 	private final ArtistDB db;
 	private List<Artist> artists;
 
-	public ArtistListModel(ArtistDB db, AdvancedSharedPrefs prefs) {
-		super(prefs);
+	public ArtistListModel(ArtistDB db, CompactListPref compactListPref) {
+		super(compactListPref);
 		this.db = db;
 	}
 

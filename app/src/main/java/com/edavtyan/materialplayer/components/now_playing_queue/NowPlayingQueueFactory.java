@@ -2,9 +2,9 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
-public class NowPlayingQueueFactory extends BaseFactory {
+public class NowPlayingQueueFactory extends ListFactory {
 	private final NowPlayingQueueMvp.View view;
 	private NowPlayingQueueModel model;
 	private NowPlayingQueuePresenter presenter;
@@ -21,7 +21,7 @@ public class NowPlayingQueueFactory extends BaseFactory {
 
 	public NowPlayingQueueMvp.Model provideModel() {
 		if (model == null)
-			model = new NowPlayingQueueModel(provideContext(), providePrefs());
+			model = new NowPlayingQueueModel(provideContext(), provideCompactListPref());
 		return model;
 	}
 

@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.artist_all;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
-public class ArtistListFactory extends BaseFactory {
+public class ArtistListFactory extends ListFactory {
 	private final ArtistListMvp.View view;
 	private ArtistListModel model;
 	private ArtistDB artistDB;
@@ -22,7 +22,7 @@ public class ArtistListFactory extends BaseFactory {
 	}
 
 	public ArtistListMvp.Model provideModel() {
-		if (model == null) model = new ArtistListModel(provideArtistDB(), providePrefs());
+		if (model == null) model = new ArtistListModel(provideArtistDB(), provideCompactListPref());
 		return model;
 	}
 

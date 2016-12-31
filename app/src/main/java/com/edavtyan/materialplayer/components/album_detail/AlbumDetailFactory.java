@@ -2,9 +2,9 @@ package com.edavtyan.materialplayer.components.album_detail;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
-public class AlbumDetailFactory extends BaseFactory {
+public class AlbumDetailFactory extends ListFactory {
 	private final AlbumDetailMvp.View view;
 	private final int albumId;
 	private AlbumDetailAdapter adapter;
@@ -30,7 +30,7 @@ public class AlbumDetailFactory extends BaseFactory {
 					provideAlbumDB(),
 					provideTrackDB(),
 					provideArtProvider(),
-					providePrefs(),
+					provideCompactListPref(),
 					albumId);
 
 		return model;

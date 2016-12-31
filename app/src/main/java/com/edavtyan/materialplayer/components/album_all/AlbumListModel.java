@@ -10,8 +10,8 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.List;
 
@@ -25,8 +25,8 @@ public class AlbumListModel
 	private List<Album> albums;
 	private PlayerService service;
 
-	public AlbumListModel(Context context, AlbumDB albumDB, TrackDB trackDB, AdvancedSharedPrefs prefs) {
-		super(prefs);
+	public AlbumListModel(Context context, AlbumDB albumDB, TrackDB trackDB, CompactListPref compactListPref) {
+		super(compactListPref);
 		this.context = context;
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;

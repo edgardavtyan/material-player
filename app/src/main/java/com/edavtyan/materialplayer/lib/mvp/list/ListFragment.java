@@ -36,6 +36,11 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 		return view;
 	}
 
+	@Override public void onResume() {
+		super.onResume();
+		presenter.onUpdateCompactMode();
+	}
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();

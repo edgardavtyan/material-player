@@ -2,13 +2,13 @@ package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
-import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 			ArtistDB artistDB,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			AdvancedSharedPrefs prefs,
+			CompactListPref compactListPref,
 			String artistTitle) {
-		super(context, albumDB, trackDB, prefs);
+		super(context, albumDB, trackDB, compactListPref);
 		this.artistDB = artistDB;
 		this.albumDB = albumDB;
 		this.artistTitle = artistTitle;

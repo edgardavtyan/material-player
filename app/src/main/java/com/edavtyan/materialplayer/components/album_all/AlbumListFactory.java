@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
-public class AlbumListFactory extends BaseFactory {
+public class AlbumListFactory extends ListFactory {
 	private final AlbumListMvp.View view;
 	private AlbumListModel model;
 	private AlbumListPresenter presenter;
@@ -29,7 +29,7 @@ public class AlbumListFactory extends BaseFactory {
 					provideContext(),
 					provideAlbumDB(),
 					provideTrackDB(),
-					providePrefs());
+					provideCompactListPref());
 		return model;
 	}
 

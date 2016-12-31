@@ -7,8 +7,8 @@ import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import lombok.Setter;
 
@@ -18,8 +18,8 @@ public class NowPlayingQueueModel extends ListModel implements NowPlayingQueueMv
 
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
-	public NowPlayingQueueModel(Context context, AdvancedSharedPrefs prefs) {
-		super(prefs);
+	public NowPlayingQueueModel(Context context, CompactListPref compactListPref) {
+		super(compactListPref);
 		this.context = context;
 	}
 
@@ -57,7 +57,7 @@ public class NowPlayingQueueModel extends ListModel implements NowPlayingQueueMv
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((PlayerService.PlayerBinder)binder).getService();
+		service = ((PlayerService.PlayerBinder) binder).getService();
 	}
 
 	@Override
