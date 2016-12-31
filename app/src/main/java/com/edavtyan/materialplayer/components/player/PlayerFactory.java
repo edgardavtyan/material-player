@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBo
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.player.receivers.FastForwardReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.RewindReceiver;
@@ -28,6 +29,7 @@ public class PlayerFactory extends BaseFactory {
 	private Equalizer equalizer;
 	private EqualizerPrefs equalizerPrefs;
 	private Surround surround;
+	private SurroundPrefs surroundPrefs;
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
 	private FastForwardReceiver fastForwardReceiver;
@@ -97,8 +99,14 @@ public class PlayerFactory extends BaseFactory {
 		if (surround == null)
 			surround = new StandardSurround(
 					new Virtualizer(0, providePlayer().getSessionId()),
-					providePrefs());
+					provideSurroundPrefs());
 		return surround;
+	}
+
+	public SurroundPrefs provideSurroundPrefs() {
+		if (surroundPrefs == null)
+			surroundPrefs = new SurroundPrefs(providePrefs());
+		return surroundPrefs;
 	}
 
 	public List<Track> provideQueueList() {

@@ -2,20 +2,15 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import android.media.audiofx.Virtualizer;
 
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-
 public class StandardSurround implements Surround {
-	private static final String PREF_STRENGTH = "surround_strength";
-	private static final int DEFAULT_STRENGTH = 0;
-
 	private final Virtualizer virtualizer;
-	private final AdvancedSharedPrefs prefs;
+	private final SurroundPrefs prefs;
 
-	public StandardSurround(Virtualizer virtualizer, AdvancedSharedPrefs prefs) {
+	public StandardSurround(Virtualizer virtualizer, SurroundPrefs prefs) {
 		this.prefs = prefs;
 		this.virtualizer = virtualizer;
 		this.virtualizer.setEnabled(true);
-		setStrength(prefs.getInt(PREF_STRENGTH, DEFAULT_STRENGTH));
+		setStrength(prefs.getStrength());
 	}
 
 	@Override public int getMaxStrength() {
@@ -31,6 +26,6 @@ public class StandardSurround implements Surround {
 	}
 
 	@Override public void saveSettings() {
-		prefs.edit().putInt(PREF_STRENGTH, getStrength()).apply();
+		prefs.save(getStrength());
 	}
 }
