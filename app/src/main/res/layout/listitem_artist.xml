@@ -2,33 +2,19 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="?attr/listPreferredItemHeight"
-	android:gravity="center_vertical"
-	android:paddingLeft="?listPreferredItemPaddingLeft"
-	android:paddingStart="?listPreferredItemPaddingLeft"
-	android:paddingRight="?listPreferredItemPaddingRight"
-	android:paddingEnd="?listPreferredItemPaddingRight"
-	android:background="?attr/selectableItemBackground"
-	android:clickable="true"
-	android:focusable="true"
-	android:orientation="vertical"
+	style="@style/listitem_container"
 	>
 
 	<TextView
 		android:id="@+id/title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:text="Artist Name"
 		style="@style/listitem_primary"
+		tools:text="Artist Name"
 		/>
 
 	<TextView
 		android:id="@+id/info"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:text="Artist Info"
 		style="@style/listitem_secondary"
+		tools:text="Artist Info"
 		/>
 
 </LinearLayout>
