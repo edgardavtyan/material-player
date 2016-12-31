@@ -1,51 +1,39 @@
 package com.edavtyan.materialplayer.components.album_all;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
 
 public class AlbumListAdapter
-		extends TestableRecyclerAdapter<AlbumListViewHolder>
+		extends ListAdapter<AlbumListViewHolder>
 		implements AlbumListViewHolder.OnHolderClickListener,
 				   AlbumListViewHolder.OnHolderMenuItemClickListener {
 
-	private final Context context;
 	private final AlbumListMvp.Presenter presenter;
 
 	public AlbumListAdapter(Context context, AlbumListMvp.Presenter presenter) {
-		this.context = context;
+		super(context, presenter);
 		this.presenter = presenter;
 	}
 
 	@Override
-	public AlbumListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(viewType, parent, false);
+	public int getNormalLayoutId() {
+		return R.layout.listitem_album;
+	}
 
+	@Override
+	public int getCompactLayoutId() {
+		return R.layout.listitem_album_compact;
+	}
+
+	@Override
+	public AlbumListViewHolder onCreateViewHolder(Context context, View view) {
 		AlbumListViewHolder holder = new AlbumListViewHolder(context, view);
 		holder.setOnHolderClickListener(this);
 		holder.setOnHolderMenuItemClickListener(this);
 		return holder;
-	}
-
-	@Override
-	public void onBindViewHolder(AlbumListViewHolder holder, int position) {
-		presenter.onBindViewHolder(holder, position);
-	}
-
-	@Override
-	public int getItemCount() {
-		return presenter.getItemCount();
-	}
-
-	@Override public int getItemViewType(int position) {
-		return presenter.isCompactModeEnabled()
-				? R.layout.listitem_album_compact
-				: R.layout.listitem_album;
 	}
 
 	@Override

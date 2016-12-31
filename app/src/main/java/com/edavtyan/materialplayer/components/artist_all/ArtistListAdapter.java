@@ -1,48 +1,37 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
 
 public class ArtistListAdapter
-		extends RecyclerView.Adapter<ArtistListViewHolder>
+		extends ListAdapter<ArtistListViewHolder>
 		implements ArtistListViewHolder.OnHolderClickListener {
 
 	private final ArtistListMvp.Presenter presenter;
-	private final Context context;
 
 	public ArtistListAdapter(Context context, ArtistListMvp.Presenter presenter) {
-		this.context = context;
+		super(context, presenter);
 		this.presenter = presenter;
 	}
 
 	@Override
-	public ArtistListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(viewType, parent, false);
+	public int getNormalLayoutId() {
+		return R.layout.listitem_artist;
+	}
+
+	@Override
+	public int getCompactLayoutId() {
+		return R.layout.listitem_artist_compact;
+	}
+
+	@Override
+	public ArtistListViewHolder onCreateViewHolder(Context context, View view) {
 		ArtistListViewHolder holder = new ArtistListViewHolder(context, view);
 		holder.setOnHolderClickListener(this);
 		return holder;
-	}
-
-	@Override
-	public void onBindViewHolder(ArtistListViewHolder holder, int position) {
-		presenter.onBindViewHolder(holder, position);
-	}
-
-	@Override
-	public int getItemCount() {
-		return presenter.getItemCount();
-	}
-
-	@Override public int getItemViewType(int position) {
-		return presenter.isCompactModeEnabled()
-				? R.layout.listitem_artist_compact
-				: R.layout.listitem_artist;
 	}
 
 	@Override
