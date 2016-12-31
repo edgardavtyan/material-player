@@ -24,13 +24,11 @@ public abstract class BooleanPref implements SharedPreferences.OnSharedPreferenc
 
 	protected abstract int getKeyId();
 	protected abstract int getDefaultValueId();
-	protected abstract void onPrefChanged(boolean value);
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		if (this.key.equals(key)) {
 			value = prefs.getBoolean(key, defaultValue);
-			onPrefChanged(value);
 		}
 	}
 }

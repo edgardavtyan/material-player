@@ -15,10 +15,17 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 	protected RecyclerView.Adapter adapter;
 	protected TPresenter presenter;
 
+	protected boolean isCompactModeEnabled;
+
 	protected void initListView(TPresenter presenter, RecyclerView.Adapter adapter) {
 		this.presenter = presenter;
 		this.adapter = adapter;
 		presenter.onCreate();
+	}
+
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 	}
 
 	@Nullable
@@ -36,7 +43,8 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 		return view;
 	}
 
-	@Override public void onResume() {
+	@Override
+	public void onResume() {
 		super.onResume();
 		presenter.onUpdateCompactMode();
 	}

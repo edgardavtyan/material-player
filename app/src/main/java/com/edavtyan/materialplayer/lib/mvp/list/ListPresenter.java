@@ -1,20 +1,19 @@
 package com.edavtyan.materialplayer.lib.mvp.list;
 
-public abstract class ListPresenter<VH>
-		implements ListMvp.Presenter<VH>,
-				   ListMvp.Model.OnCompactModeChangedListener {
+public abstract class ListPresenter<VH> implements ListMvp.Presenter<VH> {
 
 	private final ListMvp.Model model;
 	private final ListMvp.View view;
+	private boolean isCompactModeEnabled;
 
 	public ListPresenter(ListMvp.Model model, ListMvp.View view) {
 		this.model = model;
-		this.model.setOnCompactModeChangedListener(this);
 		this.view = view;
 	}
 
-	@Override public void onUpdateCompactMode() {
-
+	@Override
+	public void onCreate() {
+		isCompactModeEnabled = model.isCompactModeEnabled();
 	}
 
 	@Override
@@ -22,7 +21,11 @@ public abstract class ListPresenter<VH>
 		return model.isCompactModeEnabled();
 	}
 
-	@Override public void onCompactModeChanged() {
-		view.notifyDataSetChanged();
+	@Override
+	public void onUpdateCompactMode() {
+		if (isCompactModeEnabled != model.isCompactModeEnabled()) {
+			isCompactModeEnabled = model.isCompactModeEnabled();
+			view.notifyDataSetChanged();
+		}
 	}
 }
