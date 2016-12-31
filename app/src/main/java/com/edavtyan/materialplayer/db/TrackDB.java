@@ -56,7 +56,7 @@ public class TrackDB {
 
 	public List<Track> getTracksWithAlbumId(int albumId) {
 		String selection = KEY_ALBUM_ID + "=?";
-		String[] args = { Integer.toString(albumId) };
+		String[] args = {Integer.toString(albumId)};
 		return getListOfTracks(selection, args, KEY_TRACK);
 	}
 
@@ -80,7 +80,8 @@ public class TrackDB {
 	}
 
 	private List<Track> getListOfTracks(String selection, String[] args, String sort) {
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
 		List<Track> tracks = new ArrayList<>();
 
 		while (cursor.moveToNext()) {

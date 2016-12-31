@@ -70,9 +70,14 @@ public class AlbumDB {
 	}
 
 	private List<Album> getListOfAlbums(String selection, String[] args, String order) {
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order);
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order);
 		List<Album> albums = new ArrayList<>();
-		while (cursor.moveToNext()) albums.add(getAlbumFromCursor(cursor));
+
+		while (cursor.moveToNext()) {
+			albums.add(getAlbumFromCursor(cursor));
+		}
+
 		return albums;
 	}
 }

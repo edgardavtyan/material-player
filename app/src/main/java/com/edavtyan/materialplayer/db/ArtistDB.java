@@ -34,7 +34,8 @@ public class ArtistDB {
 	}
 
 	public List<Artist> getAllArtists() {
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, null, null, KEY_TITLE);
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, null, null, KEY_TITLE);
 		List<Artist> artists = new ArrayList<>();
 
 		while (cursor.moveToNext()) {
