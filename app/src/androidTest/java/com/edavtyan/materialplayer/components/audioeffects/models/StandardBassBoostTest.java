@@ -12,14 +12,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StandardBassBoostTest extends BaseTest {
 	private BassBoost baseBassBoost;
-	private AdvancedSharedPrefs prefs;
+	private AdvancedSharedPrefs basePrefs;
+	private BassBoostPrefs prefs;
 	private StandardBassBoost bassBoost;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		baseBassBoost = new BassBoost(0, 0);
-		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		prefs = new BassBoostPrefs(basePrefs);
 		bassBoost = new StandardBassBoost(baseBassBoost, prefs);
+	}
+
+	@Override public void afterEach() {
+		super.afterEach();
+		basePrefs.edit().clear().commit();
 	}
 
 	@Test
@@ -30,7 +38,7 @@ public class StandardBassBoostTest extends BaseTest {
 
 	@Test
 	public void constructor_setBassBoostStrengthFromSettings() {
-		prefs.edit().putInt(StandardBassBoost.PREF_STRENGTH, 123).apply();
+		prefs.save(123);
 		bassBoost = new StandardBassBoost(baseBassBoost, prefs);
 		assertThat(baseBassBoost.getRoundedStrength()).isEqualTo((short) 123);
 		assertThat(bassBoost.getStrength()).isEqualTo(123);
@@ -56,6 +64,6 @@ public class StandardBassBoostTest extends BaseTest {
 	public void saveSettings_saveStrengthToPrefs() {
 		bassBoost.setStrength(456);
 		bassBoost.saveSettings();
-		assertThat(prefs.getInt(StandardBassBoost.PREF_STRENGTH, 0)).isEqualTo(456);
+		assertThat(prefs.getStrength()).isEqualTo(456);
 	}
 }
