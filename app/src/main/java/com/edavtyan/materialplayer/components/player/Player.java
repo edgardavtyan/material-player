@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.player;
 
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public class Player
 				   PlayerMvp.AudioEngine.OnCompletedListener {
 
 	private final PlayerMvp.AudioEngine audioEngine;
-	private final AdvancedSharedPrefs prefs;
+	private final PlayerPrefs prefs;
 	private final PlayerMvp.Queue queue;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
@@ -20,15 +19,15 @@ public class Player
 	public Player(
 			PlayerMvp.AudioEngine audioEngine,
 			PlayerMvp.Queue queue,
-			AdvancedSharedPrefs prefs) {
+			PlayerPrefs prefs) {
 		this.prefs = prefs;
 		this.audioEngine = audioEngine;
 		this.audioEngine.setOnPreparedListener(this);
 		this.audioEngine.setOnCompletedListener(this);
 
 		this.queue = queue;
-		this.queue.setRepeatMode(prefs.getEnum(PREF_REPEAT_MODE, DEFAULT_REPEAT_MODE));
-		this.queue.setShuffleMode(prefs.getEnum(PREF_SHUFFLE_MODE, DEFAULT_SHUFFLE_MODE));
+		this.queue.setRepeatMode(prefs.getRepeatMode());
+		this.queue.setShuffleMode(prefs.getShuffleMode());
 
 		onNewTrackListeners = new ArrayList<>();
 		onPlayPauseListeners = new ArrayList<>();
@@ -143,12 +142,12 @@ public class Player
 
 	@Override public void toggleShuffleMode() {
 		queue.toggleShuffleMode();
-		prefs.edit().putEnum(PREF_SHUFFLE_MODE, getShuffleMode()).apply();
+		prefs.saveShuffleMode(getShuffleMode());
 	}
 
 	@Override public void toggleRepeatMode() {
 		queue.toggleRepeatMode();
-		prefs.edit().putEnum(PREF_REPEAT_MODE, getRepeatMode()).apply();
+		prefs.saveRepeatMode(getRepeatMode());
 	}
 
 	@Override public void onPrepared() {

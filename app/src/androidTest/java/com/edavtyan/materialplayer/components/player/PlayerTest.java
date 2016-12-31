@@ -24,14 +24,16 @@ import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unchecked")
 public class PlayerTest extends BaseTest {
-	private AdvancedSharedPrefs prefs;
+	private AdvancedSharedPrefs basePrefs;
+	private PlayerPrefs prefs;
 	private PlayerMvp.AudioEngine audioEngine;
 	private PlayerMvp.Queue queue;
 	private PlayerMvp.Player player;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		prefs = new PlayerPrefs(basePrefs);
 		audioEngine = mock(PlayerMvp.AudioEngine.class);
 		queue = mock(PlayerMvp.Queue.class);
 		player = new Player(audioEngine, queue, prefs);
@@ -39,7 +41,7 @@ public class PlayerTest extends BaseTest {
 
 	@Override public void afterEach() {
 		super.afterEach();
-		prefs.edit().clear().commit();
+		basePrefs.edit().clear().commit();
 	}
 
 	@Test public void constructor_setDefaultShuffleMode() {
@@ -51,17 +53,13 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test public void constructor_setShuffleModeFromPrefs() {
-		prefs.edit()
-				.putString(PlayerMvp.Player.PREF_SHUFFLE_MODE, ShuffleMode.ENABLED.name())
-				.commit();
+		prefs.saveShuffleMode(ShuffleMode.ENABLED);
 		player = new Player(audioEngine, queue, prefs);
 		verify(queue).setShuffleMode(ShuffleMode.ENABLED);
 	}
 
 	@Test public void constructor_setRepeatModeFromPrefs() {
-		prefs.edit()
-				.putString(PlayerMvp.Player.PREF_REPEAT_MODE, RepeatMode.REPEAT_ALL.name())
-				.commit();
+		prefs.saveRepeatMode(RepeatMode.REPEAT_ALL);
 		player = new Player(audioEngine, queue, prefs);
 		verify(queue).setRepeatMode(RepeatMode.REPEAT_ALL);
 	}
@@ -180,8 +178,7 @@ public class PlayerTest extends BaseTest {
 	@Test public void toggleShuffleMode_saveShuffleMode() {
 		when(queue.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
 		player.toggleShuffleMode();
-		assertThat(prefs.getEnum(PlayerMvp.Player.PREF_SHUFFLE_MODE, ShuffleMode.DISABLED))
-				.isEqualTo(ShuffleMode.ENABLED);
+		assertThat(prefs.getShuffleMode()).isEqualTo(ShuffleMode.ENABLED);
 	}
 
 	@Test public void getRepeatMode_returnModeFromQueue() {
@@ -197,8 +194,7 @@ public class PlayerTest extends BaseTest {
 	@Test public void toggleRepeatMode_saveRepeatMode() {
 		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		player.toggleRepeatMode();
-		assertThat(prefs.getEnum(PlayerMvp.Player.PREF_REPEAT_MODE, RepeatMode.DISABLED))
-				.isEqualTo(RepeatMode.REPEAT_ALL);
+		assertThat(prefs.getRepeatMode()).isEqualTo(RepeatMode.REPEAT_ALL);
 	}
 
 	@Test public void getCurrentTrack_returnTrackFromQueue() {

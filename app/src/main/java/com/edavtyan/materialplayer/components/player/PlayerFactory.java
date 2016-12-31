@@ -32,6 +32,7 @@ public class PlayerFactory extends BaseFactory {
 	private SurroundPrefs surroundPrefs;
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
+	private PlayerPrefs playerPrefs;
 	private FastForwardReceiver fastForwardReceiver;
 	private RewindReceiver rewindReceiver;
 	private PlayPauseReceiver playPauseReceiver;
@@ -63,8 +64,14 @@ public class PlayerFactory extends BaseFactory {
 			player = new Player(
 					provideAudioEngine(),
 					provideQueue(),
-					providePrefs());
+					providePlayerPrefs());
 		return player;
+	}
+
+	public PlayerPrefs providePlayerPrefs() {
+		if (playerPrefs == null)
+			playerPrefs = new PlayerPrefs(providePrefs());
+		return playerPrefs;
 	}
 
 	public Equalizer provideEqualizer() {
