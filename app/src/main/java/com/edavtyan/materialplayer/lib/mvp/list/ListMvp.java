@@ -10,4 +10,16 @@ public interface ListMvp {
 
 		boolean isCompactModeEnabled();
 	}
+
+	interface Presenter<VH> {
+		void onBindViewHolder(VH holder, int position);
+		int getItemCount();
+		void onCreate();
+		void onDestroy();
+		boolean isCompactModeEnabled();
+	}
+
+	interface View {
+		void notifyDataSetChanged();
+	}
 }

@@ -1,17 +1,18 @@
 package com.edavtyan.materialplayer.components.album_all;
 
 import com.edavtyan.materialplayer.db.Album;
+import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 public class AlbumListPresenter
-		implements AlbumListMvp.Presenter,
-				   AlbumListMvp.Model.OnCompactModeChangedListener {
+		extends ListPresenter<AlbumListViewHolder>
+		implements AlbumListMvp.Presenter {
 
 	private final AlbumListMvp.Model model;
 	private final AlbumListMvp.View view;
 
 	public AlbumListPresenter(AlbumListMvp.Model model, AlbumListMvp.View view) {
+		super(model, view);
 		this.model = model;
-		this.model.setOnCompactModeChangedListener(this);
 		this.view = view;
 	}
 
@@ -41,11 +42,6 @@ public class AlbumListPresenter
 	}
 
 	@Override
-	public boolean isCompactModeEnabled() {
-		return model.isCompactModeEnabled();
-	}
-
-	@Override
 	public void onCreate() {
 		model.update();
 		model.bindService();
@@ -54,9 +50,5 @@ public class AlbumListPresenter
 	@Override
 	public void onDestroy() {
 		model.unbindService();
-	}
-
-	@Override public void onCompactModeChanged() {
-		view.notifyDataSetChanged();
 	}
 }

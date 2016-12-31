@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
 
-public abstract class ListFragment<TPresenter extends ListPresenter> extends BaseFragment {
+public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends BaseFragment {
 	protected RecyclerView.Adapter adapter;
 	protected TPresenter presenter;
 

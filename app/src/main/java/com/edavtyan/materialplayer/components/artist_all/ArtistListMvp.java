@@ -2,13 +2,11 @@ package com.edavtyan.materialplayer.components.artist_all;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
-import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 @SuppressWarnings("unused")
 public interface ArtistListMvp {
-	interface Presenter extends ListPresenter<ArtistListViewHolder> {
+	interface Presenter extends ListMvp.Presenter<ArtistListViewHolder> {
 		void onHolderClick(int position);
-		boolean isCompactModeEnabled();
 	}
 
 	interface Model extends ListMvp.Model {
@@ -17,8 +15,7 @@ public interface ArtistListMvp {
 		void update();
 	}
 
-	interface View {
+	interface View extends ListMvp.View {
 		void goToArtistDetail(String title);
-		void notifyDataSetChanged();
 	}
 }

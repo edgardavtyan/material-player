@@ -1,17 +1,18 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
 import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 public class ArtistListPresenter
-		implements ArtistListMvp.Presenter,
-				   ArtistListMvp.Model.OnCompactModeChangedListener {
+		extends ListPresenter<ArtistListViewHolder>
+		implements ArtistListMvp.Presenter {
 
 	private final ArtistListMvp.Model model;
 	private final ArtistListMvp.View view;
 
 	public ArtistListPresenter(ArtistListMvp.Model model, ArtistListMvp.View view) {
+		super(model, view);
 		this.model = model;
-		this.model.setOnCompactModeChangedListener(this);
 		this.view = view;
 	}
 
@@ -40,15 +41,5 @@ public class ArtistListPresenter
 	public void onHolderClick(int position) {
 		Artist artist = model.getArtistAtIndex(position);
 		view.goToArtistDetail(artist.getTitle());
-	}
-
-	@Override
-	public boolean isCompactModeEnabled() {
-		return model.isCompactModeEnabled();
-	}
-
-	@Override
-	public void onCompactModeChanged() {
-		view.notifyDataSetChanged();
 	}
 }

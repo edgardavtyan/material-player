@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.track_all;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
-import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
 @SuppressWarnings("unused")
 public interface TrackListMvp {
@@ -17,14 +16,12 @@ public interface TrackListMvp {
 		void close();
 	}
 
-	interface Presenter extends ListPresenter<TrackListViewHolder> {
+	interface Presenter extends ListMvp.Presenter<TrackListViewHolder> {
 		void onHolderClick(int position);
 		void onAddToPlaylist(int position);
-		boolean isCompactModeEnabled();
 	}
 
-	interface View {
+	interface View extends ListMvp.View {
 		void goToNowPlaying();
-		void notifyDataSetChanged();
 	}
 }
