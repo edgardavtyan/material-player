@@ -7,15 +7,23 @@ import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 public interface ArtistListMvp {
 	interface Presenter extends ListPresenter<ArtistListViewHolder> {
 		void onHolderClick(int position);
+		boolean isCompactModeEnabled();
 	}
 
 	interface Model {
+		interface OnCompactListsPrefChangedListener {
+			void onCompactListsPrefChanged(boolean isCompactListsEnabled);
+		}
+
+		void setOnCompactListsPrefChangedListener(OnCompactListsPrefChangedListener listener);
 		int getArtistCount();
 		Artist getArtistAtIndex(int position);
+		boolean isCompactListsEnabled();
 		void update();
 	}
 
 	interface View {
 		void goToArtistDetail(String title);
+		void notifyDataSetChanged();
 	}
 }

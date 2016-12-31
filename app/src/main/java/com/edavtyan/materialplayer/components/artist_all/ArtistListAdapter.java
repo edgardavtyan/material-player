@@ -23,8 +23,7 @@ public class ArtistListAdapter
 	@Override
 	public ArtistListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.listitem_artist, parent, false);
-
+		View view = inflater.inflate(viewType, parent, false);
 		ArtistListViewHolder holder = new ArtistListViewHolder(context, view);
 		holder.setOnHolderClickListener(this);
 		return holder;
@@ -38,6 +37,12 @@ public class ArtistListAdapter
 	@Override
 	public int getItemCount() {
 		return presenter.getItemCount();
+	}
+
+	@Override public int getItemViewType(int position) {
+		return presenter.isCompactModeEnabled()
+				? R.layout.listitem_artist_compact
+				: R.layout.listitem_artist;
 	}
 
 	@Override
