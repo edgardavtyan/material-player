@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.artist_all;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class ArtistListModelTests extends BaseTest {
 		artists = mock(List.class);
 		when(db.getAllArtists()).thenReturn(artists);
 
-		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
+		CompactListPref prefs = mock(CompactListPref.class);
 
 		model = new ArtistListModel(db, prefs);
 	}

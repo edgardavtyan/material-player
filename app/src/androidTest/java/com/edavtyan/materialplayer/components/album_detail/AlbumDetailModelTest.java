@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 
@@ -28,7 +28,7 @@ public class AlbumDetailModelTest extends BaseTest {
 
 		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
 		AlbumDB albumDB = mock(AlbumDB.class);
-		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
+		CompactListPref prefs = mock(CompactListPref.class);
 		trackDB = mock(TrackDB.class);
 		artProvider = mock(ArtProvider.class);
 

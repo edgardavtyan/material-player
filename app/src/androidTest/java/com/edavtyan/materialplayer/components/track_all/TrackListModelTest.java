@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -43,7 +43,7 @@ public class TrackListModelTest extends BaseTest {
 		TrackDB db = mock(TrackDB.class);
 		when(db.getAllTracks()).thenReturn(tracks);
 
-		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
+		CompactListPref prefs = mock(CompactListPref.class);
 
 		model = spy(new TrackListModel(mockContext, db, prefs));
 
