@@ -17,7 +17,40 @@
 		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 	</style>
 
-	<style name="listitem_primary">
+	<style name="listitem_menuContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?listPreferredItemHeight</item>
+		<item name="android:background">?selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+	<style name="listitem_menuContainer.compact">
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="listitem_infoContainer">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:paddingLeft">?listPreferredItemPaddingLeft</item>
+		<item name="android:paddingRight">?listPreferredItemPaddingRight</item>
+	</style>
+
+	<style name="listitem_albumArt">
+		<item name="android:layout_width">?listPreferredItemHeight</item>
+		<item name="android:layout_height">?listPreferredItemHeight</item>
+	</style>
+
+	<style name="listitem_albumArt.compact">
+		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="listitem_title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:singleLine">true</item>
@@ -26,15 +59,24 @@
 		<item name="android:textSize">@dimen/font_normal</item>
 	</style>
 
-	<style name="listitem_secondary" parent="listitem_primary">
+	<style name="listitem_info" parent="listitem_title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textColor">?textColorSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
 	</style>
 
-	<style name="listitem_secondary.compact">
+	<style name="listitem_info.compact">
 		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="listitem_menu">
+		<item name="android:layout_width">@dimen/size_medium</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:src">@drawable/ic_more_vert</item>
+		<item name="android:background">@drawable/ripple_base</item>
+		<item name="android:contentDescription">@string/description_moreActions</item>
+		<item name="android:tint">?textColorPrimary</item>
 	</style>
 
 </resources>

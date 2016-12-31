@@ -7,13 +7,13 @@
 
 	<TextView
 		android:id="@+id/title"
-		style="@style/listitem_primary"
+		style="@style/listitem_title"
 		tools:text="Artist Name"
 		/>
 
 	<TextView
 		android:id="@+id/info"
-		style="@style/listitem_secondary.compact"
+		style="@style/listitem_info.compact"
 		tools:text="Artist Info"
 		/>
 

@@ -2,20 +2,20 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/listitem_album_container.compact"
+	style="@style/listitem_menuContainer.compact"
 	>
 
-	<LinearLayout style="@style/listitem_album_infoContainer">
+	<LinearLayout style="@style/listitem_infoContainer">
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/listitem_album_primary"
+			style="@style/listitem_title"
 			tools:text="Track title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/listitem_album_secondary.compact"
+			style="@style/listitem_info.compact"
 			tools:text="Album title - 3:35"
 			/>
 
@@ -23,7 +23,7 @@
 
 	<ImageButton
 		android:id="@+id/menu"
-		style="@style/listitem_album_menu"
+		style="@style/listitem_menu"
 		/>
 
 </LinearLayout>
