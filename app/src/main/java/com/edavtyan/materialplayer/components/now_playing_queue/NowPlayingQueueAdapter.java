@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
+import com.edavtyan.materialplayer.R;
+
 public class NowPlayingQueueAdapter extends TestableRecyclerAdapter<NowPlayingQueueViewHolder>
 		implements NowPlayingQueueViewHolder.OnHolderClickListener,
 				   NowPlayingQueueViewHolder.OnMenuClickListener {
