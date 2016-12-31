@@ -5,6 +5,7 @@ import android.media.audiofx.Virtualizer;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
@@ -23,6 +24,7 @@ public class PlayerFactory extends BaseFactory {
 	private Queue queue;
 	private BassBoost bassBoost;
 	private Equalizer equalizer;
+	private EqualizerPrefs equalizerPrefs;
 	private Surround surround;
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
@@ -65,8 +67,14 @@ public class PlayerFactory extends BaseFactory {
 		if (equalizer == null)
 			equalizer = new StandardEqualizer(
 					new android.media.audiofx.Equalizer(0, providePlayer().getSessionId()),
-					providePrefs());
+					provideEqualizerPrefs());
 		return equalizer;
+	}
+
+	public EqualizerPrefs provideEqualizerPrefs() {
+		if (equalizerPrefs == null)
+			equalizerPrefs = new EqualizerPrefs(providePrefs());
+		return equalizerPrefs;
 	}
 
 	public BassBoost provideBassBoost() {

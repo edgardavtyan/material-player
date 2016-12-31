@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import android.annotation.SuppressLint;
 import android.media.audiofx.Equalizer;
 import android.preference.PreferenceManager;
 
@@ -9,27 +10,33 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 public class StandardEqualizerTest extends BaseTest {
-	private AdvancedSharedPrefs prefs;
+	private AdvancedSharedPrefs basePrefs;
+	private EqualizerPrefs prefs;
 	private Equalizer baseEqualizer;
 	private StandardEqualizer equalizer;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
 
-		prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		prefs = spy(new EqualizerPrefs(basePrefs));
 		baseEqualizer = new Equalizer(0, 0);
 		equalizer = new StandardEqualizer(baseEqualizer, prefs);
 	}
 
+	@SuppressLint("CommitPrefEdits")
 	@Override public void afterEach() {
 		super.afterEach();
-		prefs.edit().clear().commit();
+		basePrefs.edit().clear().commit();
 	}
 
 	@Test public void constructor_initFrequencies() {
-		int[] frequencies = new int[]{60, 230, 910, 3600, 14000};
+		int[] frequencies = new int[]{14000, 3600, 910, 230, 60};
 		assertThat(equalizer.getFrequencies()).containsExactly(frequencies);
 	}
 
@@ -38,9 +45,9 @@ public class StandardEqualizerTest extends BaseTest {
 	}
 
 	@Test public void constructor_gainsPreviouslySet_initGainsFromPrefs() {
-		prefs.edit().putIntArray(StandardEqualizer.PREF_GAINS, new int[]{1,2,3,4,5}).commit();
+		when(prefs.getGains(anyInt())).thenReturn(new int[]{1, 2, 3, 4, 5});
 		equalizer = new StandardEqualizer(baseEqualizer, prefs);
-		assertThat(equalizer.getGains()).containsExactly(1,2,3,4,5);
+		assertThat(equalizer.getGains()).containsExactly(1, 2, 3, 4, 5);
 	}
 
 	@Test public void getBandsCount_correctBandsCount() {

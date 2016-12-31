@@ -1,23 +1,18 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-
 public class StandardEqualizer implements Equalizer {
-	public static final String PREF_GAINS = "equalizer_gains";
-	public static final String PREF_ENABLED = "equalizer_enabled";
-
 	private final android.media.audiofx.Equalizer equalizer;
-	private final AdvancedSharedPrefs prefs;
+	private final EqualizerPrefs prefs;
 
 	private final int bandsCount;
 	private final int[] frequencies;
 	private final int[] gains;
 
-	public StandardEqualizer(android.media.audiofx.Equalizer equalizer, AdvancedSharedPrefs prefs) {
+	public StandardEqualizer(android.media.audiofx.Equalizer equalizer, EqualizerPrefs prefs) {
 		this.equalizer = equalizer;
 		this.prefs = prefs;
 
-		setEnabled(prefs.getBoolean(PREF_ENABLED, false));
+		setEnabled(prefs.getEnabled());
 
 		bandsCount = equalizer.getNumberOfBands();
 
@@ -27,7 +22,7 @@ public class StandardEqualizer implements Equalizer {
 			frequencies[i] = equalizer.getCenterFreq((short) reverseIndex) / 1000;
 		}
 
-		gains = prefs.getIntArray(PREF_GAINS, bandsCount);
+		gains = prefs.getGains(bandsCount);
 		for (int i = 0; i < bandsCount; i++) {
 			equalizer.setBandLevel((short) i, (short) gains[i]);
 		}
@@ -52,10 +47,7 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override public void saveSettings() {
-		prefs.edit()
-			 .putIntArray(PREF_GAINS, gains)
-			 .putBoolean(PREF_ENABLED, isEnabled())
-			 .apply();
+		prefs.save(gains, isEnabled());
 	}
 
 	@Override public int getGainLimit() {
