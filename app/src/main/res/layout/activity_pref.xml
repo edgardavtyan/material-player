@@ -13,6 +13,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:cp_title="@string/pref_category_appearance"
+		app:cp_color="?colorPrimary"
 		>
 
 		<com.edavtyan.custompreference.simple_list.SimpleListPreference

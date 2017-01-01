@@ -36,7 +36,7 @@ public class PreferenceCategory extends LinearLayout {
 
 		TextView headingView = (TextView) findViewById(R.id.heading);
 		headingView.setTypeface(Typeface.create("sans-serif-medium", 0));
-		headingView.setTextColor(res.getColor(R.attr.colorPrimary));
+		headingView.setTextColor(controller.getColor());
 		headingView.setText(controller.getTitle());
 	}
 }

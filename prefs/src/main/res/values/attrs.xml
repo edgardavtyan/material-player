@@ -47,6 +47,7 @@
 
 	<declare-styleable name="PreferenceCategory">
 		<attr name="cp_title" />
+		<attr name="cp_color" format="color" />
 	</declare-styleable>
 
 	<declare-styleable name="ColorCircleView">
