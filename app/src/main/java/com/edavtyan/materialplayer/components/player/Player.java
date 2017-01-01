@@ -156,6 +156,14 @@ public class Player
 		}
 	}
 
+	@Override public void lowerVolume() {
+		audioEngine.setVolume(0.3f);
+	}
+
+	@Override public void restoreVolume() {
+		audioEngine.setVolume(1.0f);
+	}
+
 	@Override public void onCompleted() {
 		playNext();
 	}

@@ -45,6 +45,10 @@ public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.O
 		}
 	}
 
+	@Override public void setVolume(float volume) {
+		player.setVolume(volume, volume);
+	}
+
 	@Override public long getPosition() {
 		return player.getCurrentPosition();
 	}

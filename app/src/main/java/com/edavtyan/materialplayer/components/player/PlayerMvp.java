@@ -46,6 +46,8 @@ public interface PlayerMvp {
 		void toggleShuffleMode();
 		void toggleRepeatMode();
 		void onPrepared();
+		void lowerVolume();
+		void restoreVolume();
 	}
 
 	interface AudioEngine {
@@ -65,6 +67,7 @@ public interface PlayerMvp {
 		void pause();
 		void playPause();
 		void playTrack(String trackPath);
+		void setVolume(float volume);
 		long getPosition();
 		void setPosition(int position);
 		boolean isPlaying();

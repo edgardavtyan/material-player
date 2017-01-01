@@ -30,6 +30,7 @@ public class PlayerService extends Service {
 
 	private PlayerNotificationMvp.View notification;
 	private PlayerNotificationMvp.Presenter presenter;
+	private AudioFocusManager audioFocusManager;
 	private @Getter PlayerMvp.Player player;
 	private @Getter Equalizer equalizer;
 	private @Getter Surround surround;
@@ -56,6 +57,9 @@ public class PlayerService extends Service {
 		bassBoost = playerFactory.provideBassBoost();
 		surround = playerFactory.provideSurround();
 
+		audioFocusManager = new AudioFocusManager(this, player);
+		audioFocusManager.requestFocus();
+
 		BroadcastReceiver rewindReceiver = playerFactory.provideRewindReceiver();
 		BroadcastReceiver playPauseReceiver = playerFactory.providePlayPauseReceiver();
 		BroadcastReceiver fastForwardReceiver = playerFactory.provideFastForwardReceiver();
@@ -74,5 +78,6 @@ public class PlayerService extends Service {
 	@Override public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();
+		audioFocusManager.dropFocus();
 	}
 }
