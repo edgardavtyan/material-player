@@ -74,10 +74,10 @@ public class NowPlayingPresenterTest extends BaseTest {
 		verify(controls).setIsPlaying(true);
 		verify(info).setTitle("title");
 		verify(info).setInfo("artist", "album");
-		verify(seekbar).setTrackDuration(8000);
-		verify(seekbar).setTrackPositionText(5000);
-		verify(seekbar).setTrackPosition(5000);
-		verify(seekbar).setTrackPositionText(5000);
+		verify(seekbar).setDuration(8000);
+		verify(seekbar).setPositionText(5000);
+		verify(seekbar).setPosition(5000);
+		verify(seekbar).setPositionText(5000);
 		verify(art).setArt(artBitmap);
 	}
 
@@ -97,12 +97,12 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	@Test public void onTrackSeekChanged_setTrackPositionText() {
-		presenter.onTrackSeekChanged(9000);
-		verify(seekbar).setTrackPositionText(9000);
+		presenter.onSeekChanged(9000);
+		verify(seekbar).setPositionText(9000);
 	}
 
 	@Test public void onTrackSeekStop_seekTrack() {
-		presenter.onTrackSeekStop(9000);
+		presenter.onSeekStop(9000);
 		verify(model).seek(9000);
 	}
 
@@ -164,10 +164,10 @@ public class NowPlayingPresenterTest extends BaseTest {
 
 		verify(info).setTitle("title");
 		verify(info).setInfo("artist", "album");
-		verify(seekbar).setTrackPosition(3000);
-		verify(seekbar).setTrackPositionText(3000);
-		verify(seekbar).setTrackDuration(9000);
-		verify(seekbar).setTrackDurationText(9000);
+		verify(seekbar).setPosition(3000);
+		verify(seekbar).setPositionText(3000);
+		verify(seekbar).setDuration(9000);
+		verify(seekbar).setDurationText(9000);
 		verify(art).setArt(artBitmap);
 	}
 }

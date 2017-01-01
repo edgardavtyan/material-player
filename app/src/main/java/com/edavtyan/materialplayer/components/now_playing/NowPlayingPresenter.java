@@ -23,8 +23,8 @@ public class NowPlayingPresenter
 
 		//TODO: find out how to DI this
 		seekbarTimer = new Timer(SEEK_INTERVAL, () -> {
-			view.getSeekbar().setTrackPosition(model.getPosition());
-			view.getSeekbar().setTrackPositionText(model.getPosition());
+			view.getSeekbar().setPosition(model.getPosition());
+			view.getSeekbar().setPositionText(model.getPosition());
 		});
 	}
 
@@ -83,12 +83,12 @@ public class NowPlayingPresenter
 	}
 
 	@Override
-	public void onTrackSeekChanged(int progress) {
-		view.getSeekbar().setTrackPositionText(progress);
+	public void onSeekChanged(int position) {
+		view.getSeekbar().setPositionText(position);
 	}
 
 	@Override
-	public void onTrackSeekStop(int position) {
+	public void onSeekStop(int position) {
 		model.seek(position);
 	}
 
@@ -103,8 +103,8 @@ public class NowPlayingPresenter
 	private void updateViewInfo() {
 		view.getInfo().setTitle(model.getTitle());
 		view.getInfo().setInfo(model.getArtist(), model.getAlbum());
-		view.getSeekbar().setTrackDuration(model.getDuration());
-		view.getSeekbar().setTrackDurationText(model.getDuration());
+		view.getSeekbar().setDuration(model.getDuration());
+		view.getSeekbar().setDurationText(model.getDuration());
 		view.getArt().setArt(model.getArt());
 		view.getControls().setShuffleMode(model.getShuffleMode());
 		view.getControls().setRepeatMode(model.getRepeatMode());

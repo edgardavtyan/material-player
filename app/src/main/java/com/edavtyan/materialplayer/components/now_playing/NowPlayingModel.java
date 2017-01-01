@@ -14,16 +14,19 @@ import com.edavtyan.materialplayer.utils.ArtProvider;
 
 import lombok.Setter;
 
-public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.OnNewTrackListener,
-										PlayerMvp.Player.OnPlayPauseListener {
+public class NowPlayingModel
+		implements NowPlayingMvp.Model,
+				   PlayerMvp.Player.OnNewTrackListener,
+				   PlayerMvp.Player.OnPlayPauseListener {
+
 	private final Context context;
 	private final ArtProvider artProvider;
 
 	private PlayerService service;
 
-	@Setter OnModelBoundListener onModelBoundListener;
-	@Setter OnNewTrackListener onNewTrackListener;
-	@Setter OnPlayPauseListener onPlayPauseListener;
+	private @Setter OnModelBoundListener onModelBoundListener;
+	private @Setter OnNewTrackListener onNewTrackListener;
+	private @Setter OnPlayPauseListener onPlayPauseListener;
 
 	public NowPlayingModel(Context context, ArtProvider artProvider) {
 		this.context = context;
@@ -48,11 +51,6 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	}
 
 	@Override
-	public boolean isPlaying() {
-		return service.getPlayer().isPlaying();
-	}
-
-	@Override
 	public ShuffleMode getShuffleMode() {
 		return service.getPlayer().getShuffleMode();
 	}
@@ -68,8 +66,38 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	}
 
 	@Override
+	public boolean isPlaying() {
+		return service.getPlayer().isPlaying();
+	}
+
+	@Override
 	public void playPause() {
 		service.getPlayer().playPause();
+	}
+
+	@Override
+	public void rewind() {
+		service.getPlayer().rewind();
+	}
+
+	@Override
+	public void fastForward() {
+		service.getPlayer().playNext();
+	}
+
+	@Override
+	public void seek(int positionMS) {
+		service.getPlayer().setPosition(positionMS);
+	}
+
+	@Override
+	public int getDuration() {
+		return (int) service.getPlayer().getCurrentTrack().getDuration();
+	}
+
+	@Override
+	public int getPosition() {
+		return (int) service.getPlayer().getPosition();
 	}
 
 	@Override
@@ -88,33 +116,8 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	}
 
 	@Override
-	public int getDuration() {
-		return (int) service.getPlayer().getCurrentTrack().getDuration();
-	}
-
-	@Override
-	public int getPosition() {
-		return (int) service.getPlayer().getPosition();
-	}
-
-	@Override
 	public Bitmap getArt() {
 		return artProvider.load(service.getPlayer().getCurrentTrack());
-	}
-
-	@Override
-	public void seek(int positionMillis) {
-		service.getPlayer().setPosition(positionMillis);
-	}
-
-	@Override
-	public void rewind() {
-		service.getPlayer().rewind();
-	}
-
-	@Override
-	public void fastForward() {
-		service.getPlayer().playNext();
 	}
 
 	@Override
@@ -131,11 +134,13 @@ public class NowPlayingModel implements NowPlayingMvp.Model, PlayerMvp.Player.On
 	public void onServiceDisconnected(ComponentName name) {
 	}
 
-	@Override public void onNewTrack() {
+	@Override
+	public void onNewTrack() {
 		if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
 	}
 
-	@Override public void onPlayPause() {
+	@Override
+	public void onPlayPause() {
 		if (onPlayPauseListener != null) onPlayPauseListener.onPlayPause();
 	}
 }

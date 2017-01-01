@@ -9,6 +9,6 @@ import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 public class NowPlayingFab implements NowPlayingMvp.View.Fab {
 	public NowPlayingFab(NowPlayingActivity activity, NowPlayingMvp.Presenter presenter) {
 		FloatingActionButton fab = activity.findView(R.id.fab);
-		fab.setOnClickListener((view) -> presenter.onFabClick());
+		fab.setOnClickListener(view -> presenter.onFabClick());
 	}
 }

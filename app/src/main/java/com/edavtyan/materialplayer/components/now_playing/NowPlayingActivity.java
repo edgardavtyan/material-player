@@ -8,14 +8,16 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
+import lombok.Getter;
+
 public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayingMvp.View {
 	private NowPlayingMvp.Presenter presenter;
 	private Navigator navigator;
 
-	private Controls controls;
-	private Info info;
-	private Art art;
-	private Seekbar seekbar;
+	private @Getter Controls controls;
+	private @Getter Info info;
+	private @Getter Art art;
+	private @Getter Seekbar seekbar;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,26 +50,6 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 	@Override
 	protected int getToolbarTitleStringId() {
 		return R.string.nowplaying_toolbar_title;
-	}
-
-	@Override
-	public Controls getControls() {
-		return controls;
-	}
-
-	@Override
-	public Info getInfo() {
-		return info;
-	}
-
-	@Override
-	public Art getArt() {
-		return art;
-	}
-
-	@Override
-	public Seekbar getSeekbar() {
-		return seekbar;
 	}
 
 	@Override

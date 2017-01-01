@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.utils.DurationUtils;
 public class NowPlayingSeekbar
 		implements NowPlayingMvp.View.Seekbar,
 				   SeekBar.OnSeekBarChangeListener {
+
 	private final SeekBar seekbar;
 	private final TextView currentTimeView;
 	private final TextView totalTimeView;
@@ -25,28 +26,28 @@ public class NowPlayingSeekbar
 	}
 
 	@Override
-	public void setTrackPosition(int timeMillis) {
-		seekbar.setProgress(timeMillis);
+	public void setPosition(int timeMS) {
+		seekbar.setProgress(timeMS);
 	}
 
 	@Override
-	public void setTrackPositionText(int timeMillis) {
-		currentTimeView.setText(DurationUtils.toStringUntilHours(timeMillis));
+	public void setPositionText(int timeMS) {
+		currentTimeView.setText(DurationUtils.toStringUntilHours(timeMS));
 	}
 
 	@Override
-	public void setTrackDuration(int durationMillis) {
-		seekbar.setMax(durationMillis);
+	public void setDuration(int durationMS) {
+		seekbar.setMax(durationMS);
 	}
 
 	@Override
-	public void setTrackDurationText(int durationMillis) {
-		totalTimeView.setText(DurationUtils.toStringUntilHours(durationMillis));
+	public void setDurationText(int durationMS) {
+		totalTimeView.setText(DurationUtils.toStringUntilHours(durationMS));
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-		if (fromUser) presenter.onTrackSeekChanged(progress);
+		if (fromUser) presenter.onSeekChanged(progress);
 	}
 
 	@Override
@@ -55,6 +56,6 @@ public class NowPlayingSeekbar
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		presenter.onTrackSeekStop(seekBar.getProgress());
+		presenter.onSeekStop(seekBar.getProgress());
 	}
 }

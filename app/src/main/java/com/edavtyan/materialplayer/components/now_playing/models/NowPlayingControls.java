@@ -28,17 +28,17 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		shuffleButton = activity.findView(R.id.shuffle);
 		shuffleButton.setOnClickListener(this);
 
-		TestableImageButton rewindButton = activity.findView(R.id.rewind);
-		rewindButton.setOnClickListener(this);
+		repeatButton = activity.findView(R.id.repeat);
+		repeatButton.setOnClickListener(this);
 
 		playPauseButton = activity.findView(R.id.playPause);
 		playPauseButton.setOnClickListener(this);
 
+		TestableImageButton rewindButton = activity.findView(R.id.rewind);
+		rewindButton.setOnClickListener(this);
+
 		TestableImageButton fastForwardButton = activity.findView(R.id.fastForward);
 		fastForwardButton.setOnClickListener(this);
-
-		repeatButton = activity.findView(R.id.repeat);
-		repeatButton.setOnClickListener(this);
 	}
 
 	@Override

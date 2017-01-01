@@ -25,7 +25,7 @@ public class NowPlayingInfo implements NowPlayingMvp.View.Info {
 
 	@Override
 	public void setInfo(String artist, String album) {
-		String info = activity.getResources().getString(R.string.nowplaying_info_pattern, artist, album);
+		String info = activity.getString(R.string.nowplaying_info_pattern, artist, album);
 		infoView.setText(info);
 	}
 }

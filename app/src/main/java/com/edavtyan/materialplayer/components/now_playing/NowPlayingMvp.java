@@ -7,7 +7,6 @@ import android.widget.SeekBar;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 
-@SuppressWarnings("unused")
 public interface NowPlayingMvp {
 	interface Model extends ServiceConnection {
 		interface OnModelBoundListener {
@@ -34,15 +33,15 @@ public interface NowPlayingMvp {
 		void toggleShuffleMode();
 		boolean isPlaying();
 		void playPause();
+		void rewind();
+		void fastForward();
+		void seek(int positionMS);
+		int getPosition();
+		int getDuration();
 		String getTitle();
 		String getArtist();
 		String getAlbum();
-		int getDuration();
-		int getPosition();
 		Bitmap getArt();
-		void seek(int positionMillis);
-		void rewind();
-		void fastForward();
 	}
 
 	interface View {
@@ -58,14 +57,14 @@ public interface NowPlayingMvp {
 		}
 
 		interface Art {
-			void setArt(Bitmap artFile);
+			void setArt(Bitmap art);
 		}
 
 		interface Seekbar extends SeekBar.OnSeekBarChangeListener {
-			void setTrackPosition(int timeMillis);
-			void setTrackDuration(int durationMillis);
-			void setTrackPositionText(int timeMillis);
-			void setTrackDurationText(int durationMillis);
+			void setPosition(int timeMS);
+			void setDuration(int durationMS);
+			void setPositionText(int timeMS);
+			void setDurationText(int durationMS);
 		}
 
 		interface Fab {
@@ -90,7 +89,7 @@ public interface NowPlayingMvp {
 		void onPlayPauseClick();
 		void onFastForwardClick();
 		void onRepeatClick();
-		void onTrackSeekChanged(int progress);
-		void onTrackSeekStop(int position);
+		void onSeekChanged(int position);
+		void onSeekStop(int position);
 	}
 }
