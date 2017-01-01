@@ -2,23 +2,19 @@
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/PrefEntry_Container"
+	tools:parentTag="LinearLayout"
 	>
 
 	<TextView
 		android:id="@+id/title"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight="1"
-		android:layout_gravity="center_vertical"
-		style="@style/PrefEntry_Title"
+		style="@style/PrefEntry_Title.FillRemainingWidth"
 		tools:text="Preference entry title"
 		/>
 
 	<com.edavtyan.custompreference.color.ColorCircleView
 		android:id="@+id/color"
-		android:layout_width="32dp"
-		android:layout_height="32dp"
-		android:layout_gravity="center_vertical"
+		style="@style/PrefEntry_Color"
 		/>
 
 </merge>

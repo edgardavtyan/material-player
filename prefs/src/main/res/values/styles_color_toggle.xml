@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="ColorToggle_Circle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="cp_background">#ff0000</item>
+	</style>
+
+	<style name="ColorToggle_Icon">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:src">@drawable/ic_check</item>
+	</style>
+
+</resources>

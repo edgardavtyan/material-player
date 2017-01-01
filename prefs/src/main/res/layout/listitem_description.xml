@@ -2,39 +2,28 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
 	style="@style/DialogListItem_Container"
 	>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
+	<RadioButton
+		android:id="@+id/radioButton"
+		style="@style/DialogListItem_RadioButton"
+		/>
 
-		<RadioButton
-			android:id="@+id/radioButton"
-			style="@style/DialogListItem_RadioButton"
-			/>
+	<LinearLayout style="@style/DialogListItem_InfoContainer">
 
 		<TextView
 			android:id="@+id/title"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_vertical"
-			style="@style/DialogListItem_Title"
+			style="@style/DialogListItem_Title.Description"
 			tools:text="List item title"
 			/>
 
-	</LinearLayout>
+		<TextView
+			android:id="@+id/description"
+			style="@style/DialogListItem_Description"
+			tools:text="List item summary"
+			/>
 
-	<TextView
-		android:id="@+id/description"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		style="@style/DialogListItem_Description"
-		tools:text="Summary text"
-		/>
+	</LinearLayout>
 
 </LinearLayout>

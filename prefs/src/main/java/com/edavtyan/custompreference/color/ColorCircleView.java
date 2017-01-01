@@ -2,6 +2,7 @@ package com.edavtyan.custompreference.color;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -14,12 +15,14 @@ public class ColorCircleView extends View {
 		super(context, attrs);
 		this.attrs = new ColorCircleAttributes(context, attrs);
 		this.paint = initPaint();
+		if (isInEditMode()) setColor(Color.RED);
 	}
 
 	public ColorCircleView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		this.attrs = new ColorCircleAttributes(context, attrs);
 		this.paint = initPaint();
+		if (isInEditMode()) setColor(Color.RED);
 	}
 
 	public int getColor() {
