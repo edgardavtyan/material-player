@@ -13,6 +13,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
@@ -21,17 +22,9 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingQueueActivityTest extends ActivityTest {
-	private static final NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
 	private static NowPlayingQueueActivity activity;
 	private static NowPlayingQueueAdapter adapter;
 	private static NowPlayingQueueMvp.Presenter presenter;
-
-	public static class TestNowPlayingQueueActivity extends NowPlayingQueueActivity {
-		@Override
-		protected NowPlayingQueueFactory getFactory() {
-			return factory;
-		}
-	}
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -40,13 +33,15 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 			adapter = mock(NowPlayingQueueAdapter.class);
 			presenter = mock(NowPlayingQueueMvp.Presenter.class);
 
+			NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
 			when(factory.provideAdapter()).thenReturn(adapter);
 			when(factory.providePresenter()).thenReturn(presenter);
 			when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
 
-			activity = spy(startActivity(new Intent(new Intent(context, TestNowPlayingQueueActivity.class))));
+			activity = spy(startActivity(new Intent(context, NowPlayingQueueActivity.class)));
 			doNothing().when(activity).baseOnCreate(any());
 			doNothing().when(activity).baseOnDestroy();
+			doReturn(app).when(activity).getApplicationContext();
 		} else {
 			reset(adapter, presenter);
 		}
@@ -58,8 +53,8 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 
 	@Test public void onCreate_initList() {
 		runOnUiThread(() -> {
-			RecyclerView list = activity.findView(R.id.list);
-
+			RecyclerView list = new RecyclerView(context);
+			when(activity.findView(R.id.list)).thenReturn(list);
 			activity.onCreate(null);
 
 			assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
@@ -68,7 +63,10 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 	}
 
 	@Test public void onCreate_initPresenter() {
-		verify(presenter).onCreate();
+		runOnUiThread(() -> {
+			activity.onCreate(null);
+			verify(presenter).onCreate();
+		});
 	}
 
 	@Test public void onDestroy_closePresenter() {
