@@ -3,16 +3,12 @@ package com.edavtyan.materialplayer.components.player;
 import android.content.Context;
 import android.media.AudioManager;
 
-import hugo.weaving.DebugLog;
-
 public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListener {
-	private final Context context;
 	private final PlayerMvp.Player player;
 	private final AudioManager audioManager;
 	private int currentState;
 
 	public AudioFocusManager(Context context, PlayerMvp.Player player) {
-		this.context = context;
 		this.player = player;
 		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 	}
@@ -47,32 +43,26 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 		}
 	}
 
-	@DebugLog
 	private void onAudioFocusGain() {
 		player.play();
 	}
 
-	@DebugLog
 	private void onAudioFocusGainAfterLossTransient() {
 		player.play();
 	}
 
-	@DebugLog
 	private void onAudioFocusGainAfterTransientLossCanDuck() {
 		player.restoreVolume();
 	}
 
-	@DebugLog
 	private void onAudioFocusLoss() {
 		player.pause();
 	}
 
-	@DebugLog
 	private void onAudioFocusLossTransient() {
 		player.pause();
 	}
 
-	@DebugLog
 	private void onAudioFocusLossTransientCanDuck() {
 		player.lowerVolume();
 	}
