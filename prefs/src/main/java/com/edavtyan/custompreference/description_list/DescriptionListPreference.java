@@ -52,15 +52,17 @@ public class DescriptionListPreference
 
 	private void initPreference(AttributeSet attrs) {
 		entryView = initEntryView();
+		DescriptionListModel model = new DescriptionListModel(context, attrs);
+
 		if (isInEditMode()) {
-			DescriptionListModel model = new DescriptionListModel(context, attrs);
 			entryView.setTitle(model.getTitle());
 			entryView.setSummary(model.getSummary(), model.getDefaultValue());
-		} else {
-			presenter = initPresenter(initModel(attrs));
-			dialog = initDialog(presenter);
-			presenter.onViewsInit();
+			return;
 		}
+
+		presenter = new DescriptionListPresenter(this, model);
+		dialog = initDialog(presenter);
+		presenter.onViewsInit();
 	}
 
 	private SummaryEntry initEntryView() {
@@ -78,14 +80,5 @@ public class DescriptionListPreference
 		BaseDialog dialog = new BaseDialog(context);
 		dialog.setView(list);
 		return dialog;
-	}
-
-	private DescriptionListPresenter initPresenter(DescriptionListModel model) {
-		DescriptionListPresenter presenter = new DescriptionListPresenter(this, model);
-		return presenter;
-	}
-
-	private DescriptionListModel initModel(AttributeSet attributeSet) {
-		return new DescriptionListModel(context, attributeSet);
 	}
 }

@@ -1,5 +1,6 @@
 package com.edavtyan.custompreference.color;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -69,17 +70,20 @@ public class ColorSelectionPreference
 
 	private void initPreference(AttributeSet attrs) {
 		entryView = initEntryView();
+
 		if (isInEditMode()) {
 			@Cleanup("recycle")
+			@SuppressLint("Recycle")
 			TypedArray typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.ColorSelectionPref);
 			String title = typedAttrs.getString(R.styleable.ColorSelectionPref_cp_title);
 			entryView.setTitle(title);
 			entryView.setColor(Color.RED);
-		} else {
-			colorSelectionView = initColorSelectionView();
-			dialog = initDialog();
-			presenter = initPresenter(attrs);
+			return;
 		}
+
+		colorSelectionView = initColorSelectionView();
+		dialog = initDialog();
+		presenter = initPresenter(attrs);
 	}
 
 	private ColorSelectionEntry initEntryView() {

@@ -20,12 +20,12 @@ public class SimpleListPreference
 
 	public SimpleListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		initPreference(context, attrs);
+		initPreference(attrs);
 	}
 
 	public SimpleListPreference(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		initPreference(context, attrs);
+		initPreference(attrs);
 	}
 
 	public void openDialog() {
@@ -50,17 +50,19 @@ public class SimpleListPreference
 		presenter.onEntryClicked();
 	}
 
-	private void initPreference(Context context, AttributeSet attrs) {
+	private void initPreference(AttributeSet attrs) {
 		entryView = initEntryView();
+		SimpleListModel model = new SimpleListModel(context, attrs);
+
 		if (isInEditMode()) {
-			SimpleListModel model = new SimpleListModel(context, attrs);
 			entryView.setTitle(model.getTitle());
 			entryView.setSummary(model.getSummary(), model.getDefaultValue());
-		} else {
-			presenter = new SimpleListPresenter(this, new SimpleListModel(context, attrs));
-			dialogView = initDialogView(presenter);
-			presenter.onViewsInit();
+			return;
 		}
+
+		presenter = new SimpleListPresenter(this, model);
+		dialogView = initDialogView(presenter);
+		presenter.onViewsInit();
 	}
 
 	private SummaryEntry initEntryView() {
