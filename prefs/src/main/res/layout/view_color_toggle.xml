@@ -7,7 +7,7 @@
 	tools:parentTag="FrameLayout"
 	>
 
-	<com.edavtyan.custompreference.color.ColorCircleView
+	<com.edavtyan.prefs.color.ColorCircleView
 		android:id="@+id/colorView"
 		style="@style/ColorToggle_Circle"
 		/>

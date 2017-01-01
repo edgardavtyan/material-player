@@ -9,14 +9,14 @@
 
 	<include layout="@layout/partial_appbar" />
 
-	<com.edavtyan.custompreference.category.PreferenceCategory
+	<com.edavtyan.prefs.category.PreferenceCategory
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:cp_title="@string/pref_category_appearance"
 		app:cp_color="?colorPrimary"
 		>
 
-		<com.edavtyan.custompreference.simple_list.SimpleListPreference
+		<com.edavtyan.prefs.simple_list.SimpleListPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="@string/pref_theme_base_key"
@@ -27,7 +27,7 @@
 			app:cp_entryValues="@array/pref_theme_base_entries"
 			/>
 
-		<com.edavtyan.custompreference.color.ColorSelectionPreference
+		<com.edavtyan.prefs.color.ColorSelectionPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="@string/pref_theme_primary_key"
@@ -38,7 +38,7 @@
 			app:cp_entryValues="@array/pref_theme_primary_values"
 			/>
 
-		<com.edavtyan.custompreference.checkbox.CheckboxPreference
+		<com.edavtyan.prefs.checkbox.CheckboxPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			app:cp_key="@string/pref_compactList_key"
@@ -46,6 +46,6 @@
 			app:cp_defaultValue="@bool/pref_compactList_defaultValue"
 			/>
 
-	</com.edavtyan.custompreference.category.PreferenceCategory>
+	</com.edavtyan.prefs.category.PreferenceCategory>
 
 </LinearLayout>
