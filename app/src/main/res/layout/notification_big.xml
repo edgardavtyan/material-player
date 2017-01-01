@@ -4,14 +4,13 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:background="@android:color/transparent"
+	style="notification_big_mainContainer"
 	>
 
 	<ImageView
 		android:id="@+id/art"
+		android:contentDescription="@string/description_art"
 		style="@style/notification_big_art"
-		tools:src="@drawable/fallback_cover"
 		/>
 
 	<LinearLayout style="@style/notification_big_rightContainer">
@@ -42,6 +41,7 @@
 
 			<ImageButton
 				android:id="@+id/close"
+				android:contentDescription="@string/description_notification_close"
 				style="@style/notification_big_close"
 				/>
 
