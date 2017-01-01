@@ -72,7 +72,12 @@
 		<item name="android:layout_weight">1</item>
 		<item name="android:layout_gravity">bottom</item>
 		<item name="android:background">@drawable/ripple_notification</item>
+		<item name="android:scaleType">fitCenter</item>
 		<item name="android:drawSelectorOnTop">true</item>
+	</style>
+
+	<style name="notification_big_control.play_pause">
+		<item name="android:padding">2dp</item>
 	</style>
 
 </resources>

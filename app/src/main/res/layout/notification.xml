@@ -39,7 +39,7 @@
 		android:id="@+id/play_pause"
 		android:src="@drawable/ic_play"
 		android:contentDescription="@string/description_control_playPause"
-		style="@style/notification_control"
+		style="@style/notification_control.play_pause"
 		/>
 
 	<ImageButton
