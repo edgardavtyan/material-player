@@ -24,6 +24,8 @@ public abstract class BasePreference extends LinearLayout {
 	}
 
 	private void initCommonEntryViewProperties() {
+		if (isInEditMode()) return;
+
 		AttributeResolver attrs = new AttributeResolver(context);
 
 		setBackgroundDrawable(attrs.getDrawable(R.attr.selectableItemBackground));
