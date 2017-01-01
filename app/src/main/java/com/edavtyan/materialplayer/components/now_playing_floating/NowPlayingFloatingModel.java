@@ -41,6 +41,11 @@ public class NowPlayingFloatingModel
 	}
 
 	@Override
+	public void togglePlayPause() {
+		service.getPlayer().playPause();
+	}
+
+	@Override
 	public Track getNowPlayingTrack() {
 		return service.getPlayer().getCurrentTrack();
 	}
@@ -52,11 +57,6 @@ public class NowPlayingFloatingModel
 	@Override
 	public boolean isPlaying() {
 		return service.getPlayer().isPlaying();
-	}
-
-	@Override
-	public void togglePlayPause() {
-		service.getPlayer().playPause();
 	}
 
 	@Override
@@ -76,7 +76,6 @@ public class NowPlayingFloatingModel
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
-
 	}
 
 	@Override public void onNewTrack() {

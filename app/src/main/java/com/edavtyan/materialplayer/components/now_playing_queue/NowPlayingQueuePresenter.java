@@ -8,13 +8,10 @@ public class NowPlayingQueuePresenter
 		implements NowPlayingQueueMvp.Presenter {
 
 	private final NowPlayingQueueMvp.Model model;
-	private final NowPlayingQueueMvp.View view;
 
 	public NowPlayingQueuePresenter(NowPlayingQueueMvp.Model model, NowPlayingQueueMvp.View view) {
 		super(model, view);
 		this.model = model;
-		this.model.setOnServiceConnectedListener(this);
-		this.view = view;
 	}
 
 	@Override
@@ -47,10 +44,5 @@ public class NowPlayingQueuePresenter
 	@Override
 	public int getItemCount() {
 		return model.getTrackCount();
-	}
-
-	@Override
-	public void onServiceConnected() {
-		view.notifyDataSetChanged();
 	}
 }

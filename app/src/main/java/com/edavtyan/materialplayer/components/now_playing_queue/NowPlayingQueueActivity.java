@@ -20,7 +20,8 @@ public class NowPlayingQueueActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		NowPlayingQueueFactory factory = getFactory();
+		App app = ((App) getApplicationContext());
+		NowPlayingQueueFactory factory = app.getPlaylistFactory(this, this);
 		presenter = factory.providePresenter();
 		adapter = factory.provideAdapter();
 
@@ -45,9 +46,5 @@ public class NowPlayingQueueActivity
 	@Override
 	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
-	}
-
-	protected NowPlayingQueueFactory getFactory() {
-		return ((App) getApplicationContext()).getPlaylistFactory(this, this);
 	}
 }

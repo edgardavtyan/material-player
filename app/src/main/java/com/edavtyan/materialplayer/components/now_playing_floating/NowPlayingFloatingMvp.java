@@ -18,10 +18,10 @@ public interface NowPlayingFloatingMvp {
 
 		void bind();
 		void unbind();
+		void togglePlayPause();
 		Track getNowPlayingTrack();
 		Bitmap getNowPlayingTrackArt();
 		boolean isPlaying();
-		void togglePlayPause();
 		boolean hasData();
 		void setOnNewTrackListener(OnNewTrackListener listener);
 		void setOnServiceConnectedListener(OnServiceConnectedListener listener);
@@ -32,8 +32,8 @@ public interface NowPlayingFloatingMvp {
 		void setTrackInfo(String artistTitle, String albumTitle);
 		void setArt(Bitmap art);
 		void setIsPlaying(boolean isPlaying);
-		void gotoNowPlaying();
 		void setIsVisible(boolean visibility);
+		void gotoNowPlaying();
 	}
 
 	interface Presenter extends Model.OnNewTrackListener, Model.OnServiceConnectedListener {

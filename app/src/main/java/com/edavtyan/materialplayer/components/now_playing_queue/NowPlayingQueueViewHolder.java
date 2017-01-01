@@ -77,6 +77,7 @@ public class NowPlayingQueueViewHolder
 		switch (item.getItemId()) {
 		case R.id.menu_remove:
 			onMenuClickListener.onRemoveFromQueueClick(this);
+			return true;
 		default:
 			return false;
 		}

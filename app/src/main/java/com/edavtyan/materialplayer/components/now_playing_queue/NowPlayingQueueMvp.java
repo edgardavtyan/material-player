@@ -8,12 +8,6 @@ import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
 @SuppressWarnings("unused")
 public interface NowPlayingQueueMvp {
 	interface Model extends ListMvp.Model, ServiceConnection {
-		interface OnServiceConnectedListener {
-			void onServiceConnected();
-		}
-
-		void setOnServiceConnectedListener(OnServiceConnectedListener listener);
-
 		void bind();
 		void unbind();
 		void playItemAtPosition(int position);
@@ -25,10 +19,7 @@ public interface NowPlayingQueueMvp {
 	interface View extends ListMvp.View {
 	}
 
-	interface Presenter
-			extends ListMvp.Presenter<NowPlayingQueueViewHolder>,
-					Model.OnServiceConnectedListener {
-
+	interface Presenter extends ListMvp.Presenter<NowPlayingQueueViewHolder> {
 		void onCreate();
 		void onDestroy();
 		void onItemClick(int position);

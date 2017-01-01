@@ -10,13 +10,9 @@ import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
 
-import lombok.Setter;
-
 public class NowPlayingQueueModel extends ListModel implements NowPlayingQueueMvp.Model {
 	private final Context context;
 	private PlayerService service;
-
-	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
 	public NowPlayingQueueModel(Context context, CompactListPref compactListPref) {
 		super(compactListPref);

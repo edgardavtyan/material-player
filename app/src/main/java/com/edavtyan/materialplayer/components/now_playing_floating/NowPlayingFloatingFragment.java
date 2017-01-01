@@ -29,42 +29,6 @@ public class NowPlayingFloatingFragment
 	private LinearLayout mainWrapper;
 
 	@Override
-	public void setTrackTitle(String title) {
-		titleView.setText(title);
-	}
-
-	@Override
-	public void setTrackInfo(String artistTitle, String albumTitle) {
-		Resources res = getContext().getResources();
-		String info = res.getString(R.string.nowplaying_info_pattern, artistTitle, albumTitle);
-		infoView.setText(info);
-	}
-
-	@Override
-	public void setArt(Bitmap art) {
-		if (art != null) {
-			artView.setImageBitmap(art);
-		} else {
-			artView.setImageResource(R.drawable.fallback_cover_listitem);
-		}
-	}
-
-	@Override
-	public void setIsPlaying(boolean isPlaying) {
-		playPauseView.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
-	}
-
-	@Override
-	public void setIsVisible(boolean visibility) {
-		mainWrapper.setVisibility(visibility ? View.VISIBLE : View.GONE);
-	}
-
-	@Override
-	public void gotoNowPlaying() {
-		navigator.gotoNowPlaying();
-	}
-
-	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -105,6 +69,42 @@ public class NowPlayingFloatingFragment
 	public void onStop() {
 		super.onStop();
 		presenter.onDestroy();
+	}
+
+	@Override
+	public void setTrackTitle(String title) {
+		titleView.setText(title);
+	}
+
+	@Override
+	public void setTrackInfo(String artistTitle, String albumTitle) {
+		Resources res = getContext().getResources();
+		String info = res.getString(R.string.nowplaying_info_pattern, artistTitle, albumTitle);
+		infoView.setText(info);
+	}
+
+	@Override
+	public void setArt(Bitmap art) {
+		if (art != null) {
+			artView.setImageBitmap(art);
+		} else {
+			artView.setImageResource(R.drawable.fallback_cover_listitem);
+		}
+	}
+
+	@Override
+	public void setIsPlaying(boolean isPlaying) {
+		playPauseView.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
+	}
+
+	@Override
+	public void setIsVisible(boolean visibility) {
+		mainWrapper.setVisibility(visibility ? View.VISIBLE : View.GONE);
+	}
+
+	@Override
+	public void gotoNowPlaying() {
+		navigator.gotoNowPlaying();
 	}
 
 	@Override
