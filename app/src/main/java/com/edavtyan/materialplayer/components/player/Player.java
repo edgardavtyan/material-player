@@ -91,18 +91,17 @@ public class Player
 
 	@Override public void play() {
 		audioEngine.play();
+		raisePlayPauseListener();
 	}
 
 	@Override public void pause() {
 		audioEngine.pause();
+		raisePlayPauseListener();
 	}
 
 	@Override public void playPause() {
 		audioEngine.playPause();
-
-		for (OnPlayPauseListener onPlayPauseListener : onPlayPauseListeners) {
-			onPlayPauseListener.onPlayPause();
-		}
+		raisePlayPauseListener();
 	}
 
 	@Override public void playNext() {
@@ -166,5 +165,11 @@ public class Player
 
 	@Override public void onCompleted() {
 		playNext();
+	}
+
+	private void raisePlayPauseListener() {
+		for (OnPlayPauseListener onPlayPauseListener : onPlayPauseListeners) {
+			onPlayPauseListener.onPlayPause();
+		}
 	}
 }
