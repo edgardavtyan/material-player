@@ -32,7 +32,6 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 	private ImageButton playPauseView;
 	private LinearLayout infoWrapper;
 	private LinearLayout mainWrapper;
-	private TestableBitmapFactory bitmapFactory;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -42,7 +41,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 
 		presenter = mock(NowPlayingFloatingMvp.Presenter.class);
 		navigator = mock(Navigator.class);
-		bitmapFactory = mock(TestableBitmapFactory.class);
+		TestableBitmapFactory bitmapFactory = mock(TestableBitmapFactory.class);
 
 		NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);
 		when(factory.providePresenter()).thenReturn(presenter);
