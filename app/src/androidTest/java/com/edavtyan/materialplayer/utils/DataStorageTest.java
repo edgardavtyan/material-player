@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DataStorageTest extends BaseTest {
 	private DataStorage dataStorage;
 
-	@Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+	@Rule public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	@Override public void beforeEach() {
 		super.beforeEach();

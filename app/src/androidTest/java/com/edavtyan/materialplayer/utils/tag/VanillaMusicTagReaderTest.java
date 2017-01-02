@@ -14,7 +14,7 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class VanillaMusicTagReaderTest extends BaseTest {
-	@Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+	@Rule public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private VanillaMusicTagReader musicTagReader;
 
