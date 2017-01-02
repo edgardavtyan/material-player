@@ -2,18 +2,18 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:width="360dp"
 	android:height="360dp"
-	android:viewportHeight="170.0"
-	android:viewportWidth="170.0"
+	android:viewportHeight="160.0"
+	android:viewportWidth="160.0"
 	>
 
 	<path
 		android:fillColor="#545454"
-		android:pathData="M0,0 L170,0 L170,170 L0,170z"
+		android:pathData="M0,0 L160,0 L160,160 L0,160z"
 		/>
 
 	<group
-		android:translateX="15"
-		android:translateY="15"
+		android:translateX="10"
+		android:translateY="10"
 		>
 
 		<path
