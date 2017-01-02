@@ -53,7 +53,7 @@ public class WindowsUtilsTest extends BaseTest {
 	private void setOrientation(int orientation) {
 		Configuration configuration = new Configuration();
 		configuration.orientation = orientation;
-		configuration.locale = new Locale("en-us"); // Prevents NPE in updateConfiguration method
+		configuration.setLocale(new Locale("en-us")); // Prevents NPE in updateConfiguration method
 		DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
 		context.getResources().updateConfiguration(configuration, displayMetrics);
 	}
