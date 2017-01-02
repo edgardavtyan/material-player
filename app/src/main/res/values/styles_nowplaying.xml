@@ -2,7 +2,7 @@
 <resources>
 
 	<style name="NowPlaying_Container">
-		<item name="android:background">?colorPrimaryDark</item>
+		<item name="android:background">?colorPrimary</item>
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Container">
@@ -27,14 +27,13 @@
 	</style>
 
 	<style name="NowPlaying_Seekbar">
-		<item name="android:layout_marginBottom">-9dp</item>
 		<item name="android:paddingLeft">0dp</item>
 		<item name="android:paddingRight">0dp</item>
 		<item name="android:padding">0dp</item>
 		<item name="paddingEnd">0dp</item>
 		<item name="paddingStart">0dp</item>
 		<item name="thumbColor">?colorAccent</item>
-		<item name="progressBackgroundColor">?colorAccent</item>
+		<item name="progressBackgroundColor">?textColorContrastPrimary</item>
 		<item name="progressColor">?colorAccent</item>
 	</style>
 
