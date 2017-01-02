@@ -27,8 +27,8 @@ public class TrackListViewHolderTest extends BaseTest {
 		super.beforeEach();
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		holder = new TrackListViewHolder(context, itemView);
-		titleView = (TextView) itemView.findViewById(R.id.title);
-		infoView = (TextView) itemView.findViewById(R.id.info);
+		titleView = holder.findView(R.id.title);
+		infoView = holder.findView(R.id.info);
 	}
 
 	@Test public void setTitle_setTitleViewText() {

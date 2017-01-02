@@ -58,10 +58,10 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		amplifierView = spy(new TitledSeekbar(context, null));
 		surroundView = spy(new TitledSeekbar(context, null));
 
-		doReturn(equalizerSwitch).when(activity).findViewById(R.id.equalizerSwitch);
-		doReturn(equalizerView).when(activity).findViewById(equalizer);
-		doReturn(bassBoostView).when(activity).findViewById(R.id.bassBoost);
-		doReturn(surroundView).when(activity).findViewById(R.id.surround);
+		doReturn(equalizerSwitch).when(activity).findView(R.id.equalizerSwitch);
+		doReturn(equalizerView).when(activity).findView(equalizer);
+		doReturn(bassBoostView).when(activity).findView(R.id.bassBoost);
+		doReturn(surroundView).when(activity).findView(R.id.surround);
 
 		runOnUiThread(() -> activity.onCreate(null));
 	}

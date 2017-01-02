@@ -18,9 +18,9 @@ public class AlbumListViewHolderTest extends BaseTest {
 	@Override public void beforeEach() {
 		super.beforeEach();
 		View itemView = View.inflate(context, R.layout.listitem_album, null);
-		titleView = (TextView) itemView.findViewById(R.id.title);
-		infoView = (TextView) itemView.findViewById(R.id.info);
 		holder = new AlbumListViewHolder(context, itemView);
+		titleView = holder.findView(R.id.title);
+		infoView = holder.findView(R.id.info);
 	}
 
 	@Test public void setters_setAllValues() {
