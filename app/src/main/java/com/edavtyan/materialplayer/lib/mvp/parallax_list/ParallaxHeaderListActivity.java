@@ -19,7 +19,7 @@ import com.edavtyan.materialplayer.utils.ColorUtils;
 import com.edavtyan.materialplayer.utils.CustomColor;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
-public class ParallaxHeaderListActivity extends BaseToolbarActivity {
+public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	private TextView titleView;
 	private TextView infoView;
 	private ImageView imageView;
