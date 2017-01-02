@@ -39,6 +39,7 @@
 		android:id="@+id/playPause"
 		android:layout_width="@dimen/size_medium"
 		android:layout_height="match_parent"
+		android:contentDescription="@string/description_control_playPause"
 		style="@style/nowplayingBar_playPause"
 		/>
 
