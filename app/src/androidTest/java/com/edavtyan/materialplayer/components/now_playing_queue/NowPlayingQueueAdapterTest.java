@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -30,14 +32,15 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
+		ViewGroup parent = new LinearLayout(context);
 		adapter.onCreateViewHolder(parent, R.layout.listitem_track);
 
 		verify(inflater).inflate(R.layout.listitem_track, parent, false);
 	}
 
 	@Test public void onBindViewHolder_callPresenter() {
-		adapter.onBindViewHolder(holder, 7);
-		verify(presenter).onBindViewHolder(holder, 7);
+		adapter.onBindViewHolder(null, 0);
+		verify(presenter).onBindViewHolder(null, 0);
 	}
 
 	@Test public void getItemCount_callPresenter() {

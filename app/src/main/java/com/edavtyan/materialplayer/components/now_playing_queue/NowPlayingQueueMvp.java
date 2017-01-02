@@ -24,7 +24,6 @@ public interface NowPlayingQueueMvp {
 		void onDestroy();
 		void onItemClick(int position);
 		void onRemoveItemClick(int position);
-		void onBindViewHolder(NowPlayingQueueViewHolder holder, int position);
 		int getItemCount();
 	}
 }
