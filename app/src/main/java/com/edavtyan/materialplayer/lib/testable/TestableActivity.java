@@ -3,10 +3,11 @@ package com.edavtyan.materialplayer.lib.testable;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import com.edavtyan.utils.advanced.GenericActivity;
 
 @SuppressLint("MissingSuperCall")
-public abstract class TestableActivity extends AppCompatActivity {
+public abstract class TestableActivity extends GenericActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		baseOnCreate(savedInstanceState);

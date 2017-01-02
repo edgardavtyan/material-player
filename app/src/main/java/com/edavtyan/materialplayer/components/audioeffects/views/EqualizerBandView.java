@@ -2,17 +2,16 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.utils.advanced.GenericFrameLayout;
 
 import lombok.Getter;
 import lombok.Setter;
 
 public class EqualizerBandView
-		extends FrameLayout
+		extends GenericFrameLayout
 		implements DoubleSeekbar.OnProgressChangedListener,
 				   DoubleSeekbar.OnStopTrackingTouchListener {
 
@@ -31,13 +30,11 @@ public class EqualizerBandView
 
 	public EqualizerBandView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		inflate(context, R.layout.partial_equalizer_band, this);
 
-		LayoutInflater.from(context).inflate(R.layout.partial_equalizer_band, this, true);
-
-		frequencyView = (TextView) findViewById(R.id.frequency);
-		gainView = (TextView) findViewById(R.id.gain);
-
-		bandView = (DoubleSeekbar) findViewById(R.id.band);
+		frequencyView = findView(R.id.frequency);
+		gainView = findView(R.id.gain);
+		bandView = findView(R.id.band);
 		bandView.setOnProgressChangedListener(this);
 		bandView.setOnStopTrackingTouchListener(this);
 	}

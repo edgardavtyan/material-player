@@ -1,16 +1,16 @@
 package com.edavtyan.prefs.simple_list;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.utils.advanced.GenericViewHolder;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class SimpleListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class SimpleListViewHolder extends GenericViewHolder implements View.OnClickListener {
 	protected final RadioButton radioButton;
 	protected final TextView titleView;
 
@@ -24,8 +24,8 @@ public class SimpleListViewHolder extends RecyclerView.ViewHolder implements Vie
 	public SimpleListViewHolder(View itemView) {
 		super(itemView);
 
-		radioButton = (RadioButton) itemView.findViewById(R.id.radioButton);
-		titleView = (TextView) itemView.findViewById(R.id.title);
+		radioButton = findView(R.id.radioButton);
+		titleView = findView( R.id.title);
 		itemView.setOnClickListener(this);
 	}
 

@@ -2,9 +2,10 @@ package com.edavtyan.materialplayer.lib.testable;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 
-public class TestableFragment extends Fragment {
+import com.edavtyan.utils.advanced.GenericFragment;
+
+public class TestableFragment extends GenericFragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		baseOnCreate(savedInstanceState);

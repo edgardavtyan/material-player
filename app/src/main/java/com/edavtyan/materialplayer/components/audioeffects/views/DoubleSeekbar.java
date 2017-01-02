@@ -3,15 +3,14 @@ package com.edavtyan.materialplayer.components.audioeffects.views;
 import android.content.Context;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.utils.advanced.GenericFrameLayout;
 
 import lombok.Setter;
 
-public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
+public class DoubleSeekbar extends GenericFrameLayout implements SeekBar.OnSeekBarChangeListener {
 	private final AppCompatSeekBar seekbar;
 
 	private @Setter OnStartTrackingTouchListener onStartTrackingTouchListener;
@@ -32,10 +31,9 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 
 	public DoubleSeekbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		inflate(context, R.layout.view_double_seekbar, this);
 
-		LayoutInflater.from(context).inflate(R.layout.view_double_seekbar, this, true);
-
-		seekbar = (AppCompatSeekBar) findViewById(R.id.seekbar);
+		seekbar = findView(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);
 	}
 

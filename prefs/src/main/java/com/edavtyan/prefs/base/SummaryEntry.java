@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.utils.advanced.GenericLinearLayout;
 
 import lombok.Setter;
 
@@ -19,12 +20,12 @@ public class SummaryEntry implements View.OnClickListener {
 		void onEntryClick();
 	}
 
-	public SummaryEntry(Context context, LinearLayout view) {
+	public SummaryEntry(Context context, GenericLinearLayout view) {
 		LayoutInflater.from(context).inflate(R.layout.entry_summary, view, true);
 		view.setOrientation(LinearLayout.VERTICAL);
 		view.setOnClickListener(this);
-		titleView = (TextView) view.findViewById(R.id.title);
-		summaryView = (TextView) view.findViewById(R.id.summary);
+		titleView = view.findView(R.id.title);
+		summaryView = view.findView(R.id.summary);
 	}
 
 	public void setTitle(String title) {

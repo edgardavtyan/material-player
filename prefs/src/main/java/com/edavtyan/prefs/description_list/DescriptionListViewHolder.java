@@ -11,7 +11,7 @@ public class DescriptionListViewHolder extends SimpleListViewHolder {
 
 	public DescriptionListViewHolder(View itemView) {
 		super(itemView);
-		descriptionView = (TextView) itemView.findViewById(R.id.description);
+		descriptionView = findView(R.id.description);
 	}
 
 	public void setDescription(String description) {

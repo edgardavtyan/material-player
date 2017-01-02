@@ -3,28 +3,23 @@ package com.edavtyan.prefs.color;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.utils.advanced.GenericFrameLayout;
 
-public class ColorToggleSelectedView extends FrameLayout {
-
-	private final ColorCircleView colorView;
-	private final ImageView checkIcon;
+public class ColorToggleSelectedView extends GenericFrameLayout {
+	private ColorCircleView colorView;
+	private ImageView checkIcon;
 
 	public ColorToggleSelectedView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		inflate(context, R.layout.view_color_toggle, this);
-		colorView = (ColorCircleView) findViewById(R.id.colorView);
-		checkIcon = (ImageView) findViewById(R.id.checkIcon);
+		init(context);
 	}
 
 	public ColorToggleSelectedView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		inflate(context, R.layout.view_color_toggle, this);
-		colorView = (ColorCircleView) findViewById(R.id.colorView);
-		checkIcon = (ImageView) findViewById(R.id.checkIcon);
+		init(context);
 	}
 
 	public void setChecked(boolean checked) {
@@ -45,5 +40,11 @@ public class ColorToggleSelectedView extends FrameLayout {
 
 		int padding = params.width / 8;
 		checkIcon.setPadding(padding, padding, padding, padding);
+	}
+
+	private void init(Context context) {
+		inflate(context, R.layout.view_color_toggle, this);
+		colorView = findView(R.id.colorView);
+		checkIcon = findView(R.id.checkIcon);
 	}
 }

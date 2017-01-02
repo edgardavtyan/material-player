@@ -1,9 +1,10 @@
 package com.edavtyan.materialplayer.lib.testable;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class TestableViewHolder extends RecyclerView.ViewHolder {
+import com.edavtyan.utils.advanced.GenericViewHolder;
+
+public class TestableViewHolder extends GenericViewHolder {
 	public TestableViewHolder(View itemView) {
 		super(itemView);
 	}

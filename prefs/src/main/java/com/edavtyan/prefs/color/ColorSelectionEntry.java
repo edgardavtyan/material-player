@@ -3,10 +3,10 @@ package com.edavtyan.prefs.color;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.utils.advanced.GenericLinearLayout;
 
 import lombok.Setter;
 
@@ -19,11 +19,11 @@ public class ColorSelectionEntry implements View.OnClickListener {
 		void onEntryClick();
 	}
 
-	public ColorSelectionEntry(Context context, LinearLayout view) {
+	public ColorSelectionEntry(Context context, GenericLinearLayout view) {
 		LayoutInflater.from(context).inflate(R.layout.entry_color, view, true);
 		view.setOnClickListener(this);
-		titleView = (TextView) view.findViewById(R.id.title);
-		colorView = (ColorCircleView) view.findViewById(R.id.color);
+		titleView = view.findView(R.id.title);
+		colorView = view.findView(R.id.color);
 	}
 
 	public void setTitle(String title) {

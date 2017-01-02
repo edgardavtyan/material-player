@@ -4,18 +4,16 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.utils.advanced.GenericLinearLayout;
 
 import lombok.Setter;
 
 public class TitledSeekbar
-		extends LinearLayout
+		extends GenericLinearLayout
 		implements AppCompatSeekBar.OnSeekBarChangeListener {
 
 	private final AppCompatSeekBar seekbar;
@@ -29,18 +27,16 @@ public class TitledSeekbar
 
 	public TitledSeekbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		inflate(context, R.layout.partial_titled_seekbar, this);
 
-		View root = LayoutInflater
-				.from(context)
-				.inflate(R.layout.partial_titled_seekbar, this, true);
 		TitledSeekbarAttributes attributes = new TitledSeekbarAttributes(context, attrs);
 
-		seekbar = (AppCompatSeekBar) root.findViewById(R.id.seekbar);
+		seekbar = findView(R.id.seekbar);
 		seekbar.setMax(attributes.getMax());
 		seekbar.setProgress(attributes.getProgress());
 		seekbar.setOnSeekBarChangeListener(this);
 
-		TextView title = (TextView) root.findViewById(R.id.title);
+		TextView title = findView(R.id.title);
 		title.setText(attributes.getText());
 		title.setTextSize(TypedValue.COMPLEX_UNIT_PX, attributes.getTextSize());
 		title.getLayoutParams().width = attributes.getTextWidth();

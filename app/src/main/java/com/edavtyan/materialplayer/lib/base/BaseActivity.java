@@ -24,11 +24,6 @@ public abstract class BaseActivity
 
 	public abstract int getLayoutId();
 
-	@SuppressWarnings("unchecked")
-	public <T> T findView(int id) {
-		return (T) findViewById(id);
-	}
-
 	/* AppCompatActivity */
 
 	@Override

@@ -2,7 +2,6 @@ package com.edavtyan.prefs.checkbox;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -39,21 +38,21 @@ public class CheckboxPreference extends BasePreference implements View.OnClickLi
 
 	private void initPref(AttributeSet attrs) {
 		setOrientation(HORIZONTAL);
+		inflate(context, R.layout.entry_checkbox, this);
+		setOnClickListener(this);
 
-		LayoutInflater.from(context).inflate(R.layout.entry_checkbox, this, true);
-		titleView = (TextView) findViewById(R.id.title);
-		checkboxView = (CheckBox) findViewById(R.id.checkbox);
+		titleView = findView(R.id.title);
+		checkboxView = findView(R.id.checkbox);
 
-		this.setOnClickListener(this);
+		CheckboxPreferenceModel model = new CheckboxPreferenceModel(context, attrs);
 
 		if (isInEditMode()) {
-			CheckboxPreferenceModel model = new CheckboxPreferenceModel(context, attrs);
 			setTitle(model.getTitle());
 			setChecked(model.getDefaultValue());
 			return;
 		}
 
-		presenter = new CheckboxPreferencePresenter(this, new CheckboxPreferenceModel(context, attrs));
+		presenter = new CheckboxPreferencePresenter(this, model);
 		presenter.onInit();
 	}
 }
