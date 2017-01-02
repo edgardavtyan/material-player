@@ -69,7 +69,7 @@ public class AlbumListViewHolder
 	public void setArt(String artPath) {
 		Glide.with(context)
 				.load(artPath)
-				.error(R.drawable.fallback_cover_listitem)
+				.error(R.drawable.fallback_cover)
 				.into(artView);
 	}
 

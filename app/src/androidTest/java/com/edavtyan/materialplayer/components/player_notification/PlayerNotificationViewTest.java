@@ -78,7 +78,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 
 	@Test public void setArt_artNotExists_setFallbackImage() {
 		view.setArt(null);
-		verify(remoteViews).setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
+		verify(remoteViews).setImageViewResource(R.id.art, R.drawable.fallback_cover);
 	}
 
 	@Test public void isPlaying_true_setPlayPauseIconToPause() {

@@ -88,7 +88,7 @@ public class NowPlayingFloatingFragment
 		if (art != null) {
 			artView.setImageBitmap(art);
 		} else {
-			artView.setImageResource(R.drawable.fallback_cover_listitem);
+			artView.setImageResource(R.drawable.fallback_cover);
 		}
 	}
 

@@ -67,8 +67,8 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 			notification.contentView.setImageViewBitmap(R.id.art, art);
 			notification.bigContentView.setImageViewBitmap(R.id.art, art);
 		} else {
-			notification.contentView.setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
-			notification.bigContentView.setImageViewResource(R.id.art, R.drawable.fallback_cover_listitem);
+			notification.contentView.setImageViewResource(R.id.art, R.drawable.fallback_cover);
+			notification.bigContentView.setImageViewResource(R.id.art, R.drawable.fallback_cover);
 		}
 	}
 

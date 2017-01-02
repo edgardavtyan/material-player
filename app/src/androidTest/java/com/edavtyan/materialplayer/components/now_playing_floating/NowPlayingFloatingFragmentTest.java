@@ -116,7 +116,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		fragment.onCreate(null);
 		fragment.onCreateView(inflater, null, null);
 		fragment.setArt(null);
-		verify(artView).setImageResource(R.drawable.fallback_cover_listitem);
+		verify(artView).setImageResource(R.drawable.fallback_cover);
 	}
 
 	@Test public void setIsPlaying_true_setIconToPause() {

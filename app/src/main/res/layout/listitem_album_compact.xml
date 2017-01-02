@@ -9,7 +9,7 @@
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
 		style="@style/listitem_albumArt.compact"
-		tools:src="@drawable/fallback_cover_listitem"
+		tools:src="@drawable/fallback_cover"
 		/>
 
 	<LinearLayout style="@style/listitem_infoContainer">

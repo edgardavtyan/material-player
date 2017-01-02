@@ -12,7 +12,7 @@
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:contentDescription">@string/description_art</item>
-		<item name="android:src">@drawable/fallback_cover_listitem</item>
+		<item name="android:src">@drawable/fallback_cover</item>
 	</style>
 
 	<style name="notification_text_wrapper">
