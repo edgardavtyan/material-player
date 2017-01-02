@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -25,6 +26,7 @@ class TitledSeekbarAttributes {
 	@SuppressWarnings("ResourceType")
 	public TitledSeekbarAttributes(Context context, AttributeSet attributeSet) {
 		@Cleanup("recycle")
+		@SuppressLint("Recycle")
 		TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.TitledSeekbar);
 		text = attrs.getString(R.styleable.TitledSeekbar_ts_text);
 		if (text == null) text = DEFAULT_TEXT;
