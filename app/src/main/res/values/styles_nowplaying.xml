@@ -27,11 +27,6 @@
 	</style>
 
 	<style name="NowPlaying_Seekbar">
-		<item name="android:paddingLeft">0dp</item>
-		<item name="android:paddingRight">0dp</item>
-		<item name="android:padding">0dp</item>
-		<item name="paddingEnd">0dp</item>
-		<item name="paddingStart">0dp</item>
 		<item name="thumbColor">?colorAccent</item>
 		<item name="progressBackgroundColor">?textColorContrastPrimary</item>
 		<item name="progressColor">?colorAccent</item>
