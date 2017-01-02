@@ -39,6 +39,10 @@ public class ArtProvider {
 
 		String artPath = artFilePath.getAbsolutePath();
 		if (artCache.get(track.getAlbumId()) == null) {
+			Bitmap art = bitmapFactory.fromPath(artPath);
+
+			if (art == null) return null;
+
 			artCache.put(track.getAlbumId(), bitmapFactory.fromPath(artPath));
 		}
 
