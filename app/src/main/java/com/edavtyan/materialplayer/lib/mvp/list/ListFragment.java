@@ -15,8 +15,6 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 	protected RecyclerView.Adapter adapter;
 	protected TPresenter presenter;
 
-	protected boolean isCompactModeEnabled;
-
 	protected void initListView(TPresenter presenter, RecyclerView.Adapter adapter) {
 		this.presenter = presenter;
 		this.adapter = adapter;

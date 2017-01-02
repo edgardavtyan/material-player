@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.lib.mvp.list;
 
+@SuppressWarnings("unused")
 public interface ListMvp {
 	interface Model {
 		boolean isCompactModeEnabled();

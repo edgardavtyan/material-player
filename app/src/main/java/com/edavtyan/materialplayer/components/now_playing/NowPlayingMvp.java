@@ -7,6 +7,7 @@ import android.widget.SeekBar;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 
+@SuppressWarnings("unused")
 public interface NowPlayingMvp {
 	interface Model extends ServiceConnection {
 		interface OnModelBoundListener {
