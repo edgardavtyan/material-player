@@ -12,7 +12,7 @@ public class TrackDBHelper extends TestDBHelper {
 	private static final String DATABASE_NAME = "testdb_tracks.db";
 	private static final int DATABASE_VERSION = 1;
 
-	private static final String TABLE_NAME = "Aracks";
+	private static final String TABLE_NAME = "Tracks";
 
 	private static final String KEY_ID = MediaStore.Audio.Media._ID;
 	private static final String KEY_TRACK = MediaStore.Audio.Media.TRACK;

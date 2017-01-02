@@ -48,7 +48,7 @@ public class EqualizerBandViewTest extends BaseTest {
 		assertThat(gainView.getText()).isEqualTo("0 dB");
 	}
 
-	@Test public void setGain_negativeGain_setGaintWithMinusSign() {
+	@Test public void setGain_negativeGain_setGainsWithMinusSign() {
 		equalizerView.setGain(-20);
 		assertThat(gainView.getText()).isEqualTo("-20 dB");
 	}
