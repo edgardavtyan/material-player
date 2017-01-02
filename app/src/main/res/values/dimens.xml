@@ -2,6 +2,8 @@
 <resources>
 
 	<dimen name="spacing_medium">16dp</dimen>
+	<dimen name="spacing_medium_plus">17dp</dimen>
+	<dimen name="spacing_medium_minus">15dp</dimen>
 	<dimen name="spacing_tiny">8dp</dimen>
 
 	<dimen name="font_big">24sp</dimen>

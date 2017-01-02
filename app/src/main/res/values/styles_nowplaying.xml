@@ -13,7 +13,7 @@
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Title">
-		<item name="android:layout_marginLeft">15dp</item>
+		<item name="android:layout_marginLeft">@dimen/spacing_medium_minus</item>
 		<item name="android:textSize">@dimen/font_big</item>
 		<item name="android:textColor">?textColorContrastPrimary</item>
 		<item name="android:singleLine">true</item>
@@ -27,6 +27,8 @@
 	</style>
 
 	<style name="NowPlaying_Seekbar">
+		<item name="android:paddingEnd">@dimen/spacing_medium_plus</item>
+		<item name="android:paddingStart">@dimen/spacing_medium_plus</item>
 		<item name="thumbColor">?colorAccent</item>
 		<item name="progressBackgroundColor">?textColorContrastPrimary</item>
 		<item name="progressColor">?colorAccent</item>
