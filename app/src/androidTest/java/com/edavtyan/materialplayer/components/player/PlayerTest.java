@@ -133,6 +133,7 @@ public class PlayerTest extends BaseTest {
 		Track track = mock(Track.class);
 		when(track.getPath()).thenReturn("path");
 		when(queue.getCurrentTrack()).thenReturn(track);
+		when(queue.hasData()).thenReturn(true);
 
 		player.playNext();
 
