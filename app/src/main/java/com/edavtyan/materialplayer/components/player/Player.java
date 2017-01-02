@@ -105,6 +105,7 @@ public class Player
 	}
 
 	@Override public void playNext() {
+		if (!hasData()) return;
 		queue.moveToNext();
 		if (queue.isEnded()) return;
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
