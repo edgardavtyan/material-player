@@ -40,7 +40,6 @@
 			</LinearLayout>
 
 			<ImageButton
-				android:id="@+id/close"
 				android:contentDescription="@string/description_notification_close"
 				style="@style/notification_big_close"
 				/>
