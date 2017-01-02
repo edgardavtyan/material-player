@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
-import com.edavtyan.utils.advanced.GenericLinearLayout;
+import com.edavtyan.utils.generic.GenericLinearLayout;
 
 import lombok.Setter;
 

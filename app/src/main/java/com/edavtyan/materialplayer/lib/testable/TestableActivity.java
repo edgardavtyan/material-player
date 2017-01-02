@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.utils.advanced.GenericActivity;
+import com.edavtyan.utils.generic.GenericActivity;
 
 @SuppressLint("MissingSuperCall")
 public abstract class TestableActivity extends GenericActivity {

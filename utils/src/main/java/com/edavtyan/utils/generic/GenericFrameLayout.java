@@ -1,4 +1,4 @@
-package com.edavtyan.utils.advanced;
+package com.edavtyan.utils.generic;
 
 import android.content.Context;
 import android.support.annotation.IdRes;

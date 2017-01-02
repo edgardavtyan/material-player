@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.lib.testable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.utils.advanced.GenericFragment;
+import com.edavtyan.utils.generic.GenericFragment;
 
 public class TestableFragment extends GenericFragment {
 	@Override

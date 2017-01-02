@@ -6,7 +6,7 @@ import android.view.Gravity;
 
 import com.edavtyan.prefs.R;
 import com.edavtyan.prefs.utils.AttributeResolver;
-import com.edavtyan.utils.advanced.GenericLinearLayout;
+import com.edavtyan.utils.generic.GenericLinearLayout;
 
 public abstract class BasePreference extends GenericLinearLayout {
 	protected final Context context;

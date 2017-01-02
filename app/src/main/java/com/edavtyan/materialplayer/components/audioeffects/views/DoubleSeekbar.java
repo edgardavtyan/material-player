@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.utils.advanced.GenericFrameLayout;
+import com.edavtyan.utils.generic.GenericFrameLayout;
 
 import lombok.Setter;
 

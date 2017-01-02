@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
-import com.edavtyan.utils.advanced.GenericLinearLayout;
+import com.edavtyan.utils.generic.GenericLinearLayout;
 
 public class PreferenceCategory extends GenericLinearLayout {
 	public PreferenceCategory(Context context, AttributeSet attrs) {

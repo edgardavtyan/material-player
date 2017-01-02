@@ -8,7 +8,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.utils.advanced.GenericLinearLayout;
+import com.edavtyan.utils.generic.GenericLinearLayout;
 
 import lombok.Setter;
 

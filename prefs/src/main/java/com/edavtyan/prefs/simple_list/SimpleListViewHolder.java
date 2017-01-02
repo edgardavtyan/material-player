@@ -5,7 +5,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
-import com.edavtyan.utils.advanced.GenericViewHolder;
+import com.edavtyan.utils.generic.GenericViewHolder;
 
 import lombok.Getter;
 import lombok.Setter;

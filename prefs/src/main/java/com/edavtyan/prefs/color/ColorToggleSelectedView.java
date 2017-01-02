@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.edavtyan.prefs.R;
-import com.edavtyan.utils.advanced.GenericFrameLayout;
+import com.edavtyan.utils.generic.GenericFrameLayout;
 
 public class ColorToggleSelectedView extends GenericFrameLayout {
 	private ColorCircleView colorView;
