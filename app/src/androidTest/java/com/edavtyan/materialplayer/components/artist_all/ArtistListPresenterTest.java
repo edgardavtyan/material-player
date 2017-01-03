@@ -56,4 +56,8 @@ public class ArtistListPresenterTest extends BaseTest {
 		presenter.onCreate();
 		verify(model).update();
 	}
+
+	@Test public void onDestroy_doesNothing() {
+		presenter.onDestroy();
+	}
 }

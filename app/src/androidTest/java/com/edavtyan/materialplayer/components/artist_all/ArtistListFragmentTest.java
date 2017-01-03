@@ -63,4 +63,10 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 		fragment.goToArtistDetail("title");
 		verify(navigator).gotoArtistDetail("title");
 	}
+
+	@Test public void notifyDataSetChanged_callAdapter() {
+		fragment.onCreate(null);
+		fragment.notifyDataSetChanged();
+		verify(adapter).notifyDataSetChangedNonFinal();
+	}
 }

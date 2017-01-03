@@ -10,6 +10,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -41,5 +42,13 @@ public class ArtistListViewHolderTest extends BaseTest {
 		itemView.callOnClick();
 
 		verify(clickListener).onHolderClick(holder);
+	}
+
+	@Test public void setOnHolderClickListener_listenerNotSet_notThrowException() {
+		try {
+			holder.onClick(mock(View.class));
+		} catch (NullPointerException e) {
+			fail("Exception should not be thrown if listener not set");
+		}
 	}
 }

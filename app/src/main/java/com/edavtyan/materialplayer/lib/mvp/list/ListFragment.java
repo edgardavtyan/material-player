@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
+import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends BaseFragment {
-	protected RecyclerView.Adapter adapter;
+	protected TestableRecyclerAdapter adapter;
 	protected TPresenter presenter;
 
-	protected void initListView(TPresenter presenter, RecyclerView.Adapter adapter) {
+	protected void initListView(TPresenter presenter, TestableRecyclerAdapter adapter) {
 		this.presenter = presenter;
 		this.adapter = adapter;
 		presenter.onCreate();

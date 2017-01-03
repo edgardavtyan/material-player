@@ -9,6 +9,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -24,6 +25,14 @@ public class ArtistListAdapterTest extends BaseTest {
 		presenter = mock(ArtistListMvp.Presenter.class);
 		holder = mock(ArtistListViewHolder.class);
 		adapter = new ArtistListAdapter(context, presenter);
+	}
+
+	@Test public void getNormalLayoutId_returnCorrectId() {
+		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_artist);
+	}
+
+	@Test public void getCompactLayoutId_returnCorrectId() {
+		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_artist_compact);
 	}
 
 	@Test public void onCreateViewHolder_inflateViewWithCorrectParams() {

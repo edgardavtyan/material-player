@@ -25,7 +25,8 @@ public class ArtistListFragment
 		navigator.gotoArtistDetail(title);
 	}
 
-	@Override public void notifyDataSetChanged() {
-		adapter.notifyDataSetChanged();
+	@Override
+	public void notifyDataSetChanged() {
+		adapter.notifyDataSetChangedNonFinal();
 	}
 }
