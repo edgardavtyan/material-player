@@ -14,6 +14,7 @@ public class PlayerFactoryTest extends FactoryTest {
 
 	@Test public void factoryTest() throws Exception {
 		testFactoryMethod(playerFactory::providePlayer);
+		testFactoryMethod(playerFactory::providePlayerPrefs);
 		testFactoryMethod(playerFactory::provideRewindReceiver);
 		testFactoryMethod(playerFactory::providePlayPauseReceiver);
 		testFactoryMethod(playerFactory::provideFastForwardReceiver);
@@ -21,7 +22,10 @@ public class PlayerFactoryTest extends FactoryTest {
 		testFactoryMethod(playerFactory::provideQueueList);
 		testFactoryMethod(playerFactory::provideAudioEngine);
 		testFactoryMethod(playerFactory::provideEqualizer);
+		testFactoryMethod(playerFactory::provideEqualizerPrefs);
 		testFactoryMethod(playerFactory::provideBassBoost);
+		testFactoryMethod(playerFactory::provideBassBoostPrefs);
 		testFactoryMethod(playerFactory::provideSurround);
+		testFactoryMethod(playerFactory::provideSurroundPrefs);
 	}
 }
