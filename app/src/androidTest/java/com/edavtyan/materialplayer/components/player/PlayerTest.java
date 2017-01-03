@@ -236,6 +236,16 @@ public class PlayerTest extends BaseTest {
 		verify(audioEngine).setPosition(60);
 	}
 
+	@Test public void lowerVolume_setAudioEngineVolume() {
+		player.lowerVolume();
+		verify(audioEngine).setVolume(0.3f);
+	}
+
+	@Test public void restoreVolume_setAudioEngineVolume() {
+		player.restoreVolume();
+		verify(audioEngine).setVolume(1.0f);
+	}
+
 	@Test public void onPrepared_OnNewTrackListenerSet_callOnNewTrackListener() {
 		OnNewTrackListener listener = mock(OnNewTrackListener.class);
 		player.setOnNewTrackListener(listener);
