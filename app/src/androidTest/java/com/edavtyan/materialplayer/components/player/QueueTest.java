@@ -83,6 +83,15 @@ public class QueueTest extends BaseTest {
 		assertThat(queue.isEnded()).isTrue();
 	}
 
+	@Test public void moveToNext_atLastTrackAndRepeatAll_setPositionToZero() {
+		when(innerList.size()).thenReturn(4);
+		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
+		queue.setPosition(3);
+		queue.moveToNext();
+		assertThat(queue.getPosition()).isZero();
+		assertThat(queue.isEnded()).isFalse();
+	}
+
 	@Test public void moveToPrev_atFirstTrack_setPositionToLastTrack() {
 		when(innerList.size()).thenReturn(5);
 		queue.setPosition(0);
