@@ -13,10 +13,10 @@ public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.O
 	private @Setter OnPreparedListener onPreparedListener;
 	private @Setter OnCompletedListener onCompletedListener;
 
-	public StandardAudioEngine() {
-		player = new MediaPlayer();
-		player.setOnPreparedListener(this);
-		player.setOnCompletionListener(this);
+	public StandardAudioEngine(MediaPlayer player) {
+		this.player = player;
+		this.player.setOnPreparedListener(this);
+		this.player.setOnCompletionListener(this);
 	}
 
 	@Override public int getSessionId() {

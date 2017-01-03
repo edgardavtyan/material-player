@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.player;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.media.audiofx.Virtualizer;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
@@ -130,7 +131,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public PlayerMvp.AudioEngine provideAudioEngine() {
 		if (audioEngine == null)
-			audioEngine = new StandardAudioEngine();
+			audioEngine = new StandardAudioEngine(new MediaPlayer());
 		return audioEngine;
 	}
 }
