@@ -26,20 +26,24 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 		if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
 			if (currentState == AudioManager.AUDIOFOCUS_LOSS) {
 				onAudioFocusGain();
-				currentState = AudioManager.AUDIOFOCUS_LOSS;
 			} else if (currentState == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
 				onAudioFocusGainAfterLossTransient();
-				currentState = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
 			} else if (currentState == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 				onAudioFocusGainAfterTransientLossCanDuck();
-				currentState = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
+			} else {
+				onAudioFocusGain();
 			}
+
+			currentState = AudioManager.AUDIOFOCUS_GAIN;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
 			onAudioFocusLoss();
+			currentState = AudioManager.AUDIOFOCUS_LOSS;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
 			onAudioFocusLossTransient();
+			currentState = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 			onAudioFocusLossTransientCanDuck();
+			currentState = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 		}
 	}
 
