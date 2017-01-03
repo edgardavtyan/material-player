@@ -11,8 +11,7 @@ public class AlbumDetailFactoryTest extends FactoryTest {
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
-		albumDetailFactory = new AlbumDetailFactory(view, 0);
+		albumDetailFactory = new AlbumDetailFactory(context, mock(AlbumDetailActivity.class), 0);
 	}
 
 	@Test public void testProviders() throws Exception {

@@ -38,8 +38,8 @@ public class App extends Application {
 		return new AlbumListFactory(context, view);
 	}
 
-	public AlbumDetailFactory getAlbumDetailDI(AlbumDetailActivity albumDetailActivity, int albumId) {
-		return new AlbumDetailFactory(albumDetailActivity, albumId);
+	public AlbumDetailFactory getAlbumDetailDI(AlbumDetailActivity activity, int albumId) {
+		return new AlbumDetailFactory(activity, activity, albumId);
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListMvp.View view) {
