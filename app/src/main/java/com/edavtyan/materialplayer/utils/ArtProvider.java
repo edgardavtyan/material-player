@@ -43,7 +43,7 @@ public class ArtProvider {
 
 			if (art == null) return null;
 
-			artCache.put(track.getAlbumId(), bitmapFactory.fromPath(artPath));
+			artCache.put(track.getAlbumId(), art);
 		}
 
 		return artCache.get(track.getAlbumId());
