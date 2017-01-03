@@ -16,12 +16,12 @@ public class NowPlayingQueuePresenter
 
 	@Override
 	public void onCreate() {
-		model.bind();
+		model.bindService();
 	}
 
 	@Override
 	public void onDestroy() {
-		model.unbind();
+		model.unbindService();
 	}
 
 	@Override

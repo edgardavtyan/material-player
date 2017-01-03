@@ -23,12 +23,12 @@ public class NowPlayingQueuePresenterTest extends BaseTest {
 
 	@Test public void onCreate_bindModel() {
 		presenter.onCreate();
-		verify(model).bind();
+		verify(model).bindService();
 	}
 
 	@Test public void onDestroy_unbindModel() {
 		presenter.onDestroy();
-		verify(model).unbind();
+		verify(model).unbindService();
 	}
 
 	@Test public void onItemClick_playItemViaModel() {

@@ -26,7 +26,7 @@ public class ArtistListModelTests extends BaseTest {
 
 		CompactListPref prefs = mock(CompactListPref.class);
 
-		model = new ArtistListModel(db, prefs);
+		model = new ArtistListModel(context, db, prefs);
 	}
 
 	@Test public void getArtistCount_correctCount() {

@@ -22,7 +22,11 @@ public class ArtistListFactory extends ListFactory {
 	}
 
 	public ArtistListMvp.Model provideModel() {
-		if (model == null) model = new ArtistListModel(provideArtistDB(), provideCompactListPref());
+		if (model == null)
+			model = new ArtistListModel(
+					provideContext(),
+					provideArtistDB(),
+					provideCompactListPref());
 		return model;
 	}
 

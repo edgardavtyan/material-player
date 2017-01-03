@@ -1,12 +1,7 @@
 package com.edavtyan.materialplayer.components.track_all;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
@@ -16,17 +11,13 @@ import java.util.List;
 
 public class TrackListModel
 		extends ListModel
-		implements TrackListMvp.Model,
-				   ServiceConnection {
+		implements TrackListMvp.Model {
 
-	private final Context context;
 	private final TrackDB db;
 	private List<Track> tracks;
-	private PlayerService service;
 
 	public TrackListModel(Context context, TrackDB db, CompactListPref compactListPref) {
-		super(compactListPref);
-		this.context = context;
+		super(context, compactListPref);
 		this.db = db;
 	}
 
@@ -53,18 +44,6 @@ public class TrackListModel
 	}
 
 	@Override
-	public void bindService() {
-		context.bindService(
-				new Intent(context, PlayerService.class),
-				this, Context.BIND_AUTO_CREATE);
-	}
-
-	@Override
-	public void unbindService() {
-		context.unbindService(this);
-	}
-
-	@Override
 	public void update() {
 		tracks = queryTracks();
 	}
@@ -72,15 +51,6 @@ public class TrackListModel
 	@Override
 	public void close() {
 		tracks = null;
-	}
-
-	@Override
-	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((PlayerService.PlayerBinder) binder).getService();
-	}
-
-	@Override
-	public void onServiceDisconnected(ComponentName name) {
 	}
 
 	protected List<Track> queryTracks() {

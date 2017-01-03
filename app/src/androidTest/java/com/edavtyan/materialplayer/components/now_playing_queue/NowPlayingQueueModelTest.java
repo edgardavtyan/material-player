@@ -42,7 +42,7 @@ public class NowPlayingQueueModelTest extends BaseTest {
 
 	@Test @SuppressWarnings("WrongConstant")
 	public void bind_bindServiceWithCorrectParameters() {
-		model.bind();
+		model.bindService();
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
@@ -50,8 +50,8 @@ public class NowPlayingQueueModelTest extends BaseTest {
 	}
 
 	@Test public void unbind_unbindService() {
-		model.bind();
-		model.unbind();
+		model.bindService();
+		model.unbindService();
 		verify(context).unbindService(model);
 	}
 

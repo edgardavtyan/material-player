@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
+import android.content.Context;
+
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
@@ -14,8 +16,8 @@ public class ArtistListModel
 	private final ArtistDB db;
 	private List<Artist> artists;
 
-	public ArtistListModel(ArtistDB db, CompactListPref compactListPref) {
-		super(compactListPref);
+	public ArtistListModel(Context context, ArtistDB db, CompactListPref compactListPref) {
+		super(context, compactListPref);
 		this.db = db;
 	}
 

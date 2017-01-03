@@ -1,9 +1,14 @@
 package com.edavtyan.materialplayer.lib.mvp.list;
 
-public class ListModel implements ListMvp.Model {
+import android.content.Context;
+
+import com.edavtyan.materialplayer.lib.mvp.service.ServiceModel;
+
+public class ListModel extends ServiceModel implements ListMvp.Model {
 	private final CompactListPref compactListPref;
 
-	public ListModel(CompactListPref compactListPref) {
+	public ListModel(Context context, CompactListPref compactListPref) {
+		super(context);
 		this.compactListPref = compactListPref;
 	}
 

@@ -1,33 +1,14 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
 
 public class NowPlayingQueueModel extends ListModel implements NowPlayingQueueMvp.Model {
-	private final Context context;
-	private PlayerService service;
-
 	public NowPlayingQueueModel(Context context, CompactListPref compactListPref) {
-		super(compactListPref);
-		this.context = context;
-	}
-
-	@Override
-	public void bind() {
-		Intent intent = new Intent(context, PlayerService.class);
-		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
-	}
-
-	@Override
-	public void unbind() {
-		context.unbindService(this);
+		super(context, compactListPref);
 	}
 
 	@Override
@@ -49,14 +30,5 @@ public class NowPlayingQueueModel extends ListModel implements NowPlayingQueueMv
 	public int getTrackCount() {
 		if (service == null) return 0;
 		return service.getPlayer().getTracksCount();
-	}
-
-	@Override
-	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((PlayerService.PlayerBinder) binder).getService();
-	}
-
-	@Override
-	public void onServiceDisconnected(ComponentName name) {
 	}
 }
