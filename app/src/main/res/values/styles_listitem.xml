@@ -71,7 +71,7 @@
 	</style>
 
 	<style name="listitem_menu">
-		<item name="android:layout_width">@dimen/size_medium</item>
+		<item name="android:layout_width">46dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:src">@drawable/ic_more_vert</item>
 		<item name="android:background">@drawable/ripple_base</item>
