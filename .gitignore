@@ -117,3 +117,6 @@ gradle-app.setting
 
 # PSD Generated assets
 app/psd/generator-assets
+
+# LastFM api
+app/src/main/res/values/api_lastfm.xml
