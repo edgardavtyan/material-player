@@ -43,33 +43,37 @@ public class ArtistImageProvider {
 			return artFromLruCache;
 		}
 
-		File artistArtFile = dataStorage.getArtistFile(artistTitle);
-		if (artistArtFile.exists()) {
-			Bitmap artFromFileSystem = BitmapFactory.decodeFile(artistArtFile.getAbsolutePath());
+		File artFile = dataStorage.getArtistFile(artistTitle);
+		if (artFile.exists()) {
+			Bitmap artFromFileSystem = BitmapFactory.decodeFile(artFile.getAbsolutePath());
 			artistArtCache.put(artistTitle, artFromFileSystem);
 			return artFromFileSystem;
 		}
 
-		try {
-			String jsonResponse = webClient.getString(getFullApiUrl(artistTitle)).string();
-			JSONObject json = new JSONObject(jsonResponse);
-			String artistArtUrl = json.getJSONObject("artist")
-									  .getJSONArray("image")
-									  .getJSONObject(4)
-									  .getString("#text");
-			byte[] artistArt = webClient.getString(artistArtUrl).bytes();
-			dataStorage.saveFile(artistArtFile, artistArt);
-			Bitmap artistArtFromAPI = BitmapFactory.decodeByteArray(artistArt, 0, artistArt.length);
-			artistArtCache.put(artistTitle, artistArtFromAPI);
-			return artistArtFromAPI;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		byte[] artBytesFromApi = getArtFromApi(artistTitle);
+		dataStorage.saveFile(artFile, artBytesFromApi);
+		Bitmap artFromApi = BitmapFactory.decodeByteArray(artBytesFromApi, 0, artBytesFromApi.length);
+		artistArtCache.put(artistTitle, artFromApi);
+		return artFromApi;
 	}
 
 	private String getFullApiUrl(String artistTitle) {
 		String apiKey = context.getString(R.string.lastfm_api_key);
 		return String.format(Locale.getDefault(), apiUrlStr, artistTitle, apiKey);
+	}
+
+	private byte[] getArtFromApi(String artistTitle) {
+		try {
+			String fullApiUrl = getFullApiUrl(artistTitle);
+			String jsonResponse = webClient.get(fullApiUrl).string();
+			JSONObject json = new JSONObject(jsonResponse);
+			String artistArtUrl = json.getJSONObject("artist")
+									  .getJSONArray("image")
+									  .getJSONObject(4)
+									  .getString("#text");
+			return webClient.get(artistArtUrl).bytes();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
