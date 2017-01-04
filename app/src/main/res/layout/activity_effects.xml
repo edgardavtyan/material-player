@@ -47,6 +47,12 @@
 			style="@style/AudioEffects_Effect"
 			/>
 
+		<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
+			android:id="@+id/amplifier"
+			app:ts_text="@string/amplifier_title"
+			style="@style/AudioEffects_Effect"
+			/>
+
 	</LinearLayout>
 
 </ScrollView>

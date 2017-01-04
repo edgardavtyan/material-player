@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.view.ContextThemeWrapper;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -69,5 +70,12 @@ public class AudioEffectsModelTest extends BaseTest {
 		when(service.getSurround()).thenReturn(surround);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getSurround()).isEqualTo(surround);
+	}
+
+	@Test public void getAmplifier_returnAmplifierFromService() {
+		Amplifier amplifier = mock(Amplifier.class);
+		when(service.getAmplifier()).thenReturn(amplifier);
+		model.onServiceConnected(null, binder);
+		assertThat(model.getAmplifier()).isEqualTo(amplifier);
 	}
 }

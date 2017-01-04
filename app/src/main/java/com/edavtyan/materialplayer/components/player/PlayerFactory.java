@@ -2,12 +2,18 @@ package com.edavtyan.materialplayer.components.player;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.media.audiofx.LoudnessEnhancer;
 import android.media.audiofx.Virtualizer;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
+import com.edavtyan.materialplayer.components.audioeffects.models.AmplifierPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoostPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.StandardAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
@@ -31,6 +37,7 @@ public class PlayerFactory extends BaseFactory {
 	private EqualizerPrefs equalizerPrefs;
 	private Surround surround;
 	private SurroundPrefs surroundPrefs;
+	private Amplifier amplifier;
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
 	private PlayerPrefs playerPrefs;
@@ -115,6 +122,15 @@ public class PlayerFactory extends BaseFactory {
 		if (surroundPrefs == null)
 			surroundPrefs = new SurroundPrefs(providePrefs());
 		return surroundPrefs;
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.KITKAT)
+	public Amplifier provideAmplifier() {
+		if (amplifier == null)
+			amplifier = new StandardAmplifier(
+					new LoudnessEnhancer(providePlayer().getSessionId()),
+					new AmplifierPrefs(providePrefs()));
+		return amplifier;
 	}
 
 	public List<Track> provideQueueList() {

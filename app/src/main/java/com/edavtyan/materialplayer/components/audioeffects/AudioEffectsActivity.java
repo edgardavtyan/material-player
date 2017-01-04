@@ -24,6 +24,7 @@ public class AudioEffectsActivity
 	private EqualizerView equalizerView;
 	private TitledSeekbar bassBoostView;
 	private TitledSeekbar surroundView;
+	private TitledSeekbar amplifierView;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class AudioEffectsActivity
 
 		surroundView = findView(R.id.surround);
 		surroundView.setOnProgressChangedListener(this);
+
+		amplifierView = findView(R.id.amplifier);
+		amplifierView.setOnProgressChangedListener(this);
 
 		App app = (App) getApplicationContext();
 		AudioEffectsFactory factory = app.getAudioEffectsFactory(this, this);
@@ -82,6 +86,12 @@ public class AudioEffectsActivity
 	}
 
 	@Override
+	public void initAmplifier(int max, int gain) {
+		amplifierView.setMax(max);
+		amplifierView.setProgress(gain);
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		presenter.onEqualizerEnabledChanged(isChecked);
 	}
@@ -105,6 +115,9 @@ public class AudioEffectsActivity
 		case R.id.surround:
 			presenter.onSurroundStrengthChanged(progress);
 			break;
+		case R.id.amplifier:
+			presenter.onAmplifierStrengthChanged(progress);
+			break;
 		}
 	}
 
@@ -116,6 +129,9 @@ public class AudioEffectsActivity
 			break;
 		case R.id.surround:
 			presenter.onSurroundStrengthStopChanging();
+			break;
+		case R.id.amplifier:
+			presenter.onAmplifierStrengthStopChanging();
 			break;
 		}
 	}

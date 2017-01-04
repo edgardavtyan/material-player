@@ -62,6 +62,16 @@ public class AudioEffectsPresenter
 	}
 
 	@Override
+	public void onAmplifierStrengthChanged(int gain) {
+		model.getAmplifier().setGain(gain);
+	}
+
+	@Override
+	public void onAmplifierStrengthStopChanging() {
+		model.getAmplifier().saveSettings();
+	}
+
+	@Override
 	public void onServiceConnected() {
 		view.setEqualizerEnabled(model.getEqualizer().isEnabled());
 		view.setEqualizerBands(
@@ -71,5 +81,6 @@ public class AudioEffectsPresenter
 				model.getEqualizer().getGains());
 		view.initBassBoost(model.getBassBoost().getMaxStrength(), model.getBassBoost().getStrength());
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
+		view.initAmplifier(model.getAmplifier().getMaxGain(), model.getAmplifier().getGain());
 	}
 }

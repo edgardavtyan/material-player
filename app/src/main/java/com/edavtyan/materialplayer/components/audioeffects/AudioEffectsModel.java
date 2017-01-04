@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -47,6 +48,11 @@ public class AudioEffectsModel implements AudioEffectsMvp.Model {
 	@Override
 	public Surround getSurround() {
 		return service.getSurround();
+	}
+
+	@Override
+	public Amplifier getAmplifier() {
+		return service.getAmplifier();
 	}
 
 	@Override

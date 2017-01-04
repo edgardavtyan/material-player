@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -19,6 +20,7 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	private Equalizer equalizer;
 	private BassBoost bassBoost;
 	private Surround surround;
+	private Amplifier amplifier;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -29,10 +31,12 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		equalizer = mock(Equalizer.class);
 		bassBoost = mock(BassBoost.class);
 		surround = mock(Surround.class);
+		amplifier = mock(Amplifier.class);
 
 		when(model.getEqualizer()).thenReturn(equalizer);
 		when(model.getBassBoost()).thenReturn(bassBoost);
 		when(model.getSurround()).thenReturn(surround);
+		when(model.getAmplifier()).thenReturn(amplifier);
 	}
 
 	@Test public void onServiceConnected_initViewUsingModelData() {
@@ -45,6 +49,8 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		when(bassBoost.getMaxStrength()).thenReturn(100);
 		when(surround.getStrength()).thenReturn(4);
 		when(surround.getMaxStrength()).thenReturn(200);
+		when(amplifier.getGain()).thenReturn(5);
+		when(amplifier.getMaxGain()).thenReturn(300);
 
 		presenter.onServiceConnected();
 
@@ -52,6 +58,7 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		verify(view).setEqualizerBands(5, 15, new int[]{10, 20, 30, 40, 50}, new int[]{4, 5, 6, 7, 8});
 		verify(view).initBassBoost(100, 15);
 		verify(view).initSurround(200, 4);
+		verify(view).initAmplifier(300, 5);
 	}
 
 	@Test public void onCreate_initModel() {

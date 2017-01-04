@@ -5,10 +5,12 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -35,6 +37,7 @@ public class PlayerService extends Service {
 	private @Getter Equalizer equalizer;
 	private @Getter Surround surround;
 	private @Getter BassBoost bassBoost;
+	private @Getter Amplifier amplifier;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -56,6 +59,10 @@ public class PlayerService extends Service {
 		equalizer = playerFactory.provideEqualizer();
 		bassBoost = playerFactory.provideBassBoost();
 		surround = playerFactory.provideSurround();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			amplifier = playerFactory.provideAmplifier();
+		}
 
 		audioFocusManager = new AudioFocusManager(this, player);
 		audioFocusManager.requestFocus();
