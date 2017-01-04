@@ -43,12 +43,13 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			CompactListPref compactListPref,
+			ArtistArtProvider artistArtProvider,
 			String artistTitle) {
 		super(context, albumDB, trackDB, compactListPref);
 		this.artistDB = artistDB;
 		this.albumDB = albumDB;
 		this.artistTitle = artistTitle;
-		artistArtProvider = new ArtistArtProvider(context);
+		this.artistArtProvider = artistArtProvider;
 	}
 
 	@Override

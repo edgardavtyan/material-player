@@ -2,10 +2,10 @@ package com.edavtyan.materialplayer.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.LruCache;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 import org.json.JSONObject;
 
@@ -29,12 +29,18 @@ public class ArtistArtProvider {
 
 	private final Context context;
 	private final WebClient webClient;
+	private final TestableBitmapFactory bitmapFactory;
 	private final DataStorage dataStorage;
 
-	public ArtistArtProvider(Context context) {
+	public ArtistArtProvider(
+			Context context,
+			WebClient webClient,
+			TestableBitmapFactory bitmapFactory,
+			DataStorage dataStorage) {
 		this.context = context;
-		this.webClient = new WebClient();
-		this.dataStorage = new DataStorage();
+		this.webClient = webClient;
+		this.bitmapFactory = bitmapFactory;
+		this.dataStorage = dataStorage;
 	}
 
 	public Bitmap load(String artistTitle) {
@@ -45,14 +51,14 @@ public class ArtistArtProvider {
 
 		File artFile = dataStorage.getArtistFile(artistTitle);
 		if (artFile.exists()) {
-			Bitmap artFromFileSystem = BitmapFactory.decodeFile(artFile.getAbsolutePath());
+			Bitmap artFromFileSystem = bitmapFactory.fromPath(artFile.getAbsolutePath());
 			artistArtCache.put(artistTitle, artFromFileSystem);
 			return artFromFileSystem;
 		}
 
 		byte[] artBytesFromApi = getArtFromApi(artistTitle);
 		dataStorage.saveFile(artFile, artBytesFromApi);
-		Bitmap artFromApi = BitmapFactory.decodeByteArray(artBytesFromApi, 0, artBytesFromApi.length);
+		Bitmap artFromApi = bitmapFactory.fromByteArray(artBytesFromApi);
 		artistArtCache.put(artistTitle, artFromApi);
 		return artFromApi;
 	}

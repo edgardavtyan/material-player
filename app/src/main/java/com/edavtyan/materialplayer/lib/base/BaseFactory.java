@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.ArtProvider;
 import com.edavtyan.materialplayer.utils.DataStorage;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
+import com.edavtyan.materialplayer.utils.WebClient;
 import com.edavtyan.materialplayer.utils.tag.MusicTagReader;
 import com.edavtyan.materialplayer.utils.tag.VanillaMusicTagReader;
 
@@ -20,6 +21,7 @@ public class BaseFactory {
 	private ArtProvider artProvider;
 	private TestableBitmapFactory bitmapFactory;
 	private DataStorage dataStorage;
+	private WebClient webClient;
 	private MusicTagReader musicTagReader;
 	private ThemeUtils themeUtils;
 	private AdvancedSharedPrefs prefs;
@@ -57,6 +59,12 @@ public class BaseFactory {
 		if (dataStorage == null)
 			dataStorage = new DataStorage();
 		return dataStorage;
+	}
+
+	public WebClient providerWebClient() {
+		if (webClient == null)
+			webClient = new WebClient();
+		return webClient;
 	}
 
 	public TestableBitmapFactory provideBitmapFactory() {

@@ -7,6 +7,7 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
+import com.edavtyan.materialplayer.utils.ArtistArtProvider;
 
 public class ArtistDetailFactory extends ListFactory {
 	private final String artistTitle;
@@ -14,6 +15,7 @@ public class ArtistDetailFactory extends ListFactory {
 	private ArtistDetailMvp.Model model;
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
+	private ArtistArtProvider artistArtProvider;
 
 	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
 		super(context);
@@ -32,6 +34,7 @@ public class ArtistDetailFactory extends ListFactory {
 					albumDB,
 					trackDB,
 					provideCompactListPref(),
+					provideArtistArtProvider(),
 					artistTitle);
 		}
 
@@ -52,5 +55,15 @@ public class ArtistDetailFactory extends ListFactory {
 		if (adapter == null)
 			adapter = new AlbumListAdapter(provideContext(), providePresenter());
 		return adapter;
+	}
+
+	public ArtistArtProvider provideArtistArtProvider() {
+		if (artistArtProvider == null)
+			artistArtProvider = new ArtistArtProvider(
+					provideContext(),
+					providerWebClient(),
+					provideBitmapFactory(),
+					provideDataStorage());
+		return artistArtProvider;
 	}
 }
