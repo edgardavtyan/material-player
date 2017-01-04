@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.Locale;
 
-public class ArtistImageProvider {
+public class ArtistArtProvider {
 	@SuppressWarnings("SpellCheckingInspection")
 	private static final String apiUrlStr =
 			"http://ws.audioscrobbler.com/2.0/" +
@@ -31,7 +31,7 @@ public class ArtistImageProvider {
 	private final WebClient webClient;
 	private final DataStorage dataStorage;
 
-	public ArtistImageProvider(Context context) {
+	public ArtistArtProvider(Context context) {
 		this.context = context;
 		this.webClient = new WebClient();
 		this.dataStorage = new DataStorage();

@@ -11,7 +11,7 @@ import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
-import com.edavtyan.materialplayer.utils.ArtistImageProvider;
+import com.edavtyan.materialplayer.utils.ArtistArtProvider;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 	private final ArtistDB artistDB;
 	private final AlbumDB albumDB;
 	private final String artistTitle;
-	private final ArtistImageProvider artistArtProvider;
+	private final ArtistArtProvider artistArtProvider;
 
 	private @Setter OnArtLoadedListener onArtLoadedListener;
 
@@ -48,7 +48,7 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 		this.artistDB = artistDB;
 		this.albumDB = albumDB;
 		this.artistTitle = artistTitle;
-		artistArtProvider = new ArtistImageProvider(context);
+		artistArtProvider = new ArtistArtProvider(context);
 	}
 
 	@Override
