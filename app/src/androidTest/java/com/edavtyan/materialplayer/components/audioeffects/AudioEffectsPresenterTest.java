@@ -108,4 +108,14 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		presenter.onSurroundStrengthStopChanging();
 		verify(surround).saveSettings();
 	}
+
+	@Test public void onAmplifierStrengthChanged_setAmplifierGainViaModel() {
+		presenter.onAmplifierStrengthChanged(50);
+		verify(amplifier).setGain(50);
+	}
+
+	@Test public void onAmplifierStrengthStopChanging_saveAmplifierGainViaModel() {
+		presenter.onAmplifierStrengthStopChanging();
+		verify(amplifier).saveSettings();
+	}
 }
