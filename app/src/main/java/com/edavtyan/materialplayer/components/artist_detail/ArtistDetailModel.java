@@ -1,8 +1,6 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 
 import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
 import com.edavtyan.materialplayer.db.Album;
@@ -24,18 +22,6 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 	private final ArtistArtProvider artistArtProvider;
 
 	private @Setter OnArtLoadedListener onArtLoadedListener;
-
-	private class ArtistImageTask extends AsyncTask<String, Void, Bitmap> {
-		@Override
-		protected Bitmap doInBackground(String... title) {
-			return artistArtProvider.load(title[0]);
-		}
-
-		@Override
-		protected void onPostExecute(Bitmap art) {
-			if (onArtLoadedListener != null) onArtLoadedListener.onArtistImageLoaded(art);
-		}
-	}
 
 	public ArtistDetailModel(
 			Context context,
@@ -62,6 +48,6 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 	}
 
 	public void loadArtistImage() {
-		new ArtistImageTask().execute(artistTitle);
+		new ArtistImageTask(artistArtProvider, onArtLoadedListener).execute(artistTitle);
 	}
 }
