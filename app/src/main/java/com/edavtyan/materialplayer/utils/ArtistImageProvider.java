@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.LruCache;
 
 import com.edavtyan.materialplayer.R;
 
@@ -20,6 +21,12 @@ public class ArtistImageProvider {
 			"&api_key=%s" +
 			"&format=json";
 
+	private static final LruCache<String, Bitmap> artistArtCache;
+
+	static {
+		artistArtCache = new LruCache<>(1000 * 1000 * 4); // 4MB
+	}
+
 	private final Context context;
 	private final WebClient webClient;
 	private final DataStorage dataStorage;
@@ -31,10 +38,16 @@ public class ArtistImageProvider {
 	}
 
 	public Bitmap load(String artistTitle) {
-		File artistArtFile = dataStorage.getArtistFile(artistTitle);
+		Bitmap artFromLruCache = artistArtCache.get(artistTitle);
+		if (artFromLruCache != null) {
+			return artFromLruCache;
+		}
 
+		File artistArtFile = dataStorage.getArtistFile(artistTitle);
 		if (artistArtFile.exists()) {
-			return BitmapFactory.decodeFile(artistArtFile.getAbsolutePath());
+			Bitmap artFromFileSystem = BitmapFactory.decodeFile(artistArtFile.getAbsolutePath());
+			artistArtCache.put(artistTitle, artFromFileSystem);
+			return artFromFileSystem;
 		}
 
 		try {
@@ -46,7 +59,9 @@ public class ArtistImageProvider {
 									  .getString("#text");
 			byte[] artistArt = webClient.getString(artistArtUrl).bytes();
 			dataStorage.saveFile(artistArtFile, artistArt);
-			return BitmapFactory.decodeByteArray(artistArt, 0, artistArt.length);
+			Bitmap artistArtFromAPI = BitmapFactory.decodeByteArray(artistArt, 0, artistArt.length);
+			artistArtCache.put(artistTitle, artistArtFromAPI);
+			return artistArtFromAPI;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
