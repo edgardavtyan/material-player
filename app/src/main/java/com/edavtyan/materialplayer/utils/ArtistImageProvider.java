@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.R;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.Locale;
 
 public class ArtistImageProvider {
@@ -21,13 +22,21 @@ public class ArtistImageProvider {
 
 	private final Context context;
 	private final WebClient webClient;
+	private final DataStorage dataStorage;
 
 	public ArtistImageProvider(Context context) {
 		this.context = context;
 		this.webClient = new WebClient();
+		this.dataStorage = new DataStorage();
 	}
 
 	public Bitmap load(String artistTitle) {
+		File artistArtFile = dataStorage.getArtistFile(artistTitle);
+
+		if (artistArtFile.exists()) {
+			return BitmapFactory.decodeFile(artistArtFile.getAbsolutePath());
+		}
+
 		try {
 			String jsonResponse = webClient.getString(getFullApiUrl(artistTitle)).string();
 			JSONObject json = new JSONObject(jsonResponse);
@@ -36,6 +45,7 @@ public class ArtistImageProvider {
 									  .getJSONObject(4)
 									  .getString("#text");
 			byte[] artistArt = webClient.getString(artistArtUrl).bytes();
+			dataStorage.saveFile(artistArtFile, artistArt);
 			return BitmapFactory.decodeByteArray(artistArt, 0, artistArt.length);
 		} catch (Exception e) {
 			e.printStackTrace();
