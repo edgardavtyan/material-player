@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
-import com.edavtyan.materialplayer.R;
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.components.album_all.AlbumListPresenter;
 import com.edavtyan.materialplayer.db.Artist;
 
@@ -26,6 +27,11 @@ public class ArtistDetailPresenter
 		view.setArtistInfo(artist.getAlbumsCount(), artist.getTracksCount());
 
 		//TODO: Find how to unit test this
-		model.loadArtistImage(art -> view.setArtistImage(art));
+		Bitmap localArt = model.getLocalArtistImage();
+		if (localArt == null) {
+			model.loadArtistImageFromApi(view::setArtistImage);
+		} else {
+			view.setArtistImage(localArt);
+		}
 	}
 }

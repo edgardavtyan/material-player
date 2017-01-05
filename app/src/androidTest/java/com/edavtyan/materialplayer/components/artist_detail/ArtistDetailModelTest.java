@@ -57,7 +57,7 @@ public class ArtistDetailModelTest extends BaseTest {
 
 		ArtistImageTask.OnArtLoadedCallback callback = mock(ArtistImageTask.OnArtLoadedCallback.class);
 
-		model.loadArtistImage(callback);
+		model.loadArtistImageFromApi(callback);
 
 		verify(callback, timeout(1000)).OnArtLoaded(art);
 	}

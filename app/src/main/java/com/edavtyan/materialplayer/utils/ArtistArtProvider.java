@@ -43,6 +43,12 @@ public class ArtistArtProvider {
 		this.dataStorage = dataStorage;
 	}
 
+	public boolean isArtSavedLocally(String artistTitle) {
+		Bitmap artFromLruCache = artistArtCache.get(artistTitle);
+		File artFile = dataStorage.getArtistFile(artistTitle);
+		return (artFromLruCache == null || artFile.exists());
+	}
+
 	public Bitmap load(String artistTitle) {
 		Bitmap artFromLruCache = artistArtCache.get(artistTitle);
 		if (artFromLruCache != null) {
@@ -61,6 +67,22 @@ public class ArtistArtProvider {
 		Bitmap artFromApi = bitmapFactory.fromByteArray(artBytesFromApi);
 		artistArtCache.put(artistTitle, artFromApi);
 		return artFromApi;
+	}
+
+	public Bitmap getArtFromLocalStorage(String artistTitle) {
+		Bitmap artFromLruCache = artistArtCache.get(artistTitle);
+		if (artFromLruCache != null) {
+			return artFromLruCache;
+		}
+
+		File artFile = dataStorage.getArtistFile(artistTitle);
+		if (artFile.exists()) {
+			Bitmap artFromFileSystem = bitmapFactory.fromPath(artFile.getAbsolutePath());
+			artistArtCache.put(artistTitle, artFromFileSystem);
+			return artFromFileSystem;
+		}
+
+		return null;
 	}
 
 	private String getFullApiUrl(String artistTitle) {

@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
 import com.edavtyan.materialplayer.db.Album;
@@ -43,7 +44,12 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 		return artistDB.getArtistWithTitle(artistTitle);
 	}
 
-	public void loadArtistImage(ArtistImageTask.OnArtLoadedCallback callback) {
+	@Override
+	public Bitmap getLocalArtistImage() {
+		return artistArtProvider.getArtFromLocalStorage(artistTitle);
+	}
+
+	public void loadArtistImageFromApi(ArtistImageTask.OnArtLoadedCallback callback) {
 		new ArtistImageTask(artistArtProvider, callback).execute(artistTitle);
 	}
 }
