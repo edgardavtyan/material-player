@@ -13,15 +13,11 @@ import com.edavtyan.materialplayer.utils.ArtistArtProvider;
 
 import java.util.List;
 
-import lombok.Setter;
-
 public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp.Model {
 	private final ArtistDB artistDB;
 	private final AlbumDB albumDB;
 	private final String artistTitle;
 	private final ArtistArtProvider artistArtProvider;
-
-	private @Setter OnArtLoadedListener onArtLoadedListener;
 
 	public ArtistDetailModel(
 			Context context,
@@ -47,7 +43,7 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 		return artistDB.getArtistWithTitle(artistTitle);
 	}
 
-	public void loadArtistImage() {
-		new ArtistImageTask(artistArtProvider, onArtLoadedListener).execute(artistTitle);
+	public void loadArtistImage(ArtistImageTask.OnArtLoadedCallback callback) {
+		new ArtistImageTask(artistArtProvider, callback).execute(artistTitle);
 	}
 }

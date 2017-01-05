@@ -9,14 +9,8 @@ import com.edavtyan.materialplayer.db.Artist;
 @SuppressWarnings("unused")
 public interface ArtistDetailMvp {
 	interface Model extends AlbumListMvp.Model {
-		interface OnArtLoadedListener {
-			void onArtistImageLoaded(Bitmap art);
-		}
-
-		void setOnArtLoadedListener(OnArtLoadedListener listener);
-
 		Artist getArtist();
-		void loadArtistImage();
+		void loadArtistImage(ArtistImageTask.OnArtLoadedCallback callback);
 	}
 
 	interface View extends AlbumListMvp.View {

@@ -8,13 +8,18 @@ import com.edavtyan.materialplayer.utils.ArtistArtProvider;
 public class ArtistImageTask extends AsyncTask<String, Void, Bitmap> {
 
 	private final ArtistArtProvider artistArtProvider;
-	private final ArtistDetailMvp.Model.OnArtLoadedListener onArtLoadedListener;
+
+	public interface OnArtLoadedCallback {
+		void OnArtLoaded(Bitmap art);
+	}
+
+	private final OnArtLoadedCallback onArtLoadedCallback;
 
 	public ArtistImageTask(
 			ArtistArtProvider artistArtProvider,
-			ArtistDetailMvp.Model.OnArtLoadedListener onArtLoadedListener) {
+			OnArtLoadedCallback onArtLoadedCallback) {
 		this.artistArtProvider = artistArtProvider;
-		this.onArtLoadedListener = onArtLoadedListener;
+		this.onArtLoadedCallback = onArtLoadedCallback;
 	}
 
 	@Override
@@ -24,6 +29,6 @@ public class ArtistImageTask extends AsyncTask<String, Void, Bitmap> {
 
 	@Override
 	protected void onPostExecute(Bitmap art) {
-		if (onArtLoadedListener != null) onArtLoadedListener.onArtistImageLoaded(art);
+		onArtLoadedCallback.OnArtLoaded(art);
 	}
 }
