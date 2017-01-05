@@ -16,7 +16,7 @@ public interface ArtistDetailMvp {
 	interface View extends AlbumListMvp.View {
 		void setArtistInfo(int albumsCount, int tracksCount);
 		void setArtistTitle(String title);
-		void setArtistImage(Bitmap art, int fallbackImage);
+		void setArtistImage(Bitmap art);
 	}
 
 	interface Presenter extends AlbumListMvp.Presenter, ParallaxHeaderListPresenter {

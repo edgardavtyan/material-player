@@ -35,8 +35,8 @@ public class ArtistDetailActivity
 	}
 
 	@Override
-	public void setArtistImage(Bitmap art, int fallbackImage) {
-		setHeaderImage(art, fallbackImage);
+	public void setArtistImage(Bitmap art) {
+		setHeaderImage(art, R.drawable.fallback_artist);
 	}
 
 	@Override

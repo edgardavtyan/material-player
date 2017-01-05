@@ -26,6 +26,6 @@ public class ArtistDetailPresenter
 		view.setArtistInfo(artist.getAlbumsCount(), artist.getTracksCount());
 
 		//TODO: Find how to unit test this
-		model.loadArtistImage(art -> view.setArtistImage(art, R.drawable.fallback_artist));
+		model.loadArtistImage(art -> view.setArtistImage(art));
 	}
 }
