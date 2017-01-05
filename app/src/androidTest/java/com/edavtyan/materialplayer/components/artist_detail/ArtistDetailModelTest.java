@@ -51,6 +51,12 @@ public class ArtistDetailModelTest extends BaseTest {
 		assertThat(model.getArtist()).isEqualTo(artist);
 	}
 
+	@Test public void getLocalArtistImage_returnImageFromArtistArtLoader() {
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(artistArtLoader.getArtFromLocalStorage("title")).thenReturn(art);
+		assertThat(model.getLocalArtistImage()).isEqualTo(art);
+	}
+
 	@Test public void loadArtistImage_callOnArtLoadedListener() throws InterruptedException {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(artistArtLoader.load(anyString())).thenReturn(art);

@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -33,5 +35,15 @@ public class ArtistDetailPresenterTest extends BaseTest {
 
 		verify(view).setArtistTitle("title");
 		verify(view).setArtistInfo(3, 9);
+	}
+
+	@Test public void onCreate_artSavedLocally_setArtistArt() {
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(model.getLocalArtistImage()).thenReturn(art);
+		when(model.getArtist()).thenReturn(new Artist());
+
+		presenter.onCreate();
+
+		verify(view).setArtistImage(art);
 	}
 }
