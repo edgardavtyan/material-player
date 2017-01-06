@@ -48,7 +48,7 @@ public class ArtistListModel
 	@Override
 	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {
 		String artistTitle = artists.get(position).getTitle();
-		Bitmap imageFromCache = imageLoader.getImageFromCache(artistTitle);
+		Bitmap imageFromCache = imageLoader.getImageFromMemoryCache(artistTitle);
 		if (imageFromCache != null) {
 			callback.onArtLoaded(imageFromCache);
 		} else {

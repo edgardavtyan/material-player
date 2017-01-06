@@ -18,7 +18,7 @@ public class ArtistListImageTask extends AsyncTask<String, Void, Bitmap> {
 
 	@Override
 	protected Bitmap doInBackground(String... title) {
-		return imageLoader.load(title[0]);
+		return imageLoader.getImageFromFileSystemOrApi(title[0]);
 	}
 
 	@Override

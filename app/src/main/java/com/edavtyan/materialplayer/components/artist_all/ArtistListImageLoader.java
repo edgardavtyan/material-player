@@ -22,7 +22,7 @@ public class ArtistListImageLoader {
 		this.webClient = new WebClient();
 	}
 
-	public Bitmap getImageFromCache(String artistTitle) {
+	public Bitmap getImageFromMemoryCache(String artistTitle) {
 		if (memoryCache.exists(artistTitle)) {
 			return memoryCache.get(artistTitle);
 		}
@@ -30,7 +30,7 @@ public class ArtistListImageLoader {
 		return null;
 	}
 
-	public Bitmap load(String artistTitle) {
+	public Bitmap getImageFromFileSystemOrApi(String artistTitle) {
 		try {
 			if (fileStorage.exists(artistTitle)) {
 				Bitmap image = fileStorage.loadBitmap(artistTitle);

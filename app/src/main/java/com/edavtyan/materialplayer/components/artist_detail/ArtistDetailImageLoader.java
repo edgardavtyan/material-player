@@ -39,7 +39,7 @@ public class ArtistDetailImageLoader {
 		}
 	}
 
-	public Bitmap getCachedImage(String artistTitle) {
+	public Bitmap getImageFromCache(String artistTitle) {
 		if (memoryCache.exists(artistTitle)) {
 			return memoryCache.get(artistTitle);
 		}
