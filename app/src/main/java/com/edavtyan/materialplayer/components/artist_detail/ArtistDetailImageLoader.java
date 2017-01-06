@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.utils;
+package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,13 +6,15 @@ import android.util.LruCache;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.utils.DataStorage;
+import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Locale;
 
-public class ArtistArtProvider {
+public class ArtistDetailImageLoader {
 	@SuppressWarnings("SpellCheckingInspection")
 	private static final String apiUrlStr =
 			"http://ws.audioscrobbler.com/2.0/" +
@@ -32,7 +34,7 @@ public class ArtistArtProvider {
 	private final TestableBitmapFactory bitmapFactory;
 	private final DataStorage dataStorage;
 
-	public ArtistArtProvider(
+	public ArtistDetailImageLoader(
 			Context context,
 			WebClient webClient,
 			TestableBitmapFactory bitmapFactory,

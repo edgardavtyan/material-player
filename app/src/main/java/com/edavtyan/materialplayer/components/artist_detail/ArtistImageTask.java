@@ -3,11 +3,9 @@ package com.edavtyan.materialplayer.components.artist_detail;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
-import com.edavtyan.materialplayer.utils.ArtistArtProvider;
-
 public class ArtistImageTask extends AsyncTask<String, Void, Bitmap> {
 
-	private final ArtistArtProvider artistArtProvider;
+	private final ArtistDetailImageLoader artistDetailImageLoader;
 
 	public interface OnArtLoadedCallback {
 		void OnArtLoaded(Bitmap art);
@@ -16,15 +14,15 @@ public class ArtistImageTask extends AsyncTask<String, Void, Bitmap> {
 	private final OnArtLoadedCallback onArtLoadedCallback;
 
 	public ArtistImageTask(
-			ArtistArtProvider artistArtProvider,
+			ArtistDetailImageLoader artistDetailImageLoader,
 			OnArtLoadedCallback onArtLoadedCallback) {
-		this.artistArtProvider = artistArtProvider;
+		this.artistDetailImageLoader = artistDetailImageLoader;
 		this.onArtLoadedCallback = onArtLoadedCallback;
 	}
 
 	@Override
 	protected Bitmap doInBackground(String... title) {
-		return artistArtProvider.load(title[0]);
+		return artistDetailImageLoader.load(title[0]);
 	}
 
 	@Override

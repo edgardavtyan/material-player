@@ -10,7 +10,6 @@ import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
-import com.edavtyan.materialplayer.utils.ArtistArtProvider;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 	private final ArtistDB artistDB;
 	private final AlbumDB albumDB;
 	private final String artistTitle;
-	private final ArtistArtProvider artistArtProvider;
+	private final ArtistDetailImageLoader artistDetailImageLoader;
 
 	public ArtistDetailModel(
 			Context context,
@@ -26,13 +25,13 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			CompactListPref compactListPref,
-			ArtistArtProvider artistArtProvider,
+			ArtistDetailImageLoader artistDetailImageLoader,
 			String artistTitle) {
 		super(context, albumDB, trackDB, compactListPref);
 		this.artistDB = artistDB;
 		this.albumDB = albumDB;
 		this.artistTitle = artistTitle;
-		this.artistArtProvider = artistArtProvider;
+		this.artistDetailImageLoader = artistDetailImageLoader;
 	}
 
 	@Override
@@ -46,10 +45,10 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 
 	@Override
 	public Bitmap getLocalArtistImage() {
-		return artistArtProvider.getArtFromLocalStorage(artistTitle);
+		return artistDetailImageLoader.getArtFromLocalStorage(artistTitle);
 	}
 
 	public void loadArtistImageFromApi(ArtistImageTask.OnArtLoadedCallback callback) {
-		new ArtistImageTask(artistArtProvider, callback).execute(artistTitle);
+		new ArtistImageTask(artistDetailImageLoader, callback).execute(artistTitle);
 	}
 }

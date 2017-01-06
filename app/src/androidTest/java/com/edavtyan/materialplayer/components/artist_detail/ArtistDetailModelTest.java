@@ -8,7 +8,6 @@ import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtistArtProvider;
 
 import org.junit.Test;
 
@@ -22,13 +21,13 @@ import static org.mockito.Mockito.when;
 public class ArtistDetailModelTest extends BaseTest {
 	private ArtistDB artistDB;
 	private ArtistDetailModel model;
-	private ArtistArtProvider artistArtLoader;
+	private ArtistDetailImageLoader artistArtLoader;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
 
 		artistDB = mock(ArtistDB.class);
-		artistArtLoader = mock(ArtistArtProvider.class);
+		artistArtLoader = mock(ArtistDetailImageLoader.class);
 		model = new ArtistDetailModel(
 				context,
 				artistDB,
