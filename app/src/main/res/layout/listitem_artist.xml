@@ -2,19 +2,29 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/listitem_container"
+	style="@style/listitem_menuContainer"
 	>
 
-	<TextView
-		android:id="@+id/title"
-		style="@style/listitem_title"
-		tools:text="Artist Name"
+	<ImageView
+		android:id="@+id/art"
+		style="@style/listitem_albumArt"
+		android:src="@drawable/fallback_artist"
 		/>
 
-	<TextView
-		android:id="@+id/info"
-		style="@style/listitem_info"
-		tools:text="Artist Info"
-		/>
+	<LinearLayout style="@style/listitem_infoContainer">
+
+		<TextView
+			android:id="@+id/title"
+			style="@style/listitem_title"
+			tools:text="Artist Name"
+			/>
+
+		<TextView
+			android:id="@+id/info"
+			style="@style/listitem_info"
+			tools:text="Artist Info"
+			/>
+
+	</LinearLayout>
 
 </LinearLayout>

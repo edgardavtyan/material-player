@@ -12,6 +12,7 @@ public interface ArtistListMvp {
 	interface Model extends ListMvp.Model {
 		int getArtistCount();
 		Artist getArtistAtIndex(int position);
+		void getArtistImage(int position, ArtistListImageTask.Callback callback);
 		void update();
 	}
 

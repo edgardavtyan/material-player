@@ -2,7 +2,9 @@ package com.edavtyan.materialplayer.components.artist_all;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
@@ -13,6 +15,7 @@ import lombok.Setter;
 public class ArtistListViewHolder extends BaseViewHolder implements View.OnClickListener {
 	private final TextView titleView;
 	private final TextView infoView;
+	private final ImageView artView;
 	private final Context context;
 	private @Setter OnHolderClickListener onHolderClickListener;
 
@@ -26,6 +29,7 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 		itemView.setOnClickListener(this);
 		titleView = findView(R.id.title);
 		infoView = findView(R.id.info);
+		artView = findView(R.id.art);
 	}
 
 	public void setTitle(String title) {
@@ -38,6 +42,14 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = res.getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);
 		infoView.setText(info);
+	}
+
+	public void setImage(Bitmap art) {
+		if (art == null) {
+			artView.setImageResource(R.drawable.fallback_artist);
+		} else {
+			artView.setImageBitmap(art);
+		}
 	}
 
 	@Override

@@ -21,6 +21,7 @@ public class ArtistListPresenter
 		Artist artist = model.getArtistAtIndex(position);
 		holder.setTitle(artist.getTitle());
 		holder.setInfo(artist.getAlbumsCount(), artist.getTracksCount());
+		model.getArtistImage(position, holder::setImage);
 	}
 
 	@Override
