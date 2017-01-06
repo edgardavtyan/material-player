@@ -2,10 +2,12 @@ package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class ArtistDetailFactory extends ListFactory {
@@ -15,6 +17,7 @@ public class ArtistDetailFactory extends ListFactory {
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
 	private ArtistDetailImageLoader artistDetailImageLoader;
+	private LastfmApi lastfmApi;
 
 	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
 		super(context);
@@ -59,10 +62,18 @@ public class ArtistDetailFactory extends ListFactory {
 	public ArtistDetailImageLoader provideArtistArtProvider() {
 		if (artistDetailImageLoader == null)
 			artistDetailImageLoader = new ArtistDetailImageLoader(
-					provideContext(),
 					providerWebClient(),
+					provideLastfmApi(),
 					provideBitmapFactory(),
 					provideDataStorage());
 		return artistDetailImageLoader;
+	}
+
+	public LastfmApi provideLastfmApi() {
+		if (lastfmApi == null)
+			lastfmApi = new LastfmApi(
+					providerWebClient(),
+					provideContext().getString(R.string.lastfm_api_key));
+		return lastfmApi;
 	}
 }
