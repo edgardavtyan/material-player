@@ -19,6 +19,7 @@ public class ArtistDetailFactory extends ListFactory {
 	private ArtistDetailImageLoader artistDetailImageLoader;
 	private LastfmApi lastfmApi;
 	private ArtistDetailImageFileStorage fileStorage;
+	private ArtistDetailImageMemoryCache memoryCache;
 
 	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
 		super(context);
@@ -66,7 +67,8 @@ public class ArtistDetailFactory extends ListFactory {
 					providerWebClient(),
 					provideLastfmApi(),
 					provideBitmapFactory(),
-					provideFileStorage());
+					provideFileStorage(),
+					provideMemoryCache());
 		return artistDetailImageLoader;
 	}
 
@@ -74,6 +76,12 @@ public class ArtistDetailFactory extends ListFactory {
 		if (fileStorage == null)
 			fileStorage = new ArtistDetailImageFileStorage();
 		return fileStorage;
+	}
+
+	public ArtistDetailImageMemoryCache provideMemoryCache() {
+		if (memoryCache == null)
+			memoryCache = new ArtistDetailImageMemoryCache();
+		return memoryCache;
 	}
 
 	public LastfmApi provideLastfmApi() {

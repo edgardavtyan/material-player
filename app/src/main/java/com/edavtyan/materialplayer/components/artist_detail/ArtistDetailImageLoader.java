@@ -1,33 +1,29 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.graphics.Bitmap;
-import android.util.LruCache;
 
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
 
 public class ArtistDetailImageLoader {
-	private static final LruCache<String, Bitmap> artistImageCache;
-
-	static {
-		artistImageCache = new LruCache<>(1000 * 1000 * 4); // 4MB
-	}
-
 	private final WebClient webClient;
 	private final LastfmApi lastfmApi;
 	private final TestableBitmapFactory bitmapFactory;
 	private final ArtistDetailImageFileStorage fileStorage;
+	private final ArtistDetailImageMemoryCache memoryCache;
 
 	public ArtistDetailImageLoader(
 			WebClient webClient,
 			LastfmApi lastfmApi,
 			TestableBitmapFactory bitmapFactory,
-			ArtistDetailImageFileStorage fileStorage) {
+			ArtistDetailImageFileStorage fileStorage,
+			ArtistDetailImageMemoryCache memoryCache) {
 		this.webClient = webClient;
 		this.lastfmApi = lastfmApi;
 		this.bitmapFactory = bitmapFactory;
 		this.fileStorage = fileStorage;
+		this.memoryCache = memoryCache;
 	}
 
 	public Bitmap getImageFromApi(String artistTitle) {
@@ -36,7 +32,7 @@ public class ArtistDetailImageLoader {
 			byte[] imageBytes = webClient.get(imageUrl).bytes();
 			Bitmap imageFromApi = bitmapFactory.fromByteArray(imageBytes);
 			fileStorage.save(artistTitle, imageBytes);
-			artistImageCache.put(artistTitle, imageFromApi);
+			memoryCache.put(artistTitle, imageFromApi);
 			return imageFromApi;
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
@@ -44,14 +40,13 @@ public class ArtistDetailImageLoader {
 	}
 
 	public Bitmap getCachedImage(String artistTitle) {
-		Bitmap imageFromMemoryCache = artistImageCache.get(artistTitle);
-		if (imageFromMemoryCache != null) {
-			return imageFromMemoryCache;
+		if (memoryCache.exists(artistTitle)) {
+			return memoryCache.get(artistTitle);
 		}
 
 		if (fileStorage.exists(artistTitle)) {
 			Bitmap imageFromFileStorage = fileStorage.loadBitmap(artistTitle);
-			artistImageCache.put(artistTitle, imageFromFileStorage);
+			memoryCache.put(artistTitle, imageFromFileStorage);
 			return imageFromFileStorage;
 		}
 
