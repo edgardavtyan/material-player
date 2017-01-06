@@ -17,7 +17,7 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 	private final ArtistDB artistDB;
 	private final AlbumDB albumDB;
 	private final String artistTitle;
-	private final ArtistDetailImageLoader artistDetailImageLoader;
+	private final ArtistDetailImageLoader imageLoader;
 
 	public ArtistDetailModel(
 			Context context,
@@ -25,13 +25,13 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			CompactListPref compactListPref,
-			ArtistDetailImageLoader artistDetailImageLoader,
+			ArtistDetailImageLoader imageLoader,
 			String artistTitle) {
 		super(context, albumDB, trackDB, compactListPref);
 		this.artistDB = artistDB;
 		this.albumDB = albumDB;
 		this.artistTitle = artistTitle;
-		this.artistDetailImageLoader = artistDetailImageLoader;
+		this.imageLoader = imageLoader;
 	}
 
 	@Override
@@ -43,12 +43,12 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 		return artistDB.getArtistWithTitle(artistTitle);
 	}
 
-	@Override
-	public Bitmap getLocalArtistImage() {
-		return artistDetailImageLoader.getArtFromLocalStorage(artistTitle);
-	}
-
-	public void loadArtistImageFromApi(ArtistImageTask.OnArtLoadedCallback callback) {
-		new ArtistImageTask(artistDetailImageLoader, callback).execute(artistTitle);
+	public void loadArtistImage(ArtistDetailImageTask.OnImageLoadedCallback callback) {
+		Bitmap cachedImage = imageLoader.getArtFromLocalStorage(artistTitle);
+		if (cachedImage != null) {
+			callback.OnImageLoaded(cachedImage);
+		} else {
+			new ArtistDetailImageTask(imageLoader, callback).execute(artistTitle);
+		}
 	}
 }

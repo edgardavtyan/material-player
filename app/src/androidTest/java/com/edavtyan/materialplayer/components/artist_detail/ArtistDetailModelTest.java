@@ -58,12 +58,12 @@ public class ArtistDetailModelTest extends BaseTest {
 
 	@Test public void loadArtistImage_callOnArtLoadedListener() throws InterruptedException {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(artistArtLoader.getArtFromApi(anyString())).thenReturn(art);
+		when(artistArtLoader.getImageFromApi(anyString())).thenReturn(art);
 
-		ArtistImageTask.OnArtLoadedCallback callback = mock(ArtistImageTask.OnArtLoadedCallback.class);
+		ArtistDetailImageTask.OnImageLoadedCallback callback = mock(ArtistDetailImageTask.OnImageLoadedCallback.class);
 
-		model.loadArtistImageFromApi(callback);
+		model.loadArtistImage(callback);
 
-		verify(callback, timeout(1000)).OnArtLoaded(art);
+		verify(callback, timeout(1000)).OnImageLoaded(art);
 	}
 }

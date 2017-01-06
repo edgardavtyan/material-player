@@ -30,7 +30,7 @@ public class ArtistDetailImageLoader {
 		this.fileStorage = fileStorage;
 	}
 
-	public Bitmap getArtFromApi(String artistTitle) {
+	public Bitmap getImageFromApi(String artistTitle) {
 		try {
 			String imageUrl = lastfmApi.getArtistInfo(artistTitle).getMegaImageUrl();
 			byte[] imageBytes = webClient.get(imageUrl).bytes();

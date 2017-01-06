@@ -10,8 +10,7 @@ import com.edavtyan.materialplayer.db.Artist;
 public interface ArtistDetailMvp {
 	interface Model extends AlbumListMvp.Model {
 		Artist getArtist();
-		Bitmap getLocalArtistImage();
-		void loadArtistImageFromApi(ArtistImageTask.OnArtLoadedCallback callback);
+		void loadArtistImage(ArtistDetailImageTask.OnImageLoadedCallback callback);
 	}
 
 	interface View extends AlbumListMvp.View {
