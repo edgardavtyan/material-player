@@ -43,16 +43,16 @@ public class ArtistDetailImageLoader {
 		}
 	}
 
-	public Bitmap getArtFromLocalStorage(String artistTitle) {
-		Bitmap artFromLruCache = artistImageCache.get(artistTitle);
-		if (artFromLruCache != null) {
-			return artFromLruCache;
+	public Bitmap getCachedImage(String artistTitle) {
+		Bitmap imageFromMemoryCache = artistImageCache.get(artistTitle);
+		if (imageFromMemoryCache != null) {
+			return imageFromMemoryCache;
 		}
 
 		if (fileStorage.exists(artistTitle)) {
-			Bitmap artFromFileSystem = fileStorage.loadBitmap(artistTitle);
-			artistImageCache.put(artistTitle, artFromFileSystem);
-			return artFromFileSystem;
+			Bitmap imageFromFileStorage = fileStorage.loadBitmap(artistTitle);
+			artistImageCache.put(artistTitle, imageFromFileStorage);
+			return imageFromFileStorage;
 		}
 
 		return null;

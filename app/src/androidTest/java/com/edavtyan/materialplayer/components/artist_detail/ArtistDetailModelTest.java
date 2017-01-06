@@ -52,7 +52,7 @@ public class ArtistDetailModelTest extends BaseTest {
 
 	@Test public void getLocalArtistImage_returnImageFromArtistArtLoader() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(artistArtLoader.getArtFromLocalStorage("title")).thenReturn(art);
+		when(artistArtLoader.getCachedImage("title")).thenReturn(art);
 		assertThat(model.getLocalArtistImage()).isEqualTo(art);
 	}
 

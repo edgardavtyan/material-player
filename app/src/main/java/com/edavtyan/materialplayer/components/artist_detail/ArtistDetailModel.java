@@ -44,7 +44,7 @@ public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp
 	}
 
 	public void loadArtistImage(ArtistDetailImageTask.OnImageLoadedCallback callback) {
-		Bitmap cachedImage = imageLoader.getArtFromLocalStorage(artistTitle);
+		Bitmap cachedImage = imageLoader.getCachedImage(artistTitle);
 		if (cachedImage != null) {
 			callback.OnImageLoaded(cachedImage);
 		} else {
