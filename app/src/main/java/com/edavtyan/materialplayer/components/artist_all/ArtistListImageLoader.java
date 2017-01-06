@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.LruCache;
@@ -21,10 +20,12 @@ public class ArtistListImageLoader {
 	}
 
 	private final LastfmApi lastfmApi;
+	private final ArtistListImageFileStorage fileStorage;
 	private final WebClient webClient;
 
-	public ArtistListImageLoader(Context context, LastfmApi lastfmApi) {
+	public ArtistListImageLoader(LastfmApi lastfmApi, ArtistListImageFileStorage fileStorage) {
 		this.lastfmApi = lastfmApi;
+		this.fileStorage = fileStorage;
 		this.webClient = new WebClient();
 	}
 
@@ -34,11 +35,16 @@ public class ArtistListImageLoader {
 				return lruCache.get(artistTitle);
 			}
 
+			if (fileStorage.exists(artistTitle)) {
+				return fileStorage.loadBitmap(artistTitle);
+			}
+
 			String url = lastfmApi.getArtistInfo(artistTitle).getLargeImageUrl();
 			byte[] artBytes = webClient.get(url).bytes();
 			Bitmap art = BitmapFactory.decodeByteArray(artBytes, 0, artBytes.length);
 
 			lruCache.put(artistTitle, art);
+			fileStorage.save(artistTitle, art);
 
 			return art;
 		} catch (Exception e) {

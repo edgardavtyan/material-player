@@ -22,10 +22,11 @@ public class ArtistListModel
 			Context context,
 			ArtistDB db,
 			LastfmApi lastfmApi,
+			ArtistListImageFileStorage fileStorage,
 			CompactListPref compactListPref) {
 		super(context, compactListPref);
 		this.db = db;
-		this.artLoader = new ArtistListImageLoader(context, lastfmApi);
+		this.artLoader = new ArtistListImageLoader(lastfmApi, fileStorage);
 	}
 
 	@Override

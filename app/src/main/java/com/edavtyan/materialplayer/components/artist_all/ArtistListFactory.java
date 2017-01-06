@@ -14,6 +14,7 @@ public class ArtistListFactory extends ListFactory {
 	private ArtistListPresenter presenter;
 	private ArtistListAdapter adapter;
 	private LastfmApi lastfmApi;
+	private ArtistListImageFileStorage fileStorage;
 
 	public ArtistListFactory(Context context, ArtistListMvp.View view) {
 		super(context);
@@ -30,6 +31,7 @@ public class ArtistListFactory extends ListFactory {
 					provideContext(),
 					provideArtistDB(),
 					provideLastfmApi(),
+					provideFileStorage(),
 					provideCompactListPref());
 		return model;
 	}
@@ -57,5 +59,11 @@ public class ArtistListFactory extends ListFactory {
 					providerWebClient(),
 					provideContext().getString(R.string.lastfm_api_key));
 		return lastfmApi;
+	}
+
+	public ArtistListImageFileStorage provideFileStorage() {
+		if (fileStorage == null)
+			fileStorage = new ArtistListImageFileStorage();
+		return fileStorage;
 	}
 }
