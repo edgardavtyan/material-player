@@ -5,17 +5,12 @@ import android.graphics.BitmapFactory;
 import android.util.LruCache;
 
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
-import com.edavtyan.materialplayer.utils.DataStorage;
 import com.edavtyan.materialplayer.utils.WebClient;
 
-import java.io.File;
-
 public class ArtistListImageLoader {
-	private static final File artDir;
 	private static final LruCache<String, Bitmap> lruCache;
 
 	static {
-		artDir = new File(DataStorage.DIR_DATA, "artist_art");
 		lruCache = new LruCache<>(1000 * 1000 * 4); // 4MB
 	}
 
