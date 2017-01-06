@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
-import android.graphics.Bitmap;
-
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -37,13 +36,11 @@ public class ArtistDetailPresenterTest extends BaseTest {
 		verify(view).setArtistInfo(3, 9);
 	}
 
-	@Test public void onCreate_artSavedLocally_setArtistArt() {
-		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(model.getLocalArtistImage()).thenReturn(art);
+	@Test public void onCreate_loadArtistImage() {
 		when(model.getArtist()).thenReturn(new Artist());
 
 		presenter.onCreate();
 
-		verify(view).setArtistImage(art);
+		verify(model).loadArtistImage(any());
 	}
 }

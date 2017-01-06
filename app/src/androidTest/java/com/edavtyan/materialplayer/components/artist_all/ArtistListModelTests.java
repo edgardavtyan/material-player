@@ -25,8 +25,9 @@ public class ArtistListModelTests extends BaseTest {
 		when(db.getAllArtists()).thenReturn(artists);
 
 		CompactListPref prefs = mock(CompactListPref.class);
+		ArtistListImageLoader imageLoader = mock(ArtistListImageLoader.class);
 
-		model = new ArtistListModel(context, db, prefs);
+		model = new ArtistListModel(context, db, imageLoader, prefs);
 	}
 
 	@Test public void getArtistCount_correctCount() {
