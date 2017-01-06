@@ -22,7 +22,7 @@ public class ArtistImageTask extends AsyncTask<String, Void, Bitmap> {
 
 	@Override
 	protected Bitmap doInBackground(String... title) {
-		return artistDetailImageLoader.load(title[0]);
+		return artistDetailImageLoader.getArtFromApi(title[0]);
 	}
 
 	@Override

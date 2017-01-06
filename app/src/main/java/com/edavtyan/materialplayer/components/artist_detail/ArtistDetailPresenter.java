@@ -28,10 +28,10 @@ public class ArtistDetailPresenter
 
 		//TODO: Find how to unit test this
 		Bitmap localArt = model.getLocalArtistImage();
-		if (localArt == null) {
-			model.loadArtistImageFromApi(view::setArtistImage);
-		} else {
+		if (localArt != null) {
 			view.setArtistImage(localArt);
+		} else {
+			model.loadArtistImageFromApi(view::setArtistImage);
 		}
 	}
 }

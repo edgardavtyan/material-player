@@ -30,18 +30,7 @@ public class ArtistDetailImageLoader {
 		this.fileStorage = fileStorage;
 	}
 
-	public Bitmap load(String artistTitle) {
-		Bitmap artFromLruCache = artistImageCache.get(artistTitle);
-		if (artFromLruCache != null) {
-			return artFromLruCache;
-		}
-
-		if (fileStorage.exists(artistTitle)) {
-			Bitmap artFromFileSystem = fileStorage.loadBitmap(artistTitle);
-			artistImageCache.put(artistTitle, artFromFileSystem);
-			return artFromFileSystem;
-		}
-
+	public Bitmap getArtFromApi(String artistTitle) {
 		try {
 			String imageUrl = lastfmApi.getArtistInfo(artistTitle).getMegaImageUrl();
 			byte[] imageBytes = webClient.get(imageUrl).bytes();
