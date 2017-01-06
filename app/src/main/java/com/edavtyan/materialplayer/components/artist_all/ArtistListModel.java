@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
 
@@ -16,18 +15,17 @@ public class ArtistListModel
 		implements ArtistListMvp.Model {
 
 	private final ArtistDB db;
-	private final ArtistListImageLoader artLoader;
+	private final ArtistListImageLoader imageLoader;
 	private List<Artist> artists;
 
 	public ArtistListModel(
 			Context context,
 			ArtistDB db,
-			LastfmApi lastfmApi,
-			ArtistListImageFileStorage fileStorage,
+			ArtistListImageLoader imageLoader,
 			CompactListPref compactListPref) {
 		super(context, compactListPref);
 		this.db = db;
-		this.artLoader = new ArtistListImageLoader(lastfmApi, fileStorage, new ArtistListImageMemoryCache());
+		this.imageLoader = imageLoader;
 	}
 
 	@Override
@@ -50,11 +48,11 @@ public class ArtistListModel
 	@Override
 	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {
 		String artistTitle = artists.get(position).getTitle();
-		Bitmap imageFromCache = artLoader.getImageFromCache(artistTitle);
+		Bitmap imageFromCache = imageLoader.getImageFromCache(artistTitle);
 		if (imageFromCache != null) {
 			callback.onArtLoaded(imageFromCache);
 		} else {
-			new ArtistListImageTask(artLoader, callback).execute(artistTitle);
+			new ArtistListImageTask(imageLoader, callback).execute(artistTitle);
 		}
 	}
 }
