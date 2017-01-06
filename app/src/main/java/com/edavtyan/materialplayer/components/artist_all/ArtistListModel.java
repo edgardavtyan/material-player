@@ -49,11 +49,12 @@ public class ArtistListModel
 
 	@Override
 	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {
-		callback.onArtLoaded(null);
-		new ArtistListImageTask(artLoader, callback).execute(artists.get(position).getTitle());
-	}
-
-	public Bitmap getArtistImageFromCache(int position) {
-		return artLoader.getImageFromCache(artists.get(position).getTitle());
+		String artistTitle = artists.get(position).getTitle();
+		Bitmap imageFromCache = artLoader.getImageFromCache(artistTitle);
+		if (imageFromCache != null) {
+			callback.onArtLoaded(imageFromCache);
+		} else {
+			new ArtistListImageTask(artLoader, callback).execute(artistTitle);
+		}
 	}
 }
