@@ -18,6 +18,7 @@ public class ArtistDetailFactory extends ListFactory {
 	private AlbumListAdapter adapter;
 	private ArtistDetailImageLoader artistDetailImageLoader;
 	private LastfmApi lastfmApi;
+	private ArtistDetailImageFileStorage fileStorage;
 
 	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
 		super(context);
@@ -65,8 +66,14 @@ public class ArtistDetailFactory extends ListFactory {
 					providerWebClient(),
 					provideLastfmApi(),
 					provideBitmapFactory(),
-					provideDataStorage());
+					provideFileStorage());
 		return artistDetailImageLoader;
+	}
+
+	public ArtistDetailImageFileStorage provideFileStorage() {
+		if (fileStorage == null)
+			fileStorage = new ArtistDetailImageFileStorage();
+		return fileStorage;
 	}
 
 	public LastfmApi provideLastfmApi() {
