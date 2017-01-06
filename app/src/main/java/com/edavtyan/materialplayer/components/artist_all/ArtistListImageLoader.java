@@ -2,31 +2,29 @@ package com.edavtyan.materialplayer.components.artist_all;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.LruCache;
 
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.utils.WebClient;
 
 public class ArtistListImageLoader {
-	private static final LruCache<String, Bitmap> lruCache;
-
-	static {
-		lruCache = new LruCache<>(1000 * 1000 * 4); // 4MB
-	}
-
 	private final LastfmApi lastfmApi;
 	private final ArtistListImageFileStorage fileStorage;
+	private final ArtistListImageMemoryCache memoryCache;
 	private final WebClient webClient;
 
-	public ArtistListImageLoader(LastfmApi lastfmApi, ArtistListImageFileStorage fileStorage) {
+	public ArtistListImageLoader(
+			LastfmApi lastfmApi,
+			ArtistListImageFileStorage fileStorage,
+			ArtistListImageMemoryCache memoryCache) {
 		this.lastfmApi = lastfmApi;
 		this.fileStorage = fileStorage;
+		this.memoryCache = memoryCache;
 		this.webClient = new WebClient();
 	}
 
 	public Bitmap getImageFromCache(String artistTitle) {
-		if (lruCache.get(artistTitle) != null) {
-			return lruCache.get(artistTitle);
+		if (memoryCache.exists(artistTitle)) {
+			return memoryCache.get(artistTitle);
 		}
 
 		return null;
@@ -36,8 +34,8 @@ public class ArtistListImageLoader {
 		try {
 			if (fileStorage.exists(artistTitle)) {
 				Bitmap image = fileStorage.loadBitmap(artistTitle);
-				if (lruCache.get(artistTitle) == null) {
-					lruCache.put(artistTitle, image);
+				if (memoryCache.exists(artistTitle)) {
+					memoryCache.put(artistTitle, image);
 				}
 				return image;
 			}
@@ -46,7 +44,7 @@ public class ArtistListImageLoader {
 			byte[] artBytes = webClient.get(url).bytes();
 			Bitmap art = BitmapFactory.decodeByteArray(artBytes, 0, artBytes.length);
 
-			lruCache.put(artistTitle, art);
+			memoryCache.put(artistTitle, art);
 			fileStorage.save(artistTitle, art);
 
 			return art;

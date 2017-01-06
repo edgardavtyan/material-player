@@ -15,6 +15,7 @@ public class ArtistListFactory extends ListFactory {
 	private ArtistListAdapter adapter;
 	private LastfmApi lastfmApi;
 	private ArtistListImageFileStorage fileStorage;
+	private ArtistListImageMemoryCache memoryCache;
 
 	public ArtistListFactory(Context context, ArtistListMvp.View view) {
 		super(context);
@@ -65,5 +66,11 @@ public class ArtistListFactory extends ListFactory {
 		if (fileStorage == null)
 			fileStorage = new ArtistListImageFileStorage();
 		return fileStorage;
+	}
+
+	public ArtistListImageMemoryCache provideMemoryCache() {
+		if (memoryCache == null)
+			memoryCache = new ArtistListImageMemoryCache();
+		return memoryCache;
 	}
 }

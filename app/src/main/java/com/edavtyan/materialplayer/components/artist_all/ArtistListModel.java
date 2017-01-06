@@ -27,7 +27,7 @@ public class ArtistListModel
 			CompactListPref compactListPref) {
 		super(context, compactListPref);
 		this.db = db;
-		this.artLoader = new ArtistListImageLoader(lastfmApi, fileStorage);
+		this.artLoader = new ArtistListImageLoader(lastfmApi, fileStorage, new ArtistListImageMemoryCache());
 	}
 
 	@Override
