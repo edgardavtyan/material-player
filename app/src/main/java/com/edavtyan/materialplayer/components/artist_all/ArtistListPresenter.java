@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
 
@@ -21,7 +23,13 @@ public class ArtistListPresenter
 		Artist artist = model.getArtistAtIndex(position);
 		holder.setTitle(artist.getTitle());
 		holder.setInfo(artist.getAlbumsCount(), artist.getTracksCount());
-		model.getArtistImage(position, holder::setImage);
+
+		Bitmap imageFromCache = model.getArtistImageFromCache(position);
+		if (imageFromCache != null) {
+			holder.setImage(imageFromCache);
+		} else {
+			model.getArtistImage(position, holder::setImage);
+		}
 	}
 
 	@Override

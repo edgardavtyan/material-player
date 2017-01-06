@@ -24,14 +24,22 @@ public class ArtistListImageLoader {
 		this.webClient = new WebClient();
 	}
 
+	public Bitmap getImageFromCache(String artistTitle) {
+		if (lruCache.get(artistTitle) != null) {
+			return lruCache.get(artistTitle);
+		}
+
+		return null;
+	}
+
 	public Bitmap load(String artistTitle) {
 		try {
-			if (lruCache.get(artistTitle) != null) {
-				return lruCache.get(artistTitle);
-			}
-
 			if (fileStorage.exists(artistTitle)) {
-				return fileStorage.loadBitmap(artistTitle);
+				Bitmap image = fileStorage.loadBitmap(artistTitle);
+				if (lruCache.get(artistTitle) == null) {
+					lruCache.put(artistTitle, image);
+				}
+				return image;
 			}
 
 			String url = lastfmApi.getArtistInfo(artistTitle).getLargeImageUrl();

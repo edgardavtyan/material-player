@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
@@ -50,5 +51,9 @@ public class ArtistListModel
 	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {
 		callback.onArtLoaded(null);
 		new ArtistListImageTask(artLoader, callback).execute(artists.get(position).getTitle());
+	}
+
+	public Bitmap getArtistImageFromCache(int position) {
+		return artLoader.getImageFromCache(artists.get(position).getTitle());
 	}
 }
