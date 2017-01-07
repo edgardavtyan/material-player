@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.lastfm.LastfmArtistInfoFileStorage;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class ArtistDetailFactory extends ListFactory {
@@ -88,6 +89,7 @@ public class ArtistDetailFactory extends ListFactory {
 		if (lastfmApi == null)
 			lastfmApi = new LastfmApi(
 					providerWebClient(),
+					new LastfmArtistInfoFileStorage(),
 					provideContext().getString(R.string.lastfm_api_key));
 		return lastfmApi;
 	}

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.lastfm.LastfmArtistInfoFileStorage;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class ArtistListFactory extends ListFactory {
@@ -58,6 +59,7 @@ public class ArtistListFactory extends ListFactory {
 		if (lastfmApi == null)
 			lastfmApi = new LastfmApi(
 					providerWebClient(),
+					new LastfmArtistInfoFileStorage(),
 					provideContext().getString(R.string.lastfm_api_key));
 		return lastfmApi;
 	}

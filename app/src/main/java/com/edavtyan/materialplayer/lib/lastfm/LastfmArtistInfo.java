@@ -3,10 +3,11 @@ package com.edavtyan.materialplayer.lib.lastfm;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Data @Setter @Getter
 public class LastfmArtistInfo {
 	private static final String KEY_LARGE = "large";
 	private static final String KEY_XLARGE = "xlarge";
