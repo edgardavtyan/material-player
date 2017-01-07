@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.artist_all;
 
+import android.graphics.Bitmap;
+
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
@@ -10,13 +12,17 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 public class ArtistListModelTests extends BaseTest {
 	private List artists;
 	private ArtistListModel model;
-	
+	private ArtistListImageTaskProvider imageTaskProvider;
+	private ArtistListImageLoader imageLoader;
+
 	@SuppressWarnings("unchecked")
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -25,9 +31,10 @@ public class ArtistListModelTests extends BaseTest {
 		when(db.getAllArtists()).thenReturn(artists);
 
 		CompactListPref prefs = mock(CompactListPref.class);
-		ArtistListImageLoader imageLoader = mock(ArtistListImageLoader.class);
+		imageLoader = mock(ArtistListImageLoader.class);
+		imageTaskProvider = mock(ArtistListImageTaskProvider.class);
 
-		model = new ArtistListModel(context, db, imageLoader, prefs);
+		model = new ArtistListModel(context, db, imageLoader, imageTaskProvider, prefs);
 	}
 
 	@Test public void getArtistCount_correctCount() {
@@ -51,5 +58,38 @@ public class ArtistListModelTests extends BaseTest {
 
 	@Test public void getArtistAtIndex_noArtists_null() {
 		assertThat(model.getArtistAtIndex(0)).isNull();
+	}
+
+	@Test public void getArtistImage_imageCached_callCallbackSynchronously() {
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(imageLoader.getImageFromMemoryCache(any())).thenReturn(art);
+
+		ArtistListImageTask.Callback callback = callbackArt -> assertThat(callbackArt).isEqualTo(art);
+		when(imageTaskProvider.create(imageLoader, callback)).thenReturn(new ArtistListImageTask(imageLoader, callback));
+
+		Artist artist = new Artist();
+		artist.setTitle("title");
+		when(artists.get(0)).thenReturn(artist);
+
+		model.update();
+		model.getArtistImage(0, callback);
+	}
+
+	@Test
+	public void getArtistImage_imageNonCached_callCallbackViaImageLoadTask() {
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(imageLoader.getImageFromMemoryCache("title")).thenReturn(null);
+
+		ArtistListImageTask.Callback callback = callbackArt -> assertThat(callbackArt).isEqualTo(art);
+		ArtistListImageTask imageTask = spy(new ArtistListImageTask(imageLoader, callback));
+		when(imageTask.doInBackground("title")).thenReturn(art);
+		when(imageTaskProvider.create(imageLoader, callback)).thenReturn(imageTask);
+
+		Artist artist = new Artist();
+		artist.setTitle("title");
+		when(artists.get(0)).thenReturn(artist);
+
+		model.update();
+		model.getArtistImage(0, callback);
 	}
 }

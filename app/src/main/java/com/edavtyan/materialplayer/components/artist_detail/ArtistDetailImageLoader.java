@@ -29,7 +29,7 @@ public class ArtistDetailImageLoader {
 	public Bitmap getImageFromApi(String artistTitle) {
 		try {
 			String imageUrl = lastfmApi.getArtistInfo(artistTitle).getMegaImageUrl();
-			byte[] imageBytes = webClient.get(imageUrl).bytes();
+			byte[] imageBytes = webClient.getBytes(imageUrl);
 			Bitmap imageFromApi = bitmapFactory.fromByteArray(imageBytes);
 			fileStorage.save(artistTitle, imageBytes);
 			memoryCache.put(artistTitle, imageFromApi);

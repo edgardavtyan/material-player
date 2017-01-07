@@ -34,6 +34,7 @@ public class ArtistListFactory extends ListFactory {
 					provideContext(),
 					provideArtistDB(),
 					provideImageLoader(),
+					new ArtistListImageTaskProvider(),
 					provideCompactListPref());
 		return model;
 	}
@@ -67,6 +68,8 @@ public class ArtistListFactory extends ListFactory {
 	public ArtistListImageLoader provideImageLoader() {
 		if (imageLoader == null)
 			imageLoader = new ArtistListImageLoader(
+					providerWebClient(),
+					provideBitmapFactory(),
 					provideLastfmApi(),
 					provideFileStorage(),
 					provideMemoryCache());

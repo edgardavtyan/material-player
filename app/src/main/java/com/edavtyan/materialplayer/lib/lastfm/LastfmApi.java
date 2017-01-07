@@ -29,7 +29,7 @@ public class LastfmApi {
 	private LastfmArtistInfo getInfoFromApi(String artistTitle) {
 		try {
 			String url = LastfmArtistInfoUrl.build(apiKey, artistTitle);
-			String jsonString = webClient.get(url).string();
+			String jsonString = webClient.getString(url);
 			LastfmArtistInfo artistInfo = new LastfmArtistInfo();
 			JSONObject json = new JSONObject(jsonString);
 			JSONArray artistImages = json.getJSONObject("artist").getJSONArray("image");

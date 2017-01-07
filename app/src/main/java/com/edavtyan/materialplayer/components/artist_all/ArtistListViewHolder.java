@@ -46,7 +46,7 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 
 	public void setImage(Bitmap art) {
 		if (art == null) {
-			artView.setImageResource(R.drawable.fallback_cover);
+			artView.setImageResource(R.drawable.fallback_artist);
 		} else {
 			artView.setImageBitmap(art);
 		}

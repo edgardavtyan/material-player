@@ -13,7 +13,23 @@ public class WebClient {
 		this.client = new OkHttpClient();
 	}
 
-	public ResponseBody get(String url) {
+	public byte[] getBytes(String url) {
+		try {
+			return get(url).bytes();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public String getString(String url) {
+		try {
+			return get(url).string();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private ResponseBody get(String url) {
 		try {
 			Request request = new Request.Builder().url(url).build();
 			return client.newCall(request).execute().body();

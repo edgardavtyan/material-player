@@ -16,16 +16,19 @@ public class ArtistListModel
 
 	private final ArtistDB db;
 	private final ArtistListImageLoader imageLoader;
+	private final ArtistListImageTaskProvider imageTaskProvider;
 	private List<Artist> artists;
 
 	public ArtistListModel(
 			Context context,
 			ArtistDB db,
 			ArtistListImageLoader imageLoader,
+			ArtistListImageTaskProvider imageTaskProvider,
 			CompactListPref compactListPref) {
 		super(context, compactListPref);
 		this.db = db;
 		this.imageLoader = imageLoader;
+		this.imageTaskProvider = imageTaskProvider;
 	}
 
 	@Override
@@ -52,7 +55,7 @@ public class ArtistListModel
 		if (imageFromCache != null) {
 			callback.onArtLoaded(imageFromCache);
 		} else {
-			new ArtistListImageTask(imageLoader, callback).execute(artistTitle);
+			imageTaskProvider.create(imageLoader, callback).execute(artistTitle);
 		}
 	}
 }
