@@ -50,7 +50,7 @@ public class ArtistDetailModelTest extends BaseTest {
 		assertThat(model.getArtist()).isEqualTo(artist);
 	}
 
-	@Test public void loadArtistImage_callOnArtLoadedListener() throws InterruptedException {
+	@Test public void loadArtistImage_imageNotCached_callCallbackViaAsync() throws InterruptedException {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(artistArtLoader.getImageFromApi(anyString())).thenReturn(art);
 
@@ -59,5 +59,17 @@ public class ArtistDetailModelTest extends BaseTest {
 		model.loadArtistImage(callback);
 
 		verify(callback, timeout(1000)).OnImageLoaded(art);
+	}
+
+	@Test
+	public void loadArtistImage_imageCached_callCallback() {
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(artistArtLoader.getImageFromCache(anyString())).thenReturn(art);
+
+		ArtistDetailImageTask.OnImageLoadedCallback callback = mock(ArtistDetailImageTask.OnImageLoadedCallback.class);
+
+		model.loadArtistImage(callback);
+
+		verify(callback).OnImageLoaded(art);
 	}
 }

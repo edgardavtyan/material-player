@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
 
+import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertImageView;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
@@ -84,6 +86,19 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			activity.setArtistInfo(3, 9);
 			assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
 		});
+	}
+
+	@Test public void setImage_setHeaderImage() {
+		runOnUiThread(() -> {
+			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+			activity.setArtistImage(image);
+			assertImageView(activity, R.id.art).hasBitmap(image);
+		});
+	}
+
+	@Test public void notifyDataSetChanged_callAdapter() {
+		activity.notifyDataSetChanged();
+		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 
 	@Test public void goToAlbumDetail_callNavigator() {

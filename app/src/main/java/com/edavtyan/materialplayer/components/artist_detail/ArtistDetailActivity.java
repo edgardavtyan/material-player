@@ -55,7 +55,7 @@ public class ArtistDetailActivity
 	}
 
 	@Override public void notifyDataSetChanged() {
-		adapter.notifyDataSetChanged();
+		adapter.notifyDataSetChangedNonFinal();
 	}
 
 	protected ArtistDetailFactory getDI() {
