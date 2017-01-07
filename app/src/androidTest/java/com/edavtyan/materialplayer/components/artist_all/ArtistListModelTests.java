@@ -14,13 +14,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArtistListModelTests extends BaseTest {
 	private List artists;
 	private ArtistListModel model;
-	private ArtistListImageTaskProvider imageTaskProvider;
 	private ArtistListImageLoader imageLoader;
 
 	@SuppressWarnings("unchecked")
@@ -32,9 +32,8 @@ public class ArtistListModelTests extends BaseTest {
 
 		CompactListPref prefs = mock(CompactListPref.class);
 		imageLoader = mock(ArtistListImageLoader.class);
-		imageTaskProvider = mock(ArtistListImageTaskProvider.class);
 
-		model = new ArtistListModel(context, db, imageLoader, imageTaskProvider, prefs);
+		model = new ArtistListModel(context, db, imageLoader, prefs);
 	}
 
 	@Test public void getArtistCount_correctCount() {
@@ -64,8 +63,7 @@ public class ArtistListModelTests extends BaseTest {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(imageLoader.getImageFromMemoryCache(any())).thenReturn(art);
 
-		ArtistListImageTask.Callback callback = callbackArt -> assertThat(callbackArt).isEqualTo(art);
-		when(imageTaskProvider.create(imageLoader, callback)).thenReturn(new ArtistListImageTask(imageLoader, callback));
+		ArtistListImageTask.Callback callback = mock(ArtistListImageTask.Callback.class);
 
 		Artist artist = new Artist();
 		artist.setTitle("title");
@@ -73,17 +71,17 @@ public class ArtistListModelTests extends BaseTest {
 
 		model.update();
 		model.getArtistImage(0, callback);
+
+		verify(callback).onArtLoaded(art);
 	}
 
 	@Test
 	public void getArtistImage_imageNonCached_callCallbackViaImageLoadTask() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		when(imageLoader.getImageFromFileSystemOrApi("title")).thenReturn(art);
 		when(imageLoader.getImageFromMemoryCache("title")).thenReturn(null);
 
-		ArtistListImageTask.Callback callback = callbackArt -> assertThat(callbackArt).isEqualTo(art);
-		ArtistListImageTask imageTask = spy(new ArtistListImageTask(imageLoader, callback));
-		when(imageTask.doInBackground("title")).thenReturn(art);
-		when(imageTaskProvider.create(imageLoader, callback)).thenReturn(imageTask);
+		ArtistListImageTask.Callback callback = mock(ArtistListImageTask.Callback.class);
 
 		Artist artist = new Artist();
 		artist.setTitle("title");
@@ -91,5 +89,7 @@ public class ArtistListModelTests extends BaseTest {
 
 		model.update();
 		model.getArtistImage(0, callback);
+
+		verify(callback, timeout(1000)).onArtLoaded(art);
 	}
 }

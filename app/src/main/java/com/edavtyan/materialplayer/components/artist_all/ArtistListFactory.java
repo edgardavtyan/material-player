@@ -34,7 +34,6 @@ public class ArtistListFactory extends ListFactory {
 					provideContext(),
 					provideArtistDB(),
 					provideImageLoader(),
-					new ArtistListImageTaskProvider(),
 					provideCompactListPref());
 		return model;
 	}
