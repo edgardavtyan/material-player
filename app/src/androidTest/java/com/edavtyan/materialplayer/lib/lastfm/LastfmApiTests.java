@@ -6,8 +6,14 @@ import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -17,13 +23,14 @@ public class LastfmApiTests extends BaseTest {
 	private static final String ARTIST_IMAGE_XLARGE = "https://lastfm-img2.akamaized.net/i/u/300x300/96516a40ea0440ea90e3a438a08ae7e1.png";
 	private static final String ARTIST_IMAGE_MEGA = "https://lastfm-img2.akamaized.net/i/u/96516a40ea0440ea90e3a438a08ae7e1.png";
 
+	private WebClient webClient;
 	private LastfmApi lastfmApi;
 	private LastfmArtistInfoFileStorage fileStorage;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		WebClient webClient = new WebClient();
+		webClient = spy(new WebClient());
 		fileStorage = mock(LastfmArtistInfoFileStorage.class);
 		String apiKey = context.getString(R.string.lastfm_api_key);
 		lastfmApi = new LastfmApi(webClient, fileStorage, apiKey);
@@ -58,5 +65,13 @@ public class LastfmApiTests extends BaseTest {
 		when(fileStorage.exists(ARTIST_TITLE)).thenReturn(true);
 
 		assertThat(lastfmApi.getArtistInfo(ARTIST_TITLE)).isEqualTo(info);
+	}
+
+	@Test
+	@SuppressWarnings("unchecked")
+	public void getInfoFromApi_somethingThrewException_throwRuntimeException() {
+		doThrow(IOException.class).when(webClient).getString(any());
+		assertThatThrownBy(() -> lastfmApi.getArtistInfo("title"))
+				.isInstanceOf(RuntimeException.class);
 	}
 }
