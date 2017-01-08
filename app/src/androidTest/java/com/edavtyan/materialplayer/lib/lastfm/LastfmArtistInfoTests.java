@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,13 +22,16 @@ public class LastfmArtistInfoTests extends BaseTest {
 	}
 
 	@Test
-	public void toJson_returnCorrectJson() {
-		String json = "{\"large\":\"0\",\"xlarge\":\"1\",\"mega\":\"2\"}";
+	public void toJson_returnCorrectJson() throws JSONException {
 		LastfmArtistInfo info = new LastfmArtistInfo();
-		info.setLargeImageUrl("0");
-		info.setExtraLargeImageUrl("1");
-		info.setMegaImageUrl("2");
-		assertThat(info.toJson()).isEqualTo(json);
+		info.setLargeImageUrl("large");
+		info.setExtraLargeImageUrl("xlarge");
+		info.setMegaImageUrl("mega");
+		String jsonString = info.toJson();
+		JSONObject json = new JSONObject(jsonString);
+		assertThat(json.getString("large")).isEqualTo("large");
+		assertThat(json.getString("xlarge")).isEqualTo("xlarge");
+		assertThat(json.getString("mega")).isEqualTo("mega");
 	}
 
 	@Test
