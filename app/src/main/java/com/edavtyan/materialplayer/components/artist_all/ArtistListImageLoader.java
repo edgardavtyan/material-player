@@ -37,7 +37,7 @@ public class ArtistListImageLoader {
 	public Bitmap getImageFromFileSystemOrApi(String artistTitle) {
 		try {
 			if (fileStorage.exists(artistTitle)) {
-				Bitmap image = fileStorage.loadBitmap(artistTitle);
+				Bitmap image = fileStorage.load(artistTitle);
 				if (!memoryCache.exists(artistTitle)) {
 					memoryCache.put(artistTitle, image);
 				}
@@ -45,13 +45,13 @@ public class ArtistListImageLoader {
 			}
 
 			String url = lastfmApi.getArtistInfo(artistTitle).getLargeImageUrl();
-			byte[] artBytes = webClient.getBytes(url);
-			Bitmap art = bitmapFactory.fromByteArray(artBytes);
+			byte[] imageBytes = webClient.getBytes(url);
+			Bitmap image = bitmapFactory.fromByteArray(imageBytes);
 
-			memoryCache.put(artistTitle, art);
-			fileStorage.save(artistTitle, art);
+			memoryCache.put(artistTitle, image);
+			fileStorage.saveBytes(artistTitle, imageBytes);
 
-			return art;
+			return image;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,6 +14,8 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -52,7 +54,7 @@ public class ArtistDetailImageLoaderTest extends BaseTest {
 		when(bitmapFactory.fromByteArray(imageBytes)).thenReturn(image);
 
 		assertThat(imageLoader.getImageFromApi("artist100")).isSameAs(image);
-		verify(fileStorage).save("artist100", imageBytes);
+		verify(fileStorage).saveBytes("artist100", imageBytes);
 		verify(memoryCache).put("artist100", image);
 	}
 
@@ -70,7 +72,7 @@ public class ArtistDetailImageLoaderTest extends BaseTest {
 		when(memoryCache.exists("artist300")).thenReturn(true);
 		when(memoryCache.get("artist300")).thenReturn(image);
 		assertThat(imageLoader.getImageFromCache("artist300")).isSameAs(image);
-		verify(fileStorage, never()).save("artist300", image);
+		verify(fileStorage, never()).saveBytes(eq("artist300"), isA(byte[].class));
 		verify(memoryCache, never()).put("artist300", image);
 	}
 
@@ -79,9 +81,9 @@ public class ArtistDetailImageLoaderTest extends BaseTest {
 		Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(memoryCache.exists("artist400")).thenReturn(false);
 		when(fileStorage.exists("artist400")).thenReturn(true);
-		when(fileStorage.loadBitmap("artist400")).thenReturn(image);
+		when(fileStorage.load("artist400")).thenReturn(image);
 		assertThat(imageLoader.getImageFromCache("artist400")).isSameAs(image);
-		verify(fileStorage, never()).save("artist400", image);
+		verify(fileStorage, never()).saveBytes(eq("artist400"), isA(byte[].class));
 		verify(memoryCache).put("artist400", image);
 	}
 

@@ -41,7 +41,7 @@ public class ArtistListImageLoaderTest extends BaseTest {
 	public void getImageFromFileSystemOrApi_imageSavedInFileAndMemoryCache_returnImageFromFileAndNotPutInMemoryCache() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(fileStorage.exists("file100")).thenReturn(true);
-		when(fileStorage.loadBitmap("file100")).thenReturn(art);
+		when(fileStorage.load("file100")).thenReturn(art);
 		when(memoryCache.exists("file100")).thenReturn(true);
 
 		assertThat(imageLoader.getImageFromFileSystemOrApi("file100")).isSameAs(art);
@@ -52,7 +52,7 @@ public class ArtistListImageLoaderTest extends BaseTest {
 	public void getImageFromFileSystemOrApi_imageSavedInFileAndNotInMemoryCache_returnImageFromFileAndPutInMemoryCache() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(fileStorage.exists("file200")).thenReturn(true);
-		when(fileStorage.loadBitmap("file200")).thenReturn(art);
+		when(fileStorage.load("file200")).thenReturn(art);
 		when(memoryCache.exists("file200")).thenReturn(false);
 
 		assertThat(imageLoader.getImageFromFileSystemOrApi("file200")).isSameAs(art);
@@ -76,7 +76,7 @@ public class ArtistListImageLoaderTest extends BaseTest {
 		when(bitmapFactory.fromByteArray(artistImageBytes)).thenReturn(image);
 
 		assertThat(imageLoader.getImageFromFileSystemOrApi("file300")).isSameAs(image);
-		verify(fileStorage).save("file300", image);
+		verify(fileStorage).saveBytes("file300", artistImageBytes);
 		verify(memoryCache).put("file300", image);
 	}
 

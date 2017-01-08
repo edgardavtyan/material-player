@@ -31,7 +31,7 @@ public class ArtistDetailImageLoader {
 			String imageUrl = lastfmApi.getArtistInfo(artistTitle).getMegaImageUrl();
 			byte[] imageBytes = webClient.getBytes(imageUrl);
 			Bitmap imageFromApi = bitmapFactory.fromByteArray(imageBytes);
-			fileStorage.save(artistTitle, imageBytes);
+			fileStorage.saveBytes(artistTitle, imageBytes);
 			memoryCache.put(artistTitle, imageFromApi);
 			return imageFromApi;
 		} catch (Exception e) {
@@ -45,7 +45,7 @@ public class ArtistDetailImageLoader {
 		}
 
 		if (fileStorage.exists(artistTitle)) {
-			Bitmap imageFromFileStorage = fileStorage.loadBitmap(artistTitle);
+			Bitmap imageFromFileStorage = fileStorage.load(artistTitle);
 			memoryCache.put(artistTitle, imageFromFileStorage);
 			return imageFromFileStorage;
 		}
