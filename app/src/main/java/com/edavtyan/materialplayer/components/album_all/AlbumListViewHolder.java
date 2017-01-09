@@ -67,10 +67,11 @@ public class AlbumListViewHolder
 	}
 
 	public void setArt(String artPath) {
+		// TODO: unit test correct artPath
 		Glide.with(context)
-				.load(artPath)
-				.error(R.drawable.fallback_cover)
-				.into(artView);
+			 .load(artPath)
+			 .error(R.drawable.fallback_cover)
+			 .into(artView);
 	}
 
 	@Override

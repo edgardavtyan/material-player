@@ -63,4 +63,10 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 		fragment.goToAlbumDetail(7);
 		verify(navigator).gotoAlbumDetail(7);
 	}
+
+	@Test public void notify_adapter_data_changed() {
+		fragment.onCreate(null);
+		fragment.notifyDataSetChanged();
+		verify(adapter).notifyDataSetChangedNonFinal();
+	}
 }

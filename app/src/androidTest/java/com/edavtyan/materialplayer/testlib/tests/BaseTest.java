@@ -29,7 +29,7 @@ public class BaseTest {
 	protected App app;
 
 	@Before public void beforeEach() {
-		Context appContext = InstrumentationRegistry.getTargetContext();
+		Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
 		app = mock(App.class, CALLS_REAL_METHODS);
 		when(context.getApplicationContext()).thenReturn(app);

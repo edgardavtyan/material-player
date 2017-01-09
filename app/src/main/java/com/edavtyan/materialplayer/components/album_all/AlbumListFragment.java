@@ -26,6 +26,6 @@ public class AlbumListFragment
 	}
 
 	@Override public void notifyDataSetChanged() {
-		adapter.notifyDataSetChanged();
+		adapter.notifyDataSetChangedNonFinal();
 	}
 }
