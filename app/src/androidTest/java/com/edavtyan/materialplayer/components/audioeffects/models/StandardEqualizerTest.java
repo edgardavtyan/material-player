@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class StandardEqualizerTest extends BaseTest {
@@ -52,5 +53,23 @@ public class StandardEqualizerTest extends BaseTest {
 
 	@Test public void getBandsCount_correctBandsCount() {
 		assertThat(equalizer.getBandsCount()).isEqualTo(5);
+	}
+
+	@Test public void set_band_gain_in_reverse_in_millibel() {
+		equalizer.setBandGain(0, 5);
+		assertThat(baseEqualizer.getBandLevel((short) 4)).isEqualTo((short) 500);
+	}
+
+	@Test public void save_settings() {
+		equalizer.setBandGain(0, 0);
+		equalizer.setBandGain(1, 1);
+		equalizer.setBandGain(2, 2);
+		equalizer.setBandGain(3, 3);
+		equalizer.setBandGain(4, 4);
+		equalizer.setEnabled(true);
+
+		equalizer.saveSettings();
+
+		verify(prefs).save(new int[]{0, 1, 2, 3, 4}, true);
 	}
 }
