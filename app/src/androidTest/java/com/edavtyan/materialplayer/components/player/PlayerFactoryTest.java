@@ -27,5 +27,6 @@ public class PlayerFactoryTest extends FactoryTest {
 		testFactoryMethod(playerFactory::provideBassBoostPrefs);
 		testFactoryMethod(playerFactory::provideSurround);
 		testFactoryMethod(playerFactory::provideSurroundPrefs);
+		testFactoryMethod(playerFactory::provideAmplifier);
 	}
 }

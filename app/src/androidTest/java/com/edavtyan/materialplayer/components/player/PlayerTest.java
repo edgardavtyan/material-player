@@ -143,6 +143,7 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test public void playNext_queueEnded_notPlayAnything() {
+		when(queue.hasData()).thenReturn(true);
 		when(queue.isEnded()).thenReturn(true);
 		player.playNext();
 		verify(audioEngine, never()).playTrack(any());
