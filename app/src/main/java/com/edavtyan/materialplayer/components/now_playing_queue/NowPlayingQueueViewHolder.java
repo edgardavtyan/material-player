@@ -74,6 +74,7 @@ public class NowPlayingQueueViewHolder
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
+		if (onMenuClickListener == null) return false;
 		switch (item.getItemId()) {
 		case R.id.menu_remove:
 			onMenuClickListener.onRemoveFromQueueClick(this);

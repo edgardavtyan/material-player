@@ -73,4 +73,9 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 		activity.onDestroy();
 		verify(presenter).onDestroy();
 	}
+
+	@Test public void notify_adapter_of_data_changes() {
+		activity.notifyDataSetChanged();
+		verify(adapter).notifyDataSetChangedNonFinal();
+	}
 }

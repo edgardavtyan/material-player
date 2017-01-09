@@ -17,6 +17,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -69,11 +70,19 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		verify(popupMenu).show();
 	}
 
+	@Test public void onClick_listenerNotSet_notThrowNPE() {
+		assertToNotThrowNPE(() -> holder.onClick(null));
+	}
+
 	@Test public void onHolderClickListener_itemViewClicked_called() {
 		OnHolderClickListener listener = mock(OnHolderClickListener.class);
 		holder.setOnHolderClickListener(listener);
 		itemView.performClick();
 		verify(listener).onHolderClick(holder);
+	}
+
+	@Test public void onMenuItemClick_listenerNotSet_notThrowNPE() {
+		assertToNotThrowNPE(() -> holder.onMenuItemClick(null));
 	}
 
 	@Test public void onMenuClickListener_removeItemClicked_onRemoveFromQueueClickCalled() {
@@ -85,5 +94,14 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		holder.onMenuItemClick(menuItem);
 
 		verify(listener).onRemoveFromQueueClick(holder);
+	}
+
+	@Test public void onMenuClickListener_wrongId_notDoAnything() {
+		OnMenuClickListener listener = mock(OnMenuClickListener.class);
+		holder.setOnMenuClickListener(listener);
+		MenuItem menuItem = mock(MenuItem.class);
+		when(menuItem.getItemId()).thenReturn(-1);
+
+		holder.onMenuItemClick(menuItem);
 	}
 }
