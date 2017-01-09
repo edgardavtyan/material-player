@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.adapters;
+package com.edavtyan.materialplayer.components.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,20 +8,12 @@ import com.edavtyan.materialplayer.components.album_all.AlbumListFragment;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListFragment;
 import com.edavtyan.materialplayer.components.track_all.TrackListFragment;
 
-public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
-	private final String[] tabNames = {
-			"Artists",
-			"Albums",
-			"Tracks"
-	};
+public class MainTabsAdapter extends FragmentPagerAdapter {
+	private final String[] tabNames = {"Artists", "Albums", "Tracks"};
 
-	public TabPagerFragmentAdapter(FragmentManager fm) {
+	public MainTabsAdapter(FragmentManager fm) {
 		super(fm);
 	}
-
-	/*
-	 FragmentPagerAdapter
-	 */
 
 	@Override
 	public CharSequence getPageTitle(int position) {
@@ -31,14 +23,14 @@ public class TabPagerFragmentAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {
-			case 0:
-				return new ArtistListFragment();
-			case 1:
-				return new AlbumListFragment();
-			case 2:
-				return new TrackListFragment();
-			default:
-				return null;
+		case 0:
+			return new ArtistListFragment();
+		case 1:
+			return new AlbumListFragment();
+		case 2:
+			return new TrackListFragment();
+		default:
+			return null;
 
 		}
 	}

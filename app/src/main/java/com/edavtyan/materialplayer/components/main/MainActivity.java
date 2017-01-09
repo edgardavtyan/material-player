@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.lib.adapters.TabPagerFragmentAdapter;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 public class MainActivity extends BaseToolbarActivity {
@@ -16,7 +15,7 @@ public class MainActivity extends BaseToolbarActivity {
 		super.onCreate(savedInstanceState);
 
 		ViewPager viewPager = findView(R.id.view_pager);
-		viewPager.setAdapter(new TabPagerFragmentAdapter(getSupportFragmentManager()));
+		viewPager.setAdapter(new MainTabsAdapter(getSupportFragmentManager()));
 
 		TabLayout tabLayout = findView(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
@@ -35,7 +34,7 @@ public class MainActivity extends BaseToolbarActivity {
 	/* BaseToolbarActivity */
 
 	@Override
-	protected boolean isBackIconEnabled() {
+	public boolean isBackIconEnabled() {
 		return false;
 	}
 }
