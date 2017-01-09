@@ -17,6 +17,7 @@ import org.mockito.ArgumentCaptor;
 
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -98,6 +99,11 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(player).setOnNewTrackListener(model);
 	}
 
+	// For coverage
+	@Test public void onServiceDisconnected_notDoAnything() {
+		model.onServiceDisconnected(null);
+	}
+
 	@Test public void onNewTrackListener_newTrackIsPlayed_called() {
 		OnNewTrackListener listener = mock(OnNewTrackListener.class);
 		model.setOnNewTrackListener(listener);
@@ -106,6 +112,14 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		model.onNewTrack();
 
 		verify(listener).onNewTrack();
+	}
+
+	@Test public void onNewTrackListener_notSet_notThrowNPE() {
+		try {
+			model.onNewTrack();
+		} catch (NullPointerException e) {
+			fail("Expected to not throw NPE", e);
+		}
 	}
 
 	@Test public void onServiceConnectedListener_serviceConnected_called() {

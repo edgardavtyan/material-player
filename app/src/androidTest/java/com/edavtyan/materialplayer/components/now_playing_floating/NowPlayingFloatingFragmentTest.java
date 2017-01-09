@@ -21,6 +21,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloatingFragment> {
@@ -156,6 +157,14 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		infoWrapper.performClick();
 
 		verify(presenter).onViewClick();
+	}
+
+	// Mostly for coverage only
+	@Test public void onClickListener_otherViewClicked_notCalled() {
+		View view = mock(View.class);
+		when(view.getId()).thenReturn(-1);
+		fragment.onClick(view);
+		verifyZeroInteractions(presenter);
 	}
 
 	@Test public void onPlayPauseClick_playPauseClicked_called() {
