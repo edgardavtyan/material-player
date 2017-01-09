@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.lib.file_storage;
 
 import android.os.Environment;
 
+import com.edavtyan.utils.IOUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,26 +21,32 @@ public abstract class BaseFileStorage {
 	}
 
 	public void saveBytes(String filename, byte[] data) {
+		File file = new File(dir, filename);
+		FileOutputStream fileOutputStream = null;
 		try {
-			File file = new File(dir, filename);
-			FileOutputStream fileOutputStream = new FileOutputStream(file);
+			fileOutputStream = new FileOutputStream(file);
 			fileOutputStream.write(data, 0, data.length);
 			fileOutputStream.close();
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			IOUtils.closeStream(fileOutputStream);
 		}
 	}
 
 	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public byte[] loadBytes(String filename) {
+		File file = new File(dir, filename);
+		byte[] data = new byte[(int) file.length()];
+		FileInputStream fileInputStream = null;
 		try {
-			File file = new File(dir, filename);
-			byte[] data = new byte[(int) file.length()];
-			FileInputStream fileInputStream = new FileInputStream(file);
+			fileInputStream = new FileInputStream(file);
 			fileInputStream.read(data, 0, data.length);
 			return data;
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			IOUtils.closeStream(fileInputStream);
 		}
 	}
 

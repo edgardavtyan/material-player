@@ -77,7 +77,7 @@ public class ArtistListFactory extends ListFactory {
 
 	public ArtistListImageFileStorage provideFileStorage() {
 		if (fileStorage == null)
-			fileStorage = new ArtistListImageFileStorage(provideBitmapFactory());
+			fileStorage = new ArtistListImageFileStorage();
 		return fileStorage;
 	}
 

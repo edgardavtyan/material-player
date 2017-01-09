@@ -9,24 +9,21 @@ import java.io.ByteArrayOutputStream;
 public class BitmapFileStorage extends BaseFileStorage {
 	private final TestableBitmapFactory bitmapFactory;
 
-	public BitmapFileStorage(String dirName, TestableBitmapFactory bitmapFactory) {
+	public BitmapFileStorage(String dirName) {
 		super(dirName);
-		this.bitmapFactory = bitmapFactory;
+		bitmapFactory = new TestableBitmapFactory();
 	}
 
 	public void save(String filename, Bitmap bitmap) {
-		try {
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-			byte[] bitmapBytes = stream.toByteArray();
-			stream.close();
-			saveBytes(filename, bitmapBytes);
-		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage(), e);
-		}
+		ByteArrayOutputStream stream = null;
+		stream = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+		byte[] bitmapBytes = stream.toByteArray();
+		saveBytes(filename, bitmapBytes);
 	}
 
 	public Bitmap load(String filename) {
-		return bitmapFactory.fromByteArray(loadBytes(filename));
+		byte[] bytes = loadBytes(filename);
+		return bitmapFactory.fromByteArray(bytes);
 	}
 }
