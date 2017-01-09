@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/test_titled_seekbar"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	app:ts_text="Title"
+	app:ts_max="500"
+	app:ts_progress="150"
+	/>

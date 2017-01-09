@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.audioeffects.views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -8,7 +7,6 @@ import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
 
-import lombok.Cleanup;
 import lombok.Getter;
 
 class TitledSeekbarAttributes {
@@ -25,18 +23,13 @@ class TitledSeekbarAttributes {
 
 	@SuppressWarnings("ResourceType")
 	public TitledSeekbarAttributes(Context context, AttributeSet attributeSet) {
-		@Cleanup("recycle")
-		@SuppressLint("Recycle")
 		TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.TitledSeekbar);
 		text = attrs.getString(R.styleable.TitledSeekbar_ts_text);
-		if (text == null) text = DEFAULT_TEXT;
-		textSize = attrs.getDimensionPixelSize(
-				R.styleable.TitledSeekbar_ts_textSize, DEFAULT_TEXT_SIZE);
-		textWidth = attrs.getDimensionPixelSize(
-				R.styleable.TitledSeekbar_ts_textWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
-		progress = attrs.getInteger(
-				R.styleable.TitledSeekbar_ts_progress, DEFAULT_PROGRESS);
-		max = attrs.getInteger(
-				R.styleable.TitledSeekbar_ts_max, DEFAULT_MAX);
+		text = (text == null) ? DEFAULT_TEXT : text;
+		textSize = attrs.getDimensionPixelSize(R.styleable.TitledSeekbar_ts_textSize, DEFAULT_TEXT_SIZE);
+		textWidth = attrs.getDimensionPixelSize(R.styleable.TitledSeekbar_ts_textWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
+		progress = attrs.getInteger(R.styleable.TitledSeekbar_ts_progress, DEFAULT_PROGRESS);
+		max = attrs.getInteger(R.styleable.TitledSeekbar_ts_max, DEFAULT_MAX);
+		attrs.recycle();
 	}
 }
