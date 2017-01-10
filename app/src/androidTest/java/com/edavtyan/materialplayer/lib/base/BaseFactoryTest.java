@@ -17,7 +17,8 @@ public class BaseFactoryTest extends FactoryTest {
 		testFactoryMethod(baseFactory::provideNavigator);
 		testFactoryMethod(baseFactory::provideArtProvider);
 		testFactoryMethod(baseFactory::provideMusicTagReader);
-		testFactoryMethod(baseFactory::provideDataStorage);
+		testFactoryMethod(baseFactory::provideArtFileStorage);
+		testFactoryMethod(baseFactory::provideArtMemoryCache);
 		testFactoryMethod(baseFactory::provideBitmapFactory);
 		testFactoryMethod(baseFactory::provideThemeUtils);
 		testFactoryMethod(baseFactory::providePrefs);

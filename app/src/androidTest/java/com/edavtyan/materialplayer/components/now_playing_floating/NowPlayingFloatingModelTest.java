@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 
 public class NowPlayingFloatingModelTest extends BaseTest {
 	private Context context;
-	private ArtProvider artProvider;
+	private AlbumArtProvider albumArtProvider;
 	private PlayerService.PlayerBinder binder;
 	private NowPlayingFloatingModel model;
 	private PlayerMvp.Player player;
@@ -34,8 +34,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		super.beforeEach();
 
 		context = mock(Context.class);
-		artProvider = mock(ArtProvider.class);
-		model = new NowPlayingFloatingModel(context, artProvider);
+		albumArtProvider = mock(AlbumArtProvider.class);
+		model = new NowPlayingFloatingModel(context, albumArtProvider);
 
 		player = mock(PlayerMvp.Player.class);
 
@@ -74,7 +74,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		Track track = new Track();
 		when(player.getCurrentTrack()).thenReturn(track);
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(artProvider.load(track)).thenReturn(art);
+		when(albumArtProvider.load(track)).thenReturn(art);
 		model.onServiceConnected(null, binder);
 
 		assertThat(model.getNowPlayingTrackArt()).isSameAs(art);

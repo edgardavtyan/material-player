@@ -10,7 +10,7 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import lombok.Setter;
 
@@ -19,16 +19,16 @@ public class PlayerNotificationModel
 				   PlayerMvp.Player.OnNewTrackListener, PlayerMvp.Player.OnPlayPauseListener {
 
 	private final Context context;
-	private final ArtProvider artProvider;
+	private final AlbumArtProvider albumArtProvider;
 
 	private PlayerService service;
 
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnPlayPauseListener onPlayPauseListener;
 
-	public PlayerNotificationModel(Context context, ArtProvider artProvider) {
+	public PlayerNotificationModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
-		this.artProvider = artProvider;
+		this.albumArtProvider = albumArtProvider;
 	}
 
 	@Override public void bind() {
@@ -50,7 +50,7 @@ public class PlayerNotificationModel
 	}
 
 	@Override public Bitmap getArt() {
-		return artProvider.load(getTrack());
+		return albumArtProvider.load(getTrack());
 	}
 
 	@Override public void onServiceConnected(ComponentName name, IBinder binder) {

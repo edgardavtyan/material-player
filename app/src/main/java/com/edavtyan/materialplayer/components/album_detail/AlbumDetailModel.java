@@ -9,27 +9,27 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import java.util.List;
 
 public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.Model {
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
-	private final ArtProvider artProvider;
+	private final AlbumArtProvider albumArtProvider;
 	private final int albumId;
 
 	public AlbumDetailModel(
 			Context context,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			ArtProvider artProvider,
+			AlbumArtProvider albumArtProvider,
 			CompactListPref prefs,
 			int albumId) {
 		super(context, trackDB, prefs);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
-		this.artProvider = artProvider;
+		this.albumArtProvider = albumArtProvider;
 		this.albumId = albumId;
 	}
 
@@ -40,7 +40,7 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 
 	@Override
 	public Bitmap getAlbumArt() {
-		return artProvider.load(getTrackAtIndex(0));
+		return albumArtProvider.load(getTrackAtIndex(0));
 	}
 
 	@Override

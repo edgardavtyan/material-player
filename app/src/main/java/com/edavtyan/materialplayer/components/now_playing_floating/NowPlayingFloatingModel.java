@@ -9,7 +9,7 @@ import android.os.IBinder;
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import lombok.Setter;
 
@@ -18,14 +18,14 @@ public class NowPlayingFloatingModel
 				   PlayerMvp.Player.OnNewTrackListener {
 
 	private final Context context;
-	private final ArtProvider artProvider;
+	private final AlbumArtProvider albumArtProvider;
 	private PlayerService service;
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
-	public NowPlayingFloatingModel(Context context, ArtProvider artProvider) {
+	public NowPlayingFloatingModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
-		this.artProvider = artProvider;
+		this.albumArtProvider = albumArtProvider;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class NowPlayingFloatingModel
 	}
 
 	@Override public Bitmap getNowPlayingTrackArt() {
-		return artProvider.load(getNowPlayingTrack());
+		return albumArtProvider.load(getNowPlayingTrack());
 	}
 
 	@Override

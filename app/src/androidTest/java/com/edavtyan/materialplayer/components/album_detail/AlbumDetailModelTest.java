@@ -6,7 +6,7 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class AlbumDetailModelTest extends BaseTest {
 
 	private AlbumDetailModel model;
 	private TrackDB trackDB;
-	private ArtProvider artProvider;
+	private AlbumArtProvider albumArtProvider;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -30,9 +30,9 @@ public class AlbumDetailModelTest extends BaseTest {
 		AlbumDB albumDB = mock(AlbumDB.class);
 		CompactListPref prefs = mock(CompactListPref.class);
 		trackDB = mock(TrackDB.class);
-		artProvider = mock(ArtProvider.class);
+		albumArtProvider = mock(AlbumArtProvider.class);
 
-		model = new AlbumDetailModel(view, albumDB, trackDB, artProvider, prefs, ALBUM_ID);
+		model = new AlbumDetailModel(view, albumDB, trackDB, albumArtProvider, prefs, ALBUM_ID);
 	}
 
 	@Test public void update_callTracksDB() {
@@ -42,7 +42,7 @@ public class AlbumDetailModelTest extends BaseTest {
 
 	@Test public void getAlbumArt_getArtFromArtProvider() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(artProvider.load(any())).thenReturn(art);
+		when(albumArtProvider.load(any())).thenReturn(art);
 		assertThat(model.getAlbumArt()).isEqualTo(art);
 	}
 }

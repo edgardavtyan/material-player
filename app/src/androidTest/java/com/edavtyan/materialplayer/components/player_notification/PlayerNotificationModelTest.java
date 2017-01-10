@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.components.player_notification.PlayerNotifica
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 public class PlayerNotificationModelTest extends BaseTest {
 	private PlayerNotificationModel model;
 	private PlayerMvp.Player player;
-	private ArtProvider artProvider;
+	private AlbumArtProvider albumArtProvider;
 	private PlayerService.PlayerBinder binder;
 	private Track track;
 
@@ -36,8 +36,8 @@ public class PlayerNotificationModelTest extends BaseTest {
 		super.beforeEach();
 		context = mock(ContextThemeWrapper.class);
 		player = mock(Player.class);
-		artProvider = mock(ArtProvider.class);
-		model = new PlayerNotificationModel(context, artProvider);
+		albumArtProvider = mock(AlbumArtProvider.class);
+		model = new PlayerNotificationModel(context, albumArtProvider);
 
 		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);
@@ -78,7 +78,7 @@ public class PlayerNotificationModelTest extends BaseTest {
 		Track track = mock(Track.class);
 		when(player.getCurrentTrack()).thenReturn(track);
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(artProvider.load(track)).thenReturn(art);
+		when(albumArtProvider.load(track)).thenReturn(art);
 		model.onServiceConnected(null, binder);
 
 		assertThat(model.getArt()).isSameAs(art);

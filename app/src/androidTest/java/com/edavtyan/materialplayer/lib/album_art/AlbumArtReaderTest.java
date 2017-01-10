@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.utils.tag;
+package com.edavtyan.materialplayer.lib.album_art;
 
 import android.media.MediaMetadataRetriever;
 
@@ -13,26 +13,24 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VanillaMusicTagReaderTest extends BaseTest {
+public class AlbumArtReaderTest extends BaseTest {
 	@Rule public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private VanillaMusicTagReader musicTagReader;
+	private AlbumArtReader musicTagReader;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
-		musicTagReader = new VanillaMusicTagReader(new MediaMetadataRetriever());
+		musicTagReader = new AlbumArtReader(new MediaMetadataRetriever());
 	}
 
 	@Test public void getAlbumArtBytes_fileWithArt_correctBytes() throws IOException {
 		byte[] artBytes = getResourceAsByteArray("art.png");
 		File mp3File = copyResourceToFileSystem("with-art.mp3", temporaryFolder.newFile());
-		musicTagReader.setDataSource(mp3File.getAbsolutePath());
-		assertThat(musicTagReader.getAlbumArtBytes()).isEqualTo(artBytes);
+		assertThat(musicTagReader.getAlbumArtBytes(mp3File.getAbsolutePath())).isEqualTo(artBytes);
 	}
 
 	@Test public void getAlbumArtBytes_fileWithoutArt_null() throws IOException {
 		File mp3File = copyResourceToFileSystem("without-art.mp3", temporaryFolder.newFile());
-		musicTagReader.setDataSource(mp3File.getAbsolutePath());
-		assertThat(musicTagReader.getAlbumArtBytes()).isNull();
+		assertThat(musicTagReader.getAlbumArtBytes(mp3File.getAbsolutePath())).isNull();
 	}
 }

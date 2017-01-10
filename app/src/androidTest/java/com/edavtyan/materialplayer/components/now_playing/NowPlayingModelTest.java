@@ -14,7 +14,7 @@ import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -30,7 +30,7 @@ public class NowPlayingModelTest extends BaseTest {
 	private NowPlayingModel model;
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
-	private ArtProvider artProvider;
+	private AlbumArtProvider albumArtProvider;
 
 	@Override public void beforeEach() {
 		super.beforeEach();
@@ -43,10 +43,10 @@ public class NowPlayingModelTest extends BaseTest {
 		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
-		artProvider = mock(ArtProvider.class);
+		albumArtProvider = mock(AlbumArtProvider.class);
 
 		runOnUiThread(() -> {
-			model = new NowPlayingModel(context, artProvider);
+			model = new NowPlayingModel(context, albumArtProvider);
 			model.onServiceConnected(null, binder);
 		});
 	}
@@ -55,7 +55,7 @@ public class NowPlayingModelTest extends BaseTest {
 	public void bind_bindServiceWithCorrectIntent() {
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 
-		NowPlayingMvp.Model model = new NowPlayingModel(context, artProvider);
+		NowPlayingMvp.Model model = new NowPlayingModel(context, albumArtProvider);
 		model.bind();
 
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
@@ -139,7 +139,7 @@ public class NowPlayingModelTest extends BaseTest {
 		when(player.getCurrentTrack()).thenReturn(track);
 
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		when(artProvider.load(track)).thenReturn(art);
+		when(albumArtProvider.load(track)).thenReturn(art);
 
 		assertThat(model.getArt()).isSameAs(art);
 	}

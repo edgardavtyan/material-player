@@ -6,23 +6,24 @@ import android.media.MediaMetadataRetriever;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtFileStorage;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtMemoryCache;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtReader;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.utils.ArtProvider;
-import com.edavtyan.materialplayer.utils.DataStorage;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 import com.edavtyan.materialplayer.utils.WebClient;
-import com.edavtyan.materialplayer.utils.tag.MusicTagReader;
-import com.edavtyan.materialplayer.utils.tag.VanillaMusicTagReader;
 
 public class BaseFactory {
 	private final Context context;
 	private Navigator navigator;
-	private ArtProvider artProvider;
+	private AlbumArtProvider albumArtProvider;
 	private TestableBitmapFactory bitmapFactory;
-	private DataStorage dataStorage;
+	private AlbumArtFileStorage dataStorage;
+	private AlbumArtMemoryCache memoryCache;
 	private WebClient webClient;
-	private MusicTagReader musicTagReader;
+	private AlbumArtReader albumArtReader;
 	private ThemeUtils themeUtils;
 	private AdvancedSharedPrefs prefs;
 	private SharedPreferences basePrefs;
@@ -40,24 +41,31 @@ public class BaseFactory {
 		return navigator;
 	}
 
-	public ArtProvider provideArtProvider() {
-		if (artProvider == null)
-			artProvider = new ArtProvider(
-					provideDataStorage(),
+	public AlbumArtProvider provideArtProvider() {
+		if (albumArtProvider == null)
+			albumArtProvider = new AlbumArtProvider(
+					provideArtFileStorage(),
+					provideArtMemoryCache(),
 					provideMusicTagReader(),
 					provideBitmapFactory());
-		return artProvider;
+		return albumArtProvider;
 	}
 
-	public MusicTagReader provideMusicTagReader() {
-		if (musicTagReader == null)
-			musicTagReader = new VanillaMusicTagReader(new MediaMetadataRetriever());
-		return musicTagReader;
+	public AlbumArtReader provideMusicTagReader() {
+		if (albumArtReader == null)
+			albumArtReader = new AlbumArtReader(new MediaMetadataRetriever());
+		return albumArtReader;
 	}
 
-	public DataStorage provideDataStorage() {
+	public AlbumArtMemoryCache provideArtMemoryCache() {
+		if (memoryCache == null)
+			memoryCache = new AlbumArtMemoryCache();
+		return memoryCache;
+	}
+
+	public AlbumArtFileStorage provideArtFileStorage() {
 		if (dataStorage == null)
-			dataStorage = new DataStorage();
+			dataStorage = new AlbumArtFileStorage();
 		return dataStorage;
 	}
 

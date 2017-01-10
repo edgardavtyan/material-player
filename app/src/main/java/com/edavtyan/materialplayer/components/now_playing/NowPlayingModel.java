@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
-import com.edavtyan.materialplayer.utils.ArtProvider;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import lombok.Setter;
 
@@ -20,7 +20,7 @@ public class NowPlayingModel
 				   PlayerMvp.Player.OnPlayPauseListener {
 
 	private final Context context;
-	private final ArtProvider artProvider;
+	private final AlbumArtProvider albumArtProvider;
 
 	private PlayerService service;
 
@@ -28,9 +28,9 @@ public class NowPlayingModel
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnPlayPauseListener onPlayPauseListener;
 
-	public NowPlayingModel(Context context, ArtProvider artProvider) {
+	public NowPlayingModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
-		this.artProvider = artProvider;
+		this.albumArtProvider = albumArtProvider;
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class NowPlayingModel
 
 	@Override
 	public Bitmap getArt() {
-		return artProvider.load(service.getPlayer().getCurrentTrack());
+		return albumArtProvider.load(service.getPlayer().getCurrentTrack());
 	}
 
 	@Override
