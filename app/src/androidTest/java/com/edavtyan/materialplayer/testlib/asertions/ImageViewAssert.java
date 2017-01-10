@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.testlib.asertions;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,6 +11,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.edavtyan.materialplayer.lib.testable.TestableActivity;
 
 import org.assertj.core.api.AbstractAssert;
 
@@ -30,8 +31,8 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		return new ImageViewAssert(imageViewId, imageView, ImageViewAssert.class);
 	}
 
-	public static ImageViewAssert assertImageView(Activity activity, @IdRes int imageViewId) {
-		ImageView imageView = (ImageView) activity.findViewById(imageViewId);
+	public static ImageViewAssert assertImageView(TestableActivity activity, @IdRes int imageViewId) {
+		ImageView imageView = (ImageView) activity.findView(imageViewId);
 		return new ImageViewAssert(imageViewId, imageView, ImageViewAssert.class);
 	}
 

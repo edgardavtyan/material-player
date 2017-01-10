@@ -23,8 +23,7 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		App app = (App) getApplicationContext();
-		NowPlayingFactory factory = app.getNowPlayingFactory(this, this);
+		NowPlayingFactory factory = getFactory();
 		presenter = factory.providePresenter();
 		controls = factory.provideControls();
 		info = factory.provideInfo();
@@ -55,5 +54,10 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 	@Override
 	public void gotoPlaylistScreen() {
 		navigator.gotoNowPlayingQueue();
+	}
+
+	protected NowPlayingFactory getFactory() {
+		App app = (App) getApplicationContext();
+		return app.getNowPlayingFactory(this, this);
 	}
 }
