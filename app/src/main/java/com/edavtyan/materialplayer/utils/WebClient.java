@@ -16,7 +16,7 @@ public class WebClient {
 	public byte[] getBytes(String url) {
 		try {
 			return get(url).bytes();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -24,17 +24,13 @@ public class WebClient {
 	public String getString(String url) {
 		try {
 			return get(url).string();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	private ResponseBody get(String url) {
-		try {
-			Request request = new Request.Builder().url(url).build();
-			return client.newCall(request).execute().body();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	private ResponseBody get(String url) throws IOException {
+		Request request = new Request.Builder().url(url).build();
+		return client.newCall(request).execute().body();
 	}
 }
