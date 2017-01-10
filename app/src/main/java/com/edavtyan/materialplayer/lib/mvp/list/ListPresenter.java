@@ -23,8 +23,8 @@ public abstract class ListPresenter<VH> implements ListMvp.Presenter<VH> {
 
 	@Override
 	public void onUpdateCompactMode() {
-		if (isCompactModeEnabled != model.isCompactModeEnabled()) {
-			isCompactModeEnabled = model.isCompactModeEnabled();
+		if (isCompactModeEnabled != isCompactModeEnabled()) {
+			isCompactModeEnabled = isCompactModeEnabled();
 			view.notifyDataSetChanged();
 		}
 	}
