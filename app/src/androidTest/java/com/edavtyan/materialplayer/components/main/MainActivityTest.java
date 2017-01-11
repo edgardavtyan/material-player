@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.main;
 
-import android.content.Intent;
-
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
@@ -18,7 +16,7 @@ public class MainActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			activity = spy(startActivity(new Intent(context, MainActivity.class)));
+			activity = spy(startActivity(MainActivity.class));
 		} else {
 			reset(activity);
 		}

@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.lib.base;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -41,7 +40,7 @@ public class BaseToolbarActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			activity = spy(startActivity(new Intent(context, TestBaseToolbarActivity.class)));
+			activity = spy(startActivity(TestBaseToolbarActivity.class));
 		} else {
 			reset(activity);
 		}

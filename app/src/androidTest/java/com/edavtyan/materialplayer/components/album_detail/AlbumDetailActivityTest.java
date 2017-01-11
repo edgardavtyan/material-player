@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -46,7 +45,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 			when(factory.provideAdapter()).thenReturn(adapter);
 			when(factory.provideNavigator()).thenReturn(navigator);
 
-			activity = spy(startActivity(new Intent(context, TestAlbumDetailActivity.class)));
+			activity = spy(startActivity(TestAlbumDetailActivity.class));
 			doNothing().when(activity).baseOnStop();
 		} else {
 			reset(adapter, presenter, navigator);

@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.lib.base;
 
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +40,7 @@ public class BaseActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			activity = spy(startActivity(new Intent(context, TestBaseActivity.class)));
+			activity = spy(startActivity(TestBaseActivity.class));
 		} else {
 			reset(activity);
 		}

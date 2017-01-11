@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.v7.widget.SwitchCompat;
 
 import com.edavtyan.materialplayer.R;
@@ -44,7 +43,7 @@ public class AudioEffectsActivityTest extends ActivityTest {
 			when(factory.providePresenter()).thenReturn(presenter);
 			when(app.getAudioEffectsFactory(any(), any())).thenReturn(factory);
 
-			activity = spy(startActivity(new Intent(context, AudioEffectsActivity.class)));
+			activity = spy(startActivity(AudioEffectsActivity.class));
 			doNothing().when(activity).baseOnCreate(any());
 			doNothing().when(activity).baseOnDestroy();
 			doReturn(app).when(activity).getApplicationContext();

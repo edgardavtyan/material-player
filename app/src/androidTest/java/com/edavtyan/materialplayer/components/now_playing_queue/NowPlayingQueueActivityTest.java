@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -38,7 +37,7 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 			when(factory.providePresenter()).thenReturn(presenter);
 			when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
 
-			activity = spy(startActivity(new Intent(context, NowPlayingQueueActivity.class)));
+			activity = spy(startActivity(NowPlayingQueueActivity.class));
 			doNothing().when(activity).baseOnCreate(any());
 			doNothing().when(activity).baseOnDestroy();
 			doReturn(app).when(activity).getApplicationContext();

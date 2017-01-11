@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.prefs;
 
-import android.content.Intent;
-
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
@@ -16,7 +14,7 @@ public class PrefActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			activity = startActivity(new Intent(context, PrefActivity.class));
+			activity = startActivity(PrefActivity.class);
 		}
 	}
 

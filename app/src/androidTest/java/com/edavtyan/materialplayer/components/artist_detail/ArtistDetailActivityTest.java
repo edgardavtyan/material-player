@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,7 +49,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			when(factory.provideAdapter()).thenReturn(adapter);
 			when(factory.provideNavigator()).thenReturn(navigator);
 
-			activity = spy(startActivity(new Intent(context, TestArtistDetailActivity.class)));
+			activity = spy(startActivity(TestArtistDetailActivity.class));
 			doNothing().when(activity).baseOnStop();
 		} else {
 			reset(adapter, presenter, navigator);

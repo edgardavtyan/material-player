@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
@@ -54,7 +53,7 @@ public class NowPlayingActivityTest extends ActivityTest {
 			when(factory.provideSeekbar()).thenReturn(seekbar);
 			when(factory.provideNavigator()).thenReturn(navigator);
 
-			activity = spy(startActivity(new Intent(context, TestNowPlayingActivity.class)));
+			activity = spy(startActivity(TestNowPlayingActivity.class));
 			doNothing().when(activity).baseOnDestroy();
 		}
 	}
