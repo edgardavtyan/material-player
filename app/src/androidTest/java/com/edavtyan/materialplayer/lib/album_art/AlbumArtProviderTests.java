@@ -48,13 +48,14 @@ public class AlbumArtProviderTests extends BaseTest {
 	@SuppressWarnings("unchecked")
 	@Test public void return_null_if_track_has_no_art() {
 		init(5);
-		when(artReader.getAlbumArtBytes(Integer.toString(5))).thenThrow(Exception.class);
+		when(artReader.getAlbumArtBytes("path5")).thenThrow(Exception.class);
 		assertThat(albumArtProvider.load(track)).isNull();
 	}
 
 	private void init(int index) {
 		track = new Track();
 		track.setAlbumId(index);
+		track.setPath("path" + index);
 
 		art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 
@@ -64,7 +65,7 @@ public class AlbumArtProviderTests extends BaseTest {
 
 		artBytes = new byte[]{1, 2, 3, 4, 5};
 		artReader = mock(AlbumArtReader.class);
-		when(artReader.getAlbumArtBytes(Integer.toString(index))).thenReturn(artBytes);
+		when(artReader.getAlbumArtBytes(track.getPath())).thenReturn(artBytes);
 
 		bitmapFactory = mock(TestableBitmapFactory.class);
 		when(bitmapFactory.fromByteArray(artBytes)).thenReturn(art);

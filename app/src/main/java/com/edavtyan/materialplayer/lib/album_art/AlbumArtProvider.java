@@ -35,7 +35,7 @@ public class AlbumArtProvider {
 		}
 
 		try {
-			byte[] imageBytes = artReader.getAlbumArtBytes(imagePath);
+			byte[] imageBytes = artReader.getAlbumArtBytes(track.getPath());
 			dataStorage.saveBytes(imagePath, imageBytes);
 			Bitmap image = bitmapFactory.fromByteArray(imageBytes);
 			memoryCache.put(track.getAlbumId(), image);
