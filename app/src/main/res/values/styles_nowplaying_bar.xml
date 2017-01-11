@@ -24,10 +24,6 @@
 		<item name="android:padding">8dp</item>
 		<item name="android:background">@drawable/ripple_primary</item>
 		<item name="android:tint">?textColorContrastPrimary</item>
-		<item name="vc_endDrawable">@drawable/ic_pause_to_play</item>
-		<item name="vc_startDrawable">@drawable/ic_play_to_pause</item>
-		<item name="vc_foregroundTint">?textColorContrastPrimary</item>
-		<item name="vc_autoStartAnimation">true</item>
 	</style>
 
 	<style name="nowplayingBar_title">

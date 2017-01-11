@@ -23,7 +23,6 @@
 		<item name="dividerColor">#1e000000</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
-		<item name="morphButtonStyle">@style/Widget.MorphButton</item>
 	</style>
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
@@ -47,7 +46,6 @@
 		<item name="dividerColor">#1effffff</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
-		<item name="morphButtonStyle">@style/Widget.MorphButton</item>
 	</style>
 
 	<style name="AppTheme.Black" parent="AppTheme.Dark">
