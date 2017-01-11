@@ -13,12 +13,12 @@ import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
+import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
@@ -61,7 +61,7 @@ public class NowPlayingModelTest extends BaseTest {
 		model.bind();
 
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		IntentAssert.assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
+		assertThatIntent(intentCaptor.getValue()).hasClass(PlayerService.class);
 	}
 
 	@Test

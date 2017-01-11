@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThat;
+import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -45,7 +45,7 @@ public class AudioEffectsModelTest extends BaseTest {
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
+		assertThatIntent(intentCaptor.getValue()).hasClass(PlayerService.class);
 	}
 
 	@Test

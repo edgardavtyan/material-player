@@ -9,11 +9,11 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
 		super(actual, selfType);
 	}
 
-	public static IntentAssert assertThat(Intent actual) {
+	public static IntentAssert assertThatIntent(Intent actual) {
 		return new IntentAssert(actual, IntentAssert.class);
 	}
 
-	public IntentAssert classEqualTo(Class clazz) {
+	public IntentAssert hasClass(Class clazz) {
 		isNotNull();
 
 		String expectedClass = clazz.getName();
