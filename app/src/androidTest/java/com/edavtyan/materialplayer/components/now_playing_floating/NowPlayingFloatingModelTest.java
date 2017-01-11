@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
@@ -126,11 +127,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 
 	@Test
 	public void onNewTrackListener_notSet_notThrowNPE() {
-		try {
-			model.onNewTrack();
-		} catch (NullPointerException e) {
-			fail("Expected to not throw NPE", e);
-		}
+		assertToNotThrowNPE(model::onNewTrack);
 	}
 
 	@Test

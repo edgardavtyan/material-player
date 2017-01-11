@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
@@ -92,11 +93,7 @@ public class PlayerNotificationModelTest extends BaseTest {
 
 	@Test
 	public void onNewTrack_listenerNotSet_notThrowException() {
-		try {
-			model.onNewTrack();
-		} catch (Exception e) {
-			fail("onNewTrack when not set should not throw exception");
-		}
+		assertToNotThrowNPE(model::onNewTrack);
 	}
 
 	@Test
@@ -117,11 +114,6 @@ public class PlayerNotificationModelTest extends BaseTest {
 
 	@Test
 	public void onPlayPause_listenerNotSet_notThrowException() {
-		try {
-			model.onPlayPause();
-		} catch (NullPointerException e) {
-			fail("Expected onPlayPause to not throw NullPointerException"
-				 + "event if OnPlayPauseListener not set");
-		}
+		assertToNotThrowNPE(model::onPlayPause);
 	}
 }

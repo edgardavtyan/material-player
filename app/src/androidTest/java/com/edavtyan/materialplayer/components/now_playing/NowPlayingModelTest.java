@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
@@ -195,11 +196,7 @@ public class NowPlayingModelTest extends BaseTest {
 
 	@Test
 	public void onNewTrackListener_notCalledIfNotSet() {
-		try {
-			model.onNewTrack();
-		} catch (NullPointerException e) {
-			fail("NullPointerException because onNewTrackListener not set");
-		}
+		assertToNotThrowNPE(model::onNewTrack);
 	}
 
 	@Test
@@ -212,10 +209,6 @@ public class NowPlayingModelTest extends BaseTest {
 
 	@Test
 	public void onPlayPauseListener_notCalledIfNotSet() {
-		try {
-			model.onPlayPause();
-		} catch (NullPointerException e) {
-			fail("NullPointerException because onPlayPauseListener not set");
-		}
+		assertToNotThrowNPE(model::onPlayPause);
 	}
 }

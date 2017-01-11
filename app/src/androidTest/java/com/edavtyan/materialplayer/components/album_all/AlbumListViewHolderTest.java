@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertImageView;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
@@ -51,11 +52,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 	@Test
 	public void not_throw_npe_if_click_listener_not_set() {
-		try {
-			holder.onClick(null);
-		} catch (NullPointerException e) {
-			fail("Expected to not throw NPE");
-		}
+		assertToNotThrowNPE(() -> holder.onClick(null));
 	}
 
 	@Test
@@ -68,11 +65,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 	@Test
 	public void not_throw_npe_if_menu_click_listener_not_set() {
-		try {
-			holder.onMenuItemClick(mock(MenuItem.class));
-		} catch (NullPointerException e) {
-			fail("Expected to not throw NPE");
-		}
+		assertToNotThrowNPE(() -> holder.onMenuItemClick(null));
 	}
 
 	@Test
