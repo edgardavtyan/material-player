@@ -3,14 +3,12 @@ package com.edavtyan.prefs.description_list;
 public class DescriptionListPresenter {
 	private final DescriptionListPreference pref;
 	private final DescriptionListModel model;
-	private final String initialSummary;
 
 	public DescriptionListPresenter(
 			DescriptionListPreference pref,
 			DescriptionListModel model) {
 		this.pref = pref;
 		this.model = model;
-		this.initialSummary = model.getSummary();
 	}
 
 	public void onViewsInit() {

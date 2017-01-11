@@ -1,5 +1,6 @@
 package com.edavtyan.prefs.checkbox;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -21,6 +22,7 @@ public class CheckboxPreferenceModel {
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 		@Cleanup("recycle")
+		@SuppressLint("Recycle")
 		TypedArray attrs = context.obtainStyledAttributes(attributeSet, R.styleable.CheckboxPref);
 		key = attrs.getString(R.styleable.CheckboxPref_cp_key);
 		title = attrs.getString(R.styleable.CheckboxPref_cp_title);
