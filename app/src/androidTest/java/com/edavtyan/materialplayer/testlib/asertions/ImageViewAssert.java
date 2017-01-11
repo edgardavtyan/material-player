@@ -20,20 +20,24 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 	private final String imageViewIdName;
 	private final Context context;
 
-	public ImageViewAssert(@IdRes int imageViewId, ImageView actual, Class<?> selfType) {
+	public ImageViewAssert(ImageView actual, Class<?> selfType) {
 		super(actual, selfType);
 		context = InstrumentationRegistry.getTargetContext();
-		imageViewIdName = context.getResources().getResourceEntryName(imageViewId);
+		imageViewIdName = context.getResources().getResourceEntryName(actual.getId());
 	}
 
 	public static ImageViewAssert assertImageView(View view, @IdRes int imageViewId) {
 		ImageView imageView = (ImageView) view.findViewById(imageViewId);
-		return new ImageViewAssert(imageViewId, imageView, ImageViewAssert.class);
+		return new ImageViewAssert(imageView, ImageViewAssert.class);
 	}
 
 	public static ImageViewAssert assertImageView(TestableActivity activity, @IdRes int imageViewId) {
 		ImageView imageView = activity.findView(imageViewId);
-		return new ImageViewAssert(imageViewId, imageView, ImageViewAssert.class);
+		return new ImageViewAssert(imageView, ImageViewAssert.class);
+	}
+
+	public static ImageViewAssert assertImageView(ImageView imageView) {
+		return new ImageViewAssert(imageView, ImageViewAssert.class);
 	}
 
 	public ImageViewAssert hasDrawableWithId(@DrawableRes int drawableRes) {

@@ -16,15 +16,15 @@ import static org.mockito.Mockito.when;
 
 public class NowPlayingArtTest extends BaseTest {
 	private NowPlayingArt art;
-	private NowPlayingActivity activity;
+	private ImageView artView;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		ImageView artView = spy(new ImageView(context));
+		artView = spy(new ImageView(context));
 
-		activity = mock(NowPlayingActivity.class);
+		NowPlayingActivity activity = mock(NowPlayingActivity.class);
 		when(activity.findView(R.id.art)).thenReturn(artView);
 
 		art = new NowPlayingArt(activity);
@@ -33,13 +33,13 @@ public class NowPlayingArtTest extends BaseTest {
 	@Test
 	public void set_fallback_cover_given_null_art() {
 		art.setArt(null);
-		assertImageView(activity, R.id.art).hasDrawableWithId(R.drawable.fallback_cover);
+		assertImageView(artView).hasDrawableWithId(R.drawable.fallback_cover);
 	}
 
 	@Test
 	public void set_given_bitmap() {
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		art.setArt(bitmap);
-		assertImageView(activity, R.id.art).hasBitmap(bitmap);
+		assertImageView(artView).hasBitmap(bitmap);
 	}
 }
