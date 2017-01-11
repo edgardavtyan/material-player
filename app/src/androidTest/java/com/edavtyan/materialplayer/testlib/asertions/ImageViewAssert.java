@@ -23,7 +23,12 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 	public ImageViewAssert(ImageView actual, Class<?> selfType) {
 		super(actual, selfType);
 		context = InstrumentationRegistry.getTargetContext();
-		imageViewIdName = context.getResources().getResourceEntryName(actual.getId());
+
+		if (actual.getId() == -1) {
+			imageViewIdName = null;
+		} else {
+			imageViewIdName = context.getResources().getResourceEntryName(actual.getId());
+		}
 	}
 
 	public static ImageViewAssert assertImageView(View view, @IdRes int imageViewId) {
@@ -43,9 +48,14 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 	public ImageViewAssert hasDrawableWithId(@DrawableRes int drawableRes) {
 		Drawable drawable = ContextCompat.getDrawable(context, drawableRes);
 		if (!areDrawablesIdentical(actual.getDrawable(), drawable)) {
-			failWithMessage(
-					"Expected ImageView with id='%s' to have drawable with id='%s'",
-					imageViewIdName, context.getResources().getResourceEntryName(drawableRes));
+			String drawableId = context.getResources().getResourceEntryName(drawableRes);
+			if (imageViewIdName == null) {
+				failWithMessage("Expected ImageView to have drawable with id='%s'", drawableId);
+			} else {
+				failWithMessage(
+						"Expected ImageView with id='%s' to have drawable with id='%s'",
+						imageViewIdName, drawableId);
+			}
 		}
 
 		return this;
@@ -53,9 +63,13 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 
 	public ImageViewAssert hasBitmap(Bitmap art) {
 		if (!getBitmap(actual.getDrawable()).sameAs(art)) {
-			failWithMessage(
-					"Expected ImageView with id='%s' to have bitmap '%s'",
-					imageViewIdName, art);
+			if (imageViewIdName == null) {
+				failWithMessage("Expected ImageView to have bitmap '%s'", art);
+			} else {
+				failWithMessage(
+						"Expected ImageView with id='%s' to have bitmap '%s'",
+						imageViewIdName, art);
+			}
 		}
 
 		return this;
