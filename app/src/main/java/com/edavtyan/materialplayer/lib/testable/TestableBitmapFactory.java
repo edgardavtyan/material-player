@@ -4,10 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class TestableBitmapFactory {
-	public Bitmap fromPath(String path) {
-		return BitmapFactory.decodeFile(path, getOptions());
-	}
-
 	public Bitmap fromByteArray(byte[] array) {
 		return BitmapFactory.decodeByteArray(array, 0, array.length, getOptions());
 	}

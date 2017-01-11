@@ -38,8 +38,4 @@ public class DescriptionListPresenter {
 	public int getItemCount() {
 		return model.getEntries().size();
 	}
-
-	private String getFormattedSummary() {
-		return initialSummary.replace("%s", model.getCurrentPreference());
-	}
 }

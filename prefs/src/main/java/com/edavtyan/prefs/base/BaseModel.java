@@ -13,8 +13,6 @@ public abstract class BaseModel {
 
 	public abstract String getKey();
 
-	public abstract String getTitle();
-
 	public abstract String getDefaultValue();
 
 	public String getCurrentPreference() {

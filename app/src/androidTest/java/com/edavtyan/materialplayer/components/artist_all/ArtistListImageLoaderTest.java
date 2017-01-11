@@ -60,8 +60,7 @@ public class ArtistListImageLoaderTest extends BaseTest {
 	}
 
 	@Test
-	public void getImageFromFileSystemOrApi_imageNotSavedInAnyCache_returnImageFromApiAndSaveInFileAndMemoryCache()
-	throws IOException {
+	public void getImageFromFileSystemOrApi_imageNotSavedInAnyCache_returnImageFromApiAndSaveInFileAndMemoryCache() {
 		when(fileStorage.exists("file300")).thenReturn(false);
 		when(memoryCache.exists("file300")).thenReturn(false);
 

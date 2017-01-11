@@ -16,10 +16,10 @@ class TitledSeekbarAttributes {
 	private static final String DEFAULT_TEXT = "Title";
 
 	private @Getter String text;
-	private @Getter int textSize;
-	private @Getter int textWidth;
-	private @Getter int progress;
-	private @Getter int max;
+	private final @Getter int textSize;
+	private final @Getter int textWidth;
+	private final @Getter int progress;
+	private final @Getter int max;
 
 	@SuppressWarnings("ResourceType")
 	public TitledSeekbarAttributes(Context context, AttributeSet attributeSet) {

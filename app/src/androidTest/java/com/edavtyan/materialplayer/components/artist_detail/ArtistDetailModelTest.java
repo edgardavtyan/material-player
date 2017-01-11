@@ -53,7 +53,7 @@ public class ArtistDetailModelTest extends BaseTest {
 	}
 
 	@Test
-	public void loadArtistImage_imageNotCached_callCallbackViaAsync() throws InterruptedException {
+	public void loadArtistImage_imageNotCached_callCallbackViaAsync() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(artistArtLoader.getImageFromApi(anyString())).thenReturn(art);
 

@@ -24,11 +24,6 @@ public class AttributeResolver {
 		return attr.getDimensionPixelSize(0, 0);
 	}
 
-	public int getColor(int attrId) {
-		@Cleanup("recycle") TypedArray attr = getAttribute(attrId);
-		return attr.getColor(0, 0);
-	}
-
 	private TypedArray getAttribute(int attrId) {
 		TypedValue typedValue = new TypedValue();
 		return context.obtainStyledAttributes(typedValue.data, new int[]{attrId});

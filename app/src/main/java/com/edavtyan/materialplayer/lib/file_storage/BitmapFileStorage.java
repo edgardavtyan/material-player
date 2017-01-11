@@ -15,8 +15,7 @@ public class BitmapFileStorage extends BaseFileStorage {
 	}
 
 	public void save(String filename, Bitmap bitmap) {
-		ByteArrayOutputStream stream = null;
-		stream = new ByteArrayOutputStream();
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 		byte[] bitmapBytes = stream.toByteArray();
 		saveBytes(filename, bitmapBytes);

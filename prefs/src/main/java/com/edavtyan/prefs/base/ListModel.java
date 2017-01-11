@@ -9,10 +9,6 @@ public abstract class ListModel extends BaseModel {
 		super(context);
 	}
 
-	public abstract String getSummary();
-
-	public abstract List<String> getEntries();
-
 	public abstract List<String> getValues();
 
 	public boolean getPrefSelectedAtIndex(int position) {
