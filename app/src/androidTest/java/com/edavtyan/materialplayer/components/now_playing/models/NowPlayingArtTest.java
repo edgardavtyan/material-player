@@ -33,13 +33,13 @@ public class NowPlayingArtTest extends BaseTest {
 	@Test
 	public void set_fallback_cover_given_null_art() {
 		art.setArt(null);
-		assertImageView(artView).hasDrawableWithId(R.drawable.fallback_cover);
+		assertThatImageView(artView).hasDrawableWithId(R.drawable.fallback_cover);
 	}
 
 	@Test
 	public void set_given_bitmap() {
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		art.setArt(bitmap);
-		assertImageView(artView).hasBitmap(bitmap);
+		assertThatImageView(artView).hasBitmap(bitmap);
 	}
 }

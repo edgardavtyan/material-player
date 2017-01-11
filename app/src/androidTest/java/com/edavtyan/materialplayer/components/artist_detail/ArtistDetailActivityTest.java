@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
+import com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
@@ -98,7 +99,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		runOnUiThread(() -> {
 			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 			activity.setArtistImage(image);
-			assertImageView(activity, R.id.art).hasBitmap(image);
+			ImageViewAssert.assertThatImageView(activity, R.id.art).hasBitmap(image);
 		});
 	}
 

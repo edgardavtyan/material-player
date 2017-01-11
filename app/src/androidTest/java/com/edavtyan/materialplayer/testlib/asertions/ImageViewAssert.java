@@ -31,17 +31,17 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		}
 	}
 
-	public static ImageViewAssert assertImageView(View view, @IdRes int imageViewId) {
+	public static ImageViewAssert assertThatImageView(View view, @IdRes int imageViewId) {
 		ImageView imageView = (ImageView) view.findViewById(imageViewId);
 		return new ImageViewAssert(imageView, ImageViewAssert.class);
 	}
 
-	public static ImageViewAssert assertImageView(TestableActivity activity, @IdRes int imageViewId) {
+	public static ImageViewAssert assertThatImageView(TestableActivity activity, @IdRes int imageViewId) {
 		ImageView imageView = activity.findView(imageViewId);
 		return new ImageViewAssert(imageView, ImageViewAssert.class);
 	}
 
-	public static ImageViewAssert assertImageView(ImageView imageView) {
+	public static ImageViewAssert assertThatImageView(ImageView imageView) {
 		return new ImageViewAssert(imageView, ImageViewAssert.class);
 	}
 

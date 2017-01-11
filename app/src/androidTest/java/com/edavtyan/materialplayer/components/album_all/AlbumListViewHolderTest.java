@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder.OnHolderClickListener;
 import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder.OnHolderMenuItemClickListener;
+import com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -46,7 +47,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 	@Test
 	public void set_fallback_image_when_given_null_path() {
 		runOnUiThread(() -> holder.setArt(null));
-		assertImageView(itemView, R.id.art).hasDrawableWithId(R.drawable.fallback_cover);
+		ImageViewAssert.assertThatImageView(itemView, R.id.art).hasDrawableWithId(R.drawable.fallback_cover);
 	}
 
 	@Test
