@@ -32,7 +32,7 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 	}
 
 	public static ImageViewAssert assertImageView(TestableActivity activity, @IdRes int imageViewId) {
-		ImageView imageView = (ImageView) activity.findView(imageViewId);
+		ImageView imageView = activity.findView(imageViewId);
 		return new ImageViewAssert(imageViewId, imageView, ImageViewAssert.class);
 	}
 
