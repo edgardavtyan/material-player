@@ -16,7 +16,8 @@ public abstract class TestProvider<TDB extends TestDBHelper> extends ContentProv
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override public boolean onCreate() {
+	@Override
+	public boolean onCreate() {
 		try {
 			db = (TDB) dbClass.getDeclaredConstructors()[0].newInstance(getContext());
 		} catch (Exception e) {
@@ -27,26 +28,31 @@ public abstract class TestProvider<TDB extends TestDBHelper> extends ContentProv
 	}
 
 	@Nullable
-	@Override public Cursor query(@NonNull Uri uri, String[] projection, String selection,
+	@Override
+	public Cursor query(@NonNull Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		return db.query(projection, selection, selectionArgs, sortOrder);
 	}
 
 	@Nullable
-	@Override public String getType(@NonNull Uri uri) {
+	@Override
+	public String getType(@NonNull Uri uri) {
 		return null;
 	}
 
 	@Nullable
-	@Override public Uri insert(@NonNull Uri uri, ContentValues values) {
+	@Override
+	public Uri insert(@NonNull Uri uri, ContentValues values) {
 		return null;
 	}
 
-	@Override public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
+	@Override
+	public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 		return 0;
 	}
 
-	@Override public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+	@Override
+	public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 		return 0;
 	}
 }

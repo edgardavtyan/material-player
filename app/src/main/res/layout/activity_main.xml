@@ -37,9 +37,9 @@
 
 				<android.support.design.widget.TabLayout
 					android:id="@+id/tab_layout"
-					style="@style/tabs_fill"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					style="@style/tabs_fill"
 					/>
 
 			</android.support.design.widget.AppBarLayout>

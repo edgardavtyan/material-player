@@ -12,7 +12,8 @@ public abstract class TestDBHelper extends SQLiteOpenHelper {
 
 	public abstract String getTableName();
 
-	@Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		if (oldVersion != newVersion) {
 			db.execSQL("DROP TABLE IF EXISTS " + getTableName());
 			onCreate(db);

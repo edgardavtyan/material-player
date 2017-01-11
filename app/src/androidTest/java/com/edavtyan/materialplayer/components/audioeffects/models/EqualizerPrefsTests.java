@@ -53,7 +53,7 @@ public class EqualizerPrefsTests extends BaseTest {
 
 	@Test
 	public void save_savePrefsInSharedPrefs() {
-		equalizerPrefs.save(new int[] {9, 8, 7, 6, 5}, true);
+		equalizerPrefs.save(new int[]{9, 8, 7, 6, 5}, true);
 		assertThat(basePrefs.getIntArray("equalizer_gains", 0)).containsExactly(9, 8, 7, 6, 5);
 		assertThat(basePrefs.getBoolean("equalizer_enabled", false)).isTrue();
 	}

@@ -37,7 +37,8 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		}
 	}
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -56,22 +57,26 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		}
 	}
 
-	@Test public void onCreate_initList() {
+	@Test
+	public void onCreate_initList() {
 		RecyclerView list = activity.findView(R.id.list);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 
-	@Test public void onStart_callPresenter() {
+	@Test
+	public void onStart_callPresenter() {
 		verify(presenter).onCreate();
 	}
 
-	@Test public void onStop_callPresenter() {
+	@Test
+	public void onStop_callPresenter() {
 		instrumentation.callActivityOnStop(activity);
 		verify(presenter).onDestroy();
 	}
 
-	@Test public void setArtistTitle_setTitleViewText() {
+	@Test
+	public void setArtistTitle_setTitleViewText() {
 		runOnUiThread(() -> {
 			TextView titleView = activity.findView(R.id.title);
 			activity.setArtistTitle("title");
@@ -79,7 +84,8 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		});
 	}
 
-	@Test public void setArtistInfo_setInfoViewTextWithPattern() {
+	@Test
+	public void setArtistInfo_setInfoViewTextWithPattern() {
 		runOnUiThread(() -> {
 			TextView infoView = activity.findView(R.id.info);
 			activity.setArtistInfo(3, 9);
@@ -87,7 +93,8 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		});
 	}
 
-	@Test public void setImage_setHeaderImage() {
+	@Test
+	public void setImage_setHeaderImage() {
 		runOnUiThread(() -> {
 			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 			activity.setArtistImage(image);
@@ -95,12 +102,14 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		});
 	}
 
-	@Test public void notifyDataSetChanged_callAdapter() {
+	@Test
+	public void notifyDataSetChanged_callAdapter() {
 		activity.notifyDataSetChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 
-	@Test public void goToAlbumDetail_callNavigator() {
+	@Test
+	public void goToAlbumDetail_callNavigator() {
 		activity.goToAlbumDetail(3);
 		verify(navigator).gotoAlbumDetail(3);
 	}

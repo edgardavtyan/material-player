@@ -11,13 +11,15 @@ public class RewindReceiverTest extends BaseTest {
 	private RewindReceiver rewindReceiver;
 	private PlayerMvp.Player player;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		player = mock(PlayerMvp.Player.class);
 		rewindReceiver = new RewindReceiver(player);
 	}
 
-	@Test public void onReceive_rewindPlayer() {
+	@Test
+	public void onReceive_rewindPlayer() {
 		rewindReceiver.onReceive(context, null);
 		player.rewind();
 	}

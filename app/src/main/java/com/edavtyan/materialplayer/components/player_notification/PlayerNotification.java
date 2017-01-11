@@ -52,19 +52,22 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		bigRemoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
 	}
 
-	@Override public void setTitle(String title) {
+	@Override
+	public void setTitle(String title) {
 		normalRemoteViews.setTextViewText(R.id.title, title);
 		bigRemoteViews.setTextViewText(R.id.title, title);
 	}
 
-	@Override public void setInfo(String artist, String album) {
+	@Override
+	public void setInfo(String artist, String album) {
 		String info = context.getString(R.string.nowplaying_info_pattern, artist, album);
 		normalRemoteViews.setTextViewText(R.id.info, info);
 		bigRemoteViews.setTextViewText(R.id.artist, artist);
 		bigRemoteViews.setTextViewText(R.id.album, album);
 	}
 
-	@Override public void setArt(Bitmap art) {
+	@Override
+	public void setArt(Bitmap art) {
 		if (art != null) {
 			normalRemoteViews.setImageViewBitmap(R.id.art, art);
 			bigRemoteViews.setImageViewBitmap(R.id.art, art);
@@ -74,7 +77,8 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		}
 	}
 
-	@Override public void setIsPlaying(boolean isPlaying) {
+	@Override
+	public void setIsPlaying(boolean isPlaying) {
 		if (isPlaying) {
 			normalRemoteViews.setImageViewResource(R.id.play_pause, R.drawable.ic_pause);
 			bigRemoteViews.setImageViewResource(R.id.play_pause, R.drawable.ic_pause);
@@ -84,7 +88,8 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		}
 	}
 
-	@Override public void update() {
+	@Override
+	public void update() {
 		manager.notify(NOTIFICATION_ID, notification);
 	}
 }

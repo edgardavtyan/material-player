@@ -21,7 +21,8 @@ public class StandardEqualizerTest extends BaseTest {
 	private Equalizer baseEqualizer;
 	private StandardEqualizer equalizer;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
@@ -31,36 +32,43 @@ public class StandardEqualizerTest extends BaseTest {
 	}
 
 	@SuppressLint("CommitPrefEdits")
-	@Override public void afterEach() {
+	@Override
+	public void afterEach() {
 		super.afterEach();
 		basePrefs.edit().clear().commit();
 	}
 
-	@Test public void constructor_initFrequencies() {
+	@Test
+	public void constructor_initFrequencies() {
 		int[] frequencies = new int[]{14000, 3600, 910, 230, 60};
 		assertThat(equalizer.getFrequencies()).containsExactly(frequencies);
 	}
 
-	@Test public void constructor_gainsNotPreviouslySet_initDefaultGains() {
+	@Test
+	public void constructor_gainsNotPreviouslySet_initDefaultGains() {
 		assertThat(equalizer.getGains()).containsExactly(0, 0, 0, 0, 0);
 	}
 
-	@Test public void constructor_gainsPreviouslySet_initGainsFromPrefs() {
+	@Test
+	public void constructor_gainsPreviouslySet_initGainsFromPrefs() {
 		when(prefs.getGains(anyInt())).thenReturn(new int[]{1, 2, 3, 4, 5});
 		equalizer = new StandardEqualizer(baseEqualizer, prefs);
 		assertThat(equalizer.getGains()).containsExactly(1, 2, 3, 4, 5);
 	}
 
-	@Test public void getBandsCount_correctBandsCount() {
+	@Test
+	public void getBandsCount_correctBandsCount() {
 		assertThat(equalizer.getBandsCount()).isEqualTo(5);
 	}
 
-	@Test public void set_band_gain_in_reverse_in_millibel() {
+	@Test
+	public void set_band_gain_in_reverse_in_millibel() {
 		equalizer.setBandGain(0, 5);
 		assertThat(baseEqualizer.getBandLevel((short) 4)).isEqualTo((short) 500);
 	}
 
-	@Test public void save_settings() {
+	@Test
+	public void save_settings() {
 		equalizer.setBandGain(0, 0);
 		equalizer.setBandGain(1, 1);
 		equalizer.setBandGain(2, 2);

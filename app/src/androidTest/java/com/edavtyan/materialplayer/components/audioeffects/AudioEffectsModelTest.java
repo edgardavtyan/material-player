@@ -27,7 +27,8 @@ public class AudioEffectsModelTest extends BaseTest {
 	private PlayerService service;
 	private PlayerBinder binder;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		context = mock(ContextThemeWrapper.class);
@@ -38,7 +39,8 @@ public class AudioEffectsModelTest extends BaseTest {
 	}
 
 	@SuppressWarnings("WrongConstant")
-	@Test public void init_bindService() {
+	@Test
+	public void init_bindService() {
 		model.init();
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
@@ -46,33 +48,38 @@ public class AudioEffectsModelTest extends BaseTest {
 		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
-	@Test public void close_unbindService() {
+	@Test
+	public void close_unbindService() {
 		model.close();
 		verify(context).unbindService(model);
 	}
 
-	@Test public void getEqualizer_returnEqualizerFromService() {
+	@Test
+	public void getEqualizer_returnEqualizerFromService() {
 		Equalizer equalizer = mock(Equalizer.class);
 		when(service.getEqualizer()).thenReturn(equalizer);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getEqualizer()).isEqualTo(equalizer);
 	}
 
-	@Test public void getBassBoost_returnBassBoostFromService() {
+	@Test
+	public void getBassBoost_returnBassBoostFromService() {
 		BassBoost bassBoost = mock(BassBoost.class);
 		when(service.getBassBoost()).thenReturn(bassBoost);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getBassBoost()).isEqualTo(bassBoost);
 	}
 
-	@Test public void getSurround_returnSurroundFromService() {
+	@Test
+	public void getSurround_returnSurroundFromService() {
 		Surround surround = mock(Surround.class);
 		when(service.getSurround()).thenReturn(surround);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getSurround()).isEqualTo(surround);
 	}
 
-	@Test public void getAmplifier_returnAmplifierFromService() {
+	@Test
+	public void getAmplifier_returnAmplifierFromService() {
 		Amplifier amplifier = mock(Amplifier.class);
 		when(service.getAmplifier()).thenReturn(amplifier);
 		model.onServiceConnected(null, binder);

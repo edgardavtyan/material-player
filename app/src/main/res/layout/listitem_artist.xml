@@ -7,8 +7,8 @@
 
 	<ImageView
 		android:id="@+id/art"
-		style="@style/listitem_albumArt"
 		android:src="@drawable/fallback_artist"
+		style="@style/listitem_albumArt"
 		/>
 
 	<LinearLayout style="@style/listitem_infoContainer">

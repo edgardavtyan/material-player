@@ -17,7 +17,8 @@ public class NowPlayingFabTest extends BaseTest {
 	private NowPlayingMvp.Presenter presenter;
 	private FloatingActionButton fabView;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		fabView = spy(new FloatingActionButton(context));
@@ -30,7 +31,8 @@ public class NowPlayingFabTest extends BaseTest {
 		new NowPlayingFab(activity, presenter);
 	}
 
-	@Test public void onClick_callPresenter() {
+	@Test
+	public void onClick_callPresenter() {
 		fabView.performClick();
 		verify(presenter).onFabClick();
 	}

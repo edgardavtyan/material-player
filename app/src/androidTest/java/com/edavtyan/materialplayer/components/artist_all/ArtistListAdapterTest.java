@@ -20,22 +20,26 @@ public class ArtistListAdapterTest extends BaseTest {
 	private ArtistListViewHolder holder;
 	private ArtistListAdapter adapter;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(ArtistListMvp.Presenter.class);
 		holder = mock(ArtistListViewHolder.class);
 		adapter = new ArtistListAdapter(context, presenter);
 	}
 
-	@Test public void getNormalLayoutId_returnCorrectId() {
+	@Test
+	public void getNormalLayoutId_returnCorrectId() {
 		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_artist);
 	}
 
-	@Test public void getCompactLayoutId_returnCorrectId() {
+	@Test
+	public void getCompactLayoutId_returnCorrectId() {
 		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_artist_compact);
 	}
 
-	@Test public void onCreateViewHolder_inflateViewWithCorrectParams() {
+	@Test
+	public void onCreateViewHolder_inflateViewWithCorrectParams() {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
@@ -45,17 +49,20 @@ public class ArtistListAdapterTest extends BaseTest {
 		verify(inflater).inflate(R.layout.listitem_artist, parent, false);
 	}
 
-	@Test public void onBindViewHolder_callPresenter() {
+	@Test
+	public void onBindViewHolder_callPresenter() {
 		adapter.onBindViewHolder(holder, 0);
 		verify(presenter).onBindViewHolder(holder, 0);
 	}
 
-	@Test public void getItemCount_callPresenter() {
+	@Test
+	public void getItemCount_callPresenter() {
 		adapter.getItemCount();
 		verify(presenter).getItemCount();
 	}
 
-	@Test public void onHolderClick_callPresenter() {
+	@Test
+	public void onHolderClick_callPresenter() {
 		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
 		adapter.onHolderClick(holder);
 		verify(presenter).onHolderClick(7);

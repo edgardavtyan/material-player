@@ -8,12 +8,14 @@ import org.junit.Test;
 public class PlayerNotificationFactoryTest extends FactoryTest {
 	private PlayerNotificationFactory factory;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		factory = new PlayerNotificationFactory(context, R.layout.notification, R.layout.notification_big);
 	}
 
-	@Test public void testProviders() throws Exception {
+	@Test
+	public void testProviders() throws Exception {
 		testFactoryMethod(factory::provideNotification);
 		testFactoryMethod(factory::provideNormalRemoteViews);
 		testFactoryMethod(factory::provideBigRemoteViews);

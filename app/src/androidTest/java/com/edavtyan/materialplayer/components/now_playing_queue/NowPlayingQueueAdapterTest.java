@@ -21,22 +21,26 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 	private NowPlayingQueueViewHolder holder;
 	private NowPlayingQueueAdapter adapter;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(NowPlayingQueueMvp.Presenter.class);
 		holder = mock(NowPlayingQueueViewHolder.class);
 		adapter = spy(new NowPlayingQueueAdapter(context, presenter));
 	}
 
-	@Test public void return_correct_normal_layout_id() {
+	@Test
+	public void return_correct_normal_layout_id() {
 		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_track);
 	}
 
-	@Test public void return_correct_compact_layout_id() {
+	@Test
+	public void return_correct_compact_layout_id() {
 		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_track_compact);
 	}
 
-	@Test public void onCreateViewHolder_inflateViewAsViewType() {
+	@Test
+	public void onCreateViewHolder_inflateViewAsViewType() {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
@@ -46,24 +50,28 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 		verify(inflater).inflate(R.layout.listitem_track, parent, false);
 	}
 
-	@Test public void onBindViewHolder_callPresenter() {
+	@Test
+	public void onBindViewHolder_callPresenter() {
 		adapter.onBindViewHolder(null, 0);
 		verify(presenter).onBindViewHolder(null, 0);
 	}
 
-	@Test public void getItemCount_callPresenter() {
+	@Test
+	public void getItemCount_callPresenter() {
 		when(presenter.getItemCount()).thenReturn(7);
 		assertThat(adapter.getItemCount()).isEqualTo(7);
 		verify(presenter).getItemCount();
 	}
 
-	@Test public void onHolderClick_playClickedTrackViaPresenter() {
+	@Test
+	public void onHolderClick_playClickedTrackViaPresenter() {
 		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
 		adapter.onHolderClick(holder);
 		verify(presenter).onItemClick(7);
 	}
 
-	@Test public void onRemoveFromQueueClick_removeTrackFromQueueViaPresenter() {
+	@Test
+	public void onRemoveFromQueueClick_removeTrackFromQueueViaPresenter() {
 		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
 		adapter.onRemoveFromQueueClick(holder);
 		verify(presenter).onRemoveItemClick(7);

@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FactoryTest extends BaseTest {
-	protected  <T> void testFactoryMethod(Callable<T> callable) throws Exception {
+	protected <T> void testFactoryMethod(Callable<T> callable) throws Exception {
 		AtomicReference<Exception> exceptionRef = new AtomicReference<>();
 
 		runOnUiThread(() -> {

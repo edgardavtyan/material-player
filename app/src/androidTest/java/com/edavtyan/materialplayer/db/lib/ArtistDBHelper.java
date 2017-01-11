@@ -17,34 +17,26 @@ public class ArtistDBHelper extends TestDBHelper {
 	private static final String ALBUMS_COUNT = MediaStore.Audio.Artists.NUMBER_OF_ALBUMS;
 	private static final String TRACKS_COUNT = MediaStore.Audio.Artists.NUMBER_OF_TRACKS;
 
-
 	public ArtistDBHelper(Context context) {
 		super(context, DATABASE_NAME, DATABASE_VERSION);
 	}
 
-	@Override public String getTableName() {
+	@Override
+	public String getTableName() {
 		return TABLE_NAME;
 	}
 
-	@Override public void onCreate(SQLiteDatabase db) {
+	@Override
+	public void onCreate(SQLiteDatabase db) {
 		String CREATE_SQL
 				= "CREATE TABLE " + TABLE_NAME + "("
-				+ ID + " INTEGER PRIMARY KEY,"
-				+ TITLE + " TEXT,"
-				+ ALBUMS_COUNT + " INTEGER,"
-				+ TRACKS_COUNT + " INTEGER"
-				+ ");";
+				  + ID + " INTEGER PRIMARY KEY,"
+				  + TITLE + " TEXT,"
+				  + ALBUMS_COUNT + " INTEGER,"
+				  + TRACKS_COUNT + " INTEGER"
+				  + ");";
 
 		db.execSQL(CREATE_SQL);
-	}
-
-	private void addArtist(Artist artist) {
-		ContentValues values = new ContentValues();
-		values.put(ID, artist.getId());
-		values.put(TITLE, artist.getTitle());
-		values.put(ALBUMS_COUNT, artist.getAlbumsCount());
-		values.put(TRACKS_COUNT, artist.getTracksCount());
-		getWritableDatabase().insert(TABLE_NAME, null, values);
 	}
 
 	public Artist addRandomArtist() {
@@ -59,6 +51,15 @@ public class ArtistDBHelper extends TestDBHelper {
 			artist.setId(i);
 			addArtist(artist);
 		}
+	}
+
+	private void addArtist(Artist artist) {
+		ContentValues values = new ContentValues();
+		values.put(ID, artist.getId());
+		values.put(TITLE, artist.getTitle());
+		values.put(ALBUMS_COUNT, artist.getAlbumsCount());
+		values.put(TRACKS_COUNT, artist.getTracksCount());
+		getWritableDatabase().insert(TABLE_NAME, null, values);
 	}
 
 	private Artist createRandomArtist() {

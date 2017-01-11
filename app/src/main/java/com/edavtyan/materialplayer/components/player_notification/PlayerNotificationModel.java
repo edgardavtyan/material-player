@@ -31,42 +31,51 @@ public class PlayerNotificationModel
 		this.albumArtProvider = albumArtProvider;
 	}
 
-	@Override public void bind() {
+	@Override
+	public void bind() {
 		Intent intent = new Intent(context, PlayerService.class);
 		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 	}
 
-	@Override public void unbind() {
+	@Override
+	public void unbind() {
 		service.getPlayer().removeOnNewTrackListener(this);
 		context.unbindService(this);
 	}
 
-	@Override public boolean isPlaying() {
+	@Override
+	public boolean isPlaying() {
 		return service.getPlayer().isPlaying();
 	}
 
-	@Override public Track getTrack() {
+	@Override
+	public Track getTrack() {
 		return service.getPlayer().getCurrentTrack();
 	}
 
-	@Override public Bitmap getArt() {
+	@Override
+	public Bitmap getArt() {
 		return albumArtProvider.load(getTrack());
 	}
 
-	@Override public void onServiceConnected(ComponentName name, IBinder binder) {
+	@Override
+	public void onServiceConnected(ComponentName name, IBinder binder) {
 		service = ((PlayerService.PlayerBinder) binder).getService();
 		service.getPlayer().setOnNewTrackListener(this);
 		service.getPlayer().setOnPlayPauseListener(this);
 	}
 
-	@Override public void onServiceDisconnected(ComponentName name) {
+	@Override
+	public void onServiceDisconnected(ComponentName name) {
 	}
 
-	@Override public void onNewTrack() {
+	@Override
+	public void onNewTrack() {
 		if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
 	}
 
-	@Override public void onPlayPause() {
+	@Override
+	public void onPlayPause() {
 		if (onPlayPauseListener != null) onPlayPauseListener.onPlayPause();
 	}
 }

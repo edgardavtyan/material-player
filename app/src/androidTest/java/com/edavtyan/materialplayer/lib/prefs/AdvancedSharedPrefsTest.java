@@ -22,63 +22,76 @@ public class AdvancedSharedPrefsTest extends BaseTest {
 		FIRST, SECOND, THIRD
 	}
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs = new AdvancedSharedPrefs(basePrefs);
 	}
 
-	@Override public void afterEach() {
+	@Override
+	public void afterEach() {
 		super.afterEach();
 		basePrefs.edit().clear().commit();
 	}
 
-	@Test public void getEnum_prefSaved_returnEnumFromString() {
+	@Test
+	public void getEnum_prefSaved_returnEnumFromString() {
 		basePrefs.edit().putString("key_enum", TestEnum.FIRST.name()).commit();
 		assertThat(prefs.getEnum("key_enum", TestEnum.SECOND)).isEqualTo(TestEnum.FIRST);
 	}
 
-	@Test public void getEnum_prefNotSaved_returnDefaultEnumFromString() {
+	@Test
+	public void getEnum_prefNotSaved_returnDefaultEnumFromString() {
 		assertThat(prefs.getEnum("key_enum", TestEnum.THIRD)).isEqualTo(TestEnum.THIRD);
 	}
 
-	@Test public void getInt_prefSaved_returnSavedPref() {
+	@Test
+	public void getInt_prefSaved_returnSavedPref() {
 		basePrefs.edit().putInt("key_int", 2).commit();
 		assertThat(prefs.getInt("key_int", 1)).isEqualTo(2);
 	}
 
-	@Test public void getInt_prefNotSaved_returnDefaultPref() {
+	@Test
+	public void getInt_prefNotSaved_returnDefaultPref() {
 		assertThat(prefs.getInt("key_int", 3)).isEqualTo(3);
 	}
 
-	@Test public void getString_prefSaved_returnSavedPref() {
+	@Test
+	public void getString_prefSaved_returnSavedPref() {
 		basePrefs.edit().putString("key_string", "second").commit();
 		assertThat(prefs.getString("key_string", "first")).isEqualTo("second");
 	}
 
-	@Test public void getString_prefNotSaved_returnDefaultPref() {
+	@Test
+	public void getString_prefNotSaved_returnDefaultPref() {
 		assertThat(prefs.getString("key_string", "third")).isEqualTo("third");
 	}
 
-	@Test public void getBoolean_prefSaved_returnSavedPref() {
+	@Test
+	public void getBoolean_prefSaved_returnSavedPref() {
 		basePrefs.edit().putBoolean("key_boolean", true).commit();
 		assertThat(prefs.getBoolean("key_boolean", false)).isTrue();
 	}
 
-	@Test public void getBoolean_prefNotSaved_returnDefaultPref() {
+	@Test
+	public void getBoolean_prefNotSaved_returnDefaultPref() {
 		assertThat(prefs.getBoolean("key_boolean", false)).isFalse();
 	}
 
-	@Test public void getIntArray_prefSaved_returnSavedPref() {
+	@Test
+	public void getIntArray_prefSaved_returnSavedPref() {
 		basePrefs.edit().putString("key_array", "1,2,3,4,5").commit();
 		assertThat(prefs.getIntArray("key_array", 5)).containsExactly(1, 2, 3, 4, 5);
 	}
 
-	@Test public void getIntArray_prefNotSaved_returnArrayOfDefaultSize() {
+	@Test
+	public void getIntArray_prefNotSaved_returnArrayOfDefaultSize() {
 		assertThat(prefs.getIntArray("key_array", 5)).containsExactly(0, 0, 0, 0, 0);
 	}
 
-	@Test public void registerOnSharedPreferencesChangedListener_callBasePrefs()
+	@Test
+	public void registerOnSharedPreferencesChangedListener_callBasePrefs()
 	throws InterruptedException {
 		OnSharedPreferenceChangeListener listener = mock(OnSharedPreferenceChangeListener.class);
 		prefs.registerOnSharedPreferenceChangeListener(listener);

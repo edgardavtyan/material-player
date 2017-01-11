@@ -23,7 +23,8 @@ public class ArtistDetailModelTest extends BaseTest {
 	private ArtistDetailModel model;
 	private ArtistDetailImageLoader artistArtLoader;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		artistDB = mock(ArtistDB.class);
@@ -38,7 +39,8 @@ public class ArtistDetailModelTest extends BaseTest {
 				"title");
 	}
 
-	@Test public void getArtist_existingArtist_correctArtist() {
+	@Test
+	public void getArtist_existingArtist_correctArtist() {
 		Artist artist = new Artist();
 		artist.setId(3);
 		artist.setTitle("title");
@@ -50,7 +52,8 @@ public class ArtistDetailModelTest extends BaseTest {
 		assertThat(model.getArtist()).isEqualTo(artist);
 	}
 
-	@Test public void loadArtistImage_imageNotCached_callCallbackViaAsync() throws InterruptedException {
+	@Test
+	public void loadArtistImage_imageNotCached_callCallbackViaAsync() throws InterruptedException {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(artistArtLoader.getImageFromApi(anyString())).thenReturn(art);
 

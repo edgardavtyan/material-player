@@ -18,18 +18,21 @@ public class AlbumArtReaderTest extends BaseTest {
 
 	private AlbumArtReader musicTagReader;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		musicTagReader = new AlbumArtReader(new MediaMetadataRetriever());
 	}
 
-	@Test public void getAlbumArtBytes_fileWithArt_correctBytes() throws IOException {
+	@Test
+	public void getAlbumArtBytes_fileWithArt_correctBytes() throws IOException {
 		byte[] artBytes = getResourceAsByteArray("art.png");
 		File mp3File = copyResourceToFileSystem("with-art.mp3", temporaryFolder.newFile());
 		assertThat(musicTagReader.getAlbumArtBytes(mp3File.getAbsolutePath())).isEqualTo(artBytes);
 	}
 
-	@Test public void getAlbumArtBytes_fileWithoutArt_null() throws IOException {
+	@Test
+	public void getAlbumArtBytes_fileWithoutArt_null() throws IOException {
 		File mp3File = copyResourceToFileSystem("without-art.mp3", temporaryFolder.newFile());
 		assertThat(musicTagReader.getAlbumArtBytes(mp3File.getAbsolutePath())).isNull();
 	}

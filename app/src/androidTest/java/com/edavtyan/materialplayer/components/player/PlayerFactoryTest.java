@@ -7,12 +7,14 @@ import org.junit.Test;
 public class PlayerFactoryTest extends FactoryTest {
 	private PlayerFactory playerFactory;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		playerFactory = new PlayerFactory(context);
 	}
 
-	@Test public void factoryTest() throws Exception {
+	@Test
+	public void factoryTest() throws Exception {
 		testFactoryMethod(playerFactory::providePlayer);
 		testFactoryMethod(playerFactory::providePlayerPrefs);
 		testFactoryMethod(playerFactory::provideRewindReceiver);

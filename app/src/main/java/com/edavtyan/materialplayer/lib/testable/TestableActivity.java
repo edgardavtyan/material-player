@@ -18,7 +18,8 @@ public abstract class TestableActivity extends GenericActivity {
 		baseOnDestroy();
 	}
 
-	@Override protected void onStop() {
+	@Override
+	protected void onStop() {
 		baseOnStop();
 	}
 

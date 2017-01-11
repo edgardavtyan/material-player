@@ -14,7 +14,7 @@ public abstract class ServiceModel implements ServiceConnection {
 
 	public ServiceModel(Context context) {
 		this.context = context;
-	};
+	}
 
 	public void bindService() {
 		Intent intent = new Intent(context, PlayerService.class);
@@ -27,7 +27,7 @@ public abstract class ServiceModel implements ServiceConnection {
 
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((PlayerService.PlayerBinder)binder).getService();
+		service = ((PlayerService.PlayerBinder) binder).getService();
 	}
 
 	@Override

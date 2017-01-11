@@ -32,35 +32,43 @@ public class Queue implements PlayerMvp.Queue {
 		repeatModeToggleMap.put(RepeatMode.REPEAT_ONE, RepeatMode.DISABLED);
 	}
 
-	@Override public void addTrack(Track track) {
+	@Override
+	public void addTrack(Track track) {
 		tracks.add(track);
 	}
 
-	@Override public void addManyTracks(List<Track> newTracks) {
+	@Override
+	public void addManyTracks(List<Track> newTracks) {
 		tracks.addAll(newTracks);
 	}
 
-	@Override public void removeTrackAt(int position) {
+	@Override
+	public void removeTrackAt(int position) {
 		tracks.remove(position);
 	}
 
-	@Override public void clear() {
+	@Override
+	public void clear() {
 		tracks.clear();
 	}
 
-	@Override public Track getTrackAt(int position) {
+	@Override
+	public Track getTrackAt(int position) {
 		return tracks.get(position);
 	}
 
-	@Override public Track getCurrentTrack() {
+	@Override
+	public Track getCurrentTrack() {
 		return tracks.get(position);
 	}
 
-	@Override public int getTracksCount() {
+	@Override
+	public int getTracksCount() {
 		return tracks.size();
 	}
 
-	@Override public void moveToNext() {
+	@Override
+	public void moveToNext() {
 		if (getRepeatMode() == RepeatMode.REPEAT_ONE) {
 			isEnded = false;
 			return;
@@ -81,7 +89,8 @@ public class Queue implements PlayerMvp.Queue {
 		}
 	}
 
-	@Override public void moveToPrev() {
+	@Override
+	public void moveToPrev() {
 		if (getRepeatMode() == RepeatMode.REPEAT_ONE) return;
 
 		boolean atFirstTrack = position == 0;
@@ -92,15 +101,18 @@ public class Queue implements PlayerMvp.Queue {
 		}
 	}
 
-	@Override public void toggleShuffleMode() {
+	@Override
+	public void toggleShuffleMode() {
 		shuffleMode = shuffleModeToggleMap.get(shuffleMode);
 	}
 
-	@Override public void toggleRepeatMode() {
+	@Override
+	public void toggleRepeatMode() {
 		repeatMode = repeatModeToggleMap.get(repeatMode);
 	}
 
-	@Override public boolean hasData() {
+	@Override
+	public boolean hasData() {
 		return tracks.size() > 0;
 	}
 }

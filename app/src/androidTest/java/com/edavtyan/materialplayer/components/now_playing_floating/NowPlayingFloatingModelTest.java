@@ -9,8 +9,8 @@ import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFlo
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -30,7 +30,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	private NowPlayingFloatingModel model;
 	private PlayerMvp.Player player;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		context = mock(Context.class);
@@ -47,7 +48,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	}
 
 	@SuppressWarnings("WrongConstant")
-	@Test public void bind_bindMusicPlayerService() {
+	@Test
+	public void bind_bindMusicPlayerService() {
 		model.bind();
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
@@ -55,13 +57,15 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
-	@Test public void unbind_unbindMusicPlayerService() {
+	@Test
+	public void unbind_unbindMusicPlayerService() {
 		model.onServiceConnected(null, binder);
 		model.unbind();
 		verify(context).unbindService(model);
 	}
 
-	@Test public void getNowPlayingTrack_getTrackFromService() {
+	@Test
+	public void getNowPlayingTrack_getTrackFromService() {
 		Track track = new Track();
 		when(player.getCurrentTrack()).thenReturn(track);
 		model.onServiceConnected(null, binder);
@@ -70,7 +74,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(player).getCurrentTrack();
 	}
 
-	@Test public void getNowPlayingTrackArt_getArtFromArtProvider() {
+	@Test
+	public void getNowPlayingTrackArt_getArtFromArtProvider() {
 		Track track = new Track();
 		when(player.getCurrentTrack()).thenReturn(track);
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
@@ -80,7 +85,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		assertThat(model.getNowPlayingTrackArt()).isSameAs(art);
 	}
 
-	@Test public void isPlaying_getFromService() {
+	@Test
+	public void isPlaying_getFromService() {
 		when(player.isPlaying()).thenReturn(true);
 		model.onServiceConnected(null, binder);
 
@@ -88,23 +94,27 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(player).isPlaying();
 	}
 
-	@Test public void togglePlayPause_playPausePlayer() {
+	@Test
+	public void togglePlayPause_playPausePlayer() {
 		model.onServiceConnected(null, binder);
 		model.togglePlayPause();
 		verify(player).playPause();
 	}
 
-	@Test public void onServiceConnected_setOnPreparedListener() {
+	@Test
+	public void onServiceConnected_setOnPreparedListener() {
 		model.onServiceConnected(null, binder);
 		verify(player).setOnNewTrackListener(model);
 	}
 
 	// For coverage
-	@Test public void onServiceDisconnected_notDoAnything() {
+	@Test
+	public void onServiceDisconnected_notDoAnything() {
 		model.onServiceDisconnected(null);
 	}
 
-	@Test public void onNewTrackListener_newTrackIsPlayed_called() {
+	@Test
+	public void onNewTrackListener_newTrackIsPlayed_called() {
 		OnNewTrackListener listener = mock(OnNewTrackListener.class);
 		model.setOnNewTrackListener(listener);
 		model.onServiceConnected(null, binder);
@@ -114,7 +124,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(listener).onNewTrack();
 	}
 
-	@Test public void onNewTrackListener_notSet_notThrowNPE() {
+	@Test
+	public void onNewTrackListener_notSet_notThrowNPE() {
 		try {
 			model.onNewTrack();
 		} catch (NullPointerException e) {
@@ -122,7 +133,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		}
 	}
 
-	@Test public void onServiceConnectedListener_serviceConnected_called() {
+	@Test
+	public void onServiceConnectedListener_serviceConnected_called() {
 		OnServiceConnectedListener listener = mock(OnServiceConnectedListener.class);
 		model.setOnServiceConnectedListener(listener);
 

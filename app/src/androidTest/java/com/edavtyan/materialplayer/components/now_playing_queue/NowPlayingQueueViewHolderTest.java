@@ -31,7 +31,8 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 	private PopupMenu popupMenu;
 
 	@SuppressLint("InflateParams")
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		popupMenu = mock(PopupMenu.class);
@@ -44,7 +45,8 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		holder = new NowPlayingQueueViewHolder(context, itemView);
 	}
 
-	@Test public void constructor_initPopupMenu() {
+	@Test
+	public void constructor_initPopupMenu() {
 		ImageView menuButton = holder.findView(R.id.menu);
 
 		verify(sdkFactory).createPopupMenu(context, menuButton);
@@ -52,40 +54,47 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		verify(popupMenu).setOnMenuItemClickListener(holder);
 	}
 
-	@Test public void setTitle_setTitleViewText() {
+	@Test
+	public void setTitle_setTitleViewText() {
 		TextView titleView = holder.findView(R.id.title);
 		holder.setTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
-	@Test public void setInfo_setInfoViewTextWithPattern() {
+	@Test
+	public void setInfo_setInfoViewTextWithPattern() {
 		TextView infoView = holder.findView(R.id.info);
 		holder.setInfo(448945, "artist", "album");
 		assertThat(infoView.getText()).isEqualTo("07:28 | artist - album");
 	}
 
-	@Test public void menuClicked_showPopupMenu() {
+	@Test
+	public void menuClicked_showPopupMenu() {
 		ImageButton menuButton = holder.findView(R.id.menu);
 		menuButton.performClick();
 		verify(popupMenu).show();
 	}
 
-	@Test public void onClick_listenerNotSet_notThrowNPE() {
+	@Test
+	public void onClick_listenerNotSet_notThrowNPE() {
 		assertToNotThrowNPE(() -> holder.onClick(null));
 	}
 
-	@Test public void onHolderClickListener_itemViewClicked_called() {
+	@Test
+	public void onHolderClickListener_itemViewClicked_called() {
 		OnHolderClickListener listener = mock(OnHolderClickListener.class);
 		holder.setOnHolderClickListener(listener);
 		itemView.performClick();
 		verify(listener).onHolderClick(holder);
 	}
 
-	@Test public void onMenuItemClick_listenerNotSet_notThrowNPE() {
+	@Test
+	public void onMenuItemClick_listenerNotSet_notThrowNPE() {
 		assertToNotThrowNPE(() -> holder.onMenuItemClick(null));
 	}
 
-	@Test public void onMenuClickListener_removeItemClicked_onRemoveFromQueueClickCalled() {
+	@Test
+	public void onMenuClickListener_removeItemClicked_onRemoveFromQueueClickCalled() {
 		OnMenuClickListener listener = mock(OnMenuClickListener.class);
 		holder.setOnMenuClickListener(listener);
 		MenuItem menuItem = mock(MenuItem.class);
@@ -96,7 +105,8 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		verify(listener).onRemoveFromQueueClick(holder);
 	}
 
-	@Test public void onMenuClickListener_wrongId_notDoAnything() {
+	@Test
+	public void onMenuClickListener_wrongId_notDoAnything() {
 		OnMenuClickListener listener = mock(OnMenuClickListener.class);
 		holder.setOnMenuClickListener(listener);
 		MenuItem menuItem = mock(MenuItem.class);

@@ -9,13 +9,15 @@ import static org.mockito.Mockito.mock;
 public class ArtistDetailFactoryTest extends FactoryTest {
 	private ArtistDetailFactory albumListFactory;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		ArtistDetailMvp.View view = mock(ArtistDetailMvp.View.class);
 		albumListFactory = new ArtistDetailFactory(context, view, "artist");
 	}
 
-	@Test public void testProviders() throws Exception {
+	@Test
+	public void testProviders() throws Exception {
 		testFactoryMethod(albumListFactory::provideAdapter);
 		testFactoryMethod(albumListFactory::provideModel);
 		testFactoryMethod(albumListFactory::provideView);

@@ -9,12 +9,14 @@ import static org.mockito.Mockito.mock;
 public class AlbumDetailFactoryTest extends FactoryTest {
 	private AlbumDetailFactory albumDetailFactory;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		albumDetailFactory = new AlbumDetailFactory(context, mock(AlbumDetailActivity.class), 0);
 	}
 
-	@Test public void testProviders() throws Exception {
+	@Test
+	public void testProviders() throws Exception {
 		testFactoryMethod(albumDetailFactory::providePresenter);
 		testFactoryMethod(albumDetailFactory::provideAdapter);
 		testFactoryMethod(albumDetailFactory::provideView);

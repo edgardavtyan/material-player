@@ -33,7 +33,8 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	private static TitledSeekbar amplifierView;
 	private static TitledSeekbar surroundView;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -66,37 +67,44 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		runOnUiThread(() -> activity.onCreate(null));
 	}
 
-	@Test public void onCreate_initPresenter() {
+	@Test
+	public void onCreate_initPresenter() {
 		verify(presenter).onCreate();
 	}
 
-	@Test public void onCreate_setEventListeners() {
+	@Test
+	public void onCreate_setEventListeners() {
 		verify(equalizerSwitch).setOnCheckedChangeListener(activity);
 		verify(equalizerView).setOnBandChangedListener(activity);
 		verify(bassBoostView).setOnProgressChangedListener(activity);
 		verify(surroundView).setOnProgressChangedListener(activity);
 	}
 
-	@Test public void onDestroy_disposePresenter() {
+	@Test
+	public void onDestroy_disposePresenter() {
 		activity.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
-	@Test public void getLayoutId_returnCorrectLayoutId() {
+	@Test
+	public void getLayoutId_returnCorrectLayoutId() {
 		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_effects);
 	}
 
-	@Test public void setEqualizerEnabled_true_setSwitchToEnabled() {
+	@Test
+	public void setEqualizerEnabled_true_setSwitchToEnabled() {
 		activity.setEqualizerEnabled(true);
 		verify(equalizerSwitch).setChecked(true);
 	}
 
-	@Test public void equalizerSwitchClicked_switchEqualizerViaPresenter() {
+	@Test
+	public void equalizerSwitchClicked_switchEqualizerViaPresenter() {
 		equalizerSwitch.performClick();
 		verify(presenter).onEqualizerEnabledChanged(true);
 	}
 
-	@Test public void setEqualizerBands_createCorrectBands() {
+	@Test
+	public void setEqualizerBands_createCorrectBands() {
 		final int count = 5;
 		final int gainLimit = 15;
 		final int[] frequencies = {31, 62, 125, 250, 500};
@@ -107,72 +115,85 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		verify(equalizerView).setBands(count, frequencies, gains, gainLimit);
 	}
 
-	@Test public void onBandChanged_callPresenter() {
+	@Test
+	public void onBandChanged_callPresenter() {
 		EqualizerBandView band = mock(EqualizerBandView.class);
 		activity.onBandChanged(band);
 		verify(presenter).onEqualizerBandChanged(band);
 	}
 
-	@Test public void onBandStopTracking_callPresenter() {
+	@Test
+	public void onBandStopTracking_callPresenter() {
 		activity.onBandStopTracking();
 		verify(presenter).onEqualizerBandStopTracking();
 	}
 
-	@Test public void setBassBoostStrength_setBassBoostSeekbarMaxAndProgress() {
+	@Test
+	public void setBassBoostStrength_setBassBoostSeekbarMaxAndProgress() {
 		activity.initBassBoost(100, 5);
 		verify(bassBoostView).setMax(100);
 		verify(bassBoostView).setProgress(5);
 	}
 
-	@Test public void onProgressChanged_bassBoostId_changeBassBoostStrengthViaPresenter() {
+	@Test
+	public void onProgressChanged_bassBoostId_changeBassBoostStrengthViaPresenter() {
 		activity.onProgressChange(R.id.bassBoost, 10);
 		verify(presenter).onBassBoostStrengthChanged(10);
 	}
 
-	@Test public void onStopTrackingTouch_bassBoostId_callPresenter() {
+	@Test
+	public void onStopTrackingTouch_bassBoostId_callPresenter() {
 		activity.onStopTrackingTouch(R.id.bassBoost);
 		verify(presenter).onBassBoostStrengthStopChanging();
 	}
 
-	@Test public void setSurroundStrength_setSurroundSeekbarMaxAndProgress() {
+	@Test
+	public void setSurroundStrength_setSurroundSeekbarMaxAndProgress() {
 		activity.initSurround(200, 15);
 		verify(surroundView).setProgress(15);
 		verify(surroundView).setMax(200);
 	}
 
-	@Test public void onProgressChanged_surroundId_changSurroundStrengthViaPresenter() {
+	@Test
+	public void onProgressChanged_surroundId_changSurroundStrengthViaPresenter() {
 		activity.onProgressChange(R.id.surround, 20);
 		verify(presenter).onSurroundStrengthChanged(20);
 	}
 
-	@Test public void onStopTrackingTouch_surroundId_callPresenter() {
+	@Test
+	public void onStopTrackingTouch_surroundId_callPresenter() {
 		activity.onStopTrackingTouch(R.id.surround);
 		verify(presenter).onSurroundStrengthStopChanging();
 	}
 
-	@Test public void initAmplifier_setAmplifierSeekbarMaxAndProgress() {
+	@Test
+	public void initAmplifier_setAmplifierSeekbarMaxAndProgress() {
 		activity.initAmplifier(300, 25);
 		verify(amplifierView).setProgress(25);
 		verify(amplifierView).setMax(300);
 	}
 
-	@Test public void onProgressChanged_amplifierId_changAmplifierStrengthViaPresenter() {
+	@Test
+	public void onProgressChanged_amplifierId_changAmplifierStrengthViaPresenter() {
 		activity.onProgressChange(R.id.amplifier, 30);
 		verify(presenter).onAmplifierStrengthChanged(30);
 	}
 
-	@Test public void onStopTrackingTouch_amplifierId_callPresenter() {
+	@Test
+	public void onStopTrackingTouch_amplifierId_callPresenter() {
 		activity.onStopTrackingTouch(R.id.amplifier);
 		verify(presenter).onAmplifierStrengthStopChanging();
 	}
 
-	@Test public void onProgressChanged_otherId_notCallPresenter() {
+	@Test
+	public void onProgressChanged_otherId_notCallPresenter() {
 		activity.onProgressChange(-1, -10);
 		verify(presenter, never()).onBassBoostStrengthChanged(-10);
 		verify(presenter, never()).onSurroundStrengthChanged(-10);
 	}
 
-	@Test public void onStopTrackingTouch_otherId_notCallPresenter() {
+	@Test
+	public void onStopTrackingTouch_otherId_notCallPresenter() {
 		activity.onStopTrackingTouch(-1);
 		verify(presenter, never()).onSurroundStrengthStopChanging();
 		verify(presenter, never()).onSurroundStrengthStopChanging();

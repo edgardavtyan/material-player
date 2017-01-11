@@ -28,14 +28,16 @@ public class BaseTest {
 	protected ContextThemeWrapper context;
 	protected App app;
 
-	@Before public void beforeEach() {
+	@Before
+	public void beforeEach() {
 		Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
 		app = mock(App.class, CALLS_REAL_METHODS);
 		when(context.getApplicationContext()).thenReturn(app);
 	}
 
-	@After public void afterEach() {
+	@After
+	public void afterEach() {
 		Mockito.validateMockitoUsage();
 	}
 

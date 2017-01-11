@@ -14,25 +14,29 @@ public class AlbumDBTest extends DBTest {
 	private AlbumDB albumDB;
 	private AlbumDBHelper albumDBHelper;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		initProvider(new AlbumDBProvider());
 		albumDB = new AlbumDB(context);
 		albumDBHelper = new AlbumDBHelper(context);
 	}
 
-	@Override public void afterEach() {
+	@Override
+	public void afterEach() {
 		albumDBHelper.reset();
 	}
 
-	@Test public void getAllAlbums_allArtistsOnDevice() {
+	@Test
+	public void getAllAlbums_allArtistsOnDevice() {
 		albumDBHelper.addRandomAlbums(10);
 		assertThat(albumDB.getAllAlbums())
 				.hasSize(10)
 				.isSortedAccordingTo((lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle()));
 	}
 
-	@Test public void getAlbumsWithArtistTitle_albumsWithSpecifiedTitle() {
+	@Test
+	public void getAlbumsWithArtistTitle_albumsWithSpecifiedTitle() {
 		List<Album> albums = albumDBHelper.addRandomAlbumsWhereSomeWithArtistTitle(10, "title", 4);
 		assertThat(albumDB.getAlbumsWithArtistTitle("title"))
 				.hasSize(4)
@@ -40,7 +44,8 @@ public class AlbumDBTest extends DBTest {
 
 	}
 
-	@Test public void getAlbumWithAlbumId_albumWithSpecifiedId() {
+	@Test
+	public void getAlbumWithAlbumId_albumWithSpecifiedId() {
 		Album album = new Album();
 		album.setId(3);
 		album.setTitle("title");

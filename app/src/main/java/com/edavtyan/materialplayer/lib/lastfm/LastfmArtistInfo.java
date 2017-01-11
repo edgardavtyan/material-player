@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data @Setter @Getter
+@Data
+@Setter
+@Getter
 public class LastfmArtistInfo {
 	private static final String KEY_LARGE = "large";
 	private static final String KEY_XLARGE = "xlarge";
@@ -17,18 +19,6 @@ public class LastfmArtistInfo {
 	private String extraLargeImageUrl;
 	private String megaImageUrl;
 
-	public String toJson() {
-		try {
-			JSONObject infoJson = new JSONObject();
-			infoJson.put(KEY_LARGE, largeImageUrl);
-			infoJson.put(KEY_XLARGE, extraLargeImageUrl);
-			infoJson.put(KEY_MEGA, megaImageUrl);
-			return infoJson.toString();
-		} catch (JSONException e) {
-			throw new RuntimeException(e.getMessage(), e);
-		}
-	}
-
 	public static LastfmArtistInfo fromJson(String json) {
 		try {
 			JSONObject infoJson = new JSONObject(json);
@@ -37,6 +27,18 @@ public class LastfmArtistInfo {
 			info.setExtraLargeImageUrl(infoJson.getString(KEY_XLARGE));
 			info.setMegaImageUrl(infoJson.getString(KEY_MEGA));
 			return info;
+		} catch (JSONException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
+	public String toJson() {
+		try {
+			JSONObject infoJson = new JSONObject();
+			infoJson.put(KEY_LARGE, largeImageUrl);
+			infoJson.put(KEY_XLARGE, extraLargeImageUrl);
+			infoJson.put(KEY_MEGA, megaImageUrl);
+			return infoJson.toString();
 		} catch (JSONException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

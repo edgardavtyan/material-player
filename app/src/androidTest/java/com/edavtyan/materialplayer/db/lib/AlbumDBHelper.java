@@ -27,20 +27,22 @@ public class AlbumDBHelper extends TestDBHelper {
 		super(context, DATABASE_NAME, DATABASE_VERSION);
 	}
 
-	@Override public void onCreate(SQLiteDatabase db) {
+	@Override
+	public void onCreate(SQLiteDatabase db) {
 		String CREATE_TABLE
 				= "CREATE TABLE " + TABLE_NAME + "("
-				+ COLUMN_ID + " INTEGER PRIMARY KEY,"
-				+ COLUMN_TITLE + " TEXT,"
-				+ COLUMN_ARTIST_TITLE + " TEXT,"
-				+ COLUMN_ART + " TEXT,"
-				+ COLUMN_TRACKS_COUNT + " INTEGER"
-				+ ");";
+				  + COLUMN_ID + " INTEGER PRIMARY KEY,"
+				  + COLUMN_TITLE + " TEXT,"
+				  + COLUMN_ARTIST_TITLE + " TEXT,"
+				  + COLUMN_ART + " TEXT,"
+				  + COLUMN_TRACKS_COUNT + " INTEGER"
+				  + ");";
 
 		db.execSQL(CREATE_TABLE);
 	}
 
-	@Override public String getTableName() {
+	@Override
+	public String getTableName() {
 		return TABLE_NAME;
 	}
 

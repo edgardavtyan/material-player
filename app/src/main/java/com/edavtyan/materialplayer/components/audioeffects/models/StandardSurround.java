@@ -13,19 +13,23 @@ public class StandardSurround implements Surround {
 		setStrength(prefs.getStrength());
 	}
 
-	@Override public int getMaxStrength() {
+	@Override
+	public int getMaxStrength() {
 		return 1000;
 	}
 
-	@Override public int getStrength() {
+	@Override
+	public int getStrength() {
 		return virtualizer.getRoundedStrength();
 	}
 
-	@Override public void setStrength(int strength) {
+	@Override
+	public void setStrength(int strength) {
 		virtualizer.setStrength((short) strength);
 	}
 
-	@Override public void saveSettings() {
+	@Override
+	public void saveSettings() {
 		prefs.save(getStrength());
 	}
 }

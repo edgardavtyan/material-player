@@ -20,7 +20,8 @@ public class BassBoostPrefsTest extends BaseTest {
 		bassBoostPrefs = new BassBoostPrefs(basePrefs);
 	}
 
-	@Override public void afterEach() {
+	@Override
+	public void afterEach() {
 		super.afterEach();
 		basePrefs.edit().clear().commit();
 	}

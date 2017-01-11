@@ -21,7 +21,7 @@ public class WebClientTests extends BaseTest {
 	@Test
 	public void get_url_bytes_given_correct_url() {
 		assertThat(webClient.getBytes(url))
-				.isEqualTo(new byte[] {72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 10});
+				.isEqualTo(new byte[]{72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 10});
 	}
 
 	@Test

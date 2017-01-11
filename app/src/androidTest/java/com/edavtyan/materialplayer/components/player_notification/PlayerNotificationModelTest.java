@@ -11,9 +11,9 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.testlib.asertions.IntentAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -32,7 +32,8 @@ public class PlayerNotificationModelTest extends BaseTest {
 	private PlayerService.PlayerBinder binder;
 	private Track track;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		context = mock(ContextThemeWrapper.class);
 		player = mock(Player.class);
@@ -47,7 +48,8 @@ public class PlayerNotificationModelTest extends BaseTest {
 	}
 
 	@SuppressWarnings("WrongConstant")
-	@Test public void bind_bindPlayerService() {
+	@Test
+	public void bind_bindPlayerService() {
 		model.bind();
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
@@ -55,26 +57,30 @@ public class PlayerNotificationModelTest extends BaseTest {
 		IntentAssert.assertThat(intentCaptor.getValue()).classEqualTo(PlayerService.class);
 	}
 
-	@Test public void unbind_unbindModelFromService() {
+	@Test
+	public void unbind_unbindModelFromService() {
 		model.onServiceConnected(null, binder);
 		model.unbind();
 		verify(context).unbindService(model);
 	}
 
-	@Test public void isPlaying_returnFromService() {
+	@Test
+	public void isPlaying_returnFromService() {
 		model.onServiceConnected(null, binder);
 		when(player.isPlaying()).thenReturn(true);
 		assertThat(model.isPlaying()).isTrue();
 	}
 
-	@Test public void getTrack_returnCurrentTrackFromPlayer() {
+	@Test
+	public void getTrack_returnCurrentTrackFromPlayer() {
 		Track track = new Track();
 		when(player.getCurrentTrack()).thenReturn(track);
 		model.onServiceConnected(null, binder);
 		assertThat(model.getTrack()).isEqualTo(track);
 	}
 
-	@Test public void getArt_returnArtFromArtProvider() {
+	@Test
+	public void getArt_returnArtFromArtProvider() {
 		Track track = mock(Track.class);
 		when(player.getCurrentTrack()).thenReturn(track);
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
@@ -84,7 +90,8 @@ public class PlayerNotificationModelTest extends BaseTest {
 		assertThat(model.getArt()).isSameAs(art);
 	}
 
-	@Test public void onNewTrack_listenerNotSet_notThrowException() {
+	@Test
+	public void onNewTrack_listenerNotSet_notThrowException() {
 		try {
 			model.onNewTrack();
 		} catch (Exception e) {
@@ -92,21 +99,24 @@ public class PlayerNotificationModelTest extends BaseTest {
 		}
 	}
 
-	@Test public void onNewTrack_listenerSet_callListener() {
+	@Test
+	public void onNewTrack_listenerSet_callListener() {
 		OnNewTrackListener listener = mock(OnNewTrackListener.class);
 		model.setOnNewTrackListener(listener);
 		model.onNewTrack();
 		verify(listener).onNewTrack();
 	}
 
-	@Test public void onPlayPause_listenerSet_callListener() {
+	@Test
+	public void onPlayPause_listenerSet_callListener() {
 		OnPlayPauseListener listener = mock(OnPlayPauseListener.class);
 		model.setOnPlayPauseListener(listener);
 		model.onPlayPause();
 		verify(listener).onPlayPause();
 	}
 
-	@Test public void onPlayPause_listenerNotSet_notThrowException() {
+	@Test
+	public void onPlayPause_listenerNotSet_notThrowException() {
 		try {
 			model.onPlayPause();
 		} catch (NullPointerException e) {

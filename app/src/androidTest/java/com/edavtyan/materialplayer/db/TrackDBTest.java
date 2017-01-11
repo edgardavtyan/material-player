@@ -13,18 +13,21 @@ public class TrackDBTest extends DBTest {
 	private TrackDB trackDB;
 	private TrackDBHelper testTrackDB;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		initProvider(new TrackDBProvider());
 		trackDB = new TrackDB(context);
 		testTrackDB = new TrackDBHelper(context);
 	}
 
-	@After public void afterEach() {
+	@After
+	public void afterEach() {
 		testTrackDB.reset();
 	}
 
-	@Test public void getTracksWithAlbumId_correctTracks() {
+	@Test
+	public void getTracksWithAlbumId_correctTracks() {
 		testTrackDB.addRandomTracksWhereSomeHaveSameAlbumId(10, 10);
 
 		assertThat(trackDB.getTracksWithAlbumId(10))
@@ -32,7 +35,8 @@ public class TrackDBTest extends DBTest {
 				.isSortedAccordingTo((lhs, rhs) -> lhs.getTrack() - rhs.getTrack());
 	}
 
-	@Test public void getAllTracks_correctTracks() {
+	@Test
+	public void getAllTracks_correctTracks() {
 		testTrackDB.addRandomTracks(10);
 
 		assertThat(trackDB.getAllTracks())

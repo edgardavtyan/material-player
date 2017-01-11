@@ -24,7 +24,8 @@ public class ArtistListModelTests extends BaseTest {
 	private ArtistListImageLoader imageLoader;
 
 	@SuppressWarnings("unchecked")
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		ArtistDB db = mock(ArtistDB.class);
 		artists = mock(List.class);
@@ -36,17 +37,20 @@ public class ArtistListModelTests extends BaseTest {
 		model = new ArtistListModel(context, db, imageLoader, prefs);
 	}
 
-	@Test public void getArtistCount_correctCount() {
+	@Test
+	public void getArtistCount_correctCount() {
 		when(artists.size()).thenReturn(4);
 		model.update();
 		assertThat(model.getArtistCount()).isEqualTo(4);
 	}
 
-	@Test public void getArtistCount_noArtists_zero() {
+	@Test
+	public void getArtistCount_noArtists_zero() {
 		assertThat(model.getArtistCount()).isEqualTo(0);
 	}
 
-	@Test public void getArtistAtIndex_correctArtist() {
+	@Test
+	public void getArtistAtIndex_correctArtist() {
 		Artist artist = new Artist();
 		when(artists.get(0)).thenReturn(artist);
 
@@ -55,11 +59,13 @@ public class ArtistListModelTests extends BaseTest {
 		assertThat(model.getArtistAtIndex(0)).isSameAs(artist);
 	}
 
-	@Test public void getArtistAtIndex_noArtists_null() {
+	@Test
+	public void getArtistAtIndex_noArtists_null() {
 		assertThat(model.getArtistAtIndex(0)).isNull();
 	}
 
-	@Test public void getArtistImage_imageCached_callCallbackSynchronously() {
+	@Test
+	public void getArtistImage_imageCached_callCallbackSynchronously() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(imageLoader.getImageFromMemoryCache(any())).thenReturn(art);
 

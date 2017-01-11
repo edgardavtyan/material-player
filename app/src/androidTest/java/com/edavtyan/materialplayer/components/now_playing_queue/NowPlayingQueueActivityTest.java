@@ -25,7 +25,8 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 	private static NowPlayingQueueAdapter adapter;
 	private static NowPlayingQueueMvp.Presenter presenter;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -46,11 +47,13 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 		}
 	}
 
-	@Test public void getLayoutId_returnCorrectId() {
+	@Test
+	public void getLayoutId_returnCorrectId() {
 		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_playlist);
 	}
 
-	@Test public void onCreate_initList() {
+	@Test
+	public void onCreate_initList() {
 		runOnUiThread(() -> {
 			RecyclerView list = new RecyclerView(context);
 			when(activity.findView(R.id.list)).thenReturn(list);
@@ -61,19 +64,22 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 		});
 	}
 
-	@Test public void onCreate_initPresenter() {
+	@Test
+	public void onCreate_initPresenter() {
 		runOnUiThread(() -> {
 			activity.onCreate(null);
 			verify(presenter).onCreate();
 		});
 	}
 
-	@Test public void onDestroy_closePresenter() {
+	@Test
+	public void onDestroy_closePresenter() {
 		activity.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
-	@Test public void notify_adapter_of_data_changes() {
+	@Test
+	public void notify_adapter_of_data_changes() {
 		activity.notifyDataSetChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();
 	}

@@ -7,20 +7,20 @@
 
 	<TextView
 		android:id="@+id/frequency"
+		style="@style/EqualizerBand_Frequency"
 		tools:text="500 Hz"
-	    style="@style/EqualizerBand_Frequency"
 		/>
 
 	<com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar
 		android:id="@+id/band"
+		style="@style/EqualizerBand_Seekbar"
 		tools:progress="40"
-	    style="@style/EqualizerBand_Seekbar"
 		/>
 
 	<TextView
 		android:id="@+id/gain"
+		style="@style/EqualizerBand_Gain"
 		tools:text="+12 Db"
-	    style="@style/EqualizerBand_Gain"
 		/>
 
 </LinearLayout>

@@ -7,12 +7,14 @@ import org.junit.Test;
 public class BaseFactoryTest extends FactoryTest {
 	private BaseFactory baseFactory;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		baseFactory = new BaseFactory(context);
 	}
 
-	@Test public void testProviders() throws Exception {
+	@Test
+	public void testProviders() throws Exception {
 		testFactoryMethod(baseFactory::provideContext);
 		testFactoryMethod(baseFactory::provideNavigator);
 		testFactoryMethod(baseFactory::provideArtProvider);

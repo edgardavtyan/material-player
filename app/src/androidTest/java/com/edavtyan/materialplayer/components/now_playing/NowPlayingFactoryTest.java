@@ -15,7 +15,8 @@ import static org.mockito.Mockito.mock;
 public class NowPlayingFactoryTest extends FactoryTest {
 	private NowPlayingFactory nowPlayingFactory;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		runOnUiThread(() -> {
 			NowPlayingMvp.View view = mock(NowPlayingMvp.View.class);
@@ -34,7 +35,8 @@ public class NowPlayingFactoryTest extends FactoryTest {
 		});
 	}
 
-	@Test public void testProviders() throws Exception {
+	@Test
+	public void testProviders() throws Exception {
 		testFactoryMethod(nowPlayingFactory::provideModel);
 		testFactoryMethod(nowPlayingFactory::provideView);
 		testFactoryMethod(nowPlayingFactory::providePresenter);

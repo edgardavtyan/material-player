@@ -9,23 +9,28 @@ import static com.edavtyan.materialplayer.testlib.asertions.ConstructorAssert.as
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DurationUtilsTest {
-	@Test public void constructor_private() throws Exception {
+	@Test
+	public void constructor_private() throws Exception {
 		assertConstructor(DurationUtils.class.getDeclaredConstructor()).isPrivate();
 	}
 
-	@Test public void toStringUntilHours_withHoursAndDoubleDigit_returnFormattedString() {
+	@Test
+	public void toStringUntilHours_withHoursAndDoubleDigit_returnFormattedString() {
 		assertThat(DurationUtils.toStringUntilHours(49491000)).isEqualTo("13:44:51");
 	}
 
-	@Test public void toStringUntilHours_withHoursAndSingleDigit_padWithZeros() {
+	@Test
+	public void toStringUntilHours_withHoursAndSingleDigit_padWithZeros() {
 		assertThat(DurationUtils.toStringUntilHours(18429000)).isEqualTo("05:07:09");
 	}
 
-	@Test public void toStringUntilHours_noHoursAndDoubleDigit_returnFormattedStringWithoutHours() {
+	@Test
+	public void toStringUntilHours_noHoursAndDoubleDigit_returnFormattedStringWithoutHours() {
 		assertThat(DurationUtils.toStringUntilHours(2155000)).isEqualTo("35:55");
 	}
 
-	@Test public void toStringUntilHours_noHoursAndSingleDigit_padWithZerosWithoutHours() {
+	@Test
+	public void toStringUntilHours_noHoursAndSingleDigit_padWithZerosWithoutHours() {
 		assertThat(DurationUtils.toStringUntilHours(369000)).isEqualTo("06:09");
 	}
 

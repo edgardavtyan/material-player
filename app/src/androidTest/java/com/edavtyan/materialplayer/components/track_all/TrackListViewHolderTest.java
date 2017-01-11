@@ -23,7 +23,8 @@ public class TrackListViewHolderTest extends BaseTest {
 	private TextView infoView;
 
 	@SuppressLint("InflateParams")
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		holder = new TrackListViewHolder(context, itemView);
@@ -31,17 +32,20 @@ public class TrackListViewHolderTest extends BaseTest {
 		infoView = holder.findView(R.id.info);
 	}
 
-	@Test public void setTitle_setTitleViewText() {
+	@Test
+	public void setTitle_setTitleViewText() {
 		holder.setTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
-	@Test public void setInfo_setFormattedInfoViewText() {
+	@Test
+	public void setInfo_setFormattedInfoViewText() {
 		holder.setInfo(50000, "artist", "album");
 		assertThat(infoView.getText()).isEqualTo("00:50 | artist - album");
 	}
 
-	@Test public void setOnHolderClickListener_respondToClick() {
+	@Test
+	public void setOnHolderClickListener_respondToClick() {
 		TrackListViewHolder.OnHolderClickListener listener
 				= mock(TrackListViewHolder.OnHolderClickListener.class);
 		holder.setOnHolderClickListener(listener);
@@ -49,7 +53,8 @@ public class TrackListViewHolderTest extends BaseTest {
 		verify(listener).onHolderClick(holder);
 	}
 
-	@Test public void setOnHolderMenuItemClickListener_respondToMenuItemsClicks() {
+	@Test
+	public void setOnHolderMenuItemClickListener_respondToMenuItemsClicks() {
 		TrackListViewHolder.OnHolderMenuItemClickListener listener
 				= mock(TrackListViewHolder.OnHolderMenuItemClickListener.class);
 		holder.setOnHolderMenuItemClickListener(listener);

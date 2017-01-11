@@ -20,22 +20,26 @@ public class AlbumListAdapterTest extends BaseTest {
 	private AlbumListViewHolder holder;
 	private AlbumListAdapter adapter;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(AlbumListMvp.Presenter.class);
 		holder = mock(AlbumListViewHolder.class);
 		adapter = new AlbumListAdapter(context, presenter);
 	}
 
-	@Test public void return_correct_normal_layout_id() {
+	@Test
+	public void return_correct_normal_layout_id() {
 		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_album);
 	}
 
-	@Test public void return_correct_compact_layout_id() {
+	@Test
+	public void return_correct_compact_layout_id() {
 		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_album_compact);
 	}
 
-	@Test public void onCreateViewHolder_inflateViewAsViewType() {
+	@Test
+	public void onCreateViewHolder_inflateViewAsViewType() {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
@@ -45,23 +49,27 @@ public class AlbumListAdapterTest extends BaseTest {
 		verify(inflater).inflate(R.layout.listitem_album, parent, false);
 	}
 
-	@Test public void onBindViewHolder_callPresenter() {
+	@Test
+	public void onBindViewHolder_callPresenter() {
 		adapter.onBindViewHolder(holder, 0);
 		verify(presenter).onBindViewHolder(holder, 0);
 	}
 
-	@Test public void getItemCount_callPresenter() {
+	@Test
+	public void getItemCount_callPresenter() {
 		adapter.getItemCount();
 		verify(presenter).getItemCount();
 	}
 
-	@Test public void onHolderClick_callPresenter() {
+	@Test
+	public void onHolderClick_callPresenter() {
 		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
 		adapter.onHolderClick(holder);
 		verify(presenter).onHolderClick(7);
 	}
 
-	@Test public void onMenuAddToPlaylistClick_callPresenter() {
+	@Test
+	public void onMenuAddToPlaylistClick_callPresenter() {
 		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
 		adapter.onMenuAddToPlaylistClick(holder);
 		verify(presenter).onAddToPlaylist(7);

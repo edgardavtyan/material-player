@@ -16,24 +16,28 @@ public class PlayerNotificationPresenterTest extends BaseTest {
 	private PlayerNotificationMvp.View view;
 	private PlayerNotificationMvp.Model model;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		model = mock(PlayerNotificationMvp.Model.class);
 		view = mock(PlayerNotificationMvp.View.class);
 		presenter = new PlayerNotificationPresenter(model, view);
 	}
 
-	@Test public void onCreate_bindModel() {
+	@Test
+	public void onCreate_bindModel() {
 		presenter.onCreate();
 		verify(model).bind();
 	}
 
-	@Test public void onDestroy_unbindModel() {
+	@Test
+	public void onDestroy_unbindModel() {
 		presenter.onDestroy();
 		verify(model).unbind();
 	}
 
-	@Test public void onNewTrack_updateView() {
+	@Test
+	public void onNewTrack_updateView() {
 		Track track = new Track();
 		track.setTitle("title");
 		track.setArtistTitle("artist");
@@ -53,7 +57,8 @@ public class PlayerNotificationPresenterTest extends BaseTest {
 		verify(view).update();
 	}
 
-	@Test public void onPlayPause_updateView() {
+	@Test
+	public void onPlayPause_updateView() {
 		when(model.isPlaying()).thenReturn(true);
 
 		presenter.onPlayPause();

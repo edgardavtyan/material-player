@@ -20,15 +20,15 @@
 			<com.edavtyan.materialplayer.lib.views.SquareImageView
 				android:id="@+id/back"
 				android:contentDescription="@string/description_art"
-				tools:src="@drawable/fallback_artist"
-				style="@style/collapsingHeader_artBack"
 				android:visibility="gone"
+				style="@style/collapsingHeader_artBack"
+				tools:src="@drawable/fallback_artist"
 				/>
 
 			<com.edavtyan.materialplayer.lib.views.SquareImageView
 				android:id="@+id/art"
-				tools:src="@drawable/fallback_artist"
 				style="@style/collapsingHeader_art"
+				tools:src="@drawable/fallback_artist"
 				/>
 
 			<View
@@ -45,14 +45,14 @@
 
 			<TextView
 				android:id="@+id/title"
-				tools:text="Artist title"
 				style="@style/collapsingHeader_title"
+				tools:text="Artist title"
 				/>
 
 			<TextView
 				android:id="@+id/info"
-				tools:text="123 Albums | 456 Tracks"
 				style="@style/collapsingHeader_info"
+				tools:text="123 Albums | 456 Tracks"
 				/>
 
 		</LinearLayout>

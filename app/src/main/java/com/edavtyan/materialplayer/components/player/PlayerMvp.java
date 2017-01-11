@@ -35,8 +35,8 @@ public interface PlayerMvp {
 		void playPause();
 		void playNext();
 		void rewind();
-		void setPosition(int position);
 		long getPosition();
+		void setPosition(int position);
 		boolean isPlaying();
 		ShuffleMode getShuffleMode();
 		RepeatMode getRepeatMode();
@@ -80,12 +80,12 @@ public interface PlayerMvp {
 		int getTracksCount();
 		void moveToNext();
 		void moveToPrev();
-		void setPosition(int position);
 		int getPosition();
-		void setShuffleMode(ShuffleMode shuffleMode);
-		void setRepeatMode(RepeatMode repeatMode);
+		void setPosition(int position);
 		ShuffleMode getShuffleMode();
+		void setShuffleMode(ShuffleMode shuffleMode);
 		RepeatMode getRepeatMode();
+		void setRepeatMode(RepeatMode repeatMode);
 		void toggleShuffleMode();
 		void toggleRepeatMode();
 		boolean hasData();

@@ -13,19 +13,23 @@ public class StandardBassBoost implements BassBoost {
 		setStrength(prefs.getStrength());
 	}
 
-	@Override public int getMaxStrength() {
+	@Override
+	public int getMaxStrength() {
 		return MAX_STRENGTH;
 	}
 
-	@Override public int getStrength() {
+	@Override
+	public int getStrength() {
 		return bassBoost.getRoundedStrength();
 	}
 
-	@Override public void setStrength(int strength) {
+	@Override
+	public void setStrength(int strength) {
 		bassBoost.setStrength((short) strength);
 	}
 
-	@Override public void saveSettings() {
+	@Override
+	public void saveSettings() {
 		prefs.save(getStrength());
 	}
 }

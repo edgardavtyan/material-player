@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.artist_detail;
 
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.components.artist_all.ArtistListImageMemoryCache;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

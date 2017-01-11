@@ -19,15 +19,18 @@ public class PlayerNotificationPresenter
 		this.view = view;
 	}
 
-	@Override public void onCreate() {
+	@Override
+	public void onCreate() {
 		model.bind();
 	}
 
-	@Override public void onDestroy() {
+	@Override
+	public void onDestroy() {
 		model.unbind();
 	}
 
-	@Override public void onNewTrack() {
+	@Override
+	public void onNewTrack() {
 		Track track = model.getTrack();
 		view.setTitle(track.getTitle());
 		view.setInfo(track.getArtistTitle(), track.getAlbumTitle());
@@ -36,7 +39,8 @@ public class PlayerNotificationPresenter
 		view.update();
 	}
 
-	@Override public void onPlayPause() {
+	@Override
+	public void onPlayPause() {
 		view.setIsPlaying(model.isPlaying());
 		view.update();
 	}

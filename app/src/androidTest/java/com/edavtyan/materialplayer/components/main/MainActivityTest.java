@@ -12,7 +12,8 @@ import static org.mockito.Mockito.spy;
 public class MainActivityTest extends ActivityTest {
 	private static MainActivity activity;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {

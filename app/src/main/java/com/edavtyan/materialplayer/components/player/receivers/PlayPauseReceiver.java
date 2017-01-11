@@ -13,7 +13,8 @@ public class PlayPauseReceiver extends BroadcastReceiver {
 		this.player = player;
 	}
 
-	@Override public void onReceive(Context context, Intent intent) {
+	@Override
+	public void onReceive(Context context, Intent intent) {
 		player.playPause();
 	}
 }

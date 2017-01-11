@@ -28,37 +28,45 @@ public class StandardEqualizer implements Equalizer {
 		}
 	}
 
-	@Override public int getBandsCount() {
+	@Override
+	public int getBandsCount() {
 		return bandsCount;
 	}
 
-	@Override public int[] getFrequencies() {
+	@Override
+	public int[] getFrequencies() {
 		return frequencies;
 	}
 
-	@Override public int[] getGains() {
+	@Override
+	public int[] getGains() {
 		return gains;
 	}
 
-	@Override public void setBandGain(int band, int gain) {
+	@Override
+	public void setBandGain(int band, int gain) {
 		int reverseBand = bandsCount - band - 1;
 		equalizer.setBandLevel((short) reverseBand, (short) (gain * 100));
 		gains[band] = gain;
 	}
 
-	@Override public void saveSettings() {
+	@Override
+	public void saveSettings() {
 		prefs.save(gains, isEnabled());
 	}
 
-	@Override public int getGainLimit() {
+	@Override
+	public int getGainLimit() {
 		return Math.abs(equalizer.getBandLevelRange()[0] / 100);
 	}
 
-	@Override public boolean isEnabled() {
+	@Override
+	public boolean isEnabled() {
 		return equalizer.getEnabled();
 	}
 
-	@Override public void setEnabled(boolean isEnabled) {
+	@Override
+	public void setEnabled(boolean isEnabled) {
 		equalizer.setEnabled(isEnabled);
 	}
 }

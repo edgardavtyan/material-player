@@ -24,21 +24,24 @@ public class AlbumArtProviderTests extends BaseTest {
 	private Bitmap art;
 	private byte[] artBytes;
 
-	@Test public void load_artExists_notSaveNewArt() {
+	@Test
+	public void load_artExists_notSaveNewArt() {
 		init(1);
 		when(fileStorage.exists("1")).thenReturn(true);
 		assertThat(albumArtProvider.load(track)).isSameAs(art);
 		verify(fileStorage, never()).saveBytes("1", artBytes);
 	}
 
-	@Test public void load_artNotExists_saveNewArt() {
+	@Test
+	public void load_artNotExists_saveNewArt() {
 		init(2);
 		when(fileStorage.exists("2")).thenReturn(false);
 		assertThat(albumArtProvider.load(track)).isSameAs(art);
 		verify(fileStorage).saveBytes("2", artBytes);
 	}
 
-	@Test public void return_art_from_memory_cache() {
+	@Test
+	public void return_art_from_memory_cache() {
 		init(4);
 		when(memoryCache.contains(4)).thenReturn(true);
 		when(memoryCache.get(4)).thenReturn(art);
@@ -46,7 +49,8 @@ public class AlbumArtProviderTests extends BaseTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test public void return_null_if_track_has_no_art() {
+	@Test
+	public void return_null_if_track_has_no_art() {
 		init(5);
 		when(artReader.getAlbumArtBytes("path5")).thenThrow(Exception.class);
 		assertThat(albumArtProvider.load(track)).isNull();

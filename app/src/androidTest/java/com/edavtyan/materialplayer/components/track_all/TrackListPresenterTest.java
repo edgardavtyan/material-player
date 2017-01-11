@@ -16,7 +16,8 @@ public class TrackListPresenterTest extends BaseTest {
 	private TrackListViewHolder holder;
 	private TrackListPresenter presenter;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		model = mock(TrackListMvp.Model.class);
 		view = mock(TrackListMvp.View.class);
@@ -24,7 +25,8 @@ public class TrackListPresenterTest extends BaseTest {
 		presenter = new TrackListPresenter(view, model);
 	}
 
-	@Test public void bindViewHolder_setAllHolderValues() {
+	@Test
+	public void bindViewHolder_setAllHolderValues() {
 		Track track = new Track();
 		track.setTitle("title");
 		track.setArtistTitle("artist");
@@ -39,29 +41,34 @@ public class TrackListPresenterTest extends BaseTest {
 		verify(holder).setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
 	}
 
-	@Test public void getItemCount_callModel() {
+	@Test
+	public void getItemCount_callModel() {
 		when(model.getItemCount()).thenReturn(9);
 		assertThat(presenter.getItemCount()).isEqualTo(9);
 	}
 
-	@Test public void onHolderClick_callViewAndModel() {
+	@Test
+	public void onHolderClick_callViewAndModel() {
 		presenter.onHolderClick(0);
 		verify(view).goToNowPlaying();
 		verify(model).playQueue(0);
 	}
 
-	@Test public void onAddToPlaylist_callModel() {
+	@Test
+	public void onAddToPlaylist_callModel() {
 		presenter.onAddToPlaylist(0);
 		verify(model).addToQueue(0);
 	}
 
-	@Test public void onCreate_initModel() {
+	@Test
+	public void onCreate_initModel() {
 		presenter.onCreate();
 		verify(model).bindService();
 		verify(model).update();
 	}
 
-	@Test public void onDestroy_cleanupModel() {
+	@Test
+	public void onDestroy_cleanupModel() {
 		presenter.onDestroy();
 		verify(model).unbindService();
 		verify(model).close();

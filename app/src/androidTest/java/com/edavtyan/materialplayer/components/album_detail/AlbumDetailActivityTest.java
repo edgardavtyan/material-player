@@ -28,12 +28,14 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	private static Navigator navigator;
 
 	public static class TestAlbumDetailActivity extends AlbumDetailActivity {
-		@Override protected AlbumDetailFactory getDI() {
+		@Override
+		protected AlbumDetailFactory getDI() {
 			return factory;
 		}
 	}
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -52,22 +54,26 @@ public class AlbumDetailActivityTest extends ActivityTest {
 		}
 	}
 
-	@Test public void onCreate_initList() {
+	@Test
+	public void onCreate_initList() {
 		RecyclerView list = activity.findView(R.id.list);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 
-	@Test public void onStart_callPresenter() {
+	@Test
+	public void onStart_callPresenter() {
 		verify(presenter).onCreate();
 	}
 
-	@Test public void onStop_callPresenter() {
+	@Test
+	public void onStop_callPresenter() {
 		instrumentation.callActivityOnStop(activity);
 		verify(presenter).onDestroy();
 	}
 
-	@Test public void setAlbumTitle_setTitleViewText() {
+	@Test
+	public void setAlbumTitle_setTitleViewText() {
 		runOnUiThread(() -> {
 			TextView titleView = activity.findView(R.id.title);
 			activity.setAlbumTitle("title");
@@ -75,7 +81,8 @@ public class AlbumDetailActivityTest extends ActivityTest {
 		});
 	}
 
-	@Test public void setAlbumInfo_setInfoTextWithPattern() {
+	@Test
+	public void setAlbumInfo_setInfoTextWithPattern() {
 		runOnUiThread(() -> {
 			TextView infoView = activity.findView(R.id.info);
 			activity.setAlbumInfo("artist", 9);
@@ -83,7 +90,8 @@ public class AlbumDetailActivityTest extends ActivityTest {
 		});
 	}
 
-	@Test public void goToNowPlaying_callNavigator() {
+	@Test
+	public void goToNowPlaying_callNavigator() {
 		activity.goToNowPlaying();
 		verify(navigator).gotoNowPlaying();
 	}

@@ -6,12 +6,11 @@ import android.os.AsyncTask;
 public class ArtistDetailImageTask extends AsyncTask<String, Void, Bitmap> {
 
 	private final ArtistDetailImageLoader imageLoader;
+	private final OnImageLoadedCallback onImageLoadedCallback;
 
 	public interface OnImageLoadedCallback {
 		void OnImageLoaded(Bitmap art);
 	}
-
-	private final OnImageLoadedCallback onImageLoadedCallback;
 
 	public ArtistDetailImageTask(
 			ArtistDetailImageLoader imageLoader,

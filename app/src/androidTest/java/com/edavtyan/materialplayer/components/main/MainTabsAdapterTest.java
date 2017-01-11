@@ -21,20 +21,23 @@ public class MainTabsAdapterTest extends BaseTest {
 		adapter = new MainTabsAdapter(mock(FragmentManager.class));
 	}
 
-	@Test public void has_correct_tab_names() {
+	@Test
+	public void has_correct_tab_names() {
 		assertThat(adapter.getPageTitle(0)).isEqualTo("Artists");
 		assertThat(adapter.getPageTitle(1)).isEqualTo("Albums");
 		assertThat(adapter.getPageTitle(2)).isEqualTo("Tracks");
 	}
 
-	@Test public void has_correct_fragments() {
+	@Test
+	public void has_correct_fragments() {
 		assertThat(adapter.getItem(0)).isInstanceOf(ArtistListFragment.class);
 		assertThat(adapter.getItem(1)).isInstanceOf(AlbumListFragment.class);
 		assertThat(adapter.getItem(2)).isInstanceOf(TrackListFragment.class);
 		assertThat(adapter.getItem(-1)).isNull();
 	}
 
-	@Test public void has_correct_number_of_fragments() {
+	@Test
+	public void has_correct_number_of_fragments() {
 		assertThat(adapter.getCount()).isEqualTo(3);
 	}
 }

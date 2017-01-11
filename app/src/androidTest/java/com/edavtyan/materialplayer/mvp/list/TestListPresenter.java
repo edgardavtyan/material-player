@@ -8,13 +8,16 @@ public class TestListPresenter extends ListPresenter {
 		super(model, view);
 	}
 
-	@Override public void onBindViewHolder(Object holder, int position) {
+	@Override
+	public void onBindViewHolder(Object holder, int position) {
 	}
 
-	@Override public int getItemCount() {
+	@Override
+	public int getItemCount() {
 		return 0;
 	}
 
-	@Override public void onDestroy() {
+	@Override
+	public void onDestroy() {
 	}
 }

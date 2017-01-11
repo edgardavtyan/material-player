@@ -10,7 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PrefActivityTest extends ActivityTest {
 	private static PrefActivity activity;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -18,11 +19,13 @@ public class PrefActivityTest extends ActivityTest {
 		}
 	}
 
-	@Test public void getLayoutId_prefActivityLayout() {
+	@Test
+	public void getLayoutId_prefActivityLayout() {
 		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_pref);
 	}
 
-	@Test public void getToolbarTitleStringId_prefTitle() {
+	@Test
+	public void getToolbarTitleStringId_prefTitle() {
 		assertThat(activity.getToolbarTitleStringId()).isEqualTo(R.string.pref_title);
 	}
 }

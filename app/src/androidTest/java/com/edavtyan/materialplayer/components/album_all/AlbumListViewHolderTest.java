@@ -24,13 +24,15 @@ public class AlbumListViewHolderTest extends BaseTest {
 	private AlbumListViewHolder holder;
 	private View itemView;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_album, null);
 		holder = new AlbumListViewHolder(context, itemView);
 	}
 
-	@Test public void setters_setAllValues() {
+	@Test
+	public void setters_setAllValues() {
 		TextView titleView = holder.findView(R.id.title);
 		TextView infoView = holder.findView(R.id.info);
 
@@ -41,12 +43,14 @@ public class AlbumListViewHolderTest extends BaseTest {
 		assertThat(infoView.getText()).isEqualTo("artist | 7 Tracks");
 	}
 
-	@Test public void set_fallback_image_when_given_null_path() {
+	@Test
+	public void set_fallback_image_when_given_null_path() {
 		runOnUiThread(() -> holder.setArt(null));
 		assertImageView(itemView, R.id.art).hasDrawableWithId(R.drawable.fallback_cover);
 	}
 
-	@Test public void not_throw_npe_if_click_listener_not_set() {
+	@Test
+	public void not_throw_npe_if_click_listener_not_set() {
 		try {
 			holder.onClick(null);
 		} catch (NullPointerException e) {
@@ -54,14 +58,16 @@ public class AlbumListViewHolderTest extends BaseTest {
 		}
 	}
 
-	@Test public void raise_click_listener_when_clicked() {
+	@Test
+	public void raise_click_listener_when_clicked() {
 		OnHolderClickListener listener = mock(OnHolderClickListener.class);
 		holder.setOnHolderClickListener(listener);
 		holder.onClick(null);
 		verify(listener).onHolderClick(holder);
 	}
 
-	@Test public void not_throw_npe_if_menu_click_listener_not_set() {
+	@Test
+	public void not_throw_npe_if_menu_click_listener_not_set() {
 		try {
 			holder.onMenuItemClick(mock(MenuItem.class));
 		} catch (NullPointerException e) {
@@ -69,12 +75,14 @@ public class AlbumListViewHolderTest extends BaseTest {
 		}
 	}
 
-	@Test public void raise_menu_click_listener_when_add_to_playlist_menu_item_clicked() {
+	@Test
+	public void raise_menu_click_listener_when_add_to_playlist_menu_item_clicked() {
 		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(R.id.menu_addToPlaylist);
 		verify(listener).onMenuAddToPlaylistClick(holder);
 	}
 
-	@Test public void not_raise_menu_click_listener_when_other_menu_item_clicked() {
+	@Test
+	public void not_raise_menu_click_listener_when_other_menu_item_clicked() {
 		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(-1);
 		verifyZeroInteractions(listener);
 	}

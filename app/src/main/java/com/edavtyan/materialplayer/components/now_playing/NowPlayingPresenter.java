@@ -92,11 +92,13 @@ public class NowPlayingPresenter
 		model.seek(position);
 	}
 
-	@Override public void onNewTrack() {
+	@Override
+	public void onNewTrack() {
 		updateViewInfo();
 	}
 
-	@Override public void onPlayPause() {
+	@Override
+	public void onPlayPause() {
 		view.getControls().setIsPlaying(model.isPlaying());
 	}
 

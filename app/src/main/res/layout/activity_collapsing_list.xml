@@ -33,9 +33,9 @@
 
 					<View
 						android:id="@+id/statusbar_tint"
-						style="@style/CollapsingList_StatusBarTint"
 						android:layout_width="match_parent"
 						android:layout_height="25dp"
+						style="@style/CollapsingList_StatusBarTint"
 						/>
 
 					<android.support.v7.widget.Toolbar

@@ -54,7 +54,8 @@ public class ArtistDetailActivity
 		navigator.gotoAlbumDetail(albumId);
 	}
 
-	@Override public void notifyDataSetChanged() {
+	@Override
+	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
 	}
 

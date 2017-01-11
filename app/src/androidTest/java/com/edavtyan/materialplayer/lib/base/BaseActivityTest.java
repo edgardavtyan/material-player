@@ -24,19 +24,22 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class BaseActivityTest extends ActivityTest {
+	private static TestBaseActivity activity;
+
 	public static class TestBaseActivity extends BaseActivity {
-		@Override public int getLayoutId() {
+		@Override
+		public int getLayoutId() {
 			return R.layout.test_layout;
 		}
 	}
 
-	private static TestBaseActivity activity;
 	private ThemeUtils themeUtils;
 	private AdvancedSharedPrefs prefs;
 	private MenuInflater menuInflater;
 	private Navigator navigator;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -64,39 +67,47 @@ public class BaseActivityTest extends ActivityTest {
 		runOnUiThread(() -> activity.onCreate(null));
 	}
 
-	@Test public void onCreate_setContentView() {
+	@Test
+	public void onCreate_setContentView() {
 		assertThat(activity.findViewById(R.id.test_layout_root)).isNotNull();
 	}
 
-	@Test public void onCreate_setTheme() {
+	@Test
+	public void onCreate_setTheme() {
 		verify(themeUtils).setTheme(activity);
 	}
 
-	@Test public void onCreate_registerOnSharedPreferencesChangedListener() {
+	@Test
+	public void onCreate_registerOnSharedPreferencesChangedListener() {
 		verify(prefs).registerOnSharedPreferenceChangeListener(activity);
 	}
 
-	@Test public void onCreateOptionsMenu_inflateMenu() {
+	@Test
+	public void onCreateOptionsMenu_inflateMenu() {
 		Menu menu = mock(Menu.class);
 		activity.onCreateOptionsMenu(menu);
 		verify(menuInflater).inflate(R.menu.menu_base, menu);
 	}
 
-	@Test public void onOptionsItemSelected_AudioEffectsMenuClick_gotoAudioEffectsActivity() {
+	@Test
+	public void onOptionsItemSelected_AudioEffectsMenuClick_gotoAudioEffectsActivity() {
 		callOnOptionsItemSelectedWithMenuId(R.id.menu_effects);
 		verify(navigator).gotoAudioEffects();
 	}
 
-	@Test public void onOptionsItemSelected_SettingsMenuClick_gotoPrefActivity() {
+	@Test
+	public void onOptionsItemSelected_SettingsMenuClick_gotoPrefActivity() {
 		callOnOptionsItemSelectedWithMenuId(R.id.menu_settings);
 		verify(navigator).gotoSettings();
 	}
 
-	@Test public void onOptionsItemSelected_otherMenuItem_returnFalse() {
+	@Test
+	public void onOptionsItemSelected_otherMenuItem_returnFalse() {
 		assertThat(callOnOptionsItemSelectedWithMenuId(0)).isFalse();
 	}
 
-	@Test public void onSharedPreferencesChanged_setTheme() {
+	@Test
+	public void onSharedPreferencesChanged_setTheme() {
 		activity.onSharedPreferenceChanged(null, "key");
 		verify(themeUtils).setThemeAndRecreate(activity, "key");
 	}

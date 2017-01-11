@@ -50,7 +50,8 @@ public class PlayerService extends Service {
 		return START_NOT_STICKY;
 	}
 
-	@Override public void onCreate() {
+	@Override
+	public void onCreate() {
 		super.onCreate();
 
 		App app = (App) getApplicationContext();
@@ -82,7 +83,8 @@ public class PlayerService extends Service {
 		presenter.onCreate();
 	}
 
-	@Override public void onDestroy() {
+	@Override
+	public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();
 		audioFocusManager.dropFocus();

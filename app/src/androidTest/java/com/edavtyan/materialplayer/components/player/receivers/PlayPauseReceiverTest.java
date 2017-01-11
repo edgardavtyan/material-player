@@ -11,13 +11,15 @@ public class PlayPauseReceiverTest extends BaseTest {
 	private PlayPauseReceiver playPauseReceiver;
 	private PlayerMvp.Player player;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		player = mock(PlayerMvp.Player.class);
 		playPauseReceiver = new PlayPauseReceiver(player);
 	}
 
-	@Test public void onReceive_playPausePlayer() {
+	@Test
+	public void onReceive_playPausePlayer() {
 		playPauseReceiver.onReceive(context, null);
 		player.playPause();
 	}

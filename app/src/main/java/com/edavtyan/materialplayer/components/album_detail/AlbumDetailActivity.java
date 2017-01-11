@@ -47,7 +47,8 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		navigator.gotoNowPlaying();
 	}
 
-	@Override public void notifyDataSetChanged() {
+	@Override
+	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChanged();
 	}
 

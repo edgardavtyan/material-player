@@ -136,23 +136,27 @@ public class LastfmArtistInfoTests extends BaseTest {
 		assertThat(first.equals(second)).isTrue();
 	}
 
-	@Test public void hashCode_allFieldsEqual_equalHashCodes() {
+	@Test
+	public void hashCode_allFieldsEqual_equalHashCodes() {
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void hashCode_nullLargeImageUrl_equalHashCodes() {
+	@Test
+	public void hashCode_nullLargeImageUrl_equalHashCodes() {
 		first.setLargeImageUrl(null);
 		second.setLargeImageUrl(null);
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void hashCode_nullExtraLargeImageUrl_equalHashCodes() {
+	@Test
+	public void hashCode_nullExtraLargeImageUrl_equalHashCodes() {
 		first.setExtraLargeImageUrl(null);
 		second.setExtraLargeImageUrl(null);
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());
 	}
 
-	@Test public void hashCode_nullMegaImageUrl_equalHashCodes() {
+	@Test
+	public void hashCode_nullMegaImageUrl_equalHashCodes() {
 		first.setMegaImageUrl(null);
 		second.setMegaImageUrl(null);
 		assertThat(first.hashCode()).isEqualTo(second.hashCode());

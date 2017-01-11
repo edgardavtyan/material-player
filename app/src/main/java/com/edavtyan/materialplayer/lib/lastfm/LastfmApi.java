@@ -10,7 +10,7 @@ public class LastfmApi {
 	private final String apiKey;
 	private final LastfmArtistInfoFileStorage fileStorage;
 
-	public LastfmApi(WebClient webClient, LastfmArtistInfoFileStorage fileStorage,  String apiKey) {
+	public LastfmApi(WebClient webClient, LastfmArtistInfoFileStorage fileStorage, String apiKey) {
 		this.webClient = webClient;
 		this.apiKey = apiKey;
 		this.fileStorage = fileStorage;

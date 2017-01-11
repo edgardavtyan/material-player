@@ -19,23 +19,29 @@ public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.O
 		this.player.setOnCompletionListener(this);
 	}
 
-	@Override public int getSessionId() {
+	@Override
+	public int getSessionId() {
 		return player.getAudioSessionId();
 	}
 
-	@Override public void play() {
+	@Override
+	public void play() {
 		player.start();
 	}
 
-	@Override public void pause() {
+	@Override
+	public void pause() {
 		player.pause();
 	}
 
-	@Override public void playPause() {
-		if (player.isPlaying()) pause(); else play();
+	@Override
+	public void playPause() {
+		if (player.isPlaying()) pause();
+		else play();
 	}
 
-	@Override public void playTrack(String trackPath) {
+	@Override
+	public void playTrack(String trackPath) {
 		try {
 			player.reset();
 			player.setDataSource(trackPath);
@@ -45,28 +51,34 @@ public class StandardAudioEngine implements PlayerMvp.AudioEngine, MediaPlayer.O
 		}
 	}
 
-	@Override public void setVolume(float volume) {
+	@Override
+	public void setVolume(float volume) {
 		player.setVolume(volume, volume);
 	}
 
-	@Override public long getPosition() {
+	@Override
+	public long getPosition() {
 		return player.getCurrentPosition();
 	}
 
-	@Override public void setPosition(int position) {
+	@Override
+	public void setPosition(int position) {
 		player.seekTo(position);
 	}
 
-	@Override public boolean isPlaying() {
+	@Override
+	public boolean isPlaying() {
 		return player.isPlaying();
 	}
 
-	@Override public void onPrepared(MediaPlayer mp) {
+	@Override
+	public void onPrepared(MediaPlayer mp) {
 		player.start();
 		if (onPreparedListener != null) onPreparedListener.onPrepared();
 	}
 
-	@Override public void onCompletion(MediaPlayer mp) {
+	@Override
+	public void onCompletion(MediaPlayer mp) {
 		if (onCompletedListener != null) onCompletedListener.onCompleted();
 	}
 }

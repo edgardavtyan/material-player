@@ -23,20 +23,24 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class BaseToolbarActivityTest extends ActivityTest {
+	private static TestBaseToolbarActivity activity;
+
 	public static class TestBaseToolbarActivity extends BaseToolbarActivity {
-		@Override public int getLayoutId() {
+		@Override
+		public int getLayoutId() {
 			return R.layout.test_toolbar_layout;
 		}
 
-		@Override protected int getToolbarTitleStringId() {
+		@Override
+		protected int getToolbarTitleStringId() {
 			return R.string.test_string;
 		}
 	}
 
-	private static TestBaseToolbarActivity activity;
 	private Toolbar toolbar;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
@@ -51,28 +55,34 @@ public class BaseToolbarActivityTest extends ActivityTest {
 		toolbar = activity.findView(R.id.toolbar);
 	}
 
-	@Test public void onCreate_setToolbarTitle() {
+	@Test
+	public void onCreate_setToolbarTitle() {
 		assertThat(toolbar.getTitle()).isEqualTo(context.getString(R.string.test_string));
 	}
 
-	@Test public void onCreate_setSupportActionBar() {
+	@Test
+	public void onCreate_setSupportActionBar() {
 		verify(activity).setSupportActionBar(toolbar);
 	}
 
-	@Test public void onCreate_backIconEnabled_setDisplayHomeAsUpEnabled() {
+	@Test
+	public void onCreate_backIconEnabled_setDisplayHomeAsUpEnabled() {
 		testSetDisplayHomeAsUpEnabled(true, atMost(1));
 	}
 
-	@Test public void onCreate_backIconDisabled_notSetDisplayHomeAsUpEnabled() {
+	@Test
+	public void onCreate_backIconDisabled_notSetDisplayHomeAsUpEnabled() {
 		testSetDisplayHomeAsUpEnabled(false, never());
 	}
 
-	@Test public void onOptionsItemSelected_backIconPressed_callOnBackPressed() {
+	@Test
+	public void onOptionsItemSelected_backIconPressed_callOnBackPressed() {
 		runOnUiThread(() -> callOnOptionsItemSelectedWithMenuItemId(android.R.id.home));
 		verify(activity).finish();
 	}
 
-	@Test public void onOptionsItemSelected_otherButtonPressed_returnFalse() {
+	@Test
+	public void onOptionsItemSelected_otherButtonPressed_returnFalse() {
 		assertThat(callOnOptionsItemSelectedWithMenuItemId(0)).isFalse();
 	}
 

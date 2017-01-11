@@ -33,85 +33,103 @@ public class Player
 		onPlayPauseListeners = new ArrayList<>();
 	}
 
-	@Override public void setOnNewTrackListener(OnNewTrackListener listener) {
+	@Override
+	public void setOnNewTrackListener(OnNewTrackListener listener) {
 		onNewTrackListeners.add(listener);
 	}
 
-	@Override public void removeOnNewTrackListener(OnNewTrackListener listener) {
+	@Override
+	public void removeOnNewTrackListener(OnNewTrackListener listener) {
 		onNewTrackListeners.remove(listener);
 	}
 
-	@Override public void setOnPlayPauseListener(OnPlayPauseListener listener) {
+	@Override
+	public void setOnPlayPauseListener(OnPlayPauseListener listener) {
 		onPlayPauseListeners.add(listener);
 	}
 
-	@Override public int getSessionId() {
+	@Override
+	public int getSessionId() {
 		return audioEngine.getSessionId();
 	}
 
-	@Override public void addTrack(Track track) {
+	@Override
+	public void addTrack(Track track) {
 		queue.addTrack(track);
 	}
 
-	@Override public void addManyTracks(List<Track> tracks) {
+	@Override
+	public void addManyTracks(List<Track> tracks) {
 		queue.addManyTracks(tracks);
 	}
 
-	@Override public void removeTrackAt(int position) {
+	@Override
+	public void removeTrackAt(int position) {
 		queue.removeTrackAt(position);
 	}
 
-	@Override public void playNewTracks(List<Track> tracks, int position) {
+	@Override
+	public void playNewTracks(List<Track> tracks, int position) {
 		queue.clear();
 		queue.addManyTracks(tracks);
 		queue.setPosition(position);
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
-	@Override public void playTrackAt(int position) {
+	@Override
+	public void playTrackAt(int position) {
 		queue.setPosition(position);
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
-	@Override public Track getTrackAt(int position) {
+	@Override
+	public Track getTrackAt(int position) {
 		return queue.getTrackAt(position);
 	}
 
-	@Override public Track getCurrentTrack() {
+	@Override
+	public Track getCurrentTrack() {
 		return queue.getCurrentTrack();
 	}
 
-	@Override public int getTracksCount() {
+	@Override
+	public int getTracksCount() {
 		return queue.getTracksCount();
 	}
 
-	@Override public boolean hasData() {
+	@Override
+	public boolean hasData() {
 		return queue.hasData();
 	}
 
-	@Override public void play() {
+	@Override
+	public void play() {
 		audioEngine.play();
 		raisePlayPauseListener();
 	}
 
-	@Override public void pause() {
+	@Override
+	public void pause() {
 		audioEngine.pause();
 		raisePlayPauseListener();
 	}
 
-	@Override public void playPause() {
+	@Override
+	public void playPause() {
 		audioEngine.playPause();
 		raisePlayPauseListener();
 	}
 
-	@Override public void playNext() {
+	@Override
+	public void playNext() {
 		if (!hasData()) return;
 		queue.moveToNext();
 		if (queue.isEnded()) return;
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
-	@Override public void rewind() {
+	@Override
+	public void rewind() {
 		if (audioEngine.getPosition() >= 5000) {
 			audioEngine.setPosition(0);
 		} else {
@@ -120,51 +138,62 @@ public class Player
 		}
 	}
 
-	@Override public long getPosition() {
+	@Override
+	public long getPosition() {
 		return audioEngine.getPosition();
 	}
 
-	@Override public void setPosition(int position) {
+	@Override
+	public void setPosition(int position) {
 		audioEngine.setPosition(position);
 	}
 
-	@Override public ShuffleMode getShuffleMode() {
+	@Override
+	public ShuffleMode getShuffleMode() {
 		return queue.getShuffleMode();
 	}
 
-	@Override public RepeatMode getRepeatMode() {
+	@Override
+	public RepeatMode getRepeatMode() {
 		return queue.getRepeatMode();
 	}
 
-	@Override public boolean isPlaying() {
+	@Override
+	public boolean isPlaying() {
 		return audioEngine.isPlaying();
 	}
 
-	@Override public void toggleShuffleMode() {
+	@Override
+	public void toggleShuffleMode() {
 		queue.toggleShuffleMode();
 		prefs.saveShuffleMode(getShuffleMode());
 	}
 
-	@Override public void toggleRepeatMode() {
+	@Override
+	public void toggleRepeatMode() {
 		queue.toggleRepeatMode();
 		prefs.saveRepeatMode(getRepeatMode());
 	}
 
-	@Override public void onPrepared() {
+	@Override
+	public void onPrepared() {
 		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
 			onNewTrackListener.onNewTrack();
 		}
 	}
 
-	@Override public void lowerVolume() {
+	@Override
+	public void lowerVolume() {
 		audioEngine.setVolume(0.3f);
 	}
 
-	@Override public void restoreVolume() {
+	@Override
+	public void restoreVolume() {
 		audioEngine.setVolume(1.0f);
 	}
 
-	@Override public void onCompleted() {
+	@Override
+	public void onCompleted() {
 		playNext();
 	}
 

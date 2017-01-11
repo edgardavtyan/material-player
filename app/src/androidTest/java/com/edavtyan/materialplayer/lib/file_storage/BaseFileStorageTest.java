@@ -20,6 +20,7 @@ public class BaseFileStorageTest extends BaseTest {
 			super("test");
 		}
 	}
+
 	private TestBaseFileStorage fileStorage;
 
 	@Override

@@ -20,7 +20,8 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 	private TrackListMvp.Presenter presenter;
 	private Navigator navigator;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		initFragment(new TrackListFragment());
@@ -36,12 +37,14 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 		when(app.getTrackListDI(any(), any())).thenReturn(factory);
 	}
 
-	@Test public void onCreate_callPresenter() {
+	@Test
+	public void onCreate_callPresenter() {
 		fragment.onCreate(null);
 		verify(presenter).onCreate();
 	}
 
-	@Test public void onCreateView_initList() {
+	@Test
+	public void onCreateView_initList() {
 		RecyclerView list = new RecyclerView(context);
 		when(fragmentView.findViewById(R.id.list)).thenReturn(list);
 
@@ -52,13 +55,15 @@ public class TrackListFragmentTest extends FragmentTest<TrackListFragment> {
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 	}
 
-	@Test public void onDestroy_callPresenter() {
+	@Test
+	public void onDestroy_callPresenter() {
 		fragment.onCreate(null);
 		fragment.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
-	@Test public void goToNowPlaying_callNavigator() {
+	@Test
+	public void goToNowPlaying_callNavigator() {
 		fragment.onCreate(null);
 		fragment.goToNowPlaying();
 		verify(navigator).gotoNowPlaying();

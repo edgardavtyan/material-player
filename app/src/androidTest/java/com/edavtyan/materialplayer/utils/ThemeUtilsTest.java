@@ -22,7 +22,8 @@ public class ThemeUtilsTest extends ActivityTest {
 	private AdvancedSharedPrefs prefs;
 	private ThemeUtils themeUtils;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 		activity = mock(Activity.class);
 		doReturn(context.getResources()).when(activity).getResources();
@@ -32,7 +33,8 @@ public class ThemeUtilsTest extends ActivityTest {
 	}
 
 	@SuppressLint("CommitPrefEdits")
-	@Test public void setTheme_setActivityThemeAndNotRecreate() {
+	@Test
+	public void setTheme_setActivityThemeAndNotRecreate() {
 		when(prefs.getString("pref_theme_base", "Light")).thenReturn("Dark");
 		when(prefs.getString("pref_theme_primary", "Orange")).thenReturn("Blue");
 		themeUtils.setTheme(activity);
@@ -40,19 +42,22 @@ public class ThemeUtilsTest extends ActivityTest {
 		verify(activity, never()).recreate();
 	}
 
-	@Test public void setThemeAndRecreate__baseThemeChanged_applyThemeAndRecreateActivity() {
+	@Test
+	public void setThemeAndRecreate__baseThemeChanged_applyThemeAndRecreateActivity() {
 		themeUtils.setThemeAndRecreate(activity, "pref_theme_base");
 		verify(activity).setTheme(anyInt());
 		verify(activity).recreate();
 	}
 
-	@Test public void setThemeAndRecreate__primaryThemeChanged_applyThemeAndRecreateActivity() {
+	@Test
+	public void setThemeAndRecreate__primaryThemeChanged_applyThemeAndRecreateActivity() {
 		themeUtils.setThemeAndRecreate(activity, "pref_theme_primary");
 		verify(activity).setTheme(anyInt());
 		verify(activity).recreate();
 	}
 
-	@Test public void setThemeAndRecreate__noThemeChanged_notApplyThemeToActivity() {
+	@Test
+	public void setThemeAndRecreate__noThemeChanged_notApplyThemeToActivity() {
 		themeUtils.setThemeAndRecreate(activity, "no_theme_changed");
 		verify(activity, never()).setTheme(anyInt());
 		verify(activity, never()).recreate();

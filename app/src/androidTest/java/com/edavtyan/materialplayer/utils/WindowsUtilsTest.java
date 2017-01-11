@@ -23,11 +23,13 @@ import static org.mockito.Mockito.when;
 @SdkSuppress(minSdkVersion = 21)
 @TargetApi(21)
 public class WindowsUtilsTest extends BaseTest {
-	@Test public void constructor_private() throws NoSuchMethodException {
+	@Test
+	public void constructor_private() throws NoSuchMethodException {
 		assertConstructor(WindowUtils.class.getDeclaredConstructor()).isPrivate();
 	}
 
-	@Test public void makeStatusBarTransparent_setStatusBarVisibilityAndColor() {
+	@Test
+	public void makeStatusBarTransparent_setStatusBarVisibilityAndColor() {
 		View decorView = new View(context);
 		Window window = mock(Window.class);
 		when(window.getDecorView()).thenReturn(decorView);
@@ -40,12 +42,14 @@ public class WindowsUtilsTest extends BaseTest {
 		verify(window).setStatusBarColor(Color.TRANSPARENT);
 	}
 
-	@Test public void isPortrait_portrait_true() {
+	@Test
+	public void isPortrait_portrait_true() {
 		setOrientation(Configuration.ORIENTATION_PORTRAIT);
 		assertThat(WindowUtils.isPortrait(context)).isTrue();
 	}
 
-	@Test public void isPortrait_landscape_false() {
+	@Test
+	public void isPortrait_landscape_false() {
 		setOrientation(Configuration.ORIENTATION_LANDSCAPE);
 		assertThat(WindowUtils.isPortrait(context)).isFalse();
 	}

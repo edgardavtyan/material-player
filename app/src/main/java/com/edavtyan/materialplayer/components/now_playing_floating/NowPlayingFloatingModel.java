@@ -50,7 +50,8 @@ public class NowPlayingFloatingModel
 		return service.getPlayer().getCurrentTrack();
 	}
 
-	@Override public Bitmap getNowPlayingTrackArt() {
+	@Override
+	public Bitmap getNowPlayingTrackArt() {
 		return albumArtProvider.load(getNowPlayingTrack());
 	}
 
@@ -78,7 +79,8 @@ public class NowPlayingFloatingModel
 	public void onServiceDisconnected(ComponentName name) {
 	}
 
-	@Override public void onNewTrack() {
+	@Override
+	public void onNewTrack() {
 		if (onNewTrackListener != null) {
 			onNewTrackListener.onNewTrack();
 		}

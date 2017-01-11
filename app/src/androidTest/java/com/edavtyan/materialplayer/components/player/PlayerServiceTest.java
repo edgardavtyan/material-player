@@ -31,7 +31,8 @@ public class PlayerServiceTest extends BaseTest {
 	private Notification notification;
 	private PlayerNotificationPresenter notificationPresenter;
 
-	@Override public void beforeEach() {
+	@Override
+	public void beforeEach() {
 		super.beforeEach();
 
 		notification = mock(Notification.class);
@@ -61,25 +62,30 @@ public class PlayerServiceTest extends BaseTest {
 		}
 	}
 
-	@Test public void onBind_returnPlayerBinder() {
+	@Test
+	public void onBind_returnPlayerBinder() {
 		assertThat(playerService.onBind(null)).isInstanceOf(PlayerService.PlayerBinder.class);
 	}
 
-	@Test public void onCreate_setPlayerFromFactory() {
+	@Test
+	public void onCreate_setPlayerFromFactory() {
 		playerService.onCreate();
 		assertThat(playerService.getPlayer()).isSameAs(player);
 	}
 
-	@Test public void onStartCommand_startForeground() {
+	@Test
+	public void onStartCommand_startForeground() {
 		playerService.onStartCommand(null, 0, 0);
 		verify(playerService).startForeground(0, notification);
 	}
 
-	@Test public void onStartCommand_returnStartNotSticky() {
+	@Test
+	public void onStartCommand_returnStartNotSticky() {
 		assertThat(playerService.onStartCommand(null, 0, 0)).isEqualTo(Service.START_NOT_STICKY);
 	}
 
-	@Test public void onDestroy_destroyPresenter() {
+	@Test
+	public void onDestroy_destroyPresenter() {
 		playerService.onCreate();
 		playerService.onDestroy();
 		verify(notificationPresenter).onDestroy();
