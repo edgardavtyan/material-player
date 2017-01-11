@@ -10,7 +10,7 @@ public class ConstructorAssert<T> extends AbstractAssert<ConstructorAssert<T>, C
 		super(actual, selfType);
 	}
 
-	public static <T> ConstructorAssert<T> assertConstructor(Constructor<T> actual) {
+	public static <T> ConstructorAssert<T> assertThatConstructor(Constructor<T> actual) {
 		return new ConstructorAssert<>(actual, ConstructorAssert.class);
 	}
 

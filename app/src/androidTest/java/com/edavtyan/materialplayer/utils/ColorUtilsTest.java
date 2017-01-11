@@ -2,14 +2,14 @@ package com.edavtyan.materialplayer.utils;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ConstructorAssert.assertConstructor;
+import static com.edavtyan.materialplayer.testlib.asertions.ConstructorAssert.assertThatConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
 public class ColorUtilsTest {
 	@Test
 	public void constructor_private() throws NoSuchMethodException {
-		assertConstructor(ColorUtils.class.getDeclaredConstructor()).isPrivate();
+		assertThatConstructor(ColorUtils.class.getDeclaredConstructor()).isPrivate();
 	}
 
 	@Test

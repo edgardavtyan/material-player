@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import java.util.Locale;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ConstructorAssert.assertConstructor;
+import static com.edavtyan.materialplayer.testlib.asertions.ConstructorAssert.assertThatConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 public class WindowsUtilsTest extends BaseTest {
 	@Test
 	public void constructor_private() throws NoSuchMethodException {
-		assertConstructor(WindowUtils.class.getDeclaredConstructor()).isPrivate();
+		assertThatConstructor(WindowUtils.class.getDeclaredConstructor()).isPrivate();
 	}
 
 	@Test
