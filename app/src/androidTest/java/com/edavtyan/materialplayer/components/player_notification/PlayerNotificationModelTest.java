@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
-import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
@@ -93,7 +93,7 @@ public class PlayerNotificationModelTest extends BaseTest {
 
 	@Test
 	public void onNewTrack_listenerNotSet_notThrowException() {
-		assertToNotThrowNPE(model::onNewTrack);
+		assertThatNPENotThrown(model::onNewTrack);
 	}
 
 	@Test
@@ -114,6 +114,6 @@ public class PlayerNotificationModelTest extends BaseTest {
 
 	@Test
 	public void onPlayPause_listenerNotSet_notThrowException() {
-		assertToNotThrowNPE(model::onPlayPause);
+		assertThatNPENotThrown(model::onPlayPause);
 	}
 }

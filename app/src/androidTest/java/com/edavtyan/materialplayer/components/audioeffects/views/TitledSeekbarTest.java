@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
@@ -51,12 +51,12 @@ public class TitledSeekbarTest extends BaseTest {
 
 	@Test
 	public void not_throw_npe_if_listener_not_set_when_progress_changed() {
-		assertToNotThrowNPE(() -> titledSeekbar.onProgressChanged(seekbarView, 0, true));
+		assertThatNPENotThrown(() -> titledSeekbar.onProgressChanged(seekbarView, 0, true));
 	}
 
 	@Test
 	public void not_throw_npe_if_listener_not_set_when_seekbar_stops_tracking() {
-		assertToNotThrowNPE(() -> titledSeekbar.onStopTrackingTouch(seekbarView));
+		assertThatNPENotThrown(() -> titledSeekbar.onStopTrackingTouch(seekbarView));
 	}
 
 	@Test

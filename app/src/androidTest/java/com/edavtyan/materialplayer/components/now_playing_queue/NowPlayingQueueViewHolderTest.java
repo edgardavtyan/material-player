@@ -17,7 +17,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertToNotThrowNPE;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -77,7 +77,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 	@Test
 	public void onClick_listenerNotSet_notThrowNPE() {
-		assertToNotThrowNPE(() -> holder.onClick(null));
+		assertThatNPENotThrown(() -> holder.onClick(null));
 	}
 
 	@Test
@@ -90,7 +90,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 	@Test
 	public void onMenuItemClick_listenerNotSet_notThrowNPE() {
-		assertToNotThrowNPE(() -> holder.onMenuItemClick(null));
+		assertThatNPENotThrown(() -> holder.onMenuItemClick(null));
 	}
 
 	@Test
