@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.testlib.tests;
 
+import android.app.Instrumentation;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.v7.view.ContextThemeWrapper;
@@ -27,10 +28,12 @@ import static org.mockito.Mockito.when;
 public class BaseTest {
 	protected ContextThemeWrapper context;
 	protected App app;
+	protected Instrumentation instrumentation;
 
 	@Before
 	public void beforeEach() {
-		Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+		instrumentation = InstrumentationRegistry.getInstrumentation();
+		Context appContext = instrumentation.getTargetContext();
 		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
 		app = mock(App.class, CALLS_REAL_METHODS);
 		when(context.getApplicationContext()).thenReturn(app);
@@ -42,7 +45,7 @@ public class BaseTest {
 	}
 
 	protected void runOnUiThread(Runnable runnable) {
-		InstrumentationRegistry.getInstrumentation().runOnMainSync(runnable);
+		instrumentation.runOnMainSync(runnable);
 	}
 
 	protected byte[] getResourceAsByteArray(String resName) throws IOException {
