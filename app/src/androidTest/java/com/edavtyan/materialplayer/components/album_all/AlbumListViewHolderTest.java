@@ -13,7 +13,6 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertImageView;
 import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -45,18 +44,18 @@ public class AlbumListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void set_fallback_image_when_given_null_path() {
+	public void setArt_nullPath_setFallbackImage() {
 		runOnUiThread(() -> holder.setArt(null));
 		ImageViewAssert.assertThatImageView(itemView, R.id.art).hasDrawableWithId(R.drawable.fallback_cover);
 	}
 
 	@Test
-	public void not_throw_npe_if_click_listener_not_set() {
+	public void onClick_clickListenerNotSet_notThrowNPE() {
 		assertThatNPENotThrown(() -> holder.onClick(null));
 	}
 
 	@Test
-	public void raise_click_listener_when_clicked() {
+	public void onClick_clickListenerSet_raiseClickListener() {
 		OnHolderClickListener listener = mock(OnHolderClickListener.class);
 		holder.setOnHolderClickListener(listener);
 		holder.onClick(null);
@@ -64,18 +63,18 @@ public class AlbumListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void not_throw_npe_if_menu_click_listener_not_set() {
+	public void onMenuItemClick_menuClickListenerNotSet_notThrowNPE() {
 		assertThatNPENotThrown(() -> holder.onMenuItemClick(null));
 	}
 
 	@Test
-	public void raise_menu_click_listener_when_add_to_playlist_menu_item_clicked() {
+	public void onMenuItemClick_addToPlaylistClicked_raiseCorrespondingListener() {
 		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(R.id.menu_addToPlaylist);
 		verify(listener).onMenuAddToPlaylistClick(holder);
 	}
 
 	@Test
-	public void not_raise_menu_click_listener_when_other_menu_item_clicked() {
+	public void onMenuItemClick_otherMenuItemClicked_notRaiseListener() {
 		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(-1);
 		verifyZeroInteractions(listener);
 	}

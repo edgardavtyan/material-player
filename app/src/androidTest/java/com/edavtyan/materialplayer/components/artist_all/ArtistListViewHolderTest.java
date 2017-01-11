@@ -11,7 +11,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertImageView;
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
@@ -65,10 +65,6 @@ public class ArtistListViewHolderTest extends BaseTest {
 
 	@Test
 	public void setOnHolderClickListener_listenerNotSet_notThrowException() {
-		try {
-			holder.onClick(mock(View.class));
-		} catch (NullPointerException e) {
-			fail("Exception should not be thrown if listener not set");
-		}
+		assertThatNPENotThrown(() -> holder.onClick(mock(View.class)));
 	}
 }

@@ -13,6 +13,7 @@ import org.mockito.InOrder;
 
 import java.util.List;
 
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.any;
@@ -291,10 +292,6 @@ public class PlayerTest extends BaseTest {
 
 	@Test
 	public void onPrepared_OnNewTrackListenerNotSet_exceptionNotThrown() {
-		try {
-			player.onPrepared();
-		} catch (NullPointerException e) {
-			fail("OnNewTrackListener should not throw exception if not set");
-		}
+		assertThatNPENotThrown(player::onPrepared);
 	}
 }

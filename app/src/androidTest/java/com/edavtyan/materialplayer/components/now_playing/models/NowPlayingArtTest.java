@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertImageView;
+import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;

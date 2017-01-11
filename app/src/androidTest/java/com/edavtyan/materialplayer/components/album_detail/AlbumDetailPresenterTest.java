@@ -31,8 +31,9 @@ public class AlbumDetailPresenterTest extends BaseTest {
 		album.setTitle("title");
 		album.setArtistTitle("artist");
 		album.setTracksCount(9);
-		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(model.getAlbum()).thenReturn(album);
+
+		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(model.getAlbumArt()).thenReturn(art);
 
 		presenter.onCreate();

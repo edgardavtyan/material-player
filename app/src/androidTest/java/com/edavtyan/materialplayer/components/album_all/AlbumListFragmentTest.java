@@ -70,7 +70,7 @@ public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
 	}
 
 	@Test
-	public void notify_adapter_data_changed() {
+	public void notifyDataSetChanged_notifyAdapter() {
 		fragment.onCreate(null);
 		fragment.notifyDataSetChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();

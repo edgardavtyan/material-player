@@ -59,43 +59,43 @@ public class NowPlayingActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void bind_presenter_when_created() {
+	public void onCreate_bindPresenter() {
 		verify(presenter).bind();
 	}
 
 	@Test
-	public void unbind_presenter_when_destroyed() {
+	public void onDestroy_unbindPresenter() {
 		activity.onDestroy();
 		verify(presenter).unbind();
 	}
 
 	@Test
-	public void return_correct_toolbar_title() {
+	public void getToolbarTitleStringId_returnCorrectStringId() {
 		assertThat(activity.getToolbarTitleStringId()).isEqualTo(R.string.nowplaying_toolbar_title);
 	}
 
 	@Test
-	public void return_art() {
+	public void getArt_returnArtFromFactory() {
 		assertThat(activity.getArt()).isSameAs(art);
 	}
 
 	@Test
-	public void return_controls() {
+	public void getControls_returnControlsFromFactory() {
 		assertThat(activity.getControls()).isSameAs(controls);
 	}
 
 	@Test
-	public void return_info() {
+	public void getInfo_returnInfoFromFactory() {
 		assertThat(activity.getInfo()).isSameAs(info);
 	}
 
 	@Test
-	public void return_seekbar() {
+	public void getSeekbar_returnSeekbarFromFactory() {
 		assertThat(activity.getSeekbar()).isSameAs(seekbar);
 	}
 
 	@Test
-	public void navigate_to_playlist_screen() {
+	public void goToPlaylistScreen_callNavigator() {
 		activity.gotoPlaylistScreen();
 		verify(navigator).gotoNowPlayingQueue();
 	}

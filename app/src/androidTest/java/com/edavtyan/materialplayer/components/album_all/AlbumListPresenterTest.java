@@ -44,7 +44,7 @@ public class AlbumListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void getItemCount_albumsCountFromModel() {
+	public void getItemCount_retrurnAlbumsCountFromModel() {
 		when(model.getAlbumsCount()).thenReturn(10);
 		assertThat(presenter.getItemCount()).isEqualTo(model.getAlbumsCount());
 	}

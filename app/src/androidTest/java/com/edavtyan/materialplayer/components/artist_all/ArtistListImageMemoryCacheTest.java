@@ -25,14 +25,14 @@ public class ArtistListImageMemoryCacheTest extends BaseTest {
 	}
 
 	@Test
-	public void exists_valueExists_returnTrue() {
+	public void exists_valueExists_true() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		memoryCache.put("key2", art);
 		assertThat(memoryCache.exists("key2")).isTrue();
 	}
 
 	@Test
-	public void exists_valueNotExists_returnFalse() {
+	public void exists_valueNotExists_false() {
 		assertThat(memoryCache.exists("key3")).isFalse();
 	}
 }

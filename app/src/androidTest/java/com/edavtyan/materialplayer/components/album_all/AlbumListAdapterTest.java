@@ -29,17 +29,17 @@ public class AlbumListAdapterTest extends BaseTest {
 	}
 
 	@Test
-	public void return_correct_normal_layout_id() {
+	public void getNormalLayoutId_returnCorrectLayout() {
 		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_album);
 	}
 
 	@Test
-	public void return_correct_compact_layout_id() {
+	public void getCompactLayoutId_returnCorrectLayout() {
 		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_album_compact);
 	}
 
 	@Test
-	public void onCreateViewHolder_inflateViewAsViewType() {
+	public void onCreateViewHolder_inflateWithCorrectViewAndParams() {
 		LayoutInflater inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 

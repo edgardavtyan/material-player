@@ -18,7 +18,6 @@ import org.mockito.ArgumentCaptor;
 import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
 import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -48,8 +47,8 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		when(binder.getService()).thenReturn(service);
 	}
 
-	@SuppressWarnings("WrongConstant")
 	@Test
+	@SuppressWarnings("WrongConstant")
 	public void bind_bindMusicPlayerService() {
 		model.bind();
 
@@ -108,8 +107,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		verify(player).setOnNewTrackListener(model);
 	}
 
-	// For coverage
-	@Test
+	@Test // For coverage
 	public void onServiceDisconnected_notDoAnything() {
 		model.onServiceDisconnected(null);
 	}

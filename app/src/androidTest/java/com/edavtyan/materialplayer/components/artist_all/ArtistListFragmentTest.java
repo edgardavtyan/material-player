@@ -70,7 +70,7 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 	}
 
 	@Test
-	public void notifyDataSetChanged_callAdapter() {
+	public void notifyDataSetChanged_notifyAdapter() {
 		fragment.onCreate(null);
 		fragment.notifyDataSetChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();

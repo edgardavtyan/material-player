@@ -10,8 +10,8 @@ import org.mockito.InOrder;
 
 import java.io.IOException;
 
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -116,11 +116,7 @@ public class StandardAudioEngineTests extends BaseTest {
 
 	@Test
 	public void onPrepared_listenerNotSet_notThrowNPE() {
-		try {
-			audioEngine.onPrepared(player);
-		} catch (NullPointerException e) {
-			fail("Expected NPE to not be thrown");
-		}
+		assertThatNPENotThrown(() -> audioEngine.onPrepared(player));
 	}
 
 	@Test
@@ -133,10 +129,6 @@ public class StandardAudioEngineTests extends BaseTest {
 
 	@Test
 	public void onCompletion_listenerNotSet_notThrowNPE() {
-		try {
-			audioEngine.onCompletion(player);
-		} catch (NullPointerException e) {
-			fail("Expected NPE to not be thrown");
-		}
+		assertThatNPENotThrown(() -> audioEngine.onCompletion(player));
 	}
 }

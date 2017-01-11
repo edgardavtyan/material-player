@@ -50,12 +50,12 @@ public class AlbumListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void getAlbumAtIndex_dataNotUpdated_null() {
+	public void getAlbumAtIndex_modelNotUpdated_null() {
 		assertThat(model.getAlbumAtIndex(0)).isNull();
 	}
 
 	@Test
-	public void getAlbumAtIndex_dataUpdated_correctAlbum() {
+	public void getAlbumAtIndex_modelUpdated_correctAlbum() {
 		Album album = mock(Album.class);
 		when(albums.get(2)).thenReturn(album);
 
@@ -65,12 +65,12 @@ public class AlbumListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void getAlbumsCount_dataNotUpdated_zero() {
+	public void getAlbumsCount_modelNotUpdated_zero() {
 		assertThat(model.getAlbumsCount()).isEqualTo(0);
 	}
 
 	@Test
-	public void getAlbumsCount_dataUpdated_correctCount() {
+	public void getAlbumsCount_modelUpdated_correctCount() {
 		when(albums.size()).thenReturn(10);
 
 		model.update();
@@ -79,7 +79,7 @@ public class AlbumListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void addToPlaylist_bindServiceCalled_addTracksToPlayer() {
+	public void addToPlaylist_serviceBound_addTracksToPlayer() {
 		PlayerMvp.Player player = mock(PlayerMvp.Player.class);
 		when(service.getPlayer()).thenReturn(player);
 
@@ -90,7 +90,7 @@ public class AlbumListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void addToPlaylist_bindServiceNotCalled_throwException() {
+	public void addToPlaylist_serviceNotBound_throwException() {
 		assertThatThrownBy(() -> model.addToPlaylist(0))
 				.isInstanceOf(IllegalStateException.class);
 	}

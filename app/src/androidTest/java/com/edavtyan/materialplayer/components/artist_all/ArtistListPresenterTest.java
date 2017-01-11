@@ -32,7 +32,7 @@ public class ArtistListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void bindViewHolder_setAllHolderTitleAndInfo() {
+	public void bindViewHolder_setHolderTitleAndInfo() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		artist.setAlbumsCount(3);
@@ -63,7 +63,7 @@ public class ArtistListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void getItemCount_countFromModel() {
+	public void getItemCount_returnCountFromModel() {
 		when(model.getArtistCount()).thenReturn(5);
 		assertThat(presenter.getItemCount()).isEqualTo(5);
 	}

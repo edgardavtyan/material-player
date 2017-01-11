@@ -40,7 +40,8 @@ public class PlayerPrefsTest extends BaseTest {
 	@Test
 	public void saveShuffleMode_saveGivenValueInSharedPrefs() {
 		playerPrefs.saveShuffleMode(ShuffleMode.ENABLED);
-		assertThat(basePrefs.getEnum("player_shuffle", ShuffleMode.DISABLED)).isEqualTo(ShuffleMode.ENABLED);
+		assertThat(basePrefs.getEnum("player_shuffle", ShuffleMode.DISABLED))
+				.isEqualTo(ShuffleMode.ENABLED);
 	}
 
 	@Test
@@ -57,6 +58,7 @@ public class PlayerPrefsTest extends BaseTest {
 	@Test
 	public void saveRepeatMode_saveGivenValueInSharedPrefs() {
 		playerPrefs.saveRepeatMode(RepeatMode.REPEAT_ALL);
-		assertThat(basePrefs.getEnum("player_repeat", RepeatMode.DISABLED)).isEqualTo(RepeatMode.REPEAT_ALL);
+		assertThat(basePrefs.getEnum("player_repeat", RepeatMode.DISABLED))
+				.isEqualTo(RepeatMode.REPEAT_ALL);
 	}
 }

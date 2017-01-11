@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingQueueViewHolderTest extends BaseTest {
@@ -95,23 +96,23 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 	@Test
 	public void onMenuClickListener_removeItemClicked_onRemoveFromQueueClickCalled() {
-		OnMenuClickListener listener = mock(OnMenuClickListener.class);
-		holder.setOnMenuClickListener(listener);
-		MenuItem menuItem = mock(MenuItem.class);
-		when(menuItem.getItemId()).thenReturn(R.id.menu_remove);
-
-		holder.onMenuItemClick(menuItem);
-
+		OnMenuClickListener listener = createOnMenuClickListenerWithId(R.id.menu_remove);
 		verify(listener).onRemoveFromQueueClick(holder);
 	}
 
 	@Test
-	public void onMenuClickListener_wrongId_notDoAnything() {
+	public void onMenuClickListener_wrongId_doNothing() {
+		OnMenuClickListener listener = createOnMenuClickListenerWithId(-1);
+		verifyZeroInteractions(listener);
+	}
+
+	private OnMenuClickListener createOnMenuClickListenerWithId(int menu_remove) {
 		OnMenuClickListener listener = mock(OnMenuClickListener.class);
 		holder.setOnMenuClickListener(listener);
 		MenuItem menuItem = mock(MenuItem.class);
-		when(menuItem.getItemId()).thenReturn(-1);
+		when(menuItem.getItemId()).thenReturn(menu_remove);
 
 		holder.onMenuItemClick(menuItem);
+		return listener;
 	}
 }

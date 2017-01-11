@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import android.annotation.SuppressLint;
 import android.media.audiofx.Equalizer;
 import android.preference.PreferenceManager;
 
@@ -31,7 +30,6 @@ public class StandardEqualizerTest extends BaseTest {
 		equalizer = new StandardEqualizer(baseEqualizer, prefs);
 	}
 
-	@SuppressLint("CommitPrefEdits")
 	@Override
 	public void afterEach() {
 		super.afterEach();

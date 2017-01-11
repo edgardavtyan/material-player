@@ -7,8 +7,8 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
+import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -66,22 +66,12 @@ public class EqualizerViewTest extends BaseTest {
 	}
 
 	@Test
-	public void onBandChanged_listenerNotSet_notThrowException() {
-		try {
-			equalizerView.onBandChanged(null);
-		} catch (NullPointerException e) {
-			fail("Expected onBandChanged to not throw NullPointerException"
-				 + "if OnBandChangedListener not set");
-		}
+	public void onBandChanged_listenerNotSet_notThrowNPE() {
+		assertThatNPENotThrown(() -> equalizerView.onBandChanged(null));
 	}
 
 	@Test
-	public void onBandStopTracking_listenerNotSet_notThrowException() {
-		try {
-			equalizerView.onBandStopTracking();
-		} catch (NullPointerException e) {
-			fail("Expected onBandStopTracking to not throw NullPointerException"
-				 + "if OnBandChangedListener not set");
-		}
+	public void onBandStopTracking_listenerNotSet_notThrowNPE() {
+		assertThatNPENotThrown(equalizerView::onBandStopTracking);
 	}
 }
