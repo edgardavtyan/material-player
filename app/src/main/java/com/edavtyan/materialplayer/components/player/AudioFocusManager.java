@@ -4,8 +4,10 @@ import android.content.Context;
 import android.media.AudioManager;
 
 public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListener {
+
 	private final PlayerMvp.Player player;
 	private final AudioManager audioManager;
+	private boolean isPlaying;
 	private int currentFocus;
 
 	public AudioFocusManager(Context context, PlayerMvp.Player player) {
@@ -31,6 +33,7 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 			}
 
 			currentFocus = AudioManager.AUDIOFOCUS_GAIN;
+			isPlaying = player.isPlaying();
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
 			onAudioFocusLoss();
 			currentFocus = AudioManager.AUDIOFOCUS_LOSS;
@@ -44,7 +47,10 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 	}
 
 	private void onAudioFocusGainAfterTransientLoss() {
-		player.play();
+		if (isPlaying) {
+			player.play();
+			isPlaying = true;
+		}
 	}
 
 	private void onAudioFocusGainAfterTransientLossCanDuck() {
@@ -52,7 +58,10 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 	}
 
 	private void onAudioFocusLoss() {
-		player.pause();
+		if (isPlaying) {
+			player.pause();
+			isPlaying = false;
+		}
 	}
 
 	private void onAudioFocusLossTransient() {
