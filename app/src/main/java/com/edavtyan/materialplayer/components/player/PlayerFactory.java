@@ -51,109 +51,109 @@ public class PlayerFactory extends BaseFactory {
 		super(context);
 	}
 
-	public FastForwardReceiver provideFastForwardReceiver() {
+	public FastForwardReceiver getFastForwardReceiver() {
 		if (fastForwardReceiver == null)
-			fastForwardReceiver = new FastForwardReceiver(providePlayer());
+			fastForwardReceiver = new FastForwardReceiver(getPlayer());
 		return fastForwardReceiver;
 	}
 
-	public RewindReceiver provideRewindReceiver() {
+	public RewindReceiver getRewindReceiver() {
 		if (rewindReceiver == null)
-			rewindReceiver = new RewindReceiver(providePlayer());
+			rewindReceiver = new RewindReceiver(getPlayer());
 		return rewindReceiver;
 	}
 
-	public PlayPauseReceiver providePlayPauseReceiver() {
+	public PlayPauseReceiver getPlayPauseReceiver() {
 		if (playPauseReceiver == null)
-			playPauseReceiver = new PlayPauseReceiver(providePlayer());
+			playPauseReceiver = new PlayPauseReceiver(getPlayer());
 		return playPauseReceiver;
 	}
 
-	public AudioBecomingNoisyReceiver provideAudioBecomingNoisyReceiver() {
+	public AudioBecomingNoisyReceiver getAudioBecomingNoisyReceiver() {
 		if (audioBecomingNoisyReceiver == null)
-			audioBecomingNoisyReceiver = new AudioBecomingNoisyReceiver(providePlayer());
+			audioBecomingNoisyReceiver = new AudioBecomingNoisyReceiver(getPlayer());
 		return audioBecomingNoisyReceiver;
 	}
 
-	public PlayerMvp.Player providePlayer() {
+	public PlayerMvp.Player getPlayer() {
 		if (player == null)
 			player = new Player(
-					provideAudioEngine(),
-					provideQueue(),
-					providePlayerPrefs());
+					getAudioEngine(),
+					getQueue(),
+					getPlayerPrefs());
 		return player;
 	}
 
-	public PlayerPrefs providePlayerPrefs() {
+	public PlayerPrefs getPlayerPrefs() {
 		if (playerPrefs == null)
-			playerPrefs = new PlayerPrefs(providePrefs());
+			playerPrefs = new PlayerPrefs(getPrefs());
 		return playerPrefs;
 	}
 
-	public Equalizer provideEqualizer() {
+	public Equalizer getEqualizer() {
 		if (equalizer == null)
 			equalizer = new StandardEqualizer(
-					new android.media.audiofx.Equalizer(0, providePlayer().getSessionId()),
-					provideEqualizerPrefs());
+					new android.media.audiofx.Equalizer(0, getPlayer().getSessionId()),
+					getEqualizerPrefs());
 		return equalizer;
 	}
 
-	public EqualizerPrefs provideEqualizerPrefs() {
+	public EqualizerPrefs getEqualizerPrefs() {
 		if (equalizerPrefs == null)
-			equalizerPrefs = new EqualizerPrefs(providePrefs());
+			equalizerPrefs = new EqualizerPrefs(getPrefs());
 		return equalizerPrefs;
 	}
 
-	public BassBoost provideBassBoost() {
+	public BassBoost getBassBoost() {
 		if (bassBoost == null)
 			bassBoost = new StandardBassBoost(
-					new android.media.audiofx.BassBoost(0, providePlayer().getSessionId()),
-					provideBassBoostPrefs());
+					new android.media.audiofx.BassBoost(0, getPlayer().getSessionId()),
+					getBassBoostPrefs());
 		return bassBoost;
 	}
 
-	public BassBoostPrefs provideBassBoostPrefs() {
+	public BassBoostPrefs getBassBoostPrefs() {
 		if (bassBoostPrefs == null)
-			bassBoostPrefs = new BassBoostPrefs(providePrefs());
+			bassBoostPrefs = new BassBoostPrefs(getPrefs());
 		return bassBoostPrefs;
 	}
 
-	public Surround provideSurround() {
+	public Surround getSurround() {
 		if (surround == null)
 			surround = new StandardSurround(
-					new Virtualizer(0, providePlayer().getSessionId()),
-					provideSurroundPrefs());
+					new Virtualizer(0, getPlayer().getSessionId()),
+					getSurroundPrefs());
 		return surround;
 	}
 
-	public SurroundPrefs provideSurroundPrefs() {
+	public SurroundPrefs getSurroundPrefs() {
 		if (surroundPrefs == null)
-			surroundPrefs = new SurroundPrefs(providePrefs());
+			surroundPrefs = new SurroundPrefs(getPrefs());
 		return surroundPrefs;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.KITKAT)
-	public Amplifier provideAmplifier() {
+	public Amplifier getAmplifier() {
 		if (amplifier == null)
 			amplifier = new StandardAmplifier(
-					new LoudnessEnhancer(providePlayer().getSessionId()),
-					new AmplifierPrefs(providePrefs()));
+					new LoudnessEnhancer(getPlayer().getSessionId()),
+					new AmplifierPrefs(getPrefs()));
 		return amplifier;
 	}
 
-	public List<Track> provideQueueList() {
+	public List<Track> getQueueList() {
 		if (queueList == null)
 			queueList = new ArrayList<>();
 		return queueList;
 	}
 
-	public PlayerMvp.Queue provideQueue() {
+	public PlayerMvp.Queue getQueue() {
 		if (queue == null)
-			queue = new Queue(provideQueueList());
+			queue = new Queue(getQueueList());
 		return queue;
 	}
 
-	public PlayerMvp.AudioEngine provideAudioEngine() {
+	public PlayerMvp.AudioEngine getAudioEngine() {
 		if (audioEngine == null)
 			audioEngine = new StandardAudioEngine(new MediaPlayer());
 		return audioEngine;

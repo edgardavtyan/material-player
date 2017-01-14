@@ -15,19 +15,19 @@ public class AudioEffectsFactory extends BaseFactory {
 		this.view = view;
 	}
 
-	public AudioEffectsMvp.View provideView() {
+	public AudioEffectsMvp.View getView() {
 		return view;
 	}
 
-	public AudioEffectsMvp.Presenter providePresenter() {
+	public AudioEffectsMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new AudioEffectsPresenter(provideModel(), provideView());
+			presenter = new AudioEffectsPresenter(getModel(), getView());
 		return presenter;
 	}
 
-	public AudioEffectsMvp.Model provideModel() {
+	public AudioEffectsMvp.Model getModel() {
 		if (model == null)
-			model = new AudioEffectsModel(provideContext());
+			model = new AudioEffectsModel(getContext());
 		return model;
 	}
 }

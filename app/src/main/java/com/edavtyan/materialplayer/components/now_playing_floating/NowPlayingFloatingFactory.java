@@ -14,19 +14,19 @@ public class NowPlayingFloatingFactory extends BaseFactory {
 		this.view = view;
 	}
 
-	public NowPlayingFloatingMvp.View provideView() {
+	public NowPlayingFloatingMvp.View getView() {
 		return view;
 	}
 
-	public NowPlayingFloatingMvp.Model provideModel() {
+	public NowPlayingFloatingMvp.Model getModel() {
 		if (model == null)
-			model = new NowPlayingFloatingModel(provideContext(), provideArtProvider());
+			model = new NowPlayingFloatingModel(getContext(), getArtProvider());
 		return model;
 	}
 
-	public NowPlayingFloatingMvp.Presenter providePresenter() {
+	public NowPlayingFloatingMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new NowPlayingFloatingPresenter(provideModel(), provideView());
+			presenter = new NowPlayingFloatingPresenter(getModel(), getView());
 		return presenter;
 	}
 }

@@ -11,9 +11,9 @@ public class ListFactory extends BaseFactory {
 		super(context);
 	}
 
-	public CompactListPref provideCompactListPref() {
+	public CompactListPref getCompactListPref() {
 		if (compactListPref == null)
-			compactListPref = new CompactListPref(provideContext(), providePrefs());
+			compactListPref = new CompactListPref(getContext(), getPrefs());
 		return compactListPref;
 	}
 }

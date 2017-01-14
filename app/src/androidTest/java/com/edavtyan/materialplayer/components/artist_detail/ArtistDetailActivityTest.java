@@ -46,9 +46,9 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			adapter = mock(AlbumListAdapter.class);
 			navigator = mock(Navigator.class);
 
-			when(factory.providePresenter()).thenReturn(presenter);
-			when(factory.provideAdapter()).thenReturn(adapter);
-			when(factory.provideNavigator()).thenReturn(navigator);
+			when(factory.getPresenter()).thenReturn(presenter);
+			when(factory.getAdapter()).thenReturn(adapter);
+			when(factory.getNavigator()).thenReturn(navigator);
 
 			activity = spy(startActivity(TestArtistDetailActivity.class));
 			doNothing().when(activity).baseOnStop();

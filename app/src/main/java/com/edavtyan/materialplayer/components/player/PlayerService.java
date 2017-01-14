@@ -58,13 +58,13 @@ public class PlayerService extends Service {
 
 		App app = (App) getApplicationContext();
 		PlayerFactory playerFactory = app.getPlayerFactory(this);
-		player = playerFactory.providePlayer();
-		equalizer = playerFactory.provideEqualizer();
-		bassBoost = playerFactory.provideBassBoost();
-		surround = playerFactory.provideSurround();
+		player = playerFactory.getPlayer();
+		equalizer = playerFactory.getEqualizer();
+		bassBoost = playerFactory.getBassBoost();
+		surround = playerFactory.getSurround();
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			amplifier = playerFactory.provideAmplifier();
+			amplifier = playerFactory.getAmplifier();
 		}
 
 		audioFocusManager = new AudioFocusManager(this, player);
@@ -73,10 +73,10 @@ public class PlayerService extends Service {
 		mediaSessionManager = new MediaSessionManager(this, player);
 		mediaSessionManager.init();
 
-		BroadcastReceiver rewindReceiver = playerFactory.provideRewindReceiver();
-		BroadcastReceiver playPauseReceiver = playerFactory.providePlayPauseReceiver();
-		BroadcastReceiver fastForwardReceiver = playerFactory.provideFastForwardReceiver();
-		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.provideAudioBecomingNoisyReceiver();
+		BroadcastReceiver rewindReceiver = playerFactory.getRewindReceiver();
+		BroadcastReceiver playPauseReceiver = playerFactory.getPlayPauseReceiver();
+		BroadcastReceiver fastForwardReceiver = playerFactory.getFastForwardReceiver();
+		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.getAudioBecomingNoisyReceiver();
 
 		registerReceiver(rewindReceiver, new IntentFilter(ACTION_REWIND));
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
@@ -85,8 +85,8 @@ public class PlayerService extends Service {
 
 		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
 				this, R.layout.notification, R.layout.notification_big);
-		notification = notificationFactory.provideNotification();
-		presenter = notificationFactory.providePresenter();
+		notification = notificationFactory.getNotification();
+		presenter = notificationFactory.getPresenter();
 		presenter.onCreate();
 	}
 

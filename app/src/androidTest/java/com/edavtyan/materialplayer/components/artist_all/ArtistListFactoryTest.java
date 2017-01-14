@@ -18,14 +18,14 @@ public class ArtistListFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(albumListFactory::provideAdapter);
-		testFactoryMethod(albumListFactory::provideModel);
-		testFactoryMethod(albumListFactory::provideView);
-		testFactoryMethod(albumListFactory::providePresenter);
-		testFactoryMethod(albumListFactory::provideArtistDB);
-		testFactoryMethod(albumListFactory::provideImageLoader);
-		testFactoryMethod(albumListFactory::provideLastfmApi);
-		testFactoryMethod(albumListFactory::provideFileStorage);
-		testFactoryMethod(albumListFactory::provideMemoryCache);
+		testFactoryMethod(albumListFactory::getAdapter);
+		testFactoryMethod(albumListFactory::getModel);
+		testFactoryMethod(albumListFactory::getView);
+		testFactoryMethod(albumListFactory::getPresenter);
+		testFactoryMethod(albumListFactory::getArtistDB);
+		testFactoryMethod(albumListFactory::getImageLoader);
+		testFactoryMethod(albumListFactory::getLastfmApi);
+		testFactoryMethod(albumListFactory::getFileStorage);
+		testFactoryMethod(albumListFactory::getMemoryCache);
 	}
 }

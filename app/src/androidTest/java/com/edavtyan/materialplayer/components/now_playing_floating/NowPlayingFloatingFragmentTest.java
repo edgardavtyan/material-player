@@ -46,9 +46,9 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest<NowPlayingFloat
 		TestableBitmapFactory bitmapFactory = mock(TestableBitmapFactory.class);
 
 		NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);
-		when(factory.providePresenter()).thenReturn(presenter);
-		when(factory.provideNavigator()).thenReturn(navigator);
-		when(factory.provideBitmapFactory()).thenReturn(bitmapFactory);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getNavigator()).thenReturn(navigator);
+		when(factory.getBitmapFactory()).thenReturn(bitmapFactory);
 		when(app.getNowPlayingFloatingFactory(any(), any())).thenReturn(factory);
 
 		infoView = spy(new TextView(context));

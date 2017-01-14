@@ -27,63 +27,63 @@ public class NowPlayingFactory extends BaseFactory {
 		this.view = view;
 	}
 
-	public NowPlayingActivity provideActivity() {
+	public NowPlayingActivity getActivity() {
 		return activity;
 	}
 
-	public NowPlayingMvp.View provideView() {
+	public NowPlayingMvp.View getView() {
 		return view;
 	}
 
-	public NowPlayingMvp.Presenter providePresenter() {
+	public NowPlayingMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new NowPlayingPresenter(provideModel(), provideView());
+			presenter = new NowPlayingPresenter(getModel(), getView());
 		return presenter;
 	}
 
-	public NowPlayingMvp.Model provideModel() {
+	public NowPlayingMvp.Model getModel() {
 		if (model == null)
-			model = new NowPlayingModel(provideActivity(), provideArtProvider());
+			model = new NowPlayingModel(getActivity(), getArtProvider());
 		return model;
 	}
 
-	public NowPlayingMvp.View.Controls provideControls() {
+	public NowPlayingMvp.View.Controls getControls() {
 		if (controls == null)
 			controls = new NowPlayingControls(
-					provideActivity(),
-					providePresenter(),
-					provideAppColors());
+					getActivity(),
+					getPresenter(),
+					getAppColors());
 
 		return controls;
 	}
 
-	public NowPlayingMvp.View.Info provideInfo() {
+	public NowPlayingMvp.View.Info getInfo() {
 		if (info == null)
-			info = new NowPlayingInfo(provideActivity());
+			info = new NowPlayingInfo(getActivity());
 		return info;
 	}
 
-	public NowPlayingMvp.View.Art provideArt() {
+	public NowPlayingMvp.View.Art getArt() {
 		if (art == null)
-			art = new NowPlayingArt(provideActivity());
+			art = new NowPlayingArt(getActivity());
 		return art;
 	}
 
-	public NowPlayingMvp.View.Seekbar provideSeekbar() {
+	public NowPlayingMvp.View.Seekbar getSeekbar() {
 		if (seekbar == null)
-			seekbar = new NowPlayingSeekbar(provideActivity(), providePresenter());
+			seekbar = new NowPlayingSeekbar(getActivity(), getPresenter());
 		return seekbar;
 	}
 
-	public NowPlayingMvp.View.Fab provideFab() {
+	public NowPlayingMvp.View.Fab getFab() {
 		if (fab == null)
-			fab = new NowPlayingFab(provideActivity(), providePresenter());
+			fab = new NowPlayingFab(getActivity(), getPresenter());
 		return fab;
 	}
 
-	public AppColors provideAppColors() {
+	public AppColors getAppColors() {
 		if (appColors == null)
-			appColors = new AppColors(provideActivity());
+			appColors = new AppColors(getActivity());
 		return appColors;
 	}
 }

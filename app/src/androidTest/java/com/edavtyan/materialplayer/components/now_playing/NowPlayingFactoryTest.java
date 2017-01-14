@@ -37,15 +37,15 @@ public class NowPlayingFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(nowPlayingFactory::provideModel);
-		testFactoryMethod(nowPlayingFactory::provideView);
-		testFactoryMethod(nowPlayingFactory::providePresenter);
-		testFactoryMethod(nowPlayingFactory::provideActivity);
-		testFactoryMethod(nowPlayingFactory::provideAppColors);
-		testFactoryMethod(nowPlayingFactory::provideArt);
-		testFactoryMethod(nowPlayingFactory::provideControls);
-		testFactoryMethod(nowPlayingFactory::provideFab);
-		testFactoryMethod(nowPlayingFactory::provideInfo);
-		testFactoryMethod(nowPlayingFactory::provideSeekbar);
+		testFactoryMethod(nowPlayingFactory::getModel);
+		testFactoryMethod(nowPlayingFactory::getView);
+		testFactoryMethod(nowPlayingFactory::getPresenter);
+		testFactoryMethod(nowPlayingFactory::getActivity);
+		testFactoryMethod(nowPlayingFactory::getAppColors);
+		testFactoryMethod(nowPlayingFactory::getArt);
+		testFactoryMethod(nowPlayingFactory::getControls);
+		testFactoryMethod(nowPlayingFactory::getFab);
+		testFactoryMethod(nowPlayingFactory::getInfo);
+		testFactoryMethod(nowPlayingFactory::getSeekbar);
 	}
 }

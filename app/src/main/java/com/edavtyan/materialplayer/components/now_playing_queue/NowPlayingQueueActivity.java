@@ -22,8 +22,8 @@ public class NowPlayingQueueActivity
 
 		App app = ((App) getApplicationContext());
 		NowPlayingQueueFactory factory = app.getPlaylistFactory(this, this);
-		presenter = factory.providePresenter();
-		adapter = factory.provideAdapter();
+		presenter = factory.getPresenter();
+		adapter = factory.getAdapter();
 
 		RecyclerView list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));

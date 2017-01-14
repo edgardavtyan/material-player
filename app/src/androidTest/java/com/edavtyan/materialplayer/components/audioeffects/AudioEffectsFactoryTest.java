@@ -18,8 +18,8 @@ public class AudioEffectsFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(factory::provideView);
-		testFactoryMethod(factory::providePresenter);
-		testFactoryMethod(factory::provideModel);
+		testFactoryMethod(factory::getView);
+		testFactoryMethod(factory::getPresenter);
+		testFactoryMethod(factory::getModel);
 	}
 }

@@ -21,44 +21,44 @@ public class AlbumDetailFactory extends ListFactory {
 		this.albumId = albumId;
 	}
 
-	public AlbumDetailMvp.View provideView() {
+	public AlbumDetailMvp.View getView() {
 		return view;
 	}
 
-	public AlbumDetailMvp.Model provideModel() {
+	public AlbumDetailMvp.Model getModel() {
 		if (model == null)
 			model = new AlbumDetailModel(
-					provideContext(),
-					provideAlbumDB(),
-					provideTrackDB(),
-					provideArtProvider(),
-					provideCompactListPref(),
+					getContext(),
+					getAlbumDB(),
+					getTrackDB(),
+					getArtProvider(),
+					getCompactListPref(),
 					albumId);
 
 		return model;
 	}
 
-	public AlbumDB provideAlbumDB() {
+	public AlbumDB getAlbumDB() {
 		if (albumDB == null)
-			albumDB = new AlbumDB(provideContext());
+			albumDB = new AlbumDB(getContext());
 		return albumDB;
 	}
 
-	public TrackDB provideTrackDB() {
+	public TrackDB getTrackDB() {
 		if (trackDB == null)
-			trackDB = new TrackDB(provideContext());
+			trackDB = new TrackDB(getContext());
 		return trackDB;
 	}
 
-	public AlbumDetailAdapter provideAdapter() {
+	public AlbumDetailAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new AlbumDetailAdapter(provideContext(), providePresenter());
+			adapter = new AlbumDetailAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 
-	public AlbumDetailMvp.Presenter providePresenter() {
+	public AlbumDetailMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new AlbumDetailPresenter(provideModel(), provideView());
+			presenter = new AlbumDetailPresenter(getModel(), getView());
 		return presenter;
 	}
 }

@@ -28,69 +28,69 @@ public class ArtistDetailFactory extends ListFactory {
 		this.artistTitle = artistTitle;
 	}
 
-	public ArtistDetailMvp.Model provideModel() {
+	public ArtistDetailMvp.Model getModel() {
 		if (model == null) {
-			AlbumDB albumDB = new AlbumDB(provideContext());
-			TrackDB trackDB = new TrackDB(provideContext());
-			ArtistDB artistDB = new ArtistDB(provideContext());
+			AlbumDB albumDB = new AlbumDB(getContext());
+			TrackDB trackDB = new TrackDB(getContext());
+			ArtistDB artistDB = new ArtistDB(getContext());
 			model = new ArtistDetailModel(
-					provideContext(),
+					getContext(),
 					artistDB,
 					albumDB,
 					trackDB,
-					provideCompactListPref(),
-					provideArtistArtProvider(),
+					getCompactListPref(),
+					getArtistArtLoader(),
 					artistTitle);
 		}
 
 		return model;
 	}
 
-	public ArtistDetailMvp.View provideView() {
+	public ArtistDetailMvp.View getView() {
 		return view;
 	}
 
-	public ArtistDetailMvp.Presenter providePresenter() {
+	public ArtistDetailMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new ArtistDetailPresenter(provideModel(), provideView());
+			presenter = new ArtistDetailPresenter(getModel(), getView());
 		return presenter;
 	}
 
-	public AlbumListAdapter provideAdapter() {
+	public AlbumListAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new AlbumListAdapter(provideContext(), providePresenter());
+			adapter = new AlbumListAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 
-	public ArtistDetailImageLoader provideArtistArtProvider() {
+	public ArtistDetailImageLoader getArtistArtLoader() {
 		if (artistDetailImageLoader == null)
 			artistDetailImageLoader = new ArtistDetailImageLoader(
-					providerWebClient(),
-					provideLastfmApi(),
-					provideBitmapFactory(),
-					provideFileStorage(),
-					provideMemoryCache());
+					getWebClient(),
+					getLastfmApi(),
+					getBitmapFactory(),
+					getFileStorage(),
+					getMemoryCache());
 		return artistDetailImageLoader;
 	}
 
-	public ArtistDetailImageFileStorage provideFileStorage() {
+	public ArtistDetailImageFileStorage getFileStorage() {
 		if (fileStorage == null)
 			fileStorage = new ArtistDetailImageFileStorage();
 		return fileStorage;
 	}
 
-	public ArtistDetailImageMemoryCache provideMemoryCache() {
+	public ArtistDetailImageMemoryCache getMemoryCache() {
 		if (memoryCache == null)
 			memoryCache = new ArtistDetailImageMemoryCache();
 		return memoryCache;
 	}
 
-	public LastfmApi provideLastfmApi() {
+	public LastfmApi getLastfmApi() {
 		if (lastfmApi == null)
 			lastfmApi = new LastfmApi(
-					providerWebClient(),
+					getWebClient(),
 					new LastfmArtistInfoFileStorage(),
-					provideContext().getString(R.string.lastfm_api_key));
+					getContext().getString(R.string.lastfm_api_key));
 		return lastfmApi;
 	}
 }

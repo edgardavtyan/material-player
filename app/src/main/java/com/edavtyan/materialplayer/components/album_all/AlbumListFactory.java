@@ -19,41 +19,41 @@ public class AlbumListFactory extends ListFactory {
 		this.view = view;
 	}
 
-	public AlbumListMvp.View provideView() {
+	public AlbumListMvp.View getView() {
 		return view;
 	}
 
-	public AlbumListMvp.Model provideModel() {
+	public AlbumListMvp.Model getModel() {
 		if (model == null)
 			model = new AlbumListModel(
-					provideContext(),
-					provideAlbumDB(),
-					provideTrackDB(),
-					provideCompactListPref());
+					getContext(),
+					getAlbumDB(),
+					getTrackDB(),
+					getCompactListPref());
 		return model;
 	}
 
-	public AlbumDB provideAlbumDB() {
+	public AlbumDB getAlbumDB() {
 		if (albumDB == null)
-			albumDB = new AlbumDB(provideContext());
+			albumDB = new AlbumDB(getContext());
 		return albumDB;
 	}
 
-	public TrackDB provideTrackDB() {
+	public TrackDB getTrackDB() {
 		if (trackDB == null)
-			trackDB = new TrackDB(provideContext());
+			trackDB = new TrackDB(getContext());
 		return trackDB;
 	}
 
-	public AlbumListMvp.Presenter providePresenter() {
+	public AlbumListMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new AlbumListPresenter(provideModel(), provideView());
+			presenter = new AlbumListPresenter(getModel(), getView());
 		return presenter;
 	}
 
-	public AlbumListAdapter provideAdapter() {
+	public AlbumListAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new AlbumListAdapter(provideContext(), providePresenter());
+			adapter = new AlbumListAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 }

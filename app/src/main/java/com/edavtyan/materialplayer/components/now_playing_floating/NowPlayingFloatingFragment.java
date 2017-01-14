@@ -33,8 +33,8 @@ public class NowPlayingFloatingFragment
 		super.onCreate(savedInstanceState);
 
 		NowPlayingFloatingFactory factory = app.getNowPlayingFloatingFactory(getContext(), this);
-		navigator = factory.provideNavigator();
-		presenter = factory.providePresenter();
+		navigator = factory.getNavigator();
+		presenter = factory.getPresenter();
 	}
 
 	@Nullable

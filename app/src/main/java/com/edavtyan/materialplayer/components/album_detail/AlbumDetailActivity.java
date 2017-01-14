@@ -37,9 +37,9 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		super.onCreate(savedInstanceState);
 
 		AlbumDetailFactory factory = getDI();
-		adapter = factory.provideAdapter();
-		init(factory.provideAdapter(), factory.providePresenter());
-		navigator = factory.provideNavigator();
+		adapter = factory.getAdapter();
+		init(factory.getAdapter(), factory.getPresenter());
+		navigator = factory.getNavigator();
 	}
 
 	@Override

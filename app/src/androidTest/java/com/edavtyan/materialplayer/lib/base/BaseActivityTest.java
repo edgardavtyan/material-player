@@ -52,9 +52,9 @@ public class BaseActivityTest extends ActivityTest {
 		prefs = mock(AdvancedSharedPrefs.class);
 		navigator = mock(Navigator.class);
 		BaseFactory factory = mock(BaseFactory.class);
-		when(factory.provideThemeUtils()).thenReturn(themeUtils);
-		when(factory.providePrefs()).thenReturn(prefs);
-		when(factory.provideNavigator()).thenReturn(navigator);
+		when(factory.getThemeUtils()).thenReturn(themeUtils);
+		when(factory.getPrefs()).thenReturn(prefs);
+		when(factory.getNavigator()).thenReturn(navigator);
 		when(app.getBaseFactory(activity)).thenReturn(factory);
 
 		menuInflater = mock(MenuInflater.class);

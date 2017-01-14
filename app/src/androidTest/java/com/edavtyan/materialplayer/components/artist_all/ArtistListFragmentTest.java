@@ -31,9 +31,9 @@ public class ArtistListFragmentTest extends FragmentTest<ArtistListFragment> {
 		navigator = mock(Navigator.class);
 
 		ArtistListFactory factory = mock(ArtistListFactory.class);
-		when(factory.provideAdapter()).thenReturn(adapter);
-		when(factory.providePresenter()).thenReturn(presenter);
-		when(factory.provideNavigator()).thenReturn(navigator);
+		when(factory.getAdapter()).thenReturn(adapter);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getNavigator()).thenReturn(navigator);
 		when(app.getArtistListDI(any(), any())).thenReturn(factory);
 	}
 

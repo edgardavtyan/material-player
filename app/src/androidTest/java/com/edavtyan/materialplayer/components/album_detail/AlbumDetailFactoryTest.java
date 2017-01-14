@@ -17,11 +17,11 @@ public class AlbumDetailFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(albumDetailFactory::providePresenter);
-		testFactoryMethod(albumDetailFactory::provideAdapter);
-		testFactoryMethod(albumDetailFactory::provideView);
-		testFactoryMethod(albumDetailFactory::provideModel);
-		testFactoryMethod(albumDetailFactory::provideAlbumDB);
-		testFactoryMethod(albumDetailFactory::provideTrackDB);
+		testFactoryMethod(albumDetailFactory::getPresenter);
+		testFactoryMethod(albumDetailFactory::getAdapter);
+		testFactoryMethod(albumDetailFactory::getView);
+		testFactoryMethod(albumDetailFactory::getModel);
+		testFactoryMethod(albumDetailFactory::getAlbumDB);
+		testFactoryMethod(albumDetailFactory::getTrackDB);
 	}
 }

@@ -16,14 +16,14 @@ public class PlayerNotificationFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(factory::provideNotification);
-		testFactoryMethod(factory::provideNormalRemoteViews);
-		testFactoryMethod(factory::provideBigRemoteViews);
-		testFactoryMethod(factory::provideBaseManager);
-		testFactoryMethod(factory::provideManager);
-		testFactoryMethod(factory::provideBuilder);
-		testFactoryMethod(factory::provideModel);
-		testFactoryMethod(factory::providePresenter);
-		testFactoryMethod(factory::providePendingIntents);
+		testFactoryMethod(factory::getNotification);
+		testFactoryMethod(factory::getNormalRemoteViews);
+		testFactoryMethod(factory::getBigRemoteViews);
+		testFactoryMethod(factory::getBaseManager);
+		testFactoryMethod(factory::getManager);
+		testFactoryMethod(factory::getBuilder);
+		testFactoryMethod(factory::getModel);
+		testFactoryMethod(factory::getPresenter);
+		testFactoryMethod(factory::getPendingIntents);
 	}
 }

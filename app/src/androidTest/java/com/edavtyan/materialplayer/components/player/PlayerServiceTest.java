@@ -41,12 +41,12 @@ public class PlayerServiceTest extends BaseTest {
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);
 		PlayerNotificationFactory notificationFactory = mock(PlayerNotificationFactory.class);
-		when(notificationFactory.provideNotification()).thenReturn(nowPlayingNotification);
-		when(notificationFactory.providePresenter()).thenReturn(notificationPresenter);
+		when(notificationFactory.getNotification()).thenReturn(nowPlayingNotification);
+		when(notificationFactory.getPresenter()).thenReturn(notificationPresenter);
 
 		player = mock(PlayerMvp.Player.class);
 		PlayerFactory playerFactory = mock(PlayerFactory.class);
-		when(playerFactory.providePlayer()).thenReturn(player);
+		when(playerFactory.getPlayer()).thenReturn(player);
 
 		App app = mock(App.class);
 		when(app.getPlayerFactory(any())).thenReturn(playerFactory);

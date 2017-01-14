@@ -32,70 +32,70 @@ public class BaseFactory {
 		this.context = context;
 	}
 
-	public Context provideContext() {
+	public Context getContext() {
 		return context;
 	}
 
-	public Navigator provideNavigator() {
+	public Navigator getNavigator() {
 		if (navigator == null) navigator = new Navigator(context);
 		return navigator;
 	}
 
-	public AlbumArtProvider provideArtProvider() {
+	public AlbumArtProvider getArtProvider() {
 		if (albumArtProvider == null)
 			albumArtProvider = new AlbumArtProvider(
-					provideArtFileStorage(),
-					provideArtMemoryCache(),
-					provideMusicTagReader(),
-					provideBitmapFactory());
+					getArtFileStorage(),
+					getArtMemoryCache(),
+					getMusicTagReader(),
+					getBitmapFactory());
 		return albumArtProvider;
 	}
 
-	public AlbumArtReader provideMusicTagReader() {
+	public AlbumArtReader getMusicTagReader() {
 		if (albumArtReader == null)
 			albumArtReader = new AlbumArtReader(new MediaMetadataRetriever());
 		return albumArtReader;
 	}
 
-	public AlbumArtMemoryCache provideArtMemoryCache() {
+	public AlbumArtMemoryCache getArtMemoryCache() {
 		if (memoryCache == null)
 			memoryCache = new AlbumArtMemoryCache();
 		return memoryCache;
 	}
 
-	public AlbumArtFileStorage provideArtFileStorage() {
+	public AlbumArtFileStorage getArtFileStorage() {
 		if (dataStorage == null)
 			dataStorage = new AlbumArtFileStorage();
 		return dataStorage;
 	}
 
-	public WebClient providerWebClient() {
+	public WebClient getWebClient() {
 		if (webClient == null)
 			webClient = new WebClient();
 		return webClient;
 	}
 
-	public TestableBitmapFactory provideBitmapFactory() {
+	public TestableBitmapFactory getBitmapFactory() {
 		if (bitmapFactory == null)
 			bitmapFactory = new TestableBitmapFactory();
 		return bitmapFactory;
 	}
 
-	public ThemeUtils provideThemeUtils() {
+	public ThemeUtils getThemeUtils() {
 		if (themeUtils == null)
-			themeUtils = new ThemeUtils(providePrefs());
+			themeUtils = new ThemeUtils(getPrefs());
 		return themeUtils;
 	}
 
-	public AdvancedSharedPrefs providePrefs() {
+	public AdvancedSharedPrefs getPrefs() {
 		if (prefs == null)
-			prefs = new AdvancedSharedPrefs(provideBasePrefs());
+			prefs = new AdvancedSharedPrefs(getBasePrefs());
 		return prefs;
 	}
 
-	public SharedPreferences provideBasePrefs() {
+	public SharedPreferences getBasePrefs() {
 		if (basePrefs == null)
-			basePrefs = PreferenceManager.getDefaultSharedPreferences(provideContext());
+			basePrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 		return basePrefs;
 	}
 }

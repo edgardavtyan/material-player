@@ -29,63 +29,63 @@ public class PlayerNotificationFactory extends BaseFactory {
 		this.bigLayoutId = bigLayoutId;
 	}
 
-	public PlayerNotificationMvp.View provideNotification() {
+	public PlayerNotificationMvp.View getNotification() {
 		if (notification == null)
 			notification = new PlayerNotification(
-					provideContext(),
-					provideNormalRemoteViews(),
-					provideBigRemoteViews(),
-					provideManager(),
-					provideBuilder(),
-					providePendingIntents());
+					getContext(),
+					getNormalRemoteViews(),
+					getBigRemoteViews(),
+					getManager(),
+					getBuilder(),
+					getPendingIntents());
 		return notification;
 	}
 
-	public PendingIntents providePendingIntents() {
+	public PendingIntents getPendingIntents() {
 		if (pendingIntents == null)
-			pendingIntents = new PendingIntents(provideContext());
+			pendingIntents = new PendingIntents(getContext());
 		return pendingIntents;
 	}
 
-	public AdvancedRemoteViews provideNormalRemoteViews() {
+	public AdvancedRemoteViews getNormalRemoteViews() {
 		if (remoteViews == null)
-			remoteViews = new AdvancedRemoteViews(provideContext(), normalLayoutId);
+			remoteViews = new AdvancedRemoteViews(getContext(), normalLayoutId);
 		return remoteViews;
 	}
 
-	public AdvancedRemoteViews provideBigRemoteViews() {
+	public AdvancedRemoteViews getBigRemoteViews() {
 		if (bigRemoteViews == null)
-			bigRemoteViews = new AdvancedRemoteViews(provideContext(), bigLayoutId);
+			bigRemoteViews = new AdvancedRemoteViews(getContext(), bigLayoutId);
 		return bigRemoteViews;
 	}
 
-	public TestableNotificationManager provideManager() {
+	public TestableNotificationManager getManager() {
 		if (manager == null)
-			manager = new TestableNotificationManager(provideBaseManager());
+			manager = new TestableNotificationManager(getBaseManager());
 		return manager;
 	}
 
-	public NotificationManagerCompat provideBaseManager() {
+	public NotificationManagerCompat getBaseManager() {
 		if (baseManager == null)
-			baseManager = NotificationManagerCompat.from(provideContext());
+			baseManager = NotificationManagerCompat.from(getContext());
 		return baseManager;
 	}
 
-	public NotificationCompat.Builder provideBuilder() {
+	public NotificationCompat.Builder getBuilder() {
 		if (builder == null)
-			builder = new NotificationCompat.Builder(provideContext());
+			builder = new NotificationCompat.Builder(getContext());
 		return builder;
 	}
 
-	public PlayerNotificationMvp.Model provideModel() {
+	public PlayerNotificationMvp.Model getModel() {
 		if (model == null)
-			model = new PlayerNotificationModel(provideContext(), provideArtProvider());
+			model = new PlayerNotificationModel(getContext(), getArtProvider());
 		return model;
 	}
 
-	public PlayerNotificationMvp.Presenter providePresenter() {
+	public PlayerNotificationMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new PlayerNotificationPresenter(provideModel(), provideNotification());
+			presenter = new PlayerNotificationPresenter(getModel(), getNotification());
 		return presenter;
 	}
 }

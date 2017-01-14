@@ -34,8 +34,8 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 			presenter = mock(NowPlayingQueueMvp.Presenter.class);
 
 			NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
-			when(factory.provideAdapter()).thenReturn(adapter);
-			when(factory.providePresenter()).thenReturn(presenter);
+			when(factory.getAdapter()).thenReturn(adapter);
+			when(factory.getPresenter()).thenReturn(presenter);
 			when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
 
 			activity = spy(startActivity(NowPlayingQueueActivity.class));

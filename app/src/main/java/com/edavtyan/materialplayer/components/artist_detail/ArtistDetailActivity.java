@@ -44,9 +44,9 @@ public class ArtistDetailActivity
 		super.onCreate(savedInstanceState);
 
 		ArtistDetailFactory factory = getDI();
-		adapter = factory.provideAdapter();
-		init(adapter, factory.providePresenter());
-		navigator = factory.provideNavigator();
+		adapter = factory.getAdapter();
+		init(adapter, factory.getPresenter());
+		navigator = factory.getNavigator();
 	}
 
 	@Override

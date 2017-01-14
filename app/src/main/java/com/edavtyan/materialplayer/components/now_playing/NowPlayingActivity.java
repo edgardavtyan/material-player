@@ -24,13 +24,13 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 		super.onCreate(savedInstanceState);
 
 		NowPlayingFactory factory = getFactory();
-		presenter = factory.providePresenter();
-		controls = factory.provideControls();
-		info = factory.provideInfo();
-		art = factory.provideArt();
-		seekbar = factory.provideSeekbar();
-		navigator = factory.provideNavigator();
-		factory.provideFab();
+		presenter = factory.getPresenter();
+		controls = factory.getControls();
+		info = factory.getInfo();
+		art = factory.getArt();
+		seekbar = factory.getSeekbar();
+		navigator = factory.getNavigator();
+		factory.getFab();
 
 		presenter.bind();
 	}

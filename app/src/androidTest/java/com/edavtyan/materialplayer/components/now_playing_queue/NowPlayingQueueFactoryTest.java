@@ -18,9 +18,9 @@ public class NowPlayingQueueFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(nowPlayingQueueFactory::provideModel);
-		testFactoryMethod(nowPlayingQueueFactory::provideView);
-		testFactoryMethod(nowPlayingQueueFactory::providePresenter);
-		testFactoryMethod(nowPlayingQueueFactory::provideAdapter);
+		testFactoryMethod(nowPlayingQueueFactory::getModel);
+		testFactoryMethod(nowPlayingQueueFactory::getView);
+		testFactoryMethod(nowPlayingQueueFactory::getPresenter);
+		testFactoryMethod(nowPlayingQueueFactory::getAdapter);
 	}
 }

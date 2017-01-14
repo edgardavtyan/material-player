@@ -18,8 +18,8 @@ public class NowPlayingFloatingFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(nowPlayingFloatingFactory::provideModel);
-		testFactoryMethod(nowPlayingFloatingFactory::provideView);
-		testFactoryMethod(nowPlayingFloatingFactory::providePresenter);
+		testFactoryMethod(nowPlayingFloatingFactory::getModel);
+		testFactoryMethod(nowPlayingFloatingFactory::getView);
+		testFactoryMethod(nowPlayingFloatingFactory::getPresenter);
 	}
 }

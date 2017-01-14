@@ -46,12 +46,12 @@ public class NowPlayingActivityTest extends ActivityTest {
 			navigator = mock(Navigator.class);
 
 			factory = mock(NowPlayingFactory.class);
-			when(factory.providePresenter()).thenReturn(presenter);
-			when(factory.provideArt()).thenReturn(art);
-			when(factory.provideControls()).thenReturn(controls);
-			when(factory.provideInfo()).thenReturn(info);
-			when(factory.provideSeekbar()).thenReturn(seekbar);
-			when(factory.provideNavigator()).thenReturn(navigator);
+			when(factory.getPresenter()).thenReturn(presenter);
+			when(factory.getArt()).thenReturn(art);
+			when(factory.getControls()).thenReturn(controls);
+			when(factory.getInfo()).thenReturn(info);
+			when(factory.getSeekbar()).thenReturn(seekbar);
+			when(factory.getNavigator()).thenReturn(navigator);
 
 			activity = spy(startActivity(TestNowPlayingActivity.class));
 			doNothing().when(activity).baseOnDestroy();

@@ -33,12 +33,12 @@ public abstract class BaseActivity
 		app = (App) getApplicationContext();
 		BaseFactory factory = app.getBaseFactory(this);
 
-		themeUtils = factory.provideThemeUtils();
+		themeUtils = factory.getThemeUtils();
 		themeUtils.setTheme(this);
 
-		navigator = factory.provideNavigator();
+		navigator = factory.getNavigator();
 
-		AdvancedSharedPrefs prefs = factory.providePrefs();
+		AdvancedSharedPrefs prefs = factory.getPrefs();
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		setContentView(getLayoutId());

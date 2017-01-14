@@ -15,15 +15,15 @@ public class BaseFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(baseFactory::provideContext);
-		testFactoryMethod(baseFactory::provideNavigator);
-		testFactoryMethod(baseFactory::provideArtProvider);
-		testFactoryMethod(baseFactory::provideMusicTagReader);
-		testFactoryMethod(baseFactory::provideArtFileStorage);
-		testFactoryMethod(baseFactory::provideArtMemoryCache);
-		testFactoryMethod(baseFactory::provideBitmapFactory);
-		testFactoryMethod(baseFactory::provideThemeUtils);
-		testFactoryMethod(baseFactory::providePrefs);
-		testFactoryMethod(baseFactory::provideBasePrefs);
+		testFactoryMethod(baseFactory::getContext);
+		testFactoryMethod(baseFactory::getNavigator);
+		testFactoryMethod(baseFactory::getArtProvider);
+		testFactoryMethod(baseFactory::getMusicTagReader);
+		testFactoryMethod(baseFactory::getArtFileStorage);
+		testFactoryMethod(baseFactory::getArtMemoryCache);
+		testFactoryMethod(baseFactory::getBitmapFactory);
+		testFactoryMethod(baseFactory::getThemeUtils);
+		testFactoryMethod(baseFactory::getPrefs);
+		testFactoryMethod(baseFactory::getBasePrefs);
 	}
 }

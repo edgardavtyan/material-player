@@ -15,20 +15,20 @@ public class PlayerFactoryTest extends FactoryTest {
 
 	@Test
 	public void factoryTest() throws Exception {
-		testFactoryMethod(playerFactory::providePlayer);
-		testFactoryMethod(playerFactory::providePlayerPrefs);
-		testFactoryMethod(playerFactory::provideRewindReceiver);
-		testFactoryMethod(playerFactory::providePlayPauseReceiver);
-		testFactoryMethod(playerFactory::provideFastForwardReceiver);
-		testFactoryMethod(playerFactory::provideQueue);
-		testFactoryMethod(playerFactory::provideQueueList);
-		testFactoryMethod(playerFactory::provideAudioEngine);
-		testFactoryMethod(playerFactory::provideEqualizer);
-		testFactoryMethod(playerFactory::provideEqualizerPrefs);
-		testFactoryMethod(playerFactory::provideBassBoost);
-		testFactoryMethod(playerFactory::provideBassBoostPrefs);
-		testFactoryMethod(playerFactory::provideSurround);
-		testFactoryMethod(playerFactory::provideSurroundPrefs);
-		testFactoryMethod(playerFactory::provideAmplifier);
+		testFactoryMethod(playerFactory::getPlayer);
+		testFactoryMethod(playerFactory::getPlayerPrefs);
+		testFactoryMethod(playerFactory::getRewindReceiver);
+		testFactoryMethod(playerFactory::getPlayPauseReceiver);
+		testFactoryMethod(playerFactory::getFastForwardReceiver);
+		testFactoryMethod(playerFactory::getQueue);
+		testFactoryMethod(playerFactory::getQueueList);
+		testFactoryMethod(playerFactory::getAudioEngine);
+		testFactoryMethod(playerFactory::getEqualizer);
+		testFactoryMethod(playerFactory::getEqualizerPrefs);
+		testFactoryMethod(playerFactory::getBassBoost);
+		testFactoryMethod(playerFactory::getBassBoostPrefs);
+		testFactoryMethod(playerFactory::getSurround);
+		testFactoryMethod(playerFactory::getSurroundPrefs);
+		testFactoryMethod(playerFactory::getAmplifier);
 	}
 }

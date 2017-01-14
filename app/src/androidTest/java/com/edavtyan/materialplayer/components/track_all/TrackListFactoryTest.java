@@ -18,10 +18,10 @@ public class TrackListFactoryTest extends FactoryTest {
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(trackListFactory::provideModel);
-		testFactoryMethod(trackListFactory::provideView);
-		testFactoryMethod(trackListFactory::providePresenter);
-		testFactoryMethod(trackListFactory::provideAdapter);
-		testFactoryMethod(trackListFactory::provideTrackDB);
+		testFactoryMethod(trackListFactory::getModel);
+		testFactoryMethod(trackListFactory::getView);
+		testFactoryMethod(trackListFactory::getPresenter);
+		testFactoryMethod(trackListFactory::getAdapter);
+		testFactoryMethod(trackListFactory::getTrackDB);
 	}
 }

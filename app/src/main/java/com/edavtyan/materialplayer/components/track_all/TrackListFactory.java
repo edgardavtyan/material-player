@@ -17,31 +17,31 @@ public class TrackListFactory extends ListFactory {
 		this.view = view;
 	}
 
-	public TrackListMvp.View provideView() {
+	public TrackListMvp.View getView() {
 		return view;
 	}
 
-	public TrackListMvp.Model provideModel() {
+	public TrackListMvp.Model getModel() {
 		if (model == null)
-			model = new TrackListModel(provideContext(), provideTrackDB(), provideCompactListPref());
+			model = new TrackListModel(getContext(), getTrackDB(), getCompactListPref());
 		return model;
 	}
 
-	public TrackDB provideTrackDB() {
+	public TrackDB getTrackDB() {
 		if (trackDB == null)
-			trackDB = new TrackDB(provideContext());
+			trackDB = new TrackDB(getContext());
 		return trackDB;
 	}
 
-	public TrackListMvp.Presenter providePresenter() {
+	public TrackListMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new TrackListPresenter(provideView(), provideModel());
+			presenter = new TrackListPresenter(getView(), getModel());
 		return presenter;
 	}
 
-	public TrackListAdapter provideAdapter() {
+	public TrackListAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new TrackListAdapter(provideContext(), providePresenter());
+			adapter = new TrackListAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 }

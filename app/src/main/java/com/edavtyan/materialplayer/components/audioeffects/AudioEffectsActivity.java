@@ -47,7 +47,7 @@ public class AudioEffectsActivity
 
 		App app = (App) getApplicationContext();
 		AudioEffectsFactory factory = app.getAudioEffectsFactory(this, this);
-		presenter = factory.providePresenter();
+		presenter = factory.getPresenter();
 		presenter.onCreate();
 	}
 

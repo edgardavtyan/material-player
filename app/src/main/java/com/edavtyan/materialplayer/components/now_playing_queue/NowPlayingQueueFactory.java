@@ -15,25 +15,25 @@ public class NowPlayingQueueFactory extends ListFactory {
 		this.view = view;
 	}
 
-	public NowPlayingQueueMvp.View provideView() {
+	public NowPlayingQueueMvp.View getView() {
 		return view;
 	}
 
-	public NowPlayingQueueMvp.Model provideModel() {
+	public NowPlayingQueueMvp.Model getModel() {
 		if (model == null)
-			model = new NowPlayingQueueModel(provideContext(), provideCompactListPref());
+			model = new NowPlayingQueueModel(getContext(), getCompactListPref());
 		return model;
 	}
 
-	public NowPlayingQueueMvp.Presenter providePresenter() {
+	public NowPlayingQueueMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new NowPlayingQueuePresenter(provideModel(), provideView());
+			presenter = new NowPlayingQueuePresenter(getModel(), getView());
 		return presenter;
 	}
 
-	public NowPlayingQueueAdapter provideAdapter() {
+	public NowPlayingQueueAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new NowPlayingQueueAdapter(provideContext(), providePresenter());
+			adapter = new NowPlayingQueueAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 }

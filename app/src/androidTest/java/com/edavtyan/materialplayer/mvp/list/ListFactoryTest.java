@@ -16,6 +16,6 @@ public class ListFactoryTest extends FactoryTest {
 
 	@Test
 	public void test_factory_methods() throws Exception {
-		testFactoryMethod(factory::provideCompactListPref);
+		testFactoryMethod(factory::getCompactListPref);
 	}
 }

@@ -24,64 +24,64 @@ public class ArtistListFactory extends ListFactory {
 		this.view = view;
 	}
 
-	public ArtistListMvp.View provideView() {
+	public ArtistListMvp.View getView() {
 		return view;
 	}
 
-	public ArtistListMvp.Model provideModel() {
+	public ArtistListMvp.Model getModel() {
 		if (model == null)
 			model = new ArtistListModel(
-					provideContext(),
-					provideArtistDB(),
-					provideImageLoader(),
-					provideCompactListPref());
+					getContext(),
+					getArtistDB(),
+					getImageLoader(),
+					getCompactListPref());
 		return model;
 	}
 
-	public ArtistDB provideArtistDB() {
-		if (artistDB == null) artistDB = new ArtistDB(provideContext());
+	public ArtistDB getArtistDB() {
+		if (artistDB == null) artistDB = new ArtistDB(getContext());
 		return artistDB;
 	}
 
-	public ArtistListMvp.Presenter providePresenter() {
+	public ArtistListMvp.Presenter getPresenter() {
 		if (presenter == null)
-			presenter = new ArtistListPresenter(provideModel(), provideView());
+			presenter = new ArtistListPresenter(getModel(), getView());
 		return presenter;
 	}
 
-	public ArtistListAdapter provideAdapter() {
+	public ArtistListAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new ArtistListAdapter(provideContext(), providePresenter());
+			adapter = new ArtistListAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 
-	public LastfmApi provideLastfmApi() {
+	public LastfmApi getLastfmApi() {
 		if (lastfmApi == null)
 			lastfmApi = new LastfmApi(
-					providerWebClient(),
+					getWebClient(),
 					new LastfmArtistInfoFileStorage(),
-					provideContext().getString(R.string.lastfm_api_key));
+					getContext().getString(R.string.lastfm_api_key));
 		return lastfmApi;
 	}
 
-	public ArtistListImageLoader provideImageLoader() {
+	public ArtistListImageLoader getImageLoader() {
 		if (imageLoader == null)
 			imageLoader = new ArtistListImageLoader(
-					providerWebClient(),
-					provideBitmapFactory(),
-					provideLastfmApi(),
-					provideFileStorage(),
-					provideMemoryCache());
+					getWebClient(),
+					getBitmapFactory(),
+					getLastfmApi(),
+					getFileStorage(),
+					getMemoryCache());
 		return imageLoader;
 	}
 
-	public ArtistListImageFileStorage provideFileStorage() {
+	public ArtistListImageFileStorage getFileStorage() {
 		if (fileStorage == null)
 			fileStorage = new ArtistListImageFileStorage();
 		return fileStorage;
 	}
 
-	public ArtistListImageMemoryCache provideMemoryCache() {
+	public ArtistListImageMemoryCache getMemoryCache() {
 		if (memoryCache == null)
 			memoryCache = new ArtistListImageMemoryCache();
 		return memoryCache;
