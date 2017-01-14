@@ -6,8 +6,8 @@ import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
 @SuppressWarnings("unused")
 public interface AlbumListMvp {
 	interface Presenter extends ListMvp.Presenter<AlbumListViewHolder> {
-		void onHolderClick(int albumId);
-		void onAddToPlaylist(int albumId);
+		void onHolderClick(int position);
+		void onAddToPlaylist(int position);
 	}
 
 	interface Model extends ListMvp.Model {
