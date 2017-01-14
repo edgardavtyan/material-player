@@ -6,7 +6,7 @@ import android.media.AudioManager;
 public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListener {
 	private final PlayerMvp.Player player;
 	private final AudioManager audioManager;
-	private int currentState;
+	private int currentFocus;
 
 	public AudioFocusManager(Context context, PlayerMvp.Player player) {
 		this.player = player;
@@ -24,26 +24,26 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 	@Override
 	public void onAudioFocusChange(int focusChange) {
 		if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-			if (currentState == AudioManager.AUDIOFOCUS_LOSS) {
+			if (currentFocus == AudioManager.AUDIOFOCUS_LOSS) {
 				onAudioFocusGain();
-			} else if (currentState == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-				onAudioFocusGainAfterLossTransient();
-			} else if (currentState == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+			} else if (currentFocus == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+				onAudioFocusGainAfterTransientLoss();
+			} else if (currentFocus == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 				onAudioFocusGainAfterTransientLossCanDuck();
 			} else {
 				onAudioFocusGain();
 			}
 
-			currentState = AudioManager.AUDIOFOCUS_GAIN;
+			currentFocus = AudioManager.AUDIOFOCUS_GAIN;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
 			onAudioFocusLoss();
-			currentState = AudioManager.AUDIOFOCUS_LOSS;
+			currentFocus = AudioManager.AUDIOFOCUS_LOSS;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
 			onAudioFocusLossTransient();
-			currentState = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+			currentFocus = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 			onAudioFocusLossTransientCanDuck();
-			currentState = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
+			currentFocus = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 		}
 	}
 
@@ -51,7 +51,7 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 		player.play();
 	}
 
-	private void onAudioFocusGainAfterLossTransient() {
+	private void onAudioFocusGainAfterTransientLoss() {
 		player.play();
 	}
 
