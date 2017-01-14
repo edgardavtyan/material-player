@@ -24,14 +24,10 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 	@Override
 	public void onAudioFocusChange(int focusChange) {
 		if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-			if (currentFocus == AudioManager.AUDIOFOCUS_LOSS) {
-				onAudioFocusGain();
-			} else if (currentFocus == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+			if (currentFocus == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
 				onAudioFocusGainAfterTransientLoss();
 			} else if (currentFocus == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 				onAudioFocusGainAfterTransientLossCanDuck();
-			} else {
-				onAudioFocusGain();
 			}
 
 			currentFocus = AudioManager.AUDIOFOCUS_GAIN;
@@ -45,10 +41,6 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 			onAudioFocusLossTransientCanDuck();
 			currentFocus = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 		}
-	}
-
-	private void onAudioFocusGain() {
-		player.play();
 	}
 
 	private void onAudioFocusGainAfterTransientLoss() {
