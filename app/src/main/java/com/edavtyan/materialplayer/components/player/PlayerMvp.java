@@ -18,7 +18,9 @@ public interface PlayerMvp {
 
 		void setOnNewTrackListener(OnNewTrackListener listener);
 		void removeOnNewTrackListener(OnNewTrackListener listener);
+
 		void setOnPlayPauseListener(OnPlayPauseListener listener);
+		void removeOnPlayPauseListener(OnPlayPauseListener listener);
 
 		int getSessionId();
 		void addTrack(Track track);

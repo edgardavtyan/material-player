@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.now_playing;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.v7.view.ContextThemeWrapper;
 
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnNewTrackListener;
@@ -38,6 +39,7 @@ public class NowPlayingModelTest extends BaseTest {
 
 		player = mock(PlayerMvp.Player.class);
 
+		context = mock(ContextThemeWrapper.class);
 		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);
 
@@ -69,6 +71,14 @@ public class NowPlayingModelTest extends BaseTest {
 		model.bind();
 		model.unbind();
 		verify(context).unbindService(model);
+	}
+
+	@Test
+	public void unbind_removePlayerListeners() {
+		model.bind();
+		model.unbind();
+		verify(player).removeOnNewTrackListener(model);
+		verify(player).removeOnPlayPauseListener(model);
 	}
 
 	@Test

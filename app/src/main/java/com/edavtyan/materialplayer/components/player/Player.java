@@ -49,6 +49,11 @@ public class Player
 	}
 
 	@Override
+	public void removeOnPlayPauseListener(OnPlayPauseListener listener) {
+		onPlayPauseListeners.remove(listener);
+	}
+
+	@Override
 	public int getSessionId() {
 		return audioEngine.getSessionId();
 	}

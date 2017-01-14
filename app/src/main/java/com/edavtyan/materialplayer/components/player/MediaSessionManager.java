@@ -77,6 +77,7 @@ public class MediaSessionManager {
 	}
 
 	public void close() {
+		player.removeOnPlayPauseListener(playerOnPlayPauseListener);
 		mediaSession.setActive(false);
 		mediaSession.release();
 	}
