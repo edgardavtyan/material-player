@@ -34,25 +34,13 @@ public class ArtistDB {
 	}
 
 	public List<Artist> getAllArtists() {
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, null, null, KEY_TITLE);
-		List<Artist> artists = new ArrayList<>();
-
-		while (cursor.moveToNext()) {
-			artists.add(getArtistFromCursor(cursor));
-		}
-
-		return artists;
+		return getArtistsFromCursor(null, null, KEY_TITLE);
 	}
 
 	public Artist getArtistWithTitle(String artistTitle) {
 		String selection = KEY_TITLE + "=?";
 		String[] args = {artistTitle};
-
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, null);
-		cursor.moveToFirst();
-		return getArtistFromCursor(cursor);
+		return getArtistsFromCursor(selection, args, null).get(0);
 	}
 
 	private Artist getArtistFromCursor(Cursor cursor) {
@@ -62,5 +50,17 @@ public class ArtistDB {
 		artist.setAlbumsCount(cursor.getInt(INDEX_ALBUMS_COUNT));
 		artist.setTracksCount(cursor.getInt(INDEX_TRACKS_COUNT));
 		return artist;
+	}
+
+	private List<Artist> getArtistsFromCursor(String selection, String[] args, String sort) {
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+		List<Artist> artists = new ArrayList<>();
+
+		while (cursor.moveToNext()) {
+			artists.add(getArtistFromCursor(cursor));
+		}
+
+		return artists;
 	}
 }

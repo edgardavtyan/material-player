@@ -52,11 +52,7 @@ public class AlbumDB {
 	public Album getAlbumWithAlbumId(int albumId) {
 		String selection = KEY_ID + "=?";
 		String[] args = {Integer.toString(albumId)};
-
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, null);
-		cursor.moveToFirst();
-		return getAlbumFromCursor(cursor);
+		return getListOfAlbums(selection, args, null).get(0);
 	}
 
 	private Album getAlbumFromCursor(Cursor cursor) {
