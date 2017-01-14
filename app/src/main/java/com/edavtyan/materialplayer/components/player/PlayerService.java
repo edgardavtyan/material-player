@@ -33,6 +33,7 @@ public class PlayerService extends Service {
 	private PlayerNotificationMvp.View notification;
 	private PlayerNotificationMvp.Presenter presenter;
 	private AudioFocusManager audioFocusManager;
+	private MediaSessionManager mediaSessionManager;
 	private @Getter PlayerMvp.Player player;
 	private @Getter Equalizer equalizer;
 	private @Getter Surround surround;
@@ -68,6 +69,9 @@ public class PlayerService extends Service {
 		audioFocusManager = new AudioFocusManager(this, player);
 		audioFocusManager.requestFocus();
 
+		mediaSessionManager = new MediaSessionManager(this, player);
+		mediaSessionManager.init();
+
 		BroadcastReceiver rewindReceiver = playerFactory.provideRewindReceiver();
 		BroadcastReceiver playPauseReceiver = playerFactory.providePlayPauseReceiver();
 		BroadcastReceiver fastForwardReceiver = playerFactory.provideFastForwardReceiver();
@@ -88,5 +92,6 @@ public class PlayerService extends Service {
 		super.onDestroy();
 		presenter.onDestroy();
 		audioFocusManager.dropFocus();
+		mediaSessionManager.close();
 	}
 }
