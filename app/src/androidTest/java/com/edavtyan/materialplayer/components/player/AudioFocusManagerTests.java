@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
@@ -40,16 +41,19 @@ public class AudioFocusManagerTests extends BaseTest {
 	}
 
 	@Test
-	public void onAudioFocusChange_gain_playPlayer() {
+	public void onAudioFocusChange_gainAfterLossTransientAndPlayerWasPlaying_playPlayer() {
+		when(player.isPlaying()).thenReturn(true);
+		audioFocusManager.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
 		audioFocusManager.onAudioFocusChange(AudioManager.AUDIOFOCUS_GAIN);
 		verify(player).play();
 	}
 
 	@Test
-	public void onAudioFocusChange_gainAfterLossTransient_playPlayer() {
+	public void onAudioFocusChange_gainAfterLossTransientAndPlayerWasPaused_notPlayPlayer() {
+		when(player.isPlaying()).thenReturn(false);
 		audioFocusManager.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
 		audioFocusManager.onAudioFocusChange(AudioManager.AUDIOFOCUS_GAIN);
-		verify(player).play();
+		verify(player, never()).play();
 	}
 
 	@Test
@@ -60,7 +64,8 @@ public class AudioFocusManagerTests extends BaseTest {
 	}
 
 	@Test
-	public void onAudioFocusChange_loss_pausePlayer() {
+	public void onAudioFocusChange_lossAndPlayerWasPlaying_pausePlayer() {
+		when(player.isPlaying()).thenReturn(true);
 		audioFocusManager.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS);
 		verify(player).pause();
 	}

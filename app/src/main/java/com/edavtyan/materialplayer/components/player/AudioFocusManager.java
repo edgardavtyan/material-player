@@ -35,12 +35,15 @@ public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListene
 			currentFocus = AudioManager.AUDIOFOCUS_GAIN;
 			isPlaying = player.isPlaying();
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+			isPlaying = player.isPlaying();
 			onAudioFocusLoss();
 			currentFocus = AudioManager.AUDIOFOCUS_LOSS;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+			isPlaying = player.isPlaying();
 			onAudioFocusLossTransient();
 			currentFocus = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
 		} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+			isPlaying = player.isPlaying();
 			onAudioFocusLossTransientCanDuck();
 			currentFocus = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 		}
