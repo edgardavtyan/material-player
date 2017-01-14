@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
@@ -75,10 +76,12 @@ public class PlayerService extends Service {
 		BroadcastReceiver rewindReceiver = playerFactory.provideRewindReceiver();
 		BroadcastReceiver playPauseReceiver = playerFactory.providePlayPauseReceiver();
 		BroadcastReceiver fastForwardReceiver = playerFactory.provideFastForwardReceiver();
+		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.provideAudioBecomingNoisyReceiver();
 
 		registerReceiver(rewindReceiver, new IntentFilter(ACTION_REWIND));
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(fastForwardReceiver, new IntentFilter(ACTION_FAST_FORWARD));
+		registerReceiver(audioBecomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
 
 		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
 				this, R.layout.notification, R.layout.notification_big);

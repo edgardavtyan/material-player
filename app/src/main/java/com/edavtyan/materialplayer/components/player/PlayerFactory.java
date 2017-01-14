@@ -19,6 +19,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardEquali
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
+import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.FastForwardReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.RewindReceiver;
@@ -44,6 +45,7 @@ public class PlayerFactory extends BaseFactory {
 	private FastForwardReceiver fastForwardReceiver;
 	private RewindReceiver rewindReceiver;
 	private PlayPauseReceiver playPauseReceiver;
+	private AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
 
 	public PlayerFactory(Context context) {
 		super(context);
@@ -65,6 +67,12 @@ public class PlayerFactory extends BaseFactory {
 		if (playPauseReceiver == null)
 			playPauseReceiver = new PlayPauseReceiver(providePlayer());
 		return playPauseReceiver;
+	}
+
+	public AudioBecomingNoisyReceiver provideAudioBecomingNoisyReceiver() {
+		if (audioBecomingNoisyReceiver == null)
+			audioBecomingNoisyReceiver = new AudioBecomingNoisyReceiver(providePlayer());
+		return audioBecomingNoisyReceiver;
 	}
 
 	public PlayerMvp.Player providePlayer() {
