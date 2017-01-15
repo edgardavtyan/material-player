@@ -55,7 +55,7 @@ public class ListAdapterTest extends BaseTest {
 	@SuppressWarnings("unchecked")
 	public void bind_view_holder_via_presenter() {
 		RecyclerView.ViewHolder holder = mock(RecyclerView.ViewHolder.class);
-		listAdapter.bindViewHolder(holder, 0);
+		listAdapter.onBindViewHolder(holder, 0);
 		verify(presenter).onBindViewHolder(holder, 0);
 	}
 

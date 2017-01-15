@@ -69,8 +69,10 @@ public class PlayerServiceTest extends BaseTest {
 
 	@Test
 	public void onCreate_setPlayerFromFactory() {
-		playerService.onCreate();
-		assertThat(playerService.getPlayer()).isSameAs(player);
+		runOnUiThread(() -> {
+			playerService.onCreate();
+			assertThat(playerService.getPlayer()).isSameAs(player);
+		});
 	}
 
 	@Test
@@ -86,8 +88,10 @@ public class PlayerServiceTest extends BaseTest {
 
 	@Test
 	public void onDestroy_destroyPresenter() {
-		playerService.onCreate();
-		playerService.onDestroy();
-		verify(notificationPresenter).onDestroy();
+		runOnUiThread(() -> {
+			playerService.onCreate();
+			playerService.onDestroy();
+			verify(notificationPresenter).onDestroy();
+		});
 	}
 }

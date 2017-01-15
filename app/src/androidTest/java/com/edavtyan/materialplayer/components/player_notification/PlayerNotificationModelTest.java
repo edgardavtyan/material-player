@@ -66,6 +66,7 @@ public class PlayerNotificationModelTest extends BaseTest {
 
 	@Test
 	public void unbind_removePlayerListeners() {
+		model.onServiceConnected(null, binder);
 		model.bind();
 		model.unbind();
 		verify(player).removeOnNewTrackListener(model);
