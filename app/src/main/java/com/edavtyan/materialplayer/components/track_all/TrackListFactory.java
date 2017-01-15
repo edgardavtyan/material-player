@@ -2,19 +2,20 @@ package com.edavtyan.materialplayer.components.track_all;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class TrackListFactory extends ListFactory {
 	private final TrackListMvp.View view;
+	private final DBModule dbModule;
 	private TrackListModel model;
-	private TrackDB trackDB;
 	private TrackListPresenter presenter;
 	private TrackListAdapter adapter;
 
 	public TrackListFactory(Context context, TrackListMvp.View view) {
 		super(context);
 		this.view = view;
+		dbModule = new DBModule(context);
 	}
 
 	public TrackListMvp.View getView() {
@@ -23,14 +24,8 @@ public class TrackListFactory extends ListFactory {
 
 	public TrackListMvp.Model getModel() {
 		if (model == null)
-			model = new TrackListModel(getContext(), getTrackDB(), getCompactListPref());
+			model = new TrackListModel(getContext(), dbModule.getTrackDB(), getCompactListPref());
 		return model;
-	}
-
-	public TrackDB getTrackDB() {
-		if (trackDB == null)
-			trackDB = new TrackDB(getContext());
-		return trackDB;
 	}
 
 	public TrackListMvp.Presenter getPresenter() {

@@ -22,7 +22,6 @@ public class ArtistListFactoryTest extends FactoryTest {
 		testFactoryMethod(albumListFactory::getModel);
 		testFactoryMethod(albumListFactory::getView);
 		testFactoryMethod(albumListFactory::getPresenter);
-		testFactoryMethod(albumListFactory::getArtistDB);
 		testFactoryMethod(albumListFactory::getImageLoader);
 		testFactoryMethod(albumListFactory::getLastfmApi);
 		testFactoryMethod(albumListFactory::getFileStorage);

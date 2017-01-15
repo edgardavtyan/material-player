@@ -19,8 +19,6 @@ public class AlbumListFactoryTest extends FactoryTest {
 	@Test
 	public void testProviders() throws Exception {
 		testFactoryMethod(albumListFactory::getAdapter);
-		testFactoryMethod(albumListFactory::getAlbumDB);
-		testFactoryMethod(albumListFactory::getTrackDB);
 		testFactoryMethod(albumListFactory::getModel);
 		testFactoryMethod(albumListFactory::getView);
 		testFactoryMethod(albumListFactory::getPresenter);

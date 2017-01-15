@@ -3,15 +3,15 @@ package com.edavtyan.materialplayer.components.artist_all;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmArtistInfoFileStorage;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class ArtistListFactory extends ListFactory {
 	private final ArtistListMvp.View view;
+	private final DBModule dbModule;
 	private ArtistListModel model;
-	private ArtistDB artistDB;
 	private ArtistListPresenter presenter;
 	private ArtistListAdapter adapter;
 	private LastfmApi lastfmApi;
@@ -22,6 +22,7 @@ public class ArtistListFactory extends ListFactory {
 	public ArtistListFactory(Context context, ArtistListMvp.View view) {
 		super(context);
 		this.view = view;
+		dbModule = new DBModule(context);
 	}
 
 	public ArtistListMvp.View getView() {
@@ -32,15 +33,10 @@ public class ArtistListFactory extends ListFactory {
 		if (model == null)
 			model = new ArtistListModel(
 					getContext(),
-					getArtistDB(),
+					dbModule.getArtistDB(),
 					getImageLoader(),
 					getCompactListPref());
 		return model;
-	}
-
-	public ArtistDB getArtistDB() {
-		if (artistDB == null) artistDB = new ArtistDB(getContext());
-		return artistDB;
 	}
 
 	public ArtistListMvp.Presenter getPresenter() {

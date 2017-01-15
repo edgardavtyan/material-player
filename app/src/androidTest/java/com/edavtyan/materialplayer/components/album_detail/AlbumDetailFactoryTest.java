@@ -21,7 +21,5 @@ public class AlbumDetailFactoryTest extends FactoryTest {
 		testFactoryMethod(albumDetailFactory::getAdapter);
 		testFactoryMethod(albumDetailFactory::getView);
 		testFactoryMethod(albumDetailFactory::getModel);
-		testFactoryMethod(albumDetailFactory::getAlbumDB);
-		testFactoryMethod(albumDetailFactory::getTrackDB);
 	}
 }

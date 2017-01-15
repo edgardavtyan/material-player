@@ -22,6 +22,5 @@ public class TrackListFactoryTest extends FactoryTest {
 		testFactoryMethod(trackListFactory::getView);
 		testFactoryMethod(trackListFactory::getPresenter);
 		testFactoryMethod(trackListFactory::getAdapter);
-		testFactoryMethod(trackListFactory::getTrackDB);
 	}
 }

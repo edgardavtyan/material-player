@@ -2,21 +2,20 @@ package com.edavtyan.materialplayer.components.album_all;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class AlbumListFactory extends ListFactory {
 	private final AlbumListMvp.View view;
+	private final DBModule dbModule;
 	private AlbumListModel model;
 	private AlbumListPresenter presenter;
 	private AlbumListAdapter adapter;
-	private AlbumDB albumDB;
-	private TrackDB trackDB;
 
 	public AlbumListFactory(Context context, AlbumListMvp.View view) {
 		super(context);
 		this.view = view;
+		this.dbModule = new DBModule(context);
 	}
 
 	public AlbumListMvp.View getView() {
@@ -27,22 +26,10 @@ public class AlbumListFactory extends ListFactory {
 		if (model == null)
 			model = new AlbumListModel(
 					getContext(),
-					getAlbumDB(),
-					getTrackDB(),
+					dbModule.getAlbumDB(),
+					dbModule.getTrackDB(),
 					getCompactListPref());
 		return model;
-	}
-
-	public AlbumDB getAlbumDB() {
-		if (albumDB == null)
-			albumDB = new AlbumDB(getContext());
-		return albumDB;
-	}
-
-	public TrackDB getTrackDB() {
-		if (trackDB == null)
-			trackDB = new TrackDB(getContext());
-		return trackDB;
 	}
 
 	public AlbumListMvp.Presenter getPresenter() {
