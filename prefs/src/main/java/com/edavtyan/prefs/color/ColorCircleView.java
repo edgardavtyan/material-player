@@ -7,30 +7,48 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.utils.AttributeResolver;
+import com.edavtyan.prefs.utils.PixelConverter;
+
 public class ColorCircleView extends View {
-	private final Paint paint;
+	private static final float STROKE_WIDTH = 1.0f;
+
+	private final Paint backgroundPaint;
+	private final Paint borderPaint;
 	private final ColorCircleAttributes attrs;
 
 	public ColorCircleView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.attrs = new ColorCircleAttributes(context, attrs);
-		this.paint = initPaint();
+		this.backgroundPaint = initBackgroundPaint();
+		this.borderPaint = initBorderPaint();
+
 		if (isInEditMode()) setColor(Color.RED);
 	}
 
 	public ColorCircleView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		this.attrs = new ColorCircleAttributes(context, attrs);
-		this.paint = initPaint();
+		this.backgroundPaint = initBackgroundPaint();
+		this.borderPaint = initBorderPaint();
 		if (isInEditMode()) setColor(Color.RED);
 	}
 
 	public int getColor() {
-		return paint.getColor();
+		return backgroundPaint.getColor();
 	}
 
 	public void setColor(int color) {
-		paint.setColor(color);
+		backgroundPaint.setColor(color);
+	}
+
+	public void setBorderColor(int color) {
+		borderPaint.setColor(color);
+	}
+
+	public int getBorderColor() {
+		return borderPaint.getColor();
 	}
 
 	@Override
@@ -38,10 +56,21 @@ public class ColorCircleView extends View {
 		super.onDraw(canvas);
 
 		int center = getWidth() / 2;
-		canvas.drawCircle(center, center, center, paint);
+		canvas.drawCircle(center, center, center, backgroundPaint);
+		canvas.drawCircle(center, center, center - 1, borderPaint);
 	}
 
-	private Paint initPaint() {
+	private Paint initBorderPaint() {
+		AttributeResolver attributeResolver = new AttributeResolver(getContext());
+		Paint paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setStrokeWidth(PixelConverter.dpToPx(STROKE_WIDTH));
+		paint.setColor(attributeResolver.getColor(R.attr.colorControlNormal));
+		paint.setStyle(Paint.Style.STROKE);
+		return paint;
+	}
+
+	private Paint initBackgroundPaint() {
 		Paint paint = new Paint();
 		paint.setAntiAlias(true);
 		paint.setColor(attrs.getBackgroundColor());
