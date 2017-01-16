@@ -15,6 +15,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.player.receivers.AudioMediaButtonReceiver;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
 
@@ -67,21 +68,23 @@ public class PlayerService extends Service {
 			amplifier = playerFactory.getAmplifier();
 		}
 
-		audioFocusManager = new AudioFocusManager(this, player);
-		audioFocusManager.requestFocus();
-
-		mediaSessionManager = new MediaSessionManager(this, player);
-		mediaSessionManager.init();
-
 		BroadcastReceiver rewindReceiver = playerFactory.getRewindReceiver();
 		BroadcastReceiver playPauseReceiver = playerFactory.getPlayPauseReceiver();
 		BroadcastReceiver fastForwardReceiver = playerFactory.getFastForwardReceiver();
 		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.getAudioBecomingNoisyReceiver();
+		BroadcastReceiver audioMediaButtonReceiver = new AudioMediaButtonReceiver(player);
 
 		registerReceiver(rewindReceiver, new IntentFilter(ACTION_REWIND));
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(fastForwardReceiver, new IntentFilter(ACTION_FAST_FORWARD));
 		registerReceiver(audioBecomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
+		registerReceiver(audioMediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
+
+		audioFocusManager = new AudioFocusManager(this, player);
+		audioFocusManager.requestFocus();
+
+		mediaSessionManager = new MediaSessionManager(this, player);
+		mediaSessionManager.init();
 
 		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
 				this, R.layout.notification, R.layout.notification_big);

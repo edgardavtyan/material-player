@@ -94,6 +94,12 @@
 			android:enabled="true"
 			/>
 
+		<receiver android:name=".components.player.receivers.AudioMediaButtonReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.MEDIA_BUTTON" />
+			</intent-filter>
+		</receiver>
+
 	</application>
 
 </manifest>
