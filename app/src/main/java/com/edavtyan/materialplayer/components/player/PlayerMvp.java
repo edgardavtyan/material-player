@@ -35,8 +35,8 @@ public interface PlayerMvp {
 		void play();
 		void pause();
 		void playPause();
-		void playNext();
-		void rewind();
+		void skipToNext();
+		void skipToPrevious();
 		long getPosition();
 		void setPosition(int position);
 		boolean isPlaying();

@@ -37,13 +37,13 @@ public class AudioMediaButtonReceiverTest extends BaseTest {
 	@Test
 	public void onReceive_skipNextPressed_skipPlayerToNext() {
 		callOnReceiveWithKeyCode(KeyEvent.KEYCODE_MEDIA_NEXT);
-		verify(player).playNext();
+		verify(player).skipToNext();
 	}
 
 	@Test
 	public void onReceive_skipPreviousPressed_skipPlayerToPrevious() {
 		callOnReceiveWithKeyCode(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
-		verify(player).rewind();
+		verify(player).skipToPrevious();
 	}
 
 	private void callOnReceiveWithKeyCode(int keyCode) {

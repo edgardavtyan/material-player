@@ -178,13 +178,13 @@ public class NowPlayingModelTest extends BaseTest {
 	@Test
 	public void rewind_rewindPlayerViaService() {
 		model.rewind();
-		verify(player).rewind();
+		verify(player).skipToPrevious();
 	}
 
 	@Test
 	public void fastForward_fastForwardPlayerViaService() {
 		model.fastForward();
-		verify(player).playNext();
+		verify(player).skipToNext();
 	}
 
 	@Test

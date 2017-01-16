@@ -15,6 +15,6 @@ public class FastForwardReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		player.playNext();
+		player.skipToNext();
 	}
 }

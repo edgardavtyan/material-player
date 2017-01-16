@@ -78,12 +78,12 @@ public class NowPlayingModel
 
 	@Override
 	public void rewind() {
-		service.getPlayer().rewind();
+		service.getPlayer().skipToPrevious();
 	}
 
 	@Override
 	public void fastForward() {
-		service.getPlayer().playNext();
+		service.getPlayer().skipToNext();
 	}
 
 	@Override

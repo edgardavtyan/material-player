@@ -25,10 +25,10 @@ public class AudioMediaButtonReceiver extends BroadcastReceiver {
 			player.pause();
 			break;
 		case KeyEvent.KEYCODE_MEDIA_NEXT:
-			player.playNext();
+			player.skipToNext();
 			break;
 		case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-			player.rewind();
+			player.skipToPrevious();
 		}
 	}
 }

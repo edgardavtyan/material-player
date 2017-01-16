@@ -21,6 +21,6 @@ public class FastForwardReceiverTest extends BaseTest {
 	@Test
 	public void onReceive_fastForwardPlayer() {
 		fastForwardReceiver.onReceive(context, null);
-		player.playNext();
+		player.skipToNext();
 	}
 }

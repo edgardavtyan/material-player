@@ -21,6 +21,6 @@ public class RewindReceiverTest extends BaseTest {
 	@Test
 	public void onReceive_rewindPlayer() {
 		rewindReceiver.onReceive(context, null);
-		player.rewind();
+		player.skipToPrevious();
 	}
 }

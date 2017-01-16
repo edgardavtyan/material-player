@@ -151,7 +151,7 @@ public class PlayerTest extends BaseTest {
 		when(queue.getCurrentTrack()).thenReturn(track);
 		when(queue.hasData()).thenReturn(true);
 
-		player.playNext();
+		player.skipToNext();
 
 		InOrder order = inOrder(queue, audioEngine);
 		order.verify(queue).moveToNext();
@@ -162,7 +162,7 @@ public class PlayerTest extends BaseTest {
 	public void playNext_queueEnded_notPlayAnything() {
 		when(queue.hasData()).thenReturn(true);
 		when(queue.isEnded()).thenReturn(true);
-		player.playNext();
+		player.skipToNext();
 		verify(audioEngine, never()).playTrack(any());
 	}
 
@@ -173,7 +173,7 @@ public class PlayerTest extends BaseTest {
 		when(queue.getCurrentTrack()).thenReturn(track);
 		when(audioEngine.getPosition()).thenReturn(4999L);
 
-		player.rewind();
+		player.skipToPrevious();
 
 		verify(queue).moveToPrev();
 		verify(audioEngine).playTrack("path");
@@ -182,7 +182,7 @@ public class PlayerTest extends BaseTest {
 	@Test
 	public void rewind_playedFiveSecondsOrMore_playFromBeginning() {
 		when(audioEngine.getPosition()).thenReturn(5000L);
-		player.rewind();
+		player.skipToPrevious();
 		verify(audioEngine).setPosition(0);
 	}
 

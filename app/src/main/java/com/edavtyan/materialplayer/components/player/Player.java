@@ -126,7 +126,7 @@ public class Player
 	}
 
 	@Override
-	public void playNext() {
+	public void skipToNext() {
 		if (!hasData()) return;
 		queue.moveToNext();
 		if (queue.isEnded()) return;
@@ -134,7 +134,7 @@ public class Player
 	}
 
 	@Override
-	public void rewind() {
+	public void skipToPrevious() {
 		if (audioEngine.getPosition() >= 5000) {
 			audioEngine.setPosition(0);
 		} else {
@@ -199,7 +199,7 @@ public class Player
 
 	@Override
 	public void onCompleted() {
-		playNext();
+		skipToNext();
 	}
 
 	private void raisePlayPauseListener() {

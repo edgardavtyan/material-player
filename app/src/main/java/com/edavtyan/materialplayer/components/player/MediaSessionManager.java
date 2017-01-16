@@ -41,12 +41,12 @@ public class MediaSessionManager {
 
 		@Override
 		public void onSkipToNext() {
-			player.playNext();
+			player.skipToNext();
 		}
 
 		@Override
 		public void onSkipToPrevious() {
-			player.rewind();
+			player.skipToPrevious();
 		}
 	};
 

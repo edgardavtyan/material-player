@@ -15,6 +15,6 @@ public class RewindReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		player.rewind();
+		player.skipToPrevious();
 	}
 }
