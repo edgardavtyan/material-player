@@ -7,20 +7,20 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 
-public class RewindReceiverTest extends BaseTest {
-	private RewindReceiver rewindReceiver;
+public class SkipToPreviousReceiverTest extends BaseTest {
+	private SkipToPreviousReceiver skipToPreviousReceiver;
 	private PlayerMvp.Player player;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		player = mock(PlayerMvp.Player.class);
-		rewindReceiver = new RewindReceiver(player);
+		skipToPreviousReceiver = new SkipToPreviousReceiver(player);
 	}
 
 	@Test
 	public void onReceive_rewindPlayer() {
-		rewindReceiver.onReceive(context, null);
+		skipToPreviousReceiver.onReceive(context, null);
 		player.skipToPrevious();
 	}
 }

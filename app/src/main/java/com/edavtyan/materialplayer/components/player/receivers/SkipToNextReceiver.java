@@ -6,15 +6,15 @@ import android.content.Intent;
 
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 
-public class RewindReceiver extends BroadcastReceiver {
+public class SkipToNextReceiver extends BroadcastReceiver {
 	private final PlayerMvp.Player player;
 
-	public RewindReceiver(PlayerMvp.Player player) {
+	public SkipToNextReceiver(PlayerMvp.Player player) {
 		this.player = player;
 	}
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		player.skipToPrevious();
+		player.skipToNext();
 	}
 }

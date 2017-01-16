@@ -68,15 +68,15 @@ public class PlayerService extends Service {
 			amplifier = playerFactory.getAmplifier();
 		}
 
-		BroadcastReceiver rewindReceiver = playerFactory.getRewindReceiver();
 		BroadcastReceiver playPauseReceiver = playerFactory.getPlayPauseReceiver();
-		BroadcastReceiver fastForwardReceiver = playerFactory.getFastForwardReceiver();
+		BroadcastReceiver skipToPreviousReceiver = playerFactory.getSkipToPreviousReceiver();
+		BroadcastReceiver skipToNextReceiver = playerFactory.getSkipToNextReceiver();
 		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.getAudioBecomingNoisyReceiver();
 		BroadcastReceiver audioMediaButtonReceiver = new AudioMediaButtonReceiver(player);
 
-		registerReceiver(rewindReceiver, new IntentFilter(ACTION_REWIND));
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
-		registerReceiver(fastForwardReceiver, new IntentFilter(ACTION_FAST_FORWARD));
+		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));
+		registerReceiver(skipToNextReceiver, new IntentFilter(ACTION_FAST_FORWARD));
 		registerReceiver(audioBecomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
 		registerReceiver(audioMediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
 

@@ -20,9 +20,9 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurrou
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.FastForwardReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.RewindReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
@@ -42,8 +42,8 @@ public class PlayerFactory extends BaseFactory {
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
 	private PlayerPrefs playerPrefs;
-	private FastForwardReceiver fastForwardReceiver;
-	private RewindReceiver rewindReceiver;
+	private SkipToNextReceiver skipToNextReceiver;
+	private SkipToPreviousReceiver skipToPreviousReceiver;
 	private PlayPauseReceiver playPauseReceiver;
 	private AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
 
@@ -51,16 +51,16 @@ public class PlayerFactory extends BaseFactory {
 		super(context);
 	}
 
-	public FastForwardReceiver getFastForwardReceiver() {
-		if (fastForwardReceiver == null)
-			fastForwardReceiver = new FastForwardReceiver(getPlayer());
-		return fastForwardReceiver;
+	public SkipToNextReceiver getSkipToNextReceiver() {
+		if (skipToNextReceiver == null)
+			skipToNextReceiver = new SkipToNextReceiver(getPlayer());
+		return skipToNextReceiver;
 	}
 
-	public RewindReceiver getRewindReceiver() {
-		if (rewindReceiver == null)
-			rewindReceiver = new RewindReceiver(getPlayer());
-		return rewindReceiver;
+	public SkipToPreviousReceiver getSkipToPreviousReceiver() {
+		if (skipToPreviousReceiver == null)
+			skipToPreviousReceiver = new SkipToPreviousReceiver(getPlayer());
+		return skipToPreviousReceiver;
 	}
 
 	public PlayPauseReceiver getPlayPauseReceiver() {
