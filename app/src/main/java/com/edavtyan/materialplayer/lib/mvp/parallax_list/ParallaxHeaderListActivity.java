@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
+import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.utils.AppColors;
@@ -74,7 +74,7 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 			appbarWrapper.bringToFront();
 
 			RecyclerViewHeader header = findView(R.id.list_header);
-			header.attachTo(list, true);
+			header.attachTo(list);
 
 			AppBarLayout appbar = findView(R.id.appbar);
 			View appbarShadow = findView(R.id.appbar_shadow);

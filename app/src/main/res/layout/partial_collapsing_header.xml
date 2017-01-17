@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
+<com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/list_header"
@@ -59,4 +59,4 @@
 
 	</LinearLayout>
 
-</com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+</com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>
