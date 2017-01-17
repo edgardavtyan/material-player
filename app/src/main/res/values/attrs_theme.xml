@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<attr name="prefCategoryTitleColor" format="color" />
 	<attr name="prefShadowBackground" format="color" />
 	<attr name="prefShadowTopColor" format="color" />
 	<attr name="textColorPrimary" format="color" />
