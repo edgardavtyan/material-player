@@ -117,7 +117,7 @@
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/rewind"
-				android:src="@drawable/ic_rewind"
+				android:src="@drawable/ic_skip_prev"
 				style="@style/NowPlaying_Control"
 				/>
 
@@ -129,7 +129,7 @@
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/fastForward"
-				android:src="@drawable/ic_fast_forward"
+				android:src="@drawable/ic_skip_next"
 				style="@style/NowPlaying_Control"
 				/>
 
