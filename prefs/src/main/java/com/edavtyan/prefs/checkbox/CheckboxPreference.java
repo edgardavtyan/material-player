@@ -2,6 +2,7 @@ package com.edavtyan.prefs.checkbox;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -32,13 +33,14 @@ public class CheckboxPreference extends BasePreference implements View.OnClickLi
 		checkboxView.setChecked(checked);
 	}
 
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		presenter.onPrefClicked();
 	}
 
 	private void initPref(AttributeSet attrs) {
 		setOrientation(HORIZONTAL);
-		inflate(context, R.layout.entry_checkbox, this);
+		LayoutInflater.from(context).inflate(R.layout.entry_checkbox, this, true);
 		setOnClickListener(this);
 
 		titleView = findView(R.id.title);
