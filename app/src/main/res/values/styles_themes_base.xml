@@ -55,8 +55,11 @@
 		<item name="prefShadowBackground">#333</item>
 		<item name="textColorPrimary">#aaffffff</item>
 		<item name="textColorSecondary">#66ffffff</item>
+		<item name="textColorContrastPrimary">#aaffffff</item>
+		<item name="textColorContrastSecondary">#66ffffff</item>
+		<item name="colorControlNormal">#aaffffff</item>
 		<item name="android:windowBackground">@color/black</item>
-		<item name="colorControlNormal">#ddffffff</item>
+		<item name="android:colorForeground">#aaffffff</item>
 	</style>
 
 </resources>
