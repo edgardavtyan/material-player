@@ -3,7 +3,7 @@
 
 	<item
 		android:state_pressed="true"
-		android:drawable="@color/white_alpha_light"
+		android:drawable="@color/white_dim_medium"
 		/>
 
 	<item

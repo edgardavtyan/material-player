@@ -3,26 +3,20 @@
 
 	<style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorAccent">@color/accent</item>
-
-		<item name="colorControlNormal">#8c000000</item>
+		<item name="colorControlNormal">@color/black_dim_medium</item>
 		<item name="colorControlActivated">?colorPrimary</item>
-		<item name="prefShadowTopColor">#33000000</item>
-		<item name="prefShadowBackground">#ddd</item>
 		<item name="prefCategoryTitleColor">?colorPrimary</item>
 
-		<item name="textColorPrimary">#de000000</item>
-		<item name="textColorSecondary">#8a000000</item>
-		<item name="textColorContrastPrimary">#ffffff</item>
-		<item name="textColorContrastSecondary">#B2ffffff</item>
+		<item name="textColorPrimary">@color/black_dim_slight</item>
+		<item name="textColorSecondary">@color/black_dim_medium</item>
+		<item name="textColorContrastPrimary">@color/white</item>
+		<item name="textColorContrastSecondary">@color/white_dim_slight</item>
 		<item name="android:textColor">?attr/textColorPrimary</item>
 		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
 		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
 
 		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
 		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
-
-		<item name="dividerColor">#1e000000</item>
-
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
@@ -30,39 +24,33 @@
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
 		<item name="colorAccent">@color/accent</item>
-
 		<item name="colorControlNormal">?attr/textColorContrastPrimary</item>
 		<item name="colorControlActivated">?colorPrimary</item>
-		<item name="prefShadowTopColor">#2c2c2c</item>
-		<item name="prefShadowBackground">#555</item>
 		<item name="prefCategoryTitleColor">?colorPrimary</item>
 
-		<item name="textColorPrimary">#ffffff</item>
-		<item name="textColorSecondary">#b2ffffff</item>
-		<item name="textColorContrastPrimary">#ffffff</item>
-		<item name="textColorContrastSecondary">#B2ffffff</item>
+		<item name="textColorPrimary">@color/white</item>
+		<item name="textColorSecondary">@color/white_dim_medium</item>
+		<item name="textColorContrastPrimary">@color/white</item>
+		<item name="textColorContrastSecondary">@color/white_dim_slight</item>
 		<item name="android:textColor">?attr/textColorPrimary</item>
 		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
 		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
 
 		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
 		<item name="toolbarPopupTheme">@style/Theme.AppCompat</item>
-		<item name="dividerColor">#1effffff</item>
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 	</style>
 
 	<style name="AppTheme.Black" parent="AppTheme.Dark">
-		<item name="prefShadowTopColor">#111</item>
-		<item name="prefShadowBackground">#333</item>
-		<item name="textColorPrimary">#aaffffff</item>
-		<item name="textColorSecondary">#66ffffff</item>
-		<item name="textColorContrastPrimary">#ffffff</item>
-		<item name="textColorContrastSecondary">#aaffffff</item>
-		<item name="colorControlNormal">#aaffffff</item>
+		<item name="textColorPrimary">@color/white_dim_slight</item>
+		<item name="textColorSecondary">@color/white_dim_medium</item>
+		<item name="textColorContrastPrimary">@color/white</item>
+		<item name="textColorContrastSecondary">@color/white_dim_slight</item>
+		<item name="colorControlNormal">@color/white_dim_slight</item>
 		<item name="android:windowBackground">@color/black</item>
-		<item name="android:colorForeground">#aaffffff</item>
+		<item name="android:colorForeground">@color/white_dim_slight</item>
 	</style>
 
 </resources>
