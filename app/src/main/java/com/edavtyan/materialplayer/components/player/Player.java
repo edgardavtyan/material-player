@@ -75,9 +75,7 @@ public class Player
 
 	@Override
 	public void playNewTracks(List<Track> tracks, int position) {
-		queue.clear();
-		queue.addManyTracks(tracks);
-		queue.setPosition(position);
+		queue.replaceTracks(tracks, position);
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 

@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.player;
 
 import com.edavtyan.materialplayer.db.Track;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,7 +40,22 @@ public class Queue implements PlayerMvp.Queue {
 
 	@Override
 	public void addManyTracks(List<Track> newTracks) {
+		if (shuffleMode == ShuffleMode.ENABLED) {
+			shuffleTracks(newTracks);
+		}
+
 		tracks.addAll(newTracks);
+	}
+
+	@Override
+	public void replaceTracks(List<Track> newTracks, int position) {
+		tracks.clear();
+		tracks.addAll(newTracks);
+		setPosition(position);
+
+		if (shuffleMode == ShuffleMode.ENABLED) {
+			shuffleTracks(tracks);
+		}
 	}
 
 	@Override
@@ -104,6 +120,14 @@ public class Queue implements PlayerMvp.Queue {
 	@Override
 	public void toggleShuffleMode() {
 		shuffleMode = shuffleModeToggleMap.get(shuffleMode);
+		switch (shuffleMode) {
+		case ENABLED:
+			shuffleTracks(tracks);
+			break;
+		case DISABLED:
+			sortTracks(tracks);
+			break;
+		}
 	}
 
 	@Override
@@ -114,5 +138,21 @@ public class Queue implements PlayerMvp.Queue {
 	@Override
 	public boolean hasData() {
 		return tracks.size() > 0;
+	}
+
+	private void shuffleTracks(List<Track> tracks) {
+		Track currentTrackBeforeShuffle = tracks.get(position);
+		Collections.shuffle(tracks);
+		int currentTrackAfterShufflePosition = tracks.indexOf(currentTrackBeforeShuffle);
+		Track firstTrackAfterShuffle = tracks.get(0);
+		tracks.set(0, tracks.get(currentTrackAfterShufflePosition));
+		tracks.set(currentTrackAfterShufflePosition, firstTrackAfterShuffle);
+		position = 0;
+	}
+
+	private void sortTracks(List<Track> tracks) {
+		Track currentTrackBeforeSort = tracks.get(position);
+		Collections.sort(tracks, (o1, o2) -> o1.getTrack() - o2.getTrack());
+		position = tracks.indexOf(currentTrackBeforeSort);
 	}
 }

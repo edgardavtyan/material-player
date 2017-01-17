@@ -75,6 +75,7 @@ public interface PlayerMvp {
 	interface Queue {
 		void addTrack(Track track);
 		void addManyTracks(List<Track> tracks);
+		void replaceTracks(List<Track> newTracks, int position);
 		void removeTrackAt(int position);
 		void clear();
 		Track getTrackAt(int position);
