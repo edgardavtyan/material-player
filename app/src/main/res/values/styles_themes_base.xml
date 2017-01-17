@@ -23,6 +23,8 @@
 
 		<item name="dividerColor">#1e000000</item>
 
+		<item name="nowPlayingBarBackground">?colorPrimary</item>
+
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 	</style>
 
@@ -46,6 +48,7 @@
 		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
 		<item name="toolbarPopupTheme">@style/Theme.AppCompat</item>
 		<item name="dividerColor">#1effffff</item>
+		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 	</style>

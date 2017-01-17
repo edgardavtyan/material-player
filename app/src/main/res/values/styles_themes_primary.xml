@@ -135,6 +135,7 @@
 		<item name="alertDialogTheme">@style/DialogTheme_Black_Black</item>
 		<item name="colorControlActivated">?colorControlNormal</item>
 		<item name="prefCategoryTitleColor">?textColorContrastPrimary</item>
+		<item name="nowPlayingBarBackground">#22ffffff</item>
 	</style>
 
 </resources>
