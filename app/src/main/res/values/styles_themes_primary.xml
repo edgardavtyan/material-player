@@ -136,6 +136,8 @@
 		<item name="colorControlActivated">?colorControlNormal</item>
 		<item name="prefCategoryTitleColor">?textColorContrastPrimary</item>
 		<item name="nowPlayingBarBackground">#22ffffff</item>
+		<item name="textColorContrastPrimary">#aaffffff</item>
+		<item name="textColorContrastSecondary">#66ffffff</item>
 	</style>
 
 </resources>
