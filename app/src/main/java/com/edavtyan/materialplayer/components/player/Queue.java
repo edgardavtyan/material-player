@@ -141,6 +141,7 @@ public class Queue implements PlayerMvp.Queue {
 	}
 
 	private void shuffleTracks(List<Track> tracks) {
+		if (tracks.size() == 0) return;
 		Track currentTrackBeforeShuffle = tracks.get(position);
 		Collections.shuffle(tracks);
 		int currentTrackAfterShufflePosition = tracks.indexOf(currentTrackBeforeShuffle);
@@ -151,6 +152,7 @@ public class Queue implements PlayerMvp.Queue {
 	}
 
 	private void sortTracks(List<Track> tracks) {
+		if (tracks.size() == 0) return;
 		Track currentTrackBeforeSort = tracks.get(position);
 		Collections.sort(tracks, (o1, o2) -> o1.getTrack() - o2.getTrack());
 		position = tracks.indexOf(currentTrackBeforeSort);
