@@ -86,9 +86,11 @@ public class ArtistDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void setImage_setHeaderImage() {
-		Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-		runOnUiThread(() -> activity.setArtistImage(image));
-		assertThatImageView(activity, R.id.art).hasBitmap(image);
+		runOnUiThread(() -> {
+			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+			activity.setArtistImage(image);
+			assertThatImageView(activity, R.id.art).hasImageBitmap(image);
+		});
 	}
 
 	@Test
