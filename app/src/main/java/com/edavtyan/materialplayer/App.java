@@ -35,6 +35,7 @@ public class App extends Application {
 	private @Setter NowPlayingFactory nowPlayingFactory;
 	private @Setter AlbumDetailFactory albumDetailFactory;
 	private @Setter ArtistDetailFactory artistDetailFactory;
+	private @Setter ArtistListFactory artistListFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
 
@@ -53,7 +54,9 @@ public class App extends Application {
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListMvp.View view) {
-		return new ArtistListFactory(context, view);
+		if (artistListFactory == null)
+			artistListFactory = new ArtistListFactory(context, view);
+		return artistListFactory;
 	}
 
 	public ArtistDetailFactory getArtistDetailDI(
