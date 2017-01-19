@@ -49,13 +49,7 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		Drawable drawable = ContextCompat.getDrawable(context, drawableRes);
 		if (!areDrawablesIdentical(actual.getDrawable(), drawable)) {
 			String drawableId = context.getResources().getResourceEntryName(drawableRes);
-			if (imageViewIdName == null) {
-				failWithMessage("Expected ImageView to have drawable with id='%s'", drawableId);
-			} else {
-				failWithMessage(
-						"Expected ImageView with id='%s' to have drawable with id='%s'",
-						imageViewIdName, drawableId);
-			}
+			failWithMessage(getFailMessageFirstPart() + "to have drawable with id='%s'", drawableId);
 		}
 
 		return this;
@@ -63,16 +57,18 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 
 	public ImageViewAssert hasBitmap(Bitmap art) {
 		if (!getBitmap(actual.getDrawable()).sameAs(art)) {
-			if (imageViewIdName == null) {
-				failWithMessage("Expected ImageView to have bitmap '%s'", art);
-			} else {
-				failWithMessage(
-						"Expected ImageView with id='%s' to have bitmap '%s'",
-						imageViewIdName, art);
-			}
+			failWithMessage(getFailMessageFirstPart() + "to have bitmap '%s'", art);
 		}
 
 		return this;
+	}
+
+	private String getFailMessageFirstPart() {
+		if (imageViewIdName != null) {
+			return String.format("Expected ImageView with id='%s' ", imageViewIdName);
+		} else {
+			return "Expected ImageView ";
+		}
 	}
 
 	private boolean areDrawablesIdentical(Drawable drawableA, Drawable drawableB) {
