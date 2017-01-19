@@ -7,16 +7,19 @@
 	</style>
 
 	<style name="Detail_Art">
-		<item name="android:layout_width">120dp</item>
-		<item name="android:layout_height">120dp</item>
-		<item name="android:layout_margin">@dimen/spacing_medium</item>
+		<item name="android:layout_width">130dp</item>
+		<item name="android:layout_height">130dp</item>
+		<item name="android:layout_margin">@dimen/spacing_tiny</item>
+		<item name="android:background">@android:drawable/dialog_holo_light_frame</item>
 	</style>
 
 	<style name="Detail_Title">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textSize">@dimen/font_medium</item>
+		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorPrimary</item>
+		<item name="android:maxLines">3</item>
 	</style>
 
 	<style name="Detail_Info_Top">
