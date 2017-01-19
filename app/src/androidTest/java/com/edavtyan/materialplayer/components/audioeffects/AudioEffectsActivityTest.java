@@ -42,12 +42,12 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 			AudioEffectsFactory factory = mock(AudioEffectsFactory.class);
 			when(factory.getPresenter()).thenReturn(presenter);
-			when(app.getAudioEffectsFactory(any(), any())).thenReturn(factory);
+
+			app.setAudioEffectsFactory(factory);
 
 			activity = spy(startActivity(AudioEffectsActivity.class));
 			doNothing().when(activity).baseOnCreate(any());
 			doNothing().when(activity).baseOnDestroy();
-			doReturn(app).when(activity).getApplicationContext();
 		} else {
 			reset(presenter, equalizerSwitch, equalizerView, bassBoostView, amplifierView, surroundView);
 		}
