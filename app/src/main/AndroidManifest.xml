@@ -49,6 +49,8 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:name=".components.artist_detail.ArtistDetailActivityCompact" />
+
 		<activity
 			android:name=".components.album_detail.AlbumDetailActivity"
 			android:launchMode="singleTop"

@@ -11,11 +11,11 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
 
+import static com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
+
 public class ArtistDetailActivity
 		extends ParallaxHeaderListActivity
 		implements ArtistDetailMvp.View {
-
-	public static final String EXTRA_ARTIST_TITLE = "extra_artistTitle";
 
 	private Navigator navigator;
 	private AlbumListAdapter adapter;

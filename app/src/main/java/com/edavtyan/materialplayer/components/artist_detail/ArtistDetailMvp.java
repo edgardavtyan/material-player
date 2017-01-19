@@ -8,6 +8,8 @@ import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPrese
 
 @SuppressWarnings("unused")
 public interface ArtistDetailMvp {
+	String EXTRA_ARTIST_TITLE = "extra_artistTitle";
+
 	interface Model extends AlbumListMvp.Model {
 		Artist getArtist();
 		void loadArtistImage(ArtistDetailImageTask.OnImageLoadedCallback callback);
