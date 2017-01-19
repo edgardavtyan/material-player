@@ -53,11 +53,9 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 
 	@Test
 	public void onCreate_initList() {
-		runOnUiThread(() -> {
-			RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
-			assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
-			assertThat(list.getAdapter()).isEqualTo(adapter);
-		});
+		RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
+		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
+		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
 
 	@Test

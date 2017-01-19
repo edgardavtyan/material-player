@@ -72,29 +72,23 @@ public class ArtistDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void setArtistTitle_setTitleViewText() {
-		runOnUiThread(() -> {
-			TextView titleView = activity.findView(R.id.title);
-			activity.setArtistTitle("title");
-			assertThat(titleView.getText()).isEqualTo("title");
-		});
+		TextView titleView = activity.findView(R.id.title);
+		runOnUiThread(() -> activity.setArtistTitle("title"));
+		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
 	public void setArtistInfo_setInfoViewTextWithPattern() {
-		runOnUiThread(() -> {
-			TextView infoView = activity.findView(R.id.info);
-			activity.setArtistInfo(3, 9);
-			assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
-		});
+		TextView infoView = activity.findView(R.id.info);
+		runOnUiThread(() -> activity.setArtistInfo(3, 9));
+		assertThat(infoView.getText()).isEqualTo("3 Albums | 9 Tracks");
 	}
 
 	@Test
 	public void setImage_setHeaderImage() {
-		runOnUiThread(() -> {
-			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-			activity.setArtistImage(image);
-			assertThatImageView(activity, R.id.art).hasBitmap(image);
-		});
+		Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		runOnUiThread(() -> activity.setArtistImage(image));
+		assertThatImageView(activity, R.id.art).hasBitmap(image);
 	}
 
 	@Test
