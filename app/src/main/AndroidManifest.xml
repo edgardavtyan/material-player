@@ -59,6 +59,8 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:name=".components.album_detail.AlbumDetailActivityCompact" />
+
 		<activity
 			android:name=".components.now_playing.NowPlayingActivity"
 			android:launchMode="singleTop"

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/Detail_MainWrapper"
+	>
+
+	<include
+		android:id="@+id/appbar"
+		layout="@layout/partial_appbar"
+		/>
+
+	<ImageView
+		android:id="@+id/art"
+		android:layout_below="@id/appbar"
+		android:contentDescription="@string/description_art"
+		style="@style/Detail_Art"
+		tools:src="@drawable/fallback_cover"
+		/>
+
+	<TextView
+		android:id="@+id/title"
+		android:layout_toRightOf="@id/art"
+		android:layout_alignTop="@id/art"
+		style="@style/Detail_Title"
+		tools:text="The Nth °"
+		/>
+
+	<TextView
+		android:id="@+id/info_top"
+		android:layout_marginTop="4dp"
+		android:layout_below="@id/title"
+		android:layout_toRightOf="@id/art"
+		style="@style/Detail_Info_Top"
+		tools:text="OVERWERK"
+		/>
+
+	<TextView
+		android:id="@+id/info_bottom"
+		android:layout_marginTop="8dp"
+		android:layout_below="@id/info_top"
+		android:layout_toRightOf="@+id/art"
+		style="@style/Detail_Info_Top"
+		tools:text="3 Tracks"
+		/>
+
+	<View
+		android:id="@+id/divider"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_below="@id/art"
+		android:background="#ddd"
+		/>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/divider"
+		tools:listitem="@layout/listitem_track"
+		/>
+
+</RelativeLayout>

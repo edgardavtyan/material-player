@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivityCompact;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
@@ -27,7 +27,7 @@ public class Navigator {
 	}
 
 	public void gotoAlbumDetail(int albumId) {
-		Intent intent = new Intent(context, AlbumDetailActivity.class);
+		Intent intent = new Intent(context, AlbumDetailActivityCompact.class);
 		intent.putExtra(AlbumDetailMvp.EXTRA_ALBUM_ID, Integer.toString(albumId));
 		context.startActivity(intent);
 	}
