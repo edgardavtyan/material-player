@@ -112,11 +112,8 @@ public class PlayerTest extends BaseTest {
 
 		player.playNewTracks(tracks, 6);
 
-		InOrder order = inOrder(queue, audioEngine);
-		order.verify(queue).clear();
-		order.verify(queue).addManyTracks(tracks);
-		order.verify(queue).setPosition(6);
-		order.verify(audioEngine).playTrack("path");
+		verify(queue).replaceTracks(tracks, 6);
+		verify(audioEngine).playTrack("path");
 	}
 
 	@Test
