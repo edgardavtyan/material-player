@@ -41,6 +41,7 @@ public class App extends Application {
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
 	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
 	private @Setter TrackListFactory trackListFactory;
+	private @Setter SdkFactory sdkFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return new BaseFactory(activity);
@@ -119,6 +120,8 @@ public class App extends Application {
 	}
 
 	public SdkFactory getSdkFactory() {
-		return new SdkFactory();
+		if (sdkFactory == null)
+			sdkFactory = new SdkFactory();
+		return sdkFactory;
 	}
 }

@@ -40,7 +40,8 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 		sdkFactory = mock(SdkFactory.class);
 		when(sdkFactory.createPopupMenu(any(), any())).thenReturn(popupMenu);
-		when(app.getSdkFactory()).thenReturn(sdkFactory);
+
+		app.setSdkFactory(sdkFactory);
 
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		holder = new NowPlayingQueueViewHolder(context, itemView);
