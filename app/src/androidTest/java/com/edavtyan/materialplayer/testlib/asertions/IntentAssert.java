@@ -40,4 +40,14 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
 
 		return this;
 	}
+
+	public IntentAssert hasExtraInt(String extraName, int extraValue) {
+		if (actual.getIntExtra(extraName, -1) != extraValue) {
+			failWithMessage(
+					"Expected intent extra (%s) to have value (%s), but got (%s)",
+					extraName, extraValue, actual.getStringExtra(extraName));
+		}
+
+		return this;
+	}
 }

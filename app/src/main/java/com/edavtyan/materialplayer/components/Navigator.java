@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.components;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
@@ -20,9 +20,9 @@ public class Navigator {
 	private final Context context;
 	private final CompactDetailPref compactDetailPref;
 
-	public Navigator(Context context) {
+	public Navigator(Context context, CompactDetailPref compactDetailPref) {
 		this.context = context;
-		this.compactDetailPref = new CompactDetailPref(context);
+		this.compactDetailPref = compactDetailPref;
 	}
 
 	public void gotoArtistDetail(String artistTitle) {
@@ -48,10 +48,10 @@ public class Navigator {
 		context.startActivity(intent);
 	}
 
-	public void gotoNowPlayingQueue() {
+	public void gotoNowPlayingQueue(Activity activity) {
 		Intent intent = new Intent(context, NowPlayingQueueActivity.class);
 		context.startActivity(intent);
-		((AppCompatActivity) context).overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
+		activity.overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
 	}
 
 	public void gotoAudioEffects() {

@@ -53,7 +53,7 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 
 	@Override
 	public void gotoPlaylistScreen() {
-		navigator.gotoNowPlayingQueue();
+		navigator.gotoNowPlayingQueue(this);
 	}
 
 	protected NowPlayingFactory getFactory() {

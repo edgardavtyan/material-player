@@ -28,8 +28,9 @@ public class NavigatorTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
+		CompactDetailPref compactDetailPref = mock(CompactDetailPref.class);
 		activity = mock(AppCompatActivity.class);
-		navigator = new Navigator(activity);
+		navigator = new Navigator(activity, compactDetailPref);
 		intentCaptor = ArgumentCaptor.forClass(Intent.class);
 	}
 
@@ -52,7 +53,7 @@ public class NavigatorTest extends BaseTest {
 
 		assertThatIntent(intentCaptor.getValue())
 				.hasClass(AlbumDetailActivity.class)
-				.hasExtra(AlbumDetailMvp.EXTRA_ALBUM_ID, "7");
+				.hasExtraInt(AlbumDetailMvp.EXTRA_ALBUM_ID, 7);
 	}
 
 	@Test
@@ -67,7 +68,7 @@ public class NavigatorTest extends BaseTest {
 
 	@Test
 	public void gotoNowPlayingQueue_startPlaylistActivity() {
-		navigator.gotoNowPlayingQueue();
+		navigator.gotoNowPlayingQueue(activity);
 
 		verify(activity).startActivity(intentCaptor.capture());
 

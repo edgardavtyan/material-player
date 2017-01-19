@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.media.MediaMetadataRetriever;
 import android.preference.PreferenceManager;
 
+import com.edavtyan.materialplayer.components.CompactDetailPref;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtFileStorage;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtMemoryCache;
@@ -27,6 +28,7 @@ public class BaseFactory {
 	private ThemeUtils themeUtils;
 	private AdvancedSharedPrefs prefs;
 	private SharedPreferences basePrefs;
+	private CompactDetailPref compactDetailPref;
 
 	public BaseFactory(Context context) {
 		this.context = context;
@@ -37,7 +39,7 @@ public class BaseFactory {
 	}
 
 	public Navigator getNavigator() {
-		if (navigator == null) navigator = new Navigator(context);
+		if (navigator == null) navigator = new Navigator(context, getCompactDetailPref());
 		return navigator;
 	}
 
@@ -97,5 +99,11 @@ public class BaseFactory {
 		if (basePrefs == null)
 			basePrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 		return basePrefs;
+	}
+
+	public CompactDetailPref getCompactDetailPref() {
+		if (compactDetailPref == null)
+			compactDetailPref = new CompactDetailPref(getContext());
+		return compactDetailPref;
 	}
 }
