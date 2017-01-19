@@ -34,7 +34,7 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 		infoBottomView = findView(R.id.info_bottom);
 		artView = findView(R.id.art);
 
-		int albumId = Integer.parseInt(getIntent().getStringExtra(EXTRA_ALBUM_ID));
+		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		AlbumDetailFactory factory = ((App) getApplicationContext()).getAlbumDetailDI(this, this, albumId);
 
 		adapter = factory.getAdapter();
