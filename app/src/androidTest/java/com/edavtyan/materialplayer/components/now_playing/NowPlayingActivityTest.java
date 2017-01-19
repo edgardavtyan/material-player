@@ -9,21 +9,23 @@ import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingActivityTest extends ActivityTest {
-	private NowPlayingActivity activity;
-	private NowPlayingMvp.Presenter presenter;
-	private NowPlayingMvp.View.Art art;
-	private NowPlayingMvp.View.Controls controls;
-	private NowPlayingMvp.View.Info info;
-	private NowPlayingMvp.View.Seekbar seekbar;
-	private Navigator navigator;
+	private static NowPlayingActivity activity;
+	private static NowPlayingMvp.Presenter presenter;
+	private static NowPlayingMvp.View.Art art;
+	private static NowPlayingMvp.View.Controls controls;
+	private static NowPlayingMvp.View.Info info;
+	private static NowPlayingMvp.View.Seekbar seekbar;
+	private static Navigator navigator;
 
 	@Override
 	public void beforeEach() {
@@ -49,11 +51,15 @@ public class NowPlayingActivityTest extends ActivityTest {
 
 			activity = spy(startActivity(NowPlayingActivity.class));
 			doNothing().when(activity).baseOnDestroy();
+			doNothing().when(activity).baseOnCreate(any());
+		} else {
+			reset(presenter, navigator);
 		}
 	}
 
 	@Test
 	public void onCreate_bindPresenter() {
+		runOnUiThread(() -> activity.onCreate(null));
 		verify(presenter).bind();
 	}
 
