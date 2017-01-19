@@ -24,18 +24,10 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityTest extends ActivityTest {
-	private static final ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
+	private static ArtistDetailActivity activity;
 	private static ArtistDetailMvp.Presenter presenter;
 	private static AlbumListAdapter adapter;
-	private static TestArtistDetailActivity activity;
 	private static Navigator navigator;
-
-	public static class TestArtistDetailActivity extends ArtistDetailActivity {
-		@Override
-		protected ArtistDetailFactory getDI() {
-			return factory;
-		}
-	}
 
 	@Override
 	public void beforeEach() {
@@ -46,11 +38,14 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			adapter = mock(AlbumListAdapter.class);
 			navigator = mock(Navigator.class);
 
+			ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
 			when(factory.getPresenter()).thenReturn(presenter);
 			when(factory.getAdapter()).thenReturn(adapter);
 			when(factory.getNavigator()).thenReturn(navigator);
 
-			activity = spy(startActivity(TestArtistDetailActivity.class));
+			app.setArtistDetailFactory(factory);
+
+			activity = spy(startActivity(ArtistDetailActivity.class));
 			doNothing().when(activity).baseOnStop();
 		} else {
 			reset(adapter, presenter, navigator);

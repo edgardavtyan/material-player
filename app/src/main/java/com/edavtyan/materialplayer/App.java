@@ -34,6 +34,7 @@ public class App extends Application {
 
 	private @Setter NowPlayingFactory nowPlayingFactory;
 	private @Setter AlbumDetailFactory albumDetailFactory;
+	private @Setter ArtistDetailFactory artistDetailFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return new BaseFactory(activity);
@@ -57,7 +58,9 @@ public class App extends Application {
 			Context context,
 			ArtistDetailMvp.View view,
 			String artistTitle) {
-		return new ArtistDetailFactory(context, view, artistTitle);
+		if (artistDetailFactory == null)
+			artistDetailFactory = new ArtistDetailFactory(context, view, artistTitle);
+		return artistDetailFactory;
 	}
 
 	public TrackListFactory getTrackListDI(Context context, TrackListMvp.View view) {
