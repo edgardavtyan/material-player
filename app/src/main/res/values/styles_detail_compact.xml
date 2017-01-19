@@ -17,6 +17,7 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+		<item name="android:paddingRight">@dimen/spacing_tiny</item>
 		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorPrimary</item>
 		<item name="android:maxLines">3</item>
@@ -25,6 +26,7 @@
 	<style name="Detail_Info_Top">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingRight">@dimen/spacing_tiny</item>
 		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorSecondary</item>
 		<item name="android:textStyle">italic</item>
