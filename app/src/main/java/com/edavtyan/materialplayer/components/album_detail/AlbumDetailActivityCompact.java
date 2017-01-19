@@ -13,6 +13,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp.EXTRA_ALBUM_ID;
 
 public class AlbumDetailActivityCompact extends BaseToolbarActivity implements AlbumDetailMvp.View {
@@ -65,10 +67,13 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 	}
 
 	@Override
-	public void setAlbumInfo(String artistTitle, int tracksCount) {
+	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
 		infoTopView.setText(artistTitle);
-		infoBottomView.setText(
-				getResources().getQuantityString(R.plurals.tracks, tracksCount, tracksCount));
+
+		String tracksCountStr = getResources().getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
+		long durationStr = TimeUnit.MILLISECONDS.toMinutes(duration);
+		String info = getString(R.string.pattern_track_time_count, tracksCountStr, durationStr);
+		infoBottomView.setText(info);
 	}
 
 	@Override

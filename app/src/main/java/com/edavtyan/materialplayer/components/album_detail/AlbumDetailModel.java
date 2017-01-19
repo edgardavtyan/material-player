@@ -44,6 +44,16 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 	}
 
 	@Override
+	public long getTotalAlbumDuration() {
+		long totalDurationMS = 0;
+		for (Track track : tracks) {
+			totalDurationMS += track.getDuration();
+		}
+
+		return totalDurationMS;
+	}
+
+	@Override
 	protected List<Track> queryTracks() {
 		return trackDB.getTracksWithAlbumId(albumId);
 	}

@@ -14,7 +14,7 @@ public class TrackListModel
 		implements TrackListMvp.Model {
 
 	private final TrackDB db;
-	private List<Track> tracks;
+	protected List<Track> tracks;
 
 	public TrackListModel(Context context, TrackDB db, CompactListPref compactListPref) {
 		super(context, compactListPref);

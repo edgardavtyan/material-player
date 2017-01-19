@@ -19,7 +19,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 		setHeaderTitle(title);
 	}
 
-	public void setAlbumInfo(String artistTitle, int tracksCount) {
+	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
 		Resources res = getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);

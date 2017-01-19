@@ -13,11 +13,12 @@ public interface AlbumDetailMvp {
 	interface Model extends TrackListMvp.Model {
 		Album getAlbum();
 		Bitmap getAlbumArt();
+		long getTotalAlbumDuration();
 	}
 
 	interface View extends TrackListMvp.View {
 		void setAlbumTitle(String albumTitle);
-		void setAlbumInfo(String artistTitle, int tracksCount);
+		void setAlbumInfo(String artistTitle, int tracksCount, long duration);
 		void setAlbumImage(Bitmap art);
 	}
 
