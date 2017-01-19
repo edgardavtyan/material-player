@@ -12,8 +12,6 @@ import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActiv
 
 public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailMvp.View {
 
-	public static final String EXTRA_ALBUM_ID = "extra_albumId";
-
 	private Navigator navigator;
 	private AlbumDetailAdapter adapter;
 
@@ -53,7 +51,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	}
 
 	protected AlbumDetailFactory getDI() {
-		String albumId = getIntent().getStringExtra(EXTRA_ALBUM_ID);
+		String albumId = getIntent().getStringExtra(AlbumDetailMvp.EXTRA_ALBUM_ID);
 		return ((App) getApplicationContext()).getAlbumDetailDI(this, this, Integer.parseInt(albumId));
 	}
 }

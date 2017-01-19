@@ -8,6 +8,8 @@ import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPrese
 
 @SuppressWarnings("unused")
 public interface AlbumDetailMvp {
+	String EXTRA_ALBUM_ID = "extra_albumId";
+
 	interface Model extends TrackListMvp.Model {
 		Album getAlbum();
 		Bitmap getAlbumArt();
