@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.lib.base;
 
+import android.annotation.SuppressLint;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,14 +16,11 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressLint("StaticFieldLeak")
 public class BaseActivityTest extends ActivityTest {
 	private static TestBaseActivity activity;
 
@@ -33,38 +31,35 @@ public class BaseActivityTest extends ActivityTest {
 		}
 	}
 
-	private ThemeUtils themeUtils;
-	private AdvancedSharedPrefs prefs;
-	private MenuInflater menuInflater;
-	private Navigator navigator;
+	private static ThemeUtils themeUtils;
+	private static AdvancedSharedPrefs prefs;
+	private static MenuInflater menuInflater;
+	private static Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
-			activity = spy(startActivity(TestBaseActivity.class));
-		} else {
-			reset(activity);
+			themeUtils = mock(ThemeUtils.class);
+			prefs = mock(AdvancedSharedPrefs.class);
+			navigator = mock(Navigator.class);
+
+			BaseFactory factory = mock(BaseFactory.class);
+			when(factory.getThemeUtils()).thenReturn(themeUtils);
+			when(factory.getPrefs()).thenReturn(prefs);
+			when(factory.getNavigator()).thenReturn(navigator);
+
+			app.setBaseFactory(factory);
+
+			menuInflater = mock(MenuInflater.class);
+			SdkFactory sdkFactory = mock(SdkFactory.class);
+			when(sdkFactory.createMenuInflater(any())).thenReturn(menuInflater);
+
+			app.setSdkFactory(sdkFactory);
+
+			activity = startActivity(TestBaseActivity.class);
 		}
-
-		themeUtils = mock(ThemeUtils.class);
-		prefs = mock(AdvancedSharedPrefs.class);
-		navigator = mock(Navigator.class);
-		BaseFactory factory = mock(BaseFactory.class);
-		when(factory.getThemeUtils()).thenReturn(themeUtils);
-		when(factory.getPrefs()).thenReturn(prefs);
-		when(factory.getNavigator()).thenReturn(navigator);
-		when(app.getBaseFactory(activity)).thenReturn(factory);
-
-		menuInflater = mock(MenuInflater.class);
-		SdkFactory sdkFactory = mock(SdkFactory.class);
-		when(sdkFactory.createMenuInflater(activity)).thenReturn(menuInflater);
-		when(app.getSdkFactory()).thenReturn(sdkFactory);
-
-		doNothing().when(activity).baseOnCreate(any());
-		doReturn(app).when(activity).getApplicationContext();
-		runOnUiThread(() -> activity.onCreate(null));
 	}
 
 	@Test
