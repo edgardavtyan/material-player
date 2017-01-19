@@ -33,6 +33,7 @@ import lombok.Setter;
 public class App extends Application {
 
 	private @Setter NowPlayingFactory nowPlayingFactory;
+	private @Setter AlbumDetailFactory albumDetailFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return new BaseFactory(activity);
@@ -43,7 +44,9 @@ public class App extends Application {
 	}
 
 	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailMvp.View view, int albumId) {
-		return new AlbumDetailFactory(context, view, albumId);
+		if (albumDetailFactory == null)
+			albumDetailFactory = new AlbumDetailFactory(context, view, albumId);
+		return albumDetailFactory;
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListMvp.View view) {
