@@ -6,11 +6,17 @@
 		<item name="android:layout_height">match_parent</item>
 	</style>
 
-	<style name="Detail_Art">
-		<item name="android:layout_width">130dp</item>
-		<item name="android:layout_height">130dp</item>
+	<style name="Detail_Art_Wrapper">
+		<item name="android:layout_width">120dp</item>
+		<item name="android:layout_height">120dp</item>
 		<item name="android:layout_margin">@dimen/spacing_tiny</item>
 		<item name="android:background">@android:drawable/dialog_holo_light_frame</item>
+	</style>
+
+	<style name="Detail_Art">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:scaleType">centerCrop</item>
 	</style>
 
 	<style name="Detail_TextView">
