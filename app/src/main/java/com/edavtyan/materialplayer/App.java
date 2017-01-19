@@ -39,6 +39,7 @@ public class App extends Application {
 	private @Setter ArtistListFactory artistListFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
+	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
 	private @Setter TrackListFactory trackListFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
@@ -89,7 +90,9 @@ public class App extends Application {
 	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(
 			Context context,
 			NowPlayingFloatingMvp.View view) {
-		return new NowPlayingFloatingFactory(context, view);
+		if (nowPlayingFloatingFactory == null)
+			nowPlayingFloatingFactory = new NowPlayingFloatingFactory(context, view);
+		return nowPlayingFloatingFactory;
 	}
 
 	public NowPlayingQueueFactory getPlaylistFactory(Context context, NowPlayingQueueMvp.View view) {

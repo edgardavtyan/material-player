@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class NowPlayingFloatingFragment
 			LayoutInflater inflater,
 			@Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
+		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.fragment_nowplaying_floating, container, false);
 
 		titleView = findView(view, R.id.title);
