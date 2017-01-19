@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivityCompact;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
@@ -15,9 +16,11 @@ import com.edavtyan.materialplayer.components.prefs.PrefActivity;
 
 public class Navigator {
 	private final Context context;
+	private final CompactDetailPref compactDetailPref;
 
 	public Navigator(Context context) {
 		this.context = context;
+		this.compactDetailPref = new CompactDetailPref(context);
 	}
 
 	public void gotoArtistDetail(String artistTitle) {
@@ -27,7 +30,10 @@ public class Navigator {
 	}
 
 	public void gotoAlbumDetail(int albumId) {
-		Intent intent = new Intent(context, AlbumDetailActivityCompact.class);
+		Class activityClass = compactDetailPref.getValue()
+				? AlbumDetailActivityCompact.class : AlbumDetailActivity.class;
+
+		Intent intent = new Intent(context, activityClass);
 		intent.putExtra(AlbumDetailMvp.EXTRA_ALBUM_ID, albumId);
 		context.startActivity(intent);
 	}
