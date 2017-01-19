@@ -1,56 +1,60 @@
 package com.edavtyan.materialplayer.components.album_all;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
+import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class AlbumListFragmentTest extends FragmentTest<AlbumListFragment> {
-	private AlbumListAdapter adapter;
-	private AlbumListMvp.Presenter presenter;
-	private Navigator navigator;
+@SuppressLint("StaticFieldLeak")
+public class AlbumListFragmentTest extends FragmentTest2 {
+	private static AlbumListAdapter adapter;
+	private static AlbumListMvp.Presenter presenter;
+	private static Navigator navigator;
+	private static AlbumListFragment fragment;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		initFragment(new AlbumListFragment());
+		if (fragment == null) {
+			adapter = mock(AlbumListAdapter.class);
+			presenter = mock(AlbumListMvp.Presenter.class);
+			navigator = mock(Navigator.class);
 
-		adapter = mock(AlbumListAdapter.class);
-		presenter = mock(AlbumListMvp.Presenter.class);
-		navigator = mock(Navigator.class);
+			AlbumListFactory factory = mock(AlbumListFactory.class);
+			when(factory.getAdapter()).thenReturn(adapter);
+			when(factory.getPresenter()).thenReturn(presenter);
+			when(factory.getNavigator()).thenReturn(navigator);
 
-		AlbumListFactory factory = mock(AlbumListFactory.class);
-		when(factory.getAdapter()).thenReturn(adapter);
-		when(factory.getPresenter()).thenReturn(presenter);
-		when(factory.getNavigator()).thenReturn(navigator);
-		when(app.getAlbumListDI(any(), any())).thenReturn(factory);
+			app.setAlbumListFactory(factory);
+
+			fragment = new AlbumListFragment();
+			initFragment(fragment);
+		} else {
+			reset(adapter, presenter, navigator);
+		}
 	}
 
 	@Test
 	public void onCreate_callPresenter() {
-		fragment.onCreate(null);
 		verify(presenter).onCreate();
 	}
 
 	@Test
 	public void onCreateView_initList() {
-		RecyclerView list = new RecyclerView(context);
-		when(fragmentView.findViewById(R.id.list)).thenReturn(list);
-
-		fragment.onCreate(null);
-		fragment.onCreateView(inflater, null, null);
-
+		//noinspection ConstantConditions
+		RecyclerView list = (RecyclerView) fragment.getView().findViewById(R.id.list);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 	}

@@ -34,6 +34,7 @@ public class App extends Application {
 
 	private @Setter NowPlayingFactory nowPlayingFactory;
 	private @Setter AlbumDetailFactory albumDetailFactory;
+	private @Setter AlbumListFactory albumListFactory;
 	private @Setter ArtistDetailFactory artistDetailFactory;
 	private @Setter ArtistListFactory artistListFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
@@ -44,7 +45,9 @@ public class App extends Application {
 	}
 
 	public AlbumListFactory getAlbumListDI(Context context, AlbumListMvp.View view) {
-		return new AlbumListFactory(context, view);
+		if (albumListFactory == null)
+			albumListFactory = new AlbumListFactory(context, view);
+		return albumListFactory;
 	}
 
 	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailMvp.View view, int albumId) {
