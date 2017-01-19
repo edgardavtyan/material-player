@@ -54,6 +54,6 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 
 	protected AlbumDetailFactory getDI() {
 		String albumId = getIntent().getStringExtra(EXTRA_ALBUM_ID);
-		return ((App) getApplicationContext()).getAlbumDetailDI(this, Integer.parseInt(albumId));
+		return ((App) getApplicationContext()).getAlbumDetailDI(this, this, Integer.parseInt(albumId));
 	}
 }

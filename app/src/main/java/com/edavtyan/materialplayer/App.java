@@ -7,8 +7,8 @@ import android.content.Context;
 import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.album_all.AlbumListFactory;
 import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailFactory;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailFactory;
@@ -38,8 +38,8 @@ public class App extends Application {
 		return new AlbumListFactory(context, view);
 	}
 
-	public AlbumDetailFactory getAlbumDetailDI(AlbumDetailActivity activity, int albumId) {
-		return new AlbumDetailFactory(activity, activity, albumId);
+	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailMvp.View view, int albumId) {
+		return new AlbumDetailFactory(context, view, albumId);
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListMvp.View view) {

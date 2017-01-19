@@ -17,7 +17,7 @@ public class AlbumDetailFactory extends ListFactory {
 	private AlbumDB albumDB;
 	private TrackDB trackDB;
 
-	public AlbumDetailFactory(Context context, AlbumDetailActivity view, int albumId) {
+	public AlbumDetailFactory(Context context, AlbumDetailMvp.View view, int albumId) {
 		super(context);
 		this.view = view;
 		this.albumId = albumId;
