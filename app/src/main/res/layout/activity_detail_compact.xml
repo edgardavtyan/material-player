@@ -52,9 +52,19 @@
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:layout_below="@id/divider"
+		android:layout_above="@id/floating_nowplaying"
 		tools:listitem="@layout/listitem_track"
+		/>
+
+	<fragment
+		android:id="@+id/floating_nowplaying"
+		android:name="com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		tools:layout="@layout/fragment_nowplaying_floating"
 		/>
 
 </RelativeLayout>
