@@ -61,21 +61,18 @@ public class AlbumListFragmentTest extends FragmentTest2 {
 
 	@Test
 	public void onDestroy_callPresenter() {
-		fragment.onCreate(null);
 		fragment.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
 	@Test
 	public void goToAlbumDetail_callNavigator() {
-		fragment.onCreate(null);
 		fragment.goToAlbumDetail(7);
 		verify(navigator).gotoAlbumDetail(7);
 	}
 
 	@Test
 	public void notifyDataSetChanged_notifyAdapter() {
-		fragment.onCreate(null);
 		fragment.notifyDataSetChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();
 	}

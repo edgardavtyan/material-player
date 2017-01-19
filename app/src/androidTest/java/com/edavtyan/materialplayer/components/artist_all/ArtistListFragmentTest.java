@@ -61,21 +61,18 @@ public class ArtistListFragmentTest extends FragmentTest2 {
 
 	@Test
 	public void onDestroy_callPresenter() {
-		fragment.onCreate(null);
 		fragment.onDestroy();
 		verify(presenter).onDestroy();
 	}
 
 	@Test
 	public void goToArtistDetail_callNavigator() {
-		fragment.onCreate(null);
 		fragment.goToArtistDetail("title");
 		verify(navigator).gotoArtistDetail("title");
 	}
 
 	@Test
 	public void notifyDataSetChanged_notifyAdapter() {
-		fragment.onCreate(null);
 		fragment.notifyDataSetChanged();
 		verify(adapter).notifyDataSetChangedNonFinal();
 	}
