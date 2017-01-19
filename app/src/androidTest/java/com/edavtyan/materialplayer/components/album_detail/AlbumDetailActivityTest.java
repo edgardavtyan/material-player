@@ -85,7 +85,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	public void setAlbumInfo_setInfoTextWithPattern() {
 		runOnUiThread(() -> {
 			TextView infoView = activity.findView(R.id.info);
-			activity.setAlbumInfo("artist", 9);
+			activity.setAlbumInfo("artist", 9, 0);
 			assertThat(infoView.getText()).isEqualTo("artist | 9 Tracks");
 		});
 	}

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
+import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
@@ -39,7 +41,7 @@ public class NavigatorTest extends BaseTest {
 
 		assertThatIntent(intentCaptor.getValue())
 				.hasClass(ArtistDetailActivity.class)
-				.hasExtra(ArtistDetailActivity.EXTRA_ARTIST_TITLE, "title");
+				.hasExtra(ArtistDetailMvp.EXTRA_ARTIST_TITLE, "title");
 	}
 
 	@Test
@@ -50,7 +52,7 @@ public class NavigatorTest extends BaseTest {
 
 		assertThatIntent(intentCaptor.getValue())
 				.hasClass(AlbumDetailActivity.class)
-				.hasExtra(AlbumDetailActivity.EXTRA_ALBUM_ID, "7");
+				.hasExtra(AlbumDetailMvp.EXTRA_ALBUM_ID, "7");
 	}
 
 	@Test

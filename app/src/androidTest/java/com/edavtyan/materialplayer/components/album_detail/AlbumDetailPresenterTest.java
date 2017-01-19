@@ -39,7 +39,7 @@ public class AlbumDetailPresenterTest extends BaseTest {
 		presenter.onCreate();
 
 		verify(view).setAlbumTitle("title");
-		verify(view).setAlbumInfo("artist", 9);
+		verify(view).setAlbumInfo("artist", 9, 0);
 		verify(view).setAlbumImage(art);
 	}
 }
