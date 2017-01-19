@@ -12,7 +12,6 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
@@ -36,12 +35,12 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 			NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
 			when(factory.getAdapter()).thenReturn(adapter);
 			when(factory.getPresenter()).thenReturn(presenter);
-			when(app.getPlaylistFactory(any(), any())).thenReturn(factory);
+
+			app.setNowPlayingQueueFactory(factory);
 
 			activity = spy(startActivity(NowPlayingQueueActivity.class));
 			doNothing().when(activity).baseOnCreate(any());
 			doNothing().when(activity).baseOnDestroy();
-			doReturn(app).when(activity).getApplicationContext();
 		} else {
 			reset(adapter, presenter);
 		}
@@ -55,10 +54,7 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 	@Test
 	public void onCreate_initList() {
 		runOnUiThread(() -> {
-			RecyclerView list = new RecyclerView(context);
-			when(activity.findView(R.id.list)).thenReturn(list);
-			activity.onCreate(null);
-
+			RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
 			assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 			assertThat(list.getAdapter()).isEqualTo(adapter);
 		});
@@ -66,10 +62,7 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 
 	@Test
 	public void onCreate_initPresenter() {
-		runOnUiThread(() -> {
-			activity.onCreate(null);
-			verify(presenter).onCreate();
-		});
+		verify(presenter).onCreate();
 	}
 
 	@Test
