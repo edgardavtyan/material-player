@@ -8,11 +8,11 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder.OnHolderClickListener;
 import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder.OnHolderMenuItemClickListener;
-import com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
+import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
 import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -46,7 +46,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 	@Test
 	public void setArt_nullPath_setFallbackImage() {
 		runOnUiThread(() -> holder.setArt(null));
-		ImageViewAssert.assertThatImageView(itemView, R.id.art).hasDrawableWithId(R.drawable.fallback_cover);
+		assertThatImageView(itemView, R.id.art).hasImageResource(R.drawable.fallback_cover);
 	}
 
 	@Test

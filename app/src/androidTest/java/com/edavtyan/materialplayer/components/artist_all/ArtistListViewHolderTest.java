@@ -6,11 +6,11 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListViewHolder.OnHolderClickListener;
-import com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
+import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
 import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -52,14 +52,14 @@ public class ArtistListViewHolderTest extends BaseTest {
 	@Test
 	public void setImage_nullImage_setFallbackResourceId() {
 		holder.setImage(null);
-		ImageViewAssert.assertThatImageView(itemView, R.id.art).hasDrawableWithId(R.drawable.fallback_artist);
+		assertThatImageView(itemView, R.id.art).hasImageResource(R.drawable.fallback_artist);
 	}
 
 	@Test
 	public void setImage_nonNullImage_setGivenImage() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		holder.setImage(art);
-		ImageViewAssert.assertThatImageView(itemView, R.id.art).hasBitmap(art);
+		assertThatImageView(itemView, R.id.art).hasImageBitmap(art);
 	}
 
 	@Test

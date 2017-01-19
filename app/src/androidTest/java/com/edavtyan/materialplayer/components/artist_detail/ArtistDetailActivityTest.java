@@ -98,7 +98,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		runOnUiThread(() -> {
 			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 			activity.setArtistImage(image);
-			assertThatImageView(activity, R.id.art).hasBitmap(image);
+			assertThatImageView(activity, R.id.art).hasImageBitmap(image);
 		});
 	}
 

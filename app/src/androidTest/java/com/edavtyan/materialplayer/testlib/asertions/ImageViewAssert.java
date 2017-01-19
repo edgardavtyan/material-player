@@ -45,7 +45,7 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		return new ImageViewAssert(imageView, ImageViewAssert.class);
 	}
 
-	public ImageViewAssert hasDrawableWithId(@DrawableRes int drawableRes) {
+	public ImageViewAssert hasImageResource(@DrawableRes int drawableRes) {
 		Drawable drawable = ContextCompat.getDrawable(context, drawableRes);
 		if (!areDrawablesIdentical(actual.getDrawable(), drawable)) {
 			String drawableId = context.getResources().getResourceEntryName(drawableRes);
@@ -55,7 +55,7 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		return this;
 	}
 
-	public ImageViewAssert hasBitmap(Bitmap art) {
+	public ImageViewAssert hasImageBitmap(Bitmap art) {
 		if (!getBitmap(actual.getDrawable()).sameAs(art)) {
 			failWithMessage(getFailMessageFirstPart() + "to have bitmap '%s'", art);
 		}
