@@ -17,21 +17,13 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingActivityTest extends ActivityTest {
-	private static NowPlayingActivity activity;
-	private static NowPlayingFactory factory;
-	private static NowPlayingMvp.Presenter presenter;
-	private static NowPlayingMvp.View.Art art;
-	private static NowPlayingMvp.View.Controls controls;
-	private static NowPlayingMvp.View.Info info;
-	private static NowPlayingMvp.View.Seekbar seekbar;
-	private static Navigator navigator;
-
-	public static class TestNowPlayingActivity extends NowPlayingActivity {
-		@Override
-		public NowPlayingFactory getFactory() {
-			return factory;
-		}
-	}
+	private NowPlayingActivity activity;
+	private NowPlayingMvp.Presenter presenter;
+	private NowPlayingMvp.View.Art art;
+	private NowPlayingMvp.View.Controls controls;
+	private NowPlayingMvp.View.Info info;
+	private NowPlayingMvp.View.Seekbar seekbar;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
@@ -45,7 +37,7 @@ public class NowPlayingActivityTest extends ActivityTest {
 			seekbar = mock(NowPlayingMvp.View.Seekbar.class);
 			navigator = mock(Navigator.class);
 
-			factory = mock(NowPlayingFactory.class);
+			NowPlayingFactory factory = mock(NowPlayingFactory.class);
 			when(factory.getPresenter()).thenReturn(presenter);
 			when(factory.getArt()).thenReturn(art);
 			when(factory.getControls()).thenReturn(controls);
@@ -53,7 +45,9 @@ public class NowPlayingActivityTest extends ActivityTest {
 			when(factory.getSeekbar()).thenReturn(seekbar);
 			when(factory.getNavigator()).thenReturn(navigator);
 
-			activity = spy(startActivity(TestNowPlayingActivity.class));
+			app.setNowPlayingFactory(factory);
+
+			activity = spy(startActivity(NowPlayingActivity.class));
 			doNothing().when(activity).baseOnDestroy();
 		}
 	}
@@ -65,7 +59,7 @@ public class NowPlayingActivityTest extends ActivityTest {
 
 	@Test
 	public void onDestroy_unbindPresenter() {
-		activity.onDestroy();
+		runOnUiThread(activity::onDestroy);
 		verify(presenter).unbind();
 	}
 

@@ -19,10 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unused")
 public class BaseTest {
@@ -35,8 +32,7 @@ public class BaseTest {
 		instrumentation = InstrumentationRegistry.getInstrumentation();
 		Context appContext = instrumentation.getTargetContext();
 		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
-		app = mock(App.class, CALLS_REAL_METHODS);
-		when(context.getApplicationContext()).thenReturn(app);
+		app = (App) instrumentation.getTargetContext().getApplicationContext();
 	}
 
 	@After

@@ -28,7 +28,11 @@ import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
+import lombok.Setter;
+
 public class App extends Application {
+
+	private @Setter NowPlayingFactory nowPlayingFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return new BaseFactory(activity);
@@ -60,7 +64,9 @@ public class App extends Application {
 	public NowPlayingFactory getNowPlayingFactory(
 			NowPlayingActivity activity,
 			NowPlayingMvp.View view) {
-		return new NowPlayingFactory(activity, view);
+		if (nowPlayingFactory == null)
+			nowPlayingFactory = new NowPlayingFactory(activity, view);
+		return nowPlayingFactory;
 	}
 
 	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(
