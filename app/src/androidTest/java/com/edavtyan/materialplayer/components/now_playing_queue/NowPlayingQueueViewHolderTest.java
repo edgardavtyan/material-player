@@ -47,6 +47,12 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		holder = new NowPlayingQueueViewHolder(context, itemView);
 	}
 
+	@Override
+	public void afterEach() {
+		super.afterEach();
+		app.setSdkFactory(null);
+	}
+
 	@Test
 	public void constructor_initPopupMenu() {
 		ImageView menuButton = holder.findView(R.id.menu);
