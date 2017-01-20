@@ -71,6 +71,7 @@ public class AlbumListViewHolder
 		Glide.with(context)
 			 .load(artPath)
 			 .error(R.drawable.fallback_cover)
+			 .placeholder(R.drawable.fallback_cover)
 			 .into(artView);
 	}
 
