@@ -10,13 +10,16 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
+import butterknife.BindView;
 import lombok.Setter;
 
 public class ArtistListViewHolder extends BaseViewHolder implements View.OnClickListener {
-	private final TextView titleView;
-	private final TextView infoView;
-	private final ImageView artView;
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.art) ImageView artView;
+
 	private final Context context;
+
 	private @Setter OnHolderClickListener onHolderClickListener;
 
 	public interface OnHolderClickListener {
@@ -27,9 +30,6 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 		super(itemView);
 		this.context = context;
 		itemView.setOnClickListener(this);
-		titleView = findView(R.id.title);
-		infoView = findView(R.id.info);
-		artView = findView(R.id.art);
 	}
 
 	public void setTitle(String title) {
