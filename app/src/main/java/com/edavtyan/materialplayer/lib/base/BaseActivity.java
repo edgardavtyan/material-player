@@ -14,6 +14,8 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableActivity;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity
 		extends TestableActivity
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -42,6 +44,8 @@ public abstract class BaseActivity
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		setContentView(getLayoutId());
+
+		ButterKnife.bind(this);
 	}
 
 	@Override

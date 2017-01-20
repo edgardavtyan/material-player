@@ -42,8 +42,16 @@ public class TitledSeekbar
 		title.getLayoutParams().width = attributes.getTextWidth();
 	}
 
+	public int getProgress() {
+		return seekbar.getProgress();
+	}
+
 	public void setProgress(int progress) {
 		seekbar.setProgress(progress);
+	}
+
+	public int getMax() {
+		return seekbar.getMax();
 	}
 
 	public void setMax(int max) {

@@ -12,6 +12,8 @@ import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
+import butterknife.BindView;
+
 public class AudioEffectsActivity
 		extends BaseToolbarActivity
 		implements AudioEffectsMvp.View,
@@ -19,30 +21,22 @@ public class AudioEffectsActivity
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {
 
+	@BindView(R.id.equalizerSwitch) SwitchCompat equalizerSwitch;
+	@BindView(R.id.equalizer) EqualizerView equalizerView;
+	@BindView(R.id.bassBoost) TitledSeekbar bassBoostView;
+	@BindView(R.id.surround) TitledSeekbar surroundView;
+	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
+
 	private AudioEffectsMvp.Presenter presenter;
-	private SwitchCompat equalizerSwitch;
-	private EqualizerView equalizerView;
-	private TitledSeekbar bassBoostView;
-	private TitledSeekbar surroundView;
-	private TitledSeekbar amplifierView;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		equalizerSwitch = findView(R.id.equalizerSwitch);
 		equalizerSwitch.setOnCheckedChangeListener(this);
-
-		equalizerView = findView(R.id.equalizer);
 		equalizerView.setOnBandChangedListener(this);
-
-		bassBoostView = findView(R.id.bassBoost);
 		bassBoostView.setOnProgressChangedListener(this);
-
-		surroundView = findView(R.id.surround);
 		surroundView.setOnProgressChangedListener(this);
-
-		amplifierView = findView(R.id.amplifier);
 		amplifierView.setOnProgressChangedListener(this);
 
 		App app = (App) getApplicationContext();
