@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import lombok.Setter;
 
 public class AlbumListViewHolder
@@ -20,11 +22,14 @@ public class AlbumListViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.art) ImageView artView;
+	@BindView(R.id.menu) ImageButton menuButton;
+
 	private final Context context;
-	private final TextView titleView;
-	private final TextView infoView;
-	private final ImageView artView;
 	private final PopupMenu popupMenu;
+
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
 
@@ -38,21 +43,17 @@ public class AlbumListViewHolder
 
 	public AlbumListViewHolder(Context context, View itemView) {
 		super(itemView);
-
 		this.context = context;
-
 		itemView.setOnClickListener(this);
 
-		titleView = findView(R.id.title);
-		infoView = findView(R.id.info);
-		artView = findView(R.id.art);
-
-		ImageButton menuButton = findView(R.id.menu);
 		popupMenu = new PopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_track);
 		popupMenu.setOnMenuItemClickListener(this);
+	}
 
-		menuButton.setOnClickListener(view -> popupMenu.show());
+	@OnClick(R.id.menu)
+	public void onMenuClick() {
+		popupMenu.show();
 	}
 
 	public void setTitle(String title) {
