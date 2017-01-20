@@ -4,13 +4,11 @@ import android.content.Intent;
 
 import org.assertj.core.api.AbstractAssert;
 
-public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
-	public IntentAssert(Intent actual, Class<?> selfType) {
-		super(actual, selfType);
-	}
+import static org.assertj.core.api.Assertions.assertThat;
 
-	public static IntentAssert assertThatIntent(Intent actual) {
-		return new IntentAssert(actual, IntentAssert.class);
+public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
+	public IntentAssert(Intent actual) {
+		super(actual, IntentAssert.class);
 	}
 
 	public IntentAssert hasClass(Class clazz) {
@@ -18,36 +16,31 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
 
 		String expectedClass = clazz.getName();
 		String actualClass = actual.getComponent().getClassName();
-
-		if (!actualClass.equals(expectedClass)) {
-			failWithMessage(
-					"Expected intent class to be (%s), but got (%s)",
-					expectedClass, actualClass);
-		}
-
+		assertThat(expectedClass)
+				.overridingErrorMessage(
+						"Expected intent class to be (%s), but got (%s)",
+						expectedClass, actualClass)
+				.isEqualTo(actualClass);
 		return this;
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
-	public IntentAssert hasExtra(String extraName, String extraValue) {
+	public IntentAssert hasExtraString(String extraName, String extraValue) {
 		isNotNull();
-
-		if (!actual.getStringExtra(extraName).equals(extraValue)) {
-			failWithMessage(
-					"Expected intent extra (%s) to have value (%s), but got (%s)",
-					extraName, extraValue, actual.getStringExtra(extraName));
-		}
-
+		assertThat(actual.getStringExtra(extraName))
+				.overridingErrorMessage(
+						"Expected intent extra (%s) to have value (%s), but got (%s)",
+						extraName, extraValue, actual.getStringExtra(extraName))
+				.isEqualTo(extraValue);
 		return this;
 	}
 
 	public IntentAssert hasExtraInt(String extraName, int extraValue) {
-		if (actual.getIntExtra(extraName, -1) != extraValue) {
-			failWithMessage(
-					"Expected intent extra (%s) to have value (%s), but got (%s)",
-					extraName, extraValue, actual.getStringExtra(extraName));
-		}
-
+		isNotNull();
+		assertThat(actual.getIntExtra(extraName, -1))
+				.overridingErrorMessage(
+						"Expected intent extra (%s) to have value (%s), but got (%s)",
+						extraName, extraValue, actual.getStringExtra(extraName))
+				.isEqualTo(extraValue);
 		return this;
 	}
 }

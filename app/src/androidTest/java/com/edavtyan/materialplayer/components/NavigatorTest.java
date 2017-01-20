@@ -16,7 +16,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
+import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -40,9 +40,9 @@ public class NavigatorTest extends BaseTest {
 
 		verify(activity).startActivity(intentCaptor.capture());
 
-		assertThatIntent(intentCaptor.getValue())
+		assertThat(intentCaptor.getValue())
 				.hasClass(ArtistDetailActivity.class)
-				.hasExtra(ArtistDetailMvp.EXTRA_ARTIST_TITLE, "title");
+				.hasExtraString(ArtistDetailMvp.EXTRA_ARTIST_TITLE, "title");
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class NavigatorTest extends BaseTest {
 
 		verify(activity).startActivity(intentCaptor.capture());
 
-		assertThatIntent(intentCaptor.getValue())
+		assertThat(intentCaptor.getValue())
 				.hasClass(AlbumDetailActivity.class)
 				.hasExtraInt(AlbumDetailMvp.EXTRA_ALBUM_ID, 7);
 	}
@@ -62,8 +62,7 @@ public class NavigatorTest extends BaseTest {
 
 		verify(activity).startActivity(intentCaptor.capture());
 
-		assertThatIntent(intentCaptor.getValue())
-				.hasClass(NowPlayingActivity.class);
+		assertThat(intentCaptor.getValue()).hasClass(NowPlayingActivity.class);
 	}
 
 	@Test
@@ -72,23 +71,20 @@ public class NavigatorTest extends BaseTest {
 
 		verify(activity).startActivity(intentCaptor.capture());
 
-		assertThatIntent(intentCaptor.getValue())
-				.hasClass(NowPlayingQueueActivity.class);
+		assertThat(intentCaptor.getValue()).hasClass(NowPlayingQueueActivity.class);
 	}
 
 	@Test
 	public void gotoAudioEffects_startAudioEffectsActivity() {
 		navigator.gotoAudioEffects();
 		verify(activity).startActivity(intentCaptor.capture());
-		assertThatIntent(intentCaptor.getValue())
-				.hasClass(AudioEffectsActivity.class);
+		assertThat(intentCaptor.getValue()).hasClass(AudioEffectsActivity.class);
 	}
 
 	@Test
 	public void gotoSetting_startSettingActivity() {
 		navigator.gotoSettings();
 		verify(activity).startActivity(intentCaptor.capture());
-		assertThatIntent(intentCaptor.getValue())
-				.hasClass(PrefActivity.class);
+		assertThat(intentCaptor.getValue()).hasClass(PrefActivity.class);
 	}
 }
