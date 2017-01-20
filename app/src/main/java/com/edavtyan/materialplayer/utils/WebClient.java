@@ -1,36 +1,33 @@
 package com.edavtyan.materialplayer.utils;
 
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.ResponseBody;
+import lombok.Cleanup;
 
 public class WebClient {
-	private final OkHttpClient client;
-
-	public WebClient() {
-		this.client = new OkHttpClient();
-	}
-
-	public byte[] getBytes(String url) {
+	public byte[] getBytes(String urlString) {
 		try {
-			return get(url).bytes();
+			URL url = new URL(urlString);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+			@Cleanup InputStream stream = connection.getInputStream();
+			@Cleanup ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			byte[] bytes = new byte[4096];
+			int readBytesCount;
+			while ((readBytesCount = stream.read(bytes, 0, bytes.length)) != -1) {
+				byteArrayOutputStream.write(bytes, 0, readBytesCount);
+			}
+
+			return byteArrayOutputStream.toByteArray();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 
 	public String getString(String url) {
-		try {
-			return get(url).string();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	private ResponseBody get(String url) throws IOException {
-		Request request = new Request.Builder().url(url).build();
-		return client.newCall(request).execute().body();
+		return new String(getBytes(url));
 	}
 }
