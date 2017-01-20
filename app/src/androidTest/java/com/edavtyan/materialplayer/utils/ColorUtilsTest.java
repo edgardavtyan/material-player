@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.utils;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
+import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 

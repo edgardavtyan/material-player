@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.testlib.asertions;
+package com.edavtyan.materialplayer.testlib.assertions;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import java.lang.reflect.Constructor;
 
 public final class Assertions {
+	public static <T> ConstructorAssert<T> assertThat(Constructor<T> constructor) {
+		return new ConstructorAssert<T>(constructor);
 	}
 
 	public static IntentAssert assertThat(Intent intent) {

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.testlib.asertions;
+package com.edavtyan.materialplayer.testlib.assertions;
 
 import org.assertj.core.api.AbstractAssert;
 
