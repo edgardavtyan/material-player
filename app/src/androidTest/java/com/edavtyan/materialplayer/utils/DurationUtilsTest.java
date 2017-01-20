@@ -5,13 +5,13 @@ import org.junit.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ConstructorAssert.assertThatConstructor;
+import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DurationUtilsTest {
 	@Test
 	public void constructor_private() throws Exception {
-		assertThatConstructor(DurationUtils.class.getDeclaredConstructor()).isPrivate();
+		assertThat(DurationUtils.class.getDeclaredConstructor()).isPrivate();
 	}
 
 	@Test
