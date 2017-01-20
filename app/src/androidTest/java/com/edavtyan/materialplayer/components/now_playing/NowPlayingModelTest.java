@@ -19,7 +19,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import static com.edavtyan.materialplayer.testlib.asertions.IntentAssert.assertThatIntent;
+import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
 import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -63,7 +63,7 @@ public class NowPlayingModelTest extends BaseTest {
 		model.bind();
 
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
-		assertThatIntent(intentCaptor.getValue()).hasClass(PlayerService.class);
+		assertThat(intentCaptor.getValue()).hasClass(PlayerService.class);
 	}
 
 	@Test
