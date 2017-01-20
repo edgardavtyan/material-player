@@ -17,17 +17,32 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class NowPlayingFloatingFragment
 		extends BaseFragment
-		implements View.OnClickListener, NowPlayingFloatingMvp.View {
+		implements NowPlayingFloatingMvp.View {
+
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.art) ImageView artView;
+	@BindView(R.id.playPause) ImageButton playPauseButton;
+	@BindView(R.id.container) LinearLayout mainWrapper;
 
 	private NowPlayingFloatingMvp.Presenter presenter;
 	private Navigator navigator;
-	private TextView titleView;
-	private TextView infoView;
-	private ImageView artView;
-	private ImageButton playPauseView;
-	private LinearLayout mainWrapper;
+
+	@OnClick(R.id.playPause)
+	public void onPlayPauseClick() {
+		presenter.onPlayPauseClick();
+	}
+
+	@OnClick({R.id.art, R.id.infoWrapper})
+	public void onArtOrInfoWrapperClick() {
+		presenter.onViewClick();
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,18 +61,7 @@ public class NowPlayingFloatingFragment
 			@Nullable Bundle savedInstanceState) {
 		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.fragment_nowplaying_floating, container, false);
-
-		titleView = findView(view, R.id.title);
-		infoView = findView(view, R.id.info);
-		playPauseView = findView(view, R.id.playPause);
-		playPauseView.setOnClickListener(this);
-		artView = findView(view, R.id.art);
-		artView.setOnClickListener(this);
-		mainWrapper = findView(view, R.id.container);
-
-		LinearLayout infoWrapper = findView(view, R.id.infoWrapper);
-		infoWrapper.setOnClickListener(this);
-
+		ButterKnife.bind(this, view);
 		return view;
 	}
 
@@ -96,7 +100,7 @@ public class NowPlayingFloatingFragment
 
 	@Override
 	public void setIsPlaying(boolean isPlaying) {
-		playPauseView.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
+		playPauseButton.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
 	}
 
 	@Override
@@ -107,18 +111,5 @@ public class NowPlayingFloatingFragment
 	@Override
 	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
-	}
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.art:
-		case R.id.infoWrapper:
-			presenter.onViewClick();
-			break;
-		case R.id.playPause:
-			presenter.onPlayPauseClick();
-			break;
-		}
 	}
 }

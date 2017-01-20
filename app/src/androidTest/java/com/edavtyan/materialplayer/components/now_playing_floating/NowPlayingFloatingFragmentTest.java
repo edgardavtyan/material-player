@@ -151,13 +151,6 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		verify(presenter).onViewClick();
 	}
 
-	@Test // Mostly for coverage only
-	public void onClickListener_otherViewClicked_notCalled() {
-		View view = mock(View.class);
-		when(view.getId()).thenReturn(-1);
-		runOnUiThread(() -> fragment.onClick(view));
-	}
-
 	@Test
 	public void onPlayPauseClick_playPauseClicked_called() {
 		runOnUiThread(playPauseView::performClick);
