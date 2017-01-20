@@ -17,7 +17,7 @@ import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
+import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.notNull;
@@ -112,25 +112,25 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	public void setArt_bitmapIsNotNull_setBitmap() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 		runOnUiThread(() -> fragment.setArt(art));
-		assertThatImageView(artView).hasBitmap(art);
+		assertThat(artView).hasImageBitmap(art);
 	}
 
 	@Test
 	public void setArt_bitmapIsNull_setFallbackImage() {
 		runOnUiThread(() -> fragment.setArt(null));
-		assertThatImageView(artView).hasDrawableWithId(R.drawable.fallback_cover);
+		assertThat(artView).hasImageResource(R.drawable.fallback_cover);
 	}
 
 	@Test
 	public void setIsPlaying_true_setIconToPause() {
 		runOnUiThread(() -> fragment.setIsPlaying(true));
-		assertThatImageView(playPauseView).hasDrawableWithId(R.drawable.ic_pause);
+		assertThat(playPauseView).hasImageResource(R.drawable.ic_pause);
 	}
 
 	@Test
 	public void setIsPlaying_false_setIconToPlay() {
 		runOnUiThread(() -> fragment.setIsPlaying(false));
-		assertThatImageView(playPauseView).hasDrawableWithId(R.drawable.ic_play);
+		assertThat(playPauseView).hasImageResource(R.drawable.ic_play);
 	}
 
 	@Test
