@@ -45,70 +45,70 @@ public class App extends Application {
 	private @Setter SdkFactory sdkFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
-		if (baseFactory == null)
-			baseFactory = new BaseFactory(activity);
-		return baseFactory;
+		return (baseFactory == null)
+				? new BaseFactory(activity)
+				: baseFactory;
 	}
 
 	public AlbumListFactory getAlbumListDI(Context context, AlbumListMvp.View view) {
-		if (albumListFactory == null)
-			albumListFactory = new AlbumListFactory(context, view);
-		return albumListFactory;
+		return (albumListFactory == null)
+				? new AlbumListFactory(context, view)
+				: albumListFactory;
 	}
 
 	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailMvp.View view, int albumId) {
-		if (albumDetailFactory == null)
-			albumDetailFactory = new AlbumDetailFactory(context, view, albumId);
-		return albumDetailFactory;
+		return (albumDetailFactory == null)
+				? new AlbumDetailFactory(context, view, albumId)
+				: albumDetailFactory;
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListMvp.View view) {
-		if (artistListFactory == null)
-			artistListFactory = new ArtistListFactory(context, view);
-		return artistListFactory;
+		return (artistListFactory == null)
+				? new ArtistListFactory(context, view)
+				: artistListFactory;
 	}
 
 	public ArtistDetailFactory getArtistDetailDI(
 			Context context,
 			ArtistDetailMvp.View view,
 			String artistTitle) {
-		if (artistDetailFactory == null)
-			artistDetailFactory = new ArtistDetailFactory(context, view, artistTitle);
-		return artistDetailFactory;
+		return (artistDetailFactory == null)
+				? new ArtistDetailFactory(context, view, artistTitle)
+				: artistDetailFactory;
 	}
 
 	public TrackListFactory getTrackListDI(Context context, TrackListMvp.View view) {
-		if (trackListFactory == null)
-			trackListFactory = new TrackListFactory(context, view);
-		return trackListFactory;
+		return (trackListFactory == null)
+				? new TrackListFactory(context, view)
+				: trackListFactory;
 	}
 
 	public NowPlayingFactory getNowPlayingFactory(
 			NowPlayingActivity activity,
 			NowPlayingMvp.View view) {
-		if (nowPlayingFactory == null)
-			nowPlayingFactory = new NowPlayingFactory(activity, view);
-		return nowPlayingFactory;
+		return (nowPlayingFactory == null)
+				? new NowPlayingFactory(activity, view)
+				: nowPlayingFactory;
 	}
 
 	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(
 			Context context,
 			NowPlayingFloatingMvp.View view) {
-		if (nowPlayingFloatingFactory == null)
-			nowPlayingFloatingFactory = new NowPlayingFloatingFactory(context, view);
-		return nowPlayingFloatingFactory;
+		return (nowPlayingFloatingFactory == null)
+				? new NowPlayingFloatingFactory(context, view)
+				: nowPlayingFloatingFactory;
 	}
 
 	public NowPlayingQueueFactory getPlaylistFactory(Context context, NowPlayingQueueMvp.View view) {
-		if (nowPlayingQueueFactory == null)
-			nowPlayingQueueFactory = new NowPlayingQueueFactory(context, view);
-		return nowPlayingQueueFactory;
+		return (nowPlayingQueueFactory == null)
+				? new NowPlayingQueueFactory(context, view)
+				: nowPlayingQueueFactory;
 	}
 
 	public AudioEffectsFactory getAudioEffectsFactory(Context context, AudioEffectsMvp.View view) {
-		if (audioEffectsFactory == null)
-			audioEffectsFactory = new AudioEffectsFactory(context, view);
-		return audioEffectsFactory;
+		return (audioEffectsFactory == null)
+				? new AudioEffectsFactory(context, view)
+				: audioEffectsFactory;
 	}
 
 	public PlayerFactory getPlayerFactory(Context context) {
@@ -123,8 +123,8 @@ public class App extends Application {
 	}
 
 	public SdkFactory getSdkFactory() {
-		if (sdkFactory == null)
-			sdkFactory = new SdkFactory();
-		return sdkFactory;
+		return (sdkFactory == null)
+				? new SdkFactory()
+				: sdkFactory;
 	}
 }
