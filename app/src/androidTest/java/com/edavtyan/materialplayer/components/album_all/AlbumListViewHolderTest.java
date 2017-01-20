@@ -12,7 +12,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
+import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
 import static com.edavtyan.materialplayer.testlib.asertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -46,7 +46,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 	@Test
 	public void setArt_nullPath_setFallbackImage() {
 		runOnUiThread(() -> holder.setArt(null));
-		assertThatImageView(itemView, R.id.art).hasImageResource(R.drawable.fallback_cover);
+		assertThat(itemView, R.id.art).hasImageResource(R.drawable.fallback_cover);
 	}
 
 	@Test

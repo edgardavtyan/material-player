@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
+import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -33,13 +33,13 @@ public class NowPlayingArtTest extends BaseTest {
 	@Test
 	public void set_fallback_cover_given_null_art() {
 		art.setArt(null);
-		assertThatImageView(artView).hasImageResource(R.drawable.fallback_cover);
+		assertThat(artView).hasImageResource(R.drawable.fallback_cover);
 	}
 
 	@Test
 	public void set_given_bitmap() {
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		art.setArt(bitmap);
-		assertThatImageView(artView).hasImageBitmap(bitmap);
+		assertThat(artView).hasImageBitmap(bitmap);
 	}
 }
