@@ -6,12 +6,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
 public class ConstructorAssert<T> extends AbstractAssert<ConstructorAssert<T>, Constructor<T>> {
-	public ConstructorAssert(Constructor<T> actual, Class<ConstructorAssert> selfType) {
-		super(actual, selfType);
-	}
-
-	public static <T> ConstructorAssert<T> assertThatConstructor(Constructor<T> actual) {
-		return new ConstructorAssert<>(actual, ConstructorAssert.class);
+	public ConstructorAssert(Constructor<T> actual) {
+		super(actual, ConstructorAssert.class);
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
@@ -23,11 +19,11 @@ public class ConstructorAssert<T> extends AbstractAssert<ConstructorAssert<T>, C
 			actual.newInstance();
 
 			if (!Modifier.isPrivate(actual.getModifiers())) {
-				failWithMessage("Constructor of %s is not private", actual.getName());
+				failWithMessage("\nExpecting constructor of %s to be private\n", actual.getName());
 			}
 		} catch (Exception e) {
 			failWithMessage(
-					"Exception occurred\nmessage: %s\ntrace:%s",
+					"\nException occurred\nmessage: %s\ntrace:%s\n",
 					e.getMessage(),
 					e.getStackTrace());
 		}

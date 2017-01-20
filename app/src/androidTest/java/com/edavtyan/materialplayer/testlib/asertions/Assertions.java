@@ -6,7 +6,11 @@ import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.lang.reflect.Constructor;
+
 public final class Assertions {
+	}
+
 	public static IntentAssert assertThat(Intent intent) {
 		return new IntentAssert(intent);
 	}
