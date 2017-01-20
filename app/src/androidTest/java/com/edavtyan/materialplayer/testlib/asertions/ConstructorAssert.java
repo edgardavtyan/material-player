@@ -27,7 +27,7 @@ public class ConstructorAssert<T> extends AbstractAssert<ConstructorAssert<T>, C
 			}
 		} catch (Exception e) {
 			failWithMessage(
-					"Exception occurred\nmessage: %s\ntrace:5s",
+					"Exception occurred\nmessage: %s\ntrace:%s",
 					e.getMessage(),
 					e.getStackTrace());
 		}
