@@ -20,8 +20,8 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 	private final String imageViewIdName;
 	private final Context context;
 
-	public ImageViewAssert(ImageView actual, Class<?> selfType) {
-		super(actual, selfType);
+	public ImageViewAssert(ImageView actual) {
+		super(actual, ImageViewAssert.class);
 		context = InstrumentationRegistry.getTargetContext();
 
 		if (actual.getId() == -1) {
@@ -33,16 +33,16 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 
 	public static ImageViewAssert assertThatImageView(View view, @IdRes int imageViewId) {
 		ImageView imageView = (ImageView) view.findViewById(imageViewId);
-		return new ImageViewAssert(imageView, ImageViewAssert.class);
+		return new ImageViewAssert(imageView);
 	}
 
 	public static ImageViewAssert assertThatImageView(TestableActivity activity, @IdRes int imageViewId) {
 		ImageView imageView = activity.findView(imageViewId);
-		return new ImageViewAssert(imageView, ImageViewAssert.class);
+		return new ImageViewAssert(imageView);
 	}
 
 	public static ImageViewAssert assertThatImageView(ImageView imageView) {
-		return new ImageViewAssert(imageView, ImageViewAssert.class);
+		return new ImageViewAssert(imageView);
 	}
 
 	public ImageViewAssert hasImageResource(@DrawableRes int drawableRes) {
