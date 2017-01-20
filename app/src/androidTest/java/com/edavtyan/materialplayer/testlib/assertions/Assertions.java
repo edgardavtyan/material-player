@@ -6,6 +6,8 @@ import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
+
 import java.lang.reflect.Constructor;
 
 public final class Assertions {
@@ -29,5 +31,9 @@ public final class Assertions {
 	public static ImageViewAssert assertThat(Activity activity, @IdRes int id) {
 		ImageView imageView = (ImageView) activity.findViewById(id);
 		return new ImageViewAssert(imageView);
+	}
+
+	public static TitledSeekbarAssertion assertThat(TitledSeekbar seekbar) {
+		return new TitledSeekbarAssertion(seekbar);
 	}
 }

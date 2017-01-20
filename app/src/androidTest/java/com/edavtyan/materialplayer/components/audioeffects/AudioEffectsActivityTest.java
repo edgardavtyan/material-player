@@ -12,6 +12,7 @@ import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.R.id.equalizer;
+import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
@@ -120,8 +121,9 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	@Test
 	public void setBassBoostStrength_setBassBoostSeekbarMaxAndProgress() {
 		runOnUiThread(() -> activity.initBassBoost(100, 5));
-		assertThat(bassBoostView.getMax()).isEqualTo(100);
-		assertThat(bassBoostView.getProgress()).isEqualTo(5);
+		assertThat(bassBoostView)
+				.hasMax(100)
+				.hasProgress(5);
 	}
 
 	@Test
@@ -139,8 +141,9 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	@Test
 	public void setSurroundStrength_setSurroundSeekbarMaxAndProgress() {
 		runOnUiThread(() -> activity.initSurround(200, 15));
-		assertThat(surroundView.getProgress()).isEqualTo(15);
-		assertThat(surroundView.getMax()).isEqualTo(200);
+		assertThat(surroundView)
+				.hasMax(200)
+				.hasProgress(15);
 	}
 
 	@Test
@@ -158,8 +161,9 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	@Test
 	public void initAmplifier_setAmplifierSeekbarMaxAndProgress() {
 		runOnUiThread(() -> activity.initAmplifier(300, 25));
-		assertThat(amplifierView.getProgress()).isEqualTo(25);
-		assertThat(amplifierView.getMax()).isEqualTo(300);
+		assertThat(amplifierView)
+				.hasMax(300)
+				.hasProgress(25);
 	}
 
 	@Test
