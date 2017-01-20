@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.testlib.asertions;
+package com.edavtyan.materialplayer.testlib.assertions;
 
 import android.content.Context;
 import android.graphics.Bitmap;
