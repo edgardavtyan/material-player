@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.asertions.ImageViewAssert.assertThatImageView;
+import static com.edavtyan.materialplayer.testlib.asertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
@@ -89,7 +89,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		runOnUiThread(() -> {
 			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 			activity.setArtistImage(image);
-			assertThatImageView(activity, R.id.art).hasImageBitmap(image);
+			assertThat(activity, R.id.art).hasImageBitmap(image);
 		});
 	}
 
