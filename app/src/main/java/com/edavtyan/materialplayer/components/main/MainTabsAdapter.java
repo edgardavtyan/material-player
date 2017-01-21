@@ -20,6 +20,8 @@ public class MainTabsAdapter extends FragmentPagerAdapter {
 		return tabNames[position];
 	}
 
+
+
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {
