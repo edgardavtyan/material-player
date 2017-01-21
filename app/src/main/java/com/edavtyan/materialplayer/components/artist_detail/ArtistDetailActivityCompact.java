@@ -15,16 +15,18 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
+import butterknife.BindView;
+
 import static com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
 
 public class ArtistDetailActivityCompact
 		extends BaseToolbarActivity
 		implements ArtistDetailMvp.View {
 
-	private TextView titleView;
-	private TextView infoTopView;
-	private TextView infoBottomView;
-	private ImageView artView;
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info_top) TextView infoTopView;
+	@BindView(R.id.info_bottom) TextView infoBottomView;
+	@BindView(R.id.art) ImageView artView;
 
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
@@ -33,11 +35,6 @@ public class ArtistDetailActivityCompact
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		titleView = findView(R.id.title);
-		infoTopView = findView(R.id.info_top);
-		infoBottomView = findView(R.id.info_bottom);
-		artView = findView(R.id.art);
 
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
 		ArtistDetailFactory factory = ((App) getApplicationContext()).getArtistDetailDI(this, this, artistTitle);
