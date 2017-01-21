@@ -12,22 +12,23 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseToolbarActivity {
+	@BindView(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.view_pager) ViewPager viewPager;
+	@BindView(R.id.tab_layout) TabLayout tabLayout;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Toolbar toolbar = findView(R.id.toolbar);
 		if (WindowUtils.isPortrait(this)) {
 			toolbar.setTitle(null);
 		}
 
 		FragmentPagerAdapter adapter = new IconsTabsAdapter(getSupportFragmentManager(), this);
-
-		ViewPager viewPager = findView(R.id.view_pager);
 		viewPager.setAdapter(adapter);
-
-		TabLayout tabLayout = findView(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
 
 		Intent intent = new Intent(this, PlayerService.class);
