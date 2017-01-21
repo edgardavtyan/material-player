@@ -2,10 +2,10 @@ package com.edavtyan.materialplayer.components.main;
 
 import android.support.v4.app.FragmentManager;
 
-public class MainTabsAdapter extends TabsAdapter {
+public class TextTabsAdapter extends TabsAdapter {
 	private static final String[] tabNames = {"Artists", "Albums", "Tracks"};
 
-	public MainTabsAdapter(FragmentManager fm) {
+	public TextTabsAdapter(FragmentManager fm) {
 		super(fm);
 	}
 

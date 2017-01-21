@@ -38,7 +38,7 @@ public class MainActivity extends BaseToolbarActivity {
 
 		FragmentPagerAdapter adapter = compactMainScreenPref.getValue()
 				? new IconsTabsAdapter(getSupportFragmentManager(), this)
-				: new MainTabsAdapter(getSupportFragmentManager());
+				: new TextTabsAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);

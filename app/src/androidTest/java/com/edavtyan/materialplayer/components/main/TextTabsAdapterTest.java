@@ -12,13 +12,13 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-public class MainTabsAdapterTest extends BaseTest {
-	private MainTabsAdapter adapter;
+public class TextTabsAdapterTest extends BaseTest {
+	private TextTabsAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		adapter = new MainTabsAdapter(mock(FragmentManager.class));
+		adapter = new TextTabsAdapter(mock(FragmentManager.class));
 	}
 
 	@Test
