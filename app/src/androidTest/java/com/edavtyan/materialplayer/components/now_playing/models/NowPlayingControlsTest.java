@@ -1,29 +1,18 @@
 package com.edavtyan.materialplayer.components.now_playing.models;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
-import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
-import com.edavtyan.materialplayer.utils.AppColors;
 
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-public class NowPlayingControlsTest extends ActivityTest {
-	private static NowPlayingActivity activity;
-
+public class NowPlayingControlsTest extends NowPlayingViewTest {
 	private NowPlayingMvp.View.Controls controls;
-	private NowPlayingMvp.Presenter presenter;
-	private AppColors colors;
-
 	private TestableImageButton shuffleButton;
 	private TestableImageButton rewindButton;
 	private TestableImageButton playPauseButton;
@@ -33,19 +22,6 @@ public class NowPlayingControlsTest extends ActivityTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-
-		colors = new AppColors(context);
-		presenter = mock(NowPlayingMvp.Presenter.class);
-
-		NowPlayingFactory factory = mock(NowPlayingFactory.class);
-		when(factory.getAppColors()).thenReturn(colors);
-		when(factory.getPresenter()).thenReturn(presenter);
-
-		app.setNowPlayingFactory(factory);
-
-		if (activity == null) {
-			activity = startActivity(NowPlayingActivity.class);
-		}
 
 		shuffleButton = (TestableImageButton) activity.findViewById(R.id.shuffle);
 		rewindButton = (TestableImageButton) activity.findViewById(R.id.rewind);
