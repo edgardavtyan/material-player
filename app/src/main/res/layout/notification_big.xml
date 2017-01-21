@@ -21,20 +21,20 @@
 
 				<TextView
 					android:id="@+id/title"
-					style="@style/notification_big_title"
 					tools:text="Song Title"
+					style="@style/notification_big_title"
 					/>
 
 				<TextView
 					android:id="@+id/artist"
-					style="@style/notification_big_info.artist"
 					tools:text="Song Artist"
+					style="@style/notification_big_info.artist"
 					/>
 
 				<TextView
 					android:id="@+id/album"
-					style="@style/notification_big_info"
 					tools:text="Song Album"
+					style="@style/notification_big_info"
 					/>
 
 			</LinearLayout>

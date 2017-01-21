@@ -8,22 +8,22 @@
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
-		style="@style/listitem_albumArt.compact"
 		tools:src="@drawable/fallback_cover"
+		style="@style/listitem_albumArt.compact"
 		/>
 
 	<LinearLayout style="@style/listitem_infoContainer">
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/listitem_title"
 			tools:text="Album Title"
+			style="@style/listitem_title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/listitem_info.compact"
 			tools:text="Album Artist | 399 Tracks"
+			style="@style/listitem_info.compact"
 			/>
 
 	</LinearLayout>

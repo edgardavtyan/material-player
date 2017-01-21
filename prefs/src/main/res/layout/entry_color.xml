@@ -2,14 +2,14 @@
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/PrefEntry_Container"
 	tools:parentTag="LinearLayout"
+	style="@style/PrefEntry_Container"
 	>
 
 	<TextView
 		android:id="@+id/title"
-		style="@style/PrefEntry_Title.FillRemainingWidth"
 		tools:text="Preference entry title"
+		style="@style/PrefEntry_Title.FillRemainingWidth"
 		/>
 
 	<com.edavtyan.prefs.color.ColorCircleView

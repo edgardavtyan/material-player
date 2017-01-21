@@ -15,14 +15,14 @@
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/listitem_title"
 			tools:text="Artist Name"
+			style="@style/listitem_title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/listitem_info"
 			tools:text="Artist Info"
+			style="@style/listitem_info"
 			/>
 
 	</LinearLayout>

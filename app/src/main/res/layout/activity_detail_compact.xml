@@ -19,8 +19,8 @@
 		<ImageView
 			android:id="@+id/art"
 			android:contentDescription="@string/description_art"
-			style="@style/Detail_Art"
 			tools:src="@drawable/fallback_cover"
+			style="@style/Detail_Art"
 			/>
 
 	</FrameLayout>
@@ -29,8 +29,8 @@
 		android:id="@+id/title"
 		android:layout_toRightOf="@id/art_wrapper"
 		android:layout_alignTop="@id/art_wrapper"
-		style="@style/Detail_Title"
 		tools:text="The Nth °"
+		style="@style/Detail_Title"
 		/>
 
 	<TextView
@@ -38,16 +38,16 @@
 		android:layout_marginTop="4dp"
 		android:layout_below="@id/title"
 		android:layout_toRightOf="@id/art_wrapper"
-		style="@style/Detail_Info_Top"
 		tools:text="OVERWERK"
+		style="@style/Detail_Info_Top"
 		/>
 
 	<TextView
 		android:id="@+id/info_bottom"
 		android:layout_below="@id/info_top"
 		android:layout_toRightOf="@+id/art_wrapper"
-		style="@style/Detail_Info_Bottom"
 		tools:text="3 Tracks"
+		style="@style/Detail_Info_Bottom"
 		/>
 
 	<View

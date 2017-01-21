@@ -2,20 +2,20 @@
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/PrefEntry_Container.Vertical"
 	tools:parentTag="LinearLayout"
+	style="@style/PrefEntry_Container.Vertical"
 	>
 
 	<TextView
 		android:id="@+id/title"
-		style="@style/PrefEntry_Title.WithSummary"
 		tools:text="Preference title"
+		style="@style/PrefEntry_Title.WithSummary"
 		/>
 
 	<TextView
 		android:id="@+id/summary"
-		style="@style/PrefEntry_Summary"
 		tools:text="Lorem ipsum dolor sit"
+		style="@style/PrefEntry_Summary"
 		/>
 
 </merge>

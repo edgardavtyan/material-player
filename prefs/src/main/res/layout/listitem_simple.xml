@@ -12,8 +12,8 @@
 
 	<TextView
 		android:id="@+id/title"
-		style="@style/DialogListItem_Title.Simple"
 		tools:text="List item title"
+		style="@style/DialogListItem_Title.Simple"
 		/>
 
 </LinearLayout>

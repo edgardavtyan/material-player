@@ -9,8 +9,8 @@
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
-		style="@style/nowplayingBar_art"
 		tools:background="#333"
+		style="@style/nowplayingBar_art"
 		/>
 
 	<LinearLayout
@@ -23,14 +23,14 @@
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/nowplayingBar_title"
 			tools:text="Current Track Title"
+			style="@style/nowplayingBar_title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/nowplayingBar_info"
 			tools:text="Current Artist - Current Album"
+			style="@style/nowplayingBar_info"
 			/>
 
 	</LinearLayout>

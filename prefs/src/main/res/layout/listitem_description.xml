@@ -14,14 +14,14 @@
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/DialogListItem_Title.Description"
 			tools:text="List item title"
+			style="@style/DialogListItem_Title.Description"
 			/>
 
 		<TextView
 			android:id="@+id/description"
-			style="@style/DialogListItem_Description"
 			tools:text="List item summary"
+			style="@style/DialogListItem_Description"
 			/>
 
 	</LinearLayout>

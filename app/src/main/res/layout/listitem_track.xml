@@ -9,14 +9,14 @@
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/listitem_title"
 			tools:text="Track title"
+			style="@style/listitem_title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/listitem_info"
 			tools:text="Album title - 3:35"
+			style="@style/listitem_info"
 			/>
 
 	</LinearLayout>

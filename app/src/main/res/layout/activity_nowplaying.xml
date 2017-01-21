@@ -54,16 +54,16 @@
 				android:id="@+id/title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				style="@style/NowPlaying_TrackInfo_Title"
 				tools:text="Now Playing Track Title"
+				style="@style/NowPlaying_TrackInfo_Title"
 				/>
 
 			<TextView
 				android:id="@+id/info"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				style="@style/NowPlaying_TrackInfo_Info"
 				tools:text="Now Playing Track Info"
+				style="@style/NowPlaying_TrackInfo_Info"
 				/>
 
 		</LinearLayout>
@@ -79,8 +79,8 @@
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
-				style="@style/NowPlaying_Time_Current"
 				tools:text="1:14"
+				style="@style/NowPlaying_Time_Current"
 				/>
 
 			<TextView
@@ -88,8 +88,8 @@
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
-				style="@style/NowPlaying_Time_Total"
 				tools:text="6:44"
+				style="@style/NowPlaying_Time_Total"
 				/>
 
 		</LinearLayout>
@@ -98,8 +98,8 @@
 			android:id="@+id/seekbar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			style="@style/NowPlaying_Seekbar"
 			tools:progress="30"
+			style="@style/NowPlaying_Seekbar"
 			/>
 
 		<LinearLayout
