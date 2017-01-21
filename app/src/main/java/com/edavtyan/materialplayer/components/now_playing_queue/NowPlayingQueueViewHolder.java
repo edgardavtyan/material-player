@@ -13,6 +13,8 @@ import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import lombok.Setter;
 
 public class NowPlayingQueueViewHolder
@@ -20,9 +22,12 @@ public class NowPlayingQueueViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.menu) ImageButton menuButton;
+
 	private final Context context;
-	private final TextView titleView;
-	private final TextView infoView;
+	private final PopupMenu popupMenu;
 
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnMenuClickListener onMenuClickListener;
@@ -37,22 +42,20 @@ public class NowPlayingQueueViewHolder
 
 	public NowPlayingQueueViewHolder(Context context, View itemView) {
 		super(itemView);
-
 		this.context = context;
-
 		itemView.setOnClickListener(this);
-
-		titleView = findView(R.id.title);
-		infoView = findView(R.id.info);
 
 		App app = (App) context.getApplicationContext();
 		SdkFactory sdkFactory = app.getSdkFactory();
 
-		ImageButton menuButton = findView(R.id.menu);
-		PopupMenu popupMenu = sdkFactory.createPopupMenu(context, menuButton);
+		popupMenu = sdkFactory.createPopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_queue);
 		popupMenu.setOnMenuItemClickListener(this);
-		menuButton.setOnClickListener(v -> popupMenu.show());
+	}
+
+	@OnClick(R.id.menu)
+	public void onMenuButtonClick() {
+		popupMenu.show();
 	}
 
 	public void setTitle(String title) {
