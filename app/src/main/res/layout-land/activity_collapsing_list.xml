@@ -13,19 +13,7 @@
 		android:orientation="vertical"
 		>
 
-		<android.support.design.widget.AppBarLayout
-			android:id="@+id/appbar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			>
-
-			<android.support.v7.widget.Toolbar
-				android:id="@+id/toolbar"
-				android:layout_width="match_parent"
-				android:layout_height="?actionBarSize"
-				/>
-
-		</android.support.design.widget.AppBarLayout>
+		<include layout="@layout/partial_appbar" />
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -33,18 +21,51 @@
 			android:orientation="horizontal"
 			>
 
-			<include
-				layout="@layout/fragment_nowplaying_art"
-				android:layout_width="0dp"
+			<LinearLayout
+				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:layout_weight="1"
-				/>
+				android:orientation="vertical"
+				>
+
+				<com.edavtyan.materialplayer.lib.views.SquareImageViewByHeight
+					android:id="@+id/art"
+					android:layout_width="wrap_content"
+					android:layout_height="0dp"
+					android:layout_weight="1"
+					android:scaleType="centerCrop"
+					tools:src="@drawable/fallback_cover"
+					/>
+
+				<TextView
+					android:id="@+id/title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/spacing_tiny"
+					android:layout_marginRight="@dimen/spacing_tiny"
+					android:layout_marginTop="@dimen/spacing_tiny"
+					android:textSize="@dimen/font_normal"
+					tools:text="Title Text"
+					/>
+
+				<TextView
+					android:id="@+id/info"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/spacing_tiny"
+					android:layout_marginRight="@dimen/spacing_tiny"
+					android:layout_marginBottom="@dimen/spacing_tiny"
+					android:textColor="?textColorSecondary"
+					tools:text="6 Albums \u2014 64 Tracks"
+					/>
+
+			</LinearLayout>
 
 			<android.support.v7.widget.RecyclerView
 				android:id="@+id/list"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
+				tools:listitem="@layout/listitem_track"
 				/>
 
 		</LinearLayout>

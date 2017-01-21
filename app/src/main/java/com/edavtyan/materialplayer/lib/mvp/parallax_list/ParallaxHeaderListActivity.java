@@ -23,7 +23,6 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	private TextView titleView;
 	private TextView infoView;
 	private ImageView imageView;
-	private ImageView backImageView;
 	private RecyclerView list;
 	private ParallaxHeaderListPresenter presenter;
 
@@ -38,10 +37,8 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	protected void setHeaderImage(Bitmap image, int fallback) {
 		if (image != null) {
 			imageView.setImageBitmap(image);
-			backImageView.setImageBitmap(image);
 		} else {
 			imageView.setImageResource(fallback);
-			backImageView.setImageResource(fallback);
 		}
 	}
 
@@ -62,7 +59,6 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 		titleView = findView(R.id.title);
 		infoView = findView(R.id.info);
 		imageView = findView(R.id.art);
-		backImageView = findView(R.id.back);
 
 		list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
@@ -93,8 +89,6 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 					totalScrolled += dy;
 
 					imageView.setTop(totalScrolled / parallaxAmount);
-					backImageView.setTag(totalScrolled / parallaxAmount);
-
 					appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
 					appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(totalScrolled));
 					statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
