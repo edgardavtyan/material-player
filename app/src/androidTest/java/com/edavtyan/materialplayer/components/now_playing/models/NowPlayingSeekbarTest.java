@@ -4,83 +4,67 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-public class NowPlayingSeekbarTest extends BaseTest {
+public class NowPlayingSeekbarTest extends NowPlayingViewTest {
 	private NowPlayingMvp.View.Seekbar seekbar;
-	private NowPlayingMvp.Presenter presenter;
 	private SeekBar seekbarView;
-	private TextView currentTimeView;
-	private TextView totalTimeView;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-
-		seekbarView = spy(new SeekBar(context));
-		currentTimeView = spy(new TextView(context));
-		totalTimeView = spy(new TextView(context));
-
-		NowPlayingActivity activity = mock(NowPlayingActivity.class);
-		when(activity.findView(R.id.seekbar)).thenReturn(seekbarView);
-		when(activity.findView(R.id.timeCurrent)).thenReturn(currentTimeView);
-		when(activity.findView(R.id.timeTotal)).thenReturn(totalTimeView);
-
-		presenter = mock(NowPlayingMvp.Presenter.class);
 		seekbar = new NowPlayingSeekbar(activity, presenter);
+		seekbarView = (SeekBar) activity.findViewById(R.id.seekbar);
 	}
 
 	@Test
 	public void setTrackPosition_setSeekbarViewProgress() {
-		seekbar.setPosition(50);
+		runOnUiThread(() -> seekbar.setPosition(50));
 		assertThat(seekbarView.getProgress()).isEqualTo(50);
 	}
 
 	@Test
 	public void setTrackPositionText_setCurrentTimeViewText() {
-		seekbar.setPositionText(14800);
+		TextView currentTimeView  = (TextView) activity.findViewById(R.id.timeCurrent);
+		runOnUiThread(() -> seekbar.setPositionText(14800));
 		assertThat(currentTimeView.getText()).isEqualTo("00:14");
 	}
 
 	@Test
 	public void setTrackDuration_setSeekbarViewMax() {
-		seekbar.setDuration(600);
+		runOnUiThread(() -> seekbar.setDuration(600));
 		assertThat(seekbarView.getMax()).isEqualTo(600);
 	}
 
 	@Test
 	public void setTrackDurationText_setTotalTimeViewText() {
-		seekbar.setDurationText(8000);
+		TextView totalTimeView  = (TextView) activity.findViewById(R.id.timeTotal);
+		runOnUiThread(() -> seekbar.setDurationText(8000));
 		assertThat(totalTimeView.getText()).isEqualTo("00:08");
 	}
 
 	@Test
 	public void onProgressChanged_fromUser_callPresenter() {
-		seekbar.onProgressChanged(seekbarView, 30, true);
+		runOnUiThread(() -> seekbar.onProgressChanged(seekbarView, 30, true));
 		verify(presenter).onSeekChanged(30);
 	}
 
 	@Test
 	public void onProgressChanged_notFromUser_notCallPresenter() {
-		seekbar.onProgressChanged(seekbarView, 40, false);
+		runOnUiThread(() -> seekbar.onProgressChanged(seekbarView, 40, false));
 		verify(presenter, never()).onSeekChanged(40);
 	}
 
 	@Test
 	public void onStopTrackingTouch_callPresenter() {
-		when(seekbarView.getProgress()).thenReturn(9000);
-		seekbar.onStopTrackingTouch(seekbarView);
-		verify(presenter).onSeekStop(9000);
+		seekbarView.setProgress(50);
+		runOnUiThread(() -> seekbar.onStopTrackingTouch(seekbarView));
+		verify(presenter).onSeekStop(50);
 	}
 }

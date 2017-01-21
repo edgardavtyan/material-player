@@ -8,21 +8,23 @@ import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NowPlayingSeekbar
 		implements NowPlayingMvp.View.Seekbar,
 				   SeekBar.OnSeekBarChangeListener {
 
-	private final SeekBar seekbar;
-	private final TextView currentTimeView;
-	private final TextView totalTimeView;
+	@BindView(R.id.seekbar) SeekBar seekbar;
+	@BindView(R.id.timeCurrent) TextView currentTimeView;
+	@BindView(R.id.timeTotal) TextView totalTimeView;
+
 	private final NowPlayingMvp.Presenter presenter;
 
 	public NowPlayingSeekbar(NowPlayingActivity activity, NowPlayingMvp.Presenter presenter) {
+		ButterKnife.bind(this, activity);
 		this.presenter = presenter;
-		seekbar = activity.findView(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);
-		currentTimeView = activity.findView(R.id.timeCurrent);
-		totalTimeView = activity.findView(R.id.timeTotal);
 	}
 
 	@Override
