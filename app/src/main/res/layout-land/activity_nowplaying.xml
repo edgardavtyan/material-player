@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/spacing_medium"
+		android:src="@drawable/ic_list"
+		app:layout_anchor="@+id/innerWrapper"
+		app:layout_anchorGravity="right|bottom"
+		/>
+
+	<LinearLayout
+		android:id="@+id/innerWrapper"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
+
+		<include layout="@layout/partial_appbar" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			>
+
+			<com.edavtyan.materialplayer.lib.views.SquareImageViewByHeight
+				android:id="@+id/art"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				tools:src="@drawable/fallback_cover"
+				/>
+
+			<FrameLayout
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:background="?colorPrimary"
+				>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:paddingTop="@dimen/spacing_medium"
+					android:orientation="vertical"
+					>
+
+					<TextView
+						android:id="@+id/title"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						tools:text="Now Playing Title"
+						style="@style/NowPlaying_TrackInfo_Title"
+						/>
+
+					<TextView
+						android:id="@+id/info"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						tools:text="Now Playing Artist \u2014 Album"
+						style="@style/NowPlaying_TrackInfo_Info"
+						/>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/spacing_medium"
+						android:orientation="horizontal"
+						style="@style/NowPlaying_Time_Container"
+						>
+
+						<TextView
+							android:id="@+id/timeCurrent"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							tools:text="3:14"
+							style="@style/NowPlaying_Time_Current"
+							/>
+
+						<TextView
+							android:id="@+id/timeTotal"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							tools:text="6:22"
+							style="@style/NowPlaying_Time_Total"
+							/>
+
+					</LinearLayout>
+
+					<app.minimize.com.seek_bar_compat.SeekBarCompat
+						android:id="@+id/seekbar"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						style="@style/NowPlaying_Seekbar"
+						/>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/spacing_medium"
+						android:orientation="horizontal"
+						>
+
+						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+							android:id="@+id/shuffle"
+							android:src="@drawable/ic_shuffle"
+							style="@style/NowPlaying_Control"
+							/>
+
+						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+							android:id="@+id/rewind"
+							android:src="@drawable/ic_skip_prev"
+							style="@style/NowPlaying_Control"
+							/>
+
+						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+							android:id="@+id/playPause"
+							android:src="@drawable/ic_play"
+							style="@style/NowPlaying_Control"
+							/>
+
+						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+							android:id="@+id/fastForward"
+							android:src="@drawable/ic_skip_next"
+							style="@style/NowPlaying_Control"
+							/>
+
+						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+							android:id="@+id/repeat"
+							android:src="@drawable/ic_repeat"
+							style="@style/NowPlaying_Control"
+							/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<View
+					android:layout_width="6dp"
+					android:layout_height="match_parent"
+					android:background="@drawable/shadow_left_dark"
+					/>
+
+			</FrameLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
