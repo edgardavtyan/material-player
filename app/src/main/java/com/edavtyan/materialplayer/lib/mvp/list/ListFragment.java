@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.lib.mvp.list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends BaseFragment {
 	protected TestableRecyclerAdapter adapter;
@@ -32,7 +33,9 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 
 		RecyclerView list = findView(view, R.id.list);
 		list.setAdapter(adapter);
-		list.setLayoutManager(new LinearLayoutManager(getContext()));
+
+		int spanCount = WindowUtils.isPortrait(getContext()) ? 1 : 2;
+		list.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
 
 		return view;
 	}
