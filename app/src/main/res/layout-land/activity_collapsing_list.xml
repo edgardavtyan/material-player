@@ -60,13 +60,26 @@
 
 			</LinearLayout>
 
-			<android.support.v7.widget.RecyclerView
-				android:id="@+id/list"
+			<FrameLayout
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				tools:listitem="@layout/listitem_track"
-				/>
+				>
+
+				<android.support.v7.widget.RecyclerView
+					android:id="@+id/list"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					tools:listitem="@layout/listitem_track"
+					/>
+
+				<View
+					android:layout_width="6dp"
+					android:layout_height="match_parent"
+					android:background="@drawable/shadow_left_dark"
+					/>
+
+			</FrameLayout>
 
 		</LinearLayout>
 
