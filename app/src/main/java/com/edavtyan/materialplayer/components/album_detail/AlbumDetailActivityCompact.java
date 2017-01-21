@@ -15,13 +15,15 @@ import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+
 import static com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp.EXTRA_ALBUM_ID;
 
 public class AlbumDetailActivityCompact extends BaseToolbarActivity implements AlbumDetailMvp.View {
-	private TextView titleView;
-	private TextView infoTopView;
-	private TextView infoBottomView;
-	private ImageView artView;
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info_top) TextView infoTopView;
+	@BindView(R.id.info_bottom) TextView infoBottomView;
+	@BindView(R.id.art) ImageView artView;
 
 	private AlbumDetailMvp.Presenter presenter;
 	private Navigator navigator;
@@ -30,11 +32,6 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		titleView = findView(R.id.title);
-		infoTopView = findView(R.id.info_top);
-		infoBottomView = findView(R.id.info_bottom);
-		artView = findView(R.id.art);
 
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		AlbumDetailFactory factory = ((App) getApplicationContext()).getAlbumDetailDI(this, this, albumId);
