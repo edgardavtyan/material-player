@@ -3,15 +3,16 @@ package com.edavtyan.prefs.description_list;
 import android.view.View;
 import android.widget.TextView;
 
-import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.R2;
 import com.edavtyan.prefs.simple_list.SimpleListViewHolder;
 
+import butterknife.BindView;
+
 public class DescriptionListViewHolder extends SimpleListViewHolder {
-	private final TextView descriptionView;
+	@BindView(R2.id.description) TextView descriptionView;
 
 	public DescriptionListViewHolder(View itemView) {
 		super(itemView);
-		descriptionView = findView(R.id.description);
 	}
 
 	public void setDescription(String description) {

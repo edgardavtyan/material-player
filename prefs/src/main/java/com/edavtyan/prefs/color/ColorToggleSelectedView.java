@@ -6,11 +6,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.R2;
 import com.edavtyan.utils.generic.GenericFrameLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ColorToggleSelectedView extends GenericFrameLayout {
-	private ColorCircleView colorView;
-	private ImageView checkIcon;
+	@BindView(R2.id.colorView) ColorCircleView colorView;
+	@BindView(R2.id.checkIcon) ImageView checkIcon;
 
 	public ColorToggleSelectedView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -44,7 +48,6 @@ public class ColorToggleSelectedView extends GenericFrameLayout {
 
 	private void init(Context context) {
 		inflate(context, R.layout.view_color_toggle, this);
-		colorView = findView(R.id.colorView);
-		checkIcon = findView(R.id.checkIcon);
+		ButterKnife.bind(this);
 	}
 }

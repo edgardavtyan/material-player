@@ -6,13 +6,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.R2;
 import com.edavtyan.utils.generic.GenericLinearLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.Setter;
 
 public class ColorSelectionEntry implements View.OnClickListener {
-	private final TextView titleView;
-	private final ColorCircleView colorView;
+	@BindView(R2.id.title) TextView titleView;
+	@BindView(R2.id.color) ColorCircleView colorView;
+
 	private @Setter OnClickListener onClickListener;
 
 	interface OnClickListener {
@@ -21,9 +25,8 @@ public class ColorSelectionEntry implements View.OnClickListener {
 
 	public ColorSelectionEntry(Context context, GenericLinearLayout view) {
 		LayoutInflater.from(context).inflate(R.layout.entry_color, view, true);
+		ButterKnife.bind(this, view);
 		view.setOnClickListener(this);
-		titleView = view.findView(R.id.title);
-		colorView = view.findView(R.id.color);
 	}
 
 	public void setTitle(String title) {

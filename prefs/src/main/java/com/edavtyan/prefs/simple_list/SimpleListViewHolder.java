@@ -4,18 +4,20 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.R2;
 import com.edavtyan.utils.generic.GenericViewHolder;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.Getter;
 import lombok.Setter;
 
 public class SimpleListViewHolder extends GenericViewHolder implements View.OnClickListener {
-	protected final RadioButton radioButton;
-	protected final TextView titleView;
-
 	protected @Getter @Setter String value;
 	protected @Setter OnHolderClickListener onHolderClickListener;
+
+	@BindView(R2.id.radioButton) RadioButton radioButton;
+	@BindView(R2.id.title) TextView titleView;
 
 	public interface OnHolderClickListener {
 		void onHolderClick(String value);
@@ -23,9 +25,7 @@ public class SimpleListViewHolder extends GenericViewHolder implements View.OnCl
 
 	public SimpleListViewHolder(View itemView) {
 		super(itemView);
-
-		radioButton = findView(R.id.radioButton);
-		titleView = findView( R.id.title);
+		ButterKnife.bind(this, itemView);
 		itemView.setOnClickListener(this);
 	}
 

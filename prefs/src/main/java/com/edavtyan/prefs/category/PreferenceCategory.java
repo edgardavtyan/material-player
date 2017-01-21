@@ -6,9 +6,15 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.R2;
 import com.edavtyan.utils.generic.GenericLinearLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PreferenceCategory extends GenericLinearLayout {
+	@BindView(R2.id.heading) TextView headingView;
+
 	public PreferenceCategory(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
@@ -23,8 +29,9 @@ public class PreferenceCategory extends GenericLinearLayout {
 		inflate(context, R.layout.category, this);
 		setOrientation(VERTICAL);
 
+		ButterKnife.bind(this);
+
 		PreferenceCategoryModel model = new PreferenceCategoryModel(context, attrs);
-		TextView headingView = findView(R.id.heading);
 		headingView.setTypeface(Typeface.create("sans-serif-medium", 0));
 		headingView.setTextColor(model.getColor());
 		headingView.setText(model.getTitle());

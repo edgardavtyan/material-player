@@ -8,11 +8,16 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
+import com.edavtyan.prefs.R2;
 import com.edavtyan.prefs.base.BasePreference;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CheckboxPreference extends BasePreference implements View.OnClickListener {
-	private TextView titleView;
-	private CheckBox checkboxView;
+	@BindView(R2.id.title) TextView titleView;
+	@BindView(R2.id.checkbox) CheckBox checkboxView;
+
 	private CheckboxPreferencePresenter presenter;
 
 	public CheckboxPreference(Context context, AttributeSet attrs) {
@@ -39,12 +44,11 @@ public class CheckboxPreference extends BasePreference implements View.OnClickLi
 	}
 
 	private void initPref(AttributeSet attrs) {
-		setOrientation(HORIZONTAL);
 		LayoutInflater.from(context).inflate(R.layout.entry_checkbox, this, true);
-		setOnClickListener(this);
+		ButterKnife.bind(this);
 
-		titleView = findView(R.id.title);
-		checkboxView = findView(R.id.checkbox);
+		setOrientation(HORIZONTAL);
+		setOnClickListener(this);
 
 		CheckboxPreferenceModel model = new CheckboxPreferenceModel(context, attrs);
 
