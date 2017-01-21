@@ -6,16 +6,19 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NowPlayingInfo implements NowPlayingMvp.View.Info {
+
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+
 	private final NowPlayingActivity activity;
-	private final TextView titleView;
-	private final TextView infoView;
 
 	public NowPlayingInfo(NowPlayingActivity activity) {
 		this.activity = activity;
-
-		titleView = activity.findView(R.id.title);
-		infoView = activity.findView(R.id.info);
+		ButterKnife.bind(this, activity);
 	}
 
 	@Override
