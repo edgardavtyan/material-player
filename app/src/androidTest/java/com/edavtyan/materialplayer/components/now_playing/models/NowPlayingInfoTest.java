@@ -29,6 +29,6 @@ public class NowPlayingInfoTest extends NowPlayingViewTest {
 	public void setInfo_setInfoViewTextWithPattern() {
 		TextView infoView = (TextView) activity.findViewById(R.id.info);
 		runOnUiThread(() -> info.setInfo("artist", "album"));
-		assertThat(infoView.getText()).isEqualTo("artist - album");
+		assertThat(infoView.getText()).isEqualTo("artist \u2014 album");
 	}
 }
