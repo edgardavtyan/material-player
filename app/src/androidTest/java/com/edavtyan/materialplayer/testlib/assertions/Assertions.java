@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 
 import java.lang.reflect.Constructor;
 
@@ -32,6 +33,10 @@ public final class Assertions {
 	public static ImageViewAssert assertThat(Activity activity, @IdRes int id) {
 		ImageView imageView = (ImageView) activity.findViewById(id);
 		return new ImageViewAssert(imageView);
+	}
+
+	public static TestableImageButtonAssert assertThat(TestableImageButton imageButton) {
+		return new TestableImageButtonAssert(imageButton);
 	}
 
 	public static TitledSeekbarAssertion assertThat(TitledSeekbar seekbar) {

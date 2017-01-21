@@ -17,8 +17,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class NowPlayingControlsTest extends ActivityTest {
 	private static NowPlayingActivity activity;
 
@@ -91,34 +89,37 @@ public class NowPlayingControlsTest extends ActivityTest {
 	@Test
 	public void setShuffleMode_enabled_setShuffleButtonColorFilterToAccent() {
 		runOnUiThread(() -> controls.setShuffleMode(ShuffleMode.ENABLED));
-		assertThat(shuffleButton.getColorFilterColor()).isEqualTo(colors.accent);
+		assertThat(shuffleButton).hasColorFilter(colors.accent);
 	}
 
 	@Test
 	public void setShuffleMode_disabled_setShuffleButtonColorFilterToContrast() {
 		runOnUiThread(() -> controls.setShuffleMode(ShuffleMode.DISABLED));
-		assertThat(shuffleButton.getColorFilterColor()).isEqualTo(colors.textPrimary);
+		assertThat(shuffleButton).hasColorFilter(colors.textPrimary);
 	}
 
 	@Test
 	public void setRepeatMode_repeatAll_setRepeatButtonColorFilterAndIcon() {
 		runOnUiThread(() -> controls.setRepeatMode(RepeatMode.REPEAT_ALL));
-		assertThat(repeatButton.getColorFilterColor()).isEqualTo(colors.accent);
-		assertThat(repeatButton).hasImageResource(R.drawable.ic_repeat);
+		assertThat(repeatButton)
+				.hasColorFilter(colors.accent)
+				.hasImageResource(R.drawable.ic_repeat);
 	}
 
 	@Test
 	public void setRepeatMode_repeatOne_setRepeatButtonColorFilterAndIcon() {
 		runOnUiThread(() -> controls.setRepeatMode(RepeatMode.REPEAT_ONE));
-		assertThat(repeatButton.getColorFilterColor()).isEqualTo(colors.accent);
-		assertThat(repeatButton).hasImageResource(R.drawable.ic_repeat_one);
+		assertThat(repeatButton)
+				.hasColorFilter(colors.accent)
+				.hasImageResource(R.drawable.ic_repeat_one);
 	}
 
 	@Test
 	public void setRepeatMode_disabled_setRepeatButtonColorFilterAndIcon() {
 		runOnUiThread(() -> controls.setRepeatMode(RepeatMode.DISABLED));
-		assertThat(repeatButton.getColorFilterColor()).isEqualTo(colors.textPrimary);
-		assertThat(repeatButton).hasImageResource(R.drawable.ic_repeat);
+		assertThat(repeatButton)
+				.hasColorFilter(colors.textPrimary)
+				.hasImageResource(R.drawable.ic_repeat);
 	}
 
 	@Test
