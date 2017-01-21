@@ -2,16 +2,15 @@ package com.edavtyan.materialplayer.components.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import butterknife.BindView;
 
@@ -31,14 +30,14 @@ public class MainActivity extends BaseToolbarActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(this));
-		compactMainScreenPref = new CompactMainScreenPref(this, prefs);
+		MainFactory factory = ((App) getApplicationContext()).getMainFactory(this);
+		compactMainScreenPref = factory.getCompactMainScreenPref();
 
 		super.onCreate(savedInstanceState);
 
 		FragmentPagerAdapter adapter = compactMainScreenPref.getValue()
-				? new IconsTabsAdapter(getSupportFragmentManager(), this)
-				: new TextTabsAdapter(getSupportFragmentManager());
+				? factory.getIconsTabsAdapter()
+				: factory.getTextTabsAdapter();
 
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);

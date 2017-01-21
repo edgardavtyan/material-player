@@ -15,6 +15,8 @@ import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailFactory;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsMvp;
+import com.edavtyan.materialplayer.components.main.MainActivity;
+import com.edavtyan.materialplayer.components.main.MainFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
@@ -43,6 +45,7 @@ public class App extends Application {
 	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
 	private @Setter TrackListFactory trackListFactory;
 	private @Setter SdkFactory sdkFactory;
+	private @Setter MainFactory mainFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return (baseFactory == null)
@@ -126,5 +129,9 @@ public class App extends Application {
 		return (sdkFactory == null)
 				? new SdkFactory()
 				: sdkFactory;
+	}
+
+	public MainFactory getMainFactory(MainActivity activity) {
+		return (mainFactory == null) ? new MainFactory(activity) : mainFactory;
 	}
 }
