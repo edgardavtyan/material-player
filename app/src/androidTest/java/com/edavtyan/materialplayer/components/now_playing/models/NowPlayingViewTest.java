@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.utils.AppColors;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class NowPlayingViewTest extends ActivityTest {
+public abstract class NowPlayingViewTest extends ActivityTest {
 	protected static NowPlayingActivity activity;
 
 	protected AppColors colors;
