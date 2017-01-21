@@ -2,19 +2,37 @@
 <android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/CollapsingList_Land_MainWrapper"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
 	>
 
-	<LinearLayout style="@style/CollapsingList_Land_MainInnerWrapper">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
 
 		<include layout="@layout/partial_appbar" />
 
-		<LinearLayout style="@style/CollapsingList_Land_ContentWrapper">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			android:baselineAligned="false"
+			>
 
-			<LinearLayout style="@style/CollapsingList_Land_InfoWrapper">
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				>
 
 				<com.edavtyan.materialplayer.lib.views.SquareImageViewByHeight
 					android:id="@+id/art"
+					android:layout_width="wrap_content"
+					android:layout_height="0dp"
+					android:layout_weight="1"
 					tools:src="@drawable/fallback_cover"
 					style="@style/CollapsingList_Land_Art"
 					/>
@@ -24,6 +42,7 @@
 					android:layout_height="?listPreferredItemHeightSmall"
 					android:orientation="vertical"
 					android:gravity="center_vertical"
+					android:background="?colorPrimary"
 					>
 
 					<TextView
@@ -60,7 +79,6 @@
 						android:layout_height="0dp"
 						android:layout_weight="1"
 						tools:listitem="@layout/listitem_track"
-						style="@style/CollapsingList_Land_List"
 						/>
 
 					<fragment
@@ -73,7 +91,11 @@
 
 				</LinearLayout>
 
-				<View style="@style/CollapsingList_Land_Shadow" />
+				<View
+					android:layout_width="6dp"
+					android:layout_height="match_parent"
+					android:background="@drawable/shadow_left_dark"
+					/>
 
 			</FrameLayout>
 
