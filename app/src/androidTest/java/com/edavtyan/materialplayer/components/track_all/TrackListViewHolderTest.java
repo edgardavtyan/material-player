@@ -41,7 +41,7 @@ public class TrackListViewHolderTest extends BaseTest {
 	@Test
 	public void setInfo_setFormattedInfoViewText() {
 		holder.setInfo(50000, "artist", "album");
-		assertThat(infoView.getText()).isEqualTo("00:50 | artist - album");
+		assertThat(infoView.getText()).isEqualTo("00:50 | artist \u2014 album");
 	}
 
 	@Test
