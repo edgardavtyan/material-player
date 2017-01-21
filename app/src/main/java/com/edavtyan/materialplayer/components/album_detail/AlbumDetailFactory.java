@@ -2,9 +2,7 @@ package com.edavtyan.materialplayer.components.album_detail;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.DBModule;
-import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
 
 public class AlbumDetailFactory extends ListFactory {
@@ -14,8 +12,6 @@ public class AlbumDetailFactory extends ListFactory {
 	private AlbumDetailAdapter adapter;
 	private AlbumDetailMvp.Presenter presenter;
 	private AlbumDetailMvp.Model model;
-	private AlbumDB albumDB;
-	private TrackDB trackDB;
 
 	public AlbumDetailFactory(Context context, AlbumDetailMvp.View view, int albumId) {
 		super(context);

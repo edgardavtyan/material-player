@@ -43,14 +43,6 @@ public class ColorCircleView extends View {
 		backgroundPaint.setColor(color);
 	}
 
-	public void setBorderColor(int color) {
-		borderPaint.setColor(color);
-	}
-
-	public int getBorderColor() {
-		return borderPaint.getColor();
-	}
-
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);

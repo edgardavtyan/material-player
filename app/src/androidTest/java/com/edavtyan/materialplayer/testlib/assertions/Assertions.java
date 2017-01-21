@@ -14,7 +14,7 @@ import java.lang.reflect.Constructor;
 
 public final class Assertions {
 	public static <T> ConstructorAssert<T> assertThat(Constructor<T> constructor) {
-		return new ConstructorAssert<T>(constructor);
+		return new ConstructorAssert<>(constructor);
 	}
 
 	public static IntentAssert assertThat(Intent intent) {
