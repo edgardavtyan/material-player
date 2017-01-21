@@ -35,14 +35,10 @@ public class MainActivity extends BaseToolbarActivity {
 		startService(intent);
 	}
 
-	/* BaseActivity */
-
 	@Override
 	public int getLayoutId() {
 		return R.layout.activity_main;
 	}
-
-	/* BaseToolbarActivity */
 
 	@Override
 	public boolean isBackIconEnabled() {
