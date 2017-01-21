@@ -40,6 +40,7 @@
 						android:layout_weight="1"
 						android:layout_gravity="bottom"
 						style="@style/tabs_fill"
+						app:tabTextAppearance="@style/TabsText"
 						/>
 
 					<android.support.v7.widget.Toolbar
