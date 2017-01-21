@@ -7,11 +7,14 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NowPlayingArt implements NowPlayingMvp.View.Art {
-	private final ImageView artView;
+	@BindView(R.id.art) ImageView artView;
 
 	public NowPlayingArt(NowPlayingActivity activity) {
-		artView = activity.findView(R.id.art);
+		ButterKnife.bind(this, activity);
 	}
 
 	@Override
