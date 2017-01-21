@@ -20,6 +20,7 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		context = InstrumentationRegistry.getTargetContext();
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public ImageViewAssert hasImageResource(@DrawableRes int drawableRes) {
 		Bitmap expectedBitmap = getBitmap(ContextCompat.getDrawable(context, drawableRes));
 		Bitmap actualBitmap = getBitmap(actual.getDrawable());
@@ -33,6 +34,7 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public ImageViewAssert hasImageBitmap(Bitmap expectedBitmap) {
 		Bitmap actualBitmap = getBitmap(actual.getDrawable());
 		String errorMessage = "\nExpecting bitmap to be\n<%s>\nbut was:\n<%s>\n";

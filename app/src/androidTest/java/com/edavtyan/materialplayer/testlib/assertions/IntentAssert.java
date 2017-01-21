@@ -20,6 +20,7 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public IntentAssert hasExtraString(String extraName, String extraValue) {
 		String actualExtra = actual.getStringExtra(extraName);
 		String errorMessage = "\nExpecting extra <%s> to have value:\n<%s>\nbut got:\n<%s>\n";
@@ -30,6 +31,7 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public IntentAssert hasExtraInt(String extraName, int extraValue) {
 		int actualExtra = actual.getIntExtra(extraName, -1);
 		String errorMessage = "\nExpecting extra <%s> to have value:\n<%s>\nbut got:\n<%s>\n";

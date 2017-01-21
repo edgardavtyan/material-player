@@ -28,6 +28,7 @@ public class TestableImageButtonAssert
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public TestableImageButtonAssert hasImageResource(@DrawableRes int drawableId) {
 		imageViewAssert.hasImageResource(drawableId);
 		return this;

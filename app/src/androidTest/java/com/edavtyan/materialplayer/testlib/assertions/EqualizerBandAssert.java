@@ -16,6 +16,7 @@ public class EqualizerBandAssert extends AbstractAssert<EqualizerBandAssert, Equ
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public EqualizerBandAssert hasGain(int gain) {
 		String errorMessage = "\nExpected gain to be\n<%s>\nbut was\n<%s>\n";
 		if (gain != actual.getGain())

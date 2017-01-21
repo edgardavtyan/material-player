@@ -9,6 +9,7 @@ public class TitledSeekbarAssertion extends AbstractAssert<TitledSeekbarAssertio
 		super(actual, TitledSeekbarAssertion.class);
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public TitledSeekbarAssertion hasProgress(int progress) {
 		String errorMessage = "\nExpected progress to be\n<%s>\nbut was\n<%s>";
 		if (actual.getProgress() != progress)
