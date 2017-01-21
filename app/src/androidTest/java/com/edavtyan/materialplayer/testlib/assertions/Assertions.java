@@ -6,6 +6,7 @@ import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 
 import java.lang.reflect.Constructor;
@@ -35,5 +36,9 @@ public final class Assertions {
 
 	public static TitledSeekbarAssertion assertThat(TitledSeekbar seekbar) {
 		return new TitledSeekbarAssertion(seekbar);
+	}
+
+	public static EqualizerBandAssert assertThat(EqualizerBandView band) {
+		return new EqualizerBandAssert(band);
 	}
 }
