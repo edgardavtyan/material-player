@@ -4,36 +4,40 @@ import android.support.design.widget.FloatingActionButton;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class NowPlayingFabTest extends BaseTest {
+public class NowPlayingFabTest extends ActivityTest {
+	private static NowPlayingActivity activity;
 	private NowPlayingMvp.Presenter presenter;
-	private FloatingActionButton fabView;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		fabView = spy(new FloatingActionButton(context));
-
-		NowPlayingActivity activity = mock(NowPlayingActivity.class);
-		when(activity.findView(R.id.fab)).thenReturn(fabView);
-
 		presenter = mock(NowPlayingMvp.Presenter.class);
 
-		new NowPlayingFab(activity, presenter);
+		NowPlayingFactory factory = mock(NowPlayingFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
+
+		app.setNowPlayingFactory(factory);
+
+		if (activity == null) {
+			activity = startActivity(NowPlayingActivity.class);
+		}
+
+		NowPlayingFab fab = new NowPlayingFab(activity, presenter);
 	}
 
 	@Test
 	public void onClick_callPresenter() {
-		fabView.performClick();
+		FloatingActionButton fabView = (FloatingActionButton) activity.findViewById(R.id.fab);
+		runOnUiThread(fabView::performClick);
 		verify(presenter).onFabClick();
 	}
 }

@@ -1,14 +1,22 @@
 package com.edavtyan.materialplayer.components.now_playing.models;
 
-import android.support.design.widget.FloatingActionButton;
-
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class NowPlayingFab implements NowPlayingMvp.View.Fab {
+	private final NowPlayingMvp.Presenter presenter;
+
 	public NowPlayingFab(NowPlayingActivity activity, NowPlayingMvp.Presenter presenter) {
-		FloatingActionButton fab = activity.findView(R.id.fab);
-		fab.setOnClickListener(view -> presenter.onFabClick());
+		this.presenter = presenter;
+		ButterKnife.bind(this, activity);
+	}
+
+	@OnClick(R.id.fab)
+	public void onFabClick() {
+		presenter.onFabClick();
 	}
 }
