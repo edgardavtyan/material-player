@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.widget.ImageButton;
 
 public class TestableImageButton extends ImageButton {
+	private int colorFilterColor;
+
 	public TestableImageButton(Context context) {
 		super(context);
 	}
@@ -19,5 +21,10 @@ public class TestableImageButton extends ImageButton {
 
 	public void setColorFilterNonFinal(int color) {
 		super.setColorFilter(color);
+		colorFilterColor = color;
+	}
+
+	public int getColorFilterColor() {
+		return colorFilterColor;
 	}
 }

@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.now_playing.models;
 
-import android.view.View;
-
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
@@ -10,56 +8,52 @@ import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 import com.edavtyan.materialplayer.utils.AppColors;
 
-public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class NowPlayingControls implements NowPlayingMvp.View.Controls {
+	@BindView(R.id.shuffle) TestableImageButton shuffleButton;
+	@BindView(R.id.rewind) TestableImageButton rewindButton;
+	@BindView(R.id.playPause) TestableImageButton playPauseButton;
+	@BindView(R.id.fastForward) TestableImageButton fastForwardButton;
+	@BindView(R.id.repeat) TestableImageButton repeatButton;
+
 	private final NowPlayingMvp.Presenter presenter;
 	private final AppColors colors;
-
-	private final TestableImageButton shuffleButton;
-	private final TestableImageButton playPauseButton;
-	private final TestableImageButton repeatButton;
 
 	public NowPlayingControls(
 			NowPlayingActivity activity,
 			NowPlayingMvp.Presenter presenter,
 			AppColors colors) {
+		ButterKnife.bind(this, activity);
 		this.presenter = presenter;
 		this.colors = colors;
-
-		shuffleButton = activity.findView(R.id.shuffle);
-		shuffleButton.setOnClickListener(this);
-
-		repeatButton = activity.findView(R.id.repeat);
-		repeatButton.setOnClickListener(this);
-
-		playPauseButton = activity.findView(R.id.playPause);
-		playPauseButton.setOnClickListener(this);
-
-		TestableImageButton rewindButton = activity.findView(R.id.rewind);
-		rewindButton.setOnClickListener(this);
-
-		TestableImageButton fastForwardButton = activity.findView(R.id.fastForward);
-		fastForwardButton.setOnClickListener(this);
 	}
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.shuffle:
-			presenter.onShuffleClick();
-			break;
-		case R.id.rewind:
-			presenter.onRewindClick();
-			break;
-		case R.id.playPause:
-			presenter.onPlayPauseClick();
-			break;
-		case R.id.fastForward:
-			presenter.onFastForwardClick();
-			break;
-		case R.id.repeat:
-			presenter.onRepeatClick();
-			break;
-		}
+	@OnClick(R.id.shuffle)
+	public void onShuffleClick() {
+		presenter.onShuffleClick();
+	}
+
+	@OnClick(R.id.rewind)
+	public void onRewindClick() {
+		presenter.onRewindClick();
+	}
+
+	@OnClick(R.id.playPause)
+	public void onPlayPauseClick() {
+		presenter.onPlayPauseClick();
+	}
+
+	@OnClick(R.id.fastForward)
+	public void onFastForwardClick() {
+		presenter.onFastForwardClick();
+	}
+
+	@OnClick(R.id.repeat)
+	public void onRepeatClick() {
+		presenter.onRepeatClick();
 	}
 
 	@Override
