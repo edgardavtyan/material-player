@@ -8,6 +8,7 @@
 	</style>
 
 	<style name="tabs_fill" parent="tabs_base">
+		<item name="android:layout_weight">4</item>
 		<item name="tabGravity">fill</item>
 	</style>
 
