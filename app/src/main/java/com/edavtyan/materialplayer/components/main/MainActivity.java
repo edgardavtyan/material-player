@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
@@ -16,10 +17,14 @@ public class MainActivity extends BaseToolbarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Toolbar toolbar = findView(R.id.toolbar);
+		if (WindowUtils.isPortrait(this)) {
+			toolbar.setTitle(null);
+		}
+
+		FragmentPagerAdapter adapter = new IconsTabsAdapter(getSupportFragmentManager(), this);
+
 		ViewPager viewPager = findView(R.id.view_pager);
-		FragmentPagerAdapter adapter = (WindowUtils.isPortrait(this))
-				? new IconsTabsAdapter(getSupportFragmentManager(), this)
-				: new MainTabsAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(adapter);
 
 		TabLayout tabLayout = findView(R.id.tab_layout);
