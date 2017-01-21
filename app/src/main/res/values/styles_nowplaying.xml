@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="NowPlaying_Container">
+	<style name="NowPlaying_MainWrapper">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<style name="NowPlaying_FAB">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_margin">@dimen/spacing_medium</item>
+		<item name="android:src">@drawable/ic_list</item>
+		<item name="layout_anchor">@+id/infoWrapper</item>
+		<item name="layout_anchorGravity">right</item>
+	</style>
+
+	<style name="NowPlaying_InnerWrapper">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:orientation">vertical</item>
 		<item name="android:background">?colorPrimary</item>
 	</style>
 
+	<style name="NowPlaying_ArtWrapper">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
+	<style name="NowPlaying_Art">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
 	<style name="NowPlaying_TrackInfo_Container">
-		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingBottom">@dimen/spacing_tiny</item>
 		<item name="android:paddingTop">@dimen/spacing_medium</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:orientation">vertical</item>
 		<item name="android:background">?colorPrimary</item>
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Title">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/spacing_medium_minus</item>
 		<item name="android:textSize">@dimen/font_big</item>
 		<item name="android:textColor">?textColorContrastPrimary</item>
@@ -21,12 +53,16 @@
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Info" parent="NowPlaying_TrackInfo_Title">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
 		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorContrastSecondary</item>
 	</style>
 
 	<style name="NowPlaying_Seekbar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingEnd">@dimen/spacing_medium_plus</item>
 		<item name="android:paddingStart">@dimen/spacing_medium_plus</item>
 		<item name="thumbColor">?colorAccent</item>
@@ -35,6 +71,8 @@
 	</style>
 
 	<style name="NowPlaying_Time_Container">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:background">?colorPrimary</item>
 		<item name="android:paddingTop">@dimen/spacing_tiny</item>
 		<item name="android:paddingBottom">@dimen/spacing_tiny</item>
@@ -42,14 +80,25 @@
 	</style>
 
 	<style name="NowPlaying_Time_Current">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_weight">1</item>
 		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
 		<item name="android:textColor">?textColorContrastPrimary</item>
 	</style>
 
-	<style name="NowPlaying_Time_Total">
+	<style name="NowPlaying_Time_Total" parent="NowPlaying_Time_Current">
+		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">@dimen/spacing_medium</item>
-		<item name="android:textColor">?textColorContrastPrimary</item>
 		<item name="android:gravity">right</item>
+	</style>
+
+	<style name="NowPlaying_ControlsContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+		<item name="android:orientation">horizontal</item>
 	</style>
 
 	<style name="NowPlaying_Control">

@@ -1,41 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	style="@style/NowPlaying_MainWrapper"
 	>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium"
-		android:src="@drawable/ic_list"
-		app:layout_anchor="@+id/infoWrapper"
-		app:layout_anchorGravity="right"
+		style="@style/NowPlaying_FAB"
 		/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		style="@style/NowPlaying_Container"
-		>
+	<LinearLayout style="@style/NowPlaying_InnerWrapper">
 
 		<include layout="@layout/partial_appbar" />
 
-		<FrameLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			>
+		<FrameLayout style="@style/NowPlaying_ArtWrapper">
 
 			<com.edavtyan.materialplayer.lib.views.SquareImageView
 				android:id="@+id/art"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				tools:src="@drawable/fallback_cover"
+				style="@style/NowPlaying_Art"
 				/>
 
 			<include layout="@layout/shadow_bottom_small" />
@@ -44,50 +28,33 @@
 
 		<LinearLayout
 			android:id="@+id/infoWrapper"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
 			style="@style/NowPlaying_TrackInfo_Container"
 			>
 
 			<TextView
 				android:id="@+id/title"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				tools:text="Now Playing Track Title"
 				style="@style/NowPlaying_TrackInfo_Title"
 				/>
 
 			<TextView
 				android:id="@+id/info"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				tools:text="Now Playing Track Info"
 				style="@style/NowPlaying_TrackInfo_Info"
 				/>
 
 		</LinearLayout>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			style="@style/NowPlaying_Time_Container"
-			>
+		<LinearLayout style="@style/NowPlaying_Time_Container">
 
 			<TextView
 				android:id="@+id/timeCurrent"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
 				tools:text="1:14"
 				style="@style/NowPlaying_Time_Current"
 				/>
 
 			<TextView
 				android:id="@+id/timeTotal"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
 				tools:text="6:44"
 				style="@style/NowPlaying_Time_Total"
 				/>
@@ -96,18 +63,11 @@
 
 		<app.minimize.com.seek_bar_compat.SeekBarCompat
 			android:id="@+id/seekbar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
 			tools:progress="30"
 			style="@style/NowPlaying_Seekbar"
 			/>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_marginTop="@dimen/spacing_tiny"
-			android:layout_weight="1"
-			>
+		<LinearLayout style="@style/NowPlaying_ControlsContainer">
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/shuffle"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="NowPlaying_Land_FAB" parent="NowPlaying_FAB">
+		<item name="layout_anchor">@+id/innerMainWrapper</item>
+		<item name="layout_anchorGravity">right|bottom</item>
+	</style>
+
+	<style name="NowPlaying_Land_Art">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<style name="NowPlaying_Land_InnerWrapper" parent="NowPlaying_InnerWrapper">
+		<item name="background">@null</item>
+		<item name="android:paddingTop">@dimen/spacing_medium</item>
+	</style>
+
+	<style name="NowPlaying_Land_InnerShadowWrapper">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:background">?colorPrimary</item>
+	</style>
+
+	<style name="NowPlaying_Land_ContentContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+	<style name="NowPlaying_Land_Time_Container" parent="NowPlaying_Time_Container">
+		<item name="android:layout_marginTop">@dimen/spacing_medium</item>
+	</style>
+
+	<style name="NowPlaying_Land_ControlsContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">@dimen/spacing_medium</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+</resources>
