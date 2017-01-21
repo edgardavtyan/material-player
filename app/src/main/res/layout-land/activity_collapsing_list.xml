@@ -19,41 +19,66 @@
 					style="@style/CollapsingList_Land_Art"
 					/>
 
-				<TextView
-					android:id="@+id/title"
-					tools:text="Title Text"
-					style="@style/CollapsingList_Land_Title"
-					/>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="?listPreferredItemHeightSmall"
+					android:orientation="vertical"
+					android:gravity="center_vertical"
+					>
 
-				<TextView
-					android:id="@+id/info"
-					tools:text="6 Albums \u2014 64 Tracks"
-					style="@style/CollapsingList_Land_Info"
-					/>
+					<TextView
+						android:id="@+id/title"
+						tools:text="Title Text"
+						style="@style/CollapsingList_Land_Title"
+						/>
+
+					<TextView
+						android:id="@+id/info"
+						tools:text="6 Albums \u2014 64 Tracks"
+						style="@style/CollapsingList_Land_Info"
+						/>
+
+				</LinearLayout>
 
 			</LinearLayout>
 
-			<FrameLayout style="@style/CollapsingList_Land_ListWrapper">
+			<FrameLayout
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				>
 
-				<android.support.v7.widget.RecyclerView
-					android:id="@+id/list"
-					tools:listitem="@layout/listitem_track"
-					style="@style/CollapsingList_Land_List"
-					/>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					>
+
+					<android.support.v7.widget.RecyclerView
+						android:id="@+id/list"
+						android:layout_width="match_parent"
+						android:layout_height="0dp"
+						android:layout_weight="1"
+						tools:listitem="@layout/listitem_track"
+						style="@style/CollapsingList_Land_List"
+						/>
+
+					<fragment
+						android:id="@+id/floating_nowplaying"
+						android:name="com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment"
+						android:layout_width="match_parent"
+						android:layout_height="?listPreferredItemHeightSmall"
+						tools:layout="@layout/fragment_nowplaying_floating"
+						/>
+
+				</LinearLayout>
 
 				<View style="@style/CollapsingList_Land_Shadow" />
 
 			</FrameLayout>
 
-		</LinearLayout>
 
-		<fragment
-			android:id="@+id/floating_nowplaying"
-			android:name="com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/size_big"
-			tools:layout="@layout/fragment_nowplaying_floating"
-			/>
+		</LinearLayout>
 
 	</LinearLayout>
 
