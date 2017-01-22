@@ -53,6 +53,7 @@ public class NowPlayingQueueModelTest extends BaseTest {
 
 	@Test
 	public void unbind_unbindService() {
+		model.onServiceConnected(null, binder);
 		model.bindService();
 		model.unbindService();
 		verify(context).unbindService(model);
