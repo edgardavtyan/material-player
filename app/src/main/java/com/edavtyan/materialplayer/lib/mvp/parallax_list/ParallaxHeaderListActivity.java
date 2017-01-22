@@ -49,7 +49,7 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 
 	@Override
 	public int getLayoutId() {
-		return R.layout.activity_collapsing_list;
+		return R.layout.activity_detail;
 	}
 
 	@Override
