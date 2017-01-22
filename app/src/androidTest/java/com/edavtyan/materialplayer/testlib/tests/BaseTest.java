@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.testlib.tests;
 
+import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.v7.view.ContextThemeWrapper;
 
@@ -42,6 +44,13 @@ public class BaseTest {
 
 	protected void runOnUiThread(Runnable runnable) {
 		instrumentation.runOnMainSync(runnable);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected <T> T startActivity(Class<? extends Activity> activityClass) {
+		Intent intent = new Intent(context, activityClass);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return (T) InstrumentationRegistry.getInstrumentation().startActivitySync(intent);
 	}
 
 	protected byte[] getResourceAsByteArray(String resName) throws IOException {
