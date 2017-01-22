@@ -25,7 +25,7 @@ public class MainActivityTest extends ActivityTest {
 
 	@Test
 	public void return_correct_layout_id() {
-		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_main_compact);
+		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_main);
 	}
 
 	@Test
