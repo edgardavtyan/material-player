@@ -18,6 +18,6 @@ public class CompactListPref extends BooleanPref {
 
 	@Override
 	protected int getDefaultValueId() {
-		return R.bool.pref_compactList_defaultValue;
+		return R.bool.pref_compactList_default;
 	}
 }
