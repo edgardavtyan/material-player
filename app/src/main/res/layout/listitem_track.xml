@@ -21,6 +21,11 @@
 
 	</LinearLayout>
 
+	<ImageView
+		android:id="@+id/nowPlaying"
+		style="@style/listitem_nowPlaying"
+		/>
+
 	<ImageButton
 		android:id="@+id/menu"
 		android:contentDescription="@string/description_button_menu"

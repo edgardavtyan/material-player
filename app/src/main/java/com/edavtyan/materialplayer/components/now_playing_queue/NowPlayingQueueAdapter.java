@@ -29,6 +29,11 @@ public class NowPlayingQueueAdapter
 	}
 
 	@Override
+	public long getItemId(int position) {
+		return presenter.getItemId(position);
+	}
+
+	@Override
 	public NowPlayingQueueViewHolder onCreateViewHolder(Context context, View view) {
 		NowPlayingQueueViewHolder holder = new NowPlayingQueueViewHolder(context, view);
 		holder.setOnHolderClickListener(this);

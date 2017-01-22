@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class NowPlayingQueueViewHolder
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.menu) ImageButton menuButton;
+	@BindView(R.id.nowPlaying) ImageView nowPlayingView;
 
 	private final Context context;
 	private final PopupMenu popupMenu;
@@ -66,6 +68,10 @@ public class NowPlayingQueueViewHolder
 		String timeStr = DurationUtils.toStringUntilHours(durationMillis);
 		String info = context.getString(R.string.pattern_track_info, timeStr, artistTitle, albumTitle);
 		infoView.setText(info);
+	}
+
+	public void setIsPlaying(boolean isPlaying) {
+		nowPlayingView.setVisibility(isPlaying ? View.VISIBLE : View.GONE);
 	}
 
 	@Override

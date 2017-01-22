@@ -2,11 +2,11 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 public class NowPlayingQueueActivity
@@ -24,9 +24,10 @@ public class NowPlayingQueueActivity
 		NowPlayingQueueFactory factory = app.getPlaylistFactory(this, this);
 		presenter = factory.getPresenter();
 		adapter = factory.getAdapter();
+		adapter.setHasStableIds(true);
 
 		RecyclerView list = findView(R.id.list);
-		list.setLayoutManager(new LinearLayoutManager(this));
+		list.setLayoutManager(new AnimatingLinearLayoutManager(this));
 		list.setAdapter(adapter);
 
 		presenter.onCreate();

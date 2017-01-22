@@ -8,11 +8,18 @@ import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
 @SuppressWarnings("unused")
 public interface NowPlayingQueueMvp {
 	interface Model extends ListMvp.Model, ServiceConnection {
+		interface OnNewTrackListener {
+			void onNewTrack();
+		}
+
+		void setOnNewTrackListener(OnNewTrackListener listener);
+
 		void bindService();
 		void unbindService();
 		void playItemAtPosition(int position);
 		void removeItemAtPosition(int position);
 		Track getTrackAtPosition(int position);
+		Track getNowPlayingTrack();
 		int getTrackCount();
 	}
 
@@ -25,5 +32,6 @@ public interface NowPlayingQueueMvp {
 		void onItemClick(int position);
 		void onRemoveItemClick(int position);
 		int getItemCount();
+		int getItemId(int position);
 	}
 }
