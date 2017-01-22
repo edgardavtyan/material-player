@@ -14,6 +14,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
 
@@ -24,9 +25,10 @@ public class ArtistDetailActivityCompact
 		implements ArtistDetailMvp.View {
 
 	@BindView(R.id.title) TextView titleView;
-	@BindView(R.id.info_top) TextView infoTopView;
-	@BindView(R.id.info_bottom) TextView infoBottomView;
 	@BindView(R.id.art) ImageView artView;
+	@Nullable @BindView(R.id.info_top) TextView infoTopView;
+	@Nullable @BindView(R.id.info_bottom) TextView infoBottomView;
+	@Nullable @BindView(R.id.info) TextView infoView;
 
 	private ArtistDetailMvp.Presenter presenter;
 	private AlbumListAdapter adapter;
@@ -67,10 +69,19 @@ public class ArtistDetailActivityCompact
 	}
 
 	@Override
+	@SuppressWarnings("ConstantConditions")
 	public void setArtistInfo(int albumsCount, int tracksCount) {
 		Resources res = getResources();
-		infoTopView.setText(res.getQuantityString(R.plurals.albums, albumsCount, albumsCount));
-		infoBottomView.setText(res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount));
+		String albumsCountStr = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
+		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
+
+		if (WindowUtils.isPortrait(this)) {
+			infoTopView.setText(albumsCountStr);
+			infoBottomView.setText(tracksCountStr);
+		} else {
+			String infoStr = res.getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);
+			infoView.setText(infoStr);
+		}
 	}
 
 	@Override

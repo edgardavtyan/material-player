@@ -12,6 +12,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,9 +22,10 @@ import static com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp
 
 public class AlbumDetailActivityCompact extends BaseToolbarActivity implements AlbumDetailMvp.View {
 	@BindView(R.id.title) TextView titleView;
-	@BindView(R.id.info_top) TextView infoTopView;
-	@BindView(R.id.info_bottom) TextView infoBottomView;
 	@BindView(R.id.art) ImageView artView;
+	@Nullable @BindView(R.id.info_top) TextView infoTopView;
+	@Nullable @BindView(R.id.info_bottom) TextView infoBottomView;
+	@Nullable @BindView(R.id.info) TextView infoView;
 
 	private AlbumDetailMvp.Presenter presenter;
 	private Navigator navigator;
@@ -64,13 +66,20 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 	}
 
 	@Override
+	@SuppressWarnings("ConstantConditions")
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
-		infoTopView.setText(artistTitle);
-
 		String tracksCountStr = getResources().getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
-		long durationStr = TimeUnit.MILLISECONDS.toMinutes(duration);
-		String info = getString(R.string.pattern_track_time_count, tracksCountStr, durationStr);
-		infoBottomView.setText(info);
+
+		if (WindowUtils.isPortrait(this)) {
+			long durationStr = TimeUnit.MILLISECONDS.toMinutes(duration);
+			String info = getString(R.string.pattern_track_time_count, tracksCountStr, durationStr);
+
+			infoTopView.setText(artistTitle);
+			infoBottomView.setText(info);
+		} else {
+			String info = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);
+			infoView.setText(info);
+		}
 	}
 
 	@Override
