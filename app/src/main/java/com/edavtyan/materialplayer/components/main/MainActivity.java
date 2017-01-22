@@ -42,7 +42,7 @@ public class MainActivity extends BaseToolbarActivity {
 				? factory.getIconsTabsAdapter()
 				: factory.getTextTabsAdapter();
 
-		if (compactMainScreenPref.getValue() && WindowUtils.isPortrait(this)) {
+		if (isCompactModeEnabled && WindowUtils.isPortrait(this)) {
 			toolbar.setTitle(null);
 		}
 
