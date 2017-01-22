@@ -21,6 +21,7 @@ public class MainActivity extends BaseToolbarActivity {
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
 
 	private CompactMainScreenPref compactMainScreenPref;
+	private boolean isCompactModeEnabled;
 
 	@Override
 	public int getLayoutId() {
@@ -33,6 +34,7 @@ public class MainActivity extends BaseToolbarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		MainFactory factory = ((App) getApplicationContext()).getMainFactory(this);
 		compactMainScreenPref = factory.getCompactMainScreenPref();
+		isCompactModeEnabled = compactMainScreenPref.getValue();
 
 		super.onCreate(savedInstanceState);
 
@@ -49,6 +51,14 @@ public class MainActivity extends BaseToolbarActivity {
 
 		Intent intent = new Intent(this, PlayerService.class);
 		startService(intent);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (isCompactModeEnabled != compactMainScreenPref.getValue()) {
+			this.recreate();
+		}
 	}
 
 	@Override
