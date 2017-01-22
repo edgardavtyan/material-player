@@ -11,6 +11,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import lombok.Setter;
 
 public class TrackListViewHolder
@@ -18,9 +20,12 @@ public class TrackListViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.menu) ImageButton menuButton;
+
 	private final Context context;
-	private final TextView titleView;
-	private final TextView infoView;
+	private final PopupMenu popupMenu;
 
 	private @Setter OnHolderClickListener onHolderClickListener;
 	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
@@ -35,16 +40,17 @@ public class TrackListViewHolder
 
 	public TrackListViewHolder(Context context, View itemView) {
 		super(itemView);
-		itemView.setOnClickListener(this);
 		this.context = context;
-		this.titleView = findView(R.id.title);
-		this.infoView = findView(R.id.info);
+		itemView.setOnClickListener(this);
 
-		ImageButton menuButton = findView(R.id.menu);
-		PopupMenu popupMenu = new PopupMenu(context, menuButton);
+		popupMenu = new PopupMenu(context, menuButton);
 		popupMenu.inflate(R.menu.menu_track);
 		popupMenu.setOnMenuItemClickListener(this);
-		menuButton.setOnClickListener(v -> popupMenu.show());
+	}
+
+	@OnClick(R.id.menu)
+	public void onMenuClick() {
+		popupMenu.show();
 	}
 
 	public void setTitle(String title) {
