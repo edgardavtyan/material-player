@@ -40,7 +40,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 		holder.setInfo(7, "artist");
 
 		assertThat(titleView.getText()).isEqualTo("title");
-		assertThat(infoView.getText()).isEqualTo("artist | 7 Tracks");
+		assertThat(infoView.getText()).isEqualTo("artist \u2014 7 Tracks");
 	}
 
 	@Test
