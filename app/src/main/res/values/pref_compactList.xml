@@ -2,7 +2,7 @@
 <resources>
 
 	<string name="pref_compactList_key">pref_compactList</string>
-	<string name="pref_compactList_title">Use compact lists</string>
+	<string name="pref_compactList_title">Compact lists</string>
 	<bool name="pref_compactList_defaultValue">false</bool>
 
 </resources>
