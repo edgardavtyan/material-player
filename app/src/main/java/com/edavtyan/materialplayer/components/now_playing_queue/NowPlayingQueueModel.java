@@ -17,8 +17,12 @@ public class NowPlayingQueueModel
 
 	private @Setter OnNewTrackListener onNewTrackListener;
 
-	private PlayerMvp.Player.OnNewTrackListener playerOnNewTrackListener = () -> {
-		if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
+	private final PlayerMvp.Player.OnNewTrackListener playerOnNewTrackListener
+			= new PlayerMvp.Player.OnNewTrackListener() {
+		@Override
+		public void onNewTrack() {
+			if (onNewTrackListener != null) onNewTrackListener.onNewTrack();
+		}
 	};
 
 	public NowPlayingQueueModel(Context context, CompactListPref compactListPref) {
