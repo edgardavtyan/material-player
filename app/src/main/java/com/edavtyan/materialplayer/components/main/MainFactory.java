@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.main;
 
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.utils.AppColors;
 
 public class MainFactory extends BaseFactory {
 	private final MainActivity activity;
@@ -8,6 +9,7 @@ public class MainFactory extends BaseFactory {
 	private CompactMainScreenPref compactMainScreenPref;
 	private TextTabsAdapter textTabsAdapter;
 	private IconsTabsAdapter iconsTabsAdapter;
+	private AppColors appColors;
 
 	public MainFactory(MainActivity activity) {
 		super(activity);
@@ -28,7 +30,16 @@ public class MainFactory extends BaseFactory {
 
 	public IconsTabsAdapter getIconsTabsAdapter() {
 		if (iconsTabsAdapter == null)
-			iconsTabsAdapter = new IconsTabsAdapter(activity.getSupportFragmentManager(), activity);
+			iconsTabsAdapter = new IconsTabsAdapter(
+					activity.getSupportFragmentManager(),
+					activity,
+					getAppColors());
 		return iconsTabsAdapter;
+	}
+
+	public AppColors getAppColors() {
+		if (appColors == null)
+			appColors = new AppColors(getContext());
+		return appColors;
 	}
 }
