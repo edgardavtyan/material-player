@@ -73,6 +73,7 @@
 				android:id="@+id/shuffle"
 				android:src="@drawable/ic_shuffle"
 				style="@style/NowPlaying_Control"
+				android:layout_marginLeft="-12dp"
 				/>
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
@@ -97,6 +98,7 @@
 				android:id="@+id/repeat"
 				android:src="@drawable/ic_repeat"
 				style="@style/NowPlaying_Control"
+				android:layout_marginRight="-12dp"
 				/>
 
 		</LinearLayout>
