@@ -32,8 +32,8 @@
 	<color name="black_dim_strong">#3000</color>
 
 	<color name="white">#fff</color>
-	<color name="white_dim_slight">#afff</color>
-	<color name="white_dim_strong">#2fff</color>
-	<color name="white_dim_medium">#6fff</color>
+	<color name="white_dim_slight">#dfff</color>
+	<color name="white_dim_strong">#3fff</color>
+	<color name="white_dim_medium">#8fff</color>
 
 </resources>
