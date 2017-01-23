@@ -29,6 +29,7 @@
 	<color name="black">#000</color>
 	<color name="black_dim_slight">#d000</color>
 	<color name="black_dim_medium">#8000</color>
+	<color name="black_dim_strong">#3000</color>
 
 	<color name="white">#fff</color>
 	<color name="white_dim_slight">#afff</color>
