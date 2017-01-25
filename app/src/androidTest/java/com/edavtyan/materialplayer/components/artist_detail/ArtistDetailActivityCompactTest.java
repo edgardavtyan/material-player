@@ -96,8 +96,8 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 	}
 
 	@Test
-	public void goToAlbumDetail_callNavigator() {
-		activity.goToAlbumDetail(3);
+	public void gotoAlbumDetail_callNavigator() {
+		activity.gotoAlbumDetail(3);
 		verify(navigator).gotoAlbumDetail(3);
 	}
 

@@ -22,6 +22,6 @@ public interface TrackListMvp {
 	}
 
 	interface View extends ListMvp.View {
-		void goToNowPlaying();
+		void gotoNowPlaying();
 	}
 }

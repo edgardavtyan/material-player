@@ -41,7 +41,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements A
 	}
 
 	@Override
-	public void goToNowPlaying() {
+	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
 	}
 

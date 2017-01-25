@@ -62,8 +62,8 @@ public class TrackListFragmentTest extends FragmentTest2 {
 	}
 
 	@Test
-	public void goToNowPlaying_callNavigator() {
-		fragment.goToNowPlaying();
+	public void gotoNowPlaying_callNavigator() {
+		fragment.gotoNowPlaying();
 		verify(navigator).gotoNowPlaying();
 	}
 }

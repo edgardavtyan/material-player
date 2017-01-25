@@ -21,7 +21,7 @@ public class ArtistListFragment
 	}
 
 	@Override
-	public void goToArtistDetail(String title) {
+	public void gotoArtistDetail(String title) {
 		navigator.gotoArtistDetail(title);
 	}
 

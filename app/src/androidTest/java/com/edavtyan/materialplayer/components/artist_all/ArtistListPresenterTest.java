@@ -69,13 +69,13 @@ public class ArtistListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClick_goToArtistDetail() {
+	public void onHolderClick_gotoArtistDetail() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
 
 		presenter.onHolderClick(3);
-		verify(view).goToArtistDetail("title");
+		verify(view).gotoArtistDetail("title");
 	}
 
 	@Test

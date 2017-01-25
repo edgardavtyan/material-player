@@ -17,6 +17,6 @@ public interface ArtistListMvp {
 	}
 
 	interface View extends ListMvp.View {
-		void goToArtistDetail(String title);
+		void gotoArtistDetail(String title);
 	}
 }

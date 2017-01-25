@@ -66,8 +66,8 @@ public class ArtistListFragmentTest extends FragmentTest2 {
 	}
 
 	@Test
-	public void goToArtistDetail_callNavigator() {
-		fragment.goToArtistDetail("title");
+	public void gotoArtistDetail_callNavigator() {
+		fragment.gotoArtistDetail("title");
 		verify(navigator).gotoArtistDetail("title");
 	}
 

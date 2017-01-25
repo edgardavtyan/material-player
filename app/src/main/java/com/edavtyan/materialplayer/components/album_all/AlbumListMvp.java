@@ -20,6 +20,6 @@ public interface AlbumListMvp {
 	}
 
 	interface View extends ListMvp.View {
-		void goToAlbumDetail(int albumId);
+		void gotoAlbumDetail(int albumId);
 	}
 }

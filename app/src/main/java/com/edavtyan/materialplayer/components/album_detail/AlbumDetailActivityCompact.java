@@ -92,7 +92,7 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 	}
 
 	@Override
-	public void goToNowPlaying() {
+	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
 	}
 

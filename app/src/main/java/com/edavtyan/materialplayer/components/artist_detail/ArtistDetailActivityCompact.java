@@ -94,7 +94,7 @@ public class ArtistDetailActivityCompact
 	}
 
 	@Override
-	public void goToAlbumDetail(int albumId) {
+	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
 	}
 

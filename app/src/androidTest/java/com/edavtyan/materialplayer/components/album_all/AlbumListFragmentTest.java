@@ -66,8 +66,8 @@ public class AlbumListFragmentTest extends FragmentTest2 {
 	}
 
 	@Test
-	public void goToAlbumDetail_callNavigator() {
-		fragment.goToAlbumDetail(7);
+	public void gotoAlbumDetail_callNavigator() {
+		fragment.gotoAlbumDetail(7);
 		verify(navigator).gotoAlbumDetail(7);
 	}
 

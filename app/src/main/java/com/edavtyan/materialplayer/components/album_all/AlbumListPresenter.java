@@ -32,7 +32,7 @@ public class AlbumListPresenter
 	@Override
 	public void onHolderClick(int position) {
 		int albumId = model.getAlbumAtIndex(position).getId();
-		view.goToAlbumDetail(albumId);
+		view.gotoAlbumDetail(albumId);
 	}
 
 	@Override

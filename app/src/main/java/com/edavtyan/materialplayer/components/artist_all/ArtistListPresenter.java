@@ -41,6 +41,6 @@ public class ArtistListPresenter
 	@Override
 	public void onHolderClick(int position) {
 		Artist artist = model.getArtistAtIndex(position);
-		view.goToArtistDetail(artist.getTitle());
+		view.gotoArtistDetail(artist.getTitle());
 	}
 }

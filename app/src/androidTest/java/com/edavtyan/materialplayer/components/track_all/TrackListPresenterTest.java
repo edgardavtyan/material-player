@@ -50,7 +50,7 @@ public class TrackListPresenterTest extends BaseTest {
 	@Test
 	public void onHolderClick_callViewAndModel() {
 		presenter.onHolderClick(0);
-		verify(view).goToNowPlaying();
+		verify(view).gotoNowPlaying();
 		verify(model).playQueue(0);
 	}
 

@@ -50,13 +50,13 @@ public class AlbumListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClick_goToAlbumDetail() {
+	public void onHolderClick_gotoAlbumDetail() {
 		Album album = new Album();
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
 
 		presenter.onHolderClick(3);
-		verify(view).goToAlbumDetail(7);
+		verify(view).gotoAlbumDetail(7);
 	}
 
 	@Test

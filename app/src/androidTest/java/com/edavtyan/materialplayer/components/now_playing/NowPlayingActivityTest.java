@@ -95,7 +95,7 @@ public class NowPlayingActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void goToPlaylistScreen_callNavigator() {
+	public void gotoPlaylistScreen_callNavigator() {
 		activity.gotoPlaylistScreen();
 		verify(navigator).gotoNowPlayingQueue(activity);
 	}

@@ -82,8 +82,8 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void goToNowPlaying_callNavigator() {
-		activity.goToNowPlaying();
+	public void gotoNowPlaying_callNavigator() {
+		activity.gotoNowPlaying();
 		verify(navigator).gotoNowPlaying();
 	}
 }

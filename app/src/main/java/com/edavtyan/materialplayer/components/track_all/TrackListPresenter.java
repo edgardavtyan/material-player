@@ -34,7 +34,7 @@ public class TrackListPresenter
 	@Override
 	public void onHolderClick(int position) {
 		model.playQueue(position);
-		view.goToNowPlaying();
+		view.gotoNowPlaying();
 	}
 
 	@Override

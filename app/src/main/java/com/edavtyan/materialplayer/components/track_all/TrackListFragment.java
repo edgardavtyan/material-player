@@ -21,7 +21,7 @@ public class TrackListFragment
 	}
 
 	@Override
-	public void goToNowPlaying() {
+	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
 	}
 
