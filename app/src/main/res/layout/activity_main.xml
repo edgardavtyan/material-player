@@ -40,7 +40,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_gravity="bottom"
-						style="@style/Tabs_Fill"
+						style="@style/Tabs.Normal"
 						/>
 
 			</android.support.design.widget.AppBarLayout>

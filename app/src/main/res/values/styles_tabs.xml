@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Tabs_Base">
+	<style name="Tabs">
 		<item name="tabIndicatorHeight">2dp</item>
 		<item name="tabSelectedTextColor">?textColorContrastPrimary</item>
 		<item name="tabTextColor">?textColorContrastSecondary</item>
 	</style>
 
-	<style name="Tabs_Fill" parent="Tabs_Base">
-		<item name="android:layout_weight">4</item>
+	<style name="Tabs.Normal">
 		<item name="tabGravity">fill</item>
+	</style>
+
+	<style name="Tabs.Compact">
+		<item name="tabGravity">center</item>
 	</style>
 
 </resources>
