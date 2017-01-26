@@ -41,25 +41,25 @@
 		<com.edavtyan.prefs.checkbox.CheckboxPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:cp_key="@string/pref.compactList.key"
-			app:cp_title="@string/pref.compactList.title"
-			app:cp_defaultValue="@bool/pref.compactList.default"
+			app:cp_key="@string/pref_compactList_key"
+			app:cp_title="@string/pref_compactList_title"
+			app:cp_defaultValue="@bool/pref_compactList_default"
 			/>
 
 		<com.edavtyan.prefs.checkbox.CheckboxPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:cp_key="@string/pref.compactDetail.key"
-			app:cp_title="@string/pref.compactDetail.title"
-			app:cp_defaultValue="@bool/pref.compactDetail.default"
+			app:cp_key="@string/pref_compactDetail_key"
+			app:cp_title="@string/pref_compactDetail_title"
+			app:cp_defaultValue="@bool/pref_compactDetail_default"
 			/>
 
 		<com.edavtyan.prefs.checkbox.CheckboxPreference
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:cp_key="@string/pref.compactMain.key"
-			app:cp_title="@string/pref.compactMain.title"
-			app:cp_defaultValue="@bool/pref.compactMain.default"
+			app:cp_key="@string/pref_compactMain_key"
+			app:cp_title="@string/pref_compactMain_title"
+			app:cp_defaultValue="@bool/pref_compactMain_default"
 			/>
 
 	</com.edavtyan.prefs.category.PreferenceCategory>

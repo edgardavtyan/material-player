@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="TabsText">
+	<style name="Tabs_Text">
 		<item name="android:textAllCaps">false</item>
 	</style>
 

@@ -2,28 +2,28 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/listitem_menuContainer.compact"
+	style="@style/ListItem_MenuContainer.compact"
 	>
 
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
 		tools:src="@drawable/fallback_cover"
-		style="@style/listitem_albumArt.compact"
+		style="@style/ListItem_AlbumArt.compact"
 		/>
 
-	<LinearLayout style="@style/listitem_infoContainer">
+	<LinearLayout style="@style/ListItem_InfoContainer">
 
 		<TextView
 			android:id="@+id/title"
 			tools:text="Album Title"
-			style="@style/listitem_title"
+			style="@style/ListItem_Title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
 			tools:text="Album Artist | 399 Tracks"
-			style="@style/listitem_info.compact"
+			style="@style/ListItem_Info.compact"
 			/>
 
 	</LinearLayout>
@@ -31,7 +31,7 @@
 	<ImageButton
 		android:id="@+id/menu"
 		android:contentDescription="@string/description_button_menu"
-		style="@style/listitem_menu"
+		style="@style/ListItem_Menu"
 		/>
 
 </LinearLayout>

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="nowplayingBar_container">
+	<style name="NowPlayingBar_Container">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/size_large</item>
 		<item name="android:orientation">horizontal</item>
 		<item name="android:background">?nowPlayingBarBackground</item>
 	</style>
 
-	<style name="nowplayingBar_art">
+	<style name="NowPlayingBar_Art">
 		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
 		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 	</style>
 
-	<style name="nowplayingBar_infoWrapper">
+	<style name="NowPlayingBar_InfoWrapper">
 		<item name="android:paddingLeft">@dimen/spacing_tiny</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:orientation">vertical</item>
 		<item name="android:clickable">true</item>
 	</style>
 
-	<style name="nowplayingBar_playPause">
+	<style name="NowPlayingBar_PlayPause">
 		<item name="android:padding">8dp</item>
 		<item name="android:background">@drawable/ripple_primary</item>
 		<item name="android:tint">?textColorContrastPrimary</item>
 	</style>
 
-	<style name="nowplayingBar_title">
+	<style name="NowPlayingBar_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textSize">@dimen/font_medium</item>
@@ -35,7 +35,7 @@
 		<item name="android:ellipsize">end</item>
 	</style>
 
-	<style name="nowplayingBar_info" parent="nowplayingBar_title">
+	<style name="NowPlayingBar_Info" parent="NowPlayingBar_Title">
 		<item name="android:textColor">?textColorContrastSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
 	</style>

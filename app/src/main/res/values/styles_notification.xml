@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="notification_wrapper">
+	<style name="Notification_Wrapper">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:orientation">horizontal</item>
 	</style>
 
-	<style name="notification_art">
+	<style name="Notification_Art">
 		<item name="android:layout_width">64dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_marginRight">8dp</item>
@@ -15,7 +15,7 @@
 		<item name="android:src">@drawable/fallback_cover</item>
 	</style>
 
-	<style name="notification_text_wrapper">
+	<style name="Notification_Text_Wrapper">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_weight">1</item>
@@ -25,7 +25,7 @@
 		<item name="android:orientation">vertical</item>
 	</style>
 
-	<style name="notification_title">
+	<style name="Notification_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">center_vertical</item>
@@ -35,7 +35,7 @@
 		<item name="android:text">@string/notification_defaultText_title</item>
 	</style>
 
-	<style name="notification_info">
+	<style name="Notification_Info">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">center_vertical</item>
@@ -44,7 +44,7 @@
 		<item name="android:text">@string/notification_defaultText_info</item>
 	</style>
 
-	<style name="notification_control">
+	<style name="Notification_Control">
 		<item name="android:layout_width">40dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:padding">4dp</item>
@@ -53,11 +53,11 @@
 		<item name="android:tint">#000</item>
 	</style>
 
-	<style name="notification_control.play_pause">
+	<style name="Notification_Control.Play_Pause">
 		<item name="android:padding">6dp</item>
 	</style>
 
-	<style name="notification_control.fast_forward">
+	<style name="Notification_Control.Fast_Forward">
 		<item name="android:layout_marginRight">@dimen/spacing_tiny</item>
 	</style>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="listitem_container">
+	<style name="ListItem_Container">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">?attr/listPreferredItemHeight</item>
 		<item name="android:gravity">center_vertical</item>
@@ -13,11 +13,11 @@
 		<item name="android:orientation">vertical</item>
 	</style>
 
-	<style name="listitem_container.compact">
+	<style name="ListItem_Container.compact">
 		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 	</style>
 
-	<style name="listitem_menuContainer">
+	<style name="ListItem_MenuContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">?listPreferredItemHeight</item>
 		<item name="android:background">?selectableItemBackground</item>
@@ -26,11 +26,11 @@
 		<item name="android:orientation">horizontal</item>
 	</style>
 
-	<style name="listitem_menuContainer.compact">
+	<style name="ListItem_MenuContainer.compact">
 		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 	</style>
 
-	<style name="listitem_infoContainer">
+	<style name="ListItem_InfoContainer">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical</item>
@@ -40,17 +40,17 @@
 		<item name="android:paddingRight">?listPreferredItemPaddingRight</item>
 	</style>
 
-	<style name="listitem_albumArt">
+	<style name="ListItem_AlbumArt">
 		<item name="android:layout_width">?listPreferredItemHeight</item>
 		<item name="android:layout_height">?listPreferredItemHeight</item>
 	</style>
 
-	<style name="listitem_albumArt.compact">
+	<style name="ListItem_AlbumArt.compact">
 		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
 		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 	</style>
 
-	<style name="listitem_title">
+	<style name="ListItem_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:singleLine">true</item>
@@ -59,18 +59,18 @@
 		<item name="android:textSize">@dimen/font_normal</item>
 	</style>
 
-	<style name="listitem_info" parent="listitem_title">
+	<style name="ListItem_Info" parent="ListItem_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textColor">?textColorSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
 	</style>
 
-	<style name="listitem_info.compact">
+	<style name="ListItem_Info.compact">
 		<item name="android:visibility">gone</item>
 	</style>
 
-	<style name="listitem_menu">
+	<style name="ListItem_Menu">
 		<item name="android:layout_width">46dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:src">@drawable/ic_more_vert</item>
@@ -79,7 +79,7 @@
 		<item name="android:tint">?textColorPrimary</item>
 	</style>
 
-	<style name="listitem_nowPlaying">
+	<style name="ListItem_NowPlaying">
 		<item name="android:layout_width">46dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:src">@drawable/ic_note</item>

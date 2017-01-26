@@ -10,63 +10,63 @@
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
-		style="@style/notification_big_art"
+		style="@style/Notification_Big_Art"
 		/>
 
-	<LinearLayout style="@style/notification_big_rightContainer">
+	<LinearLayout style="@style/Notification_Big_RightContainer">
 
-		<LinearLayout style="@style/notification_big_rightTopContainer">
+		<LinearLayout style="@style/Notification_Big_RightTopContainer">
 
-			<LinearLayout style="@style/notification_big_infoContainer">
+			<LinearLayout style="@style/Notification_Big_InfoContainer">
 
 				<TextView
 					android:id="@+id/title"
 					tools:text="Song Title"
-					style="@style/notification_big_title"
+					style="@style/Notification_Big_Title"
 					/>
 
 				<TextView
 					android:id="@+id/artist"
 					tools:text="Song Artist"
-					style="@style/notification_big_info.artist"
+					style="@style/Notification_Big_Info.Artist"
 					/>
 
 				<TextView
 					android:id="@+id/album"
 					tools:text="Song Album"
-					style="@style/notification_big_info"
+					style="@style/Notification_Big_Info"
 					/>
 
 			</LinearLayout>
 
 			<ImageButton
 				android:contentDescription="@string/description_notification_close"
-				style="@style/notification_big_close"
+				style="@style/Notification_Big_Close"
 				/>
 
 		</LinearLayout>
 
-		<LinearLayout style="@style/notification_big_controlsContainer">
+		<LinearLayout style="@style/Notification_Big_ControlsContainer">
 
 			<ImageButton
 				android:id="@+id/rewind"
 				android:src="@drawable/ic_skip_prev"
 				android:contentDescription="@string/description_control_rewind"
-				style="@style/notification_big_control"
+				style="@style/Notification_Big_Control"
 				/>
 
 			<ImageButton
 				android:id="@+id/play_pause"
 				android:src="@drawable/ic_play"
 				android:contentDescription="@string/description_control_playPause"
-				style="@style/notification_big_control.play_pause"
+				style="@style/Notification_Big_Control.Play_Pause"
 				/>
 
 			<ImageButton
 				android:id="@+id/fast_forward"
 				android:src="@drawable/ic_skip_next"
 				android:contentDescription="@string/description_control_fastForward"
-				style="@style/notification_big_control"
+				style="@style/Notification_Big_Control"
 				/>
 
 		</LinearLayout>

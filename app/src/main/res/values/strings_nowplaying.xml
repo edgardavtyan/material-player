@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="nowplaying_toolbar_title">Now playing</string>
+	<string name="nowplaying_info_pattern">%1$s \u2014 %2$s</string>
+
+</resources>

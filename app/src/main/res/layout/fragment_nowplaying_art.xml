@@ -12,20 +12,7 @@
 		android:id="@+id/art"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		style="@style/nowplaying_art"
-		/>
-
-	<com.edavtyan.materialplayer.lib.views.SquareView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		style="@style/nowplaying_art_tint"
-		/>
-
-	<com.edavtyan.materialplayer.lib.views.SquareImageView
-		android:id="@+id/back"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		style="@style/nowplaying_art_back"
+		style="@style/NowPlaying_Art"
 		/>
 
 	<include layout="@layout/shadow_bottom_small" />

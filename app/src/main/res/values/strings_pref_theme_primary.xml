@@ -2,11 +2,8 @@
 <resources>
 
 	<string name="pref_theme_primary_key">pref_theme_primary</string>
-
 	<string name="pref_theme_primary_title">Primary color scheme</string>
-
 	<string name="pref_theme_primary_summary">%s</string>
-
 	<string name="pref_theme_primary_default">Orange</string>
 
 	<array name="pref_theme_primary_entries">

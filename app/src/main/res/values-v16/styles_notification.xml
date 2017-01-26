@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="notification_wrapper">
+	<style name="Notification_Wrapper">
 		<item name="android:background">#fff</item>
 	</style>
 

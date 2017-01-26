@@ -3,14 +3,14 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container"
-	style="@style/nowplayingBar_container"
+	style="@style/NowPlayingBar_Container"
 	>
 
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
 		tools:background="#333"
-		style="@style/nowplayingBar_art"
+		style="@style/NowPlayingBar_Art"
 		/>
 
 	<LinearLayout
@@ -18,19 +18,19 @@
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-		style="@style/nowplayingBar_infoWrapper"
+		style="@style/NowPlayingBar_InfoWrapper"
 		>
 
 		<TextView
 			android:id="@+id/title"
 			tools:text="Current Track Title"
-			style="@style/nowplayingBar_title"
+			style="@style/NowPlayingBar_Title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
 			tools:text="Current Artist - Current Album"
-			style="@style/nowplayingBar_info"
+			style="@style/NowPlayingBar_Info"
 			/>
 
 	</LinearLayout>
@@ -40,7 +40,7 @@
 		android:layout_width="@dimen/size_medium"
 		android:layout_height="match_parent"
 		android:contentDescription="@string/description_control_playPause"
-		style="@style/nowplayingBar_playPause"
+		style="@style/NowPlayingBar_PlayPause"
 		/>
 
 </LinearLayout>

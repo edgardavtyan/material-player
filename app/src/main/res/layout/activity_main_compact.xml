@@ -38,8 +38,8 @@
 						android:layout_width="0dp"
 						android:layout_height="match_parent"
 						android:layout_gravity="bottom"
-						app:tabTextAppearance="@style/TabsText"
-						style="@style/tabs_fill"
+						app:tabTextAppearance="@style/Tabs_Text"
+						style="@style/Tabs_Fill"
 						/>
 
 					<android.support.v7.widget.Toolbar

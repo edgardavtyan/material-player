@@ -8,5 +8,6 @@
 	<string name="description_control_playPause">Pause or resume playback</string>
 	<string name="description_control_fastForward">Play next track</string>
 	<string name="description_notification_close">Close app and stop music</string>
+	<string name="description_moreActions">Additional actions</string>
 
 </resources>

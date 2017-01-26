@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/list_header"
-	style="@style/collapsingHeader_header"
+	style="@style/CollapsingHeader_Header"
 	>
 
 	<LinearLayout
@@ -22,13 +22,13 @@
 				android:contentDescription="@string/description_art"
 				android:visibility="gone"
 				tools:src="@drawable/fallback_artist"
-				style="@style/collapsingHeader_artBack"
+				style="@style/CollapsingHeader_ArtBack"
 				/>
 
 			<com.edavtyan.materialplayer.lib.views.SquareImageView
 				android:id="@+id/art"
 				tools:src="@drawable/fallback_artist"
-				style="@style/collapsingHeader_art"
+				style="@style/CollapsingHeader_Art"
 				/>
 
 			<View
@@ -41,18 +41,18 @@
 
 		</FrameLayout>
 
-		<LinearLayout style="@style/collapsingHeader_textContainer">
+		<LinearLayout style="@style/CollapsingHeader_TextContainer">
 
 			<TextView
 				android:id="@+id/title"
 				tools:text="Artist title"
-				style="@style/collapsingHeader_title"
+				style="@style/CollapsingHeader_Title"
 				/>
 
 			<TextView
 				android:id="@+id/info"
 				tools:text="123 Albums | 456 Tracks"
-				style="@style/collapsingHeader_info"
+				style="@style/CollapsingHeader_Info"
 				/>
 
 		</LinearLayout>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-	<string name="pref.compactDetail.title">Compact detail screens</string>
-	<string name="pref.compactDetail.key">pref_compactDetail</string>
-	<bool name="pref.compactDetail.default">false</bool>
-
-</resources>

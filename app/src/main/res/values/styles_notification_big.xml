@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="notification_big_mainContainer">
+	<style name="Notification_Big_MainContainer">
 		<item name="android:orientation">horizontal</item>
 		<item name="android:background">@android:color/transparent</item>
 	</style>
 
-	<style name="notification_big_rightContainer">
+	<style name="Notification_Big_RightContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:orientation">vertical</item>
 		<item name="android:background">@android:color/transparent</item>
 	</style>
 
-	<style name="notification_big_rightTopContainer">
+	<style name="Notification_Big_RightTopContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:orientation">horizontal</item>
 	</style>
 
-	<style name="notification_big_infoContainer">
+	<style name="Notification_Big_InfoContainer">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_weight">1</item>
 		<item name="android:orientation">vertical</item>
 	</style>
 
-	<style name="notification_big_close">
+	<style name="Notification_Big_Close">
 		<item name="android:layout_width">48dp</item>
 		<item name="android:layout_height">48dp</item>
 		<item name="android:background">@drawable/ripple_notification</item>
 		<item name="android:src">@drawable/ic_cross</item>
 	</style>
 
-	<style name="notification_big_art">
+	<style name="Notification_Big_Art">
 		<item name="android:layout_width">120dp</item>
 		<item name="android:layout_height">120dp</item>
 		<item name="android:src">@drawable/fallback_cover</item>
 	</style>
 
-	<style name="notification_big_title">
+	<style name="Notification_Big_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/spacing_tiny</item>
@@ -50,7 +50,7 @@
 		<item name="android:singleLine">true</item>
 	</style>
 
-	<style name="notification_big_info">
+	<style name="Notification_Big_Info">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/spacing_tiny</item>
@@ -59,11 +59,11 @@
 		<item name="android:singleLine">true</item>
 	</style>
 
-	<style name="notification_big_info.artist">
+	<style name="Notification_Big_Info.Artist">
 		<item name="android:text">@string/notification_defaultText_info</item>
 	</style>
 
-	<style name="notification_big_controlsContainer">
+	<style name="Notification_Big_ControlsContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:paddingBottom">@dimen/spacing_tiny</item>
@@ -72,7 +72,7 @@
 		<item name="android:orientation">horizontal</item>
 	</style>
 
-	<style name="notification_big_control">
+	<style name="Notification_Big_Control">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">32dp</item>
 		<item name="android:layout_weight">1</item>
@@ -82,7 +82,7 @@
 		<item name="android:drawSelectorOnTop">true</item>
 	</style>
 
-	<style name="notification_big_control.play_pause">
+	<style name="Notification_Big_Control.Play_Pause">
 		<item name="android:padding">2dp</item>
 	</style>
 

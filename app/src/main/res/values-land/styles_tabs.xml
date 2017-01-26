@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="tabs_fill" parent="tabs_base">
+	<style name="Tabs_Fill" parent="Tabs_Base">
 		<item name="android:layout_weight">1</item>
 		<item name="tabGravity">fill</item>
 	</style>

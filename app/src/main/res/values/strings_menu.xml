@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="menu_queue_remove">Remove from queue</string>
+	<string name="menu_tracks_addToPlaylist">Add to playlist</string>
+	<string name="menu_base_effects">Audio effects</string>
+	<string name="menu_base_settings">Settings</string>
+
+</resources>

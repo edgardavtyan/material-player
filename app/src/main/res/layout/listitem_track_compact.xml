@@ -2,34 +2,34 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/listitem_menuContainer.compact"
+	style="@style/ListItem_MenuContainer.compact"
 	>
 
-	<LinearLayout style="@style/listitem_infoContainer">
+	<LinearLayout style="@style/ListItem_InfoContainer">
 
 		<TextView
 			android:id="@+id/title"
 			tools:text="Track title"
-			style="@style/listitem_title"
+			style="@style/ListItem_Title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
 			tools:text="Album title - 3:35"
-			style="@style/listitem_info.compact"
+			style="@style/ListItem_Info.compact"
 			/>
 
 	</LinearLayout>
 
 	<ImageView
 		android:id="@+id/nowPlaying"
-		style="@style/listitem_nowPlaying"
+		style="@style/ListItem_NowPlaying"
 		/>
 
 	<ImageButton
 		android:id="@+id/menu"
 		android:contentDescription="@string/description_button_menu"
-		style="@style/listitem_menu"
+		style="@style/ListItem_Menu"
 		/>
 
 </LinearLayout>

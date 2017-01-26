@@ -3,25 +3,25 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	style="@style/notification_wrapper"
+	style="@style/Notification_Wrapper"
 	>
 
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
-		style="@style/notification_art"
+		style="@style/Notification_Art"
 		/>
 
-	<LinearLayout style="@style/notification_text_wrapper">
+	<LinearLayout style="@style/Notification_Text_Wrapper">
 
 		<TextView
 			android:id="@+id/title"
-			style="@style/notification_title"
+			style="@style/Notification_Title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			style="@style/notification_info"
+			style="@style/Notification_Info"
 			/>
 
 	</LinearLayout>
@@ -30,21 +30,21 @@
 		android:id="@+id/rewind"
 		android:src="@drawable/ic_skip_prev"
 		android:contentDescription="@string/description_control_rewind"
-		style="@style/notification_control"
+		style="@style/Notification_Control"
 		/>
 
 	<ImageButton
 		android:id="@+id/play_pause"
 		android:src="@drawable/ic_play"
 		android:contentDescription="@string/description_control_playPause"
-		style="@style/notification_control.play_pause"
+		style="@style/Notification_Control.Play_Pause"
 		/>
 
 	<ImageButton
 		android:id="@+id/fast_forward"
 		android:src="@drawable/ic_skip_next"
 		android:contentDescription="@string/description_control_fastForward"
-		style="@style/notification_control.fast_forward"
+		style="@style/Notification_Control.Fast_Forward"
 		/>
 
 </LinearLayout>
