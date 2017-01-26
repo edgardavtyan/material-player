@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Tabs_Normal_Fill" parent="Tabs_Base">
+	<style name="Tabs.Normal">
 		<item name="tabGravity">center</item>
 	</style>
 
