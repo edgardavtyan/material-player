@@ -10,7 +10,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
 
-public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailMvp.View {
+public class AlbumDetailActivity
+		extends ParallaxHeaderListActivity
+		implements AlbumDetailMvp.View {
 
 	private Navigator navigator;
 	private AlbumDetailAdapter adapter;

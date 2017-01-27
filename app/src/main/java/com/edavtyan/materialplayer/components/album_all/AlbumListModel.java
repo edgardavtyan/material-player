@@ -16,6 +16,7 @@ public class AlbumListModel
 
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
+
 	private List<Album> albums;
 
 	public AlbumListModel(
@@ -41,12 +42,7 @@ public class AlbumListModel
 	}
 
 	@Override
-	public void addToPlaylist(int albumId) throws IllegalStateException {
-		if (service == null) {
-			throw new IllegalStateException(
-					"'bindService' should be called before calling 'onAddToPlaylist'");
-		}
-
+	public void addToPlaylist(int albumId) {
 		service.getPlayer().addManyTracks(trackDB.getTracksWithAlbumId(albumId));
 	}
 

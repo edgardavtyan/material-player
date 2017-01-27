@@ -19,7 +19,9 @@ public class NowPlayingFloatingModel
 
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;
+
 	private PlayerService service;
+	
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
