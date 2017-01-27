@@ -19,11 +19,19 @@ import com.edavtyan.materialplayer.utils.ColorUtils;
 import com.edavtyan.materialplayer.utils.CustomColor;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
+import butterknife.BindView;
+
 public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
-	private TextView titleView;
-	private TextView infoView;
-	private ImageView imageView;
-	private RecyclerView list;
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.art) ImageView imageView;
+	@BindView(R.id.list) RecyclerView list;
+	@BindView(R.id.appbar_wrapper) LinearLayout appbarWrapper;
+	@BindView(R.id.list_header) RecyclerViewHeader header;
+	@BindView(R.id.appbar) AppBarLayout appbar;
+	@BindView(R.id.appbar_shadow) View appbarShadow;
+	@BindView(R.id.statusbar_tint) View statusShadow;
+
 	private ParallaxHeaderListPresenter presenter;
 
 	protected void setHeaderTitle(String title) {
@@ -56,25 +64,12 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		titleView = findView(R.id.title);
-		infoView = findView(R.id.info);
-		imageView = findView(R.id.art);
-
-		list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 
 		if (WindowUtils.isPortrait(this)) {
 			WindowUtils.makeStatusBarTransparent(getWindow());
-
-			LinearLayout appbarWrapper = findView(R.id.appbar_wrapper);
 			appbarWrapper.bringToFront();
-
-			RecyclerViewHeader header = findView(R.id.list_header);
 			header.attachTo(list);
-
-			AppBarLayout appbar = findView(R.id.appbar);
-			View appbarShadow = findView(R.id.appbar_shadow);
-			View statusShadow = findView(R.id.statusbar_tint);
 
 			AppColors appColors = new AppColors(this);
 			CustomColor primaryColor = new CustomColor(appColors.primary);
