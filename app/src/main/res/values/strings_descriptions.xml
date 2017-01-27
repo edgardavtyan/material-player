@@ -2,7 +2,6 @@
 <resources>
 
 	<string name="description_art">Artwork</string>
-	<string name="description_backArt">Artwork background</string>
 	<string name="description_button_menu">Open menu</string>
 	<string name="description_control_rewind">Play previous track</string>
 	<string name="description_control_playPause">Pause or resume playback</string>
