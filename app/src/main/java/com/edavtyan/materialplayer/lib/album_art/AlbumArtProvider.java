@@ -30,7 +30,11 @@ public class AlbumArtProvider {
 		String imagePath = Integer.toString(track.getAlbumId());
 		if (dataStorage.exists(imagePath)) {
 			Bitmap image = dataStorage.load(imagePath);
-			memoryCache.put(track.getAlbumId(), image);
+
+			if (image != null) {
+				memoryCache.put(track.getAlbumId(), image);
+			}
+
 			return image;
 		}
 
