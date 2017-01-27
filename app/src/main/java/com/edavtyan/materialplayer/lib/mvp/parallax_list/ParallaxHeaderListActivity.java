@@ -83,7 +83,7 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 				public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 					totalScrolled += dy;
 
-					imageView.setTop(totalScrolled / parallaxAmount);
+					imageView.setTranslationY(totalScrolled / parallaxAmount);
 					appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
 					appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(totalScrolled));
 					statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
