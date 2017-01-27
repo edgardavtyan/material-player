@@ -7,11 +7,14 @@ import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 
+import butterknife.BindView;
+
 public abstract class BaseToolbarActivity extends BaseActivity {
+	@BindView(R.id.toolbar) Toolbar toolbar;
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Toolbar toolbar = findView(R.id.toolbar);
 		toolbar.setTitle(getResources().getString(getToolbarTitleStringId()));
 		setSupportActionBar(toolbar);
 		if (isBackIconEnabled()) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
