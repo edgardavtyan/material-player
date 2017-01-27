@@ -23,6 +23,7 @@
 
 	<ImageView
 		android:id="@+id/nowPlaying"
+		android:contentDescription="@string/description_nowPlaying"
 		style="@style/ListItem_NowPlaying"
 		/>
 

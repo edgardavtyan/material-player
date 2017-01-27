@@ -24,6 +24,7 @@
 	<ImageView
 		android:id="@+id/nowPlaying"
 		style="@style/ListItem_NowPlaying"
+		android:contentDescription="@string/description_nowPlaying"
 		/>
 
 	<ImageButton

@@ -14,6 +14,7 @@
 
 	<ImageView
 		android:id="@+id/checkIcon"
+		tools:ignore="ContentDescription"
 		style="@style/ColorToggle_Icon"
 		/>
 

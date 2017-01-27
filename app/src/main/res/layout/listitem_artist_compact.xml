@@ -8,6 +8,7 @@
 	<ImageView
 		android:id="@+id/art"
 		android:src="@drawable/fallback_artist"
+		android:contentDescription="@string/description_art"
 		style="@style/ListItem_AlbumArt.compact"
 		/>
 
