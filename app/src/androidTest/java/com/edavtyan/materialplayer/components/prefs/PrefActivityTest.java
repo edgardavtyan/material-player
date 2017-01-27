@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.prefs;
 
+import android.annotation.SuppressLint;
+
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
@@ -7,6 +9,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressLint("StaticFieldLeak")
 public class PrefActivityTest extends ActivityTest {
 	private static PrefActivity activity;
 

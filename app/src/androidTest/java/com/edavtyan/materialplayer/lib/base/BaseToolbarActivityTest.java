@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.lib.base;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressLint("StaticFieldLeak")
 public class BaseToolbarActivityTest extends ActivityTest {
 	private static TestBaseToolbarActivity activity;
 

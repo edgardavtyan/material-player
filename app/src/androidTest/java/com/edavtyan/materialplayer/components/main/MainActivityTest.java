@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.main;
 
+import android.annotation.SuppressLint;
+
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
@@ -9,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 
+@SuppressLint("StaticFieldLeak")
 public class MainActivityTest extends ActivityTest {
 	private static MainActivity activity;
 
