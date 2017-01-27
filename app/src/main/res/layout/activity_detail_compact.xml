@@ -70,13 +70,22 @@
 
 	</android.support.design.widget.AppBarLayout>
 
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/list"
+	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"
-		tools:listitem="@layout/listitem_track"
-		/>
+		>
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:listitem="@layout/listitem_track"
+			/>
+
+		<include layout="@layout/shadow_bottom_small" />
+
+	</FrameLayout>
 
 	<fragment
 		android:id="@+id/floating_nowplaying"
