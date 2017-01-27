@@ -1,67 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/Detail_MainWrapper"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
 	>
 
-	<include
-		android:id="@+id/appbar"
-		layout="@layout/partial_appbar"
-		/>
-
-	<FrameLayout
-		android:id="@+id/art_wrapper"
-		android:layout_below="@id/appbar"
-		style="@style/Detail_Art_Wrapper"
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		>
 
-		<ImageView
-			android:id="@+id/art"
-			android:contentDescription="@string/description_art"
-			tools:src="@drawable/fallback_cover"
-			style="@style/Detail_Art"
-			/>
+		<include layout="@layout/partial_toolbar" />
 
-	</FrameLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			>
 
-	<TextView
-		android:id="@+id/title"
-		android:layout_toRightOf="@id/art_wrapper"
-		android:layout_alignTop="@id/art_wrapper"
-		tools:text="The Nth °"
-		style="@style/Detail_Title"
-		/>
+			<FrameLayout
+				android:id="@+id/art_wrapper"
+				android:layout_width="120dp"
+				android:layout_height="120dp"
+				android:layout_margin="@dimen/spacing_tiny"
+				style="@style/Detail_Art_Wrapper"
+				>
 
-	<TextView
-		android:id="@+id/info_top"
-		android:layout_marginTop="4dp"
-		android:layout_below="@id/title"
-		android:layout_toRightOf="@id/art_wrapper"
-		tools:text="OVERWERK"
-		style="@style/Detail_Info_Top"
-		/>
+				<ImageView
+					android:id="@+id/art"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:contentDescription="@string/description_art"
+					tools:src="@drawable/fallback_cover"
+					style="@style/Detail_Art"
+					/>
 
-	<TextView
-		android:id="@+id/info_bottom"
-		android:layout_below="@id/info_top"
-		android:layout_toRightOf="@+id/art_wrapper"
-		tools:text="3 Tracks"
-		style="@style/Detail_Info_Bottom"
-		/>
+			</FrameLayout>
 
-	<View
-		android:id="@+id/divider"
-		android:layout_below="@id/art_wrapper"
-		style="@style/Detail_Divider"
-		/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginTop="@dimen/spacing_tiny"
+				android:orientation="vertical"
+				>
+
+				<TextView
+					android:id="@+id/title"
+					tools:text="The Nth °"
+					style="@style/Detail_Title"
+					/>
+
+				<TextView
+					android:id="@+id/info_top"
+					tools:text="OVERWERK"
+					style="@style/Detail_Info"
+					/>
+
+				<TextView
+					android:id="@+id/info_bottom"
+					tools:text="3 Tracks"
+					style="@style/Detail_Info"
+					/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</android.support.design.widget.AppBarLayout>
 
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/list"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_below="@id/divider"
-		android:layout_above="@id/floating_nowplaying"
 		tools:listitem="@layout/listitem_track"
 		/>
 
@@ -70,8 +82,7 @@
 		android:name="com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
 		tools:layout="@layout/fragment_nowplaying_floating"
 		/>
 
-</RelativeLayout>
+</LinearLayout>
