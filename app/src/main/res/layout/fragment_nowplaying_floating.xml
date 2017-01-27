@@ -10,6 +10,7 @@
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
 		tools:background="#333"
+		tools:src="@drawable/fallback_cover"
 		style="@style/NowPlayingBar_Art"
 		/>
 

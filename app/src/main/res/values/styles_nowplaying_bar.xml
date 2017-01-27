@@ -3,7 +3,7 @@
 
 	<style name="NowPlayingBar_Container">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/size_large</item>
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 		<item name="android:orientation">horizontal</item>
 		<item name="android:background">?nowPlayingBarBackground</item>
 	</style>
