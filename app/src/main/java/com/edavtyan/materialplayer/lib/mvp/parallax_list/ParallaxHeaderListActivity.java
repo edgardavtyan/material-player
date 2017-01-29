@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.lib.mvp.parallax_list;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -65,6 +66,10 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 		super.onCreate(savedInstanceState);
 
 		list.setLayoutManager(new LinearLayoutManager(this));
+
+		if (Build.VERSION.SDK_INT < 21) {
+			statusShadow.setVisibility(View.GONE);
+		}
 
 		if (WindowUtils.isPortrait(this)) {
 			WindowUtils.makeStatusBarTransparent(getWindow());

@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.lib.base;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableActivity;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.ButterKnife;
 
@@ -46,6 +48,10 @@ public abstract class BaseActivity
 		setContentView(getLayoutId());
 
 		ButterKnife.bind(this);
+
+		if (Build.VERSION.SDK_INT == 19) {
+			WindowUtils.makeStatusBarSemiTransparent(this);
+		}
 	}
 
 	@Override

@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:fitsSystemWindows="true"
+	android:orientation="vertical"
 	>
 
-	<LinearLayout
+	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
+		android:layout_height="0dp"
+		android:layout_weight="1"
 		>
 
-		<android.support.design.widget.CoordinatorLayout
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-			>
+		<include layout="@layout/partial_main_tabs_normal" />
 
-			<include layout="@layout/partial_main_tabs_normal" />
-
-			<android.support.v4.view.ViewPager
-				android:id="@+id/view_pager"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				app:layout_behavior="@string/appbar_scrolling_view_behavior"
-				/>
-
-		</android.support.design.widget.CoordinatorLayout>
-
-		<fragment
-			android:id="@+id/floating_nowplaying"
-			android:name="com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment"
+		<android.support.v4.view.ViewPager
+			android:id="@+id/view_pager"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior"
 			tools:layout="@layout/fragment_nowplaying_floating"
 			/>
 
-	</LinearLayout>
+	</android.support.design.widget.CoordinatorLayout>
 
-</android.support.v4.widget.DrawerLayout>
+	<fragment
+		android:id="@+id/floating_nowplaying"
+		android:name="com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/fragment_nowplaying_floating"
+		/>
+
+</LinearLayout>
