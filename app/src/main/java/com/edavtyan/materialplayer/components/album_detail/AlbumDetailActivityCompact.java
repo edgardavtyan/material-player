@@ -24,9 +24,9 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView artView;
-	@Nullable @BindView(R.id.info_top) TextView infoTopView;
-	@Nullable @BindView(R.id.info_bottom) TextView infoBottomView;
-	@Nullable @BindView(R.id.info) TextView infoView;
+	@BindView(R.id.info_top) @Nullable TextView infoTopView;
+	@BindView(R.id.info_bottom) @Nullable TextView infoBottomView;
+	@BindView(R.id.info) @Nullable TextView infoView;
 
 	private AlbumDetailMvp.Presenter presenter;
 	private Navigator navigator;
