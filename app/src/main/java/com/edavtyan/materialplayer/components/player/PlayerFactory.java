@@ -20,6 +20,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurrou
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.HeadphonesConnectedReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
@@ -46,6 +47,8 @@ public class PlayerFactory extends BaseFactory {
 	private SkipToPreviousReceiver skipToPreviousReceiver;
 	private PlayPauseReceiver playPauseReceiver;
 	private AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
+	private HeadphonesConnectedReceiver headphonesConnectedReceiver;
+	private PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
 
 	public PlayerFactory(Context context) {
 		super(context);
@@ -73,6 +76,20 @@ public class PlayerFactory extends BaseFactory {
 		if (audioBecomingNoisyReceiver == null)
 			audioBecomingNoisyReceiver = new AudioBecomingNoisyReceiver(getPlayer());
 		return audioBecomingNoisyReceiver;
+	}
+
+	public HeadphonesConnectedReceiver getHeadphonesConnectedReceiver() {
+		if (headphonesConnectedReceiver == null)
+			headphonesConnectedReceiver = new HeadphonesConnectedReceiver(
+					getPlayer(),
+					getPlayOnHeadsetPluggedPref());
+		return headphonesConnectedReceiver;
+	}
+
+	public PlayOnHeadsetPluggedPref getPlayOnHeadsetPluggedPref() {
+		if (playOnHeadsetPluggedPref == null)
+			playOnHeadsetPluggedPref = new PlayOnHeadsetPluggedPref(getContext(), getPrefs());
+		return playOnHeadsetPluggedPref;
 	}
 
 	public PlayerMvp.Player getPlayer() {

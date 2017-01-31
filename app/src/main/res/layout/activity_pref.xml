@@ -13,7 +13,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		>
-		
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -71,6 +71,23 @@
 					app:cp_key="@string/pref_compactMain_key"
 					app:cp_title="@string/pref_compactMain_title"
 					app:cp_defaultValue="@bool/pref_compactMain_default"
+					/>
+
+			</com.edavtyan.prefs.category.PreferenceCategory>
+
+			<com.edavtyan.prefs.category.PreferenceCategory
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:cp_title="@string/pref_category_playback"
+				app:cp_color="?prefCategoryTitleColor"
+				>
+
+				<com.edavtyan.prefs.checkbox.CheckboxPreference
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="@string/pref_playOnHeadsetPlug_key"
+					app:cp_title="@string/pref_playOnHeadsetPlug_title"
+					app:cp_defaultValue="@bool/pref_playOnHeadsetPlug_default"
 					/>
 
 			</com.edavtyan.prefs.category.PreferenceCategory>
