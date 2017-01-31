@@ -7,10 +7,10 @@ import android.view.KeyEvent;
 
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 
-public class AudioMediaButtonReceiver extends BroadcastReceiver {
+public class MediaButtonReceiver extends BroadcastReceiver {
 	private final PlayerMvp.Player player;
 
-	public AudioMediaButtonReceiver(PlayerMvp.Player player) {
+	public MediaButtonReceiver(PlayerMvp.Player player) {
 		this.player = player;
 	}
 

@@ -71,14 +71,14 @@ public class PlayerService extends Service {
 		BroadcastReceiver skipToPreviousReceiver = playerFactory.getSkipToPreviousReceiver();
 		BroadcastReceiver skipToNextReceiver = playerFactory.getSkipToNextReceiver();
 		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.getAudioBecomingNoisyReceiver();
-		BroadcastReceiver audioMediaButtonReceiver = playerFactory.getAudioMediaButtonReceiver();
+		BroadcastReceiver mediaButtonReceiver = playerFactory.getMediaButtonReceiver();
 		BroadcastReceiver headphonesConnectedReceiver = playerFactory.getHeadphonesConnectedReceiver();
 
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));
 		registerReceiver(skipToNextReceiver, new IntentFilter(ACTION_FAST_FORWARD));
 		registerReceiver(audioBecomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
-		registerReceiver(audioMediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
+		registerReceiver(mediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
 		registerReceiver(headphonesConnectedReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
 		audioFocusManager = new AudioFocusManager(this, player);

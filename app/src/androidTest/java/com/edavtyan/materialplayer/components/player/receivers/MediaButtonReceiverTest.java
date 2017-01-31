@@ -11,15 +11,15 @@ import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class AudioMediaButtonReceiverTest extends BaseTest {
-	private AudioMediaButtonReceiver receiver;
+public class MediaButtonReceiverTest extends BaseTest {
+	private MediaButtonReceiver receiver;
 	private PlayerMvp.Player player;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		player = mock(PlayerMvp.Player.class);
-		receiver = new AudioMediaButtonReceiver(player);
+		receiver = new MediaButtonReceiver(player);
 	}
 
 	@Test
