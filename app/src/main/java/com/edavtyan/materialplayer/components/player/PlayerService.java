@@ -15,7 +15,6 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.player.receivers.AudioMediaButtonReceiver;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
 
@@ -72,7 +71,7 @@ public class PlayerService extends Service {
 		BroadcastReceiver skipToPreviousReceiver = playerFactory.getSkipToPreviousReceiver();
 		BroadcastReceiver skipToNextReceiver = playerFactory.getSkipToNextReceiver();
 		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.getAudioBecomingNoisyReceiver();
-		BroadcastReceiver audioMediaButtonReceiver = new AudioMediaButtonReceiver(player);
+		BroadcastReceiver audioMediaButtonReceiver = playerFactory.getAudioMediaButtonReceiver();
 		BroadcastReceiver headphonesConnectedReceiver = playerFactory.getHeadphonesConnectedReceiver();
 
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));

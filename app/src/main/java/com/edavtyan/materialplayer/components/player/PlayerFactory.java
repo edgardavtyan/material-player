@@ -20,6 +20,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurrou
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.AudioMediaButtonReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.HeadphonesConnectedReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
@@ -47,6 +48,7 @@ public class PlayerFactory extends BaseFactory {
 	private SkipToPreviousReceiver skipToPreviousReceiver;
 	private PlayPauseReceiver playPauseReceiver;
 	private AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
+	private AudioMediaButtonReceiver audioMediaButtonReceiver;
 	private HeadphonesConnectedReceiver headphonesConnectedReceiver;
 	private PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
 
@@ -70,6 +72,12 @@ public class PlayerFactory extends BaseFactory {
 		if (playPauseReceiver == null)
 			playPauseReceiver = new PlayPauseReceiver(getPlayer());
 		return playPauseReceiver;
+	}
+
+	public AudioMediaButtonReceiver getAudioMediaButtonReceiver() {
+		if (audioMediaButtonReceiver == null)
+			audioMediaButtonReceiver = new AudioMediaButtonReceiver(getPlayer());
+		return audioMediaButtonReceiver;
 	}
 
 	public AudioBecomingNoisyReceiver getAudioBecomingNoisyReceiver() {
