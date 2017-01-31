@@ -57,22 +57,22 @@ public class PlayerService extends Service {
 		super.onCreate();
 
 		App app = (App) getApplicationContext();
-		PlayerFactory playerFactory = app.getPlayerFactory(this);
-		player = playerFactory.getPlayer();
-		equalizer = playerFactory.getEqualizer();
-		bassBoost = playerFactory.getBassBoost();
-		surround = playerFactory.getSurround();
+		PlayerFactory factory = app.getPlayerFactory(this);
+		player = factory.getPlayer();
+		equalizer = factory.getEqualizer();
+		bassBoost = factory.getBassBoost();
+		surround = factory.getSurround();
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			amplifier = playerFactory.getAmplifier();
+			amplifier = factory.getAmplifier();
 		}
 
-		BroadcastReceiver playPauseReceiver = playerFactory.getPlayPauseReceiver();
-		BroadcastReceiver skipToPreviousReceiver = playerFactory.getSkipToPreviousReceiver();
-		BroadcastReceiver skipToNextReceiver = playerFactory.getSkipToNextReceiver();
-		BroadcastReceiver audioBecomingNoisyReceiver = playerFactory.getAudioBecomingNoisyReceiver();
-		BroadcastReceiver mediaButtonReceiver = playerFactory.getMediaButtonReceiver();
-		BroadcastReceiver headphonesConnectedReceiver = playerFactory.getHeadphonesConnectedReceiver();
+		BroadcastReceiver playPauseReceiver = factory.getPlayPauseReceiver();
+		BroadcastReceiver skipToPreviousReceiver = factory.getSkipToPreviousReceiver();
+		BroadcastReceiver skipToNextReceiver = factory.getSkipToNextReceiver();
+		BroadcastReceiver audioBecomingNoisyReceiver = factory.getAudioBecomingNoisyReceiver();
+		BroadcastReceiver mediaButtonReceiver = factory.getMediaButtonReceiver();
+		BroadcastReceiver headphonesConnectedReceiver = factory.getHeadphonesConnectedReceiver();
 
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));
@@ -81,10 +81,10 @@ public class PlayerService extends Service {
 		registerReceiver(mediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
 		registerReceiver(headphonesConnectedReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
-		audioFocusManager = playerFactory.getAudioFocusManager();
+		audioFocusManager = factory.getAudioFocusManager();
 		audioFocusManager.requestFocus();
 
-		mediaSessionManager = playerFactory.getMediaSessionManager();
+		mediaSessionManager = factory.getMediaSessionManager();
 		mediaSessionManager.init();
 
 		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
