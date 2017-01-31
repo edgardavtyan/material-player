@@ -51,6 +51,8 @@ public class PlayerFactory extends BaseFactory {
 	private MediaButtonReceiver mediaButtonReceiver;
 	private HeadphonesConnectedReceiver headphonesConnectedReceiver;
 	private PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
+	private AudioFocusManager audioFocusManager;
+	private MediaSessionManager mediaSessionManager;
 
 	public PlayerFactory(Context context) {
 		super(context);
@@ -182,5 +184,17 @@ public class PlayerFactory extends BaseFactory {
 		if (audioEngine == null)
 			audioEngine = new StandardAudioEngine(new MediaPlayer());
 		return audioEngine;
+	}
+
+	public AudioFocusManager getAudioFocusManager() {
+		if (audioFocusManager == null)
+			audioFocusManager = new AudioFocusManager(getContext(), getPlayer());
+		return audioFocusManager;
+	}
+
+	public MediaSessionManager getMediaSessionManager() {
+		if (mediaSessionManager == null)
+			mediaSessionManager = new MediaSessionManager(getContext(), getPlayer());
+		return mediaSessionManager;
 	}
 }

@@ -81,10 +81,10 @@ public class PlayerService extends Service {
 		registerReceiver(mediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
 		registerReceiver(headphonesConnectedReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
-		audioFocusManager = new AudioFocusManager(this, player);
+		audioFocusManager = playerFactory.getAudioFocusManager();
 		audioFocusManager.requestFocus();
 
-		mediaSessionManager = new MediaSessionManager(this, player);
+		mediaSessionManager = playerFactory.getMediaSessionManager();
 		mediaSessionManager.init();
 
 		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
