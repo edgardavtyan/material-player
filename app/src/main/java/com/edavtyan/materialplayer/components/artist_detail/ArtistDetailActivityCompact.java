@@ -24,6 +24,7 @@ public class ArtistDetailActivityCompact
 		extends BaseToolbarActivity
 		implements ArtistDetailMvp.View {
 
+	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView artView;
 	@Nullable @BindView(R.id.info_top) TextView infoTopView;
@@ -45,7 +46,6 @@ public class ArtistDetailActivityCompact
 		adapter = factory.getAdapter();
 		navigator = factory.getNavigator();
 
-		RecyclerView list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 

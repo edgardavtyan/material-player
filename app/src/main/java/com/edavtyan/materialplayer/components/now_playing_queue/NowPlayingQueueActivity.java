@@ -9,9 +9,13 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
+import butterknife.BindView;
+
 public class NowPlayingQueueActivity
 		extends BaseToolbarActivity
 		implements NowPlayingQueueMvp.View {
+
+	@BindView(R.id.list) RecyclerView list;
 
 	private NowPlayingQueueMvp.Presenter presenter;
 	private NowPlayingQueueAdapter adapter;
@@ -26,7 +30,6 @@ public class NowPlayingQueueActivity
 		adapter = factory.getAdapter();
 		adapter.setHasStableIds(true);
 
-		RecyclerView list = findView(R.id.list);
 		list.setLayoutManager(new AnimatingLinearLayoutManager(this));
 		list.setAdapter(adapter);
 

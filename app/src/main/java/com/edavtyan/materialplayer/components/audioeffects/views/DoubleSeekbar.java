@@ -8,10 +8,12 @@ import android.widget.SeekBar;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.utils.generic.GenericFrameLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.Setter;
 
 public class DoubleSeekbar extends GenericFrameLayout implements SeekBar.OnSeekBarChangeListener {
-	private final AppCompatSeekBar seekbar;
+	@BindView(R.id.seekbar) AppCompatSeekBar seekbar;
 
 	private @Setter OnStartTrackingTouchListener onStartTrackingTouchListener;
 	private @Setter OnStopTrackingTouchListener onStopTrackingTouchListener;
@@ -32,8 +34,8 @@ public class DoubleSeekbar extends GenericFrameLayout implements SeekBar.OnSeekB
 	public DoubleSeekbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		inflate(context, R.layout.view_double_seekbar, this);
+		ButterKnife.bind(this);
 
-		seekbar = findView(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(this);
 	}
 

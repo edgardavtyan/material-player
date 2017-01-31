@@ -10,13 +10,15 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.utils.generic.GenericLinearLayout;
 
+import butterknife.BindView;
 import lombok.Setter;
 
 public class TitledSeekbar
 		extends GenericLinearLayout
 		implements AppCompatSeekBar.OnSeekBarChangeListener {
 
-	private final AppCompatSeekBar seekbar;
+	@BindView(R.id.seekbar) AppCompatSeekBar seekbar;
+	@BindView(R.id.title) TextView titleView;
 
 	private @Setter OnProgressChangedListener onProgressChangedListener;
 
@@ -31,15 +33,13 @@ public class TitledSeekbar
 
 		TitledSeekbarAttributes attributes = new TitledSeekbarAttributes(context, attrs);
 
-		seekbar = findView(R.id.seekbar);
 		seekbar.setMax(attributes.getMax());
 		seekbar.setProgress(attributes.getProgress());
 		seekbar.setOnSeekBarChangeListener(this);
 
-		TextView title = findView(R.id.title);
-		title.setText(attributes.getText());
-		title.setTextSize(TypedValue.COMPLEX_UNIT_PX, attributes.getTextSize());
-		title.getLayoutParams().width = attributes.getTextWidth();
+		titleView.setText(attributes.getText());
+		titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, attributes.getTextSize());
+		titleView.getLayoutParams().width = attributes.getTextWidth();
 	}
 
 	public int getProgress() {

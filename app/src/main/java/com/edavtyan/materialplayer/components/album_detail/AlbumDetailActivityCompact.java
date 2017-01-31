@@ -21,6 +21,7 @@ import butterknife.BindView;
 import static com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp.EXTRA_ALBUM_ID;
 
 public class AlbumDetailActivityCompact extends BaseToolbarActivity implements AlbumDetailMvp.View {
+	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView artView;
 	@Nullable @BindView(R.id.info_top) TextView infoTopView;
@@ -42,7 +43,6 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 		navigator = factory.getNavigator();
 		presenter = factory.getPresenter();
 
-		RecyclerView list = findView(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 

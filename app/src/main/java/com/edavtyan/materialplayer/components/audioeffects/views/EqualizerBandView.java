@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.utils.generic.GenericFrameLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +17,9 @@ public class EqualizerBandView
 		implements DoubleSeekbar.OnProgressChangedListener,
 				   DoubleSeekbar.OnStopTrackingTouchListener {
 
-	private final TextView frequencyView;
-	private final TextView gainView;
-	private final DoubleSeekbar bandView;
+	@BindView(R.id.frequency) TextView frequencyView;
+	@BindView(R.id.gain) TextView gainView;
+	@BindView(R.id.band) DoubleSeekbar bandView;
 
 	private int frequency;
 	private @Getter @Setter int index;
@@ -31,10 +33,8 @@ public class EqualizerBandView
 	public EqualizerBandView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		inflate(context, R.layout.partial_equalizer_band, this);
+		ButterKnife.bind(this);
 
-		frequencyView = findView(R.id.frequency);
-		gainView = findView(R.id.gain);
-		bandView = findView(R.id.band);
 		bandView.setOnProgressChangedListener(this);
 		bandView.setOnStopTrackingTouchListener(this);
 	}
