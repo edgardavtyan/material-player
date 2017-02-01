@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.utils.generic.GenericLinearLayout;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.Setter;
 
 public class TitledSeekbar
@@ -30,6 +31,7 @@ public class TitledSeekbar
 	public TitledSeekbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		inflate(context, R.layout.partial_titled_seekbar, this);
+		ButterKnife.bind(this);
 
 		TitledSeekbarAttributes attributes = new TitledSeekbarAttributes(context, attrs);
 
