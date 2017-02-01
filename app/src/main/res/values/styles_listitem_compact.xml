@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="ListItem_Container.Compact">
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="ListItem_MenuContainer.Compact">
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="ListItem_AlbumArt.Compact">
+		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+	</style>
+
+	<style name="ListItem_Info.Compact">
+		<item name="android:visibility">gone</item>
+	</style>
+
+</resources>

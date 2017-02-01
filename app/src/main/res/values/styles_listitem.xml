@@ -13,10 +13,6 @@
 		<item name="android:orientation">vertical</item>
 	</style>
 
-	<style name="ListItem_Container.compact">
-		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
-	</style>
-
 	<style name="ListItem_MenuContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">?listPreferredItemHeight</item>
@@ -24,10 +20,6 @@
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:orientation">horizontal</item>
-	</style>
-
-	<style name="ListItem_MenuContainer.compact">
-		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
 	</style>
 
 	<style name="ListItem_InfoContainer">
@@ -45,11 +37,6 @@
 		<item name="android:layout_height">?listPreferredItemHeight</item>
 	</style>
 
-	<style name="ListItem_AlbumArt.compact">
-		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
-		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
-	</style>
-
 	<style name="ListItem_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -64,10 +51,6 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textColor">?textColorSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
-	</style>
-
-	<style name="ListItem_Info.compact">
-		<item name="android:visibility">gone</item>
 	</style>
 
 	<style name="ListItem_Menu">
