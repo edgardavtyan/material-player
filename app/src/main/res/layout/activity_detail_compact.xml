@@ -1,75 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
 	>
 
-	<android.support.design.widget.AppBarLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:fitsSystemWindows="true"
-		>
-
-		<include layout="@layout/partial_toolbar" />
-
-		<LinearLayout
+		<android.support.design.widget.AppBarLayout
+			android:id="@+id/appbar"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
+			android:layout_height="wrap_content"
+			android:fitsSystemWindows="true"
+			app:elevation="0dp"
 			>
 
-			<FrameLayout
-				android:id="@+id/art_wrapper"
-				android:layout_width="120dp"
-				android:layout_height="120dp"
-				android:layout_margin="@dimen/spacing_tiny"
-				style="@style/Detail_Art_Wrapper"
-				>
+			<include layout="@layout/partial_toolbar" />
 
-				<ImageView
-					android:id="@+id/art"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:contentDescription="@string/description_art"
-					tools:src="@drawable/fallback_cover"
-					style="@style/Detail_Art"
-					/>
-
-			</FrameLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_marginTop="@dimen/spacing_tiny"
-				android:orientation="vertical"
-				>
-
-				<TextView
-					android:id="@+id/title"
-					tools:text="The Nth °"
-					style="@style/Detail_Title"
-					/>
-
-				<TextView
-					android:id="@+id/info_top"
-					tools:text="OVERWERK"
-					style="@style/Detail_Info"
-					/>
-
-				<TextView
-					android:id="@+id/info_bottom"
-					tools:text="3 Tracks"
-					style="@style/Detail_Info"
-					/>
-
-			</LinearLayout>
-
-		</LinearLayout>
-
-	</android.support.design.widget.AppBarLayout>
+		</android.support.design.widget.AppBarLayout>
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -84,7 +33,18 @@
 			tools:listitem="@layout/listitem_track"
 			/>
 
+		<include layout="@layout/partial_collapsing_header_compact" />
+
 		<include layout="@layout/shadow_bottom_small" />
+
+		<View
+			android:id="@+id/appbar_shadow"
+			android:layout_width="match_parent"
+			android:layout_height="4dp"
+			android:background="@drawable/shadow_top"
+			android:layout_gravity="top"
+			android:alpha="0"
+			/>
 
 	</FrameLayout>
 

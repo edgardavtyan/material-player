@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +12,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.mvp.parallax_list_compact.ParallaxListCompactActivity;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
@@ -21,7 +20,7 @@ import butterknife.BindView;
 import static com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
 
 public class ArtistDetailActivityCompact
-		extends BaseToolbarActivity
+		extends ParallaxListCompactActivity
 		implements ArtistDetailMvp.View {
 
 	@BindView(R.id.list) RecyclerView list;
@@ -46,9 +45,7 @@ public class ArtistDetailActivityCompact
 		adapter = factory.getAdapter();
 		navigator = factory.getNavigator();
 
-		list.setLayoutManager(new LinearLayoutManager(this));
-		list.setAdapter(adapter);
-
+		init(adapter);
 		presenter.onCreate();
 	}
 

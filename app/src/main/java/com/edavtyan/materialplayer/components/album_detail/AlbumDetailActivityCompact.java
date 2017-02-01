@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.album_detail;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.mvp.parallax_list_compact.ParallaxListCompactActivity;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -20,7 +19,10 @@ import butterknife.BindView;
 
 import static com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp.EXTRA_ALBUM_ID;
 
-public class AlbumDetailActivityCompact extends BaseToolbarActivity implements AlbumDetailMvp.View {
+public class AlbumDetailActivityCompact
+		extends ParallaxListCompactActivity
+		implements AlbumDetailMvp.View {
+
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView artView;
@@ -43,9 +45,7 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 		navigator = factory.getNavigator();
 		presenter = factory.getPresenter();
 
-		list.setLayoutManager(new LinearLayoutManager(this));
-		list.setAdapter(adapter);
-
+		init(adapter);
 		presenter.onCreate();
 	}
 
@@ -53,11 +53,6 @@ public class AlbumDetailActivityCompact extends BaseToolbarActivity implements A
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();
-	}
-
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_detail_compact;
 	}
 
 	@Override
