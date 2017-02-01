@@ -19,29 +19,33 @@ import com.edavtyan.materialplayer.lib.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NowPlayingFloatingFragment
 		extends BaseFragment
-		implements NowPlayingFloatingMvp.View {
+		implements NowPlayingFloatingMvp.View,
+				   View.OnClickListener {
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.playPause) ImageButton playPauseButton;
 	@BindView(R.id.container) LinearLayout mainWrapper;
+	@BindView(R.id.infoWrapper) LinearLayout infoWrapper;
 
 	private NowPlayingFloatingMvp.Presenter presenter;
 	private Navigator navigator;
 
-	@OnClick(R.id.playPause)
-	public void onPlayPauseClick() {
-		presenter.onPlayPauseClick();
-	}
-
-	@OnClick({R.id.art, R.id.infoWrapper})
-	public void onArtOrInfoWrapperClick() {
-		presenter.onViewClick();
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.playPause:
+			presenter.onPlayPauseClick();
+			break;
+		case R.id.art:
+		case R.id.infoWrapper:
+			presenter.onViewClick();
+			break;
+		}
 	}
 
 	@Override
@@ -62,6 +66,11 @@ public class NowPlayingFloatingFragment
 		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.fragment_nowplaying_floating, container, false);
 		ButterKnife.bind(this, view);
+
+		playPauseButton.setOnClickListener(this);
+		artView.setOnClickListener(this);
+		infoWrapper.setOnClickListener(this);
+
 		return view;
 	}
 

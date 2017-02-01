@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing.models;
 
+import android.view.View;
+
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
@@ -10,9 +12,8 @@ import com.edavtyan.materialplayer.utils.AppColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class NowPlayingControls implements NowPlayingMvp.View.Controls {
+public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnClickListener {
 	@BindView(R.id.shuffle) TestableImageButton shuffleButton;
 	@BindView(R.id.rewind) TestableImageButton rewindButton;
 	@BindView(R.id.playPause) TestableImageButton playPauseButton;
@@ -29,31 +30,12 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls {
 		ButterKnife.bind(this, activity);
 		this.presenter = presenter;
 		this.colors = colors;
-	}
 
-	@OnClick(R.id.shuffle)
-	public void onShuffleClick() {
-		presenter.onShuffleClick();
-	}
-
-	@OnClick(R.id.rewind)
-	public void onRewindClick() {
-		presenter.onRewindClick();
-	}
-
-	@OnClick(R.id.playPause)
-	public void onPlayPauseClick() {
-		presenter.onPlayPauseClick();
-	}
-
-	@OnClick(R.id.fastForward)
-	public void onFastForwardClick() {
-		presenter.onFastForwardClick();
-	}
-
-	@OnClick(R.id.repeat)
-	public void onRepeatClick() {
-		presenter.onRepeatClick();
+		shuffleButton.setOnClickListener(this);
+		rewindButton.setOnClickListener(this);
+		playPauseButton.setOnClickListener(this);
+		fastForwardButton.setOnClickListener(this);
+		repeatButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -89,5 +71,26 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls {
 	@Override
 	public void setIsPlaying(boolean isPlaying) {
 		playPauseButton.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.shuffle:
+			presenter.onShuffleClick();
+			break;
+		case R.id.rewind:
+			presenter.onRewindClick();
+			break;
+		case R.id.playPause:
+			presenter.onPlayPauseClick();
+			break;
+		case R.id.fastForward:
+			presenter.onFastForwardClick();
+			break;
+		case R.id.repeat:
+			presenter.onRepeatClick();
+			break;
+		}
 	}
 }

@@ -21,6 +21,7 @@ import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertTh
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.notNull;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
@@ -83,6 +84,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	@Test
 	public void onStop_callPresenter() {
 		fragment.onStop();
+		fragment = null; // force recreation of fragment
 		verify(presenter).onDestroy();
 	}
 
