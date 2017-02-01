@@ -13,7 +13,6 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
@@ -87,11 +86,5 @@ public class AlbumListModelTest extends BaseTest {
 		model.addToPlaylist(0);
 
 		verify(player).addManyTracks(any());
-	}
-
-	@Test
-	public void addToPlaylist_serviceNotBound_throwException() {
-		assertThatThrownBy(() -> model.addToPlaylist(0))
-				.isInstanceOf(IllegalStateException.class);
 	}
 }
