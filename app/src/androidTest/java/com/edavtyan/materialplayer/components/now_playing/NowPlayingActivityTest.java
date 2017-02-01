@@ -59,7 +59,6 @@ public class NowPlayingActivityTest extends ActivityTest {
 
 	@Test
 	public void onCreate_bindPresenter() {
-		runOnUiThread(() -> activity.onCreate(null));
 		verify(presenter).bind();
 	}
 

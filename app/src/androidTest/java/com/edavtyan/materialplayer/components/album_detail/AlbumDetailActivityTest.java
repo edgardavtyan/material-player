@@ -44,6 +44,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 
 			activity = spy(startActivity(AlbumDetailActivity.class));
 			doNothing().when(activity).baseOnStop();
+			doNothing().when(activity).baseOnStart();
 		} else {
 			reset(adapter, presenter, navigator);
 		}
@@ -58,6 +59,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void onStart_callPresenter() {
+		activity.onStart();
 		verify(presenter).onCreate();
 	}
 

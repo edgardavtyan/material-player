@@ -98,7 +98,7 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	}
 
 	@Override
-	protected void onStart() {
+	public void onStart() {
 		super.onStart();
 		presenter.onCreate();
 	}

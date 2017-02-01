@@ -19,6 +19,11 @@ public abstract class TestableActivity extends GenericActivity {
 	}
 
 	@Override
+	protected void onStart() {
+		baseOnStart();
+	}
+
+	@Override
 	protected void onStop() {
 		baseOnStop();
 	}
@@ -34,4 +39,8 @@ public abstract class TestableActivity extends GenericActivity {
 	public void baseOnStop() {
 		super.onStop();
 	}
+
+	public void baseOnStart() {
+		super.onStart();
+	};
 }
