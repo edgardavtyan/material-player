@@ -10,6 +10,9 @@
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
 		>
 
 		<LinearLayout
@@ -24,7 +27,9 @@
 				android:id="@+id/art_wrapper"
 				android:layout_width="120dp"
 				android:layout_height="120dp"
-				android:layout_margin="@dimen/spacing_tiny"
+				android:layout_marginLeft="@dimen/spacing_tiny"
+				android:layout_marginRight="@dimen/spacing_tiny"
+				android:layout_marginBottom="@dimen/spacing_tiny"
 				style="@style/Detail_Art_Wrapper"
 				>
 
@@ -41,9 +46,9 @@
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_marginTop="@dimen/spacing_tiny"
+				android:layout_height="wrap_content"
 				android:orientation="vertical"
+				android:layout_marginTop="@dimen/spacing_tiny"
 				>
 
 				<TextView

@@ -12,7 +12,6 @@
 	<style name="Detail_TextView">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">@dimen/spacing_very_tiny</item>
 		<item name="android:paddingRight">@dimen/spacing_tiny</item>
 		<item name="android:textSize">@dimen/font_normal</item>
 	</style>
