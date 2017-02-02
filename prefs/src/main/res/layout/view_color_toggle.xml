@@ -8,12 +8,12 @@
 	>
 
 	<com.edavtyan.prefs.color.ColorCircleView
-		android:id="@+id/colorView"
+		android:id="@+id/color_view"
 		style="@style/ColorToggle_Circle"
 		/>
 
 	<ImageView
-		android:id="@+id/checkIcon"
+		android:id="@+id/check_icon"
 		tools:ignore="ContentDescription"
 		style="@style/ColorToggle_Icon"
 		/>

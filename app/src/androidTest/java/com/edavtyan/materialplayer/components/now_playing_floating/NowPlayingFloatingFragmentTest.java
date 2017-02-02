@@ -21,7 +21,6 @@ import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertTh
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.notNull;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
@@ -70,8 +69,8 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		infoView = (TextView) fragment.getView().findViewById(R.id.info);
 		titleView = (TextView) fragment.getView().findViewById(R.id.title);
 		artView = (ImageView) fragment.getView().findViewById(R.id.art);
-		playPauseView = (ImageButton) fragment.getView().findViewById(R.id.playPause);
-		infoWrapper = (LinearLayout) fragment.getView().findViewById(R.id.infoWrapper);
+		playPauseView = (ImageButton) fragment.getView().findViewById(R.id.play_pause);
+		infoWrapper = (LinearLayout) fragment.getView().findViewById(R.id.info_container);
 		mainWrapper = (LinearLayout) fragment.getView().findViewById(R.id.container);
 	}
 

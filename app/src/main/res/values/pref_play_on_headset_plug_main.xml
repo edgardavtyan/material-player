@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="pref_play_on_headset_plug_title">Resume on headset plugged</string>
+	<string name="pref_play_on_headset_plug_key">resume_on_headset_plugged</string>
+	<bool name="pref_play_on_headset_plug_default">false</bool>
+
+</resources>

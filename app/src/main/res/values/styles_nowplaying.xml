@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="NowPlaying_MainWrapper">
+	<style name="NowPlaying_MainContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 	</style>
@@ -11,11 +11,11 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_margin">@dimen/spacing_medium</item>
 		<item name="android:src">@drawable/ic_list</item>
-		<item name="layout_anchor">@+id/infoWrapper</item>
+		<item name="layout_anchor">@+id/info_container</item>
 		<item name="layout_anchorGravity">right</item>
 	</style>
 
-	<style name="NowPlaying_InnerWrapper">
+	<style name="NowPlaying_InnerContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:orientation">vertical</item>

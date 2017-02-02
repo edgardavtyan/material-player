@@ -60,7 +60,7 @@ public class TrackListViewHolderTest extends BaseTest {
 		holder.setOnHolderMenuItemClickListener(listener);
 
 		MenuItem menuItem = mock(MenuItem.class);
-		when(menuItem.getItemId()).thenReturn(R.id.menu_addToPlaylist);
+		when(menuItem.getItemId()).thenReturn(R.id.menu_add_to_playlist);
 		holder.onMenuItemClick(menuItem);
 
 		verify(listener).onMenuAddToPlaylistClick(holder);

@@ -14,11 +14,11 @@ public class CompactDetailPref extends BooleanPref {
 
 	@Override
 	protected int getKeyId() {
-		return R.string.pref_compactDetail_key;
+		return R.string.pref_compact_detail_key;
 	}
 
 	@Override
 	protected int getDefaultValueId() {
-		return R.bool.pref_compactDetail_default;
+		return R.bool.pref_compact_detail_default;
 	}
 }

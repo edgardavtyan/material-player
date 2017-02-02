@@ -25,8 +25,8 @@ public class NowPlayingControlsTest extends NowPlayingViewTest {
 
 		shuffleButton = (TestableImageButton) activity.findViewById(R.id.shuffle);
 		rewindButton = (TestableImageButton) activity.findViewById(R.id.rewind);
-		playPauseButton = (TestableImageButton) activity.findViewById(R.id.playPause);
-		fastForwardButton = (TestableImageButton) activity.findViewById(R.id.fastForward);
+		playPauseButton = (TestableImageButton) activity.findViewById(R.id.play_pause);
+		fastForwardButton = (TestableImageButton) activity.findViewById(R.id.fast_forward);
 		repeatButton = (TestableImageButton) activity.findViewById(R.id.repeat);
 
 		controls = new NowPlayingControls(activity, presenter, colors);

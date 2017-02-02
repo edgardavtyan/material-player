@@ -13,11 +13,11 @@ public class CompactListPref extends BooleanPref {
 
 	@Override
 	protected int getKeyId() {
-		return R.string.pref_compactList_key;
+		return R.string.pref_compact_list_key;
 	}
 
 	@Override
 	protected int getDefaultValueId() {
-		return R.bool.pref_compactList_default;
+		return R.bool.pref_compact_list_default;
 	}
 }

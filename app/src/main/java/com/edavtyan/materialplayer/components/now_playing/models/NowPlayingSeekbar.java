@@ -16,8 +16,8 @@ public class NowPlayingSeekbar
 				   SeekBar.OnSeekBarChangeListener {
 
 	@BindView(R.id.seekbar) SeekBar seekbar;
-	@BindView(R.id.timeCurrent) TextView currentTimeView;
-	@BindView(R.id.timeTotal) TextView totalTimeView;
+	@BindView(R.id.time_current) TextView currentTimeView;
+	@BindView(R.id.time_total) TextView totalTimeView;
 
 	private final NowPlayingMvp.Presenter presenter;
 

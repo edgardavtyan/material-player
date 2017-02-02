@@ -2,7 +2,7 @@
 <resources>
 
 	<style name="NowPlaying_Land_FAB" parent="NowPlaying_FAB">
-		<item name="layout_anchor">@+id/innerMainWrapper</item>
+		<item name="layout_anchor">@+id/inner_main_container</item>
 		<item name="layout_anchorGravity">right|bottom</item>
 	</style>
 
@@ -11,12 +11,12 @@
 		<item name="android:layout_height">match_parent</item>
 	</style>
 
-	<style name="NowPlaying_Land_InnerWrapper" parent="NowPlaying_InnerWrapper">
+	<style name="NowPlaying_Land_InnerContainer" parent="NowPlaying_InnerContainer">
 		<item name="background">@null</item>
 		<item name="android:paddingTop">@dimen/spacing_medium</item>
 	</style>
 
-	<style name="NowPlaying_Land_InnerShadowWrapper">
+	<style name="NowPlaying_Land_InnerShadowContainer">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_weight">1</item>

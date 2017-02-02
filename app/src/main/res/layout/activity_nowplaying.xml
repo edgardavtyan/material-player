@@ -2,7 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/NowPlaying_MainWrapper"
+	style="@style/NowPlaying_MainContainer"
 	>
 
 	<android.support.design.widget.FloatingActionButton
@@ -10,7 +10,7 @@
 		style="@style/NowPlaying_FAB"
 		/>
 
-	<LinearLayout style="@style/NowPlaying_InnerWrapper">
+	<LinearLayout style="@style/NowPlaying_InnerContainer">
 
 		<include layout="@layout/partial_appbar" />
 
@@ -27,7 +27,7 @@
 		</FrameLayout>
 
 		<LinearLayout
-			android:id="@+id/infoWrapper"
+			android:id="@+id/info_container"
 			style="@style/NowPlaying_TrackInfo_Container"
 			>
 
@@ -48,13 +48,13 @@
 		<LinearLayout style="@style/NowPlaying_Time_Container">
 
 			<TextView
-				android:id="@+id/timeCurrent"
+				android:id="@+id/time_current"
 				tools:text="1:14"
 				style="@style/NowPlaying_Time_Current"
 				/>
 
 			<TextView
-				android:id="@+id/timeTotal"
+				android:id="@+id/time_total"
 				tools:text="6:44"
 				style="@style/NowPlaying_Time_Total"
 				/>
@@ -71,9 +71,9 @@
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/shuffle"
+				android:layout_marginLeft="-12dp"
 				android:src="@drawable/ic_shuffle"
 				style="@style/NowPlaying_Control"
-				android:layout_marginLeft="-12dp"
 				/>
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
@@ -83,22 +83,22 @@
 				/>
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
-				android:id="@+id/playPause"
+				android:id="@+id/play_pause"
 				android:src="@drawable/ic_play"
 				style="@style/NowPlaying_Control"
 				/>
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
-				android:id="@+id/fastForward"
+				android:id="@+id/fast_forward"
 				android:src="@drawable/ic_skip_next"
 				style="@style/NowPlaying_Control"
 				/>
 
 			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
 				android:id="@+id/repeat"
+				android:layout_marginRight="-12dp"
 				android:src="@drawable/ic_repeat"
 				style="@style/NowPlaying_Control"
-				android:layout_marginRight="-12dp"
 				/>
 
 		</LinearLayout>

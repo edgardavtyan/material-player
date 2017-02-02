@@ -16,7 +16,7 @@ public class SimpleListViewHolder extends GenericViewHolder implements View.OnCl
 	protected @Getter @Setter String value;
 	protected @Setter OnHolderClickListener onHolderClickListener;
 
-	@BindView(R2.id.radioButton) RadioButton radioButton;
+	@BindView(R2.id.radio_button) RadioButton radioButton;
 	@BindView(R2.id.title) TextView titleView;
 
 	public interface OnHolderClickListener {

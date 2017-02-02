@@ -88,7 +88,7 @@ public class AlbumListViewHolder
 		if (onHolderMenuItemClickListener == null) return false;
 
 		switch (item.getItemId()) {
-		case R.id.menu_addToPlaylist:
+		case R.id.menu_add_to_playlist:
 			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(this);
 			return true;
 		default:

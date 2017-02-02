@@ -6,7 +6,7 @@
 	>
 
 	<RadioButton
-		android:id="@+id/radioButton"
+		android:id="@+id/radio_button"
 		style="@style/DialogListItem_RadioButton"
 		/>
 

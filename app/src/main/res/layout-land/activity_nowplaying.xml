@@ -2,7 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/NowPlaying_MainWrapper"
+	style="@style/NowPlaying_MainContainer"
 	>
 
 	<android.support.design.widget.FloatingActionButton
@@ -11,8 +11,8 @@
 		/>
 
 	<LinearLayout
-		android:id="@+id/innerMainWrapper"
-		style="@style/NowPlaying_InnerWrapper"
+		android:id="@+id/inner_main_container"
+		style="@style/NowPlaying_InnerContainer"
 		>
 
 		<include layout="@layout/partial_appbar" />
@@ -25,9 +25,9 @@
 				style="@style/NowPlaying_Land_Art"
 				/>
 
-			<FrameLayout style="@style/NowPlaying_Land_InnerShadowWrapper">
+			<FrameLayout style="@style/NowPlaying_Land_InnerShadowContainer">
 
-				<LinearLayout style="@style/NowPlaying_Land_InnerWrapper">
+				<LinearLayout style="@style/NowPlaying_Land_InnerContainer">
 
 					<TextView
 						android:id="@+id/title"
@@ -44,13 +44,13 @@
 					<LinearLayout style="@style/NowPlaying_Land_Time_Container">
 
 						<TextView
-							android:id="@+id/timeCurrent"
+							android:id="@+id/time_current"
 							tools:text="3:14"
 							style="@style/NowPlaying_Time_Current"
 							/>
 
 						<TextView
-							android:id="@+id/timeTotal"
+							android:id="@+id/time_total"
 							tools:text="6:22"
 							style="@style/NowPlaying_Time_Total"
 							/>
@@ -77,13 +77,13 @@
 							/>
 
 						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
-							android:id="@+id/playPause"
+							android:id="@+id/play_pause"
 							android:src="@drawable/ic_play"
 							style="@style/NowPlaying_Control"
 							/>
 
 						<com.edavtyan.materialplayer.lib.testable.TestableImageButton
-							android:id="@+id/fastForward"
+							android:id="@+id/fast_forward"
 							android:src="@drawable/ic_skip_next"
 							style="@style/NowPlaying_Control"
 							/>

@@ -52,25 +52,25 @@
 				<com.edavtyan.prefs.checkbox.CheckboxPreference
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					app:cp_key="@string/pref_compactList_key"
-					app:cp_title="@string/pref_compactList_title"
-					app:cp_defaultValue="@bool/pref_compactList_default"
+					app:cp_key="@string/pref_compact_list_key"
+					app:cp_title="@string/pref_compact_list_title"
+					app:cp_defaultValue="@bool/pref_compact_list_default"
 					/>
 
 				<com.edavtyan.prefs.checkbox.CheckboxPreference
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					app:cp_key="@string/pref_compactDetail_key"
-					app:cp_title="@string/pref_compactDetail_title"
-					app:cp_defaultValue="@bool/pref_compactDetail_default"
+					app:cp_key="@string/pref_compact_detail_key"
+					app:cp_title="@string/pref_compact_detail_title"
+					app:cp_defaultValue="@bool/pref_compact_detail_default"
 					/>
 
 				<com.edavtyan.prefs.checkbox.CheckboxPreference
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					app:cp_key="@string/pref_compactMain_key"
-					app:cp_title="@string/pref_compactMain_title"
-					app:cp_defaultValue="@bool/pref_compactMain_default"
+					app:cp_key="@string/pref_compact_main_key"
+					app:cp_title="@string/pref_compact_main_title"
+					app:cp_defaultValue="@bool/pref_compact_main_default"
 					/>
 
 			</com.edavtyan.prefs.category.PreferenceCategory>
@@ -85,9 +85,9 @@
 				<com.edavtyan.prefs.checkbox.CheckboxPreference
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					app:cp_key="@string/pref_playOnHeadsetPlug_key"
-					app:cp_title="@string/pref_playOnHeadsetPlug_title"
-					app:cp_defaultValue="@bool/pref_playOnHeadsetPlug_default"
+					app:cp_key="@string/pref_play_on_headset_plug_key"
+					app:cp_title="@string/pref_play_on_headset_plug_title"
+					app:cp_defaultValue="@bool/pref_play_on_headset_plug_default"
 					/>
 
 			</com.edavtyan.prefs.category.PreferenceCategory>

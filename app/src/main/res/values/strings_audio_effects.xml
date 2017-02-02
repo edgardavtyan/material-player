@@ -10,6 +10,6 @@
 	<string name="equalizer_title">Equalizer</string>
 	<string name="surround_title">Surround</string>
 	<string name="amplifier_title">Amplifier</string>
-	<string name="bassBoost_title">Bass Boost</string>
+	<string name="bass_boost_title">Bass Boost</string>
 
 </resources>

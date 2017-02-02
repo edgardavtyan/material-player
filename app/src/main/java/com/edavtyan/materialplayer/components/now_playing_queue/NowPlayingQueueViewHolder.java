@@ -26,7 +26,7 @@ public class NowPlayingQueueViewHolder
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.menu) ImageButton menuButton;
-	@BindView(R.id.nowPlaying) ImageView nowPlayingView;
+	@BindView(R.id.now_playing) ImageView nowPlayingView;
 
 	private final Context context;
 	private final PopupMenu popupMenu;

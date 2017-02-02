@@ -28,9 +28,9 @@ public class NowPlayingFloatingFragment
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView artView;
-	@BindView(R.id.playPause) ImageButton playPauseButton;
+	@BindView(R.id.play_pause) ImageButton playPauseButton;
 	@BindView(R.id.container) LinearLayout mainWrapper;
-	@BindView(R.id.infoWrapper) LinearLayout infoWrapper;
+	@BindView(R.id.info_container) LinearLayout infoWrapper;
 
 	private NowPlayingFloatingMvp.Presenter presenter;
 	private Navigator navigator;
@@ -38,11 +38,11 @@ public class NowPlayingFloatingFragment
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.playPause:
+		case R.id.play_pause:
 			presenter.onPlayPauseClick();
 			break;
 		case R.id.art:
-		case R.id.infoWrapper:
+		case R.id.info_container:
 			presenter.onViewClick();
 			break;
 		}

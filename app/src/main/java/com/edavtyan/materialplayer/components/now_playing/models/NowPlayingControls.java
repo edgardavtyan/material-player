@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnClickListener {
 	@BindView(R.id.shuffle) TestableImageButton shuffleButton;
 	@BindView(R.id.rewind) TestableImageButton rewindButton;
-	@BindView(R.id.playPause) TestableImageButton playPauseButton;
-	@BindView(R.id.fastForward) TestableImageButton fastForwardButton;
+	@BindView(R.id.play_pause) TestableImageButton playPauseButton;
+	@BindView(R.id.fast_forward) TestableImageButton fastForwardButton;
 	@BindView(R.id.repeat) TestableImageButton repeatButton;
 
 	private final NowPlayingMvp.Presenter presenter;
@@ -82,10 +82,10 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		case R.id.rewind:
 			presenter.onRewindClick();
 			break;
-		case R.id.playPause:
+		case R.id.play_pause:
 			presenter.onPlayPauseClick();
 			break;
-		case R.id.fastForward:
+		case R.id.fast_forward:
 			presenter.onFastForwardClick();
 			break;
 		case R.id.repeat:

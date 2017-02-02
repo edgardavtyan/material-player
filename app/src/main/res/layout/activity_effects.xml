@@ -24,7 +24,7 @@
 				/>
 
 			<android.support.v7.widget.SwitchCompat
-				android:id="@+id/equalizerSwitch"
+				android:id="@+id/equalizer_switch"
 				style="@style/AudioEffects_Equalizer_Switch"
 				/>
 
@@ -36,8 +36,8 @@
 			/>
 
 		<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
-			android:id="@+id/bassBoost"
-			app:ts_text="@string/bassBoost_title"
+			android:id="@+id/bass_boost"
+			app:ts_text="@string/bass_boost_title"
 			style="@style/AudioEffects_Effect"
 			/>
 

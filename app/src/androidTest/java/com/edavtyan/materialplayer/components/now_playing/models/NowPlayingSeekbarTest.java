@@ -31,7 +31,7 @@ public class NowPlayingSeekbarTest extends NowPlayingViewTest {
 
 	@Test
 	public void setTrackPositionText_setCurrentTimeViewText() {
-		TextView currentTimeView  = (TextView) activity.findViewById(R.id.timeCurrent);
+		TextView currentTimeView  = (TextView) activity.findViewById(R.id.time_current);
 		runOnUiThread(() -> seekbar.setPositionText(14800));
 		assertThat(currentTimeView.getText()).isEqualTo("00:14");
 	}
@@ -44,7 +44,7 @@ public class NowPlayingSeekbarTest extends NowPlayingViewTest {
 
 	@Test
 	public void setTrackDurationText_setTotalTimeViewText() {
-		TextView totalTimeView  = (TextView) activity.findViewById(R.id.timeTotal);
+		TextView totalTimeView  = (TextView) activity.findViewById(R.id.time_total);
 		runOnUiThread(() -> seekbar.setDurationText(8000));
 		assertThat(totalTimeView.getText()).isEqualTo("00:08");
 	}

@@ -73,7 +73,7 @@ public class TrackListViewHolder
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menu_addToPlaylist:
+		case R.id.menu_add_to_playlist:
 			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(this);
 			return true;
 		default:

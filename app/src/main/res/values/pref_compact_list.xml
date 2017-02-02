@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="pref_compact_list_title">Compact lists</string>
+	<string name="pref_compact_list_key">pref_compactList</string>
+	<bool name="pref_compact_list_default">false</bool>
+
+</resources>

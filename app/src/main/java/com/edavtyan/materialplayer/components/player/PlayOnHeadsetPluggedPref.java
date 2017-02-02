@@ -13,11 +13,11 @@ public class PlayOnHeadsetPluggedPref extends BooleanPref {
 
 	@Override
 	protected int getKeyId() {
-		return R.string.pref_playOnHeadsetPlug_key;
+		return R.string.pref_play_on_headset_plug_key;
 	}
 
 	@Override
 	protected int getDefaultValueId() {
-		return R.bool.pref_playOnHeadsetPlug_default;
+		return R.bool.pref_play_on_headset_plug_default;
 	}
 }

@@ -13,11 +13,11 @@ public class CompactMainScreenPref extends BooleanPref {
 
 	@Override
 	protected int getKeyId() {
-		return R.string.pref_compactMain_key;
+		return R.string.pref_compact_main_key;
 	}
 
 	@Override
 	protected int getDefaultValueId() {
-		return R.bool.pref_compactMain_default;
+		return R.bool.pref_compact_main_default;
 	}
 }

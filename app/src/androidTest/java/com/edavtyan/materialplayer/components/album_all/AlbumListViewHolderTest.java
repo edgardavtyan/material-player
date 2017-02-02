@@ -69,7 +69,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 	@Test
 	public void onMenuItemClick_addToPlaylistClicked_raiseCorrespondingListener() {
-		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(R.id.menu_addToPlaylist);
+		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(R.id.menu_add_to_playlist);
 		verify(listener).onMenuAddToPlaylistClick(holder);
 	}
 

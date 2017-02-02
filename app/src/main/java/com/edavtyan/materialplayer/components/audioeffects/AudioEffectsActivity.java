@@ -21,9 +21,9 @@ public class AudioEffectsActivity
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {
 
-	@BindView(R.id.equalizerSwitch) SwitchCompat equalizerSwitch;
+	@BindView(R.id.equalizer_switch) SwitchCompat equalizerSwitch;
 	@BindView(R.id.equalizer) EqualizerView equalizerView;
-	@BindView(R.id.bassBoost) TitledSeekbar bassBoostView;
+	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
@@ -103,7 +103,7 @@ public class AudioEffectsActivity
 	@Override
 	public void onProgressChange(int seekbarId, int progress) {
 		switch (seekbarId) {
-		case R.id.bassBoost:
+		case R.id.bass_boost:
 			presenter.onBassBoostStrengthChanged(progress);
 			break;
 		case R.id.surround:
@@ -118,7 +118,7 @@ public class AudioEffectsActivity
 	@Override
 	public void onStopTrackingTouch(int seekbarId) {
 		switch (seekbarId) {
-		case R.id.bassBoost:
+		case R.id.bass_boost:
 			presenter.onBassBoostStrengthStopChanging();
 			break;
 		case R.id.surround:

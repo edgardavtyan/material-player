@@ -15,7 +15,7 @@
 		/>
 
 	<LinearLayout
-		android:id="@+id/infoWrapper"
+		android:id="@+id/info_container"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
@@ -37,7 +37,7 @@
 	</LinearLayout>
 
 	<ImageButton
-		android:id="@+id/playPause"
+		android:id="@+id/play_pause"
 		android:layout_width="@dimen/size_medium"
 		android:layout_height="match_parent"
 		android:contentDescription="@string/description_control_playPause"

@@ -13,8 +13,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ColorToggleSelectedView extends GenericFrameLayout {
-	@BindView(R2.id.colorView) ColorCircleView colorView;
-	@BindView(R2.id.checkIcon) ImageView checkIcon;
+	@BindView(R2.id.color_view) ColorCircleView colorView;
+	@BindView(R2.id.check_icon) ImageView checkIcon;
 
 	public ColorToggleSelectedView(Context context, AttributeSet attrs) {
 		super(context, attrs);

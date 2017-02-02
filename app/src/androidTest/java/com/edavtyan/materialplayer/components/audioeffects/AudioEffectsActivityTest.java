@@ -52,9 +52,9 @@ public class AudioEffectsActivityTest extends ActivityTest {
 			reset(presenter);
 		}
 
-		equalizerSwitch = (SwitchCompat) activity.findViewById(R.id.equalizerSwitch);
+		equalizerSwitch = (SwitchCompat) activity.findViewById(R.id.equalizer_switch);
 		equalizerView = (EqualizerView) activity.findViewById(equalizer);
-		bassBoostView = (TitledSeekbar) activity.findViewById(R.id.bassBoost);
+		bassBoostView = (TitledSeekbar) activity.findViewById(R.id.bass_boost);
 		surroundView = (TitledSeekbar) activity.findViewById(R.id.surround);
 		amplifierView = (TitledSeekbar) activity.findViewById(R.id.amplifier);
 	}
@@ -127,13 +127,13 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 	@Test
 	public void onProgressChanged_bassBoostId_changeBassBoostStrengthViaPresenter() {
-		runOnUiThread(() -> activity.onProgressChange(R.id.bassBoost, 10));
+		runOnUiThread(() -> activity.onProgressChange(R.id.bass_boost, 10));
 		verify(presenter).onBassBoostStrengthChanged(10);
 	}
 
 	@Test
 	public void onStopTrackingTouch_bassBoostId_callPresenter() {
-		runOnUiThread(() -> activity.onStopTrackingTouch(R.id.bassBoost));
+		runOnUiThread(() -> activity.onStopTrackingTouch(R.id.bass_boost));
 		verify(presenter).onBassBoostStrengthStopChanging();
 	}
 
