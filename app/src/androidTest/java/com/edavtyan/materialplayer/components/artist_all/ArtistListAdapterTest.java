@@ -30,12 +30,12 @@ public class ArtistListAdapterTest extends BaseTest {
 
 	@Test
 	public void getNormalLayoutId_returnCorrectId() {
-		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_artist);
+		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_album);
 	}
 
 	@Test
 	public void getCompactLayoutId_returnCorrectId() {
-		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_artist_compact);
+		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_album_compact);
 	}
 
 	@Test
@@ -44,9 +44,9 @@ public class ArtistListAdapterTest extends BaseTest {
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
 		LinearLayout parent = new LinearLayout(context);
-		adapter.onCreateViewHolder(parent, R.layout.listitem_artist);
+		adapter.onCreateViewHolder(parent, R.layout.listitem_album);
 
-		verify(inflater).inflate(R.layout.listitem_artist, parent, false);
+		verify(inflater).inflate(R.layout.listitem_album, parent, false);
 	}
 
 	@Test

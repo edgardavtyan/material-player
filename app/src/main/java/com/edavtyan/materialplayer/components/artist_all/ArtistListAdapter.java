@@ -17,12 +17,12 @@ public class ArtistListAdapter extends ListAdapter<ArtistListViewHolder> {
 
 	@Override
 	public int getNormalLayoutId() {
-		return R.layout.listitem_artist;
+		return R.layout.listitem_album;
 	}
 
 	@Override
 	public int getCompactLayoutId() {
-		return R.layout.listitem_artist_compact;
+		return R.layout.listitem_album_compact;
 	}
 
 	@Override

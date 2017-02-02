@@ -24,7 +24,7 @@ public class ArtistListViewHolderTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		itemView = View.inflate(context, R.layout.listitem_artist, null);
+		itemView = View.inflate(context, R.layout.listitem_album, null);
 		presenter = mock(ArtistListMvp.Presenter.class);
 		holder = spy(new ArtistListViewHolder(context, itemView, presenter));
 	}
