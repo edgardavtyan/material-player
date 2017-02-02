@@ -8,39 +8,24 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
+import com.edavtyan.materialplayer.lib.mvp.list.ListViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class TrackListViewHolder
-		extends BaseViewHolder
-		implements View.OnClickListener,
-				   PopupMenu.OnMenuItemClickListener {
+public class TrackListViewHolder extends ListViewHolder {
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
-	@BindView(R.id.menu) ImageButton menuButton;
 
 	private final Context context;
 	private final TrackListMvp.Presenter presenter;
-	private final PopupMenu popupMenu;
 
 	public TrackListViewHolder(Context context, View itemView, TrackListMvp.Presenter presenter) {
-		super(itemView);
+		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;
-		itemView.setOnClickListener(this);
-
-		popupMenu = new PopupMenu(context, menuButton);
-		popupMenu.inflate(R.menu.menu_track);
-		popupMenu.setOnMenuItemClickListener(this);
-	}
-
-	@OnClick(R.id.menu)
-	public void onMenuClick() {
-		popupMenu.show();
 	}
 
 	public void setTitle(String title) {

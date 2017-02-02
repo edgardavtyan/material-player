@@ -28,4 +28,10 @@
 
 	</LinearLayout>
 
+	<ImageButton
+		android:id="@+id/menu"
+		android:contentDescription="@string/description_button_menu"
+		style="@style/ListItem_Menu"
+		/>
+
 </LinearLayout>

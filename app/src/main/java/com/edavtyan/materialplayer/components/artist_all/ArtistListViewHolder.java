@@ -8,11 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
+import com.edavtyan.materialplayer.lib.mvp.list.ListViewHolder;
 
 import butterknife.BindView;
 
-public class ArtistListViewHolder extends BaseViewHolder implements View.OnClickListener {
+public class ArtistListViewHolder extends ListViewHolder {
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView artView;
@@ -21,10 +21,9 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 	private final ArtistListMvp.Presenter presenter;
 
 	public ArtistListViewHolder(Context context, View itemView, ArtistListMvp.Presenter presenter) {
-		super(itemView);
+		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;
-		itemView.setOnClickListener(this);
 	}
 
 	public void setTitle(String title) {
