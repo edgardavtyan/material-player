@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
@@ -26,7 +25,7 @@ import static org.mockito.Mockito.when;
 public class ArtistDetailActivityTest extends ActivityTest {
 	private static ArtistDetailActivity activity;
 	private static ArtistDetailMvp.Presenter presenter;
-	private static AlbumListAdapter adapter;
+	private static ArtistDetailAdapter adapter;
 	private static Navigator navigator;
 
 	@Override
@@ -35,7 +34,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 
 		if (activity == null) {
 			presenter = mock(ArtistDetailMvp.Presenter.class);
-			adapter = mock(AlbumListAdapter.class);
+			adapter = mock(ArtistDetailAdapter.class);
 			navigator = mock(Navigator.class);
 
 			ArtistDetailFactory factory = mock(ArtistDetailFactory.class);

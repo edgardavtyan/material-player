@@ -25,7 +25,7 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 	private static ArtistDetailActivityCompact activity;
 	private static ArtistDetailPresenter presenter;
 	private static Navigator navigator;
-	private static AlbumListAdapter adapter;
+	private static ArtistDetailAdapter adapter;
 
 	@Override
 	public void beforeEach() {
@@ -34,7 +34,7 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 		if (activity == null) {
 			presenter = mock(ArtistDetailPresenter.class);
 			navigator = mock(Navigator.class);
-			adapter = mock(AlbumListAdapter.class);
+			adapter = mock(ArtistDetailAdapter.class);
 
 			ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
 			when(factory.getPresenter()).thenReturn(presenter);
