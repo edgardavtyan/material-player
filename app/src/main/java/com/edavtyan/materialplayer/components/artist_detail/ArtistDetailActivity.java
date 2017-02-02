@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
 
 import static com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
@@ -18,7 +17,7 @@ public class ArtistDetailActivity
 		implements ArtistDetailMvp.View {
 
 	private Navigator navigator;
-	private AlbumListAdapter adapter;
+	private ArtistDetailAdapter adapter;
 
 	@Override
 	public void setArtistTitle(String title) {

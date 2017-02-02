@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list_compact.ParallaxListCompactActivity;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
@@ -31,7 +30,7 @@ public class ArtistDetailActivityCompact
 	@Nullable @BindView(R.id.info) TextView infoView;
 
 	private ArtistDetailMvp.Presenter presenter;
-	private AlbumListAdapter adapter;
+	private ArtistDetailAdapter adapter;
 	private Navigator navigator;
 
 	@Override
