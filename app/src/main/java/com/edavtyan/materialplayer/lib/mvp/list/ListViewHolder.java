@@ -39,7 +39,7 @@ public abstract class ListViewHolder
 	@MenuRes
 	public int getMenuResource() {
 		return R.menu.menu_track;
-	};
+	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
