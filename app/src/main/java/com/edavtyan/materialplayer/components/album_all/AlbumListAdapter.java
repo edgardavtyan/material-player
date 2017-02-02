@@ -6,10 +6,7 @@ import android.view.View;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
 
-public class AlbumListAdapter
-		extends ListAdapter<AlbumListViewHolder>
-		implements AlbumListViewHolder.OnHolderClickListener,
-				   AlbumListViewHolder.OnHolderMenuItemClickListener {
+public class AlbumListAdapter extends ListAdapter<AlbumListViewHolder> {
 
 	private final AlbumListMvp.Presenter presenter;
 
@@ -30,19 +27,6 @@ public class AlbumListAdapter
 
 	@Override
 	public AlbumListViewHolder onCreateViewHolder(Context context, View view) {
-		AlbumListViewHolder holder = new AlbumListViewHolder(context, view);
-		holder.setOnHolderClickListener(this);
-		holder.setOnHolderMenuItemClickListener(this);
-		return holder;
-	}
-
-	@Override
-	public void onHolderClick(AlbumListViewHolder holder) {
-		presenter.onHolderClick(holder.getAdapterPositionNonFinal());
-	}
-
-	@Override
-	public void onMenuAddToPlaylistClick(AlbumListViewHolder holder) {
-		presenter.onAddToPlaylist(holder.getAdapterPositionNonFinal());
+		return new AlbumListViewHolder(context, view, presenter);
 	}
 }

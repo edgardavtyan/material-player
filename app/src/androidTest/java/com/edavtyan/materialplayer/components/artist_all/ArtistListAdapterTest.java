@@ -60,11 +60,4 @@ public class ArtistListAdapterTest extends BaseTest {
 		adapter.getItemCount();
 		verify(presenter).getItemCount();
 	}
-
-	@Test
-	public void onHolderClick_callPresenter() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
-		adapter.onHolderClick(holder);
-		verify(presenter).onHolderClick(7);
-	}
 }

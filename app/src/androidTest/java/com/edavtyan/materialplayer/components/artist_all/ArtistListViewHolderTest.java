@@ -5,26 +5,28 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListViewHolder.OnHolderClickListener;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
-import static com.edavtyan.materialplayer.testlib.assertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ArtistListViewHolderTest extends BaseTest {
 	private View itemView;
 	private ArtistListViewHolder holder;
+	private ArtistListMvp.Presenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_artist, null);
-		holder = new ArtistListViewHolder(context, itemView);
+		presenter = mock(ArtistListMvp.Presenter.class);
+		holder = spy(new ArtistListViewHolder(context, itemView, presenter));
 	}
 
 	@Test
@@ -40,13 +42,10 @@ public class ArtistListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void setOnHolderClickListener_viewClicked_callOnClick() {
-		OnHolderClickListener clickListener = mock(OnHolderClickListener.class);
-		holder.setOnHolderClickListener(clickListener);
-
-		itemView.callOnClick();
-
-		verify(clickListener).onHolderClick(holder);
+	public void onClick_callPresenterWithCorrectPosition() {
+		when(holder.getAdapterPositionNonFinal()).thenReturn(1);
+		holder.onClick(null);
+		verify(presenter).onHolderClick(1);
 	}
 
 	@Test
@@ -60,10 +59,5 @@ public class ArtistListViewHolderTest extends BaseTest {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		holder.setImage(art);
 		assertThat(itemView, R.id.art).hasImageBitmap(art);
-	}
-
-	@Test
-	public void setOnHolderClickListener_listenerNotSet_notThrowException() {
-		assertThatNPENotThrown(() -> holder.onClick(mock(View.class)));
 	}
 }

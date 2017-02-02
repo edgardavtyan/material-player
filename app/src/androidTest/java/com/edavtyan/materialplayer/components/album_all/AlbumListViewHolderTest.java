@@ -6,29 +6,28 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder.OnHolderClickListener;
-import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder.OnHolderMenuItemClickListener;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
-import static com.edavtyan.materialplayer.testlib.assertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 public class AlbumListViewHolderTest extends BaseTest {
 	private AlbumListViewHolder holder;
 	private View itemView;
+	private AlbumListMvp.Presenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_album, null);
-		holder = new AlbumListViewHolder(context, itemView);
+		presenter = mock(AlbumListMvp.Presenter.class);
+		holder = spy(new AlbumListViewHolder(context, itemView, presenter));
 	}
 
 	@Test
@@ -50,43 +49,22 @@ public class AlbumListViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void onClick_clickListenerNotSet_notThrowNPE() {
-		assertThatNPENotThrown(() -> holder.onClick(null));
-	}
-
-	@Test
-	public void onClick_clickListenerSet_raiseClickListener() {
-		OnHolderClickListener listener = mock(OnHolderClickListener.class);
-		holder.setOnHolderClickListener(listener);
+	public void onClick_callPresenterWithCorrectPosition() {
+		when(holder.getAdapterPositionNonFinal()).thenReturn(1);
 		holder.onClick(null);
-		verify(listener).onHolderClick(holder);
+		verify(presenter).onHolderClick(1);
 	}
 
 	@Test
-	public void onMenuItemClick_menuClickListenerNotSet_notThrowNPE() {
-		assertThatNPENotThrown(() -> holder.onMenuItemClick(null));
+	public void onMenuItemClick_callPresenterWithCorrectPosition() {
+		when(holder.getAdapterPositionNonFinal()).thenReturn(2);
+		callMenuItemWithId(R.id.menu_add_to_playlist);
+		verify(presenter).onAddToPlaylist(2);
 	}
 
-	@Test
-	public void onMenuItemClick_addToPlaylistClicked_raiseCorrespondingListener() {
-		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(R.id.menu_add_to_playlist);
-		verify(listener).onMenuAddToPlaylistClick(holder);
-	}
-
-	@Test
-	public void onMenuItemClick_otherMenuItemClicked_notRaiseListener() {
-		OnHolderMenuItemClickListener listener = setupMenuListenerWithId(-1);
-		verifyZeroInteractions(listener);
-	}
-
-	private OnHolderMenuItemClickListener setupMenuListenerWithId(@IdRes int id) {
-		OnHolderMenuItemClickListener listener = mock(OnHolderMenuItemClickListener.class);
-		holder.setOnHolderMenuItemClickListener(listener);
-
+	private void callMenuItemWithId(@IdRes int id) {
 		MenuItem menuItem = mock(MenuItem.class);
 		when(menuItem.getItemId()).thenReturn(id);
 		holder.onMenuItemClick(menuItem);
-
-		return listener;
 	}
 }

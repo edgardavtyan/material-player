@@ -11,7 +11,6 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
 import butterknife.BindView;
-import lombok.Setter;
 
 public class ArtistListViewHolder extends BaseViewHolder implements View.OnClickListener {
 	@BindView(R.id.title) TextView titleView;
@@ -19,16 +18,12 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 	@BindView(R.id.art) ImageView artView;
 
 	private final Context context;
+	private final ArtistListMvp.Presenter presenter;
 
-	private @Setter OnHolderClickListener onHolderClickListener;
-
-	public interface OnHolderClickListener {
-		void onHolderClick(ArtistListViewHolder holder);
-	}
-
-	public ArtistListViewHolder(Context context, View itemView) {
+	public ArtistListViewHolder(Context context, View itemView, ArtistListMvp.Presenter presenter) {
 		super(itemView);
 		this.context = context;
+		this.presenter = presenter;
 		itemView.setOnClickListener(this);
 	}
 
@@ -54,8 +49,6 @@ public class ArtistListViewHolder extends BaseViewHolder implements View.OnClick
 
 	@Override
 	public void onClick(View v) {
-		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this);
-		}
+		presenter.onHolderClick(getAdapterPositionNonFinal());
 	}
 }

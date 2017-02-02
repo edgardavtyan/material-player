@@ -25,7 +25,7 @@ public class AlbumListAdapterTest extends BaseTest {
 		super.beforeEach();
 		presenter = mock(AlbumListMvp.Presenter.class);
 		holder = mock(AlbumListViewHolder.class);
-		adapter = new AlbumListAdapter(context, presenter);
+		adapter = spy(new AlbumListAdapter(context, presenter));
 	}
 
 	@Test
@@ -59,19 +59,5 @@ public class AlbumListAdapterTest extends BaseTest {
 	public void getItemCount_callPresenter() {
 		adapter.getItemCount();
 		verify(presenter).getItemCount();
-	}
-
-	@Test
-	public void onHolderClick_callPresenter() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
-		adapter.onHolderClick(holder);
-		verify(presenter).onHolderClick(7);
-	}
-
-	@Test
-	public void onMenuAddToPlaylistClick_callPresenter() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
-		adapter.onMenuAddToPlaylistClick(holder);
-		verify(presenter).onAddToPlaylist(7);
 	}
 }

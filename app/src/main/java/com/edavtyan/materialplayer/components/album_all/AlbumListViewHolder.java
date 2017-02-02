@@ -15,7 +15,6 @@ import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import lombok.Setter;
 
 public class AlbumListViewHolder
 		extends BaseViewHolder
@@ -28,22 +27,13 @@ public class AlbumListViewHolder
 	@BindView(R.id.menu) ImageButton menuButton;
 
 	private final Context context;
+	private final AlbumListMvp.Presenter presenter;
 	private final PopupMenu popupMenu;
 
-	private @Setter OnHolderClickListener onHolderClickListener;
-	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
-
-	public interface OnHolderClickListener {
-		void onHolderClick(AlbumListViewHolder holder);
-	}
-
-	public interface OnHolderMenuItemClickListener {
-		void onMenuAddToPlaylistClick(AlbumListViewHolder holder);
-	}
-
-	public AlbumListViewHolder(Context context, View itemView) {
+	public AlbumListViewHolder(Context context, View itemView, AlbumListMvp.Presenter presenter) {
 		super(itemView);
 		this.context = context;
+		this.presenter = presenter;
 		itemView.setOnClickListener(this);
 
 		popupMenu = new PopupMenu(context, menuButton);
@@ -78,18 +68,14 @@ public class AlbumListViewHolder
 
 	@Override
 	public void onClick(View v) {
-		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this);
-		}
+		presenter.onHolderClick(getAdapterPositionNonFinal());
 	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
-		if (onHolderMenuItemClickListener == null) return false;
-
 		switch (item.getItemId()) {
 		case R.id.menu_add_to_playlist:
-			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(this);
+			presenter.onAddToPlaylist(getAdapterPositionNonFinal());
 			return true;
 		default:
 			return false;

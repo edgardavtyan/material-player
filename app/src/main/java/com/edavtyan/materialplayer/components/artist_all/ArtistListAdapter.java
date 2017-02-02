@@ -6,9 +6,7 @@ import android.view.View;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
 
-public class ArtistListAdapter
-		extends ListAdapter<ArtistListViewHolder>
-		implements ArtistListViewHolder.OnHolderClickListener {
+public class ArtistListAdapter extends ListAdapter<ArtistListViewHolder> {
 
 	private final ArtistListMvp.Presenter presenter;
 
@@ -29,13 +27,6 @@ public class ArtistListAdapter
 
 	@Override
 	public ArtistListViewHolder onCreateViewHolder(Context context, View view) {
-		ArtistListViewHolder holder = new ArtistListViewHolder(context, view);
-		holder.setOnHolderClickListener(this);
-		return holder;
-	}
-
-	@Override
-	public void onHolderClick(ArtistListViewHolder holder) {
-		presenter.onHolderClick(holder.getAdapterPositionNonFinal());
+		return new ArtistListViewHolder(context, view, presenter);
 	}
 }

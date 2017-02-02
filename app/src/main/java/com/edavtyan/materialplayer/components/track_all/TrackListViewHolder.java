@@ -13,7 +13,6 @@ import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import lombok.Setter;
 
 public class TrackListViewHolder
 		extends BaseViewHolder
@@ -25,22 +24,13 @@ public class TrackListViewHolder
 	@BindView(R.id.menu) ImageButton menuButton;
 
 	private final Context context;
+	private final TrackListMvp.Presenter presenter;
 	private final PopupMenu popupMenu;
 
-	private @Setter OnHolderClickListener onHolderClickListener;
-	private @Setter OnHolderMenuItemClickListener onHolderMenuItemClickListener;
-
-	public interface OnHolderClickListener {
-		void onHolderClick(TrackListViewHolder holder);
-	}
-
-	public interface OnHolderMenuItemClickListener {
-		void onMenuAddToPlaylistClick(TrackListViewHolder holder);
-	}
-
-	public TrackListViewHolder(Context context, View itemView) {
+	public TrackListViewHolder(Context context, View itemView, TrackListMvp.Presenter presenter) {
 		super(itemView);
 		this.context = context;
+		this.presenter = presenter;
 		itemView.setOnClickListener(this);
 
 		popupMenu = new PopupMenu(context, menuButton);
@@ -65,16 +55,14 @@ public class TrackListViewHolder
 
 	@Override
 	public void onClick(View v) {
-		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this);
-		}
+		presenter.onHolderClick(getAdapterPositionNonFinal());
 	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_add_to_playlist:
-			onHolderMenuItemClickListener.onMenuAddToPlaylistClick(this);
+			presenter.onAddToPlaylist(getAdapterPositionNonFinal());
 			return true;
 		default:
 			return false;
