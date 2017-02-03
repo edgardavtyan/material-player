@@ -2,12 +2,14 @@ package com.edavtyan.materialplayer.lib.mvp.list;
 
 import android.content.Context;
 import android.support.annotation.MenuRes;
-import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
 import butterknife.BindView;
@@ -26,7 +28,9 @@ public abstract class ListViewHolder
 		super(itemView);
 		itemView.setOnClickListener(this);
 
-		popupMenu = new PopupMenu(context, menuButton);
+		SdkFactory sdkFactory = ((App) context.getApplicationContext()).getSdkFactory();
+
+		popupMenu = sdkFactory.createPopupMenu(context, menuButton);
 		popupMenu.inflate(getMenuResource());
 		popupMenu.setOnMenuItemClickListener(this);
 	}

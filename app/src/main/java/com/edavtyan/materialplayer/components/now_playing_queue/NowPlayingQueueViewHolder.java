@@ -8,17 +8,14 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
+import com.edavtyan.materialplayer.lib.mvp.list.ListViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class NowPlayingQueueViewHolder
-		extends BaseViewHolder
+		extends ListViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
@@ -29,28 +26,14 @@ public class NowPlayingQueueViewHolder
 
 	private final Context context;
 	private final NowPlayingQueueMvp.Presenter presenter;
-	private final PopupMenu popupMenu;
 
 	public NowPlayingQueueViewHolder(
 			Context context,
 			View itemView,
 			NowPlayingQueueMvp.Presenter presenter) {
-		super(itemView);
+		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;
-		itemView.setOnClickListener(this);
-
-		App app = (App) context.getApplicationContext();
-		SdkFactory sdkFactory = app.getSdkFactory();
-
-		popupMenu = sdkFactory.createPopupMenu(context, menuButton);
-		popupMenu.inflate(R.menu.menu_queue);
-		popupMenu.setOnMenuItemClickListener(this);
-	}
-
-	@OnClick(R.id.menu)
-	public void onMenuButtonClick() {
-		popupMenu.show();
 	}
 
 	public void setTitle(String title) {
@@ -65,6 +48,11 @@ public class NowPlayingQueueViewHolder
 
 	public void setIsPlaying(boolean isPlaying) {
 		nowPlayingView.setVisibility(isPlaying ? View.VISIBLE : View.GONE);
+	}
+
+	@Override
+	public int getMenuResource() {
+		return R.menu.menu_queue;
 	}
 
 	@Override
