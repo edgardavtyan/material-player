@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,8 +12,6 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueViewHolder.OnHolderClickListener;
-import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueViewHolder.OnMenuClickListener;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -28,6 +27,7 @@ import static org.mockito.Mockito.when;
 public class NowPlayingQueueViewHolderTest extends BaseTest {
 	private NowPlayingQueueViewHolder holder;
 	private View itemView;
+	private NowPlayingQueueMvp.Presenter presenter;
 	private SdkFactory sdkFactory;
 	private PopupMenu popupMenu;
 
@@ -43,8 +43,9 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 		app.setSdkFactory(sdkFactory);
 
+		presenter = mock(NowPlayingQueueMvp.Presenter.class);
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
-		holder = new NowPlayingQueueViewHolder(context, itemView);
+		holder = new NowPlayingQueueViewHolder(context, itemView, presenter);
 	}
 
 	@Override
@@ -89,37 +90,26 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClickListener_itemViewClicked_called() {
-		OnHolderClickListener listener = mock(OnHolderClickListener.class);
-		holder.setOnHolderClickListener(listener);
-		itemView.performClick();
-		verify(listener).onHolderClick(holder);
+	public void onClick_callPresenterWithCorrectPosition() {
+		holder.onClick(null);
+		verify(presenter).onItemClick(-1);
 	}
 
 	@Test
-	public void onMenuItemClick_listenerNotSet_notThrowNPE() {
-		assertThatNPENotThrown(() -> holder.onMenuItemClick(null));
-	}
-
-	@Test
-	public void onMenuClickListener_removeItemClicked_onRemoveFromQueueClickCalled() {
-		OnMenuClickListener listener = createOnMenuClickListenerWithId(R.id.menu_remove);
-		verify(listener).onRemoveFromQueueClick(holder);
+	public void onMenuClickListener_removeItemClicked_callPresenterWithCorrectPosition() {
+		clickMenuItemWithId(R.id.menu_remove);
+		verify(presenter).onRemoveItemClick(-1);
 	}
 
 	@Test
 	public void onMenuClickListener_wrongId_doNothing() {
-		OnMenuClickListener listener = createOnMenuClickListenerWithId(-1);
-		verifyZeroInteractions(listener);
+		clickMenuItemWithId(-1);
+		verifyZeroInteractions(presenter);
 	}
 
-	private OnMenuClickListener createOnMenuClickListenerWithId(int menu_remove) {
-		OnMenuClickListener listener = mock(OnMenuClickListener.class);
-		holder.setOnMenuClickListener(listener);
+	private void clickMenuItemWithId(@IdRes int menuId) {
 		MenuItem menuItem = mock(MenuItem.class);
-		when(menuItem.getItemId()).thenReturn(menu_remove);
-
+		when(menuItem.getItemId()).thenReturn(menuId);
 		holder.onMenuItemClick(menuItem);
-		return listener;
 	}
 }

@@ -6,10 +6,7 @@ import android.view.View;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
 
-public class NowPlayingQueueAdapter
-		extends ListAdapter<NowPlayingQueueViewHolder>
-		implements NowPlayingQueueViewHolder.OnHolderClickListener,
-				   NowPlayingQueueViewHolder.OnMenuClickListener {
+public class NowPlayingQueueAdapter extends ListAdapter<NowPlayingQueueViewHolder> {
 
 	private final NowPlayingQueueMvp.Presenter presenter;
 
@@ -35,20 +32,6 @@ public class NowPlayingQueueAdapter
 
 	@Override
 	public NowPlayingQueueViewHolder onCreateViewHolder(Context context, View view) {
-		NowPlayingQueueViewHolder holder = new NowPlayingQueueViewHolder(context, view);
-		holder.setOnHolderClickListener(this);
-		holder.setOnMenuClickListener(this);
-		return holder;
-	}
-
-	@Override
-	public void onHolderClick(NowPlayingQueueViewHolder holder) {
-		presenter.onItemClick(holder.getAdapterPositionNonFinal());
-	}
-
-	@Override
-	public void onRemoveFromQueueClick(NowPlayingQueueViewHolder holder) {
-		presenter.onRemoveItemClick(holder.getAdapterPositionNonFinal());
-		notifyItemRemovedNonFinal(holder.getAdapterPositionNonFinal());
+		return new NowPlayingQueueViewHolder(context, view, presenter);
 	}
 }

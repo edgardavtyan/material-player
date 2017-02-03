@@ -16,7 +16,6 @@ import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import lombok.Setter;
 
 public class NowPlayingQueueViewHolder
 		extends BaseViewHolder
@@ -29,22 +28,16 @@ public class NowPlayingQueueViewHolder
 	@BindView(R.id.now_playing) ImageView nowPlayingView;
 
 	private final Context context;
+	private final NowPlayingQueueMvp.Presenter presenter;
 	private final PopupMenu popupMenu;
 
-	private @Setter OnHolderClickListener onHolderClickListener;
-	private @Setter OnMenuClickListener onMenuClickListener;
-
-	interface OnHolderClickListener {
-		void onHolderClick(NowPlayingQueueViewHolder holder);
-	}
-
-	interface OnMenuClickListener {
-		void onRemoveFromQueueClick(NowPlayingQueueViewHolder holder);
-	}
-
-	public NowPlayingQueueViewHolder(Context context, View itemView) {
+	public NowPlayingQueueViewHolder(
+			Context context,
+			View itemView,
+			NowPlayingQueueMvp.Presenter presenter) {
 		super(itemView);
 		this.context = context;
+		this.presenter = presenter;
 		itemView.setOnClickListener(this);
 
 		App app = (App) context.getApplicationContext();
@@ -76,17 +69,14 @@ public class NowPlayingQueueViewHolder
 
 	@Override
 	public void onClick(View v) {
-		if (onHolderClickListener != null) {
-			onHolderClickListener.onHolderClick(this);
-		}
+		presenter.onItemClick(getAdapterPositionNonFinal());
 	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
-		if (onMenuClickListener == null) return false;
 		switch (item.getItemId()) {
 		case R.id.menu_remove:
-			onMenuClickListener.onRemoveFromQueueClick(this);
+			presenter.onRemoveItemClick(getAdapterPositionNonFinal());
 			return true;
 		default:
 			return false;

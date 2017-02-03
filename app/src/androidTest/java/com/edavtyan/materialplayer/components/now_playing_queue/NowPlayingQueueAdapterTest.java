@@ -62,19 +62,4 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 		assertThat(adapter.getItemCount()).isEqualTo(7);
 		verify(presenter).getItemCount();
 	}
-
-	@Test
-	public void onHolderClick_playClickedTrackViaPresenter() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
-		adapter.onHolderClick(holder);
-		verify(presenter).onItemClick(7);
-	}
-
-	@Test
-	public void onRemoveFromQueueClick_removeTrackFromQueueViaPresenter() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(7);
-		adapter.onRemoveFromQueueClick(holder);
-		verify(presenter).onRemoveItemClick(7);
-		verify(adapter).notifyItemRemovedNonFinal(7);
-	}
 }
