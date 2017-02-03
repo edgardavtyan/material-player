@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ public class NowPlayingQueueViewHolder
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
-	@BindView(R.id.menu) ImageButton menuButton;
 	@BindView(R.id.now_playing) ImageView nowPlayingView;
 
 	private final Context context;
