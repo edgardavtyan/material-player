@@ -18,7 +18,7 @@ public abstract class BooleanPref implements SharedPreferences.OnSharedPreferenc
 		value = prefs.getBoolean(key, defaultValue);
 	}
 
-	public boolean getValue() {
+	public boolean isEnabled() {
 		return value;
 	}
 

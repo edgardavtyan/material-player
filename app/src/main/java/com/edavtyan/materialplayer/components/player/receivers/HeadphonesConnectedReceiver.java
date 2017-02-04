@@ -25,7 +25,7 @@ public class HeadphonesConnectedReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		int state = intent.getIntExtra(EXTRA_STATE, -1);
 
-		if (playOnHeadsetPluggedPref.getValue() && state == STATE_PLUGGED) {
+		if (playOnHeadsetPluggedPref.isEnabled() && state == STATE_PLUGGED) {
 			player.play();
 		}
 	}

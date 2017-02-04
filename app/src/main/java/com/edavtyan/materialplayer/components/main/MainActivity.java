@@ -25,7 +25,7 @@ public class MainActivity extends BaseToolbarActivity {
 
 	@Override
 	public int getLayoutId() {
-		return compactMainScreenPref.getValue()
+		return compactMainScreenPref.isEnabled()
 				? R.layout.activity_main_compact
 				: R.layout.activity_main;
 	}
@@ -34,11 +34,11 @@ public class MainActivity extends BaseToolbarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		MainFactory factory = ((App) getApplicationContext()).getMainFactory(this);
 		compactMainScreenPref = factory.getCompactMainScreenPref();
-		isCompactModeEnabled = compactMainScreenPref.getValue();
+		isCompactModeEnabled = compactMainScreenPref.isEnabled();
 
 		super.onCreate(savedInstanceState);
 
-		FragmentPagerAdapter adapter = compactMainScreenPref.getValue()
+		FragmentPagerAdapter adapter = compactMainScreenPref.isEnabled()
 				? factory.getIconsTabsAdapter()
 				: factory.getTextTabsAdapter();
 
@@ -56,7 +56,7 @@ public class MainActivity extends BaseToolbarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (isCompactModeEnabled != compactMainScreenPref.getValue()) {
+		if (isCompactModeEnabled != compactMainScreenPref.isEnabled()) {
 			this.recreate();
 		}
 	}

@@ -26,7 +26,7 @@ public class Navigator {
 	}
 
 	public void gotoArtistDetail(String artistTitle) {
-		Class activityClass = compactDetailPref.getValue()
+		Class activityClass = compactDetailPref.isEnabled()
 				? ArtistDetailActivityCompact.class : ArtistDetailActivity.class;
 
 		Intent intent = new Intent(context, activityClass);
@@ -35,7 +35,7 @@ public class Navigator {
 	}
 
 	public void gotoAlbumDetail(int albumId) {
-		Class activityClass = compactDetailPref.getValue()
+		Class activityClass = compactDetailPref.isEnabled()
 				? AlbumDetailActivityCompact.class : AlbumDetailActivity.class;
 
 		Intent intent = new Intent(context, activityClass);

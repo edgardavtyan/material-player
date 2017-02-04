@@ -14,6 +14,6 @@ public class ListModel extends ServiceModel implements ListMvp.Model {
 
 	@Override
 	public boolean isCompactModeEnabled() {
-		return compactListPref.getValue();
+		return compactListPref.isEnabled();
 	}
 }
