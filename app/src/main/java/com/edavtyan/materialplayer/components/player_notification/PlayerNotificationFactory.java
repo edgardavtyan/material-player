@@ -32,7 +32,6 @@ public class PlayerNotificationFactory extends BaseFactory {
 	public PlayerNotificationMvp.View getNotification() {
 		if (notification == null)
 			notification = new PlayerNotification(
-					getContext(),
 					getNormalRemoteViews(),
 					getBigRemoteViews(),
 					getManager(),

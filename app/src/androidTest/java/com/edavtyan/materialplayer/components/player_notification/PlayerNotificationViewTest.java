@@ -37,7 +37,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 		builder = spy(new NotificationCompat.Builder(context));
 		pendingIntents = mock(PendingIntents.class);
 		view = new PlayerNotification(
-				context, remoteViews, bigRemoteViews, manager,
+				remoteViews, bigRemoteViews, manager,
 				builder, pendingIntents);
 	}
 
@@ -48,7 +48,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 		reset(builder);
 
 		view = new PlayerNotification(
-				context, remoteViews, bigRemoteViews, manager,
+				remoteViews, bigRemoteViews, manager,
 				builder, pendingIntents);
 
 		verify(builder).setSmallIcon(R.drawable.ic_status);

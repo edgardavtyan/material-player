@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.player_notification;
 
 import android.app.Notification;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.app.NotificationCompat;
 
@@ -17,21 +16,17 @@ import lombok.Getter;
 public class PlayerNotification implements PlayerNotificationMvp.View {
 	public static final int NOTIFICATION_ID = 1;
 
-	private final Context context;
 	private final AdvancedRemoteViews normalRemoteViews;
 	private final AdvancedRemoteViews bigRemoteViews;
 	private final TestableNotificationManager manager;
 	private final @Getter Notification notification;
 
 	public PlayerNotification(
-			Context context,
 			AdvancedRemoteViews normalRemoteViews,
 			AdvancedRemoteViews bigRemoteViews,
 			TestableNotificationManager manager,
 			NotificationCompat.Builder builder,
-			PendingIntents pendingIntents
-	) {
-		this.context = context;
+			PendingIntents pendingIntents) {
 		this.normalRemoteViews = normalRemoteViews;
 		this.bigRemoteViews = bigRemoteViews;
 		this.manager = manager;
@@ -60,8 +55,7 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 
 	@Override
 	public void setInfo(String artist, String album) {
-		String info = context.getString(R.string.nowplaying_info_pattern, artist, album);
-		normalRemoteViews.setTextViewText(R.id.info, info);
+		normalRemoteViews.setTextViewText(R.id.info, album);
 		bigRemoteViews.setTextViewText(R.id.artist, artist);
 		bigRemoteViews.setTextViewText(R.id.album, album);
 	}
