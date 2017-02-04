@@ -10,7 +10,7 @@
 		<item name="textColorPrimary">@color/black_dim_slight</item>
 		<item name="textColorSecondary">@color/black_dim_medium</item>
 		<item name="textColorContrastPrimary">@color/white</item>
-		<item name="textColorContrastSecondary">@color/white_dim_slight</item>
+		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
 		<item name="android:textColor">?attr/textColorPrimary</item>
 		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
 		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
@@ -31,7 +31,7 @@
 		<item name="textColorPrimary">@color/white</item>
 		<item name="textColorSecondary">@color/white_dim_medium</item>
 		<item name="textColorContrastPrimary">@color/white</item>
-		<item name="textColorContrastSecondary">@color/white_dim_slight</item>
+		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
 		<item name="android:textColor">?attr/textColorPrimary</item>
 		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
 		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
@@ -47,7 +47,7 @@
 		<item name="textColorPrimary">@color/white_dim_slight</item>
 		<item name="textColorSecondary">@color/white_dim_medium</item>
 		<item name="textColorContrastPrimary">@color/white</item>
-		<item name="textColorContrastSecondary">@color/white_dim_slight</item>
+		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
 		<item name="colorControlNormal">@color/white_dim_slight</item>
 		<item name="android:windowBackground">@color/black</item>
 		<item name="android:colorForeground">@color/white_dim_slight</item>
