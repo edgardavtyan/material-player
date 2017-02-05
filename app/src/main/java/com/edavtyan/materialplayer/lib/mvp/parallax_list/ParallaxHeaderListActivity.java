@@ -27,11 +27,11 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView imageView;
 	@BindView(R.id.list) RecyclerView list;
-	@BindView(R.id.appbar_wrapper) LinearLayout appbarWrapper;
-	@BindView(R.id.list_header) RecyclerViewHeader header;
-	@BindView(R.id.appbar) AppBarLayout appbar;
-	@BindView(R.id.appbar_shadow) View appbarShadow;
-	@BindView(R.id.statusbar_tint) View statusShadow;
+	@BindView(R.id.appbar_wrapper) @Nullable LinearLayout appbarWrapper;
+	@BindView(R.id.list_header) @Nullable RecyclerViewHeader header;
+	@BindView(R.id.appbar) @Nullable AppBarLayout appbar;
+	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
+	@BindView(R.id.statusbar_tint) @Nullable View statusShadow;
 
 	private ParallaxHeaderListPresenter presenter;
 
@@ -67,11 +67,18 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 
 		list.setLayoutManager(new LinearLayoutManager(this));
 
-		if (Build.VERSION.SDK_INT < 21) {
-			statusShadow.setVisibility(View.GONE);
-		}
-
 		if (WindowUtils.isPortrait(this)) {
+			// Removes lint warnings
+			assert statusShadow != null;
+			assert appbarWrapper != null;
+			assert header != null;
+			assert appbar != null;
+			assert appbarShadow != null;
+
+			if (Build.VERSION.SDK_INT < 21) {
+				statusShadow.setVisibility(View.GONE);
+			}
+
 			WindowUtils.makeStatusBarTransparent(getWindow());
 			appbarWrapper.bringToFront();
 			header.attachTo(list);
