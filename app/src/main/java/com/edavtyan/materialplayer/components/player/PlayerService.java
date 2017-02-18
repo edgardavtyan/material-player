@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.components.player;
 
 import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
@@ -67,19 +66,12 @@ public class PlayerService extends Service {
 			amplifier = factory.getAmplifier();
 		}
 
-		BroadcastReceiver playPauseReceiver = factory.getPlayPauseReceiver();
-		BroadcastReceiver skipToPreviousReceiver = factory.getSkipToPreviousReceiver();
-		BroadcastReceiver skipToNextReceiver = factory.getSkipToNextReceiver();
-		BroadcastReceiver audioBecomingNoisyReceiver = factory.getAudioBecomingNoisyReceiver();
-		BroadcastReceiver mediaButtonReceiver = factory.getMediaButtonReceiver();
-		BroadcastReceiver headphonesConnectedReceiver = factory.getHeadphonesConnectedReceiver();
-
-		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
-		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));
-		registerReceiver(skipToNextReceiver, new IntentFilter(ACTION_FAST_FORWARD));
-		registerReceiver(audioBecomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
-		registerReceiver(mediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
-		registerReceiver(headphonesConnectedReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+		registerReceiver(factory.getPlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
+		registerReceiver(factory.getSkipToPreviousReceiver(), new IntentFilter(ACTION_REWIND));
+		registerReceiver(factory.getSkipToNextReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
+		registerReceiver(factory.getAudioBecomingNoisyReceiver(), new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
+		registerReceiver(factory.getMediaButtonReceiver(), new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
+		registerReceiver(factory.getHeadphonesConnectedReceiver(), new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
 		audioFocusManager = factory.getAudioFocusManager();
 		audioFocusManager.requestFocus();
