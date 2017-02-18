@@ -118,11 +118,8 @@ public class App extends Application {
 		return new PlayerFactory(context);
 	}
 
-	public PlayerNotificationFactory getPlayerNotificationFactory(
-			Context context,
-			int normalLayoutId,
-			int bigLayoutId) {
-		return new PlayerNotificationFactory(context, normalLayoutId, bigLayoutId);
+	public PlayerNotificationFactory getPlayerNotificationFactory(Context context) {
+		return new PlayerNotificationFactory(context, R.layout.notification, R.layout.notification_big);
 	}
 
 	public SdkFactory getSdkFactory() {

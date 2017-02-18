@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
@@ -79,8 +78,7 @@ public class PlayerService extends Service {
 		mediaSessionManager = factory.getMediaSessionManager();
 		mediaSessionManager.init();
 
-		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(
-				this, R.layout.notification, R.layout.notification_big);
+		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(this);
 		notification = notificationFactory.getNotification();
 		presenter = notificationFactory.getPresenter();
 		presenter.onCreate();
