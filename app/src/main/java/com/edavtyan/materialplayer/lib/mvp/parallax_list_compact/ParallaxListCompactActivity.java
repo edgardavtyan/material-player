@@ -11,14 +11,15 @@ import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.utils.ColorUtils;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
 
 public class ParallaxListCompactActivity extends BaseToolbarActivity {
-	@BindView(R.id.list_header) RecyclerViewHeader header;
+	@BindView(R.id.list_header) @Nullable RecyclerViewHeader header;
+	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.info_container) LinearLayout infoContainer;
 	@BindView(R.id.list) RecyclerView list;
-	@BindView(R.id.appbar_shadow) View appbarShadow;
 
 	private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
 		private int totalScrolled = 0;
@@ -26,6 +27,8 @@ public class ParallaxListCompactActivity extends BaseToolbarActivity {
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 			super.onScrolled(recyclerView, dx, dy);
+
+			assert appbarShadow != null; // Removes lint warning
 
 			totalScrolled += dy;
 
@@ -44,9 +47,12 @@ public class ParallaxListCompactActivity extends BaseToolbarActivity {
 		super.onCreate(savedInstanceState);
 
 		list.setLayoutManager(new LinearLayoutManager(this));
-		list.addOnScrollListener(onScrollListener);
 
-		header.attachTo(list);
+		if (WindowUtils.isPortrait(this)) {
+			assert header != null; // Removes lint warning
+			list.addOnScrollListener(onScrollListener);
+			header.attachTo(list);
+		}
 	}
 
 	@Override
