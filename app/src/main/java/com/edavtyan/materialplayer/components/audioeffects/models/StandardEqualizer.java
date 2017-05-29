@@ -24,7 +24,8 @@ public class StandardEqualizer implements Equalizer {
 
 		gains = prefs.getGains(bandsCount);
 		for (int i = 0; i < bandsCount; i++) {
-			equalizer.setBandLevel((short) i, (short) gains[i]);
+			int reverseIndex = bandsCount - i - 1;
+			equalizer.setBandLevel((short) reverseIndex, (short) (gains[i] * 100));
 		}
 	}
 
