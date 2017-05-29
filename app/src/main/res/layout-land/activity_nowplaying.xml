@@ -37,7 +37,7 @@
 
 					<TextView
 						android:id="@+id/info"
-						tools:text="Now Playing Artist \u2014 Album"
+						tools:text="Now Playing Artist \u2022 Album"
 						style="@style/NowPlaying_TrackInfo_Info"
 						/>
 

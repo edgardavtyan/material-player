@@ -80,7 +80,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 	public void setArtistInfo_setInfoViewTextWithPattern() {
 		TextView infoView = activity.findView(R.id.info);
 		runOnUiThread(() -> activity.setArtistInfo(3, 9));
-		assertThat(infoView.getText()).isEqualTo("3 Albums \u2014 9 Tracks");
+		assertThat(infoView.getText()).isEqualTo("3 Albums \u2022 9 Tracks");
 	}
 
 	@Test

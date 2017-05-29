@@ -85,7 +85,7 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 	public void set_album_info_in_landscape_mode() {
 		TextView infoView = (TextView) activity.findViewById(R.id.info);
 		runOnUiThread(() -> activity.setAlbumInfo("artist", 2, 122234));
-		assertThat(infoView.getText()).isEqualTo("artist \u2014 2 Tracks");
+		assertThat(infoView.getText()).isEqualTo("artist \u2022 2 Tracks");
 	}
 
 	@Test

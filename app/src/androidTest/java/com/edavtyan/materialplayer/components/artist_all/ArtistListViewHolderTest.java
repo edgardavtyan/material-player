@@ -38,7 +38,7 @@ public class ArtistListViewHolderTest extends BaseTest {
 		holder.setTitle("title");
 
 		assertThat(titleView.getText()).isEqualTo("title");
-		assertThat(infoView.getText()).isEqualTo("1 Album \u2014 2 Tracks");
+		assertThat(infoView.getText()).isEqualTo("1 Album \u2022 2 Tracks");
 	}
 
 	@Test

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="pattern.artist.info">%1$s \u2014 %2$s</string>
-	<string name="pattern.album.info">%1$s \u2014 %2$s</string>
-	<string name="pattern.track.info">%1$s | %2$s \u2014 %3$s</string>
+	<string name="pattern.artist.info">%1$s \u2022 %2$s</string>
+	<string name="pattern.album.info">%1$s \u2022 %2$s</string>
+	<string name="pattern.track.info">%1$s | %2$s \u2022 %3$s</string>
 	<string name="pattern.track.time_count">%1$s, %2$d min.</string>
 
 </resources>

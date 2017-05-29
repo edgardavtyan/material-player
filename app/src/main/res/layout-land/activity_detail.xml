@@ -53,7 +53,7 @@
 
 					<TextView
 						android:id="@+id/info"
-						tools:text="6 Albums \u2014 64 Tracks"
+						tools:text="6 Albums \u2022 64 Tracks"
 						style="@style/CollapsingList_Land_Info"
 						/>
 

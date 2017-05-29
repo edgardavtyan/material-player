@@ -106,7 +106,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	@Test
 	public void setTrackInfo_setInfoViewTextWithPattern() {
 		runOnUiThread(() -> fragment.setTrackInfo("artist", "album"));
-		assertThat(infoView.getText()).isEqualTo("artist \u2014 album");
+		assertThat(infoView.getText()).isEqualTo("artist \u2022 album");
 	}
 
 	@Test

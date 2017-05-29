@@ -74,7 +74,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 	public void setInfo_setInfoViewTextWithPattern() {
 		TextView infoView = holder.findView(R.id.info);
 		holder.setInfo(448945, "artist", "album");
-		assertThat(infoView.getText()).isEqualTo("07:28 | artist \u2014 album");
+		assertThat(infoView.getText()).isEqualTo("07:28 | artist \u2022 album");
 	}
 
 	@Test
