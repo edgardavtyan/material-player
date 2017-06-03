@@ -41,10 +41,12 @@ public class PlayerNotification implements PlayerNotificationMvp.View {
 		normalRemoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
 		normalRemoteViews.setOnClickBroadcast(R.id.play_pause, PlayerService.ACTION_PLAY_PAUSE);
 		normalRemoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
+		normalRemoteViews.setOnClickBroadcast(R.id.close, PlayerService.ACTION_CLOSE);
 
 		bigRemoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
 		bigRemoteViews.setOnClickBroadcast(R.id.play_pause, PlayerService.ACTION_PLAY_PAUSE);
 		bigRemoteViews.setOnClickBroadcast(R.id.fast_forward, PlayerService.ACTION_FAST_FORWARD);
+		bigRemoteViews.setOnClickBroadcast(R.id.close, PlayerService.ACTION_CLOSE);
 	}
 
 	@Override

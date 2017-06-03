@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.player;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.audiofx.LoudnessEnhancer;
@@ -20,10 +21,11 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurrou
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.MediaButtonReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.CloseReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.HeadphonesConnectedReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.MediaButtonReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
@@ -44,6 +46,7 @@ public class PlayerFactory extends BaseFactory {
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
 	private PlayerPrefs playerPrefs;
+	private CloseReceiver closeReceiver;
 	private SkipToNextReceiver skipToNextReceiver;
 	private SkipToPreviousReceiver skipToPreviousReceiver;
 	private PlayPauseReceiver playPauseReceiver;
@@ -56,6 +59,12 @@ public class PlayerFactory extends BaseFactory {
 
 	public PlayerFactory(Context context) {
 		super(context);
+	}
+
+	public BroadcastReceiver getCloseReceiver() {
+		if (closeReceiver == null)
+			closeReceiver = new CloseReceiver();
+		return closeReceiver;
 	}
 
 	public SkipToNextReceiver getSkipToNextReceiver() {

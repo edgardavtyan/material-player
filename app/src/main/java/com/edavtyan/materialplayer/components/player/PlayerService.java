@@ -22,6 +22,7 @@ public class PlayerService extends Service {
 	public static final String ACTION_PLAY_PAUSE = "action_playPause";
 	public static final String ACTION_FAST_FORWARD = "action_fastForward";
 	public static final String ACTION_REWIND = "action_rewind";
+	public static final String ACTION_CLOSE = "action_close";
 
 	public class PlayerBinder extends Binder {
 		public PlayerService getService() {
@@ -68,6 +69,7 @@ public class PlayerService extends Service {
 		registerReceiver(factory.getPlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(factory.getSkipToPreviousReceiver(), new IntentFilter(ACTION_REWIND));
 		registerReceiver(factory.getSkipToNextReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
+		registerReceiver(factory.getCloseReceiver(), new IntentFilter(ACTION_CLOSE));
 		registerReceiver(factory.getAudioBecomingNoisyReceiver(), new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
 		registerReceiver(factory.getMediaButtonReceiver(), new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
 		registerReceiver(factory.getHeadphonesConnectedReceiver(), new IntentFilter(Intent.ACTION_HEADSET_PLUG));
