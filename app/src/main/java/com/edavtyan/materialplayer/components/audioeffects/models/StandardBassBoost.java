@@ -1,8 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
 public class StandardBassBoost implements BassBoost {
-	public static final int MAX_STRENGTH = 1000;
-
 	private final android.media.audiofx.BassBoost bassBoost;
 	private final BassBoostPrefs prefs;
 
@@ -15,7 +13,7 @@ public class StandardBassBoost implements BassBoost {
 
 	@Override
 	public int getMaxStrength() {
-		return MAX_STRENGTH;
+		return 1000;
 	}
 
 	@Override

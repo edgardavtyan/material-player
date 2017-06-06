@@ -19,13 +19,13 @@ public class StandardEqualizer implements Equalizer {
 		frequencies = new int[bandsCount];
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseIndex = bandsCount - i - 1;
-			frequencies[i] = equalizer.getCenterFreq((short) reverseIndex) / 1000;
+			frequencies[i] = baseToKilo(equalizer.getCenterFreq((short) reverseIndex));
 		}
 
 		gains = prefs.getGains(bandsCount);
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseIndex = bandsCount - i - 1;
-			equalizer.setBandLevel((short) reverseIndex, (short) (gains[i] * 100));
+			equalizer.setBandLevel((short) reverseIndex, (short) milliToDeci(gains[i]));
 		}
 	}
 
@@ -47,7 +47,7 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void setBandGain(int band, int gain) {
 		int reverseBand = bandsCount - band - 1;
-		equalizer.setBandLevel((short) reverseBand, (short) (gain * 100));
+		equalizer.setBandLevel((short) reverseBand, (short) deciToMilli(gain));
 		gains[band] = gain;
 	}
 
@@ -58,7 +58,7 @@ public class StandardEqualizer implements Equalizer {
 
 	@Override
 	public int getGainLimit() {
-		return Math.abs(equalizer.getBandLevelRange()[0] / 100);
+		return Math.abs(milliToDeci(equalizer.getBandLevelRange()[0]));
 	}
 
 	@Override
@@ -69,5 +69,17 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void setEnabled(boolean isEnabled) {
 		equalizer.setEnabled(isEnabled);
+	}
+
+	private int baseToKilo(int value) {
+		return value / 1000;
+	}
+
+	private int milliToDeci(int value) {
+		return value / 100;
+	}
+
+	private int deciToMilli(int value) {
+		return value * 100;
 	}
 }

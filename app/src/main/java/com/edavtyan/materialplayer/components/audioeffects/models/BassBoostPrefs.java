@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 public class BassBoostPrefs {
-
 	private static final String PREF_STRENGTH = "bassBoost_strength";
 
 	private final AdvancedSharedPrefs prefs;

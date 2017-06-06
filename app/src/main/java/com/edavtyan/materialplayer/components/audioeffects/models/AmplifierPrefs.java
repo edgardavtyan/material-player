@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 public class AmplifierPrefs {
-
 	private static final String GAIN_KEY = "amplifier_gain";
 	private static final int GAIN_DEFAULT = 0;
 

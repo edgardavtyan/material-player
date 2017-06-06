@@ -19,12 +19,12 @@ public class StandardAmplifier implements Amplifier {
 
 	@Override
 	public int getGain() {
-		return (int) amplifier.getTargetGain() / 100;
+		return milliToDeci((int) amplifier.getTargetGain());
 	}
 
 	@Override
 	public void setGain(int gain) {
-		amplifier.setTargetGain(gain * 100);
+		amplifier.setTargetGain(deciToMilli(gain));
 	}
 
 	@Override
@@ -35,5 +35,13 @@ public class StandardAmplifier implements Amplifier {
 	@Override
 	public void saveSettings() {
 		prefs.save(getGain());
+	}
+
+	private int milliToDeci(int value) {
+		return value / 100;
+	}
+
+	private int deciToMilli(int value) {
+		return value * 100;
 	}
 }
