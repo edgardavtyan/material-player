@@ -16,7 +16,6 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -57,7 +56,7 @@ public class PlayerServiceTest extends BaseTest {
 
 		App app = mock(App.class);
 		when(app.getPlayerFactory(any())).thenReturn(playerFactory);
-		when(app.getPlayerNotificationFactory(any(), anyInt(), anyInt())).thenReturn(notificationFactory);
+		when(app.getPlayerNotificationFactory(any())).thenReturn(notificationFactory);
 
 		try {
 			Intent intent = new Intent(context, PlayerService.class);
