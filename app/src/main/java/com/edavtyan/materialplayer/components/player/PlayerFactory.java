@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components.player;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.media.audiofx.LoudnessEnhancer;
 import android.media.audiofx.Virtualizer;
 import android.os.Build;
@@ -29,6 +28,8 @@ import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceive
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+
+import net.protyposis.android.mediaplayer.MediaPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,7 +192,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public PlayerMvp.AudioEngine getAudioEngine() {
 		if (audioEngine == null)
-			audioEngine = new StandardAudioEngine(new MediaPlayer());
+			audioEngine = new ExtendedAudioEngine(new MediaPlayer());
 		return audioEngine;
 	}
 
