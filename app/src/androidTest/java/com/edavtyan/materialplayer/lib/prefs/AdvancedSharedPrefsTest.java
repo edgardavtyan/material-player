@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-@SuppressLint("CommitPrefEdits")
+@SuppressLint("ApplySharedPref")
 public class AdvancedSharedPrefsTest extends BaseTest {
 	private AdvancedSharedPrefs prefs;
 	private SharedPreferences basePrefs;
