@@ -42,5 +42,5 @@ public abstract class TestableActivity extends GenericActivity {
 
 	public void baseOnStart() {
 		super.onStart();
-	};
+	}
 }
