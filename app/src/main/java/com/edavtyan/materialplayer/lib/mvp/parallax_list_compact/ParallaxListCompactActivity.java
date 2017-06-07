@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
 
-public class ParallaxListCompactActivity extends BaseToolbarActivity {
+public abstract class ParallaxListCompactActivity extends BaseToolbarActivity {
 	@BindView(R.id.list_header) @Nullable RecyclerViewHeader header;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.info_container) LinearLayout infoContainer;
