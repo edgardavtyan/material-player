@@ -48,11 +48,6 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 		}
 	}
 
-	@Override
-	public void afterEach() {
-		super.afterEach();
-	}
-
 	@Test
 	public void create_presenter() {
 		verify(presenter).onCreate();
