@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 
 public class NowPlayingQueueViewHolderTest extends BaseTest {
 	private NowPlayingQueueViewHolder holder;
-	private View itemView;
 	private NowPlayingQueueMvp.Presenter presenter;
 	private SdkFactory sdkFactory;
 	private PopupMenu popupMenu;
@@ -44,7 +43,8 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		app.setSdkFactory(sdkFactory);
 
 		presenter = mock(NowPlayingQueueMvp.Presenter.class);
-		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
+
+		View itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		holder = new NowPlayingQueueViewHolder(context, itemView, presenter);
 	}
 

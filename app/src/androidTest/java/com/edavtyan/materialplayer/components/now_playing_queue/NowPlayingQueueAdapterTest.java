@@ -18,14 +18,12 @@ import static org.mockito.Mockito.when;
 
 public class NowPlayingQueueAdapterTest extends BaseTest {
 	private NowPlayingQueueMvp.Presenter presenter;
-	private NowPlayingQueueViewHolder holder;
 	private NowPlayingQueueAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(NowPlayingQueueMvp.Presenter.class);
-		holder = mock(NowPlayingQueueViewHolder.class);
 		adapter = spy(new NowPlayingQueueAdapter(context, presenter));
 	}
 

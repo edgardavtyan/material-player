@@ -19,7 +19,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class TrackListViewHolderTest extends BaseTest {
-	private View itemView;
 	private TrackListViewHolder holder;
 	private TextView titleView;
 	private TextView infoView;
@@ -29,7 +28,7 @@ public class TrackListViewHolderTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
+		View itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		presenter = mock(TrackListMvp.Presenter.class);
 		holder = spy(new TrackListViewHolder(context, itemView, presenter));
 		titleView = holder.findView(R.id.title);
