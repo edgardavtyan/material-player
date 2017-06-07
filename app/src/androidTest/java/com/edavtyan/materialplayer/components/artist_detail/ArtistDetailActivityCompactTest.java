@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.album_all.AlbumListAdapter;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;

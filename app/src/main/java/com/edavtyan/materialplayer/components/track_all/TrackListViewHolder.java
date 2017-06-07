@@ -3,8 +3,6 @@ package com.edavtyan.materialplayer.components.track_all;
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
@@ -12,7 +10,6 @@ import com.edavtyan.materialplayer.lib.mvp.list.ListViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class TrackListViewHolder extends ListViewHolder {
 
