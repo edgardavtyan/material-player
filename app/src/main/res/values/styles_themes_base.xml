@@ -20,6 +20,9 @@
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+
+		<item name="rippleContrast">@drawable/ripple_primary</item>
+		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
 	</style>
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
@@ -41,6 +44,9 @@
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+
+		<item name="rippleContrast">@drawable/ripple_primary</item>
+		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
 	</style>
 
 	<style name="AppTheme.Black" parent="AppTheme.Dark">

@@ -41,7 +41,7 @@
 	<style name="CollapsingHeader_AppbarShadow">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">80dp</item>
-		<item name="android:background">@drawable/collapsing_toolbar_gradient</item>
+		<item name="android:background">@drawable/collapsing_toolbar_gradient_black</item>
 	</style>
 
 </resources>

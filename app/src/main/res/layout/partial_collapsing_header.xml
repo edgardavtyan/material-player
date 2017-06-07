@@ -34,7 +34,7 @@
 			<View
 				android:layout_width="match_parent"
 				android:layout_height="80dp"
-				android:background="@drawable/collapsing_toolbar_gradient"
+				android:background="?collapsingHeaderGradient"
 				/>
 
 			<include layout="@layout/shadow_bottom_small" />

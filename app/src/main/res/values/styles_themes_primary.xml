@@ -3,6 +3,18 @@
 
 	<!-- Light -->
 
+	<style name="AppTheme.Light.White">
+		<item name="colorPrimary">@color/primary_white</item>
+		<item name="colorPrimaryDark">@color/primary_dark_white</item>
+		<item name="textColorContrastPrimary">@color/black</item>
+		<item name="textColorContrastSecondary">@color/black_dim_medium</item>
+		<item name="alertDialogTheme">@style/DialogTheme_Light_White</item>
+		<item name="colorControlActivated">@color/black</item>
+		<item name="prefCategoryTitleColor">@color/black</item>
+		<item name="rippleContrast">@drawable/ripple_base</item>
+		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_white</item>
+	</style>
+
 	<style name="AppTheme.Light.Orange">
 		<item name="colorPrimary">@color/primary_orange</item>
 		<item name="colorPrimaryDark">@color/primary_dark_orange</item>
@@ -43,7 +55,7 @@
 		<item name="colorPrimary">@color/black</item>
 		<item name="colorPrimaryDark">@color/black</item>
 		<item name="alertDialogTheme">@style/DialogTheme_Light_Black</item>
-		<item name="toolbarTheme">@style/Toolbar_Black</item>
+		<item name="toolbarTheme">@style/Toolbar</item>
 	</style>
 
 	<!-- Dark -->
@@ -90,7 +102,7 @@
 		<item name="alertDialogTheme">@style/DialogTheme_Dark_Black</item>
 		<item name="colorControlActivated">?colorControlNormal</item>
 		<item name="prefCategoryTitleColor">?textColorContrastPrimary</item>
-		<item name="toolbarTheme">@style/Toolbar_Black</item>
+		<item name="toolbarTheme">@style/Toolbar</item>
 	</style>
 
 	<!-- Black -->
@@ -140,7 +152,7 @@
 		<item name="nowPlayingBarBackground">@color/white_dim_strong</item>
 		<item name="textColorContrastPrimary">@color/white_dim_slight</item>
 		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
-		<item name="toolbarTheme">@style/Toolbar_Black</item>
+		<item name="toolbarTheme">@style/Toolbar</item>
 	</style>
 
 </resources>

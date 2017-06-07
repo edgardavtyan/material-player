@@ -12,5 +12,7 @@
 	<attr name="toolbarTheme" format="reference" />
 	<attr name="toolbarPopupTheme" format="reference" />
 	<attr name="nowPlayingBarBackground" format="color" />
+	<attr name="rippleContrast" format="reference" />
+	<attr name="collapsingHeaderGradient" format="reference" />
 
 </resources>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Toolbar_Black">
-		<item name="android:textColor">?textColorPrimary</item>
+	<style name="Toolbar">
+		<item name="android:textColorSecondary">?textColorContrastPrimary</item>
+		<item name="colorControlNormal">?textColorContrastPrimary</item>
 	</style>
+
+
 
 </resources>

@@ -3,6 +3,10 @@
 
 	<!-- Light -->
 
+	<style name="DialogTheme_Light_White" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/black</item>
+	</style>
+
 	<style name="DialogTheme_Light_Orange" parent="Theme.AppCompat.Light.Dialog.Alert">
 		<item name="colorAccent">@color/primary_orange</item>
 	</style>
