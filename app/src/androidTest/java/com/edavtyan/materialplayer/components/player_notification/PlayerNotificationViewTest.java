@@ -72,7 +72,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 	@Test
 	public void setInfo_callRemoteViews() {
 		view.setInfo("artist", "album");
-		verify(remoteViews).setTextViewText(R.id.info, "artist \u2022 album");
+		verify(remoteViews).setTextViewText(R.id.info, "album");
 	}
 
 	@Test
