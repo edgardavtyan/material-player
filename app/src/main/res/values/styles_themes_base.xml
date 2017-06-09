@@ -26,7 +26,7 @@
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
 	</style>
 
-	<style name="LightHardwareMenuTheme">
+	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
 		<item name="android:textColorSecondary">?textColorSecondary</item>
 	</style>
 
