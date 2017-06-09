@@ -20,9 +20,14 @@
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+		<item name="actionBarPopupTheme">@style/LightHardwareMenuTheme</item>
 
 		<item name="rippleContrast">@drawable/ripple_primary</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
+	</style>
+
+	<style name="LightHardwareMenuTheme">
+		<item name="android:textColorSecondary">?textColorSecondary</item>
 	</style>
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
