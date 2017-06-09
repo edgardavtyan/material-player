@@ -27,7 +27,7 @@
 	</style>
 
 	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
-		<item name="android:textColorSecondary">?textColorSecondary</item>
+		<item name="android:textColorSecondary">?textColorPrimary</item>
 	</style>
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
