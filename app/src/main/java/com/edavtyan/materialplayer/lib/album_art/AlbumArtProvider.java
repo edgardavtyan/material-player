@@ -23,29 +23,26 @@ public class AlbumArtProvider {
 	}
 
 	public Bitmap load(Track track) {
-		if (memoryCache.contains(track.getAlbumId())) {
-			return memoryCache.get(track.getAlbumId());
+		int albumId = track.getAlbumId();
+
+		if (memoryCache.contains(albumId)) {
+			return memoryCache.get(albumId);
 		}
 
-		String imagePath = Integer.toString(track.getAlbumId());
-		if (dataStorage.exists(imagePath)) {
-			Bitmap image = dataStorage.load(imagePath);
+		if (dataStorage.exists(albumId)) {
+			Bitmap image = dataStorage.load(albumId);
 
 			if (image != null) {
-				memoryCache.put(track.getAlbumId(), image);
+				memoryCache.put(albumId, image);
 			}
 
 			return image;
 		}
 
-		try {
-			byte[] imageBytes = artReader.getAlbumArtBytes(track.getPath());
-			dataStorage.saveBytes(imagePath, imageBytes);
-			Bitmap image = bitmapFactory.fromByteArray(imageBytes);
-			memoryCache.put(track.getAlbumId(), image);
-			return image;
-		} catch (Exception e) {
-			return null;
-		}
+		byte[] imageBytes = artReader.getAlbumArtBytes(track.getPath());
+		dataStorage.saveBytes(albumId, imageBytes);
+		Bitmap image = bitmapFactory.fromByteArray(imageBytes);
+		memoryCache.put(albumId, image);
+		return image;
 	}
 }
