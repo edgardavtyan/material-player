@@ -40,8 +40,8 @@ public class AlbumArtProvider {
 		}
 
 		byte[] imageBytes = artReader.getAlbumArtBytes(track.getPath());
-		dataStorage.saveBytes(albumId, imageBytes);
 		Bitmap image = bitmapFactory.fromByteArray(imageBytes);
+		dataStorage.saveBytes(albumId, imageBytes);
 		memoryCache.put(albumId, image);
 		return image;
 	}
