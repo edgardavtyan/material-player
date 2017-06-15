@@ -19,7 +19,7 @@ public class SearchArtistFragment extends SearchFragment {
 	}
 
 	public void updateArtists(List<Artist> artists) {
-		adapter.updateSearchResults(artists);
+		adapter.updateData(artists);
 	}
 
 	@Override
