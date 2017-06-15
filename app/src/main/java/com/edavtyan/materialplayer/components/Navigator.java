@@ -15,6 +15,7 @@ import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.components.prefs.PrefActivity;
+import com.edavtyan.materialplayer.components.search.SearchActivity;
 
 public class Navigator {
 	private final Context context;
@@ -61,6 +62,11 @@ public class Navigator {
 
 	public void gotoSettings() {
 		Intent intent = new Intent(context, PrefActivity.class);
+		context.startActivity(intent);
+	}
+
+	public void gotoSearch() {
+		Intent intent = new Intent(context, SearchActivity.class);
 		context.startActivity(intent);
 	}
 }

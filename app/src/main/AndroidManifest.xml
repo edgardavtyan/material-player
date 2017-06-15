@@ -93,6 +93,8 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:name=".components.search.SearchActivity" />
+
 		<service
 			android:name="com.edavtyan.materialplayer.components.player.PlayerService"
 			android:enabled="true"

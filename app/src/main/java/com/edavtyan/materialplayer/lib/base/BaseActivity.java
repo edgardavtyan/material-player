@@ -70,6 +70,9 @@ public abstract class BaseActivity
 		case R.id.menu_settings:
 			navigator.gotoSettings();
 			return true;
+		case R.id.menu_search:
+			navigator.gotoSearch();
+			return true;
 		}
 
 		return super.onOptionsItemSelected(item);

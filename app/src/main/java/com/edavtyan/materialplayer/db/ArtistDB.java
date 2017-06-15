@@ -43,6 +43,12 @@ public class ArtistDB {
 		return getArtistsFromCursor(selection, args, null).get(0);
 	}
 
+	public List<Artist> searchArtists(String artistTitle) {
+		String selection = KEY_TITLE + " LIKE ?";
+		String[] args = new String[]{"%" + artistTitle + "%"};
+		return getArtistsFromCursor(selection, args, null);
+	}
+
 	private Artist getArtistFromCursor(Cursor cursor) {
 		Artist artist = new Artist();
 		artist.setId(cursor.getInt(INDEX_ID));
