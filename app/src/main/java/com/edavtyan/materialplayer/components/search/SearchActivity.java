@@ -2,7 +2,8 @@ package com.edavtyan.materialplayer.components.search;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,11 +12,10 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.base.BaseActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,9 +24,10 @@ public class SearchActivity extends BaseActivity {
 	@BindView(R.id.back) ImageButton backButton;
 	@BindView(R.id.search) EditText searchEditText;
 	@BindView(R.id.list) RecyclerView searchResultsList;
+	@BindView(R.id.tabs) TabLayout tabLayout;
+	@BindView(R.id.view_pager) ViewPager viewPager;
 
-	private SearchPresenter presenter;
-	private SearchAdapter adapter;
+	private List<OnSearchQueryChangedListener> onSearchQueryChangedListeners;
 
 	private View.OnClickListener onBackButtonClickListener = v -> finish();
 
@@ -37,13 +38,19 @@ public class SearchActivity extends BaseActivity {
 
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			presenter.onSearchChange(s.toString());
+			for (OnSearchQueryChangedListener listener : onSearchQueryChangedListeners) {
+				listener.onSearchQueryChanged(s.toString());
+			}
 		}
 
 		@Override
 		public void afterTextChanged(Editable s) {
 		}
 	};
+
+	public interface OnSearchQueryChangedListener {
+		void onSearchQueryChanged(String query);
+	}
 
 	@Override
 	public int getLayoutId() {
@@ -54,21 +61,26 @@ public class SearchActivity extends BaseActivity {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		App app = (App) getApplicationContext();
-		SearchFactory factory = app.getSearchFactory(this, this);
-		presenter = factory.getPresenter();
-		adapter = factory.getAdapter();
+		onSearchQueryChangedListeners = new ArrayList<>();
 
 		backButton.setOnClickListener(onBackButtonClickListener);
 		searchEditText.addTextChangedListener(onSearchQueryChangeWatcher);
 
-		searchResultsList.setAdapter(adapter);
-		searchResultsList.setLayoutManager(new LinearLayoutManager(this));
+		viewPager.setAdapter(new SearchTabsAdapter(getSupportFragmentManager()));
+		tabLayout.setupWithViewPager(viewPager);
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 	}
 
-	public void updateSearchResults(List<Artist> artists) {
-		adapter.updateSearchResults(artists);
+	public void addOnSearchQueryChangedListener(OnSearchQueryChangedListener listener) {
+		onSearchQueryChangedListeners.add(listener);
+	}
+
+	public void removeOnSearchQueryChangedListener(OnSearchQueryChangedListener listener) {
+		onSearchQueryChangedListeners.remove(listener);
+	}
+
+	public String getSearchQuery() {
+		return searchEditText.getText().toString();
 	}
 }

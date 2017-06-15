@@ -5,26 +5,26 @@ import android.content.Context;
 import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class SearchFactory extends BaseFactory {
+public class SearchArtistFactory extends BaseFactory {
 	private final DBModule dbModule;
-	private final SearchActivity view;
-	private SearchModel model;
-	private SearchPresenter presenter;
+	private final SearchArtistFragment view;
+	private SearchArtistModel model;
+	private SearchArtistPresenter presenter;
 	private SearchAdapter adapter;
 
-	public SearchFactory(Context context, SearchActivity view) {
+	public SearchArtistFactory(Context context, SearchArtistFragment view) {
 		super(context);
 		this.view = view;
 		this.dbModule = new DBModule(context);
 	}
 
-	public SearchModel getModel() {
+	public SearchArtistModel getModel() {
 		if (model == null)
-			model = new SearchModel(dbModule.getArtistDB());
+			model = new SearchArtistModel(dbModule.getArtistDB());
 		return model;
 	}
 
-	public SearchActivity getView() {
+	public SearchArtistFragment getView() {
 		return view;
 	}
 
@@ -34,9 +34,9 @@ public class SearchFactory extends BaseFactory {
 		return adapter;
 	}
 
-	public SearchPresenter getPresenter() {
+	public SearchArtistPresenter getPresenter() {
 		if (presenter == null)
-			presenter = new SearchPresenter(getModel(), getView());
+			presenter = new SearchArtistPresenter(getModel(), getView());
 		return presenter;
 	}
 }

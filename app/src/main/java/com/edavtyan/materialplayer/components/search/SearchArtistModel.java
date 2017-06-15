@@ -5,10 +5,10 @@ import com.edavtyan.materialplayer.db.ArtistDB;
 
 import java.util.List;
 
-public class SearchModel {
+public class SearchArtistModel {
 	private final ArtistDB artistDB;
 
-	public SearchModel(ArtistDB artistDB) {
+	public SearchArtistModel(ArtistDB artistDB) {
 		this.artistDB = artistDB;
 	}
 
