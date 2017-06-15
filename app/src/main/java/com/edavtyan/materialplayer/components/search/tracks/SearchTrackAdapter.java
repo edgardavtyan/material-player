@@ -5,11 +5,10 @@ import android.view.View;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.search.base.SearchAdapter;
-import com.edavtyan.materialplayer.db.Track;
 
-public class SearchTrackAdapter extends SearchAdapter<SearchTrackViewHolder, Track> {
-	public SearchTrackAdapter(Context context) {
-		super(context);
+public class SearchTrackAdapter extends SearchAdapter<SearchTrackViewHolder> {
+	public SearchTrackAdapter(Context context, SearchTrackPresenter presenter) {
+		super(context, presenter);
 	}
 
 	@Override
@@ -20,10 +19,5 @@ public class SearchTrackAdapter extends SearchAdapter<SearchTrackViewHolder, Tra
 	@Override
 	public SearchTrackViewHolder onCreateViewHolder(View itemView) {
 		return new SearchTrackViewHolder(itemView);
-	}
-
-	@Override
-	public void onBindViewHolder(SearchTrackViewHolder holder, int position) {
-		holder.setTitle(getData().get(position).getTitle());
 	}
 }

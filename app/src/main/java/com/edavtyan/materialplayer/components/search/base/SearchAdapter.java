@@ -9,19 +9,14 @@ import android.view.ViewGroup;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import lombok.Getter;
-
-public abstract class SearchAdapter<VH extends BaseViewHolder, T>
+public abstract class SearchAdapter<VH extends BaseViewHolder>
 		extends TestableRecyclerAdapter<VH> {
 	private final Context context;
-	private final @Getter List<T> data;
+	private final SearchPresenter<VH> presenter;
 
-	public SearchAdapter(Context context) {
+	public SearchAdapter(Context context, SearchPresenter<VH> presenter) {
 		this.context = context;
-		data = new ArrayList<>();
+		this.presenter = presenter;
 	}
 
 	@Override
@@ -32,18 +27,21 @@ public abstract class SearchAdapter<VH extends BaseViewHolder, T>
 	}
 
 	@Override
-	public int getItemCount() {
-		return data.size();
+	public void onBindViewHolder(VH holder, int position) {
+		presenter.onBindViewHolder(holder, position);
 	}
 
-	public void updateData(List<T> newData) {
-		data.clear();
-		data.addAll(newData);
+	@Override
+	public int getItemCount() {
+		return presenter.getItemCount();
+	}
+
+	public void updateData() {
 		notifyDataSetChanged();
 	}
 
 	@LayoutRes
-	protected abstract int  getLayoutId();
+	protected abstract int getLayoutId();
 
 	protected abstract VH onCreateViewHolder(View itemView);
 }

@@ -30,7 +30,7 @@ public class SearchArtistFactory extends BaseFactory {
 
 	public SearchArtistAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new SearchArtistAdapter(getContext());
+			adapter = new SearchArtistAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 

@@ -30,7 +30,7 @@ public class SearchTrackFactory extends BaseFactory {
 
 	public SearchTrackAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new SearchTrackAdapter(getContext());
+			adapter = new SearchTrackAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 

@@ -30,7 +30,7 @@ public class SearchAlbumFactory extends BaseFactory {
 
 	public SearchAlbumAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new SearchAlbumAdapter(getContext());
+			adapter = new SearchAlbumAdapter(getContext(), getPresenter());
 		return adapter;
 	}
 

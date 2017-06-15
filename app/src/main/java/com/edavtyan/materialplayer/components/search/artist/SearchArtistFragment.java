@@ -1,9 +1,6 @@
 package com.edavtyan.materialplayer.components.search.artist;
 
 import com.edavtyan.materialplayer.components.search.base.SearchFragment;
-import com.edavtyan.materialplayer.db.Artist;
-
-import java.util.List;
 
 public class SearchArtistFragment extends SearchFragment {
 
@@ -18,8 +15,8 @@ public class SearchArtistFragment extends SearchFragment {
 		setAdapter(adapter);
 	}
 
-	public void updateArtists(List<Artist> artists) {
-		adapter.updateData(artists);
+	public void updateArtists() {
+		adapter.notifyDataSetChangedNonFinal();
 	}
 
 	@Override

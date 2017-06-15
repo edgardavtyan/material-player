@@ -1,9 +1,6 @@
 package com.edavtyan.materialplayer.components.search.tracks;
 
 import com.edavtyan.materialplayer.components.search.base.SearchFragment;
-import com.edavtyan.materialplayer.db.Track;
-
-import java.util.List;
 
 public class SearchTrackFragment extends SearchFragment {
 
@@ -18,8 +15,8 @@ public class SearchTrackFragment extends SearchFragment {
 		setAdapter(adapter);
 	}
 
-	public void updateTracks(List<Track> tracks) {
-		adapter.updateData(tracks);
+	public void updateTracks() {
+		adapter.notifyDataSetChangedNonFinal();
 	}
 
 	@Override

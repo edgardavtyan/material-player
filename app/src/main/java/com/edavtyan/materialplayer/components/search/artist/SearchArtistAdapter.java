@@ -5,11 +5,10 @@ import android.view.View;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.search.base.SearchAdapter;
-import com.edavtyan.materialplayer.db.Artist;
 
-public class SearchArtistAdapter extends SearchAdapter<SearchArtistViewHolder, Artist> {
-	public SearchArtistAdapter(Context context) {
-		super(context);
+public class SearchArtistAdapter extends SearchAdapter<SearchArtistViewHolder> {
+	public SearchArtistAdapter(Context context, SearchArtistPresenter presenter) {
+		super(context, presenter);
 	}
 
 	@Override
@@ -20,10 +19,5 @@ public class SearchArtistAdapter extends SearchAdapter<SearchArtistViewHolder, A
 	@Override
 	public SearchArtistViewHolder onCreateViewHolder(View itemView) {
 		return new SearchArtistViewHolder(itemView);
-	}
-
-	@Override
-	public void onBindViewHolder(SearchArtistViewHolder holder, int position) {
-		holder.setTitle(getData().get(position).getTitle());
 	}
 }

@@ -1,9 +1,6 @@
 package com.edavtyan.materialplayer.components.search.album;
 
 import com.edavtyan.materialplayer.components.search.base.SearchFragment;
-import com.edavtyan.materialplayer.db.Album;
-
-import java.util.List;
 
 public class SearchAlbumFragment extends SearchFragment {
 
@@ -18,8 +15,8 @@ public class SearchAlbumFragment extends SearchFragment {
 		setAdapter(adapter);
 	}
 
-	public void updateAlbums(List<Album> albums) {
-		adapter.updateData(albums);
+	public void updateData() {
+		adapter.updateData();
 	}
 
 	@Override
