@@ -26,8 +26,8 @@ import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueF
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueMvp;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.search.SearchArtistFactory;
-import com.edavtyan.materialplayer.components.search.SearchArtistFragment;
+import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
+import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment;
 import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;

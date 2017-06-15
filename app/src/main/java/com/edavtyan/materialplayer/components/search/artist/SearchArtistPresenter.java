@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.search;
+package com.edavtyan.materialplayer.components.search.artist;
 
 public class SearchArtistPresenter {
 	private final SearchArtistModel model;

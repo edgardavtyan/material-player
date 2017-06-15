@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.search;
+package com.edavtyan.materialplayer.components.search.artist;
 
 import android.content.Context;
 
@@ -10,7 +10,7 @@ public class SearchArtistFactory extends BaseFactory {
 	private final SearchArtistFragment view;
 	private SearchArtistModel model;
 	private SearchArtistPresenter presenter;
-	private SearchAdapter adapter;
+	private SearchArtistAdapter adapter;
 
 	public SearchArtistFactory(Context context, SearchArtistFragment view) {
 		super(context);
@@ -28,9 +28,9 @@ public class SearchArtistFactory extends BaseFactory {
 		return view;
 	}
 
-	public SearchAdapter getAdapter() {
+	public SearchArtistAdapter getAdapter() {
 		if (adapter == null)
-			adapter = new SearchAdapter(getContext());
+			adapter = new SearchArtistAdapter(getContext());
 		return adapter;
 	}
 

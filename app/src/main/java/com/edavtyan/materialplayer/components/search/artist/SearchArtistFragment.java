@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.search;
+package com.edavtyan.materialplayer.components.search.artist;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.search.SearchActivity;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
 
@@ -22,7 +23,7 @@ public class SearchArtistFragment extends BaseFragment
 		implements SearchActivity.OnSearchQueryChangedListener {
 	@BindView(R.id.list) RecyclerView list;
 
-	private SearchAdapter adapter;
+	private SearchArtistAdapter adapter;
 	private SearchActivity activity;
 	private SearchArtistPresenter presenter;
 

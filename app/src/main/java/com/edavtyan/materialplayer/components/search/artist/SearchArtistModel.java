@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.search;
+package com.edavtyan.materialplayer.components.search.artist;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;

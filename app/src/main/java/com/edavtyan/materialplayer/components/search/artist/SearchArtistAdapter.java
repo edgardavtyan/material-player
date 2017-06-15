@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.search;
+package com.edavtyan.materialplayer.components.search.artist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,17 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.search.SearchViewHolder;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchAdapter extends TestableRecyclerAdapter<SearchViewHolder> {
+public class SearchArtistAdapter extends TestableRecyclerAdapter<SearchViewHolder> {
 	private final Context context;
 	private final List<Artist> artists;
 
-	public SearchAdapter(Context context) {
+	public SearchArtistAdapter(Context context) {
 		this.context = context;
 		this.artists = new ArrayList<>();
 	}
