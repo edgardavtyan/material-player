@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.search.SearchViewHolder;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchArtistAdapter extends TestableRecyclerAdapter<SearchViewHolder> {
+public class SearchArtistAdapter extends TestableRecyclerAdapter<SearchArtistViewHolder> {
 	private final Context context;
 	private final List<Artist> artists;
 
@@ -23,14 +22,14 @@ public class SearchArtistAdapter extends TestableRecyclerAdapter<SearchViewHolde
 	}
 
 	@Override
-	public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public SearchArtistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View itemView = inflater.inflate(R.layout.listitem_track_compact, parent, false);
-		return new SearchViewHolder(itemView);
+		return new SearchArtistViewHolder(itemView);
 	}
 
 	@Override
-	public void onBindViewHolder(SearchViewHolder holder, int position) {
+	public void onBindViewHolder(SearchArtistViewHolder holder, int position) {
 		holder.setTitle(artists.get(position).getTitle());
 	}
 

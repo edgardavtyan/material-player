@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.search;
+package com.edavtyan.materialplayer.components.search.artist;
 
 import android.view.View;
 import android.widget.TextView;
@@ -8,10 +8,10 @@ import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
 import butterknife.BindView;
 
-public class SearchViewHolder extends BaseViewHolder {
+public class SearchArtistViewHolder extends BaseViewHolder {
 	@BindView(R.id.title) TextView titleView;
 
-	public SearchViewHolder(View itemView) {
+	public SearchArtistViewHolder(View itemView) {
 		super(itemView);
 	}
 
