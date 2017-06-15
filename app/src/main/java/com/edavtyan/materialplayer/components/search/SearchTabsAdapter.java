@@ -6,13 +6,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFragment;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment;
+import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchTabsAdapter extends FragmentPagerAdapter {
 	private List<Fragment> fragments;
-	private CharSequence[] titles = {"Artists", "Albums"};
+	private CharSequence[] titles = {"Artists", "Albums", "Tracks"};
 
 	public SearchTabsAdapter(FragmentManager fm) {
 		super(fm);
@@ -20,6 +21,7 @@ public class SearchTabsAdapter extends FragmentPagerAdapter {
 		fragments = new ArrayList<>();
 		fragments.add(new SearchArtistFragment());
 		fragments.add(new SearchAlbumFragment());
+		fragments.add(new SearchTrackFragment());
 	}
 
 	@Override
