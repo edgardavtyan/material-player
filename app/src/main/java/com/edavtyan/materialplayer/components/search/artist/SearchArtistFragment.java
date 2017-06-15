@@ -12,7 +12,7 @@ public class SearchArtistFragment extends SearchFragment {
 
 	@Override
 	protected void onPostCreateView() {
-		SearchArtistFactory factory = app.getSearchFactory(getContext(), this);
+		SearchArtistFactory factory = app.getSearchArtistFactory(getContext(), this);
 		presenter = factory.getPresenter();
 		adapter = factory.getAdapter();
 		setAdapter(adapter);

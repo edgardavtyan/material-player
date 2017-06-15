@@ -137,7 +137,7 @@ public class App extends Application {
 				: sdkFactory;
 	}
 
-	public SearchArtistFactory getSearchFactory(Context context, SearchArtistFragment view) {
+	public SearchArtistFactory getSearchArtistFactory(Context context, SearchArtistFragment view) {
 		return (searchArtistFactory == null)
 				? new SearchArtistFactory(context, view)
 				: searchArtistFactory;
