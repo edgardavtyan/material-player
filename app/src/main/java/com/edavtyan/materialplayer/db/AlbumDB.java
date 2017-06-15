@@ -55,6 +55,12 @@ public class AlbumDB {
 		return getListOfAlbums(selection, args, null).get(0);
 	}
 
+	public List<Album> searchAlbums(String albumTitle) {
+		String selection = KEY_TITLE + " LIKE ?";
+		String[] args = new String[]{"%" + albumTitle + "%"};
+		return getListOfAlbums(selection, args, null);
+	}
+
 	private Album getAlbumFromCursor(Cursor cursor) {
 		Album album = new Album();
 		album.setId(cursor.getInt(INDEX_ID));
