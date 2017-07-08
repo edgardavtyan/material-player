@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.edavtyan.materialplayer.utils.Strings;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Cleanup;
@@ -56,6 +59,7 @@ public class AlbumDB {
 	}
 
 	public List<Album> searchAlbums(String albumTitle) {
+		if (Strings.nullOrEmpty(albumTitle)) return Collections.emptyList();
 		String selection = KEY_TITLE + " LIKE ?";
 		String[] args = new String[]{"%" + albumTitle + "%"};
 		return getListOfAlbums(selection, args, KEY_TITLE);

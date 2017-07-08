@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.edavtyan.materialplayer.utils.Strings;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Cleanup;
@@ -65,6 +68,7 @@ public class TrackDB {
 	}
 
 	public List<Track> searchTracks(String trackTitle) {
+		if (Strings.nullOrEmpty(trackTitle)) return Collections.emptyList();
 		String selection = KEY_TITLE + " LIKE ?";
 		String[] args = new String[]{"%" + trackTitle + "%"};
 		return getListOfTracks(selection, args, KEY_TITLE);

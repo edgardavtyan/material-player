@@ -7,4 +7,8 @@ public class Strings {
 		joinedArray = joinedArray.substring(0, joinedArray.length() - 1);
 		return joinedArray;
 	}
+
+	public static boolean nullOrEmpty(String str) {
+		return str == null || str.equals("");
+	}
 }
