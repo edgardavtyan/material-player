@@ -2,10 +2,10 @@ package com.edavtyan.materialplayer.components.search.tracks;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
 import com.edavtyan.materialplayer.db.DBModule;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class SearchTrackFactory extends BaseFactory {
+public class SearchTrackFactory extends TrackListFactory {
 	private final DBModule dbModule;
 	private final SearchTrackFragment view;
 	private SearchTrackModel model;
@@ -13,14 +13,14 @@ public class SearchTrackFactory extends BaseFactory {
 	private SearchTrackAdapter adapter;
 
 	public SearchTrackFactory(Context context, SearchTrackFragment view) {
-		super(context);
+		super(context, view);
 		this.view = view;
 		this.dbModule = new DBModule(context);
 	}
 
 	public SearchTrackModel getModel() {
 		if (model == null)
-			model = new SearchTrackModel(dbModule.getTrackDB());
+			model = new SearchTrackModel(getContext(), dbModule.getTrackDB(), getCompactListPref());
 		return model;
 	}
 
