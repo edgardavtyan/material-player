@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 
 public class SearchAlbumFactory extends BaseFactory {
 	private final DBModule dbModule;
@@ -11,6 +12,7 @@ public class SearchAlbumFactory extends BaseFactory {
 	private SearchAlbumModel model;
 	private SearchAlbumPresenter presenter;
 	private SearchAlbumAdapter adapter;
+	private CompactListPref compactListPref;
 
 	public SearchAlbumFactory(Context context, SearchAlbumFragment view) {
 		super(context);
@@ -20,7 +22,7 @@ public class SearchAlbumFactory extends BaseFactory {
 
 	public SearchAlbumModel getModel() {
 		if (model == null)
-			model = new SearchAlbumModel(dbModule.getAlbumDB());
+			model = new SearchAlbumModel(getContext(), dbModule.getAlbumDB(), dbModule.getTrackDB(), getCompactListPref());
 		return model;
 	}
 
@@ -38,5 +40,11 @@ public class SearchAlbumFactory extends BaseFactory {
 		if (presenter == null)
 			presenter = new SearchAlbumPresenter(getModel(), getView());
 		return presenter;
+	}
+
+	public CompactListPref getCompactListPref() {
+		if (compactListPref == null)
+			compactListPref = new CompactListPref(getContext(), getPrefs());
+		return compactListPref;
 	}
 }

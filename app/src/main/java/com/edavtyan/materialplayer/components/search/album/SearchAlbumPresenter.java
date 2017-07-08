@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.components.search.album;
 
-import com.edavtyan.materialplayer.components.search.base.SearchPresenter;
+import com.edavtyan.materialplayer.components.album_all.AlbumListPresenter;
 
-public class SearchAlbumPresenter extends SearchPresenter<SearchAlbumViewHolder> {
+public class SearchAlbumPresenter extends AlbumListPresenter {
 	private final SearchAlbumModel model;
 	private final SearchAlbumFragment view;
 
@@ -13,12 +13,8 @@ public class SearchAlbumPresenter extends SearchPresenter<SearchAlbumViewHolder>
 	}
 
 	public void onSearchChange(String query) {
-		model.update(query);
+		model.setArtistTitle(query);
+		model.update();
 		view.updateData();
-	}
-
-	@Override
-	public void onBindViewHolder(SearchAlbumViewHolder holder, int position) {
-		holder.setTitle(model.getItemAt(position).getTitle());
 	}
 }

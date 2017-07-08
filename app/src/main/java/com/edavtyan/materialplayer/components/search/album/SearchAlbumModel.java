@@ -1,19 +1,33 @@
 package com.edavtyan.materialplayer.components.search.album;
 
-import com.edavtyan.materialplayer.components.search.base.SearchModel;
+import android.content.Context;
+
+import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 
 import java.util.List;
 
-public class SearchAlbumModel extends SearchModel<Album> {
+import lombok.Setter;
+
+public class SearchAlbumModel extends AlbumListModel {
 	private final AlbumDB albumDB;
 
-	public SearchAlbumModel(AlbumDB albumDB) {
+	private @Setter String artistTitle;
+
+	public SearchAlbumModel(
+			Context context,
+			AlbumDB albumDB,
+			TrackDB trackDB,
+			CompactListPref compactListPref) {
+		super(context, albumDB, trackDB, compactListPref);
 		this.albumDB = albumDB;
 	}
 
-	public List<Album> getSearchResults(String query) {
-		return albumDB.searchAlbums(query);
+	@Override
+	protected List<Album> queryAlbums() {
+		return albumDB.searchAlbums(artistTitle);
 	}
 }
