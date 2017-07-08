@@ -1,23 +1,12 @@
 package com.edavtyan.materialplayer.components.search.artist;
 
 import android.content.Context;
-import android.view.View;
 
-import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.search.base.SearchAdapter;
+import com.edavtyan.materialplayer.components.artist_all.ArtistListAdapter;
+import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
 
-public class SearchArtistAdapter extends SearchAdapter<SearchArtistViewHolder> {
-	public SearchArtistAdapter(Context context, SearchArtistPresenter presenter) {
+public class SearchArtistAdapter extends ArtistListAdapter {
+	public SearchArtistAdapter(Context context, ArtistListMvp.Presenter presenter) {
 		super(context, presenter);
-	}
-
-	@Override
-	protected int getLayoutId() {
-		return R.layout.listitem_track_compact;
-	}
-
-	@Override
-	public SearchArtistViewHolder onCreateViewHolder(View itemView) {
-		return new SearchArtistViewHolder(itemView);
 	}
 }

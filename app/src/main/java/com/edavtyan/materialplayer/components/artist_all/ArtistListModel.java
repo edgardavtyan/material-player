@@ -30,7 +30,7 @@ public class ArtistListModel
 
 	@Override
 	public void update() {
-		artists = db.getAllArtists();
+		artists = queryArtists();
 	}
 
 	@Override
@@ -54,5 +54,9 @@ public class ArtistListModel
 		} else {
 			new ArtistListImageTask(imageLoader, callback).execute(artistTitle);
 		}
+	}
+
+	protected List<Artist> queryArtists() {
+		return db.getAllArtists();
 	}
 }

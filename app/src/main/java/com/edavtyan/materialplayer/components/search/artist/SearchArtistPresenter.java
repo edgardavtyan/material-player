@@ -1,8 +1,9 @@
 package com.edavtyan.materialplayer.components.search.artist;
 
+import com.edavtyan.materialplayer.components.artist_all.ArtistListPresenter;
 import com.edavtyan.materialplayer.components.search.base.SearchPresenter;
 
-public class SearchArtistPresenter extends SearchPresenter<SearchArtistViewHolder> {
+public class SearchArtistPresenter extends ArtistListPresenter {
 	private final SearchArtistModel model;
 	private final SearchArtistFragment view;
 
@@ -13,12 +14,8 @@ public class SearchArtistPresenter extends SearchPresenter<SearchArtistViewHolde
 	}
 
 	public void onSearchChange(String query) {
-		model.update(query);
+		model.setArtistTitle(query);
+		model.update();
 		view.updateArtists();
-	}
-
-	@Override
-	public void onBindViewHolder(SearchArtistViewHolder holder, int position) {
-		holder.setTitle(model.getItemAt(position).getTitle());
 	}
 }

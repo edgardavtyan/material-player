@@ -2,10 +2,10 @@ package com.edavtyan.materialplayer.components.search.artist;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
 import com.edavtyan.materialplayer.db.DBModule;
-import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
-public class SearchArtistFactory extends BaseFactory {
+public class SearchArtistFactory extends ArtistListFactory {
 	private final DBModule dbModule;
 	private final SearchArtistFragment view;
 	private SearchArtistModel model;
@@ -13,14 +13,18 @@ public class SearchArtistFactory extends BaseFactory {
 	private SearchArtistAdapter adapter;
 
 	public SearchArtistFactory(Context context, SearchArtistFragment view) {
-		super(context);
+		super(context, view);
 		this.view = view;
 		this.dbModule = new DBModule(context);
 	}
 
 	public SearchArtistModel getModel() {
 		if (model == null)
-			model = new SearchArtistModel(dbModule.getArtistDB());
+			model = new SearchArtistModel(
+					getContext(),
+					dbModule.getArtistDB(),
+					getImageLoader(),
+					getCompactListPref());
 		return model;
 	}
 
