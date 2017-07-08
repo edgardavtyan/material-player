@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.components.search.artist;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListPresenter;
 import com.edavtyan.materialplayer.components.search.base.SearchPresenter;
 
-public class SearchArtistPresenter extends ArtistListPresenter {
+public class SearchArtistPresenter extends ArtistListPresenter implements SearchPresenter {
 	private final SearchArtistModel model;
 	private final SearchArtistFragment view;
 
@@ -16,6 +16,6 @@ public class SearchArtistPresenter extends ArtistListPresenter {
 	public void onSearchChange(String query) {
 		model.setArtistTitle(query);
 		model.update();
-		view.updateArtists();
+		view.notifyDataSetChanged();
 	}
 }

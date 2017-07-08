@@ -1,40 +1,32 @@
 package com.edavtyan.materialplayer.components.search.artist;
 
-import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
-import com.edavtyan.materialplayer.components.search.base.SearchFragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
-public class SearchArtistFragment extends SearchFragment implements ArtistListMvp.View {
+import com.edavtyan.materialplayer.components.artist_all.ArtistListFragment;
+import com.edavtyan.materialplayer.components.search.SearchQueryInit;
 
-	private SearchArtistAdapter adapter;
-	private SearchArtistPresenter presenter;
-	private Navigator navigator;
+public class SearchArtistFragment extends ArtistListFragment {
+
+	private SearchQueryInit searchQueryInit;
 
 	@Override
-	protected void onPostCreateView() {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		SearchArtistFactory factory = app.getSearchArtistFactory(getContext(), this);
-		presenter = factory.getPresenter();
-		adapter = factory.getAdapter();
-		navigator = factory.getNavigator();
-		setAdapter(adapter);
-	}
-
-	public void updateArtists() {
-		adapter.notifyDataSetChangedNonFinal();
+		initListView(factory.getPresenter(), factory.getAdapter());
+		searchQueryInit = new SearchQueryInit(this, factory.getPresenter());
 	}
 
 	@Override
-	public void onSearchQueryChanged(String query) {
-		presenter.onSearchChange(query);
+	public void onStart() {
+		super.onStart();
+		searchQueryInit.init();
 	}
 
 	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
-
-	@Override
-	public void gotoArtistDetail(String title) {
-		navigator.gotoArtistDetail(title);
+	public void onStop() {
+		super.onStop();
+		searchQueryInit.destroy();
 	}
 }

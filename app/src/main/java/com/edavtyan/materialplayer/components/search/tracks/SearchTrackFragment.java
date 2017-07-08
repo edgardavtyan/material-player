@@ -1,40 +1,32 @@
 package com.edavtyan.materialplayer.components.search.tracks;
 
-import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.search.base.SearchFragment;
-import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
-public class SearchTrackFragment extends SearchFragment implements TrackListMvp.View {
+import com.edavtyan.materialplayer.components.search.SearchQueryInit;
+import com.edavtyan.materialplayer.components.track_all.TrackListFragment;
 
-	private SearchTrackAdapter adapter;
-	private SearchTrackPresenter presenter;
-	private Navigator navigator;
+public class SearchTrackFragment extends TrackListFragment {
+
+	private SearchQueryInit searchQueryInit;
 
 	@Override
-	protected void onPostCreateView() {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		SearchTrackFactory factory = app.getSearchTrackFactory(getContext(), this);
-		presenter = factory.getPresenter();
-		adapter = factory.getAdapter();
-		navigator = factory.getNavigator();
-		setAdapter(adapter);
-	}
-
-	public void updateTracks() {
-		adapter.notifyDataSetChangedNonFinal();
+		initListView(factory.getPresenter(), factory.getAdapter());
+		searchQueryInit = new SearchQueryInit(this, factory.getPresenter());
 	}
 
 	@Override
-	public void onSearchQueryChanged(String query) {
-		presenter.onSearchChange(query);
+	public void onStart() {
+		super.onStart();
+		searchQueryInit.init();
 	}
 
 	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
-
-	@Override
-	public void gotoNowPlaying() {
-		navigator.gotoNowPlaying();
+	public void onStop() {
+		super.onStop();
+		searchQueryInit.destroy();
 	}
 }
