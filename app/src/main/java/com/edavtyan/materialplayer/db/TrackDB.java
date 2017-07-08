@@ -67,7 +67,7 @@ public class TrackDB {
 	public List<Track> searchTracks(String trackTitle) {
 		String selection = KEY_TITLE + " LIKE ?";
 		String[] args = new String[]{"%" + trackTitle + "%"};
-		return getListOfTracks(selection, args, null);
+		return getListOfTracks(selection, args, KEY_TITLE);
 	}
 
 	private Track getTrackFromCursor(Cursor cursor) {
