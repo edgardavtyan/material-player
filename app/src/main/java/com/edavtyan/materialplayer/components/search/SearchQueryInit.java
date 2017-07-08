@@ -15,6 +15,7 @@ public class SearchQueryInit implements SearchActivity.OnSearchQueryChangedListe
 
 	public void init() {
 		activity.addOnSearchQueryChangedListener(this);
+		presenter.onSearchChange(activity.getSearchQuery());
 	}
 
 	public void destroy() {
