@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.search.album;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
+import com.edavtyan.materialplayer.components.search.base.SearchModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -12,10 +13,10 @@ import java.util.List;
 
 import lombok.Setter;
 
-public class SearchAlbumModel extends AlbumListModel {
+public class SearchAlbumModel extends AlbumListModel implements SearchModel {
 	private final AlbumDB albumDB;
 
-	private @Setter String artistTitle;
+	private @Setter String query;
 
 	public SearchAlbumModel(
 			Context context,
@@ -28,6 +29,11 @@ public class SearchAlbumModel extends AlbumListModel {
 
 	@Override
 	protected List<Album> queryAlbums() {
-		return albumDB.searchAlbums(artistTitle);
+		return albumDB.searchAlbums(query);
+	}
+
+	@Override
+	public int getSearchResultCount() {
+		return getAlbumsCount();
 	}
 }

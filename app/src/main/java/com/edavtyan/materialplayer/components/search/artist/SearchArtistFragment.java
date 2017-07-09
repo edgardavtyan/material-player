@@ -3,30 +3,47 @@ package com.edavtyan.materialplayer.components.search.artist;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.artist_all.ArtistListFragment;
-import com.edavtyan.materialplayer.components.search.SearchQueryInit;
+import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
+import com.edavtyan.materialplayer.components.search.base.SearchView;
 
-public class SearchArtistFragment extends ArtistListFragment {
+public class SearchArtistFragment extends ArtistListFragment implements SearchView {
 
-	private SearchQueryInit searchQueryInit;
+	private SearchViewImpl searchViewImpl;
+
+	@Override
+	protected int getLayoutId() {
+		return R.layout.fragment_list_search;
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		SearchArtistFactory factory = app.getSearchArtistFactory(getContext(), this);
 		initListView(factory.getPresenter(), factory.getAdapter());
-		searchQueryInit = new SearchQueryInit(this, factory.getPresenter());
+		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		searchQueryInit.init();
+		searchViewImpl.init();
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		searchQueryInit.destroy();
+		searchViewImpl.destroy();
+	}
+
+	@Override
+	public void showEmptyQuery() {
+		searchViewImpl.showEmptyQuery();
+	}
+
+	@Override
+	public void showEmptyResult() {
+		searchViewImpl.showEmptyResult();
 	}
 }

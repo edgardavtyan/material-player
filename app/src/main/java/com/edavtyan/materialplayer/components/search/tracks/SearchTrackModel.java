@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.search.tracks;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.components.search.base.SearchModel;
 import com.edavtyan.materialplayer.components.track_all.TrackListModel;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -11,10 +12,10 @@ import java.util.List;
 
 import lombok.Setter;
 
-public class SearchTrackModel extends TrackListModel {
+public class SearchTrackModel extends TrackListModel implements SearchModel {
 	private final TrackDB trackDB;
 
-	private @Setter String trackTitle;
+	private @Setter String query;
 
 	public SearchTrackModel(Context context, TrackDB trackDB, CompactListPref compactListPref) {
 		super(context, trackDB, compactListPref);
@@ -23,6 +24,11 @@ public class SearchTrackModel extends TrackListModel {
 
 	@Override
 	protected List<Track> queryTracks() {
-		return trackDB.searchTracks(trackTitle);
+		return trackDB.searchTracks(query);
+	}
+
+	@Override
+	public int getSearchResultCount() {
+		return getItemCount();
 	}
 }

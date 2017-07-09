@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.lib.mvp.list;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,13 +24,18 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 		presenter.onCreate();
 	}
 
+	@LayoutRes
+	protected int getLayoutId() {
+		return R.layout.fragment_list;
+	}
+
 	@Nullable
 	@Override
 	public View onCreateView(
 			LayoutInflater inflater,
 			@Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_list, container, false);
+		View view = inflater.inflate(getLayoutId(), container, false);
 
 		RecyclerView list = findView(view, R.id.list);
 		list.setAdapter(adapter);
