@@ -2,7 +2,7 @@
 <resources>
 
 	<color name="primary_white">#ffffff</color>
-	<color name="primary_dark_white">#dddddd</color>
+	<color name="primary_dark_white">@color/black</color>
 
 	<color name="primary_orange">#ff5722</color>
 	<color name="primary_dark_orange">#cc3100</color>
