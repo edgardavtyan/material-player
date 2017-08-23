@@ -29,7 +29,7 @@
 	<style name="NowPlayingBar_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textSize">@dimen/font_medium</item>
+		<item name="android:textSize">@dimen/font_small</item>
 		<item name="android:textColor">?textColorContrastPrimary</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
@@ -38,6 +38,7 @@
 	<style name="NowPlayingBar_Info" parent="NowPlayingBar_Title">
 		<item name="android:textColor">?textColorContrastSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
+		<item name="android:layout_marginTop">-4dp</item>
 	</style>
 
 </resources>
