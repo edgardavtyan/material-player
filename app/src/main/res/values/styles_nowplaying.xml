@@ -47,9 +47,9 @@
 	<style name="NowPlaying_TrackInfo_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">@dimen/spacing_medium_minus</item>
-		<item name="android:layout_marginRight">@dimen/spacing_medium_minus</item>
-		<item name="android:textSize">@dimen/font_big</item>
+		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
+		<item name="android:layout_marginRight">@dimen/spacing_medium</item>
+		<item name="android:textSize">@dimen/font_medium</item>
 		<item name="android:textColor">?textColorContrastPrimary</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
