@@ -37,6 +37,7 @@
 				android:textCursorDrawable="@null"
 				android:paddingLeft="@dimen/spacing_medium"
 				android:paddingRight="@dimen/spacing_medium"
+				android:imeOptions="flagNoExtractUi"
 				/>
 
 		</LinearLayout>
