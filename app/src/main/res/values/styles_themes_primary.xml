@@ -6,6 +6,7 @@
 	<style name="AppTheme.Light.White">
 		<item name="colorPrimary">@color/primary_white</item>
 		<item name="colorPrimaryDark">@color/primary_dark_white</item>
+		<item name="fabIconColor">@color/white</item>
 		<item name="textColorContrastPrimary">@color/black</item>
 		<item name="textColorContrastSecondary">@color/black_dim_medium</item>
 		<item name="alertDialogTheme">@style/DialogTheme_Light_White</item>

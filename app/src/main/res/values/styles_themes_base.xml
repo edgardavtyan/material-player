@@ -6,6 +6,7 @@
 		<item name="colorControlNormal">@color/black_dim_medium</item>
 		<item name="colorControlActivated">?colorPrimary</item>
 		<item name="prefCategoryTitleColor">?colorPrimary</item>
+		<item name="fabIconColor">@color/black</item>
 
 		<item name="textColorPrimary">@color/black_dim_slight</item>
 		<item name="textColorSecondary">@color/black_dim_medium</item>
@@ -35,6 +36,7 @@
 		<item name="colorControlNormal">?attr/textColorContrastPrimary</item>
 		<item name="colorControlActivated">?colorPrimary</item>
 		<item name="prefCategoryTitleColor">?colorPrimary</item>
+		<item name="fabIconColor">@color/black</item>
 
 		<item name="textColorPrimary">@color/white</item>
 		<item name="textColorSecondary">@color/white_dim_medium</item>

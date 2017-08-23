@@ -42,10 +42,10 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	public void setShuffleMode(ShuffleMode shuffleMode) {
 		switch (shuffleMode) {
 		case ENABLED:
-			shuffleButton.setColorFilterNonFinal(colors.accent);
+			shuffleButton.setAlpha(1f);
 			break;
 		case DISABLED:
-			shuffleButton.setColorFilterNonFinal(colors.textPrimary);
+			shuffleButton.setAlpha(0.5f);
 			break;
 		}
 	}
@@ -54,16 +54,16 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	public void setRepeatMode(RepeatMode repeatMode) {
 		switch (repeatMode) {
 		case REPEAT_ALL:
-			repeatButton.setColorFilterNonFinal(colors.accent);
 			repeatButton.setImageResource(R.drawable.ic_repeat);
+			repeatButton.setAlpha(1f);
 			break;
 		case REPEAT_ONE:
-			repeatButton.setColorFilterNonFinal(colors.accent);
 			repeatButton.setImageResource(R.drawable.ic_repeat_one);
+			repeatButton.setAlpha(1f);
 			break;
 		case DISABLED:
-			repeatButton.setColorFilterNonFinal(colors.textPrimary);
 			repeatButton.setImageResource(R.drawable.ic_repeat);
+			repeatButton.setAlpha(0.5f);
 			break;
 		}
 	}

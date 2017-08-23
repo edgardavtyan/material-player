@@ -23,7 +23,6 @@
 
 	<style name="Detail_Info" parent="Detail_TextView">
 		<item name="android:textColor">?textColorContrastSecondary</item>
-		<item name="android:textStyle">italic</item>
 	</style>
 
 </resources>

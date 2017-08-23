@@ -5,6 +5,7 @@
 		<item name="tabIndicatorHeight">2dp</item>
 		<item name="tabSelectedTextColor">?textColorContrastPrimary</item>
 		<item name="tabTextColor">?textColorContrastSecondary</item>
+		<item name="tabIndicatorColor">?textColorContrastPrimary</item>
 	</style>
 
 	<style name="Tabs.Normal">
