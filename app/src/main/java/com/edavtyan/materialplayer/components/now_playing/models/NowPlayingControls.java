@@ -45,7 +45,7 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 			shuffleButton.setAlpha(1f);
 			break;
 		case DISABLED:
-			shuffleButton.setAlpha(0.5f);
+			shuffleButton.setAlpha(0.3f);
 			break;
 		}
 	}
@@ -63,7 +63,7 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 			break;
 		case DISABLED:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
-			repeatButton.setAlpha(0.5f);
+			repeatButton.setAlpha(0.3f);
 			break;
 		}
 	}
