@@ -61,6 +61,20 @@
 
 	<!-- Dark -->
 
+	<style name="AppTheme.Dark.White">
+		<item name="colorPrimary">@color/primary_white</item>
+		<item name="colorPrimaryDark">@color/primary_dark_white</item>
+		<item name="fabIconColor">@color/white</item>
+		<item name="textColorContrastPrimary">@color/black</item>
+		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
+		<item name="alertDialogTheme">@style/DialogTheme_Dark_White</item>
+		<item name="colorControlActivated">@color/white</item>
+		<item name="colorControlNormal">@color/white</item>
+		<item name="prefCategoryTitleColor">@color/white</item>
+		<item name="rippleContrast">@drawable/ripple_base</item>
+		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_white</item>
+	</style>
+
 	<style name="AppTheme.Dark.Orange">
 		<item name="colorPrimary">@color/primary_orange</item>
 		<item name="colorPrimaryDark">@color/primary_dark_orange</item>
@@ -107,6 +121,19 @@
 	</style>
 
 	<!-- Black -->
+
+	<style name="AppTheme.Black.White">
+		<item name="colorPrimary">@color/primary_white</item>
+		<item name="colorPrimaryDark">@color/primary_dark_white</item>
+		<item name="fabIconColor">@color/white</item>
+		<item name="textColorContrastPrimary">@color/black</item>
+		<item name="textColorContrastSecondary">@color/black_dim_medium</item>
+		<item name="alertDialogTheme">@style/DialogTheme_Black_White</item>
+		<item name="colorControlActivated">@color/white</item>
+		<item name="prefCategoryTitleColor">@color/white</item>
+		<item name="rippleContrast">@drawable/ripple_base</item>
+		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_white</item>
+	</style>
 
 	<style name="AppTheme.Black.Orange">
 		<item name="colorPrimary">@color/primary_orange</item>

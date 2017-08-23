@@ -41,6 +41,10 @@
 		<item name="android:background">#303030</item>
 	</style>
 
+	<style name="DialogTheme_Dark_White" parent="Dark_Dialog">
+		<item name="colorAccent">@color/white</item>
+	</style>
+
 	<style name="DialogTheme_Dark_Orange" parent="Dark_Dialog">
 		<item name="colorAccent">@color/primary_orange</item>
 	</style>
@@ -70,6 +74,10 @@
 	</style>
 
 	<!-- Black -->
+
+	<style name="DialogTheme_Black_White" parent="Dark_Dialog">
+		<item name="colorAccent">@color/white</item>
+	</style>
 
 	<style name="DialogTheme_Black_Orange" parent="Dark_Dialog">
 		<item name="colorAccent">@color/primary_orange</item>
