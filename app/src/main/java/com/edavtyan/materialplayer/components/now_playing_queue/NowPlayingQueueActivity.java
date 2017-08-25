@@ -51,4 +51,9 @@ public class NowPlayingQueueActivity
 	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
 	}
+
+	@Override
+	public void removeItem(int position) {
+		adapter.notifyItemRemoved(position);
+	}
 }

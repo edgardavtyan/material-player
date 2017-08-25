@@ -45,6 +45,7 @@ public class NowPlayingQueuePresenter
 	@Override
 	public void onRemoveItemClick(int position) {
 		model.removeItemAtPosition(position);
+		view.removeItem(position);
 	}
 
 	@Override

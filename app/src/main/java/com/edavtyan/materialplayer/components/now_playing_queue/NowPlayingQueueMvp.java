@@ -24,6 +24,7 @@ public interface NowPlayingQueueMvp {
 	}
 
 	interface View extends ListMvp.View {
+		void removeItem(int position);
 	}
 
 	interface Presenter extends ListMvp.Presenter<NowPlayingQueueViewHolder> {
