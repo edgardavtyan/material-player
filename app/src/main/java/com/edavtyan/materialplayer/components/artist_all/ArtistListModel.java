@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.lib.mvp.list.ListModel;
 
@@ -15,22 +16,30 @@ public class ArtistListModel
 		implements ArtistListMvp.Model {
 
 	private final ArtistDB db;
+	private final TrackDB trackDB;
 	private final ArtistListImageLoader imageLoader;
 	private List<Artist> artists;
 
 	public ArtistListModel(
 			Context context,
 			ArtistDB db,
+			TrackDB trackDB,
 			ArtistListImageLoader imageLoader,
 			CompactListPref compactListPref) {
 		super(context, compactListPref);
 		this.db = db;
+		this.trackDB = trackDB;
 		this.imageLoader = imageLoader;
 	}
 
 	@Override
 	public void update() {
 		artists = queryArtists();
+	}
+
+	@Override
+	public void addToPlaylist(int artistId) {
+		service.getPlayer().addManyTracks(trackDB.getTracksWithArtistId(artistId));
 	}
 
 	@Override

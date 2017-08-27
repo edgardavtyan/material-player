@@ -74,6 +74,12 @@ public class TrackDB {
 		return getListOfTracks(selection, args, KEY_TITLE);
 	}
 
+	public List<Track> getTracksWithArtistId(int artistId) {
+		String selection = KEY_ARTIST_ID + "=?";
+		String[] args = {Integer.toString(artistId)};
+		return getListOfTracks(selection, args, KEY_TRACK);
+	}
+
 	private Track getTrackFromCursor(Cursor cursor) {
 		Track track = new Track();
 		track.setId(cursor.getInt(INDEX_ID));

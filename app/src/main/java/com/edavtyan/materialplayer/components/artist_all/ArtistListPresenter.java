@@ -31,16 +31,24 @@ public class ArtistListPresenter
 
 	@Override
 	public void onCreate() {
+		model.bindService();
 		model.update();
 	}
 
 	@Override
 	public void onDestroy() {
+		model.unbindService();
 	}
 
 	@Override
 	public void onHolderClick(int position) {
 		Artist artist = model.getArtistAtIndex(position);
 		view.gotoArtistDetail(artist.getTitle());
+	}
+
+	@Override
+	public void onAddToPlaylist(int position) {
+		int artistId = model.getArtistAtIndex(position).getId();
+		model.addToPlaylist(artistId);
 	}
 }

@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.artist_all;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,5 +50,16 @@ public class ArtistListViewHolder extends ListViewHolder {
 	@Override
 	public void onClick(View v) {
 		presenter.onHolderClick(getAdapterPositionNonFinal());
+	}
+
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_add_to_playlist:
+			presenter.onAddToPlaylist(getAdapterPositionNonFinal());
+			return true;
+		}
+
+		return super.onMenuItemClick(item);
 	}
 }

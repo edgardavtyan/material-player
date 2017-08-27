@@ -34,6 +34,7 @@ public class ArtistListFactory extends ListFactory {
 			model = new ArtistListModel(
 					getContext(),
 					dbModule.getArtistDB(),
+					dbModule.getTrackDB(),
 					getImageLoader(),
 					getCompactListPref());
 		return model;

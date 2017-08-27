@@ -23,6 +23,7 @@ public class SearchArtistFactory extends ArtistListFactory {
 			model = new SearchArtistModel(
 					getContext(),
 					dbModule.getArtistDB(),
+					dbModule.getTrackDB(),
 					getImageLoader(),
 					getCompactListPref());
 		return model;
