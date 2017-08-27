@@ -63,11 +63,10 @@
 	</style>
 
 	<style name="ListItem_NowPlaying">
-		<item name="android:layout_width">46dp</item>
+		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:src">@drawable/ic_note</item>
-		<item name="android:tint">?colorPrimary</item>
-		<item name="android:padding">12dp</item>
+		<item name="android:tint">?textColorPrimary</item>
 		<item name="android:visibility">gone</item>
 	</style>
 
