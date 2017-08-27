@@ -16,4 +16,5 @@
 	<attr name="rippleContrast" format="reference" />
 	<attr name="collapsingHeaderGradient" format="reference" />
 
+	<attr name="iconMenuSearch" format="reference"/>
 </resources>

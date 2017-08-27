@@ -25,6 +25,8 @@
 
 		<item name="rippleContrast">@drawable/ripple_primary</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
+
+		<item name="iconMenuSearch">@drawable/ic_search_white</item>
 	</style>
 
 	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
@@ -54,6 +56,8 @@
 
 		<item name="rippleContrast">@drawable/ripple_primary</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
+
+		<item name="iconMenuSearch">@drawable/ic_search_white</item>
 	</style>
 
 	<style name="AppTheme.Black" parent="AppTheme.Dark">
