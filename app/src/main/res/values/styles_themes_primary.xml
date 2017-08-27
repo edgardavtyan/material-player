@@ -15,6 +15,7 @@
 		<item name="rippleContrast">@drawable/ripple_base</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_white</item>
 		<item name="iconMenuSearch">@drawable/ic_search_black</item>
+		<item name="iconBackArrow">@drawable/ic_arrow_back_black</item>
 	</style>
 
 	<style name="AppTheme.Light.Orange">
@@ -75,6 +76,7 @@
 		<item name="rippleContrast">@drawable/ripple_base</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_white</item>
 		<item name="iconMenuSearch">@drawable/ic_search_black</item>
+		<item name="iconBackArrow">@drawable/ic_arrow_back_black</item>
 	</style>
 
 	<style name="AppTheme.Dark.Orange">
@@ -136,6 +138,7 @@
 		<item name="rippleContrast">@drawable/ripple_base</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_white</item>
 		<item name="iconMenuSearch">@drawable/ic_search_black</item>
+		<item name="iconBackArrow">@drawable/ic_arrow_back_black</item>
 	</style>
 
 	<style name="AppTheme.Black.Orange">

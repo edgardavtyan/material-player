@@ -17,4 +17,5 @@
 	<attr name="collapsingHeaderGradient" format="reference" />
 
 	<attr name="iconMenuSearch" format="reference"/>
+	<attr name="iconBackArrow" format="reference" />
 </resources>
