@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -34,7 +35,9 @@ public class ArtistListModelTests extends BaseTest {
 		CompactListPref prefs = mock(CompactListPref.class);
 		imageLoader = mock(ArtistListImageLoader.class);
 
-		model = new ArtistListModel(context, db, imageLoader, prefs);
+		TrackDB trackDB = mock(TrackDB.class);
+
+		model = new ArtistListModel(context, db, trackDB, imageLoader, prefs);
 	}
 
 	@Test
