@@ -74,6 +74,8 @@ public class MediaSessionManager {
 				PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS |
 				PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM);
 		playbackState.setState(STATE_NONE, 0l, 1.0f);
+
+		mediaSession.setPlaybackState(playbackState.build());
 	}
 
 	public void close() {
