@@ -14,7 +14,10 @@ import com.edavtyan.materialplayer.lib.base.BaseFragment;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
-public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends BaseFragment {
+public abstract class ListFragment<TPresenter extends ListMvp.Presenter>
+		extends BaseFragment
+		implements ListMvp.View {
+
 	protected TestableRecyclerAdapter adapter;
 	protected TPresenter presenter;
 
@@ -56,5 +59,10 @@ public abstract class ListFragment<TPresenter extends ListMvp.Presenter> extends
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();
+	}
+
+	@Override
+	public void notifyDataSetChanged() {
+		adapter.notifyDataSetChangedNonFinal();
 	}
 }

@@ -24,9 +24,4 @@ public class TrackListFragment
 	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
 	}
-
-	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChanged();
-	}
 }

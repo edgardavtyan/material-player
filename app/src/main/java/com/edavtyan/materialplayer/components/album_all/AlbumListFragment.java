@@ -24,9 +24,4 @@ public class AlbumListFragment
 	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
 	}
-
-	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
 }
