@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 import com.edavtyan.materialplayer.modular.activity.NavigationMenuModule;
 import com.edavtyan.materialplayer.modular.activity.ThemeSwitchModule;
 import com.edavtyan.materialplayer.modular.ModularActivity;
@@ -64,6 +65,7 @@ public class AlbumDetailActivity
 		addModule(new NavigationMenuModule(this, factory.getNavigator()));
 		addModule(new ThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
 		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
+		addModule(new BaseToolbarModule(this));
 	}
 
 	@Override
