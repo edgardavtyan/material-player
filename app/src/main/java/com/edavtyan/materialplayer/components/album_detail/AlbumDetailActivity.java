@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.base.NavigationMenuModule;
-import com.edavtyan.materialplayer.lib.base.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.NavigationMenuModule;
+import com.edavtyan.materialplayer.modular.activity.ThemeSwitchModule;
 import com.edavtyan.materialplayer.modular.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.ParallaxHeaderListModule;
 

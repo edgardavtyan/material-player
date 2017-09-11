@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.base;
+package com.edavtyan.materialplayer.modular.activity;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;

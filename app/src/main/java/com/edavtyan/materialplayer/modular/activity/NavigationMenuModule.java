@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.base;
+package com.edavtyan.materialplayer.modular.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
