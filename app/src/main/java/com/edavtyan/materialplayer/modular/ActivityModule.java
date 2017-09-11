@@ -7,6 +7,12 @@ public class ActivityModule {
 	public void onCreate() {
 	}
 
+	public void onStart() {
+	}
+
+	public void onStop() {
+	}
+
 	public boolean onCreateOptionsMenu(Menu menu) {
 		return false;
 	}

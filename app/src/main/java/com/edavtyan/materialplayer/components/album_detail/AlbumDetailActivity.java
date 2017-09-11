@@ -4,42 +4,66 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.lib.base.NavigationMenuModule;
+import com.edavtyan.materialplayer.lib.base.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.ParallaxHeaderListModule;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AlbumDetailActivity
-		extends ParallaxHeaderListActivity
+		extends ModularActivity
 		implements AlbumDetailMvp.View {
+
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
+	@BindView(R.id.art) ImageView artView;
 
 	private Navigator navigator;
 	private AlbumDetailAdapter adapter;
 
 	public void setAlbumTitle(String title) {
-		setHeaderTitle(title);
+		titleView.setText(title);
 	}
 
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
 		Resources res = getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);
-		setHeaderInfo(info);
+		infoView.setText(info);
 	}
 
 	public void setAlbumImage(Bitmap art) {
-		setHeaderImage(art, R.drawable.fallback_cover);
+		if (art == null) {
+			artView.setImageResource(R.drawable.fallback_cover);
+		} else {
+			artView.setImageBitmap(art);
+		}
 	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		setContentView(R.layout.activity_detail);
+
+		ButterKnife.bind(this);
+
 		AlbumDetailFactory factory = getDI();
-		adapter = factory.getAdapter();
-		init(factory.getAdapter(), factory.getPresenter());
+
 		navigator = factory.getNavigator();
+		adapter = factory.getAdapter();
+
+		addModule(new NavigationMenuModule(this, factory.getNavigator()));
+		addModule(new ThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
+		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
 	}
 
 	@Override

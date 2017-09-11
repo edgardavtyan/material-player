@@ -1,30 +1,28 @@
-package com.edavtyan.materialplayer.lib.mvp.parallax_list;
+package com.edavtyan.materialplayer.modular.activity;
 
-import android.graphics.Bitmap;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPresenter;
+import com.edavtyan.materialplayer.modular.ActivityModule;
 import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.ColorUtils;
 import com.edavtyan.materialplayer.utils.CustomColor;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
-	@BindView(R.id.title) TextView titleView;
-	@BindView(R.id.info) TextView infoView;
+public class ParallaxHeaderListModule extends ActivityModule {
 	@BindView(R.id.art) ImageView imageView;
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.appbar_wrapper) @Nullable LinearLayout appbarWrapper;
@@ -33,41 +31,28 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.statusbar_tint) @Nullable View statusShadow;
 
+	private final AppCompatActivity activity;
+	private final RecyclerView.Adapter adapter;
 	private ParallaxHeaderListPresenter presenter;
 
-	protected void setHeaderTitle(String title) {
-		titleView.setText(title);
-	}
-
-	protected void setHeaderInfo(String info) {
-		infoView.setText(info);
-	}
-
-	protected void setHeaderImage(Bitmap image, int fallback) {
-		if (image != null) {
-			imageView.setImageBitmap(image);
-		} else {
-			imageView.setImageResource(fallback);
-		}
-	}
-
-	protected void init(RecyclerView.Adapter adapter, ParallaxHeaderListPresenter presenter) {
+	public ParallaxHeaderListModule(
+			AppCompatActivity activity,
+			RecyclerView.Adapter adapter,
+			ParallaxHeaderListPresenter presenter) {
+		this.activity = activity;
+		this.adapter = adapter;
 		this.presenter = presenter;
+	}
+
+	@Override
+	public void onCreate() {
+
+		ButterKnife.bind(this, activity);
+
 		list.setAdapter(adapter);
-	}
+		list.setLayoutManager(new LinearLayoutManager(activity));
 
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_detail;
-	}
-
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		list.setLayoutManager(new LinearLayoutManager(this));
-
-		if (WindowUtils.isPortrait(this)) {
+		if (WindowUtils.isPortrait(activity)) {
 			// Removes lint warnings
 			assert statusShadow != null;
 			assert appbarWrapper != null;
@@ -79,11 +64,11 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 				statusShadow.setVisibility(View.GONE);
 			}
 
-			WindowUtils.makeStatusBarTransparent(getWindow());
+			WindowUtils.makeStatusBarTransparent(activity.getWindow());
 			appbarWrapper.bringToFront();
 			header.attachTo(list);
 
-			AppColors appColors = new AppColors(this);
+			AppColors appColors = new AppColors(activity);
 			CustomColor primaryColor = new CustomColor(appColors.primary);
 			CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
 
@@ -106,13 +91,11 @@ public abstract class ParallaxHeaderListActivity extends BaseToolbarActivity {
 
 	@Override
 	public void onStart() {
-		super.onStart();
 		presenter.onCreate();
 	}
 
 	@Override
 	public void onStop() {
-		super.onStop();
 		presenter.onDestroy();
 	}
 }
