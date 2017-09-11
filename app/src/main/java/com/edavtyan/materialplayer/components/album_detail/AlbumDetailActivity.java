@@ -4,49 +4,40 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.modular.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 import com.edavtyan.materialplayer.modular.activity.NavigationMenuModule;
-import com.edavtyan.materialplayer.modular.activity.ThemeSwitchModule;
-import com.edavtyan.materialplayer.modular.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.ParallaxHeaderListModule;
+import com.edavtyan.materialplayer.modular.activity.ThemeSwitchModule;
+import com.edavtyan.materialplayer.views.DetailActivityViews;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AlbumDetailActivity
 		extends ModularActivity
 		implements AlbumDetailMvp.View {
 
-	@BindView(R.id.title) TextView titleView;
-	@BindView(R.id.info) TextView infoView;
-	@BindView(R.id.art) ImageView artView;
-
 	private Navigator navigator;
 	private AlbumDetailAdapter adapter;
+	private DetailActivityViews views;
 
 	public void setAlbumTitle(String title) {
-		titleView.setText(title);
+		views.setTitle(title);
 	}
 
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
 		Resources res = getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);
-		infoView.setText(info);
+		views.setInfo(info);
 	}
 
 	public void setAlbumImage(Bitmap art) {
-		if (art == null) {
-			artView.setImageResource(R.drawable.fallback_cover);
-		} else {
-			artView.setImageBitmap(art);
-		}
+		views.setArt(art, R.drawable.fallback_cover);
 	}
 
 	@Override
@@ -61,6 +52,7 @@ public class AlbumDetailActivity
 
 		navigator = factory.getNavigator();
 		adapter = factory.getAdapter();
+		views = new DetailActivityViews(this);
 
 		addModule(new NavigationMenuModule(this, factory.getNavigator()));
 		addModule(new ThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
