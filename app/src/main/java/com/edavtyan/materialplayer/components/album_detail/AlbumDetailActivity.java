@@ -8,17 +8,12 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.modular.ModularActivity;
-import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
-import com.edavtyan.materialplayer.modular.activity.NavigationMenuModule;
+import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.modular.activity.ParallaxHeaderListModule;
-import com.edavtyan.materialplayer.modular.activity.ThemeSwitchModule;
 import com.edavtyan.materialplayer.views.DetailActivityViews;
 
-import butterknife.ButterKnife;
-
 public class AlbumDetailActivity
-		extends ModularActivity
+		extends BaseToolbarActivity
 		implements AlbumDetailMvp.View {
 
 	private Navigator navigator;
@@ -41,12 +36,13 @@ public class AlbumDetailActivity
 	}
 
 	@Override
+	public int getLayoutId() {
+		return R.layout.activity_detail;
+	}
+
+	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.activity_detail);
-
-		ButterKnife.bind(this);
 
 		AlbumDetailFactory factory = getDI();
 
@@ -54,10 +50,7 @@ public class AlbumDetailActivity
 		adapter = factory.getAdapter();
 		views = new DetailActivityViews(this);
 
-		addModule(new NavigationMenuModule(this, factory.getNavigator()));
-		addModule(new ThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
 		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
-		addModule(new BaseToolbarModule(this));
 	}
 
 	@Override
