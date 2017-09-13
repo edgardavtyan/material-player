@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.album_all;
 
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
+import com.edavtyan.materialplayer.utils.Logger;
 
 public class AlbumListPresenter
 		extends ListPresenter<AlbumListViewHolder>
@@ -26,6 +27,7 @@ public class AlbumListPresenter
 
 	@Override
 	public int getItemCount() {
+		Logger.d(this, "Albums count: %d", model.getAlbumsCount());
 		return model.getAlbumsCount();
 	}
 
