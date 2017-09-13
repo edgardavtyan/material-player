@@ -8,20 +8,24 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
+import com.edavtyan.materialplayer.modular.activity.ParallaxHeaderListModule;
+import com.edavtyan.materialplayer.views.DetailActivityViews;
 
 import static com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
 
 public class ArtistDetailActivity
-		extends ParallaxHeaderListActivity
+		extends BaseActivity
 		implements ArtistDetailMvp.View {
 
 	private Navigator navigator;
 	private ArtistDetailAdapter adapter;
+	private DetailActivityViews views;
 
 	@Override
 	public void setArtistTitle(String title) {
-		setHeaderTitle(title);
+		views.setTitle(title);
 	}
 
 	@Override
@@ -30,12 +34,17 @@ public class ArtistDetailActivity
 		String albumsCountStr = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);
-		setHeaderInfo(info);
+		views.setInfo(info);
 	}
 
 	@Override
 	public void setArtistImage(Bitmap art) {
-		setHeaderImage(art, R.drawable.fallback_artist);
+		views.setArt(art, R.drawable.fallback_artist);
+	}
+
+	@Override
+	public int getLayoutId() {
+		return R.layout.activity_detail;
 	}
 
 	@Override
@@ -43,9 +52,13 @@ public class ArtistDetailActivity
 		super.onCreate(savedInstanceState);
 
 		ArtistDetailFactory factory = getDI();
+
 		adapter = factory.getAdapter();
-		init(adapter, factory.getPresenter());
 		navigator = factory.getNavigator();
+		views = new DetailActivityViews(this);
+
+		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
+		addModule(new BaseToolbarModule(this));
 	}
 
 	@Override
