@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.mvp.parallax_list_compact.ParallaxListCompactActivity;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactModule;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
@@ -19,7 +21,7 @@ import butterknife.BindView;
 import static com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
 
 public class ArtistDetailActivityCompact
-		extends ParallaxListCompactActivity
+		extends BaseActivity
 		implements ArtistDetailMvp.View {
 
 	@BindView(R.id.list) RecyclerView list;
@@ -29,7 +31,6 @@ public class ArtistDetailActivityCompact
 	@Nullable @BindView(R.id.info_bottom) TextView infoBottomView;
 	@Nullable @BindView(R.id.info) TextView infoView;
 
-	private ArtistDetailMvp.Presenter presenter;
 	private ArtistDetailAdapter adapter;
 	private Navigator navigator;
 
@@ -40,18 +41,11 @@ public class ArtistDetailActivityCompact
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
 		ArtistDetailFactory factory = ((App) getApplicationContext()).getArtistDetailDI(this, this, artistTitle);
 
-		presenter = factory.getPresenter();
 		adapter = factory.getAdapter();
 		navigator = factory.getNavigator();
 
-		init(adapter);
-		presenter.onCreate();
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		presenter.onDestroy();
+		addModule(new BaseToolbarModule(this));
+		addModule(new ParallaxHeaderListCompactModule(this, factory.getAdapter(), factory.getPresenter()));
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 
 	private final AppCompatActivity activity;
 	private final RecyclerView.Adapter adapter;
-	private ParallaxHeaderListPresenter presenter;
+	private final ParallaxHeaderListPresenter presenter;
 
 	public ParallaxHeaderListModule(
 			AppCompatActivity activity,

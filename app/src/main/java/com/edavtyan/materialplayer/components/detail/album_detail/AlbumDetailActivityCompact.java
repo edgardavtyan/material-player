@@ -3,14 +3,15 @@ package com.edavtyan.materialplayer.components.detail.album_detail;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.mvp.parallax_list_compact.ParallaxListCompactActivity;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactModule;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -20,17 +21,15 @@ import butterknife.BindView;
 import static com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailMvp.EXTRA_ALBUM_ID;
 
 public class AlbumDetailActivityCompact
-		extends ParallaxListCompactActivity
+		extends BaseActivity
 		implements AlbumDetailMvp.View {
 
-	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.info_top) @Nullable TextView infoTopView;
 	@BindView(R.id.info_bottom) @Nullable TextView infoBottomView;
 	@BindView(R.id.info) @Nullable TextView infoView;
 
-	private AlbumDetailMvp.Presenter presenter;
 	private Navigator navigator;
 	private AlbumDetailAdapter adapter;
 
@@ -43,16 +42,14 @@ public class AlbumDetailActivityCompact
 
 		adapter = factory.getAdapter();
 		navigator = factory.getNavigator();
-		presenter = factory.getPresenter();
 
-		init(adapter);
-		presenter.onCreate();
+		addModule(new BaseToolbarModule(this));
+		addModule(new ParallaxHeaderListCompactModule(this, factory.getAdapter(), factory.getPresenter()));
 	}
 
 	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		presenter.onDestroy();
+	public int getLayoutId() {
+		return R.layout.activity_detail_compact;
 	}
 
 	@Override
