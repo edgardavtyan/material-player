@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
+import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
 
 public class NowPlayingQueueAdapter extends ListAdapter<NowPlayingQueueViewHolder> {
 

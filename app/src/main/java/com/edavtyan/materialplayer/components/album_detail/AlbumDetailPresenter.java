@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.album_detail;
 
-import com.edavtyan.materialplayer.components.track_all.TrackListPresenter;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListPresenter;
 import com.edavtyan.materialplayer.db.Album;
 
 public class AlbumDetailPresenter extends TrackListPresenter implements AlbumDetailMvp.Presenter {

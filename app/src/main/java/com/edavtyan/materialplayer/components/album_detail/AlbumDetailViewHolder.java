@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
-import com.edavtyan.materialplayer.components.track_all.TrackListViewHolder;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;

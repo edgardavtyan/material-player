@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.mvp.list;
 
-import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
+import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
 import org.junit.Test;

@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.album_detail;
 
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.lib.mvp.parallax_list.ParallaxHeaderListPresenter;
 

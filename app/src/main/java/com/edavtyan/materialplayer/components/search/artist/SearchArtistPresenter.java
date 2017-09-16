@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.search.artist;
 
-import com.edavtyan.materialplayer.components.artist_all.ArtistListPresenter;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListPresenter;
 import com.edavtyan.materialplayer.components.search.base.SearchPresenter;
 import com.edavtyan.materialplayer.components.search.base.SearchPresenterImpl;
 

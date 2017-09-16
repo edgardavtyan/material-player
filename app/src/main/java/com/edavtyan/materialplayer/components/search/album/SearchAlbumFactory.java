@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 
 public class SearchAlbumFactory extends BaseFactory {
 	private final DBModule dbModule;

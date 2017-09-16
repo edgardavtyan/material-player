@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_all.AlbumListViewHolder;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListViewHolder;
 
 import butterknife.BindView;
 

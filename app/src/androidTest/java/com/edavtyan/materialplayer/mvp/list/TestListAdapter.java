@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.mvp.list.ListAdapter;
-import com.edavtyan.materialplayer.lib.mvp.list.ListMvp;
+import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
+import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
 
 public class TestListAdapter extends ListAdapter {
 	@SuppressWarnings("unchecked")

@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.search.artist;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFactory;
 import com.edavtyan.materialplayer.db.DBModule;
 
 public class SearchArtistFactory extends ArtistListFactory {

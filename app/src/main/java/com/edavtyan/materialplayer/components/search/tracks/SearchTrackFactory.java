@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.search.tracks;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListFactory;
 import com.edavtyan.materialplayer.db.DBModule;
 
 public class SearchTrackFactory extends TrackListFactory {

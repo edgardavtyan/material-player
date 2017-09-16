@@ -3,13 +3,13 @@ package com.edavtyan.materialplayer.components.artist_detail;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.components.album_all.AlbumListModel;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 
 import java.util.List;
 

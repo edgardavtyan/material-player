@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
+import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class NowPlayingQueueFactory extends ListFactory {
 	private final NowPlayingQueueMvp.View view;

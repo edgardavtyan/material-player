@@ -6,7 +6,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmArtistInfoFileStorage;
-import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
+import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class ArtistDetailFactory extends ListFactory {
 	private final String artistTitle;

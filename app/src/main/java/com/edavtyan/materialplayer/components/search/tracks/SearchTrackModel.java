@@ -3,10 +3,10 @@ package com.edavtyan.materialplayer.components.search.tracks;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.search.base.SearchModel;
-import com.edavtyan.materialplayer.components.track_all.TrackListModel;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.mvp.list.CompactListPref;
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 
 import java.util.List;
 

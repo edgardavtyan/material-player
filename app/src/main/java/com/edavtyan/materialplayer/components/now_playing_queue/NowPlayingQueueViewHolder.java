@@ -8,7 +8,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.mvp.list.ListViewHolder;
+import com.edavtyan.materialplayer.components.lists.lib.ListViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
 import butterknife.BindView;

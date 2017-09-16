@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListFragment;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFragment;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
-import com.edavtyan.materialplayer.modular.fragment.ListFragmentModule;
 
 public class SearchArtistFragment extends ArtistListFragment implements SearchView {
 

@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.components.album_detail;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.db.DBModule;
-import com.edavtyan.materialplayer.lib.mvp.list.ListFactory;
+import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class AlbumDetailFactory extends ListFactory {
 	private final AlbumDetailMvp.View view;

@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.components.album_detail;
 import android.content.Context;
 import android.view.View;
 
-import com.edavtyan.materialplayer.components.track_all.TrackListAdapter;
-import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
-import com.edavtyan.materialplayer.components.track_all.TrackListViewHolder;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListAdapter;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListViewHolder;
 
 public class AlbumDetailAdapter extends TrackListAdapter {
 	private final TrackListMvp.Presenter presenter;

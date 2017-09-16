@@ -2,9 +2,9 @@ package com.edavtyan.materialplayer.components.main;
 
 import android.support.v4.app.FragmentManager;
 
-import com.edavtyan.materialplayer.components.album_all.AlbumListFragment;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListFragment;
-import com.edavtyan.materialplayer.components.track_all.TrackListFragment;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFragment;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFragment;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListFragment;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

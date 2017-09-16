@@ -5,12 +5,12 @@ import android.app.Application;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.album_all.AlbumListFactory;
-import com.edavtyan.materialplayer.components.album_all.AlbumListMvp;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFactory;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListMvp;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListFactory;
-import com.edavtyan.materialplayer.components.artist_all.ArtistListMvp;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFactory;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListMvp;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailFactory;
 import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsFactory;
@@ -32,8 +32,8 @@ import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
-import com.edavtyan.materialplayer.components.track_all.TrackListFactory;
-import com.edavtyan.materialplayer.components.track_all.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListFactory;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 import lombok.Setter;

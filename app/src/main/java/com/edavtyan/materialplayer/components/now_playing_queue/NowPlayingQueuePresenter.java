@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.mvp.list.ListPresenter;
+import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 
 public class NowPlayingQueuePresenter
 		extends ListPresenter<NowPlayingQueueViewHolder>

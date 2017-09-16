@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.album_all.AlbumListFragment;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFragment;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 

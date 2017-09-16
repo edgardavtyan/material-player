@@ -6,8 +6,7 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
-import com.edavtyan.materialplayer.components.track_all.TrackListFragment;
-import com.edavtyan.materialplayer.modular.fragment.ListFragmentModule;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListFragment;
 
 public class SearchTrackFragment extends TrackListFragment implements SearchView {
 

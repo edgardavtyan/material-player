@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.artist_detail;
 
-import com.edavtyan.materialplayer.components.album_all.AlbumListPresenter;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListPresenter;
 import com.edavtyan.materialplayer.db.Artist;
 
 public class ArtistDetailPresenter
