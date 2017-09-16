@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactModule;
-import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +29,6 @@ public class AlbumDetailActivityCompact
 
 		navigator = factory.getNavigator();
 
-		addModule(new BaseToolbarModule(this));
 		addModule(new ParallaxHeaderListCompactModule(this, factory.getAdapter(), factory.getPresenter()));
 
 		init(factory.getAdapter());

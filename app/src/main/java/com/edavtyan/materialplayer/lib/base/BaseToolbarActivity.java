@@ -2,38 +2,20 @@ package com.edavtyan.materialplayer.lib.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
-
-import butterknife.BindView;
+import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 
 public abstract class BaseToolbarActivity extends BaseActivity {
-	@BindView(R.id.toolbar) Toolbar toolbar;
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		toolbar.setTitle(getResources().getString(getToolbarTitleStringId()));
-		setSupportActionBar(toolbar);
-		if (isBackIconEnabled()) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		BaseToolbarModule baseToolbarModule = new BaseToolbarModule(this);
+		baseToolbarModule.setTitleStringId(getToolbarTitleStringId());
+		baseToolbarModule.setBackIconEnabled(isBackIconEnabled());
+		addModule(baseToolbarModule);
 	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			finish();
-			break;
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
-
-	/*
-	 * Protected methods
-	 */
 
 	protected boolean isBackIconEnabled() {
 		return true;
