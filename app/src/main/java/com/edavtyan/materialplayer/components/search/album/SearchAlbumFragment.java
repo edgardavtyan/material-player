@@ -8,7 +8,6 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.album_all.AlbumListFragment;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
-import com.edavtyan.materialplayer.modular.fragment.ListFragmentModule;
 
 public class SearchAlbumFragment extends AlbumListFragment implements SearchView {
 
@@ -24,7 +23,7 @@ public class SearchAlbumFragment extends AlbumListFragment implements SearchView
 		super.onCreate(savedInstanceState);
 		App app = (App) getContext().getApplicationContext();
 		SearchAlbumFactory factory = app.getSearchAlbumFactory(getContext(), this);
-		setListFragmentModule(new ListFragmentModule(this, factory.getAdapter(), factory.getPresenter()));
+		initListView(factory.getPresenter(), factory.getAdapter());
 		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
 	}
 

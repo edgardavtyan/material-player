@@ -4,11 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.mvp.list.ListFragment;
+import com.edavtyan.materialplayer.modular.fragment.ListFragment;
 
-public class ArtistListFragment
-		extends ListFragment<ArtistListMvp.Presenter>
-		implements ArtistListMvp.View {
+public class ArtistListFragment extends ListFragment implements ArtistListMvp.View {
 
 	private Navigator navigator;
 

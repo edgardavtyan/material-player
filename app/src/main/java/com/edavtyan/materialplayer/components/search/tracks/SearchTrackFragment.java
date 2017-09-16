@@ -7,6 +7,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
 import com.edavtyan.materialplayer.components.track_all.TrackListFragment;
+import com.edavtyan.materialplayer.modular.fragment.ListFragmentModule;
 
 public class SearchTrackFragment extends TrackListFragment implements SearchView {
 
