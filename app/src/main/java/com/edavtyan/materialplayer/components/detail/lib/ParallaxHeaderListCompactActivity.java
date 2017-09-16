@@ -57,7 +57,7 @@ public class ParallaxHeaderListCompactActivity extends BaseToolbarActivity {
 		if (image != null) {
 			imageView.setImageBitmap(image);
 		} else {
-			imageView.setImageResource(R.drawable.fallback_artist);
+			imageView.setImageResource(fallback);
 		}
 	}
 
