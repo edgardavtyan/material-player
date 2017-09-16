@@ -8,12 +8,13 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListModule;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
 import com.edavtyan.materialplayer.views.DetailActivityViews;
 
 public class AlbumDetailActivity
-		extends BaseToolbarActivity
+		extends BaseActivity
 		implements AlbumDetailMvp.View {
 
 	private Navigator navigator;
@@ -50,6 +51,7 @@ public class AlbumDetailActivity
 		adapter = factory.getAdapter();
 		views = new DetailActivityViews(this);
 
+		addModule(new BaseToolbarModule(this));
 		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
 	}
 
