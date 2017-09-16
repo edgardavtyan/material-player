@@ -4,34 +4,20 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactModule;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
-import com.edavtyan.materialplayer.utils.WindowUtils;
-
-import butterknife.BindView;
 
 import static com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
 
 public class ArtistDetailActivityCompact
-		extends BaseActivity
+		extends ParallaxHeaderListCompactActivity
 		implements ArtistDetailMvp.View {
 
-	@BindView(R.id.list) RecyclerView list;
-	@BindView(R.id.title) TextView titleView;
-	@BindView(R.id.art) ImageView artView;
-	@Nullable @BindView(R.id.info_top) TextView infoTopView;
-	@Nullable @BindView(R.id.info_bottom) TextView infoBottomView;
-	@Nullable @BindView(R.id.info) TextView infoView;
-
-	private ArtistDetailAdapter adapter;
 	private Navigator navigator;
 
 	@Override
@@ -41,55 +27,35 @@ public class ArtistDetailActivityCompact
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
 		ArtistDetailFactory factory = ((App) getApplicationContext()).getArtistDetailDI(this, this, artistTitle);
 
-		adapter = factory.getAdapter();
 		navigator = factory.getNavigator();
 
 		addModule(new BaseToolbarModule(this));
 		addModule(new ParallaxHeaderListCompactModule(this, factory.getAdapter(), factory.getPresenter()));
-	}
 
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_detail_compact;
+		init(factory.getAdapter());
 	}
 
 	@Override
 	public void setArtistTitle(String title) {
-		titleView.setText(title);
+		setTitle(title);
 	}
 
 	@Override
-	@SuppressWarnings("ConstantConditions")
 	public void setArtistInfo(int albumsCount, int tracksCount) {
 		Resources res = getResources();
-		String albumsCountStr = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
-		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
-
-		if (WindowUtils.isPortrait(this)) {
-			infoTopView.setText(albumsCountStr);
-			infoBottomView.setText(tracksCountStr);
-		} else {
-			String infoStr = res.getString(R.string.pattern_artist_info, albumsCountStr, tracksCountStr);
-			infoView.setText(infoStr);
-		}
+		String portraitTopInfo = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
+		String portraitBottomInfo = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
+		String landscapeInfo = res.getString(R.string.pattern_artist_info, portraitTopInfo, portraitBottomInfo);
+		setInfo(portraitTopInfo, portraitBottomInfo, landscapeInfo);
 	}
 
 	@Override
-	public void setArtistImage(Bitmap art) {
-		if (art != null) {
-			artView.setImageBitmap(art);
-		} else {
-			artView.setImageResource(R.drawable.fallback_artist);
-		}
+	public void setArtistImage(Bitmap image) {
+		setImage(image, R.drawable.fallback_artist);
 	}
 
 	@Override
 	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
-	}
-
-	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChangedNonFinal();
 	}
 }
