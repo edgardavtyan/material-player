@@ -8,22 +8,19 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListModule;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
-import com.edavtyan.materialplayer.views.DetailActivityViews;
 
 public class AlbumDetailActivity
-		extends BaseActivity
+		extends ParallaxHeaderListActivity
 		implements AlbumDetailMvp.View {
 
 	private Navigator navigator;
-	private AlbumDetailAdapter adapter;
-	private DetailActivityViews views;
 
 	@Override
 	public void setAlbumTitle(String title) {
-		views.setTitle(title);
+		setTitle(title);
 	}
 
 	@Override
@@ -31,17 +28,12 @@ public class AlbumDetailActivity
 		Resources res = getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
 		String info = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);
-		views.setInfo(info);
+		setInfo(info);
 	}
 
 	@Override
-	public void setAlbumImage(Bitmap art) {
-		views.setArt(art, R.drawable.fallback_cover);
-	}
-
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_detail;
+	public void setAlbumImage(Bitmap image) {
+		setImage(image, R.drawable.fallback_cover);
 	}
 
 	@Override
@@ -51,21 +43,16 @@ public class AlbumDetailActivity
 		AlbumDetailFactory factory = getDI();
 
 		navigator = factory.getNavigator();
-		adapter = factory.getAdapter();
-		views = new DetailActivityViews(this);
 
 		addModule(new BaseToolbarModule(this));
 		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
+
+		init(factory.getAdapter());
 	}
 
 	@Override
 	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
-	}
-
-	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChanged();
 	}
 
 	protected AlbumDetailFactory getDI() {
