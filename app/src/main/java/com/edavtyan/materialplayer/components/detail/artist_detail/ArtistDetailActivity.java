@@ -8,9 +8,9 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListModule;
 import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
-import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListModule;
 import com.edavtyan.materialplayer.views.DetailActivityViews;
 
 import static com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
