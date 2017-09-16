@@ -3,11 +3,12 @@ package com.edavtyan.materialplayer.components;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailActivity;
-import com.edavtyan.materialplayer.components.album_detail.AlbumDetailMvp;
-import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailActivity;
-import com.edavtyan.materialplayer.components.artist_detail.ArtistDetailMvp;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailMvp;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivity;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsActivity;
+import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.components.prefs.PrefActivity;

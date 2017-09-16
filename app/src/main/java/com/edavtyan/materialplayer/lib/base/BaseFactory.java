@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.media.MediaMetadataRetriever;
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.components.CompactDetailPref;
+import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtFileStorage;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtMemoryCache;

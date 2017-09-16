@@ -40,7 +40,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.artist_detail.ArtistDetailActivity"
+			android:name=".components.detail.artist_detail.ArtistDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -49,10 +49,10 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".components.artist_detail.ArtistDetailActivityCompact" />
+		<activity android:name=".components.detail.artist_detail.ArtistDetailActivityCompact" />
 
 		<activity
-			android:name=".components.album_detail.AlbumDetailActivity"
+			android:name=".components.detail.album_detail.AlbumDetailActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -61,7 +61,7 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".components.album_detail.AlbumDetailActivityCompact" />
+		<activity android:name=".components.detail.album_detail.AlbumDetailActivityCompact" />
 
 		<activity
 			android:name=".components.now_playing.NowPlayingActivity"
