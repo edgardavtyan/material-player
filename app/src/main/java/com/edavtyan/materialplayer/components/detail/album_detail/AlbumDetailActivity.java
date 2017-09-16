@@ -21,10 +21,12 @@ public class AlbumDetailActivity
 	private AlbumDetailAdapter adapter;
 	private DetailActivityViews views;
 
+	@Override
 	public void setAlbumTitle(String title) {
 		views.setTitle(title);
 	}
 
+	@Override
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
 		Resources res = getResources();
 		String tracksCountStr = res.getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
@@ -32,6 +34,7 @@ public class AlbumDetailActivity
 		views.setInfo(info);
 	}
 
+	@Override
 	public void setAlbumImage(Bitmap art) {
 		views.setArt(art, R.drawable.fallback_cover);
 	}
