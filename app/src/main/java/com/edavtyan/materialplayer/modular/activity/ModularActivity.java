@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.modular;
+package com.edavtyan.materialplayer.modular.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

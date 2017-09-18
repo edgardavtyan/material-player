@@ -7,13 +7,12 @@ import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.modular.ActivityModule;
 
-public class NavigationMenuModule extends ActivityModule {
+public class ActivityBaseMenuModule extends ActivityModule {
 	private final AppCompatActivity activity;
 	private final Navigator navigator;
 
-	public NavigationMenuModule(AppCompatActivity activity, Navigator navigator) {
+	public ActivityBaseMenuModule(AppCompatActivity activity, Navigator navigator) {
 		this.activity = activity;
 		this.navigator = navigator;
 	}

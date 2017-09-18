@@ -6,12 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.modular.ActivityModule;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BaseToolbarModule extends ActivityModule {
+public class ActivityToolbarModule extends ActivityModule {
 
 	private static final int DEFAULT_TITLE_STRING_ID = R.string.app_name;
 	private static final boolean DEFAULT_BACK_ICON_ENABLED = true;
@@ -23,7 +22,7 @@ public class BaseToolbarModule extends ActivityModule {
 	private int titleStringId;
 	private boolean isBackIconEnabled;
 
-	public BaseToolbarModule(AppCompatActivity activity) {
+	public ActivityToolbarModule(AppCompatActivity activity) {
 		this.activity = activity;
 		titleStringId = DEFAULT_TITLE_STRING_ID;
 		isBackIconEnabled = DEFAULT_BACK_ICON_ENABLED;

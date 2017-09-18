@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.modular;
+package com.edavtyan.materialplayer.modular.fragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
