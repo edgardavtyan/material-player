@@ -54,7 +54,7 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		when(amplifier.getGain()).thenReturn(5);
 		when(amplifier.getMaxGain()).thenReturn(300);
 
-		presenter.onServiceConnected();
+		presenter.onServiceConnected(service);
 
 		verify(view).setEqualizerEnabled(true);
 		verify(view).setEqualizerBands(5, 15, new int[]{10, 20, 30, 40, 50}, new int[]{4, 5, 6, 7, 8});

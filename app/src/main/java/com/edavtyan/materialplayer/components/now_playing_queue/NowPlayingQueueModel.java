@@ -1,13 +1,12 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
-import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.lists.lib.ListModel;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.db.Track;
 
 import lombok.Setter;
 
@@ -62,8 +61,8 @@ public class NowPlayingQueueModel
 	}
 
 	@Override
-	public void onServiceConnected(ComponentName name, IBinder binder) {
-		super.onServiceConnected(name, binder);
+	public void onServiceConnected(PlayerService service) {
+		super.onServiceConnected(service);
 		service.getPlayer().setOnNewTrackListener(playerOnNewTrackListener);
 	}
 }

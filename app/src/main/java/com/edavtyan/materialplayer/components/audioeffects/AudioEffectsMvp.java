@@ -1,21 +1,16 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import android.content.ServiceConnection;
-
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 @SuppressWarnings("unused")
 public interface AudioEffectsMvp {
-	interface Model extends ServiceConnection {
-		interface ServiceConnectionListener {
-			void onServiceConnected();
-		}
-
-		void setOnServiceConnectedListener(ServiceConnectionListener onServiceConnectedListener);
+	interface Model {
+		void setOnServiceConnectedListener(ModelServiceModule.OnServiceConnectedListener listener);
 		void init();
 		void close();
 		Equalizer getEqualizer();
@@ -32,7 +27,7 @@ public interface AudioEffectsMvp {
 		void initAmplifier(int max, int gain);
 	}
 
-	interface Presenter extends Model.ServiceConnectionListener {
+	interface Presenter extends ModelServiceModule.OnServiceConnectedListener {
 		void onCreate();
 		void onDestroy();
 		void onEqualizerEnabledChanged(boolean enabled);

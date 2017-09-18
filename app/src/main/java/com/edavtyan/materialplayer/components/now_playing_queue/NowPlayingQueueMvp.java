@@ -1,13 +1,11 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
-import android.content.ServiceConnection;
-
-import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
+import com.edavtyan.materialplayer.db.Track;
 
 @SuppressWarnings("unused")
 public interface NowPlayingQueueMvp {
-	interface Model extends ListMvp.Model, ServiceConnection {
+	interface Model extends ListMvp.Model {
 		interface OnNewTrackListener {
 			void onNewTrack();
 		}

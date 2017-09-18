@@ -1,70 +1,52 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.os.IBinder;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
-import com.edavtyan.materialplayer.components.player.PlayerService;
-
-import lombok.Setter;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 public class AudioEffectsModel implements AudioEffectsMvp.Model {
-	private final Context context;
-
-	private PlayerService service;
-
-	private @Setter ServiceConnectionListener onServiceConnectedListener;
+	private final ModelServiceModule serviceModule;
 
 	public AudioEffectsModel(Context context) {
-		this.context = context;
+		this.serviceModule = new ModelServiceModule(context);
+	}
+
+	@Override
+	public void setOnServiceConnectedListener(ModelServiceModule.OnServiceConnectedListener listener) {
+		serviceModule.setOnServiceConnectedListener(listener);
 	}
 
 	@Override
 	public void init() {
-		Intent intent = new Intent(context, PlayerService.class);
-		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
+		serviceModule.bind();
 	}
 
 	@Override
 	public void close() {
-		context.unbindService(this);
+		serviceModule.unbind();
 	}
 
 	@Override
 	public Equalizer getEqualizer() {
-		return service.getEqualizer();
+		return serviceModule.getService().getEqualizer();
 	}
 
 	@Override
 	public BassBoost getBassBoost() {
-		return service.getBassBoost();
+		return serviceModule.getService().getBassBoost();
 	}
 
 	@Override
 	public Surround getSurround() {
-		return service.getSurround();
+		return serviceModule.getService().getSurround();
 	}
 
 	@Override
 	public Amplifier getAmplifier() {
-		return service.getAmplifier();
-	}
-
-	@Override
-	public void onServiceConnected(ComponentName name, IBinder binder) {
-		service = ((PlayerService.PlayerBinder) binder).getService();
-
-		if (onServiceConnectedListener != null) {
-			onServiceConnectedListener.onServiceConnected();
-		}
-	}
-
-	@Override
-	public void onServiceDisconnected(ComponentName name) {
+		return serviceModule.getService().getAmplifier();
 	}
 }

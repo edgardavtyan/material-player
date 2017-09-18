@@ -1,10 +1,9 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
+import com.edavtyan.materialplayer.components.player.PlayerService;
 
-public class AudioEffectsPresenter
-		implements AudioEffectsMvp.Presenter,
-				   AudioEffectsMvp.Model.ServiceConnectionListener {
+public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 
 	private final AudioEffectsMvp.Model model;
 	private final AudioEffectsMvp.View view;
@@ -72,7 +71,7 @@ public class AudioEffectsPresenter
 	}
 
 	@Override
-	public void onServiceConnected() {
+	public void onServiceConnected(PlayerService service) {
 		view.setEqualizerEnabled(model.getEqualizer().isEnabled());
 		view.setEqualizerBands(
 				model.getEqualizer().getBandsCount(),
