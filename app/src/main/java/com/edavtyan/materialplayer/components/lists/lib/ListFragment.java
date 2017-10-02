@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.lists.lib;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.modular.ModularFragment;
+import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
 public class ListFragment extends ModularFragment {
 	private ListFragmentModule listFragmentModule;

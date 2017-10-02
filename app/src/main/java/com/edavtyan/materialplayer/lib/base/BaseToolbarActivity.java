@@ -4,17 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityToolbarModule;
 
 public abstract class BaseToolbarActivity extends BaseActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		BaseToolbarModule baseToolbarModule = new BaseToolbarModule(this);
-		baseToolbarModule.setTitleStringId(getToolbarTitleStringId());
-		baseToolbarModule.setBackIconEnabled(isBackIconEnabled());
-		addModule(baseToolbarModule);
+		ActivityToolbarModule activityToolbarModule = new ActivityToolbarModule(this);
+		activityToolbarModule.setTitleStringId(getToolbarTitleStringId());
+		activityToolbarModule.setBackIconEnabled(isBackIconEnabled());
+		addModule(activityToolbarModule);
 	}
 
 	protected boolean isBackIconEnabled() {

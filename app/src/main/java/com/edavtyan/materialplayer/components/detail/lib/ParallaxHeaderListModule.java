@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.modular.ActivityModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.ColorUtils;
 import com.edavtyan.materialplayer.utils.CustomColor;

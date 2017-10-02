@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListModule;
-import com.edavtyan.materialplayer.modular.activity.BaseToolbarModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityToolbarModule;
 
 import static com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
 
@@ -48,7 +48,7 @@ public class ArtistDetailActivity
 		navigator = factory.getNavigator();
 
 		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
-		addModule(new BaseToolbarModule(this));
+		addModule(new ActivityToolbarModule(this));
 
 		init(factory.getAdapter());
 	}

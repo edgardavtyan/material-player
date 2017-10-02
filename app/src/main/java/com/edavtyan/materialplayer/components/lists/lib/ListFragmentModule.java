@@ -7,7 +7,7 @@ import android.view.View;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.FixedGridLayoutManager;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
-import com.edavtyan.materialplayer.modular.FragmentModule;
+import com.edavtyan.materialplayer.modular.fragment.FragmentModule;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
