@@ -13,6 +13,7 @@ public interface AudioEffectsMvp {
 		void setOnServiceConnectedListener(ModelServiceModule.OnServiceConnectedListener listener);
 		void init();
 		void close();
+		boolean isConnected();
 		Equalizer getEqualizer();
 		BassBoost getBassBoost();
 		Surround getSurround();

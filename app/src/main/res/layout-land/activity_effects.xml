@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
+
+	<include layout="@layout/partial_appbar" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			>
+
+			<LinearLayout style="@style/AudioEffects_Equalizer_Header">
+
+				<TextView
+					android:text="@string/equalizer_title"
+					style="@style/AudioEffects_Equalizer_Title"
+					/>
+
+				<android.support.v7.widget.SwitchCompat
+					android:id="@+id/equalizer_switch"
+					style="@style/AudioEffects_Equalizer_Switch"
+					/>
+
+			</LinearLayout>
+
+			<com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView
+				android:id="@+id/equalizer"
+				style="@style/AudioEffects_Equalizer"
+				/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:layout_marginTop="@dimen/spacing_tiny"
+			android:orientation="vertical"
+			>
+
+			<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
+				android:id="@+id/bass_boost"
+				app:ts_text="@string/bass_boost_title"
+				style="@style/AudioEffects_Effect"
+				/>
+
+			<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
+				android:id="@+id/surround"
+				app:ts_text="@string/surround_title"
+				style="@style/AudioEffects_Effect"
+				/>
+
+			<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
+				android:id="@+id/amplifier"
+				app:ts_text="@string/amplifier_title"
+				style="@style/AudioEffects_Effect"
+				/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+
+
+</LinearLayout>

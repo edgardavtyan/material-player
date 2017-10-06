@@ -31,6 +31,11 @@ public class AudioEffectsModel implements AudioEffectsMvp.Model {
 	}
 
 	@Override
+	public boolean isConnected() {
+		return serviceModule.getService() != null;
+	}
+
+	@Override
 	public Equalizer getEqualizer() {
 		return serviceModule.getService().getEqualizer();
 	}
