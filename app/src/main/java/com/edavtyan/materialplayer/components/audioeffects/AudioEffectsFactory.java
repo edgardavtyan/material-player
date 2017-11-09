@@ -27,7 +27,7 @@ public class AudioEffectsFactory extends BaseFactory {
 
 	public AudioEffectsMvp.Model getModel() {
 		if (model == null)
-			model = new AudioEffectsModel(getContext());
+			model = new AudioEffectsModel(getModelServiceModule());
 		return model;
 	}
 }

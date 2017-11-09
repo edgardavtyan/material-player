@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtReader;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 import com.edavtyan.materialplayer.utils.WebClient;
 
@@ -29,6 +30,7 @@ public class BaseFactory {
 	private AdvancedSharedPrefs prefs;
 	private SharedPreferences basePrefs;
 	private CompactDetailPref compactDetailPref;
+	private ModelServiceModule modelServiceModule;
 
 	public BaseFactory(Context context) {
 		this.context = context;
@@ -105,5 +107,11 @@ public class BaseFactory {
 		if (compactDetailPref == null)
 			compactDetailPref = new CompactDetailPref(getContext());
 		return compactDetailPref;
+	}
+
+	public ModelServiceModule getModelServiceModule() {
+		if (modelServiceModule == null)
+			modelServiceModule = new ModelServiceModule(getContext());
+		return modelServiceModule;
 	}
 }

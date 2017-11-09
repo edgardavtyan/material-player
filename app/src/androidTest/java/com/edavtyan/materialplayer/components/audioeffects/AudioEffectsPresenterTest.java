@@ -54,7 +54,7 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		when(amplifier.getGain()).thenReturn(5);
 		when(amplifier.getMaxGain()).thenReturn(300);
 
-		presenter.onServiceConnected(service);
+		presenter.onServiceConnected(null);
 
 		verify(view).setEqualizerEnabled(true);
 		verify(view).setEqualizerBands(5, 15, new int[]{10, 20, 30, 40, 50}, new int[]{4, 5, 6, 7, 8});
@@ -76,7 +76,8 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onEqualizerEnabledChanged_callModel() {
+	public void onEqualizerEnabledChanged_modelConnected_callModel() {
+		when(model.isConnected()).thenReturn(true);
 		presenter.onEqualizerEnabledChanged(true);
 		verify(equalizer).setEnabled(true);
 	}

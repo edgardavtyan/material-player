@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
-import android.content.Context;
-
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.lists.lib.ListModel;
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import lombok.Setter;
 
@@ -24,8 +23,8 @@ public class NowPlayingQueueModel
 		}
 	};
 
-	public NowPlayingQueueModel(Context context, CompactListPref compactListPref) {
-		super(context, compactListPref);
+	public NowPlayingQueueModel(ModelServiceModule serviceModule, CompactListPref compactListPref) {
+		super(serviceModule, compactListPref);
 	}
 
 	@Override

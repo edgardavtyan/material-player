@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 
@@ -23,6 +22,9 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class BaseActivityTest extends ActivityTest {
 	private static TestBaseActivity activity;
+	private static ThemeUtils themeUtils;
+	private static MenuInflater menuInflater;
+	private static Navigator navigator;
 
 	public static class TestBaseActivity extends BaseActivity {
 		@Override
@@ -31,23 +33,16 @@ public class BaseActivityTest extends ActivityTest {
 		}
 	}
 
-	private static ThemeUtils themeUtils;
-	private static AdvancedSharedPrefs prefs;
-	private static MenuInflater menuInflater;
-	private static Navigator navigator;
-
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
 		if (activity == null) {
 			themeUtils = mock(ThemeUtils.class);
-			prefs = mock(AdvancedSharedPrefs.class);
 			navigator = mock(Navigator.class);
 
 			BaseFactory factory = mock(BaseFactory.class);
 			when(factory.getThemeUtils()).thenReturn(themeUtils);
-			when(factory.getPrefs()).thenReturn(prefs);
 			when(factory.getNavigator()).thenReturn(navigator);
 
 			app.setBaseFactory(factory);
@@ -73,11 +68,6 @@ public class BaseActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void onCreate_registerOnSharedPreferencesChangedListener() {
-		verify(prefs).registerOnSharedPreferenceChangeListener(activity);
-	}
-
-	@Test
 	public void onCreateOptionsMenu_inflateMenu() {
 		Menu menu = mock(Menu.class);
 		activity.onCreateOptionsMenu(menu);
@@ -99,12 +89,6 @@ public class BaseActivityTest extends ActivityTest {
 	@Test
 	public void onOptionsItemSelected_otherMenuItem_returnFalse() {
 		assertThat(callOnOptionsItemSelectedWithMenuId(0)).isFalse();
-	}
-
-	@Test
-	public void onSharedPreferencesChanged_setTheme() {
-		activity.onSharedPreferenceChanged(null, "key");
-		verify(themeUtils).setThemeAndRecreate(activity, "key");
 	}
 
 	private boolean callOnOptionsItemSelectedWithMenuId(int menuId) {

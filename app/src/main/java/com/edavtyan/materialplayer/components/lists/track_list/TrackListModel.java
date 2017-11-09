@@ -1,11 +1,10 @@
 package com.edavtyan.materialplayer.components.lists.track_list;
 
-import android.content.Context;
-
-import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.lists.lib.ListModel;
+import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
@@ -13,11 +12,11 @@ public class TrackListModel
 		extends ListModel
 		implements TrackListMvp.Model {
 
-	private final TrackDB db;
 	protected List<Track> tracks;
+	private final TrackDB db;
 
-	public TrackListModel(Context context, TrackDB db, CompactListPref compactListPref) {
-		super(context, compactListPref);
+	public TrackListModel(ModelServiceModule serviceModule, TrackDB db, CompactListPref compactListPref) {
+		super(serviceModule, compactListPref);
 		this.db = db;
 	}
 

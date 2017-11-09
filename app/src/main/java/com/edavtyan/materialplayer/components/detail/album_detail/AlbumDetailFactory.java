@@ -27,7 +27,7 @@ public class AlbumDetailFactory extends ListFactory {
 	public AlbumDetailMvp.Model getModel() {
 		if (model == null)
 			model = new AlbumDetailModel(
-					getContext(),
+					getModelServiceModule(),
 					dbModule.getAlbumDB(),
 					dbModule.getTrackDB(),
 					getArtProvider(),

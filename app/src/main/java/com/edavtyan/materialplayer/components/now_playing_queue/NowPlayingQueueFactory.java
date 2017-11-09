@@ -21,7 +21,7 @@ public class NowPlayingQueueFactory extends ListFactory {
 
 	public NowPlayingQueueMvp.Model getModel() {
 		if (model == null)
-			model = new NowPlayingQueueModel(getContext(), getCompactListPref());
+			model = new NowPlayingQueueModel(getModelServiceModule(), getCompactListPref());
 		return model;
 	}
 

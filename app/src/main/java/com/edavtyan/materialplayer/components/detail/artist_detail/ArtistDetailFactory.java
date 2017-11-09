@@ -30,7 +30,7 @@ public class ArtistDetailFactory extends ListFactory {
 	public ArtistDetailMvp.Model getModel() {
 		if (model == null)
 			model = new ArtistDetailModel(
-					getContext(),
+					getModelServiceModule(),
 					dbModule.getArtistDB(),
 					dbModule.getAlbumDB(),
 					dbModule.getTrackDB(),

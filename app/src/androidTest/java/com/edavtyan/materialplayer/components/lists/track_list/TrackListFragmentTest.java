@@ -43,22 +43,10 @@ public class TrackListFragmentTest extends FragmentTest2 {
 	}
 
 	@Test
-	public void onCreate_callPresenter() {
-		verify(presenter).onCreate();
-	}
-
-	@Test
 	public void onCreateView_initList() {
-		//noinspection ConstantConditions
 		RecyclerView list = (RecyclerView) fragment.getView().findViewById(R.id.list);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
-	}
-
-	@Test
-	public void onDestroy_callPresenter() {
-		fragment.onDestroy();
-		verify(presenter).onDestroy();
 	}
 
 	@Test

@@ -1,26 +1,18 @@
 package com.edavtyan.materialplayer.components.lists.track_list;
 
-import android.content.Context;
-import android.content.Intent;
-
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -29,37 +21,27 @@ import static org.mockito.Mockito.when;
 public class TrackListModelTest extends BaseTest {
 	private List tracks;
 	private TrackListModel model;
-	private PlayerBinder binder;
-	private Context mockContext;
 	private PlayerMvp.Player player;
+	private PlayerService service;
 
 	@SuppressWarnings({"unchecked", "WrongConstant"})
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		mockContext = mock(Context.class);
-
 		tracks = mock(List.class);
 		TrackDB db = mock(TrackDB.class);
 		when(db.getAllTracks()).thenReturn(tracks);
 
 		CompactListPref prefs = mock(CompactListPref.class);
+		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 
-		model = spy(new TrackListModel(mockContext, db, prefs));
+		model = spy(new TrackListModel(serviceModule, db, prefs));
 
 		player = mock(PlayerMvp.Player.class);
 
-		PlayerService service = mock(PlayerService.class);
+		service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);
-
-		binder = mock(PlayerBinder.class);
-		when(binder.getService()).thenReturn(service);
-
-		doAnswer(invocationOnMock -> {
-			model.onServiceConnected(null, binder);
-			return null;
-		}).when(mockContext).bindService(any(), any(), anyInt());
 	}
 
 	@Test
@@ -112,7 +94,7 @@ public class TrackListModelTest extends BaseTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void playQueue_serviceBound_updateService() {
-		model.bindService();
+		model.onServiceConnected(service);
 		model.update();
 
 		model.playQueue(0);
@@ -124,25 +106,11 @@ public class TrackListModelTest extends BaseTest {
 	public void addToQueue_serviceBound_updateService() {
 		Track track = new Track();
 		when(tracks.get(0)).thenReturn(track);
-		model.bindService();
+		model.onServiceConnected(service);
 		model.update();
 
 		model.addToQueue(0);
 
 		verify(player).addTrack(track);
-	}
-
-	@Test
-	@SuppressWarnings("WrongConstant")
-	public void bindService_callContextAndBindService() {
-		model.bindService();
-		verify(mockContext)
-				.bindService(Mockito.isA(Intent.class), eq(model), eq(Context.BIND_AUTO_CREATE));
-	}
-
-	@Test
-	public void unbindService_callContextAndUnbindService() {
-		model.unbindService();
-		verify(mockContext).unbindService(model);
 	}
 }

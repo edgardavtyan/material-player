@@ -25,7 +25,7 @@ public class AlbumListFactory extends ListFactory {
 	public AlbumListMvp.Model getModel() {
 		if (model == null)
 			model = new AlbumListModel(
-					getContext(),
+					getModelServiceModule(),
 					dbModule.getAlbumDB(),
 					dbModule.getTrackDB(),
 					getCompactListPref());

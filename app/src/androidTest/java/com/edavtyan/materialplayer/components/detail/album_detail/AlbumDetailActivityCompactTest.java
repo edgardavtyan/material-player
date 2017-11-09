@@ -23,7 +23,6 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityCompactTest extends ActivityTest {
 	private static AlbumDetailActivityCompact activity;
-	private static AlbumDetailMvp.Presenter presenter;
 	private static Navigator navigator;
 	private static AlbumDetailAdapter adapter;
 
@@ -32,7 +31,7 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			presenter = mock(AlbumDetailMvp.Presenter.class);
+			AlbumDetailMvp.Presenter presenter = mock(AlbumDetailMvp.Presenter.class);
 			navigator = mock(Navigator.class);
 			adapter = mock(AlbumDetailAdapter.class);
 
@@ -46,17 +45,6 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 			activity = spy(startActivity(AlbumDetailActivityCompact.class));
 			doNothing().when(activity).baseOnDestroy();
 		}
-	}
-
-	@Test
-	public void create_presenter() {
-		verify(presenter).onCreate();
-	}
-
-	@Test
-	public void destroy_presenter() {
-		activity.onDestroy();
-		verify(presenter).onDestroy();
 	}
 
 	@Test

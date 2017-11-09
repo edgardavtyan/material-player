@@ -36,7 +36,7 @@ public class AlbumArtProviderTests extends BaseTest {
 		init(2);
 		when(fileStorage.exists("2")).thenReturn(false);
 		assertThat(albumArtProvider.load(track)).isSameAs(art);
-		verify(fileStorage).saveBytes("2", artBytes);
+		verify(fileStorage).saveBytes(2, artBytes);
 	}
 
 	@Test

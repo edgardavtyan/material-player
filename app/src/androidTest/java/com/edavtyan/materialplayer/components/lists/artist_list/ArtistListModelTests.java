@@ -2,10 +2,11 @@ package com.edavtyan.materialplayer.components.lists.artist_list;
 
 import android.graphics.Bitmap;
 
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -36,8 +37,9 @@ public class ArtistListModelTests extends BaseTest {
 		imageLoader = mock(ArtistListImageLoader.class);
 
 		TrackDB trackDB = mock(TrackDB.class);
+		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 
-		model = new ArtistListModel(context, db, trackDB, imageLoader, prefs);
+		model = new ArtistListModel(serviceModule, db, trackDB, imageLoader, prefs);
 	}
 
 	@Test

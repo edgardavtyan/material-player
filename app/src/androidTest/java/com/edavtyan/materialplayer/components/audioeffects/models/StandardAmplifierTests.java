@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 import android.media.audiofx.LoudnessEnhancer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.test.filters.SdkSuppress;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -14,6 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+@SdkSuppress(minSdkVersion = Build.VERSION_CODES.KITKAT)
 public class StandardAmplifierTests extends BaseTest {
 	private StandardAmplifier amplifier;
 	private AmplifierPrefs prefs;

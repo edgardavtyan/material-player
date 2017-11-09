@@ -1,11 +1,12 @@
 package com.edavtyan.materialplayer.components.lists.album_list;
 
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -31,8 +32,8 @@ public class AlbumListModelTest extends BaseTest {
 		super.beforeEach();
 
 		service = mock(PlayerService.class);
-		PlayerService.PlayerBinder binder = mock(PlayerService.PlayerBinder.class);
-		when(binder.getService()).thenReturn(service);
+		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
+		when(serviceModule.getService()).thenReturn(service);
 
 		albums = mock(List.class);
 		AlbumDB albumDB = mock(AlbumDB.class);
@@ -41,9 +42,9 @@ public class AlbumListModelTest extends BaseTest {
 		TrackDB trackDB = mock(TrackDB.class);
 		CompactListPref prefs = mock(CompactListPref.class);
 
-		model = new AlbumListModel(context, albumDB, trackDB, prefs);
+		model = new AlbumListModel(serviceModule, albumDB, trackDB, prefs);
 		doAnswer(invocationOnMock -> {
-			model.onServiceConnected(null, binder);
+			model.onServiceConnected(service);
 			return null;
 		}).when(context).bindService(any(), any(), anyInt());
 	}
@@ -82,7 +83,7 @@ public class AlbumListModelTest extends BaseTest {
 		PlayerMvp.Player player = mock(PlayerMvp.Player.class);
 		when(service.getPlayer()).thenReturn(player);
 
-		model.bindService();
+		model.onServiceConnected(service);
 		model.addToPlaylist(0);
 
 		verify(player).addManyTracks(any());

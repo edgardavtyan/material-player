@@ -24,7 +24,7 @@ public class TrackListFactory extends ListFactory {
 
 	public TrackListMvp.Model getModel() {
 		if (model == null)
-			model = new TrackListModel(getContext(), dbModule.getTrackDB(), getCompactListPref());
+			model = new TrackListModel(getModelServiceModule(), dbModule.getTrackDB(), getCompactListPref());
 		return model;
 	}
 

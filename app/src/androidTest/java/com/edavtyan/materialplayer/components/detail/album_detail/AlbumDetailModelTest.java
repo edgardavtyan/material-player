@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -35,11 +36,13 @@ public class AlbumDetailModelTest extends BaseTest {
 
 		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
 		CompactListPref prefs = mock(CompactListPref.class);
+		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 		albumDB = mock(AlbumDB.class);
 		trackDB = mock(TrackDB.class);
 		albumArtProvider = mock(AlbumArtProvider.class);
 
-		model = new AlbumDetailModel(view, albumDB, trackDB, albumArtProvider, prefs, ALBUM_ID);
+
+		model = new AlbumDetailModel(serviceModule, albumDB, trackDB, albumArtProvider, prefs, ALBUM_ID);
 	}
 
 	@Test

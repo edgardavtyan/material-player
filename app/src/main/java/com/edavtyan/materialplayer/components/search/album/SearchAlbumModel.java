@@ -1,13 +1,12 @@
 package com.edavtyan.materialplayer.components.search.album;
 
-import android.content.Context;
-
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListModel;
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.search.base.SearchModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
@@ -19,11 +18,11 @@ public class SearchAlbumModel extends AlbumListModel implements SearchModel {
 	private @Setter String query;
 
 	public SearchAlbumModel(
-			Context context,
+			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			CompactListPref compactListPref) {
-		super(context, albumDB, trackDB, compactListPref);
+		super(serviceModule, albumDB, trackDB, compactListPref);
 		this.albumDB = albumDB;
 	}
 

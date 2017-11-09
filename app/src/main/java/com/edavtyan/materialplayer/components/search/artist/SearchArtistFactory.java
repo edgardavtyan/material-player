@@ -21,7 +21,7 @@ public class SearchArtistFactory extends ArtistListFactory {
 	public SearchArtistModel getModel() {
 		if (model == null)
 			model = new SearchArtistModel(
-					getContext(),
+					getModelServiceModule(),
 					dbModule.getArtistDB(),
 					dbModule.getTrackDB(),
 					getImageLoader(),

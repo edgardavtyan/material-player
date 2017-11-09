@@ -1,15 +1,15 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
@@ -20,13 +20,13 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 	private final int albumId;
 
 	public AlbumDetailModel(
-			Context context,
+			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			AlbumArtProvider albumArtProvider,
 			CompactListPref prefs,
 			int albumId) {
-		super(context, trackDB, prefs);
+		super(serviceModule, trackDB, prefs);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
 		this.albumArtProvider = albumArtProvider;

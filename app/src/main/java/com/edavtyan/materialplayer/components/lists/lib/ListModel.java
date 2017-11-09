@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.lists.lib;
 
-import android.content.Context;
-
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
@@ -15,11 +13,11 @@ public class ListModel
 	private final CompactListPref compactListPref;
 	private final ModelServiceModule serviceModule;
 
-	public ListModel(Context context, CompactListPref compactListPref) {
+	public ListModel(ModelServiceModule serviceModule, CompactListPref compactListPref) {
 		this.compactListPref = compactListPref;
-		serviceModule = new ModelServiceModule(context);
-		serviceModule.setOnServiceConnectedListener(this);
-		serviceModule.setOnServiceDisconnectedListener(this);
+		this.serviceModule = serviceModule;
+		this.serviceModule.setOnServiceConnectedListener(this);
+		this.serviceModule.setOnServiceDisconnectedListener(this);
 	}
 
 	public void bindService() {

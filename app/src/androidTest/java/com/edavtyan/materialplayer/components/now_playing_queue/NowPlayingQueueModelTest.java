@@ -3,10 +3,11 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 import android.content.Context;
 import android.content.Intent;
 
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -16,6 +17,7 @@ import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertTh
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,6 +25,7 @@ public class NowPlayingQueueModelTest extends BaseTest {
 	private NowPlayingQueueMvp.Model model;
 	private PlayerService.PlayerBinder binder;
 	private PlayerMvp.Player player;
+	private ModelServiceModule serviceModule;
 
 	@Override
 	public void beforeEach() {
@@ -38,7 +41,9 @@ public class NowPlayingQueueModelTest extends BaseTest {
 
 		CompactListPref prefs = mock(CompactListPref.class);
 
-		model = new NowPlayingQueueModel(context, prefs);
+		serviceModule = spy(new ModelServiceModule(context));
+
+		model = new NowPlayingQueueModel(serviceModule, prefs);
 	}
 
 	@Test
@@ -47,28 +52,28 @@ public class NowPlayingQueueModelTest extends BaseTest {
 		model.bindService();
 
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
-		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));
+		verify(context).bindService(intentCaptor.capture(), eq(serviceModule), eq(Context.BIND_AUTO_CREATE));
 		assertThat(intentCaptor.getValue()).hasClass(PlayerService.class);
 	}
 
 	@Test
 	public void unbind_unbindService() {
-		model.onServiceConnected(null, binder);
+		serviceModule.onServiceConnected(null, binder);
 		model.bindService();
 		model.unbindService();
-		verify(context).unbindService(model);
+		verify(context).unbindService(serviceModule);
 	}
 
 	@Test
 	public void playItemAtPosition_callPlayer() {
-		model.onServiceConnected(null, binder);
+		serviceModule.onServiceConnected(null, binder);
 		model.playItemAtPosition(7);
 		verify(player).playTrackAt(7);
 	}
 
 	@Test
 	public void removeItemAtPosition_callService() {
-		model.onServiceConnected(null, binder);
+		serviceModule.onServiceConnected(null, binder);
 		model.removeItemAtPosition(7);
 		verify(player).removeTrackAt(7);
 	}
@@ -78,7 +83,7 @@ public class NowPlayingQueueModelTest extends BaseTest {
 		Track track = mock(Track.class);
 		when(player.getTrackAt(7)).thenReturn(track);
 
-		model.onServiceConnected(null, binder);
+		serviceModule.onServiceConnected(null, binder);
 
 		assertThat(model.getTrackAtPosition(7)).isEqualTo(track);
 	}
@@ -86,7 +91,7 @@ public class NowPlayingQueueModelTest extends BaseTest {
 	@Test
 	public void getTrackCount_serviceConnected_getCountFromService() {
 		when(player.getTracksCount()).thenReturn(7);
-		model.onServiceConnected(null, binder);
+		serviceModule.onServiceConnected(null, binder);
 		assertThat(model.getTrackCount()).isEqualTo(7);
 		verify(player).getTracksCount();
 	}

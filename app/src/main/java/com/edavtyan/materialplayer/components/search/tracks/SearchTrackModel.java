@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.components.search.tracks;
 
-import android.content.Context;
-
-import com.edavtyan.materialplayer.components.search.base.SearchModel;
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListModel;
+import com.edavtyan.materialplayer.components.search.base.SearchModel;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
@@ -17,8 +16,8 @@ public class SearchTrackModel extends TrackListModel implements SearchModel {
 
 	private @Setter String query;
 
-	public SearchTrackModel(Context context, TrackDB trackDB, CompactListPref compactListPref) {
-		super(context, trackDB, compactListPref);
+	public SearchTrackModel(ModelServiceModule serviceModule, TrackDB trackDB, CompactListPref compactListPref) {
+		super(serviceModule, trackDB, compactListPref);
 		this.trackDB = trackDB;
 	}
 

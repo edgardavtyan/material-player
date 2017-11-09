@@ -22,7 +22,7 @@ public class SearchAlbumFactory extends BaseFactory {
 
 	public SearchAlbumModel getModel() {
 		if (model == null)
-			model = new SearchAlbumModel(getContext(), dbModule.getAlbumDB(), dbModule.getTrackDB(), getCompactListPref());
+			model = new SearchAlbumModel(getModelServiceModule(), dbModule.getAlbumDB(), dbModule.getTrackDB(), getCompactListPref());
 		return model;
 	}
 

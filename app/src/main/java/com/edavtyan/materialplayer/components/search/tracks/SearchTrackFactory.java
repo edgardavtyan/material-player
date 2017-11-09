@@ -20,7 +20,7 @@ public class SearchTrackFactory extends TrackListFactory {
 
 	public SearchTrackModel getModel() {
 		if (model == null)
-			model = new SearchTrackModel(getContext(), dbModule.getTrackDB(), getCompactListPref());
+			model = new SearchTrackModel(getModelServiceModule(), dbModule.getTrackDB(), getCompactListPref());
 		return model;
 	}
 

@@ -1,5 +1,8 @@
 package com.edavtyan.materialplayer.components.player;
 
+import android.os.Build;
+import android.support.test.filters.SdkSuppress;
+
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
 import org.junit.Test;
@@ -14,6 +17,7 @@ public class PlayerFactoryTest extends FactoryTest {
 	}
 
 	@Test
+	@SdkSuppress(minSdkVersion = Build.VERSION_CODES.KITKAT)
 	public void factoryTest() throws Exception {
 		testFactoryMethod(playerFactory::getPlayer);
 		testFactoryMethod(playerFactory::getPlayerPrefs);

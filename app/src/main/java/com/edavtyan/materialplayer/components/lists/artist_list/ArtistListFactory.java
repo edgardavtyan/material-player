@@ -32,7 +32,7 @@ public class ArtistListFactory extends ListFactory {
 	public ArtistListMvp.Model getModel() {
 		if (model == null)
 			model = new ArtistListModel(
-					getContext(),
+					getModelServiceModule(),
 					dbModule.getArtistDB(),
 					dbModule.getTrackDB(),
 					getImageLoader(),

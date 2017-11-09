@@ -47,33 +47,15 @@ public class ArtistListFragmentTest extends FragmentTest2 {
 	}
 
 	@Test
-	public void onCreate_callPresenter() {
-		verify(presenter).onCreate();
-	}
-
-	@Test
 	public void onCreateView_initList() {
-		//noinspection ConstantConditions
 		RecyclerView list = (RecyclerView) fragment.getView().findViewById(R.id.list);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
 	}
 
 	@Test
-	public void onDestroy_callPresenter() {
-		fragment.onDestroy();
-		verify(presenter).onDestroy();
-	}
-
-	@Test
 	public void gotoArtistDetail_callNavigator() {
 		fragment.gotoArtistDetail("title");
 		verify(navigator).gotoArtistDetail("title");
-	}
-
-	@Test
-	public void notifyDataSetChanged_notifyAdapter() {
-		fragment.notifyDataSetChanged();
-		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 }

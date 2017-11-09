@@ -2,11 +2,12 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.graphics.Bitmap;
 
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -27,10 +28,11 @@ public class ArtistDetailModelTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 
+		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 		artistDB = mock(ArtistDB.class);
 		artistArtLoader = mock(ArtistDetailImageLoader.class);
 		model = new ArtistDetailModel(
-				context,
+				serviceModule,
 				artistDB,
 				mock(AlbumDB.class),
 				mock(TrackDB.class),

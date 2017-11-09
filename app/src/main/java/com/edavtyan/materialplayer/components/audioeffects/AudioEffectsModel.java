@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import android.content.Context;
-
 import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
@@ -11,8 +9,8 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 public class AudioEffectsModel implements AudioEffectsMvp.Model {
 	private final ModelServiceModule serviceModule;
 
-	public AudioEffectsModel(Context context) {
-		this.serviceModule = new ModelServiceModule(context);
+	public AudioEffectsModel(ModelServiceModule serviceModule) {
+		this.serviceModule = serviceModule;
 	}
 
 	@Override

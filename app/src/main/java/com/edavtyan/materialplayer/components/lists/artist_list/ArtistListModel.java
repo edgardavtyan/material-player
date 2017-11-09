@@ -1,13 +1,13 @@
 package com.edavtyan.materialplayer.components.lists.artist_list;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.components.lists.lib.ListModel;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.components.lists.lib.ListModel;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
@@ -21,12 +21,12 @@ public class ArtistListModel
 	private List<Artist> artists;
 
 	public ArtistListModel(
-			Context context,
+			ModelServiceModule serviceModule,
 			ArtistDB db,
 			TrackDB trackDB,
 			ArtistListImageLoader imageLoader,
 			CompactListPref compactListPref) {
-		super(context, compactListPref);
+		super(serviceModule, compactListPref);
 		this.db = db;
 		this.trackDB = trackDB;
 		this.imageLoader = imageLoader;

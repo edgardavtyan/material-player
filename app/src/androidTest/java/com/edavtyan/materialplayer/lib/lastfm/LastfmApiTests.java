@@ -21,7 +21,7 @@ public class LastfmApiTests extends BaseTest {
 	private static final String ARTIST_TITLE = "Ratatat";
 	private static final String ARTIST_IMAGE_LARGE = "https://lastfm-img2.akamaized.net/i/u/174s/96516a40ea0440ea90e3a438a08ae7e1.png";
 	private static final String ARTIST_IMAGE_XLARGE = "https://lastfm-img2.akamaized.net/i/u/300x300/96516a40ea0440ea90e3a438a08ae7e1.png";
-	private static final String ARTIST_IMAGE_MEGA = "https://lastfm-img2.akamaized.net/i/u/96516a40ea0440ea90e3a438a08ae7e1.png";
+	private static final String ARTIST_IMAGE_MEGA = "https://lastfm-img2.akamaized.net/i/u/300x300/96516a40ea0440ea90e3a438a08ae7e1.png";
 
 	private WebClient webClient;
 	private LastfmApi lastfmApi;
