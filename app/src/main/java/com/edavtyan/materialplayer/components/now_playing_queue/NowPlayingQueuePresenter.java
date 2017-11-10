@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
+import com.edavtyan.materialplayer.components.lists.lib.ListModel;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 
@@ -19,10 +20,20 @@ public class NowPlayingQueuePresenter
 		}
 	};
 
+	@SuppressWarnings("FieldCanBeLocal")
+	private final ListModel.OnServiceConnectedListener onServiceConnectedListener
+			= new ListModel.OnServiceConnectedListener() {
+		@Override
+		public void onServiceConnected() {
+			view.notifyDataSetChanged();
+		}
+	};
+
 	public NowPlayingQueuePresenter(NowPlayingQueueMvp.Model model, NowPlayingQueueMvp.View view) {
 		super(model, view);
 		this.model = model;
 		this.model.setOnNewTrackListener(onNewTrackListener);
+		this.model.setOnServiceConnectedListener(onServiceConnectedListener);
 		this.view = view;
 	}
 

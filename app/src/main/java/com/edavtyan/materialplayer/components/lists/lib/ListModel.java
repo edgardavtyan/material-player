@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.components.lists.lib;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
+import lombok.Setter;
+
 public class ListModel
 		implements ListMvp.Model,
 				   ModelServiceModule.OnServiceConnectedListener,
@@ -12,6 +14,12 @@ public class ListModel
 
 	private final CompactListPref compactListPref;
 	private final ModelServiceModule serviceModule;
+
+	private @Setter OnServiceConnectedListener onServiceConnectedListener;
+
+	public interface OnServiceConnectedListener {
+		void onServiceConnected();
+	}
 
 	public ListModel(ModelServiceModule serviceModule, CompactListPref compactListPref) {
 		this.compactListPref = compactListPref;
@@ -36,6 +44,10 @@ public class ListModel
 	@Override
 	public void onServiceConnected(PlayerService service) {
 		this.service = service;
+
+		if (onServiceConnectedListener != null) {
+			onServiceConnectedListener.onServiceConnected();
+		}
 	}
 
 	@Override
