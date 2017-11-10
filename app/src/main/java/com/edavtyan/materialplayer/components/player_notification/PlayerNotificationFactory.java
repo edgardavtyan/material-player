@@ -1,9 +1,12 @@
 package com.edavtyan.materialplayer.components.player_notification;
 
+import android.app.Notification;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
@@ -16,9 +19,11 @@ public class PlayerNotificationFactory extends BaseFactory {
 	private PlayerNotificationMvp.View notification;
 	private AdvancedRemoteViews remoteViews;
 	private AdvancedRemoteViews bigRemoteViews;
+	private AdvancedRemoteViews remoteViewsNougat;
 	private NotificationManagerCompat baseManager;
 	private TestableNotificationManager manager;
 	private NotificationCompat.Builder builder;
+	private Notification.Builder builder2;
 	private PlayerNotificationMvp.Model model;
 	private PlayerNotificationMvp.Presenter presenter;
 	private PendingIntents pendingIntents;
@@ -30,13 +35,23 @@ public class PlayerNotificationFactory extends BaseFactory {
 	}
 
 	public PlayerNotificationMvp.View getNotification() {
-		if (notification == null)
-			notification = new PlayerNotification(
-					getNormalRemoteViews(),
-					getBigRemoteViews(),
-					getManager(),
-					getBuilder(),
-					getPendingIntents());
+		if (notification == null) {
+			if (Build.VERSION.SDK_INT < 24) {
+				notification = new PlayerNotification(
+						getNormalRemoteViews(),
+						getBigRemoteViews(),
+						getManager(),
+						getBuilder(),
+						getPendingIntents());
+			} else {
+				notification = new PlayerNotification2(
+						getNormalRemoteViewsNougat(),
+						getBigRemoteViews(),
+						getManager(),
+						getBuilder2(),
+						getPendingIntents());
+			}
+		}
 		return notification;
 	}
 
@@ -50,6 +65,12 @@ public class PlayerNotificationFactory extends BaseFactory {
 		if (remoteViews == null)
 			remoteViews = new AdvancedRemoteViews(getContext(), normalLayoutId);
 		return remoteViews;
+	}
+
+	public AdvancedRemoteViews getNormalRemoteViewsNougat() {
+		if (remoteViewsNougat == null)
+			remoteViewsNougat = new AdvancedRemoteViews(getContext(), R.layout.notification_nougat);
+		return remoteViewsNougat;
 	}
 
 	public AdvancedRemoteViews getBigRemoteViews() {
@@ -74,6 +95,12 @@ public class PlayerNotificationFactory extends BaseFactory {
 		if (builder == null)
 			builder = new NotificationCompat.Builder(getContext());
 		return builder;
+	}
+
+	public Notification.Builder getBuilder2() {
+		if (builder2 == null)
+			builder2 = new Notification.Builder(getContext());
+		return builder2;
 	}
 
 	public PlayerNotificationMvp.Model getModel() {

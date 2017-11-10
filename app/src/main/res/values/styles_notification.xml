@@ -60,4 +60,8 @@
 		<item name="android:layout_marginRight">@dimen/spacing_tiny</item>
 	</style>
 
+	<style name="Notification_Control.Nougat">
+		<item name="android:padding">0dp</item>
+	</style>
+
 </resources>
