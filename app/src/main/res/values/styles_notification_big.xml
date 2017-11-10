@@ -7,8 +7,9 @@
 	</style>
 
 	<style name="Notification_Big_RightContainer">
-		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_weight">1</item>
 		<item name="android:orientation">vertical</item>
 		<item name="android:background">@android:color/transparent</item>
 	</style>
@@ -39,6 +40,11 @@
 		<item name="android:src">@drawable/fallback_cover</item>
 	</style>
 
+	<style name="Notification_Big_Art.Nougat">
+		<item name="android:layout_width">100dp</item>
+		<item name="android:layout_height">100dp</item>
+	</style>
+
 	<style name="Notification_Big_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -47,6 +53,11 @@
 		<item name="android:text">@string/notification_defaultText_title</item>
 		<item name="android:textColor">#000</item>
 		<item name="android:singleLine">true</item>
+	</style>
+
+	<style name="Notification_Big_Title.Nougat">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 	</style>
 
 	<style name="Notification_Big_Info">
@@ -58,7 +69,16 @@
 		<item name="android:singleLine">true</item>
 	</style>
 
+	<style name="Notification_Big_Info.Nougat">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+	</style>
+
 	<style name="Notification_Big_Info.Artist">
+		<item name="android:text">@string/notification_defaultText_info</item>
+	</style>
+
+	<style name="Notification_Big_Info.Nougat.Artist">
 		<item name="android:text">@string/notification_defaultText_info</item>
 	</style>
 
@@ -71,6 +91,13 @@
 		<item name="android:orientation">horizontal</item>
 	</style>
 
+	<style name="Notification_Big_ControlsContainer.Nougat">
+		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+	</style>
+
 	<style name="Notification_Big_Control">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">32dp</item>
@@ -81,7 +108,16 @@
 		<item name="android:drawSelectorOnTop">true</item>
 	</style>
 
+	<style name="Notification_Big_Control.Nougat">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:background">@android:color/transparent</item>
+	</style>
+
 	<style name="Notification_Big_Control.Play_Pause">
+		<item name="android:padding">2dp</item>
+	</style>
+
+	<style name="Notification_Big_Control.Nougat.Play_Pause">
 		<item name="android:padding">2dp</item>
 	</style>
 

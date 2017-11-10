@@ -61,7 +61,15 @@
 	</style>
 
 	<style name="Notification_Control.Nougat">
-		<item name="android:padding">0dp</item>
+		<item name="background">@null</item>
+	</style>
+
+	<style name="Notification_Control.Nougat.Fast_Forward">
+		<item name="android:layout_marginRight">@dimen/spacing_tiny</item>
+	</style>
+
+	<style name="Notification_Control.Nougat.Play_Pause">
+		<item name="android:padding">6dp</item>
 	</style>
 
 </resources>

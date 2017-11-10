@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	style="notification_big_mainContainer"
+	>
+
+	<LinearLayout style="@style/Notification_Big_RightContainer">
+
+		<LinearLayout style="@style/Notification_Big_RightTopContainer">
+
+			<LinearLayout style="@style/Notification_Big_InfoContainer">
+
+				<TextView
+					android:id="@+id/title"
+					tools:text="Song Title"
+					style="@style/Notification_Big_Title.Nougat"
+					/>
+
+				<TextView
+					android:id="@+id/artist"
+					tools:text="Song Artist"
+					style="@style/Notification_Big_Info.Nougat.Artist"
+					/>
+
+				<TextView
+					android:id="@+id/album"
+					tools:text="Song Album"
+					style="@style/Notification_Big_Info.Nougat"
+					/>
+
+			</LinearLayout>
+
+			<ImageButton
+				android:id="@+id/close"
+				android:contentDescription="@string/description_notification_close"
+				android:visibility="gone"
+				style="@style/Notification_Big_Close"
+				/>
+
+		</LinearLayout>
+
+		<LinearLayout style="@style/Notification_Big_ControlsContainer.Nougat">
+
+			<ImageButton
+				android:id="@+id/rewind"
+				android:src="@drawable/ic_skip_prev"
+				android:contentDescription="@string/description_control_rewind"
+				style="@style/Notification_Big_Control.Nougat"
+				/>
+
+			<ImageButton
+				android:id="@+id/play_pause"
+				android:src="@drawable/ic_play"
+				android:contentDescription="@string/description_control_playPause"
+				style="@style/Notification_Big_Control.Nougat.Play_Pause"
+				/>
+
+			<ImageButton
+				android:id="@+id/fast_forward"
+				android:src="@drawable/ic_skip_next"
+				android:contentDescription="@string/description_control_fastForward"
+				style="@style/Notification_Big_Control.Nougat.Play_Pause"
+				/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<ImageView
+		android:id="@+id/art"
+		android:contentDescription="@string/description_art"
+		style="@style/Notification_Big_Art.Nougat"
+		/>
+
+</LinearLayout>

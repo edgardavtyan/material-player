@@ -20,6 +20,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 	private AdvancedRemoteViews remoteViews;
 	private AdvancedRemoteViews bigRemoteViews;
 	private AdvancedRemoteViews remoteViewsNougat;
+	private AdvancedRemoteViews bigRemoteViewsNougat;
 	private NotificationManagerCompat baseManager;
 	private TestableNotificationManager manager;
 	private NotificationCompat.Builder builder;
@@ -46,7 +47,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 			} else {
 				notification = new PlayerNotification2(
 						getNormalRemoteViewsNougat(),
-						getBigRemoteViews(),
+						getBigRemoteViewsNougat(),
 						getManager(),
 						getBuilder2(),
 						getPendingIntents());
@@ -77,6 +78,12 @@ public class PlayerNotificationFactory extends BaseFactory {
 		if (bigRemoteViews == null)
 			bigRemoteViews = new AdvancedRemoteViews(getContext(), bigLayoutId);
 		return bigRemoteViews;
+	}
+
+	public AdvancedRemoteViews getBigRemoteViewsNougat() {
+		if (bigRemoteViewsNougat == null)
+			bigRemoteViewsNougat = new AdvancedRemoteViews(getContext(), R.layout.notification_nougat_big);
+		return bigRemoteViewsNougat;
 	}
 
 	public TestableNotificationManager getManager() {
