@@ -105,6 +105,11 @@ public class AudioEffectsActivity
 	}
 
 	@Override
+	public void setEquqlizerPresetAsCustomNew() {
+		presetsView.setSelection(0);
+	}
+
+	@Override
 	public void initBassBoost(int max, int strength) {
 		bassBoostView.setMax(max);
 		bassBoostView.setProgress(strength);

@@ -37,6 +37,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	@Override
 	public void onEqualizerBandChanged(EqualizerBandView band) {
 		model.getEqualizer().setBandGain(band.getIndex(), band.getGain());
+		view.setEquqlizerPresetAsCustomNew();
 	}
 
 	@Override
