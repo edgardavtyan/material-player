@@ -5,12 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.audioeffects.models.PresetsAdapter;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
@@ -35,7 +35,7 @@ public class AudioEffectsActivity
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
 	private AudioEffectsMvp.Presenter presenter;
-	private ArrayAdapter<String> presetsAdapter;
+	private PresetsAdapter presetsAdapter;
 
 	private AdapterView.OnItemSelectedListener onPresetSelectedListener
 			= new AdapterView.OnItemSelectedListener() {
@@ -54,7 +54,7 @@ public class AudioEffectsActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		presetsAdapter = new ArrayAdapter<String>(this, R.layout.spinner_simple);
+		presetsAdapter = new PresetsAdapter(this);
 		presetsView.setAdapter(presetsAdapter);
 		presetsView.setOnItemSelectedListener(onPresetSelectedListener);
 
@@ -94,8 +94,7 @@ public class AudioEffectsActivity
 
 	@Override
 	public void setEqualizerPresets(List<String> presets) {
-		presetsAdapter.clear();
-		presetsAdapter.addAll(presets);
+		presetsAdapter.setBuiltInPresets(presets);
 	}
 
 	@Override
