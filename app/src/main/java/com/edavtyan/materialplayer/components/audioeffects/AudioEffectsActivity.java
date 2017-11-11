@@ -37,10 +37,17 @@ public class AudioEffectsActivity
 	private AudioEffectsMvp.Presenter presenter;
 	private PresetsAdapter presetsAdapter;
 
+	private boolean presetsSpinnerFirstLaunch = true;
+
 	private AdapterView.OnItemSelectedListener onPresetSelectedListener
 			= new AdapterView.OnItemSelectedListener() {
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+			if (presetsSpinnerFirstLaunch) {
+				presetsSpinnerFirstLaunch = false;
+				return;
+			}
+
 			presenter.onPresetSelected(position);
 		}
 
