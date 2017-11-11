@@ -38,14 +38,14 @@ public class PlayerNotificationFactory extends BaseFactory {
 	public PlayerNotificationMvp.View getNotification() {
 		if (notification == null) {
 			if (Build.VERSION.SDK_INT < 24) {
-				notification = new PlayerNotification(
+				notification = new PlayerNotificationCompat(
 						getNormalRemoteViews(),
 						getBigRemoteViews(),
 						getManager(),
 						getBuilder(),
 						getPendingIntents());
 			} else {
-				notification = new PlayerNotification2(
+				notification = new PlayerNotificationNougat(
 						getContext(),
 						getNormalRemoteViewsNougat(),
 						getBigRemoteViewsNougat(),
