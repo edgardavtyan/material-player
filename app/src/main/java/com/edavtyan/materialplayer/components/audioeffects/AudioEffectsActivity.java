@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.components.audioeffects;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.SwitchCompat;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
@@ -35,12 +37,26 @@ public class AudioEffectsActivity
 	private AudioEffectsMvp.Presenter presenter;
 	private ArrayAdapter<String> presetsAdapter;
 
+	private AdapterView.OnItemSelectedListener onPresetSelectedListener
+			= new AdapterView.OnItemSelectedListener() {
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+			presenter.onPresetSelected(position);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+
+		}
+	};
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		presetsAdapter = new ArrayAdapter<String>(this, R.layout.spinner_simple);
 		presetsView.setAdapter(presetsAdapter);
+		presetsView.setOnItemSelectedListener(onPresetSelectedListener);
 
 		equalizerSwitch.setOnCheckedChangeListener(this);
 		equalizerView.setOnBandChangedListener(this);

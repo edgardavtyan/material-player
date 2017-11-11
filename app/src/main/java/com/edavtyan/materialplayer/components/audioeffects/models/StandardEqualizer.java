@@ -84,6 +84,16 @@ public class StandardEqualizer implements Equalizer {
 		return presetNames;
 	}
 
+	@Override
+	public void usePreset(short presetIndex) {
+		equalizer.usePreset(presetIndex);
+
+		for (int i = 0; i < bandsCount; i++) {
+			int reverseBand = bandsCount - i - 1;
+			gains[i] = milliToDeci(equalizer.getBandLevel((short) reverseBand));
+		}
+	}
+
 	private int baseToKilo(int value) {
 		return value / 1000;
 	}

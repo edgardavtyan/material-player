@@ -45,6 +45,16 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	}
 
 	@Override
+	public void onPresetSelected(int position) {
+		model.getEqualizer().usePreset((short) position);
+		view.setEqualizerBands(
+				model.getEqualizer().getBandsCount(),
+				model.getEqualizer().getGainLimit(),
+				model.getEqualizer().getFrequencies(),
+				model.getEqualizer().getGains());
+	}
+
+	@Override
 	public void onBassBoostStrengthChanged(int strength) {
 		model.getBassBoost().setStrength(strength);
 	}
