@@ -10,9 +10,9 @@ public class StandardEqualizer implements Equalizer {
 	private final EqualizerPrefs prefs;
 	private final EqualizerPresetsPrefs presetsPrefs;
 
-	private final int bandsCount;
-	private final int[] frequencies;
-	private final int[] gains;
+	private final @Getter int bandsCount;
+	private final @Getter int[] frequencies;
+	private final @Getter int[] gains;
 
 	private @Getter PresetType presetType;
 
@@ -39,21 +39,6 @@ public class StandardEqualizer implements Equalizer {
 			int reverseIndex = bandsCount - i - 1;
 			equalizer.setBandLevel((short) reverseIndex, (short) deciToMilli(gains[i]));
 		}
-	}
-
-	@Override
-	public int getBandsCount() {
-		return bandsCount;
-	}
-
-	@Override
-	public int[] getFrequencies() {
-		return frequencies;
-	}
-
-	@Override
-	public int[] getGains() {
-		return gains;
 	}
 
 	@Override
