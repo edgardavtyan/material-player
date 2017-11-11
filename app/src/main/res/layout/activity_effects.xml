@@ -30,7 +30,7 @@
 
 		</LinearLayout>
 
-		<LinearLayout style="@style/AudioEffects_Equalizer_Header">
+		<LinearLayout style="@style/AudioEffects_Equalizer_Header.Adjacent">
 
 			<TextView
 				android:text="@string/equalizer_presets_title"
