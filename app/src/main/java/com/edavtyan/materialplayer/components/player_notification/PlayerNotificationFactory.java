@@ -46,6 +46,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 						getPendingIntents());
 			} else {
 				notification = new PlayerNotification2(
+						getContext(),
 						getNormalRemoteViewsNougat(),
 						getBigRemoteViewsNougat(),
 						getManager(),

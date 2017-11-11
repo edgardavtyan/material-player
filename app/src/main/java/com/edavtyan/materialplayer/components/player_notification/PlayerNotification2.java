@@ -2,7 +2,9 @@ package com.edavtyan.materialplayer.components.player_notification;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v4.content.ContextCompat;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
@@ -22,6 +24,7 @@ public class PlayerNotification2 implements PlayerNotificationMvp.View {
 	private final @Getter Notification notification;
 
 	public PlayerNotification2(
+			Context context,
 			AdvancedRemoteViews normalRemoteViews,
 			AdvancedRemoteViews bigRemoteViews,
 			TestableNotificationManager manager,
@@ -36,6 +39,7 @@ public class PlayerNotification2 implements PlayerNotificationMvp.View {
 				.setCustomContentView(normalRemoteViews)
 				.setCustomBigContentView(bigRemoteViews)
 				.setStyle(new Notification.DecoratedMediaCustomViewStyle())
+				.setColor(ContextCompat.getColor(context, R.color.primary_orange))
 				.build();
 
 		normalRemoteViews.setOnClickBroadcast(R.id.rewind, PlayerService.ACTION_REWIND);
