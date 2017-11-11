@@ -29,7 +29,7 @@ public class PlayerNotificationNougat
 				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
 				.setCustomContentView(normalRemoteViews)
 				.setCustomBigContentView(bigRemoteViews)
-				.setStyle(new Notification.DecoratedMediaCustomViewStyle())
+				.setStyle(new Notification.DecoratedCustomViewStyle())
 				.setColor(ContextCompat.getColor(context, R.color.primary_orange))
 				.build());
 	}
