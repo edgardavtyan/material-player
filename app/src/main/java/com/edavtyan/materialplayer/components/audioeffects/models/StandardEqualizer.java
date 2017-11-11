@@ -1,5 +1,8 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StandardEqualizer implements Equalizer {
 	private final android.media.audiofx.Equalizer equalizer;
 	private final EqualizerPrefs prefs;
@@ -69,6 +72,16 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void setEnabled(boolean isEnabled) {
 		equalizer.setEnabled(isEnabled);
+	}
+
+	@Override
+	public List<String> getBuiltInPresetNames() {
+		List<String> presetNames = new ArrayList<>();
+		for (short i = 0; i < equalizer.getNumberOfPresets(); i++) {
+			presetNames.add(equalizer.getPresetName(i));
+		}
+
+		return presetNames;
 	}
 
 	private int baseToKilo(int value) {

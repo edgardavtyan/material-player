@@ -30,6 +30,22 @@
 
 		</LinearLayout>
 
+		<LinearLayout style="@style/AudioEffects_Equalizer_Header">
+
+			<TextView
+				android:text="@string/equalizer_presets_title"
+				style="@style/AudioEffects_Equalizer_Title"
+				/>
+
+			<Spinner
+				android:id="@+id/presets_spinner"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="-12dp"
+				/>
+
+		</LinearLayout>
+
 		<com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView
 			android:id="@+id/equalizer"
 			style="@style/AudioEffects_Equalizer"

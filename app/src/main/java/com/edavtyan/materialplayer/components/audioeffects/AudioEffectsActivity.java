@@ -3,7 +3,9 @@ package com.edavtyan.materialplayer.components.audioeffects;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.SwitchCompat;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
@@ -11,6 +13,8 @@ import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandVi
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -23,15 +27,20 @@ public class AudioEffectsActivity
 
 	@BindView(R.id.equalizer_switch) SwitchCompat equalizerSwitch;
 	@BindView(R.id.equalizer) EqualizerView equalizerView;
+	@BindView(R.id.presets_spinner) Spinner presetsView;
 	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
 	private AudioEffectsMvp.Presenter presenter;
+	private ArrayAdapter<String> presetsAdapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		presetsAdapter = new ArrayAdapter<String>(this, R.layout.spinner_simple);
+		presetsView.setAdapter(presetsAdapter);
 
 		equalizerSwitch.setOnCheckedChangeListener(this);
 		equalizerView.setOnBandChangedListener(this);
@@ -65,6 +74,12 @@ public class AudioEffectsActivity
 	@Override
 	public void setEqualizerBands(int count, int gainLimit, int[] frequencies, int[] gains) {
 		equalizerView.setBands(count, frequencies, gains, gainLimit);
+	}
+
+	@Override
+	public void setEqualizerPresets(List<String> presets) {
+		presetsAdapter.clear();
+		presetsAdapter.addAll(presets);
 	}
 
 	@Override

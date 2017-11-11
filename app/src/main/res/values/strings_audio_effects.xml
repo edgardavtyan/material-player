@@ -12,4 +12,6 @@
 	<string name="amplifier_title">Amplifier</string>
 	<string name="bass_boost_title">Bass Boost</string>
 
+	<string name="equalizer_presets_title">Presets</string>
+
 </resources>

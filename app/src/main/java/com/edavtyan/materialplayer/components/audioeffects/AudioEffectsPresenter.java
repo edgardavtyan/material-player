@@ -82,6 +82,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 				model.getEqualizer().getGainLimit(),
 				model.getEqualizer().getFrequencies(),
 				model.getEqualizer().getGains());
+		view.setEqualizerPresets(model.getEqualizer().getBuiltInPresetNames());
 		view.initBassBoost(model.getBassBoost().getMaxStrength(), model.getBassBoost().getStrength());
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
 		view.initAmplifier(model.getAmplifier().getMaxGain(), model.getAmplifier().getGain());

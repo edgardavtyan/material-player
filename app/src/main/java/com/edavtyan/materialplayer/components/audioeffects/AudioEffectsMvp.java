@@ -7,6 +7,8 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
+import java.util.List;
+
 @SuppressWarnings("unused")
 public interface AudioEffectsMvp {
 	interface Model {
@@ -23,6 +25,7 @@ public interface AudioEffectsMvp {
 	interface View {
 		void setEqualizerEnabled(boolean enabled);
 		void setEqualizerBands(int count, int gainLimit, int[] frequencies, int[] gains);
+		void setEqualizerPresets(List<String> presets);
 		void initBassBoost(int max, int strength);
 		void initSurround(int max, int strength);
 		void initAmplifier(int max, int gain);
