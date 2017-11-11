@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+
 public class StandardEqualizer implements Equalizer {
 	private final android.media.audiofx.Equalizer equalizer;
 	private final EqualizerPrefs prefs;
@@ -11,6 +13,8 @@ public class StandardEqualizer implements Equalizer {
 	private final int bandsCount;
 	private final int[] frequencies;
 	private final int[] gains;
+
+	private @Getter PresetType presetType;
 
 	public StandardEqualizer(
 			android.media.audiofx.Equalizer equalizer,
@@ -57,6 +61,7 @@ public class StandardEqualizer implements Equalizer {
 		int reverseBand = bandsCount - band - 1;
 		equalizer.setBandLevel((short) reverseBand, (short) deciToMilli(gain));
 		gains[band] = gain;
+		presetType = PresetType.CUSTOM_NEW;
 	}
 
 	@Override
@@ -93,6 +98,7 @@ public class StandardEqualizer implements Equalizer {
 	public void useBuiltInPreset(short presetIndex) {
 		equalizer.usePreset(presetIndex);
 		presetsPrefs.saveCurrentBuiltInPreset(presetIndex);
+		presetType = PresetType.BUILT_IN;
 
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseBand = bandsCount - i - 1;

@@ -3,6 +3,10 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 import java.util.List;
 
 public interface Equalizer {
+	enum PresetType {
+		BUILT_IN, CUSTOM_NEW
+	}
+
 	int getBandsCount();
 	int[] getFrequencies();
 	int[] getGains();

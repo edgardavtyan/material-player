@@ -13,5 +13,6 @@
 	<string name="bass_boost_title">Bass Boost</string>
 
 	<string name="equalizer_presets_title">Presets</string>
+	<string name="equalizer_presets_custom_new">Custom</string>
 
 </resources>

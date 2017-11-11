@@ -14,11 +14,13 @@ import java.util.List;
 
 public class PresetsAdapter extends BaseAdapter {
 	private final List<String> builtInPresets;
+	private final String customNewPreset;
 	private final LayoutInflater layoutInflater;
 
 	public PresetsAdapter(Context context) {
 		layoutInflater = LayoutInflater.from(context);
 		builtInPresets = new ArrayList<>();
+		customNewPreset = context.getString(R.string.equalizer_presets_custom_new);
 	}
 
 	public void setBuiltInPresets(List<String> newPresets) {
@@ -34,6 +36,7 @@ public class PresetsAdapter extends BaseAdapter {
 
 	@Override
 	public String getItem(int position) {
+		if (position == 0) return customNewPreset;
 		return builtInPresets.get(position);
 	}
 
@@ -45,7 +48,7 @@ public class PresetsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		TextView view = (TextView) layoutInflater.inflate(R.layout.spinner_simple, parent, false);
-		view.setText(builtInPresets.get(position));
+		view.setText(getItem(position));
 		return view;
 	}
 }
