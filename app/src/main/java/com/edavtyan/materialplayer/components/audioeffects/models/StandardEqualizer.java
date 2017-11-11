@@ -85,7 +85,7 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
-	public void usePreset(short presetIndex) {
+	public void useBuiltInPreset(short presetIndex) {
 		equalizer.usePreset(presetIndex);
 
 		for (int i = 0; i < bandsCount; i++) {
