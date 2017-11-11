@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
@@ -36,6 +37,7 @@ public class PlayerNotification2 implements PlayerNotificationMvp.View {
 
 		this.notification = builder
 				.setSmallIcon(R.drawable.ic_status)
+				.setContentIntent(pendingIntents.getActivity(MainActivity.class))
 				.setCustomContentView(normalRemoteViews)
 				.setCustomBigContentView(bigRemoteViews)
 				.setStyle(new Notification.DecoratedMediaCustomViewStyle())
