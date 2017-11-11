@@ -13,4 +13,5 @@ public interface Equalizer {
 	void setEnabled(boolean isEnabled);
 	List<String> getBuiltInPresetNames();
 	void useBuiltInPreset(short presetIndex);
+	int getCurrentBuiltInPresetIndex();
 }

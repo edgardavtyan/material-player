@@ -29,6 +29,7 @@ public interface AudioEffectsMvp {
 		void initBassBoost(int max, int strength);
 		void initSurround(int max, int strength);
 		void initAmplifier(int max, int gain);
+		void setCurrentEqualizerPreset(int presetIndex);
 	}
 
 	interface Presenter extends ModelServiceModule.OnServiceConnectedListener {

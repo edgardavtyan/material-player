@@ -6,14 +6,19 @@ import java.util.List;
 public class StandardEqualizer implements Equalizer {
 	private final android.media.audiofx.Equalizer equalizer;
 	private final EqualizerPrefs prefs;
+	private final EqualizerPresetsPrefs presetsPrefs;
 
 	private final int bandsCount;
 	private final int[] frequencies;
 	private final int[] gains;
 
-	public StandardEqualizer(android.media.audiofx.Equalizer equalizer, EqualizerPrefs prefs) {
+	public StandardEqualizer(
+			android.media.audiofx.Equalizer equalizer,
+			EqualizerPrefs prefs,
+			EqualizerPresetsPrefs presetsPrefs) {
 		this.equalizer = equalizer;
 		this.prefs = prefs;
+		this.presetsPrefs = presetsPrefs;
 
 		setEnabled(prefs.getEnabled());
 
@@ -87,11 +92,17 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void useBuiltInPreset(short presetIndex) {
 		equalizer.usePreset(presetIndex);
+		presetsPrefs.saveCurrentBuiltInPreset(presetIndex);
 
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseBand = bandsCount - i - 1;
 			gains[i] = milliToDeci(equalizer.getBandLevel((short) reverseBand));
 		}
+	}
+
+	@Override
+	public int getCurrentBuiltInPresetIndex() {
+		return presetsPrefs.getCurrentBuiltInPreset();
 	}
 
 	private int baseToKilo(int value) {

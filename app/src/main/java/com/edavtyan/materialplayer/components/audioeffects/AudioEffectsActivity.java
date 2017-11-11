@@ -123,6 +123,11 @@ public class AudioEffectsActivity
 	}
 
 	@Override
+	public void setCurrentEqualizerPreset(int presetIndex) {
+		presetsView.setSelection(presetIndex);
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		presenter.onEqualizerEnabledChanged(isChecked);
 	}
