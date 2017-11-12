@@ -106,6 +106,11 @@ public class AudioEffectsActivity
 	}
 
 	@Override
+	public void selectLastCustomPreset() {
+		presetsSpinner.selectLastCustomPreset();
+	}
+
+	@Override
 	public void setDeletePresetButtonEnabled(boolean enabled) {
 		if (enabled) {
 			deletePresetButton.setAlpha(1.0f);

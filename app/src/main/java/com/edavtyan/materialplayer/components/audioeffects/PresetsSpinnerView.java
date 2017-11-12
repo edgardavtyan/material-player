@@ -66,6 +66,10 @@ public class PresetsSpinnerView {
 		presetsSpinner.setSelection(presetIndex);
 	}
 
+	public void selectLastCustomPreset() {
+		presetsSpinner.setSelection(customPresetsSize);
+	}
+
 	public void deleteCurrentPreset() {
 		// Offset selection by 1 since first element in spinner is always 'Custom'
 		presenter.onDeletePreset(presetsSpinner.getSelectedItemPosition() - 1);

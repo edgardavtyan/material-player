@@ -74,6 +74,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 		view.setEqualizerPresets(
 				model.getEqualizer().getBuiltInPresetNames(),
 				model.getEqualizer().getCustomPresetNames());
+		view.selectLastCustomPreset();
 	}
 
 	@Override
