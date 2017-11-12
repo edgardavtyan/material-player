@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandVi
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import java.util.List;
 
@@ -134,6 +135,11 @@ public class AudioEffectsActivity
 			deletePresetButton.setAlpha(0.5f);
 			deletePresetButton.setEnabled(false);
 		}
+	}
+
+	@Override
+	public void toggleSoftKeyboard() {
+		WindowUtils.toggleSoftKeyboard(this);
 	}
 
 	@Override

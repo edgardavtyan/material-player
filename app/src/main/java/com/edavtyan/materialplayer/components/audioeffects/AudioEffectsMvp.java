@@ -32,6 +32,7 @@ public interface AudioEffectsMvp {
 		void closeNewPresetCreationDialog();
 		void showPresetAlreadyExists();
 		void setDeletePresetButtonEnabled(boolean enabled);
+		void toggleSoftKeyboard();
 		void initBassBoost(int max, int strength);
 		void initSurround(int max, int strength);
 		void initAmplifier(int max, int gain);
@@ -46,6 +47,7 @@ public interface AudioEffectsMvp {
 		void onEqualizerBandStopTracking();
 		void onPresetSelected(int position, Equalizer.PresetType presetType);
 		void onNewPresetDialogOkButtonClicked(String name);
+		void onNewPresetDialogCancelButtonClicked();
 		void onDeletePreset(int position);
 		void onCreateNewPresetButtonClicked();
 		void onBassBoostStrengthChanged(int strength);

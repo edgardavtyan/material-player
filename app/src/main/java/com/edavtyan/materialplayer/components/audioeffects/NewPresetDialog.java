@@ -29,6 +29,15 @@ public class NewPresetDialog {
 		}
 	};
 
+	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
+	private final DialogInterface.OnClickListener negativeButtonListener
+			= new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			presenter.onNewPresetDialogCancelButtonClicked();
+		}
+	};
+
 	public NewPresetDialog(Context context, AudioEffectsMvp.Presenter presenter) {
 		this.presenter = presenter;
 
@@ -40,7 +49,7 @@ public class NewPresetDialog {
 				.setView(view)
 				.setTitle(R.string.equalizer_presets_dialog_new_title)
 				.setPositiveButton(android.R.string.ok, null)
-				.setNegativeButton(android.R.string.cancel, null)
+				.setNegativeButton(android.R.string.cancel, negativeButtonListener)
 				.create();
 	}
 
