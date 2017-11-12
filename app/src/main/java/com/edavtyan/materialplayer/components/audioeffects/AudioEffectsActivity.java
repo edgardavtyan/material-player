@@ -32,6 +32,7 @@ public class AudioEffectsActivity
 	@BindView(R.id.equalizer) EqualizerView equalizerView;
 	@BindView(R.id.presets_spinner) Spinner presetsView;
 	@BindView(R.id.preset_new) Button newPresetButton;
+	@BindView(R.id.preset_remove) Button deletePresetButton;
 	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
@@ -121,6 +122,17 @@ public class AudioEffectsActivity
 	@Override
 	public void setEqualizerPresetAsCustomNew() {
 		presetsView.setSelection(0);
+	}
+
+	@Override
+	public void setDeletePresetButtonEnabled(boolean enabled) {
+		if (enabled) {
+			deletePresetButton.setAlpha(1.0f);
+			deletePresetButton.setEnabled(true);
+		} else {
+			deletePresetButton.setAlpha(0.5f);
+			deletePresetButton.setEnabled(false);
+		}
 	}
 
 	@Override

@@ -47,7 +47,17 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 
 	@Override
 	public void onPresetSelected(int position) {
-		if (position == 0) return;
+		if (position == 0) {
+			view.setDeletePresetButtonEnabled(false);
+			return;
+		}
+
+		int customPresetsCount = model.getEqualizer().getCustomPresetNames().size();
+		if (1 <= position && position <= customPresetsCount) {
+			view.setDeletePresetButtonEnabled(true);
+		} else {
+			view.setDeletePresetButtonEnabled(false);
+		}
 
 		model.getEqualizer().useBuiltInPreset((short) position);
 		view.setEqualizerBands(

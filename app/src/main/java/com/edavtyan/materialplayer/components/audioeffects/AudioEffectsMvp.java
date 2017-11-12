@@ -27,6 +27,7 @@ public interface AudioEffectsMvp {
 		void setEqualizerBands(int count, int gainLimit, int[] frequencies, int[] gains);
 		void setEqualizerPresets(List<String> builtInPresets, List<String> customPresets);
 		void setEqualizerPresetAsCustomNew();
+		void setDeletePresetButtonEnabled(boolean enabled);
 		void initBassBoost(int max, int strength);
 		void initSurround(int max, int strength);
 		void initAmplifier(int max, int gain);
