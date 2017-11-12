@@ -28,8 +28,15 @@ public class EqualizerPresetsPrefs {
 		return prefs.getInt(PREF_BUILT_IN, DEFAULT_BUILT_IN);
 	}
 
-	public void addNewCustomPreset(String name, int bandsCount) {
+	public void addNewCustomPreset(String name, int bandsCount) throws PresetNameAlreadyExists {
 		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+
+		for (CustomPreset customPreset : customPresets) {
+			if (customPreset.getName().equals(name)) {
+				throw new PresetNameAlreadyExists(name);
+			}
+		}
+
 		customPresets.add(new CustomPreset(name, bandsCount));
 		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
 	}

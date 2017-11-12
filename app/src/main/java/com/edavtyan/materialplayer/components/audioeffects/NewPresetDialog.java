@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 
@@ -14,16 +15,17 @@ import butterknife.ButterKnife;
 
 public class NewPresetDialog {
 	@BindView(R.id.preset_edit_text) EditText presetNameEditText;
+	@BindView(R.id.preset_error_exists) TextView presetErrorExistsView;
 
 	private final AlertDialog dialog;
 	private final AudioEffectsMvp.Presenter presenter;
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final DialogInterface.OnClickListener positiveButtonListener
-			= new DialogInterface.OnClickListener() {
+	private final View.OnClickListener positiveButtonListener
+			= new View.OnClickListener() {
 		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			presenter.onCreateNewPreset(presetNameEditText.getText().toString());
+		public void onClick(View v) {
+			presenter.onNewPresetDialogOkButtonClicked(presetNameEditText.getText().toString());
 		}
 	};
 
@@ -37,12 +39,21 @@ public class NewPresetDialog {
 		this.dialog = new AlertDialog.Builder(context)
 				.setView(view)
 				.setTitle(R.string.equalizer_presets_dialog_new_title)
-				.setPositiveButton(android.R.string.ok, positiveButtonListener)
+				.setPositiveButton(android.R.string.ok, null)
 				.setNegativeButton(android.R.string.cancel, null)
 				.create();
 	}
 
 	public void show() {
 		dialog.show();
+		dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(positiveButtonListener);
+	}
+
+	public void dismiss() {
+		dialog.dismiss();
+	}
+
+	public void showPresetAlreadyExists() {
+		presetErrorExistsView.setVisibility(View.VISIBLE);
 	}
 }

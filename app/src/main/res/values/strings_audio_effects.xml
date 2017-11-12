@@ -17,4 +17,6 @@
 
 	<string name="equalizer_presets_dialog_new_title">Add new EQ preset</string>
 
+	<string name="equalizer_presets_error_exists">Preset with same name already exists</string>
+
 </resources>

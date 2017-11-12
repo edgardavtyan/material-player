@@ -28,6 +28,9 @@ public interface AudioEffectsMvp {
 		void setEqualizerPresets(List<String> builtInPresets, List<String> customPresets);
 		void setEqualizerPresetAsCustomNew();
 		void selectLastCustomPreset();
+		void showNewPresetCreationDialog();
+		void closeNewPresetCreationDialog();
+		void showPresetAlreadyExists();
 		void setDeletePresetButtonEnabled(boolean enabled);
 		void initBassBoost(int max, int strength);
 		void initSurround(int max, int strength);
@@ -42,8 +45,9 @@ public interface AudioEffectsMvp {
 		void onEqualizerBandChanged(EqualizerBandView band);
 		void onEqualizerBandStopTracking();
 		void onPresetSelected(int position, Equalizer.PresetType presetType);
-		void onCreateNewPreset(String name);
+		void onNewPresetDialogOkButtonClicked(String name);
 		void onDeletePreset(int position);
+		void onCreateNewPresetButtonClicked();
 		void onBassBoostStrengthChanged(int strength);
 		void onBassBoostStrengthStopChanging();
 		void onSurroundStrengthChanged(int progress);

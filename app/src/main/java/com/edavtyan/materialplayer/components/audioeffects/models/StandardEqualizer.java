@@ -102,7 +102,7 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
-	public void createNewPreset(String name) {
+	public void createNewPreset(String name) throws PresetNameAlreadyExists {
 		presetsPrefs.addNewCustomPreset(name, bandsCount);
 	}
 

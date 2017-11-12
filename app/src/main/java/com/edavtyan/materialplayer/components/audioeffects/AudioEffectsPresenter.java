@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 
@@ -69,12 +70,17 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	}
 
 	@Override
-	public void onCreateNewPreset(String name) {
-		model.getEqualizer().createNewPreset(name);
-		view.setEqualizerPresets(
-				model.getEqualizer().getBuiltInPresetNames(),
-				model.getEqualizer().getCustomPresetNames());
-		view.selectLastCustomPreset();
+	public void onNewPresetDialogOkButtonClicked(String name) {
+		try {
+			model.getEqualizer().createNewPreset(name);
+			view.setEqualizerPresets(
+					model.getEqualizer().getBuiltInPresetNames(),
+					model.getEqualizer().getCustomPresetNames());
+			view.selectLastCustomPreset();
+			view.closeNewPresetCreationDialog();
+		} catch (PresetNameAlreadyExists presetNameAlreadyExists) {
+			view.showPresetAlreadyExists();
+		}
 	}
 
 	@Override
@@ -83,6 +89,11 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 		view.setEqualizerPresets(
 				model.getEqualizer().getBuiltInPresetNames(),
 				model.getEqualizer().getCustomPresetNames());
+	}
+
+	@Override
+	public void onCreateNewPresetButtonClicked() {
+		view.showNewPresetCreationDialog();
 	}
 
 	@Override

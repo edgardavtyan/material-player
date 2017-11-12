@@ -41,7 +41,7 @@ public class AudioEffectsActivity
 	private View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			newPresetDialog.show();
+			presenter.onCreateNewPresetButtonClicked();
 		}
 	};
 
@@ -108,6 +108,21 @@ public class AudioEffectsActivity
 	@Override
 	public void selectLastCustomPreset() {
 		presetsSpinner.selectLastCustomPreset();
+	}
+
+	@Override
+	public void showNewPresetCreationDialog() {
+		newPresetDialog.show();
+	}
+
+	@Override
+	public void closeNewPresetCreationDialog() {
+		newPresetDialog.dismiss();
+	}
+
+	@Override
+	public void showPresetAlreadyExists() {
+		newPresetDialog.showPresetAlreadyExists();
 	}
 
 	@Override
