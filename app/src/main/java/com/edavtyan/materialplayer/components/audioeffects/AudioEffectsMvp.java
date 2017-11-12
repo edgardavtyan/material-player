@@ -32,7 +32,6 @@ public interface AudioEffectsMvp {
 		void closeNewPresetCreationDialog();
 		void showPresetAlreadyExists();
 		void setDeletePresetButtonEnabled(boolean enabled);
-		void toggleSoftKeyboard();
 		void initBassBoost(int max, int strength);
 		void initSurround(int max, int strength);
 		void initAmplifier(int max, int gain);

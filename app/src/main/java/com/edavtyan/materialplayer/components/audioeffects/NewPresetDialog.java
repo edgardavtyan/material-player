@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +19,7 @@ public class NewPresetDialog {
 	@BindView(R.id.preset_error_exists) TextView presetErrorExistsView;
 
 	private final AlertDialog dialog;
+	private final Context context;
 	private final AudioEffectsMvp.Presenter presenter;
 
 	@SuppressWarnings("FieldCanBeLocal")
@@ -39,6 +41,7 @@ public class NewPresetDialog {
 	};
 
 	public NewPresetDialog(Context context, AudioEffectsMvp.Presenter presenter) {
+		this.context = context;
 		this.presenter = presenter;
 
 		LayoutInflater inflater = LayoutInflater.from(context);
@@ -56,9 +59,12 @@ public class NewPresetDialog {
 	public void show() {
 		dialog.show();
 		dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(positiveButtonListener);
+		presetNameEditText.requestFocus();
+		WindowUtils.toggleSoftKeyboard(context);
 	}
 
 	public void dismiss() {
+		WindowUtils.closeSoftKeyboard(context, presetNameEditText);
 		dialog.dismiss();
 		presetNameEditText.setText(null);
 		presetErrorExistsView.setVisibility(View.GONE);

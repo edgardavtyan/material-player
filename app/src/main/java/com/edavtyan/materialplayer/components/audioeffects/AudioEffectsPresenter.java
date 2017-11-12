@@ -78,7 +78,6 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 					model.getEqualizer().getCustomPresetNames());
 			view.selectLastCustomPreset();
 			view.closeNewPresetCreationDialog();
-			view.toggleSoftKeyboard();
 		} catch (PresetNameAlreadyExists presetNameAlreadyExists) {
 			view.showPresetAlreadyExists();
 		}
@@ -87,7 +86,6 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	@Override
 	public void onNewPresetDialogCancelButtonClicked() {
 		view.closeNewPresetCreationDialog();
-		view.toggleSoftKeyboard();
 	}
 
 	@Override
@@ -100,7 +98,6 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 
 	@Override
 	public void onCreateNewPresetButtonClicked() {
-		view.toggleSoftKeyboard();
 		view.showNewPresetCreationDialog();
 	}
 

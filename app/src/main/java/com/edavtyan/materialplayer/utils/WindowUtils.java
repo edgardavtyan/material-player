@@ -40,10 +40,7 @@ public final class WindowUtils {
 	}
 
 	public static void closeSoftKeyboard(Context context, View view) {
-		InputMethodManager imm =
-				(InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-		view.requestFocus();
-		view.clearFocus();
+		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 	}
 }
