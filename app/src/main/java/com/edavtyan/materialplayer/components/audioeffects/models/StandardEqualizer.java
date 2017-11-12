@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.CustomPreset;
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetNameAlreadyExists;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,6 @@ public class StandardEqualizer implements Equalizer {
 	private final @Getter int bandsCount;
 	private final @Getter int[] frequencies;
 	private final @Getter int[] gains;
-
-	private @Getter PresetType presetType;
 
 	public StandardEqualizer(
 			android.media.audiofx.Equalizer equalizer,
@@ -50,7 +48,7 @@ public class StandardEqualizer implements Equalizer {
 		int reverseBand = bandsCount - band - 1;
 		equalizer.setBandLevel((short) reverseBand, (short) deciToMilli(gain));
 		gains[band] = gain;
-		presetType = PresetType.CUSTOM_NEW;
+		presetsPrefs.saveCurrentPresetType(PresetType.CUSTOM_NEW);
 	}
 
 	@Override
@@ -86,8 +84,8 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void useBuiltInPreset(int presetIndex) {
 		equalizer.usePreset((short) presetIndex);
-		presetsPrefs.saveCurrentBuiltInPreset(presetIndex);
-		presetType = PresetType.BUILT_IN;
+		presetsPrefs.saveCurrentPresetIndex(presetIndex);
+		presetsPrefs.saveCurrentPresetType(PresetType.BUILT_IN);
 
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseBand = bandsCount - i - 1;
@@ -103,16 +101,19 @@ public class StandardEqualizer implements Equalizer {
 		for (int i = 0; i < customPresetGains.length; i++) {
 			setBandGain(i, customPresetGains[i]);
 		}
+
+		presetsPrefs.saveCurrentPresetType(PresetType.CUSTOM);
+		presetsPrefs.saveCurrentPresetIndex(presetIndex);
 	}
 
 	@Override
-	public int getCurrentBuiltInPresetIndex() {
-		return presetsPrefs.getCurrentBuiltInPreset();
+	public int getCurrentPresetIndex() {
+		return presetsPrefs.getCurrentPresetIndex();
 	}
 
 	@Override
 	public List<String> getCustomPresetNames() {
-		return presetsPrefs.getCustomPresetsNames();
+		return presetsPrefs.getCustomPresets();
 	}
 
 	@Override
@@ -123,6 +124,16 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void deletePreset(int position) {
 		presetsPrefs.deleteCustomPreset(position);
+	}
+
+	@Override
+	public boolean isUsingSavedCustomPreset() {
+		return presetsPrefs.getCurrentPresetType() == PresetType.CUSTOM;
+	}
+
+	@Override
+	public PresetType getCurrentPresetType() {
+		return presetsPrefs.getCurrentPresetType();
 	}
 
 	private int baseToKilo(int value) {

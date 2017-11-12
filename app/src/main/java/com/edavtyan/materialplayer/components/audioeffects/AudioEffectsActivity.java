@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.NewPresetDialog;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsSpinnerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
@@ -157,8 +158,8 @@ public class AudioEffectsActivity
 	}
 
 	@Override
-	public void setCurrentEqualizerPreset(int presetIndex) {
-		presetsSpinner.selectPresetAt(presetIndex);
+	public void setCurrentEqualizerPreset(int presetIndex, Equalizer.PresetType presetType) {
+		presetsSpinner.selectPresetAt(presetIndex, presetType);
 	}
 
 	@Override

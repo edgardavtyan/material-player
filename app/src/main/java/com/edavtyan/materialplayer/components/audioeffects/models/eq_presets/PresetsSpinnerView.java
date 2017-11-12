@@ -62,8 +62,19 @@ public class PresetsSpinnerView {
 		presetsSpinner.setSelection(CUSTOM_NEW_PRESET_POSITION);
 	}
 
-	public void selectPresetAt(int presetIndex) {
-		presetsSpinner.setSelection(presetIndex);
+	public void selectPresetAt(int presetIndex, Equalizer.PresetType presetType) {
+		int index;
+		switch (presetType) {
+		case CUSTOM_NEW:
+			presetsSpinner.setSelection(0);
+			break;
+		case CUSTOM:
+			presetsSpinner.setSelection(presetIndex + 1);
+			break;
+		case BUILT_IN:
+			presetsSpinner.setSelection(presetIndex + 1 + customPresetsSize);
+			break;
+		}
 	}
 
 	public void selectLastCustomPreset() {
