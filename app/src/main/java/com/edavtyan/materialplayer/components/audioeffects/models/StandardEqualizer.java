@@ -44,6 +44,11 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
+	public int getGainLimit() {
+		return Math.abs(milliToDeci(equalizer.getBandLevelRange()[0]));
+	}
+
+	@Override
 	public void setBandGain(int band, int gain) {
 		int reverseBand = bandsCount - band - 1;
 		equalizer.setBandLevel((short) reverseBand, (short) deciToMilli(gain));
@@ -54,11 +59,6 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void saveSettings() {
 		prefs.save(gains, isEnabled());
-	}
-
-	@Override
-	public int getGainLimit() {
-		return Math.abs(milliToDeci(equalizer.getBandLevelRange()[0]));
 	}
 
 	@Override
@@ -79,6 +79,26 @@ public class StandardEqualizer implements Equalizer {
 		}
 
 		return presetNames;
+	}
+
+	@Override
+	public List<String> getCustomPresetNames() {
+		return presetsPrefs.getCustomPresets();
+	}
+
+	@Override
+	public PresetType getCurrentPresetType() {
+		return presetsPrefs.getCurrentPresetType();
+	}
+
+	@Override
+	public int getCurrentPresetIndex() {
+		return presetsPrefs.getCurrentPresetIndex();
+	}
+
+	@Override
+	public boolean isUsingSavedCustomPreset() {
+		return presetsPrefs.getCurrentPresetType() == PresetType.CUSTOM;
 	}
 
 	@Override
@@ -107,16 +127,6 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
-	public int getCurrentPresetIndex() {
-		return presetsPrefs.getCurrentPresetIndex();
-	}
-
-	@Override
-	public List<String> getCustomPresetNames() {
-		return presetsPrefs.getCustomPresets();
-	}
-
-	@Override
 	public void savePreset(String name) throws PresetNameAlreadyExists {
 		presetsPrefs.addNewCustomPreset(name, gains);
 	}
@@ -124,16 +134,6 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void deletePreset(int position) {
 		presetsPrefs.deleteCustomPreset(position);
-	}
-
-	@Override
-	public boolean isUsingSavedCustomPreset() {
-		return presetsPrefs.getCurrentPresetType() == PresetType.CUSTOM;
-	}
-
-	@Override
-	public PresetType getCurrentPresetType() {
-		return presetsPrefs.getCurrentPresetType();
 	}
 
 	private int baseToKilo(int value) {
