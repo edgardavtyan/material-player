@@ -70,11 +70,17 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	@Override
 	public void onCreateNewPreset(String name) {
 		model.getEqualizer().createNewPreset(name);
+		view.setEqualizerPresets(
+				model.getEqualizer().getBuiltInPresetNames(),
+				model.getEqualizer().getCustomPresetNames());
 	}
 
 	@Override
 	public void onDeletePreset(int position) {
 		model.getEqualizer().deletePreset(position);
+		view.setEqualizerPresets(
+				model.getEqualizer().getBuiltInPresetNames(),
+				model.getEqualizer().getCustomPresetNames());
 	}
 
 	@Override
