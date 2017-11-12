@@ -106,6 +106,11 @@ public class StandardEqualizer implements Equalizer {
 		presetsPrefs.addNewCustomPreset(name, bandsCount);
 	}
 
+	@Override
+	public void deletePreset(int position) {
+		presetsPrefs.deleteCustomPreset(position);
+	}
+
 	private int baseToKilo(int value) {
 		return value / 1000;
 	}

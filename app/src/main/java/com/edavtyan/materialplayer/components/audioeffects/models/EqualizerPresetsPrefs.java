@@ -53,4 +53,13 @@ public class EqualizerPresetsPrefs {
 
 		return Arrays.asList(presetsNames);
 	}
+
+	public void deleteCustomPreset(int position) {
+		String customPresetsJson = prefs.getString(PREF_CUSTOM, DEFAULT_CUSTOM);
+		CustomPreset[] customPresetsArray = gson.fromJson(customPresetsJson, CustomPreset[].class);
+		ArrayList<CustomPreset> customPresets = new ArrayList<>(Arrays.asList(customPresetsArray));
+		customPresets.remove(position);
+		String newCustomPresetsJson = gson.toJson(customPresets);
+		prefs.edit().putString(PREF_CUSTOM, newCustomPresetsJson).apply();
+	}
 }

@@ -73,6 +73,11 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	}
 
 	@Override
+	public void onDeletePreset(int position) {
+		model.getEqualizer().deletePreset(position);
+	}
+
+	@Override
 	public void onBassBoostStrengthChanged(int strength) {
 		model.getBassBoost().setStrength(strength);
 	}

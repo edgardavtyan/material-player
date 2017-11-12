@@ -20,4 +20,5 @@ public interface Equalizer {
 	int getCurrentBuiltInPresetIndex();
 	List<String> getCustomPresetNames();
 	void createNewPreset(String name);
+	void deletePreset(int position);
 }

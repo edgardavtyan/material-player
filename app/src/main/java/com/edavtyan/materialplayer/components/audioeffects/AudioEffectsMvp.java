@@ -42,6 +42,7 @@ public interface AudioEffectsMvp {
 		void onEqualizerBandStopTracking();
 		void onPresetSelected(int position);
 		void onCreateNewPreset(String name);
+		void onDeletePreset(int position);
 		void onBassBoostStrengthChanged(int strength);
 		void onBassBoostStrengthStopChanging();
 		void onSurroundStrengthChanged(int progress);

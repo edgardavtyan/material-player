@@ -69,6 +69,14 @@ public class AudioEffectsActivity
 		}
 	};
 
+	private View.OnClickListener onDeletePresetClicked = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			presenter.onDeletePreset(presetsView.getSelectedItemPosition() - 1);
+			presetsAdapter.notifyDataSetChanged();
+		}
+	};
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,6 +91,7 @@ public class AudioEffectsActivity
 		surroundView.setOnProgressChangedListener(this);
 		amplifierView.setOnProgressChangedListener(this);
 		newPresetButton.setOnClickListener(onNewPresetClicked);
+		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
 		App app = (App) getApplicationContext();
 		AudioEffectsFactory factory = app.getAudioEffectsFactory(this, this);
