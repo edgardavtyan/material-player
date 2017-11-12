@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects;
+package com.edavtyan.materialplayer.components.audioeffects.models.eq_presets;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsMvp;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;

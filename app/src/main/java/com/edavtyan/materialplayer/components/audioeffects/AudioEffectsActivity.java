@@ -9,6 +9,8 @@ import android.widget.CompoundButton;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.NewPresetDialog;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsSpinnerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;

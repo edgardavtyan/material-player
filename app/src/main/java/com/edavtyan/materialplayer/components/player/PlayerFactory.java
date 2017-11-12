@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoostPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
-import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPresetsPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.EqualizerPresetsPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;

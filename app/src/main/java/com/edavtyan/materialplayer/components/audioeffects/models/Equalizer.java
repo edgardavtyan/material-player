@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetNameAlreadyExists;
+
 import java.util.List;
 
 public interface Equalizer {

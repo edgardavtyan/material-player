@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models;
+package com.edavtyan.materialplayer.components.audioeffects.models.eq_presets;
 
 import lombok.Getter;
 import lombok.Setter;

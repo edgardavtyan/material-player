@@ -1,5 +1,9 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.CustomPreset;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.EqualizerPresetsPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetNameAlreadyExists;
+
 import java.util.ArrayList;
 import java.util.List;
 
