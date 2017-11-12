@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PresetsAdapter extends BaseAdapter {
+	private final Context context;
 	private final List<String> presets;
 	private final LayoutInflater layoutInflater;
-	private final Context context;
 
 	public PresetsAdapter(Context context) {
-		layoutInflater = LayoutInflater.from(context);
 		this.context = context;
 		presets = new ArrayList<>();
+		layoutInflater = LayoutInflater.from(context);
 	}
 
 	public void setPresets(List<String> builtInPresets, List<String> customPresets) {
