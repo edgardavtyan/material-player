@@ -37,7 +37,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	@Override
 	public void onEqualizerBandChanged(EqualizerBandView band) {
 		model.getEqualizer().setBandGain(band.getIndex(), band.getGain());
-		view.setEquqlizerPresetAsCustomNew();
+		view.setEqualizerPresetAsCustomNew();
 	}
 
 	@Override
@@ -100,8 +100,9 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 				model.getEqualizer().getGainLimit(),
 				model.getEqualizer().getFrequencies(),
 				model.getEqualizer().getGains());
-		view.setEqualizerPresets(model.getEqualizer().getBuiltInPresetNames());
-		view.setEqualizerCustomPresets(model.getEqualizer().getCustomPresetNames());
+		view.setEqualizerPresets(
+				model.getEqualizer().getBuiltInPresetNames(),
+				model.getEqualizer().getCustomPresetNames());
 		view.setCurrentEqualizerPreset(model.getEqualizer().getCurrentBuiltInPresetIndex());
 		view.initBassBoost(model.getBassBoost().getMaxStrength(), model.getBassBoost().getStrength());
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());

@@ -114,17 +114,12 @@ public class AudioEffectsActivity
 	}
 
 	@Override
-	public void setEqualizerPresets(List<String> presets) {
-		presetsAdapter.setBuiltInPresets(presets);
+	public void setEqualizerPresets(List<String> builtInPresets, List<String> customPresets) {
+		presetsAdapter.setPresets(builtInPresets, customPresets);
 	}
 
 	@Override
-	public void setEqualizerCustomPresets(List<String> customPresetNames) {
-		presetsAdapter.setCustomPresets(customPresetNames);
-	}
-
-	@Override
-	public void setEquqlizerPresetAsCustomNew() {
+	public void setEqualizerPresetAsCustomNew() {
 		presetsView.setSelection(0);
 	}
 
