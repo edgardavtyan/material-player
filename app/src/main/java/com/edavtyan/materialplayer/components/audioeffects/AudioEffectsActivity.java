@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audioeffects.models.PresetsAdapter;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
@@ -30,7 +27,6 @@ public class AudioEffectsActivity
 
 	@BindView(R.id.equalizer_switch) SwitchCompat equalizerSwitch;
 	@BindView(R.id.equalizer) EqualizerView equalizerView;
-	@BindView(R.id.presets_spinner) Spinner presetsView;
 	@BindView(R.id.preset_new) Button newPresetButton;
 	@BindView(R.id.preset_remove) Button deletePresetButton;
 	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
@@ -38,29 +34,9 @@ public class AudioEffectsActivity
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
 	private AudioEffectsMvp.Presenter presenter;
-	private PresetsAdapter presetsAdapter;
 
 	private NewPresetDialog newPresetDialog;
-
-	private boolean presetsSpinnerFirstLaunch = true;
-
-	private AdapterView.OnItemSelectedListener onPresetSelectedListener
-			= new AdapterView.OnItemSelectedListener() {
-		@Override
-		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-			if (presetsSpinnerFirstLaunch) {
-				presetsSpinnerFirstLaunch = false;
-				return;
-			}
-
-			presenter.onPresetSelected(position);
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> parent) {
-
-		}
-	};
+	private PresetsSpinnerView presetsSpinner;
 
 	private View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
 		@Override
@@ -72,18 +48,13 @@ public class AudioEffectsActivity
 	private View.OnClickListener onDeletePresetClicked = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			presenter.onDeletePreset(presetsView.getSelectedItemPosition() - 1);
-			presetsAdapter.notifyDataSetChanged();
+			presetsSpinner.deleteCurrentPreset();
 		}
 	};
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		presetsAdapter = new PresetsAdapter(this);
-		presetsView.setAdapter(presetsAdapter);
-		presetsView.setOnItemSelectedListener(onPresetSelectedListener);
 
 		equalizerSwitch.setOnCheckedChangeListener(this);
 		equalizerView.setOnBandChangedListener(this);
@@ -99,6 +70,7 @@ public class AudioEffectsActivity
 		presenter.onCreate();
 
 		newPresetDialog = new NewPresetDialog(this, presenter);
+		presetsSpinner = new PresetsSpinnerView(this, presenter);
 	}
 
 	@Override
@@ -125,12 +97,12 @@ public class AudioEffectsActivity
 
 	@Override
 	public void setEqualizerPresets(List<String> builtInPresets, List<String> customPresets) {
-		presetsAdapter.setPresets(builtInPresets, customPresets);
+		presetsSpinner.setPresets(builtInPresets, customPresets);
 	}
 
 	@Override
 	public void setEqualizerPresetAsCustomNew() {
-		presetsView.setSelection(0);
+		presetsSpinner.setCurrentPresetAsCustomNew();
 	}
 
 	@Override
@@ -164,7 +136,7 @@ public class AudioEffectsActivity
 
 	@Override
 	public void setCurrentEqualizerPreset(int presetIndex) {
-		presetsView.setSelection(presetIndex);
+		presetsSpinner.selectPresetAt(presetIndex);
 	}
 
 	@Override

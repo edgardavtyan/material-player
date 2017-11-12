@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 
@@ -46,20 +47,20 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	}
 
 	@Override
-	public void onPresetSelected(int position) {
-		if (position == 0) {
+	public void onPresetSelected(int relativePosition, Equalizer.PresetType presetType) {
+		switch (presetType) {
+		case CUSTOM_NEW:
 			view.setDeletePresetButtonEnabled(false);
 			return;
-		}
-
-		int customPresetsCount = model.getEqualizer().getCustomPresetNames().size();
-		if (1 <= position && position <= customPresetsCount) {
+		case CUSTOM:
 			view.setDeletePresetButtonEnabled(true);
-		} else {
+			break;
+		case BUILT_IN:
 			view.setDeletePresetButtonEnabled(false);
+			model.getEqualizer().useBuiltInPreset(relativePosition);
+			break;
 		}
 
-		model.getEqualizer().useBuiltInPreset((short) position);
 		view.setEqualizerBands(
 				model.getEqualizer().getBandsCount(),
 				model.getEqualizer().getGainLimit(),

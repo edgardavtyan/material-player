@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Equalizer {
 	enum PresetType {
-		BUILT_IN, CUSTOM_NEW
+		BUILT_IN, CUSTOM, CUSTOM_NEW
 	}
 
 	int getBandsCount();
@@ -16,7 +16,7 @@ public interface Equalizer {
 	boolean isEnabled();
 	void setEnabled(boolean isEnabled);
 	List<String> getBuiltInPresetNames();
-	void useBuiltInPreset(short presetIndex);
+	void useBuiltInPreset(int presetIndex);
 	int getCurrentBuiltInPresetIndex();
 	List<String> getCustomPresetNames();
 	void createNewPreset(String name);

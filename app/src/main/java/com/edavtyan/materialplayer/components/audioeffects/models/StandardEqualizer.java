@@ -80,8 +80,8 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
-	public void useBuiltInPreset(short presetIndex) {
-		equalizer.usePreset(presetIndex);
+	public void useBuiltInPreset(int presetIndex) {
+		equalizer.usePreset((short) presetIndex);
 		presetsPrefs.saveCurrentBuiltInPreset(presetIndex);
 		presetType = PresetType.BUILT_IN;
 

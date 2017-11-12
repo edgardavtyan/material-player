@@ -40,7 +40,7 @@ public interface AudioEffectsMvp {
 		void onEqualizerEnabledChanged(boolean enabled);
 		void onEqualizerBandChanged(EqualizerBandView band);
 		void onEqualizerBandStopTracking();
-		void onPresetSelected(int position);
+		void onPresetSelected(int position, Equalizer.PresetType presetType);
 		void onCreateNewPreset(String name);
 		void onDeletePreset(int position);
 		void onBassBoostStrengthChanged(int strength);
