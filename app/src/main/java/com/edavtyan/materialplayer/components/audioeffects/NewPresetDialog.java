@@ -51,6 +51,8 @@ public class NewPresetDialog {
 
 	public void dismiss() {
 		dialog.dismiss();
+		presetNameEditText.setText(null);
+		presetErrorExistsView.setVisibility(View.GONE);
 	}
 
 	public void showPresetAlreadyExists() {
