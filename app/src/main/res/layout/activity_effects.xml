@@ -61,7 +61,7 @@
 
 			<Button
 				android:id="@+id/preset_new"
-				android:text="New"
+				android:text="Save"
 				style="@style/AudioEffects_Presets_Button"
 				/>
 

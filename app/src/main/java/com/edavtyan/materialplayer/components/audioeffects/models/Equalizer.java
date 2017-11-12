@@ -17,8 +17,9 @@ public interface Equalizer {
 	void setEnabled(boolean isEnabled);
 	List<String> getBuiltInPresetNames();
 	void useBuiltInPreset(int presetIndex);
+	void useCustomPreset(int presetIndex);
 	int getCurrentBuiltInPresetIndex();
 	List<String> getCustomPresetNames();
-	void createNewPreset(String name) throws PresetNameAlreadyExists;
+	void savePreset(String name) throws PresetNameAlreadyExists;
 	void deletePreset(int position);
 }

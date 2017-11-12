@@ -28,7 +28,7 @@ public class EqualizerPresetsPrefs {
 		return prefs.getInt(PREF_BUILT_IN, DEFAULT_BUILT_IN);
 	}
 
-	public void addNewCustomPreset(String name, int bandsCount) throws PresetNameAlreadyExists {
+	public void addNewCustomPreset(String name, int[] gains) throws PresetNameAlreadyExists {
 		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
 
 		for (CustomPreset customPreset : customPresets) {
@@ -37,7 +37,7 @@ public class EqualizerPresetsPrefs {
 			}
 		}
 
-		customPresets.add(new CustomPreset(name, bandsCount));
+		customPresets.add(new CustomPreset(name, gains));
 		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
 	}
 
@@ -55,5 +55,10 @@ public class EqualizerPresetsPrefs {
 		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
 		customPresets.remove(position);
 		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
+	}
+
+	public CustomPreset getCustomPresetAtIndex(int presetIndex) {
+		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+		return customPresets.get(presetIndex);
 	}
 }

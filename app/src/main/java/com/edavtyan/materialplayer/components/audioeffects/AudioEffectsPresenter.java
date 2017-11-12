@@ -55,6 +55,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 			return;
 		case CUSTOM:
 			view.setDeletePresetButtonEnabled(true);
+			model.getEqualizer().useCustomPreset(relativePosition);
 			break;
 		case BUILT_IN:
 			view.setDeletePresetButtonEnabled(false);
@@ -72,7 +73,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 	@Override
 	public void onNewPresetDialogOkButtonClicked(String name) {
 		try {
-			model.getEqualizer().createNewPreset(name);
+			model.getEqualizer().savePreset(name);
 			view.setEqualizerPresets(
 					model.getEqualizer().getBuiltInPresetNames(),
 					model.getEqualizer().getCustomPresetNames());

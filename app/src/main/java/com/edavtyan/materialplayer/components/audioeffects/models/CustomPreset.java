@@ -7,8 +7,8 @@ public class CustomPreset {
 	private @Getter @Setter String name;
 	private @Getter @Setter int[] gains;
 
-	public CustomPreset(String name, int bandsCount) {
+	public CustomPreset(String name, int[] gains) {
 		this.name = name;
-		this.gains = new int[bandsCount];
+		this.gains = gains;
 	}
 }

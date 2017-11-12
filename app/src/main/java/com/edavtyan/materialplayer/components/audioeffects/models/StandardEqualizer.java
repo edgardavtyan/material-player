@@ -92,6 +92,16 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
+	public void useCustomPreset(int presetIndex) {
+		CustomPreset customPreset = presetsPrefs.getCustomPresetAtIndex(presetIndex);
+		int[] customPresetGains = customPreset.getGains();
+
+		for (int i = 0; i < customPresetGains.length; i++) {
+			setBandGain(i, customPresetGains[i]);
+		}
+	}
+
+	@Override
 	public int getCurrentBuiltInPresetIndex() {
 		return presetsPrefs.getCurrentBuiltInPreset();
 	}
@@ -102,8 +112,8 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
-	public void createNewPreset(String name) throws PresetNameAlreadyExists {
-		presetsPrefs.addNewCustomPreset(name, bandsCount);
+	public void savePreset(String name) throws PresetNameAlreadyExists {
+		presetsPrefs.addNewCustomPreset(name, gains);
 	}
 
 	@Override
