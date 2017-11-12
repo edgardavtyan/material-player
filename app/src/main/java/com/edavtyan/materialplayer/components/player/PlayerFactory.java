@@ -146,7 +146,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public EqualizerPresetsPrefs getEqualizerPresetsPrefs() {
 		if (equalizerPresetsPrefs == null)
-			equalizerPresetsPrefs = new EqualizerPresetsPrefs(getPrefs());
+			equalizerPresetsPrefs = new EqualizerPresetsPrefs(getAdvancedGsonSharedPrefs());
 		return equalizerPresetsPrefs;
 	}
 

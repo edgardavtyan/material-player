@@ -11,11 +11,13 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtFileStorage;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtMemoryCache;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtReader;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 import com.edavtyan.materialplayer.utils.WebClient;
+import com.google.gson.Gson;
 
 public class BaseFactory {
 	private final Context context;
@@ -28,9 +30,11 @@ public class BaseFactory {
 	private AlbumArtReader albumArtReader;
 	private ThemeUtils themeUtils;
 	private AdvancedSharedPrefs prefs;
+	private AdvancedGsonSharedPrefs advancedGsonSharedPrefs;
 	private SharedPreferences basePrefs;
 	private CompactDetailPref compactDetailPref;
 	private ModelServiceModule modelServiceModule;
+	private Gson gson;
 
 	public BaseFactory(Context context) {
 		this.context = context;
@@ -97,6 +101,12 @@ public class BaseFactory {
 		return prefs;
 	}
 
+	public AdvancedGsonSharedPrefs getAdvancedGsonSharedPrefs() {
+		if (advancedGsonSharedPrefs == null)
+			advancedGsonSharedPrefs = new AdvancedGsonSharedPrefs(getBasePrefs(), getGson());
+		return advancedGsonSharedPrefs;
+	}
+
 	public SharedPreferences getBasePrefs() {
 		if (basePrefs == null)
 			basePrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -113,5 +123,11 @@ public class BaseFactory {
 		if (modelServiceModule == null)
 			modelServiceModule = new ModelServiceModule(getContext());
 		return modelServiceModule;
+	}
+
+	public Gson getGson() {
+		if (gson == null)
+			gson = new Gson();
+		return gson;
 	}
 }

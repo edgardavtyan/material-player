@@ -1,25 +1,23 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-import com.google.gson.Gson;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class EqualizerPresetsPrefs {
 	private static final String PREF_BUILT_IN = "presets_built_in";
 	private static final String PREF_CUSTOM = "presets_custom";
 	private static final int DEFAULT_BUILT_IN = 3;
-	private static final String DEFAULT_CUSTOM = "";
 
-	private final AdvancedSharedPrefs prefs;
-	private final Gson gson;
+	private final AdvancedGsonSharedPrefs prefs;
+	private final Type type;
 
-	public EqualizerPresetsPrefs(AdvancedSharedPrefs prefs) {
+	public EqualizerPresetsPrefs(AdvancedGsonSharedPrefs prefs) {
 		this.prefs = prefs;
-		this.gson = new Gson();
+		this.type = new TypeToken<List<CustomPreset>>() {}.getType();
 	}
 
 	public void saveCurrentBuiltInPreset(int index) {
@@ -31,35 +29,24 @@ public class EqualizerPresetsPrefs {
 	}
 
 	public void addNewCustomPreset(String name, int bandsCount) {
-		String customPresetsJson = prefs.getString(PREF_CUSTOM, DEFAULT_CUSTOM);
-		List<CustomPreset> customPresets = gson.fromJson(customPresetsJson, new TypeToken<List<CustomPreset>>(){}.getType());
-
-		if (customPresets == null) {
-			customPresets = new ArrayList<>();
-		}
-
+		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
 		customPresets.add(new CustomPreset(name, bandsCount));
-		String newCustomPresetsJson = gson.toJson(customPresets);
-		prefs.edit().putString(PREF_CUSTOM, newCustomPresetsJson).apply();
+		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
 	}
 
 	public List<String> getCustomPresetsNames() {
-		String customPresetsJson = prefs.getString(PREF_CUSTOM, DEFAULT_CUSTOM);
-		CustomPreset[] customPresets = gson.fromJson(customPresetsJson, CustomPreset[].class);
-		String[] presetsNames = new String[customPresets.length];
-		for (int i = 0; i < customPresets.length; i++) {
-			presetsNames[i] = customPresets[i].getName();
+		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+		List<String> presetsNames = new ArrayList<>();
+		for (int i = 0; i < customPresets.size(); i++) {
+			presetsNames.add(customPresets.get(i).getName());
 		}
 
-		return Arrays.asList(presetsNames);
+		return presetsNames;
 	}
 
 	public void deleteCustomPreset(int position) {
-		String customPresetsJson = prefs.getString(PREF_CUSTOM, DEFAULT_CUSTOM);
-		CustomPreset[] customPresetsArray = gson.fromJson(customPresetsJson, CustomPreset[].class);
-		ArrayList<CustomPreset> customPresets = new ArrayList<>(Arrays.asList(customPresetsArray));
+		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
 		customPresets.remove(position);
-		String newCustomPresetsJson = gson.toJson(customPresets);
-		prefs.edit().putString(PREF_CUSTOM, newCustomPresetsJson).apply();
+		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
 	}
 }
