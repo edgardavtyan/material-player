@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoostPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.EqualizerPresetsPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
@@ -42,7 +42,7 @@ public class PlayerFactory extends BaseFactory {
 	private BassBoostPrefs bassBoostPrefs;
 	private Equalizer equalizer;
 	private EqualizerPrefs equalizerPrefs;
-	private EqualizerPresetsPrefs equalizerPresetsPrefs;
+	private PresetsPrefs presetsPrefs;
 	private Surround surround;
 	private SurroundPrefs surroundPrefs;
 	private Amplifier amplifier;
@@ -134,7 +134,7 @@ public class PlayerFactory extends BaseFactory {
 			equalizer = new StandardEqualizer(
 					new android.media.audiofx.Equalizer(0, getPlayer().getSessionId()),
 					getEqualizerPrefs(),
-					getEqualizerPresetsPrefs());
+					getPresetsPrefs());
 		return equalizer;
 	}
 
@@ -144,10 +144,10 @@ public class PlayerFactory extends BaseFactory {
 		return equalizerPrefs;
 	}
 
-	public EqualizerPresetsPrefs getEqualizerPresetsPrefs() {
-		if (equalizerPresetsPrefs == null)
-			equalizerPresetsPrefs = new EqualizerPresetsPrefs(getAdvancedGsonSharedPrefs());
-		return equalizerPresetsPrefs;
+	public PresetsPrefs getPresetsPrefs() {
+		if (presetsPrefs == null)
+			presetsPrefs = new PresetsPrefs(getAdvancedGsonSharedPrefs());
+		return presetsPrefs;
 	}
 
 	public BassBoost getBassBoost() {

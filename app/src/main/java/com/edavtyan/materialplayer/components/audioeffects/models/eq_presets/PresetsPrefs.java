@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EqualizerPresetsPrefs {
+public class PresetsPrefs {
 	private static final String PREF_BUILT_IN = "presets_built_in";
 	private static final String PREF_CUSTOM = "presets_custom";
 	private static final int DEFAULT_BUILT_IN = 3;
@@ -15,7 +15,7 @@ public class EqualizerPresetsPrefs {
 	private final AdvancedGsonSharedPrefs prefs;
 	private final Type type;
 
-	public EqualizerPresetsPrefs(AdvancedGsonSharedPrefs prefs) {
+	public PresetsPrefs(AdvancedGsonSharedPrefs prefs) {
 		this.prefs = prefs;
 		this.type = new TypeToken<List<CustomPreset>>() {}.getType();
 	}

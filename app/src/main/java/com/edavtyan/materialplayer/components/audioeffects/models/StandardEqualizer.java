@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.CustomPreset;
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.EqualizerPresetsPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetNameAlreadyExists;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import lombok.Getter;
 public class StandardEqualizer implements Equalizer {
 	private final android.media.audiofx.Equalizer equalizer;
 	private final EqualizerPrefs prefs;
-	private final EqualizerPresetsPrefs presetsPrefs;
+	private final PresetsPrefs presetsPrefs;
 
 	private final @Getter int bandsCount;
 	private final @Getter int[] frequencies;
@@ -23,7 +23,7 @@ public class StandardEqualizer implements Equalizer {
 	public StandardEqualizer(
 			android.media.audiofx.Equalizer equalizer,
 			EqualizerPrefs prefs,
-			EqualizerPresetsPrefs presetsPrefs) {
+			PresetsPrefs presetsPrefs) {
 		this.equalizer = equalizer;
 		this.prefs = prefs;
 		this.presetsPrefs = presetsPrefs;
