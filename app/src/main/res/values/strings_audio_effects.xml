@@ -15,4 +15,6 @@
 	<string name="equalizer_presets_title">Presets</string>
 	<string name="equalizer_presets_custom_new">Custom</string>
 
+	<string name="equalizer_presets_dialog_new_title">Add new EQ preset</string>
+
 </resources>

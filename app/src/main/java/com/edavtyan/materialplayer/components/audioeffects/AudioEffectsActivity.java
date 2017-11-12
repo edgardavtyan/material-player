@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 
@@ -30,12 +31,15 @@ public class AudioEffectsActivity
 	@BindView(R.id.equalizer_switch) SwitchCompat equalizerSwitch;
 	@BindView(R.id.equalizer) EqualizerView equalizerView;
 	@BindView(R.id.presets_spinner) Spinner presetsView;
+	@BindView(R.id.preset_new) Button newPresetButton;
 	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
 	private AudioEffectsMvp.Presenter presenter;
 	private PresetsAdapter presetsAdapter;
+
+	private NewPresetDialog newPresetDialog;
 
 	private boolean presetsSpinnerFirstLaunch = true;
 
@@ -57,6 +61,13 @@ public class AudioEffectsActivity
 		}
 	};
 
+	private View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			newPresetDialog.show();
+		}
+	};
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,11 +81,14 @@ public class AudioEffectsActivity
 		bassBoostView.setOnProgressChangedListener(this);
 		surroundView.setOnProgressChangedListener(this);
 		amplifierView.setOnProgressChangedListener(this);
+		newPresetButton.setOnClickListener(onNewPresetClicked);
 
 		App app = (App) getApplicationContext();
 		AudioEffectsFactory factory = app.getAudioEffectsFactory(this, this);
 		presenter = factory.getPresenter();
 		presenter.onCreate();
+
+		newPresetDialog = new NewPresetDialog(this, presenter);
 	}
 
 	@Override
@@ -102,6 +116,11 @@ public class AudioEffectsActivity
 	@Override
 	public void setEqualizerPresets(List<String> presets) {
 		presetsAdapter.setBuiltInPresets(presets);
+	}
+
+	@Override
+	public void setEqualizerCustomPresets(List<String> customPresetNames) {
+		presetsAdapter.setCustomPresets(customPresetNames);
 	}
 
 	@Override

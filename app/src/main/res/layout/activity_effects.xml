@@ -46,6 +46,27 @@
 
 		</LinearLayout>
 
+		<LinearLayout
+			android:layout_marginRight="-4dp"
+			android:layout_marginTop="-18dp"
+			android:gravity="right"
+			style="@style/AudioEffects_Equalizer_Header.Adjacent"
+			>
+
+			<Button
+				android:id="@+id/preset_remove"
+				android:text="Remove"
+				style="@style/AudioEffects_Presets_Button"
+				/>
+
+			<Button
+				android:id="@+id/preset_new"
+				android:text="New"
+				style="@style/AudioEffects_Presets_Button"
+				/>
+
+		</LinearLayout>
+
 		<com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView
 			android:id="@+id/equalizer"
 			style="@style/AudioEffects_Equalizer"

@@ -18,4 +18,6 @@ public interface Equalizer {
 	List<String> getBuiltInPresetNames();
 	void useBuiltInPreset(short presetIndex);
 	int getCurrentBuiltInPresetIndex();
+	List<String> getCustomPresetNames();
+	void createNewPreset(String name);
 }

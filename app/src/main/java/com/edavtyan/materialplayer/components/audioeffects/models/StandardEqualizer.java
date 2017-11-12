@@ -96,6 +96,16 @@ public class StandardEqualizer implements Equalizer {
 		return presetsPrefs.getCurrentBuiltInPreset();
 	}
 
+	@Override
+	public List<String> getCustomPresetNames() {
+		return presetsPrefs.getCustomPresetsNames();
+	}
+
+	@Override
+	public void createNewPreset(String name) {
+		presetsPrefs.addNewCustomPreset(name, bandsCount);
+	}
+
 	private int baseToKilo(int value) {
 		return value / 1000;
 	}
