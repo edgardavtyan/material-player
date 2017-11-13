@@ -41,6 +41,7 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingLeft">@dimen/spacing_medium</item>
 		<item name="android:paddingTop">@dimen/spacing_tiny</item>
+		<item name="android:paddingRight">@dimen/spacing_tiny</item>
 		<item name="ts_textWidth">100dp</item>
 		<item name="ts_textSize">@dimen/font_medium</item>
 	</style>
