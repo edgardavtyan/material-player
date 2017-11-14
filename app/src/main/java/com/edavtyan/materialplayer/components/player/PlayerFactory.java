@@ -12,14 +12,16 @@ import com.edavtyan.materialplayer.components.audioeffects.models.AmplifierPrefs
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoostPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
+import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.CloseReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.HeadphonesConnectedReceiver;
@@ -41,6 +43,7 @@ public class PlayerFactory extends BaseFactory {
 	private BassBoost bassBoost;
 	private BassBoostPrefs bassBoostPrefs;
 	private Equalizer equalizer;
+	private EqualizerBase equalizerBase;
 	private EqualizerPrefs equalizerPrefs;
 	private PresetsPrefs presetsPrefs;
 	private Surround surround;
@@ -132,10 +135,17 @@ public class PlayerFactory extends BaseFactory {
 	public Equalizer getEqualizer() {
 		if (equalizer == null)
 			equalizer = new StandardEqualizer(
-					new android.media.audiofx.Equalizer(0, getPlayer().getSessionId()),
+					getEqualizerBase(),
 					getEqualizerPrefs(),
 					getPresetsPrefs());
 		return equalizer;
+	}
+
+	public EqualizerBase getEqualizerBase() {
+		if (equalizerBase == null)
+			equalizerBase = new StandardEqualizerBase(
+					new android.media.audiofx.Equalizer(0, getPlayer().getSessionId()));
+		return equalizerBase;
 	}
 
 	public EqualizerPrefs getEqualizerPrefs() {

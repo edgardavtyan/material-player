@@ -1,25 +1,18 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.CustomPreset;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
-
 public class StandardEqualizer implements Equalizer {
-	private final android.media.audiofx.Equalizer equalizer;
+	private final EqualizerBase equalizer;
 	private final EqualizerPrefs prefs;
 	private final PresetsPrefs presetsPrefs;
 
-	private final @Getter int bandsCount;
-	private final @Getter int[] frequencies;
-	private final @Getter int[] gains;
-
 	public StandardEqualizer(
-			android.media.audiofx.Equalizer equalizer,
+			EqualizerBase equalizer,
 			EqualizerPrefs prefs,
 			PresetsPrefs presetsPrefs) {
 		this.equalizer = equalizer;
@@ -27,43 +20,44 @@ public class StandardEqualizer implements Equalizer {
 		this.presetsPrefs = presetsPrefs;
 
 		setEnabled(prefs.getEnabled());
-
-		bandsCount = equalizer.getNumberOfBands();
-
-		frequencies = new int[bandsCount];
-		for (int i = 0; i < bandsCount; i++) {
-			int reverseIndex = bandsCount - i - 1;
-			frequencies[i] = baseToKilo(equalizer.getCenterFreq((short) reverseIndex));
-		}
-
-		gains = prefs.getGains(bandsCount);
-		for (int i = 0; i < bandsCount; i++) {
-			int reverseIndex = bandsCount - i - 1;
-			equalizer.setBandLevel((short) reverseIndex, (short) deciToMilli(gains[i]));
-		}
+		equalizer.setEnabled(prefs.getEnabled());
+		equalizer.setGains(prefs.getGains(equalizer.getBandsCount()));
 	}
 
 	@Override
 	public int getGainLimit() {
-		return Math.abs(milliToDeci(equalizer.getBandLevelRange()[0]));
+		return equalizer.getGainLimit();
+	}
+
+	@Override
+	public int getBandsCount() {
+		return equalizer.getBandsCount();
+	}
+
+	@Override
+	public int[] getFrequencies() {
+		return equalizer.getFrequencies();
+	}
+
+	@Override
+	public int[] getGains() {
+		return equalizer.getGains();
 	}
 
 	@Override
 	public void setBandGain(int band, int gain) {
-		int reverseBand = bandsCount - band - 1;
-		equalizer.setBandLevel((short) reverseBand, (short) deciToMilli(gain));
-		gains[band] = gain;
+		equalizer.setBandGain(band, gain);
 		presetsPrefs.saveCurrentPresetType(PresetType.CUSTOM_NEW);
 	}
 
 	@Override
 	public void saveSettings() {
-		prefs.save(gains, isEnabled());
+		prefs.save(equalizer.getGains(), isEnabled());
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return equalizer.getEnabled();
+		return equalizer.isEnabled();
 	}
 
 	@Override
@@ -74,7 +68,7 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public List<String> getBuiltInPresetNames() {
 		List<String> presetNames = new ArrayList<>();
-		for (short i = 0; i < equalizer.getNumberOfPresets(); i++) {
+		for (int i = 0; i < equalizer.getNumberOfPresets(); i++) {
 			presetNames.add(equalizer.getPresetName(i));
 		}
 
@@ -106,45 +100,22 @@ public class StandardEqualizer implements Equalizer {
 		equalizer.usePreset((short) presetIndex);
 		presetsPrefs.saveCurrentPresetIndex(presetIndex);
 		presetsPrefs.saveCurrentPresetType(PresetType.BUILT_IN);
-
-		for (int i = 0; i < bandsCount; i++) {
-			int reverseBand = bandsCount - i - 1;
-			gains[i] = milliToDeci(equalizer.getBandLevel((short) reverseBand));
-		}
 	}
 
 	@Override
 	public void useCustomPreset(int presetIndex) {
-		CustomPreset customPreset = presetsPrefs.getCustomPresetAtIndex(presetIndex);
-		int[] customPresetGains = customPreset.getGains();
-
-		for (int i = 0; i < customPresetGains.length; i++) {
-			setBandGain(i, customPresetGains[i]);
-		}
-
+		equalizer.setGains(presetsPrefs.getCustomPresetAtIndex(presetIndex).getGains());
 		presetsPrefs.saveCurrentPresetType(PresetType.CUSTOM);
 		presetsPrefs.saveCurrentPresetIndex(presetIndex);
 	}
 
 	@Override
 	public void savePreset(String name) throws PresetNameAlreadyExists {
-		presetsPrefs.addNewCustomPreset(name, gains);
+		presetsPrefs.addNewCustomPreset(name, equalizer.getGains());
 	}
 
 	@Override
 	public void deletePreset(int position) {
 		presetsPrefs.deleteCustomPreset(position);
-	}
-
-	private int baseToKilo(int value) {
-		return value / 1000;
-	}
-
-	private int milliToDeci(int value) {
-		return value / 100;
-	}
-
-	private int deciToMilli(int value) {
-		return value * 100;
 	}
 }
