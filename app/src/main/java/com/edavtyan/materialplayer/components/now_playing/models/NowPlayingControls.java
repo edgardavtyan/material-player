@@ -8,7 +8,6 @@ import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
-import com.edavtyan.materialplayer.utils.AppColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,15 +20,12 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	@BindView(R.id.repeat) TestableImageButton repeatButton;
 
 	private final NowPlayingMvp.Presenter presenter;
-	private final AppColors colors;
 
 	public NowPlayingControls(
 			NowPlayingActivity activity,
-			NowPlayingMvp.Presenter presenter,
-			AppColors colors) {
+			NowPlayingMvp.Presenter presenter) {
 		ButterKnife.bind(this, activity);
 		this.presenter = presenter;
-		this.colors = colors;
 
 		shuffleButton.setOnClickListener(this);
 		rewindButton.setOnClickListener(this);

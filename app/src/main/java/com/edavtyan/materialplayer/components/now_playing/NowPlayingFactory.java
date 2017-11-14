@@ -51,8 +51,7 @@ public class NowPlayingFactory extends BaseFactory {
 		if (controls == null)
 			controls = new NowPlayingControls(
 					getActivity(),
-					getPresenter(),
-					getAppColors());
+					getPresenter());
 
 		return controls;
 	}

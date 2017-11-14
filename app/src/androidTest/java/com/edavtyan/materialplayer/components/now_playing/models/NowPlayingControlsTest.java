@@ -29,7 +29,7 @@ public class NowPlayingControlsTest extends NowPlayingViewTest {
 		fastForwardButton = (TestableImageButton) activity.findViewById(R.id.fast_forward);
 		repeatButton = (TestableImageButton) activity.findViewById(R.id.repeat);
 
-		controls = new NowPlayingControls(activity, presenter, colors);
+		controls = new NowPlayingControls(activity, presenter);
 	}
 
 	@Test
