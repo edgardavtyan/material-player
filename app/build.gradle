@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'me.tatarka:gradle-retrolambda:3.2.3'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
     }
@@ -26,7 +26,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId 'com.edavtyan.materialplayer'
         minSdkVersion 16
@@ -65,7 +65,8 @@ dependencies {
     compile 'net.protyposis.android.mediaplayer:mediaplayer:4.3.0'
     compile 'com.google.code.gson:gson:2.8.2'
 
-    provided 'org.projectlombok:lombok:1.16.6'
+    compileOnly 'org.projectlombok:lombok:1.16.6'
+    annotationProcessor 'org.projectlombok:lombok:1.16.6'
 
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
