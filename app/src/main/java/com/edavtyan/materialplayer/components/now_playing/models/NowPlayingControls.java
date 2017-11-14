@@ -42,10 +42,10 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	public void setShuffleMode(ShuffleMode shuffleMode) {
 		switch (shuffleMode) {
 		case ENABLED:
-			shuffleButton.setAlpha(1f);
+			shuffleButton.setImageAlpha(255);
 			break;
 		case DISABLED:
-			shuffleButton.setAlpha(0.3f);
+			shuffleButton.setImageAlpha(60);
 			break;
 		}
 	}
@@ -55,15 +55,15 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		switch (repeatMode) {
 		case REPEAT_ALL:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
-			repeatButton.setAlpha(1f);
+			repeatButton.setImageAlpha(255);
 			break;
 		case REPEAT_ONE:
 			repeatButton.setImageResource(R.drawable.ic_repeat_one);
-			repeatButton.setAlpha(1f);
+			repeatButton.setImageAlpha(255);
 			break;
 		case DISABLED:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
-			repeatButton.setAlpha(0.3f);
+			repeatButton.setImageAlpha(60);
 			break;
 		}
 	}
