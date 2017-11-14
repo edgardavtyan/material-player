@@ -13,6 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnClickListener {
+	public static final int CONTROL_ENABLED_ALPHA = 255;
+	public static final int CONTROL_DISABLED_ALPHA = 60;
+
 	@BindView(R.id.shuffle) TestableImageButton shuffleButton;
 	@BindView(R.id.rewind) TestableImageButton rewindButton;
 	@BindView(R.id.play_pause) TestableImageButton playPauseButton;
@@ -38,10 +41,10 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	public void setShuffleMode(ShuffleMode shuffleMode) {
 		switch (shuffleMode) {
 		case ENABLED:
-			shuffleButton.setImageAlpha(255);
+			shuffleButton.setImageAlpha(CONTROL_ENABLED_ALPHA);
 			break;
 		case DISABLED:
-			shuffleButton.setImageAlpha(60);
+			shuffleButton.setImageAlpha(CONTROL_DISABLED_ALPHA);
 			break;
 		}
 	}
@@ -51,15 +54,15 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		switch (repeatMode) {
 		case REPEAT_ALL:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
-			repeatButton.setImageAlpha(255);
+			repeatButton.setImageAlpha(CONTROL_ENABLED_ALPHA);
 			break;
 		case REPEAT_ONE:
 			repeatButton.setImageResource(R.drawable.ic_repeat_one);
-			repeatButton.setImageAlpha(255);
+			repeatButton.setImageAlpha(CONTROL_ENABLED_ALPHA);
 			break;
 		case DISABLED:
 			repeatButton.setImageResource(R.drawable.ic_repeat);
-			repeatButton.setImageAlpha(60);
+			repeatButton.setImageAlpha(CONTROL_DISABLED_ALPHA);
 			break;
 		}
 	}
