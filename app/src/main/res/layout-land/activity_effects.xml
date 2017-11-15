@@ -45,10 +45,53 @@
 		<LinearLayout
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
-			android:layout_weight="1"
 			android:layout_marginTop="@dimen/spacing_tiny"
+			android:layout_weight="1"
 			android:orientation="vertical"
 			>
+
+			<LinearLayout style="@style/AudioEffects_Equalizer_Header.Adjacent">
+
+				<TextView
+					android:text="@string/equalizer_presets_title"
+					style="@style/AudioEffects_Equalizer_Title"
+					/>
+
+				<Spinner
+					android:id="@+id/presets_spinner"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="-12dp"
+					/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_marginTop="-18dp"
+				android:layout_marginRight="2dp"
+				android:gravity="right"
+				style="@style/AudioEffects_Equalizer_Header.Adjacent"
+				>
+
+				<Button
+					android:id="@+id/preset_remove"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:backgroundTint="@color/white"
+					android:textColor="@color/primary_red"
+					android:text="Remove"
+					/>
+
+				<Button
+					android:id="@+id/preset_new"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Save"
+					android:backgroundTint="@color/white"
+					android:textColor="?colorPrimary"
+					/>
+
+			</LinearLayout>
 
 			<com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar
 				android:id="@+id/bass_boost"
@@ -71,7 +114,6 @@
 		</LinearLayout>
 
 	</LinearLayout>
-
 
 
 </LinearLayout>
