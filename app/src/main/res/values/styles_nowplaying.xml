@@ -56,19 +56,15 @@
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Info" parent="NowPlaying_TrackInfo_Title">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
-		<item name="android:layout_marginRight">@dimen/spacing_medium</item>
-		<item name="android:textSize">@dimen/font_normal</item>
 		<item name="android:textColor">?textColorContrastSecondary</item>
+		<item name="android:textSize">@dimen/font_normal</item>
 	</style>
 
 	<style name="NowPlaying_Seekbar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingEnd">@dimen/spacing_medium_plus</item>
-		<item name="android:paddingStart">@dimen/spacing_medium_plus</item>
+		<item name="android:paddingLeft">@dimen/spacing_medium_plus</item>
+		<item name="android:paddingRight">@dimen/spacing_medium_plus</item>
 		<item name="thumbColor">?textColorContrastPrimary</item>
 		<item name="progressBackgroundColor">?textColorContrastPrimary</item>
 		<item name="progressColor">?textColorContrastPrimary</item>

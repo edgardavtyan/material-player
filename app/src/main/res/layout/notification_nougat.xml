@@ -6,32 +6,16 @@
 	android:baselineAligned="false"
 	>
 
-	<LinearLayout
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight="1"
-		android:layout_gravity="center_vertical"
-		android:orientation="vertical"
-		>
+	<LinearLayout style="@style/Notification_Text_Wrapper">
 
 		<TextView
 			android:id="@+id/title"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textColor="#000"
-			android:text="@string/notification_defaultText_title"
-			android:lines="1"
-			android:ellipsize="end"
+			style="@style/Notification_Title"
 			/>
 
 		<TextView
 			android:id="@+id/info"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textColor="#555"
-			android:text="@string/notification_defaultText_info"
-			android:ellipsize="end"
-			android:lines="1"
+			style="@style/Notification_Info"
 			/>
 
 	</LinearLayout>

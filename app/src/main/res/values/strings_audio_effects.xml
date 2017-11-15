@@ -19,4 +19,7 @@
 
 	<string name="equalizer_presets_error_exists">Preset with same name already exists</string>
 
+	<string name="equalizer_presets_button_save">Save</string>
+	<string name="equalizer_presets_button_remove">Remove</string>
+
 </resources>
