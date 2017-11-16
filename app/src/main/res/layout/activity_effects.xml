@@ -53,14 +53,14 @@
 
 			<Button
 				android:id="@+id/preset_remove"
-				android:text="@string/equalizer_presets_button_save"
-				style="@style/Button_Raised"
+				android:text="@string/equalizer_presets_button_remove"
+				style="@style/Button_Raised.Dangerous"
 				/>
 
 			<Button
 				android:id="@+id/preset_new"
-				android:text="@string/equalizer_presets_button_remove"
-				style="@style/Button_Raised.Dangerous"
+				android:text="@string/equalizer_presets_button_save"
+				style="@style/Button_Raised"
 				/>
 
 		</LinearLayout>
