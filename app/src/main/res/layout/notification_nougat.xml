@@ -50,8 +50,9 @@
 
 		<ImageView
 			android:id="@+id/art"
-			android:layout_width="40dp"
-			android:layout_height="40dp"
+			android:layout_width="39dp"
+			android:layout_height="39dp"
+			android:layout_gravity="center_vertical"
 			android:contentDescription="@string/description_art"
 			android:src="@drawable/fallback_cover"
 			/>

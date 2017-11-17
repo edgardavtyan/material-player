@@ -61,7 +61,7 @@
 				android:id="@+id/fast_forward"
 				android:src="@drawable/ic_skip_next"
 				android:contentDescription="@string/description_control_fastForward"
-				style="@style/Notification_Big_Control.Nougat.Play_Pause"
+				style="@style/Notification_Big_Control.Nougat"
 				/>
 
 		</LinearLayout>
