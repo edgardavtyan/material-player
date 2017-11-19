@@ -7,8 +7,8 @@ import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotification;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -35,7 +35,7 @@ public class PlayerServiceTest extends BaseTest {
 		super.beforeEach();
 
 		notification = mock(Notification.class);
-		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
+		PlayerNotificationMvp.View nowPlayingNotification = mock(PlayerNotificationMvp.View.class);
 		when(nowPlayingNotification.getNotification()).thenReturn(notification);
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);

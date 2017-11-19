@@ -1,10 +1,14 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import android.content.SharedPreferences;
 import android.media.audiofx.Equalizer;
 import android.preference.PreferenceManager;
 
+import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.google.gson.Gson;
 
 import org.junit.Test;
 
@@ -16,18 +20,23 @@ import static org.mockito.Mockito.when;
 
 public class StandardEqualizerTest extends BaseTest {
 	private AdvancedSharedPrefs basePrefs;
+	private AdvancedGsonSharedPrefs gsonPrefs;
 	private EqualizerPrefs prefs;
-	private Equalizer baseEqualizer;
+	private PresetsPrefs presetPrefs;
+	private EqualizerBase baseEqualizer;
 	private StandardEqualizer equalizer;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		basePrefs = new AdvancedSharedPrefs(sharedPrefs);
+		gsonPrefs = new AdvancedGsonSharedPrefs(sharedPrefs, new Gson());
 		prefs = spy(new EqualizerPrefs(basePrefs));
-		baseEqualizer = new Equalizer(0, 0);
-		equalizer = new StandardEqualizer(baseEqualizer, prefs);
+		presetPrefs = spy(new PresetsPrefs(gsonPrefs));
+		baseEqualizer = new StandardEqualizerBase(new Equalizer(0, 0));
+		equalizer = new StandardEqualizer(baseEqualizer, prefs, presetPrefs);
 	}
 
 	@Override
@@ -50,7 +59,7 @@ public class StandardEqualizerTest extends BaseTest {
 	@Test
 	public void constructor_gainsPreviouslySet_initGainsFromPrefs() {
 		when(prefs.getGains(anyInt())).thenReturn(new int[]{1, 2, 3, 4, 5});
-		equalizer = new StandardEqualizer(baseEqualizer, prefs);
+		equalizer = new StandardEqualizer(baseEqualizer, prefs, presetPrefs);
 		assertThat(equalizer.getGains()).containsExactly(1, 2, 3, 4, 5);
 	}
 
@@ -62,7 +71,7 @@ public class StandardEqualizerTest extends BaseTest {
 	@Test
 	public void set_band_gain_in_reverse_in_millibel() {
 		equalizer.setBandGain(0, 5);
-		assertThat(baseEqualizer.getBandLevel((short) 4)).isEqualTo((short) 500);
+		assertThat(baseEqualizer.getGains()[4]).isEqualTo((short) 500);
 	}
 
 	@Test

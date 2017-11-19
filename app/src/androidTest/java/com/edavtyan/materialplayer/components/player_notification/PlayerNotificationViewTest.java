@@ -36,7 +36,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 		manager = mock(TestableNotificationManager.class);
 		builder = spy(new NotificationCompat.Builder(context));
 		pendingIntents = mock(PendingIntents.class);
-		view = new PlayerNotification(
+		view = new PlayerNotificationCompat(
 				remoteViews, bigRemoteViews, manager,
 				builder, pendingIntents);
 	}
@@ -47,7 +47,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 		when(pendingIntents.getActivity(MainActivity.class)).thenReturn(contentIntent);
 		reset(builder);
 
-		view = new PlayerNotification(
+		view = new PlayerNotificationCompat(
 				remoteViews, bigRemoteViews, manager,
 				builder, pendingIntents);
 
@@ -103,6 +103,6 @@ public class PlayerNotificationViewTest extends BaseTest {
 	@Test
 	public void update_notifyViaManager() {
 		view.update();
-		verify(manager).notify(PlayerNotification.NOTIFICATION_ID, view.getNotification());
+		verify(manager).notify(1, view.getNotification());
 	}
 }
