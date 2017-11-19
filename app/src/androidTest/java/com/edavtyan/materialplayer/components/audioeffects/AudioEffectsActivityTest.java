@@ -98,7 +98,7 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		runOnUiThread(() -> activity.setEqualizerBands(count, gainLimit, frequencies, gains));
 
 		for (int i = 0; i < count; i++)
-			assertThat(equalizerView.getBand(i))
+			assertThat((EqualizerBandView) equalizerView.getChildAt(i))
 					.hasGainLimit(15)
 					.hasFrequency(frequencies[i])
 					.hasGain(gains[i]);

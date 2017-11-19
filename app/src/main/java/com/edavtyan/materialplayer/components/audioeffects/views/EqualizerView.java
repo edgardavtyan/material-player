@@ -42,10 +42,6 @@ public class EqualizerView
 		}
 	}
 
-	public EqualizerBandView getBand(int index) {
-		return (EqualizerBandView) getChildAt(index);
-	}
-
 	@Override
 	public void onBandStopTracking() {
 		if (onBandChangedListener != null) {

@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.components.audioeffects.views;
 
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerView.OnBandChangedListener;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -38,10 +40,18 @@ public class EqualizerViewTest extends BaseTest {
 		assertThat(equalizerView.getChildCount()).isEqualTo(count);
 		for (int i = 0; i < equalizerView.getChildCount(); i++) {
 			EqualizerBandView bandView = (EqualizerBandView) equalizerView.getChildAt(i);
+			TextView frequencyView = (TextView) bandView.findViewById(R.id.frequency);
+			TextView gainView = (TextView) bandView.findViewById(R.id.gain);
+			DoubleSeekbar bandSeekbarView = (DoubleSeekbar) bandView.findViewById(R.id.band);
 			assertThat(bandView.getIndex()).isEqualTo(i);
-			assertThat(bandView.getFrequency()).isEqualTo(frequencies[i]);
-			assertThat(bandView.getGain()).isEqualTo(gains[i]);
-			assertThat(bandView.getGainLimit()).isEqualTo(limit);
+			assertThat(frequencyView.getText()).isEqualTo(frequencies[i] + " Hz");
+			assertThat(bandSeekbarView.getMax()).isEqualTo(limit);
+
+			if (gains[i] > 0)  {
+				assertThat(gainView.getText()).isEqualTo("+" + gains[i] + " dB");
+			} else {
+				assertThat(gainView.getText()).isEqualTo(gains[i] + " dB");
+			}
 		}
 	}
 
