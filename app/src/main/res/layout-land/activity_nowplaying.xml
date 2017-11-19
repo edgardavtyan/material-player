@@ -15,7 +15,7 @@
 		style="@style/NowPlaying_InnerContainer"
 		>
 
-		<include layout="@layout/partial_appbar" />
+		<include layout="@layout/partial_appbar_transparent" />
 
 		<LinearLayout style="@style/NowPlaying_Land_ContentContainer">
 

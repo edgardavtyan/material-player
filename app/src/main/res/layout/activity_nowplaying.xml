@@ -12,7 +12,7 @@
 
 	<LinearLayout style="@style/NowPlaying_InnerContainer">
 
-		<include layout="@layout/partial_appbar" />
+		<include layout="@layout/partial_appbar_transparent" />
 
 		<FrameLayout style="@style/NowPlaying_ArtWrapper">
 
