@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchTabsAdapter extends FragmentPagerAdapter {
-	private List<Fragment> fragments;
-	private CharSequence[] titles = {"Artists", "Albums", "Tracks"};
+	private final List<Fragment> fragments;
+	private final CharSequence[] titles = {"Artists", "Albums", "Tracks"};
 
 	public SearchTabsAdapter(FragmentManager fm) {
 		super(fm);

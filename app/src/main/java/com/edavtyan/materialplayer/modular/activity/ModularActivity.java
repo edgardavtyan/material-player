@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableActivity;
 import java.util.ArrayList;
 
 public class ModularActivity extends TestableActivity {
-	private ArrayList<ActivityModule> modules = new ArrayList<>();
+	private final ArrayList<ActivityModule> modules = new ArrayList<>();
 
 	@Override
 	protected void onResume() {

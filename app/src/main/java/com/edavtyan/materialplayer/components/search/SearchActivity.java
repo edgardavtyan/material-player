@@ -29,9 +29,9 @@ public class SearchActivity extends BaseActivity {
 
 	private List<OnSearchQueryChangedListener> onSearchQueryChangedListeners;
 
-	private View.OnClickListener onBackButtonClickListener = v -> finish();
+	private final View.OnClickListener onBackButtonClickListener = v -> finish();
 
-	private TextWatcher onSearchQueryChangeWatcher = new TextWatcher() {
+	private final TextWatcher onSearchQueryChangeWatcher = new TextWatcher() {
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}

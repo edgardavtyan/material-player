@@ -41,14 +41,14 @@ public class AudioEffectsActivity
 	private NewPresetDialog newPresetDialog;
 	private PresetsSpinnerView presetsSpinner;
 
-	private View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
+	private final View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			presenter.onCreateNewPresetButtonClicked();
 		}
 	};
 
-	private View.OnClickListener onDeletePresetClicked = new View.OnClickListener() {
+	private final View.OnClickListener onDeletePresetClicked = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			presetsSpinner.deleteCurrentPreset();

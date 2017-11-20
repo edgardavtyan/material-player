@@ -28,7 +28,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	private final TestableRecyclerAdapter adapter;
 	private final ParallaxHeaderListPresenter presenter;
 
-	private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+	private final RecyclerView.OnScrollListener onScrollListener
+			= new RecyclerView.OnScrollListener() {
 		private int totalScrolled = 0;
 
 		@Override

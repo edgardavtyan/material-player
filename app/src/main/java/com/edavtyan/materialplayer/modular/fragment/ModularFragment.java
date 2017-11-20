@@ -19,7 +19,8 @@ import butterknife.ButterKnife;
 
 public abstract class ModularFragment extends TestableFragment {
 	protected App app;
-	private ArrayList<FragmentModule> modules = new ArrayList<>();
+
+	private final ArrayList<FragmentModule> modules = new ArrayList<>();
 
 	@LayoutRes
 	protected abstract int getLayoutId();
