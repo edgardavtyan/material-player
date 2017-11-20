@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.lib.views;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
-public class SquareView extends ImageView {
+public class SquareView extends AppCompatImageView {
 	public SquareView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
