@@ -7,7 +7,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableActivity;
 
 import java.util.ArrayList;
 
-public class ModularActivity extends TestableActivity {
+public abstract class ModularActivity extends TestableActivity {
 	private final ArrayList<ActivityModule> modules = new ArrayList<>();
 
 	@Override

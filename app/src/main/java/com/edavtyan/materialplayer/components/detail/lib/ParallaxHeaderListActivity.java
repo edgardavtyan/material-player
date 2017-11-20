@@ -12,7 +12,10 @@ import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 import butterknife.BindView;
 
-public class ParallaxHeaderListActivity extends BaseToolbarActivity implements ListMvp.View {
+public abstract class ParallaxHeaderListActivity
+		extends BaseToolbarActivity
+		implements ListMvp.View {
+	
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView imageView;
