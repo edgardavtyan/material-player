@@ -2,19 +2,10 @@ package com.edavtyan.materialplayer.lib;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.AttributeSet;
 
 public class FixedGridLayoutManager extends GridLayoutManager {
-	public FixedGridLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
 	public FixedGridLayoutManager(Context context, int spanCount) {
 		super(context, spanCount);
-	}
-
-	public FixedGridLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {
-		super(context, spanCount, orientation, reverseLayout);
 	}
 
 	/**
