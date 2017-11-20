@@ -28,7 +28,7 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 
 	@Override
 	public void onEqualizerEnabledChanged(boolean enabled) {
-		if (model.isConnected() == false) {
+		if (!model.isConnected()) {
 			return;
 		}
 
