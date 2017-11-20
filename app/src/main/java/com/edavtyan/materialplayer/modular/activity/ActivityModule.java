@@ -13,8 +13,7 @@ public class ActivityModule {
 	public void onStop() {
 	}
 
-	public boolean onCreateOptionsMenu(Menu menu) {
-		return false;
+	public void onCreateOptionsMenu(Menu menu) {
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {

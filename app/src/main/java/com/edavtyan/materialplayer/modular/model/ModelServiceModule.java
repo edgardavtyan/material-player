@@ -18,14 +18,8 @@ public class ModelServiceModule implements ServiceConnection {
 
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
-	private @Setter OnServiceDisconnectedListener onServiceDisconnectedListener;
-
 	public interface OnServiceConnectedListener {
 		void onServiceConnected(PlayerService service);
-	}
-
-	public interface OnServiceDisconnectedListener {
-		void onServiceDisconnected();
 	}
 
 	public ModelServiceModule(Context context) {
@@ -52,8 +46,5 @@ public class ModelServiceModule implements ServiceConnection {
 
 	@Override
 	public void onServiceDisconnected(ComponentName name) {
-		if (onServiceDisconnectedListener != null) {
-			onServiceDisconnectedListener.onServiceDisconnected();
-		}
 	}
 }

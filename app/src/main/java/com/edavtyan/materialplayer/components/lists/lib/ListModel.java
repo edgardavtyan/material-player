@@ -7,8 +7,7 @@ import lombok.Setter;
 
 public class ListModel
 		implements ListMvp.Model,
-				   ModelServiceModule.OnServiceConnectedListener,
-				   ModelServiceModule.OnServiceDisconnectedListener {
+				   ModelServiceModule.OnServiceConnectedListener {
 
 	protected PlayerService service;
 
@@ -25,7 +24,6 @@ public class ListModel
 		this.compactListPref = compactListPref;
 		this.serviceModule = serviceModule;
 		this.serviceModule.setOnServiceConnectedListener(this);
-		this.serviceModule.setOnServiceDisconnectedListener(this);
 	}
 
 	@Override
@@ -50,9 +48,5 @@ public class ListModel
 		if (onServiceConnectedListener != null) {
 			onServiceConnectedListener.onServiceConnected();
 		}
-	}
-
-	@Override
-	public void onServiceDisconnected() {
 	}
 }

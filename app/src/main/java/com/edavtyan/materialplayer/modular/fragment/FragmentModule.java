@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.modular.fragment;
 
 import android.view.View;
 
+@SuppressWarnings("EmptyMethod")
 public class FragmentModule {
 	public void onCreate() {
 	}

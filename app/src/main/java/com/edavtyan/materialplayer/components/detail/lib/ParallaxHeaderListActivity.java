@@ -6,12 +6,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
 import butterknife.BindView;
 
-public class ParallaxHeaderListActivity extends BaseToolbarActivity {
+public class ParallaxHeaderListActivity extends BaseToolbarActivity implements ListMvp.View {
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView imageView;
@@ -43,6 +44,7 @@ public class ParallaxHeaderListActivity extends BaseToolbarActivity {
 		}
 	}
 
+	@Override
 	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
 	}
