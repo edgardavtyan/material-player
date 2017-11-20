@@ -14,10 +14,10 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoostPrefs
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLEqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardAmplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
-import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
@@ -31,8 +31,7 @@ import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceive
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-import com.h6ah4i.android.media.IBasicMediaPlayer;
-import com.h6ah4i.android.media.IMediaPlayerFactory;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.util.ArrayList;
@@ -63,6 +62,7 @@ public class PlayerFactory extends BaseFactory {
 	private PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
 	private AudioFocusManager audioFocusManager;
 	private MediaSessionManager mediaSessionManager;
+	private OpenSLMediaPlayerFactory openSlMediaPlayerFactory;
 
 	public PlayerFactory(Context context) {
 		super(context);
@@ -144,8 +144,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public EqualizerBase getEqualizerBase() {
 		if (equalizerBase == null)
-			equalizerBase = new StandardEqualizerBase(
-					new android.media.audiofx.Equalizer(0, getPlayer().getSessionId()));
+			equalizerBase = new OpenSLEqualizerBase(getOpenSLMediaPlayerFactory().createHQEqualizer());
 		return equalizerBase;
 	}
 
@@ -211,11 +210,8 @@ public class PlayerFactory extends BaseFactory {
 	}
 
 	public PlayerMvp.AudioEngine getAudioEngine() {
-		if (audioEngine == null) {
-			IMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(getContext());
-			IBasicMediaPlayer player = factory.createMediaPlayer();
-			audioEngine = new OpenSLAudioEngine(player);
-		}
+		if (audioEngine == null)
+			audioEngine = new OpenSLAudioEngine(getOpenSLMediaPlayerFactory().createMediaPlayer());
 		return audioEngine;
 	}
 
@@ -229,5 +225,14 @@ public class PlayerFactory extends BaseFactory {
 		if (mediaSessionManager == null)
 			mediaSessionManager = new MediaSessionManager(getContext(), getPlayer());
 		return mediaSessionManager;
+	}
+
+	public OpenSLMediaPlayerFactory getOpenSLMediaPlayerFactory() {
+		if (openSlMediaPlayerFactory == null) {
+			OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
+			params.options = OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER;
+			openSlMediaPlayerFactory = new OpenSLMediaPlayerFactory(getContext(), params);
+		}
+		return openSlMediaPlayerFactory;
 	}
 }
