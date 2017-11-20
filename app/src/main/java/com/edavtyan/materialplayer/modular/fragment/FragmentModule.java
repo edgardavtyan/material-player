@@ -4,9 +4,6 @@ import android.view.View;
 
 @SuppressWarnings("EmptyMethod")
 public class FragmentModule {
-	public void onCreate() {
-	}
-
 	public void onCreateView(View view) {
 	}
 

@@ -33,12 +33,6 @@ public class ListFragmentModule extends FragmentModule {
 	}
 
 	@Override
-	public void onCreate() {
-		super.onCreate();
-		presenter.onCreate();
-	}
-
-	@Override
 	public void onCreateView(View view) {
 		super.onCreateView(view);
 		ButterKnife.bind(this, view);
@@ -47,6 +41,8 @@ public class ListFragmentModule extends FragmentModule {
 
 		int spanCount = WindowUtils.isPortrait(fragment.getContext()) ? 1 : 2;
 		list.setLayoutManager(new FixedGridLayoutManager(fragment.getContext(), spanCount));
+
+		presenter.onCreate();
 	}
 
 	@Override
