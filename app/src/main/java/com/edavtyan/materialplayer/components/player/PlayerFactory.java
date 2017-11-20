@@ -31,8 +31,9 @@ import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceive
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-
-import net.protyposis.android.mediaplayer.MediaPlayer;
+import com.h6ah4i.android.media.IBasicMediaPlayer;
+import com.h6ah4i.android.media.IMediaPlayerFactory;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -210,8 +211,11 @@ public class PlayerFactory extends BaseFactory {
 	}
 
 	public PlayerMvp.AudioEngine getAudioEngine() {
-		if (audioEngine == null)
-			audioEngine = new ExtendedAudioEngine(new MediaPlayer());
+		if (audioEngine == null) {
+			IMediaPlayerFactory factory = new OpenSLMediaPlayerFactory(getContext());
+			IBasicMediaPlayer player = factory.createMediaPlayer();
+			audioEngine = new OpenSLAudioEngine(player);
+		}
 		return audioEngine;
 	}
 
