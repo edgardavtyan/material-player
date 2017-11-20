@@ -12,9 +12,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
 @TargetApi(24)
-public class PlayerNotificationNougat
-		extends PlayerNotification
-		implements PlayerNotificationMvp.View {
+public class PlayerNotificationNougat extends PlayerNotification {
 
 	public PlayerNotificationNougat(
 			Context context,
