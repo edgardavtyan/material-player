@@ -63,7 +63,6 @@ public class PresetsSpinnerView {
 	}
 
 	public void selectPresetAt(int presetIndex, Equalizer.PresetType presetType) {
-		int index;
 		switch (presetType) {
 		case CUSTOM_NEW:
 			presetsSpinner.setSelection(0);
