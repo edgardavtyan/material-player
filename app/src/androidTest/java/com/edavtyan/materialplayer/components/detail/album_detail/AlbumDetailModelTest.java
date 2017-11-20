@@ -34,7 +34,6 @@ public class AlbumDetailModelTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		AlbumDetailActivity view = mock(AlbumDetailActivity.class);
 		CompactListPref prefs = mock(CompactListPref.class);
 		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 		albumDB = mock(AlbumDB.class);

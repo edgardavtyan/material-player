@@ -2,9 +2,6 @@ package com.edavtyan.materialplayer.utils;
 
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Modifier;
-
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,11 +29,5 @@ public class DurationUtilsTest {
 	@Test
 	public void toStringUntilHours_noHoursAndSingleDigit_padWithZerosWithoutHours() {
 		assertThat(DurationUtils.toStringUntilHours(369000)).isEqualTo("06:09");
-	}
-
-	private <T> void testConstructorPrivate(Constructor<T> constructor) throws Exception {
-		constructor.setAccessible(true);
-		constructor.newInstance();
-		assertThat(Modifier.isPrivate(constructor.getModifiers())).isTrue();
 	}
 }
