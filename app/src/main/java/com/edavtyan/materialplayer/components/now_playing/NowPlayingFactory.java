@@ -6,7 +6,6 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-import com.edavtyan.materialplayer.utils.AppColors;
 
 public class NowPlayingFactory extends BaseFactory {
 	private final NowPlayingActivity activity;
@@ -19,7 +18,6 @@ public class NowPlayingFactory extends BaseFactory {
 	private NowPlayingMvp.View.Art art;
 	private NowPlayingMvp.View.Seekbar seekbar;
 	private NowPlayingMvp.View.Fab fab;
-	private AppColors appColors;
 
 	public NowPlayingFactory(NowPlayingActivity activity, NowPlayingMvp.View view) {
 		super(activity);
