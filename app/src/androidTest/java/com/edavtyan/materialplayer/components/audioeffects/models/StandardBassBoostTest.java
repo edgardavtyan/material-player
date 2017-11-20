@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import android.content.SharedPreferences;
 import android.media.audiofx.BassBoost;
 import android.preference.PreferenceManager;
 
@@ -11,17 +12,19 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StandardBassBoostTest extends BaseTest {
-	private BassBoost baseBassBoost;
-	private AdvancedSharedPrefs basePrefs;
+	private SharedPreferences basePrefs;
+	private AdvancedSharedPrefs advancedPrefs;
 	private BassBoostPrefs prefs;
+	private BassBoost baseBassBoost;
 	private StandardBassBoost bassBoost;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
+		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		advancedPrefs = new AdvancedSharedPrefs(basePrefs);
+		prefs = new BassBoostPrefs(advancedPrefs);
 		baseBassBoost = new BassBoost(0, 0);
-		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		prefs = new BassBoostPrefs(basePrefs);
 		bassBoost = new StandardBassBoost(baseBassBoost, prefs);
 	}
 

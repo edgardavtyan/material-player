@@ -19,18 +19,8 @@ public class AdvancedSharedPrefsEditor {
 		baseEditor.commit();
 	}
 
-	public AdvancedSharedPrefsEditor clear() {
-		baseEditor.clear();
-		return this;
-	}
-
 	public AdvancedSharedPrefsEditor putInt(String key, int defValue) {
 		baseEditor.putInt(key, defValue);
-		return this;
-	}
-
-	public AdvancedSharedPrefsEditor putString(String key, String defValue) {
-		baseEditor.putString(key, defValue);
 		return this;
 	}
 

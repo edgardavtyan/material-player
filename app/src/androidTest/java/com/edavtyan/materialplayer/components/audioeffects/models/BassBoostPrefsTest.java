@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -10,14 +11,16 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BassBoostPrefsTest extends BaseTest {
-	private AdvancedSharedPrefs basePrefs;
-	private BassBoostPrefs bassBoostPrefs;
+	private SharedPreferences basePrefs;
+	private AdvancedSharedPrefs advancedPrefs;
+	private BassBoostPrefs prefs;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		bassBoostPrefs = new BassBoostPrefs(basePrefs);
+		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		advancedPrefs = new AdvancedSharedPrefs(basePrefs);
+		prefs = new BassBoostPrefs(advancedPrefs);
 	}
 
 	@Override
@@ -28,18 +31,18 @@ public class BassBoostPrefsTest extends BaseTest {
 
 	@Test
 	public void getStrength_prefSet_returnSetPrefValue() {
-		basePrefs.edit().putInt("bassBoost_strength", 300).commit();
-		assertThat(bassBoostPrefs.getStrength()).isEqualTo(300);
+		advancedPrefs.edit().putInt("bassBoost_strength", 300).commit();
+		assertThat(prefs.getStrength()).isEqualTo(300);
 	}
 
 	@Test
 	public void getStrength_prefNotSet_returnDefaultValue() {
-		assertThat(bassBoostPrefs.getStrength()).isEqualTo(0);
+		assertThat(prefs.getStrength()).isEqualTo(0);
 	}
 
 	@Test
 	public void save_saveGivenValuesInSharedPrefs() {
-		bassBoostPrefs.save(400);
-		assertThat(basePrefs.getInt("bassBoost_strength", 0)).isEqualTo(400);
+		prefs.save(400);
+		assertThat(advancedPrefs.getInt("bassBoost_strength", 0)).isEqualTo(400);
 	}
 }

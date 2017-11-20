@@ -19,8 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class StandardEqualizerTest extends BaseTest {
-	private AdvancedSharedPrefs basePrefs;
-	private AdvancedGsonSharedPrefs gsonPrefs;
+	private SharedPreferences basePrefs;
 	private EqualizerPrefs prefs;
 	private PresetsPrefs presetPrefs;
 	private EqualizerBase baseEqualizer;
@@ -30,10 +29,10 @@ public class StandardEqualizerTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		basePrefs = new AdvancedSharedPrefs(sharedPrefs);
-		gsonPrefs = new AdvancedGsonSharedPrefs(sharedPrefs, new Gson());
-		prefs = spy(new EqualizerPrefs(basePrefs));
+		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		AdvancedSharedPrefs advancedPrefs = new AdvancedSharedPrefs(basePrefs);
+		AdvancedGsonSharedPrefs gsonPrefs = new AdvancedGsonSharedPrefs(basePrefs, new Gson());
+		prefs = spy(new EqualizerPrefs(advancedPrefs));
 		presetPrefs = spy(new PresetsPrefs(gsonPrefs));
 		baseEqualizer = new StandardEqualizerBase(new Equalizer(0, 0));
 		equalizer = new StandardEqualizer(baseEqualizer, prefs, presetPrefs);

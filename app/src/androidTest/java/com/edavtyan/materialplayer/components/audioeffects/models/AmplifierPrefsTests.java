@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audioeffects.models;
 
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -10,14 +11,16 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AmplifierPrefsTests extends BaseTest {
+	private SharedPreferences basePrefs;
+	private AdvancedSharedPrefs advancedPrefs;
 	private AmplifierPrefs prefs;
-	private AdvancedSharedPrefs basePrefs;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		prefs = new AmplifierPrefs(basePrefs);
+		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		advancedPrefs = new AdvancedSharedPrefs(basePrefs);
+		prefs = new AmplifierPrefs(advancedPrefs);
 	}
 
 	@Override
@@ -28,7 +31,7 @@ public class AmplifierPrefsTests extends BaseTest {
 
 	@Test
 	public void getGain_valueSet_returnValueFromSharedPrefs() {
-		basePrefs.edit().putInt("amplifier_gain", 10).commit();
+		advancedPrefs.edit().putInt("amplifier_gain", 10).commit();
 		assertThat(prefs.getGain()).isEqualTo(10);
 	}
 
@@ -40,6 +43,6 @@ public class AmplifierPrefsTests extends BaseTest {
 	@Test
 	public void save_saveGainToSharedPrefs() {
 		prefs.save(20);
-		assertThat(basePrefs.getInt("amplifier_gain", 0)).isEqualTo(20);
+		assertThat(advancedPrefs.getInt("amplifier_gain", 0)).isEqualTo(20);
 	}
 }

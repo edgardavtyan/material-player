@@ -35,17 +35,6 @@ public class AdvancedSharedPrefsEditorTests extends BaseTest {
 	}
 
 	@Test
-	public void clear_clearBaseEditor() {
-		editor.clear();
-		verify(baseEditor).clear();
-	}
-
-	@Test
-	public void clean_returnItself() {
-		assertThat(editor.clear()).isSameAs(editor);
-	}
-
-	@Test
 	public void putInt_callBaseEditor() {
 		editor.putInt("key", 1);
 		verify(baseEditor).putInt("key", 1);
@@ -54,17 +43,6 @@ public class AdvancedSharedPrefsEditorTests extends BaseTest {
 	@Test
 	public void putInt_returnItself() {
 		assertThat(editor.putInt("key", 1)).isSameAs(editor);
-	}
-
-	@Test
-	public void putString_callBaseEditor() {
-		editor.putString("key", "str");
-		verify(baseEditor).putString("key", "str");
-	}
-
-	@Test
-	public void putString_returnItself() {
-		assertThat(editor.putString("key", "str")).isSameAs(editor);
 	}
 
 	@Test

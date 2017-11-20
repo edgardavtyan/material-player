@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.player;
 
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -10,14 +11,16 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerPrefsTest extends BaseTest {
+	private SharedPreferences basePrefs;
+	private AdvancedSharedPrefs advancedPrefs;
 	private PlayerPrefs playerPrefs;
-	private AdvancedSharedPrefs basePrefs;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		basePrefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(context));
-		playerPrefs = new PlayerPrefs(basePrefs);
+		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		advancedPrefs = new AdvancedSharedPrefs(basePrefs);
+		playerPrefs = new PlayerPrefs(advancedPrefs);
 	}
 
 	@Override
@@ -28,7 +31,7 @@ public class PlayerPrefsTest extends BaseTest {
 
 	@Test
 	public void getShuffleMode_prefSet_returnSetPrefValue() {
-		basePrefs.edit().putEnum("player_shuffle", ShuffleMode.ENABLED).commit();
+		advancedPrefs.edit().putEnum("player_shuffle", ShuffleMode.ENABLED).commit();
 		assertThat(playerPrefs.getShuffleMode()).isEqualTo(ShuffleMode.ENABLED);
 	}
 
@@ -40,13 +43,13 @@ public class PlayerPrefsTest extends BaseTest {
 	@Test
 	public void saveShuffleMode_saveGivenValueInSharedPrefs() {
 		playerPrefs.saveShuffleMode(ShuffleMode.ENABLED);
-		assertThat(basePrefs.getEnum("player_shuffle", ShuffleMode.DISABLED))
+		assertThat(advancedPrefs.getEnum("player_shuffle", ShuffleMode.DISABLED))
 				.isEqualTo(ShuffleMode.ENABLED);
 	}
 
 	@Test
 	public void getRepeatMode_prefSet_returnSetPrefValue() {
-		basePrefs.edit().putEnum("player_repeat", RepeatMode.REPEAT_ALL).commit();
+		advancedPrefs.edit().putEnum("player_repeat", RepeatMode.REPEAT_ALL).commit();
 		assertThat(playerPrefs.getRepeatMode()).isEqualTo(RepeatMode.REPEAT_ALL);
 	}
 
@@ -58,7 +61,7 @@ public class PlayerPrefsTest extends BaseTest {
 	@Test
 	public void saveRepeatMode_saveGivenValueInSharedPrefs() {
 		playerPrefs.saveRepeatMode(RepeatMode.REPEAT_ALL);
-		assertThat(basePrefs.getEnum("player_repeat", RepeatMode.DISABLED))
+		assertThat(advancedPrefs.getEnum("player_repeat", RepeatMode.DISABLED))
 				.isEqualTo(RepeatMode.REPEAT_ALL);
 	}
 }
