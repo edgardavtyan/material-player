@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.modular.fragment;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 public class FragmentModule {
@@ -23,9 +21,9 @@ public class FragmentModule {
 	public void onDestroy() {
 	}
 
-	public void onCreateOptionsMenu(Menu menu) {
+	public void onCreateOptionsMenu() {
 	}
 
-	public void onOptionsItemSelected(MenuItem item) {
+	public void onOptionsItemSelected() {
 	}
 }

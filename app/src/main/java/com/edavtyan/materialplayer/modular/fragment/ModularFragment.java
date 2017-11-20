@@ -18,9 +18,8 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 
 public abstract class ModularFragment extends TestableFragment {
-	private ArrayList<FragmentModule> modules = new ArrayList<>();
-
 	protected App app;
+	private ArrayList<FragmentModule> modules = new ArrayList<>();
 
 	@LayoutRes
 	protected abstract int getLayoutId();
@@ -54,7 +53,7 @@ public abstract class ModularFragment extends TestableFragment {
 		super.onResume();
 
 		for (FragmentModule module : modules) {
-			module.onCreate();
+			module.onResume();
 		}
 	}
 
@@ -77,16 +76,25 @@ public abstract class ModularFragment extends TestableFragment {
 	}
 
 	@Override
+	public void onDestroy() {
+		super.onDestroy();
+
+		for (FragmentModule module : modules) {
+			module.onDestroy();
+		}
+	}
+
+	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		for (FragmentModule module : modules) {
-			module.onCreateOptionsMenu(menu);
+			module.onCreateOptionsMenu();
 		}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		for (FragmentModule module : modules) {
-			module.onOptionsItemSelected(item);
+			module.onOptionsItemSelected();
 		}
 
 		return false;
@@ -94,17 +102,5 @@ public abstract class ModularFragment extends TestableFragment {
 
 	protected void addModule(FragmentModule module) {
 		modules.add(module);
-	}
-
-	protected void switchModule(Class<? extends FragmentModule> c, FragmentModule newModule) {
-		int index = 0;
-		for (int i = 0; i < modules.size(); i++) {
-			if (modules.get(i).getClass().equals(c)) {
-				index = i;
-				break;
-			}
-		}
-
-		modules.set(index, newModule);
 	}
 }
