@@ -15,13 +15,8 @@ import lombok.Setter;
 public class DoubleSeekbar extends GenericFrameLayout implements SeekBar.OnSeekBarChangeListener {
 	@BindView(R.id.seekbar) AppCompatSeekBar seekbar;
 
-	private @Setter OnStartTrackingTouchListener onStartTrackingTouchListener;
 	private @Setter OnStopTrackingTouchListener onStopTrackingTouchListener;
 	private @Setter OnProgressChangedListener onProgressChangedListener;
-
-	interface OnStartTrackingTouchListener {
-		void onStartTrackingTouch(DoubleSeekbar seekbar);
-	}
 
 	interface OnStopTrackingTouchListener {
 		void onStopTrackingTouch();
@@ -64,9 +59,6 @@ public class DoubleSeekbar extends GenericFrameLayout implements SeekBar.OnSeekB
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		if (onStartTrackingTouchListener != null) {
-			onStartTrackingTouchListener.onStartTrackingTouch(this);
-		}
 	}
 
 	@Override

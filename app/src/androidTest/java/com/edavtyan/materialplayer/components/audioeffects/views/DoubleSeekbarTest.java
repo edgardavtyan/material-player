@@ -4,7 +4,6 @@ import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnProgressChangedListener;
-import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnStartTrackingTouchListener;
 import com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar.OnStopTrackingTouchListener;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -50,21 +49,6 @@ public class DoubleSeekbarTest extends BaseTest {
 	public void getProgress_returnSetProgress() {
 		doubleSeekbar.setProgress(-40);
 		assertThat(doubleSeekbar.getProgress()).isEqualTo(-40);
-	}
-
-	@Test
-	public void onStartTrackingTouch_listenerSet_callListener() {
-		OnStartTrackingTouchListener listener = mock(OnStartTrackingTouchListener.class);
-		doubleSeekbar.setOnStartTrackingTouchListener(listener);
-		doubleSeekbar.onStartTrackingTouch(innerSeekbar);
-		verify(listener).onStartTrackingTouch(doubleSeekbar);
-	}
-
-	@Test
-	public void onStartTrackingTouch_listenerNotSet_notCallOnStartTrackingTouchListener() {
-		OnStartTrackingTouchListener listener = mock(OnStartTrackingTouchListener.class);
-		doubleSeekbar.onStartTrackingTouch(innerSeekbar);
-		verify(listener, never()).onStartTrackingTouch(doubleSeekbar);
 	}
 
 	@Test
