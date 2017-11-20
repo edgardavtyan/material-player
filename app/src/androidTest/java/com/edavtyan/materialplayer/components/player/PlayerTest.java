@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 @SuppressWarnings("unchecked")
 public class PlayerTest extends BaseTest {
 	private SharedPreferences basePrefs;
-	private AdvancedSharedPrefs advancedPrefs;
 	private PlayerPrefs prefs;
 	private PlayerMvp.AudioEngine audioEngine;
 	private PlayerMvp.Queue queue;
@@ -36,8 +35,7 @@ public class PlayerTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		advancedPrefs = new AdvancedSharedPrefs(basePrefs);
-		prefs = new PlayerPrefs(advancedPrefs);
+		prefs = new PlayerPrefs(new AdvancedSharedPrefs(basePrefs));
 		audioEngine = mock(PlayerMvp.AudioEngine.class);
 		queue = mock(PlayerMvp.Queue.class);
 		player = new Player(audioEngine, queue, prefs);

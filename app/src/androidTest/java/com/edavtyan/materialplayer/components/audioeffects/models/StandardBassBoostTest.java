@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StandardBassBoostTest extends BaseTest {
 	private SharedPreferences basePrefs;
-	private AdvancedSharedPrefs advancedPrefs;
 	private BassBoostPrefs prefs;
 	private BassBoost baseBassBoost;
 	private StandardBassBoost bassBoost;
@@ -22,8 +21,7 @@ public class StandardBassBoostTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		advancedPrefs = new AdvancedSharedPrefs(basePrefs);
-		prefs = new BassBoostPrefs(advancedPrefs);
+		prefs = new BassBoostPrefs(new AdvancedSharedPrefs(basePrefs));
 		baseBassBoost = new BassBoost(0, 0);
 		bassBoost = new StandardBassBoost(baseBassBoost, prefs);
 	}

@@ -17,7 +17,6 @@ import static org.mockito.Mockito.when;
 @SuppressWarnings("StaticFieldLeak")
 public class TrackListFragmentTest extends FragmentTest2 {
 	private static TrackListAdapter adapter;
-	private static TrackListMvp.Presenter presenter;
 	private static Navigator navigator;
 	private static TrackListFragment fragment;
 
@@ -27,8 +26,8 @@ public class TrackListFragmentTest extends FragmentTest2 {
 
 		if (fragment == null) {
 			adapter = mock(TrackListAdapter.class);
-			presenter = mock(TrackListMvp.Presenter.class);
 			navigator = mock(Navigator.class);
+			TrackListMvp.Presenter presenter = mock(TrackListMvp.Presenter.class);
 
 			TrackListFactory factory = mock(TrackListFactory.class);
 			when(factory.getAdapter()).thenReturn(adapter);
