@@ -38,8 +38,4 @@ public class SearchTabsAdapter extends FragmentPagerAdapter {
 	public CharSequence getPageTitle(int position) {
 		return titles[position];
 	}
-
-	public Fragment getFragment(int position) {
-		return fragments.get(position);
-	}
 }

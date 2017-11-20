@@ -19,11 +19,6 @@ public class TestableImageButton extends ImageButton {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public void setColorFilterNonFinal(int color) {
-		super.setColorFilter(color);
-		colorFilterColor = color;
-	}
-
 	public int getColorFilterColor() {
 		return colorFilterColor;
 	}
