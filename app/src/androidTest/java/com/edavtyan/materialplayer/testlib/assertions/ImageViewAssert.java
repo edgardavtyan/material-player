@@ -46,6 +46,19 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
+	public ImageViewAssert hasImageAlpha(int expectedAlpha) {
+		int actualAlpha = actual.getImageAlpha();
+		String errorMessage = "\nExpected ImageAlpha to be <%s> but was <%s>\n";
+
+		isNotNull();
+		if (expectedAlpha != actualAlpha) {
+			failWithMessage(errorMessage, expectedAlpha, actualAlpha);
+		}
+
+		return this;
+	}
+
 	private Bitmap getBitmap(Drawable drawable) {
 		Bitmap result;
 		if (drawable instanceof BitmapDrawable) {

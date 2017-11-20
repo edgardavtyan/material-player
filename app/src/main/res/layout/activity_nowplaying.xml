@@ -69,32 +69,32 @@
 
 		<LinearLayout style="@style/NowPlaying_ControlsContainer">
 
-			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+			<ImageButton
 				android:id="@+id/shuffle"
 				android:layout_marginLeft="-12dp"
 				android:src="@drawable/ic_shuffle"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+			<ImageButton
 				android:id="@+id/rewind"
 				android:src="@drawable/ic_skip_prev"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+			<ImageButton
 				android:id="@+id/play_pause"
 				android:src="@drawable/ic_play"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+			<ImageButton
 				android:id="@+id/fast_forward"
 				android:src="@drawable/ic_skip_next"
 				style="@style/NowPlaying_Control"
 				/>
 
-			<com.edavtyan.materialplayer.lib.testable.TestableImageButton
+			<ImageButton
 				android:id="@+id/repeat"
 				android:layout_marginRight="-12dp"
 				android:src="@drawable/ic_repeat"

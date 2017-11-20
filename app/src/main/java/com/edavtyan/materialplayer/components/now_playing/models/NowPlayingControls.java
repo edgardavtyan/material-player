@@ -1,13 +1,13 @@
 package com.edavtyan.materialplayer.components.now_playing.models;
 
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
-import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,11 +16,11 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	public static final int CONTROL_ENABLED_ALPHA = 255;
 	public static final int CONTROL_DISABLED_ALPHA = 60;
 
-	@BindView(R.id.shuffle) TestableImageButton shuffleButton;
-	@BindView(R.id.rewind) TestableImageButton rewindButton;
-	@BindView(R.id.play_pause) TestableImageButton playPauseButton;
-	@BindView(R.id.fast_forward) TestableImageButton fastForwardButton;
-	@BindView(R.id.repeat) TestableImageButton repeatButton;
+	@BindView(R.id.shuffle) ImageButton shuffleButton;
+	@BindView(R.id.rewind) ImageButton rewindButton;
+	@BindView(R.id.play_pause) ImageButton playPauseButton;
+	@BindView(R.id.fast_forward) ImageButton fastForwardButton;
+	@BindView(R.id.repeat) ImageButton repeatButton;
 
 	private final NowPlayingMvp.Presenter presenter;
 

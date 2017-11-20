@@ -1,10 +1,11 @@
 package com.edavtyan.materialplayer.components.now_playing.models;
 
+import android.widget.ImageButton;
+
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
-import com.edavtyan.materialplayer.lib.testable.TestableImageButton;
 
 import org.junit.Test;
 
@@ -13,21 +14,21 @@ import static org.mockito.Mockito.verify;
 
 public class NowPlayingControlsTest extends NowPlayingViewTest {
 	private NowPlayingMvp.View.Controls controls;
-	private TestableImageButton shuffleButton;
-	private TestableImageButton rewindButton;
-	private TestableImageButton playPauseButton;
-	private TestableImageButton fastForwardButton;
-	private TestableImageButton repeatButton;
+	private ImageButton shuffleButton;
+	private ImageButton rewindButton;
+	private ImageButton playPauseButton;
+	private ImageButton fastForwardButton;
+	private ImageButton repeatButton;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		shuffleButton = (TestableImageButton) activity.findViewById(R.id.shuffle);
-		rewindButton = (TestableImageButton) activity.findViewById(R.id.rewind);
-		playPauseButton = (TestableImageButton) activity.findViewById(R.id.play_pause);
-		fastForwardButton = (TestableImageButton) activity.findViewById(R.id.fast_forward);
-		repeatButton = (TestableImageButton) activity.findViewById(R.id.repeat);
+		shuffleButton = (ImageButton) activity.findViewById(R.id.shuffle);
+		rewindButton = (ImageButton) activity.findViewById(R.id.rewind);
+		playPauseButton = (ImageButton) activity.findViewById(R.id.play_pause);
+		fastForwardButton = (ImageButton) activity.findViewById(R.id.fast_forward);
+		repeatButton = (ImageButton) activity.findViewById(R.id.repeat);
 
 		controls = new NowPlayingControls(activity, presenter);
 	}
@@ -65,20 +66,20 @@ public class NowPlayingControlsTest extends NowPlayingViewTest {
 	@Test
 	public void setShuffleMode_enabled_setShuffleButtonColorFilterToAccent() {
 		runOnUiThread(() -> controls.setShuffleMode(ShuffleMode.ENABLED));
-		assertThat(shuffleButton).hasColorFilter(colors.accent);
+		assertThat(shuffleButton).hasImageAlpha(255);
 	}
 
 	@Test
 	public void setShuffleMode_disabled_setShuffleButtonColorFilterToContrast() {
 		runOnUiThread(() -> controls.setShuffleMode(ShuffleMode.DISABLED));
-		assertThat(shuffleButton).hasColorFilter(colors.textPrimary);
+		assertThat(shuffleButton).hasImageAlpha(60);
 	}
 
 	@Test
 	public void setRepeatMode_repeatAll_setRepeatButtonColorFilterAndIcon() {
 		runOnUiThread(() -> controls.setRepeatMode(RepeatMode.REPEAT_ALL));
 		assertThat(repeatButton)
-				.hasColorFilter(colors.accent)
+				.hasImageAlpha(255)
 				.hasImageResource(R.drawable.ic_repeat);
 	}
 
@@ -86,7 +87,7 @@ public class NowPlayingControlsTest extends NowPlayingViewTest {
 	public void setRepeatMode_repeatOne_setRepeatButtonColorFilterAndIcon() {
 		runOnUiThread(() -> controls.setRepeatMode(RepeatMode.REPEAT_ONE));
 		assertThat(repeatButton)
-				.hasColorFilter(colors.accent)
+				.hasImageAlpha(255)
 				.hasImageResource(R.drawable.ic_repeat_one);
 	}
 
@@ -94,7 +95,7 @@ public class NowPlayingControlsTest extends NowPlayingViewTest {
 	public void setRepeatMode_disabled_setRepeatButtonColorFilterAndIcon() {
 		runOnUiThread(() -> controls.setRepeatMode(RepeatMode.DISABLED));
 		assertThat(repeatButton)
-				.hasColorFilter(colors.textPrimary)
+				.hasImageAlpha(60)
 				.hasImageResource(R.drawable.ic_repeat);
 	}
 
