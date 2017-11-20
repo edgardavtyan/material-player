@@ -15,7 +15,7 @@
 		android:visibility="gone"
 		android:textSize="@dimen/font_medium"
 		android:textColor="?textColorSecondary"
-		android:text="Search query is empty"
+		android:text="@string/search_message_emptyQuery"
 		/>
 
 	<TextView
@@ -28,7 +28,7 @@
 		android:visibility="gone"
 		android:textSize="@dimen/font_medium"
 		android:textColor="?textColorSecondary"
-		android:text="No results match your search"
+		android:text="@string/search_message_noResults"
 		/>
 
 	<android.support.v7.widget.RecyclerView
