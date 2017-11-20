@@ -53,7 +53,7 @@ public abstract class ModularFragment extends TestableFragment {
 		super.onResume();
 
 		for (FragmentModule module : modules) {
-			module.onResume();
+			module.onCreate();
 		}
 	}
 
