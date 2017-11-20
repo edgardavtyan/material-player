@@ -79,10 +79,4 @@ public class NowPlayingFactory extends BaseFactory {
 			fab = new NowPlayingFab(getActivity(), getPresenter());
 		return fab;
 	}
-
-	public AppColors getAppColors() {
-		if (appColors == null)
-			appColors = new AppColors(getActivity());
-		return appColors;
-	}
 }

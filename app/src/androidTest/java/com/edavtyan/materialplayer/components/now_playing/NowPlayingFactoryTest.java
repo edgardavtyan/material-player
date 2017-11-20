@@ -24,7 +24,6 @@ public class NowPlayingFactoryTest extends FactoryTest {
 		testFactoryMethod(nowPlayingFactory::getView);
 		testFactoryMethod(nowPlayingFactory::getPresenter);
 		testFactoryMethod(nowPlayingFactory::getActivity);
-		testFactoryMethod(nowPlayingFactory::getAppColors);
 		testFactoryMethod(nowPlayingFactory::getArt);
 		testFactoryMethod(nowPlayingFactory::getControls);
 		testFactoryMethod(nowPlayingFactory::getFab);

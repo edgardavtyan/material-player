@@ -22,11 +22,9 @@ public abstract class NowPlayingViewTest extends ActivityTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		colors = new AppColors(context);
 		presenter = mock(NowPlayingMvp.Presenter.class);
 
 		NowPlayingFactory factory = mock(NowPlayingFactory.class);
-		when(factory.getAppColors()).thenReturn(colors);
 		when(factory.getPresenter()).thenReturn(presenter);
 
 		app.setNowPlayingFactory(factory);
