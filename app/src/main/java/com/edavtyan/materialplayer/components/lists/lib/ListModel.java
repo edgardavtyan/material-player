@@ -28,10 +28,12 @@ public class ListModel
 		this.serviceModule.setOnServiceDisconnectedListener(this);
 	}
 
+	@Override
 	public void bindService() {
 		serviceModule.bind();
 	}
 
+	@Override
 	public void unbindService() {
 		serviceModule.unbind();
 	}

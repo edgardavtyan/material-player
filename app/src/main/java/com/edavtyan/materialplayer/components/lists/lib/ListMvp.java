@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.components.lists.lib;
 @SuppressWarnings("unused")
 public interface ListMvp {
 	interface Model {
+		void bindService();
+		void unbindService();
 		void setOnServiceConnectedListener(ListModel.OnServiceConnectedListener listener);
 		boolean isCompactModeEnabled();
 	}
