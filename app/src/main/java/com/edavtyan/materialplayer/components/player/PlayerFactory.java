@@ -14,9 +14,9 @@ import com.edavtyan.materialplayer.components.audioeffects.models.BassBoostPrefs
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.EqualizerPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.OpenSLEqualizerBase;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardAmplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.StandardBassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardEqualizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurround;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
@@ -31,7 +31,7 @@ import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceive
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
+import com.h6ah4i.android.media.IBasicMediaPlayer;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.util.ArrayList;
@@ -63,6 +63,7 @@ public class PlayerFactory extends BaseFactory {
 	private AudioFocusManager audioFocusManager;
 	private MediaSessionManager mediaSessionManager;
 	private OpenSLMediaPlayerFactory openSlMediaPlayerFactory;
+	private IBasicMediaPlayer openSLMediaPlayer;
 
 	public PlayerFactory(Context context) {
 		super(context);
@@ -162,8 +163,8 @@ public class PlayerFactory extends BaseFactory {
 
 	public BassBoost getBassBoost() {
 		if (bassBoost == null)
-			bassBoost = new StandardBassBoost(
-					new android.media.audiofx.BassBoost(0, getPlayer().getSessionId()),
+			bassBoost = new OpenSLBassBoost(
+					getOpenSLMediaPlayerFactory().createBassBoost(getOpenSLMediaPlayer()),
 					getBassBoostPrefs());
 		return bassBoost;
 	}
@@ -211,7 +212,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public PlayerMvp.AudioEngine getAudioEngine() {
 		if (audioEngine == null)
-			audioEngine = new OpenSLAudioEngine(getOpenSLMediaPlayerFactory().createMediaPlayer());
+			audioEngine = new OpenSLAudioEngine(getOpenSLMediaPlayer());
 		return audioEngine;
 	}
 
@@ -229,10 +230,14 @@ public class PlayerFactory extends BaseFactory {
 
 	public OpenSLMediaPlayerFactory getOpenSLMediaPlayerFactory() {
 		if (openSlMediaPlayerFactory == null) {
-			OpenSLMediaPlayerContext.Parameters params = new OpenSLMediaPlayerContext.Parameters();
-			params.options = OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER;
-			openSlMediaPlayerFactory = new OpenSLMediaPlayerFactory(getContext(), params);
+			openSlMediaPlayerFactory = new OpenSLMediaPlayerFactory(getContext());
 		}
 		return openSlMediaPlayerFactory;
+	}
+
+	public IBasicMediaPlayer getOpenSLMediaPlayer() {
+		if (openSLMediaPlayer == null)
+			openSLMediaPlayer = getOpenSLMediaPlayerFactory().createMediaPlayer();
+		return openSLMediaPlayer;
 	}
 }
