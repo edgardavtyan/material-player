@@ -14,7 +14,7 @@ public class NowPlayingFabTest extends NowPlayingViewTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		NowPlayingFab fab = new NowPlayingFab(activity, presenter);
+		new NowPlayingFab(activity, presenter);
 	}
 
 	@Test

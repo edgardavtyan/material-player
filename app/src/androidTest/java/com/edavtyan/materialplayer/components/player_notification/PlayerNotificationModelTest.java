@@ -30,7 +30,6 @@ public class PlayerNotificationModelTest extends BaseTest {
 	private PlayerMvp.Player player;
 	private AlbumArtProvider albumArtProvider;
 	private PlayerService.PlayerBinder binder;
-	private Track track;
 
 	@Override
 	public void beforeEach() {
