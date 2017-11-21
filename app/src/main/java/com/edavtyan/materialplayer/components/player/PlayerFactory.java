@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.player;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.media.audiofx.LoudnessEnhancer;
 import android.media.audiofx.Virtualizer;
@@ -22,13 +21,6 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurrou
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
-import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.CloseReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.HeadphonesConnectedReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.MediaButtonReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
-import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
@@ -52,69 +44,11 @@ public class PlayerFactory extends BaseFactory {
 	private PlayerMvp.AudioEngine audioEngine;
 	private Player player;
 	private PlayerPrefs playerPrefs;
-	private CloseReceiver closeReceiver;
-	private SkipToNextReceiver skipToNextReceiver;
-	private SkipToPreviousReceiver skipToPreviousReceiver;
-	private PlayPauseReceiver playPauseReceiver;
-	private AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
-	private MediaButtonReceiver mediaButtonReceiver;
-	private HeadphonesConnectedReceiver headphonesConnectedReceiver;
-	private PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
 	private AudioFocusManager audioFocusManager;
 	private MediaSessionManager mediaSessionManager;
 
 	public PlayerFactory(Context context) {
 		super(context);
-	}
-
-	public BroadcastReceiver getCloseReceiver() {
-		if (closeReceiver == null)
-			closeReceiver = new CloseReceiver();
-		return closeReceiver;
-	}
-
-	public SkipToNextReceiver getSkipToNextReceiver() {
-		if (skipToNextReceiver == null)
-			skipToNextReceiver = new SkipToNextReceiver(getPlayer());
-		return skipToNextReceiver;
-	}
-
-	public SkipToPreviousReceiver getSkipToPreviousReceiver() {
-		if (skipToPreviousReceiver == null)
-			skipToPreviousReceiver = new SkipToPreviousReceiver(getPlayer());
-		return skipToPreviousReceiver;
-	}
-
-	public PlayPauseReceiver getPlayPauseReceiver() {
-		if (playPauseReceiver == null)
-			playPauseReceiver = new PlayPauseReceiver(getPlayer());
-		return playPauseReceiver;
-	}
-
-	public MediaButtonReceiver getMediaButtonReceiver() {
-		if (mediaButtonReceiver == null)
-			mediaButtonReceiver = new MediaButtonReceiver(getPlayer());
-		return mediaButtonReceiver;
-	}
-
-	public AudioBecomingNoisyReceiver getAudioBecomingNoisyReceiver() {
-		if (audioBecomingNoisyReceiver == null)
-			audioBecomingNoisyReceiver = new AudioBecomingNoisyReceiver(getPlayer());
-		return audioBecomingNoisyReceiver;
-	}
-
-	public HeadphonesConnectedReceiver getHeadphonesConnectedReceiver() {
-		if (headphonesConnectedReceiver == null)
-			headphonesConnectedReceiver = new HeadphonesConnectedReceiver(
-					getPlayer(),
-					getPlayOnHeadsetPluggedPref());
-		return headphonesConnectedReceiver;
-	}
-
-	public PlayOnHeadsetPluggedPref getPlayOnHeadsetPluggedPref() {
-		if (playOnHeadsetPluggedPref == null)
-			playOnHeadsetPluggedPref = new PlayOnHeadsetPluggedPref(getContext(), getPrefs());
-		return playOnHeadsetPluggedPref;
 	}
 
 	public PlayerMvp.Player getPlayer() {

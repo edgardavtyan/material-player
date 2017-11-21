@@ -21,9 +21,6 @@ public class PlayerFactoryTest extends FactoryTest {
 	public void factoryTest() throws Exception {
 		testFactoryMethod(playerFactory::getPlayer);
 		testFactoryMethod(playerFactory::getPlayerPrefs);
-		testFactoryMethod(playerFactory::getSkipToPreviousReceiver);
-		testFactoryMethod(playerFactory::getPlayPauseReceiver);
-		testFactoryMethod(playerFactory::getSkipToNextReceiver);
 		testFactoryMethod(playerFactory::getQueue);
 		testFactoryMethod(playerFactory::getQueueList);
 		testFactoryMethod(playerFactory::getAudioEngine);

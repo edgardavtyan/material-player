@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
 
@@ -66,13 +67,14 @@ public class PlayerService extends Service {
 			amplifier = factory.getAmplifier();
 		}
 
-		registerReceiver(factory.getPlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
-		registerReceiver(factory.getSkipToPreviousReceiver(), new IntentFilter(ACTION_REWIND));
-		registerReceiver(factory.getSkipToNextReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
-		registerReceiver(factory.getCloseReceiver(), new IntentFilter(ACTION_CLOSE));
-		registerReceiver(factory.getAudioBecomingNoisyReceiver(), new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
-		registerReceiver(factory.getMediaButtonReceiver(), new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
-		registerReceiver(factory.getHeadphonesConnectedReceiver(), new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+		ReceiversFactory receiversFactory = app.getReceiversFactory(this, player);
+		registerReceiver(receiversFactory.getPlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
+		registerReceiver(receiversFactory.getSkipToPreviousReceiver(), new IntentFilter(ACTION_REWIND));
+		registerReceiver(receiversFactory.getSkipToNextReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
+		registerReceiver(receiversFactory.getCloseReceiver(), new IntentFilter(ACTION_CLOSE));
+		registerReceiver(receiversFactory.getAudioBecomingNoisyReceiver(), new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
+		registerReceiver(receiversFactory.getMediaButtonReceiver(), new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
+		registerReceiver(receiversFactory.getHeadphonesConnectedReceiver(), new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
 		audioFocusManager = factory.getAudioFocusManager();
 		audioFocusManager.requestFocus();

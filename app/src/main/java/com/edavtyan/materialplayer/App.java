@@ -27,6 +27,8 @@ import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFlo
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueFactory;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueMvp;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
+import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFragment;
@@ -55,6 +57,7 @@ public class App extends Application {
 	private @Setter SearchArtistFactory searchArtistFactory;
 	private @Setter SearchAlbumFactory searchAlbumFactory;
 	private @Setter SearchTrackFactory searchTrackFactory;
+	private @Setter ReceiversFactory receiversFactory;
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return (baseFactory == null)
@@ -153,6 +156,12 @@ public class App extends Application {
 		return (searchTrackFactory == null)
 				? new SearchTrackFactory(context, view)
 				: searchTrackFactory;
+	}
+
+	public ReceiversFactory getReceiversFactory(Context context, PlayerMvp.Player player) {
+		return (receiversFactory == null)
+				? new ReceiversFactory(context, player)
+				: receiversFactory;
 	}
 
 	public MainFactory getMainFactory(MainActivity activity) {
