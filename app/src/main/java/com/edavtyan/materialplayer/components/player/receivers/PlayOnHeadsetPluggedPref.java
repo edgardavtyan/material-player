@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player;
+package com.edavtyan.materialplayer.components.player.receivers;
 
 import android.content.Context;
 

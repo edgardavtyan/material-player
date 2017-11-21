@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.player.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.player.PlayOnHeadsetPluggedPref;
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 

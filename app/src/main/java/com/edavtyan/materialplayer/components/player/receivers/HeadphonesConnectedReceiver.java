@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.components.player.PlayOnHeadsetPluggedPref;
 import com.edavtyan.materialplayer.components.player.Player;
 
 public class HeadphonesConnectedReceiver extends BroadcastReceiver {
