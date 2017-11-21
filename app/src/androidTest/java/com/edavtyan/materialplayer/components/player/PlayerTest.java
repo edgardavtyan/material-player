@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.components.player.PlayerMvp.Player.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.player.PlayerMvp.Player.OnPlayPauseListener;
+import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -27,7 +28,7 @@ import static org.mockito.Mockito.when;
 public class PlayerTest extends BaseTest {
 	private SharedPreferences basePrefs;
 	private PlayerPrefs prefs;
-	private PlayerMvp.AudioEngine audioEngine;
+	private AudioEngine audioEngine;
 	private PlayerMvp.Queue queue;
 	private PlayerMvp.Player player;
 
@@ -36,7 +37,7 @@ public class PlayerTest extends BaseTest {
 		super.beforeEach();
 		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs = new PlayerPrefs(new AdvancedSharedPrefs(basePrefs));
-		audioEngine = mock(PlayerMvp.AudioEngine.class);
+		audioEngine = mock(AudioEngine.class);
 		queue = mock(PlayerMvp.Queue.class);
 		player = new Player(audioEngine, queue, prefs);
 	}

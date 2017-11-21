@@ -21,6 +21,8 @@ import com.edavtyan.materialplayer.components.audioeffects.models.StandardSurrou
 import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
+import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
+import com.edavtyan.materialplayer.components.player.engines.ExtendedAudioEngine;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
@@ -41,7 +43,7 @@ public class PlayerFactory extends BaseFactory {
 	private Surround surround;
 	private SurroundPrefs surroundPrefs;
 	private Amplifier amplifier;
-	private PlayerMvp.AudioEngine audioEngine;
+	private AudioEngine audioEngine;
 	private Player player;
 	private PlayerPrefs playerPrefs;
 	private AudioFocusManager audioFocusManager;
@@ -143,7 +145,7 @@ public class PlayerFactory extends BaseFactory {
 		return queue;
 	}
 
-	public PlayerMvp.AudioEngine getAudioEngine() {
+	public AudioEngine getAudioEngine() {
 		if (audioEngine == null)
 			audioEngine = new ExtendedAudioEngine(new MediaPlayer());
 		return audioEngine;

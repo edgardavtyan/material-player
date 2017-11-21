@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.player;
 
+import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.db.Track;
 
 import java.util.ArrayList;
@@ -7,17 +8,17 @@ import java.util.List;
 
 public class Player
 		implements PlayerMvp.Player,
-				   PlayerMvp.AudioEngine.OnPreparedListener,
-				   PlayerMvp.AudioEngine.OnCompletedListener {
+				   AudioEngine.OnPreparedListener,
+				   AudioEngine.OnCompletedListener {
 
-	private final PlayerMvp.AudioEngine audioEngine;
+	private final AudioEngine audioEngine;
 	private final PlayerPrefs prefs;
 	private final PlayerMvp.Queue queue;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
 
 	public Player(
-			PlayerMvp.AudioEngine audioEngine,
+			AudioEngine audioEngine,
 			PlayerMvp.Queue queue,
 			PlayerPrefs prefs) {
 		this.prefs = prefs;

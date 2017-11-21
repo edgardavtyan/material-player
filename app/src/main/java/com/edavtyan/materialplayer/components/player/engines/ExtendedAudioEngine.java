@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player;
+package com.edavtyan.materialplayer.components.player.engines;
 
 import net.protyposis.android.mediaplayer.FileSource;
 import net.protyposis.android.mediaplayer.MediaPlayer;
@@ -11,7 +11,7 @@ import lombok.Setter;
 // Uses MediaPlayer-Extended library by protyposis
 // https://github.com/protyposis/MediaPlayer-Extended
 public class ExtendedAudioEngine
-		implements PlayerMvp.AudioEngine,
+		implements AudioEngine,
 				   MediaPlayer.OnPreparedListener,
 				   MediaPlayer.OnCompletionListener {
 
