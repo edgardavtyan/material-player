@@ -6,8 +6,8 @@ import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
-import com.edavtyan.materialplayer.components.audioeffects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
+import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 
 import java.lang.reflect.Constructor;
 

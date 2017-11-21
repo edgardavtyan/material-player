@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.testlib.assertions;
 
-import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
+import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
 
 import org.assertj.core.api.AbstractAssert;
 

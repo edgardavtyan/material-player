@@ -5,9 +5,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsFactory;
-import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsMvp;
-import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsMvpFactory;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsMvp;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsMvpFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailMvp;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailFactory;

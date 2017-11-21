@@ -84,7 +84,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.audioeffects.AudioEffectsActivity"
+			android:name=".components.audio_effects.AudioEffectsActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

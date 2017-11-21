@@ -11,7 +11,7 @@
 		style="@style/EqualizerBand_Frequency"
 		/>
 
-	<com.edavtyan.materialplayer.components.audioeffects.views.DoubleSeekbar
+	<com.edavtyan.materialplayer.components.audio_effects.views.DoubleSeekbar
 		android:id="@+id/band"
 		tools:progress="40"
 		style="@style/EqualizerBand_Seekbar"
