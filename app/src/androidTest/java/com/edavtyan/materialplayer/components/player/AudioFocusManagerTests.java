@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.player;
 import android.content.Context;
 import android.media.AudioManager;
 
+import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

@@ -1,7 +1,9 @@
-package com.edavtyan.materialplayer.components.player;
+package com.edavtyan.materialplayer.components.player.managers;
 
 import android.content.Context;
 import android.media.AudioManager;
+
+import com.edavtyan.materialplayer.components.player.Player;
 
 public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListener {
 

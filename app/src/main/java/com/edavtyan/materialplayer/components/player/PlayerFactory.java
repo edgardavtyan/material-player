@@ -23,6 +23,8 @@ import com.edavtyan.materialplayer.components.audioeffects.models.SurroundPrefs;
 import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
 import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.components.player.engines.ExtendedAudioEngine;
+import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
+import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 

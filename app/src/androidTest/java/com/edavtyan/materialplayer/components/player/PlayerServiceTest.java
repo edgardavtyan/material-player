@@ -7,6 +7,8 @@ import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
+import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
+import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationPresenter;
