@@ -42,12 +42,6 @@ public class ExtendedAudioEngine
 	}
 
 	@Override
-	public void playPause() {
-		if (player.isPlaying()) pause();
-		else play();
-	}
-
-	@Override
 	public void playTrack(String trackPath) {
 		try {
 			player.reset();

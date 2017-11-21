@@ -110,7 +110,12 @@ public class Player
 	}
 
 	public void playPause() {
-		audioEngine.playPause();
+		if (audioEngine.isPlaying()) {
+			audioEngine.pause();
+		} else {
+			audioEngine.play();
+		}
+
 		raisePlayPauseListener();
 	}
 
