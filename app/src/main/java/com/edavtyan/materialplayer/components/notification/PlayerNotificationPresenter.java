@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.player_notification;
+package com.edavtyan.materialplayer.components.notification;
 
 import com.edavtyan.materialplayer.db.Track;
 

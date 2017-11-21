@@ -17,8 +17,8 @@ import com.edavtyan.materialplayer.components.audioeffects.surround.Surround;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationMvp;
 
 import lombok.Getter;
 

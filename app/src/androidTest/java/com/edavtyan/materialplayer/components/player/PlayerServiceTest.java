@@ -9,9 +9,9 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationPresenter;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationMvp;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

@@ -30,7 +30,7 @@ import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueM
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
-import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFragment;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
