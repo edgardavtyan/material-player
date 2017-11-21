@@ -15,14 +15,14 @@ import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unchecked")
 public class QueueTest extends BaseTest {
-	private Queue queue;
+	private PlayerQueue queue;
 	private List innerList;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		innerList = mock(List.class);
-		queue = spy(new Queue(innerList));
+		queue = spy(new PlayerQueue(innerList));
 	}
 
 	@Test

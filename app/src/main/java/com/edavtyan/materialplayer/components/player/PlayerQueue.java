@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Queue {
+public class PlayerQueue {
 	private final List<Track> tracks;
 
 	private final HashMap<ShuffleMode, ShuffleMode> shuffleModeToggleMap;
@@ -20,7 +20,7 @@ public class Queue {
 	private @Getter @Setter int position;
 	private @Getter boolean isEnded;
 
-	public Queue(List<Track> tracks) {
+	public PlayerQueue(List<Track> tracks) {
 		this.tracks = tracks;
 
 		shuffleModeToggleMap = new HashMap<>();

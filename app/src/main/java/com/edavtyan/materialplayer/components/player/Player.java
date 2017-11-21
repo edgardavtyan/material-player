@@ -12,7 +12,7 @@ public class Player
 
 	private final AudioEngine audioEngine;
 	private final PlayerPrefs prefs;
-	private final Queue queue;
+	private final PlayerQueue queue;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
 
@@ -26,7 +26,7 @@ public class Player
 
 	public Player(
 			AudioEngine audioEngine,
-			Queue queue,
+			PlayerQueue queue,
 			PlayerPrefs prefs) {
 		this.prefs = prefs;
 		this.audioEngine = audioEngine;

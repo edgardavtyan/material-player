@@ -33,7 +33,7 @@ import java.util.List;
 
 public class PlayerFactory extends BaseFactory {
 	private ArrayList<Track> queueList;
-	private Queue queue;
+	private PlayerQueue queue;
 	private BassBoost bassBoost;
 	private BassBoostPrefs bassBoostPrefs;
 	private Equalizer equalizer;
@@ -139,9 +139,9 @@ public class PlayerFactory extends BaseFactory {
 		return queueList;
 	}
 
-	public Queue getQueue() {
+	public PlayerQueue getQueue() {
 		if (queue == null)
-			queue = new Queue(getQueueList());
+			queue = new PlayerQueue(getQueueList());
 		return queue;
 	}
 

@@ -27,7 +27,7 @@ public class PlayerTest extends BaseTest {
 	private SharedPreferences basePrefs;
 	private PlayerPrefs prefs;
 	private AudioEngine audioEngine;
-	private Queue queue;
+	private PlayerQueue queue;
 	private Player player;
 
 	@Override
@@ -36,7 +36,7 @@ public class PlayerTest extends BaseTest {
 		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs = new PlayerPrefs(new AdvancedSharedPrefs(basePrefs));
 		audioEngine = mock(AudioEngine.class);
-		queue = mock(Queue.class);
+		queue = mock(PlayerQueue.class);
 		player = new Player(audioEngine, queue, prefs);
 	}
 
