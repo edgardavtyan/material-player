@@ -5,17 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.edavtyan.materialplayer.components.player.PlayOnHeadsetPluggedPref;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 
 public class HeadphonesConnectedReceiver extends BroadcastReceiver {
 	private static final String EXTRA_STATE = "state";
 	private static final int STATE_PLUGGED = 1;
 
-	private final PlayerMvp.Player player;
+	private final Player player;
 	private final PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
 
 	public HeadphonesConnectedReceiver(
-			PlayerMvp.Player player,
+			Player player,
 			PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref) {
 		this.player = player;
 		this.playOnHeadsetPluggedPref = playOnHeadsetPluggedPref;

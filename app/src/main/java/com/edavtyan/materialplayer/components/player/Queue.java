@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Queue implements PlayerMvp.Queue {
+public class Queue {
 	private final List<Track> tracks;
 
 	private final HashMap<ShuffleMode, ShuffleMode> shuffleModeToggleMap;
@@ -33,12 +33,10 @@ public class Queue implements PlayerMvp.Queue {
 		repeatModeToggleMap.put(RepeatMode.REPEAT_ONE, RepeatMode.DISABLED);
 	}
 
-	@Override
 	public void addTrack(Track track) {
 		tracks.add(track);
 	}
 
-	@Override
 	public void addManyTracks(List<Track> newTracks) {
 		if (shuffleMode == ShuffleMode.ENABLED) {
 			shuffleTracks(newTracks);
@@ -47,7 +45,6 @@ public class Queue implements PlayerMvp.Queue {
 		tracks.addAll(newTracks);
 	}
 
-	@Override
 	public void replaceTracks(List<Track> newTracks, int position) {
 		tracks.clear();
 		tracks.addAll(newTracks);
@@ -58,32 +55,26 @@ public class Queue implements PlayerMvp.Queue {
 		}
 	}
 
-	@Override
 	public void removeTrackAt(int position) {
 		tracks.remove(position);
 	}
 
-	@Override
 	public void clear() {
 		tracks.clear();
 	}
 
-	@Override
 	public Track getTrackAt(int position) {
 		return tracks.get(position);
 	}
 
-	@Override
 	public Track getCurrentTrack() {
 		return tracks.get(position);
 	}
 
-	@Override
 	public int getTracksCount() {
 		return tracks.size();
 	}
 
-	@Override
 	public void moveToNext() {
 		if (getRepeatMode() == RepeatMode.REPEAT_ONE) {
 			isEnded = false;
@@ -105,7 +96,6 @@ public class Queue implements PlayerMvp.Queue {
 		}
 	}
 
-	@Override
 	public void moveToPrev() {
 		if (getRepeatMode() == RepeatMode.REPEAT_ONE) return;
 
@@ -117,7 +107,6 @@ public class Queue implements PlayerMvp.Queue {
 		}
 	}
 
-	@Override
 	public void toggleShuffleMode() {
 		shuffleMode = shuffleModeToggleMap.get(shuffleMode);
 		switch (shuffleMode) {
@@ -130,12 +119,10 @@ public class Queue implements PlayerMvp.Queue {
 		}
 	}
 
-	@Override
 	public void toggleRepeatMode() {
 		repeatMode = repeatModeToggleMap.get(repeatMode);
 	}
 
-	@Override
 	public boolean hasData() {
 		return tracks.size() > 0;
 	}

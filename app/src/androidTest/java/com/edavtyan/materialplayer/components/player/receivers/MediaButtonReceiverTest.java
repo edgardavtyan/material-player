@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.components.player.receivers;
 import android.content.Intent;
 import android.view.KeyEvent;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -13,12 +13,12 @@ import static org.mockito.Mockito.verify;
 
 public class MediaButtonReceiverTest extends BaseTest {
 	private MediaButtonReceiver receiver;
-	private PlayerMvp.Player player;
+	private Player player;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		player = mock(PlayerMvp.Player.class);
+		player = mock(Player.class);
 		receiver = new MediaButtonReceiver(player);
 	}
 

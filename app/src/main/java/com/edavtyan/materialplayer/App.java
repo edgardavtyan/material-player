@@ -26,8 +26,8 @@ import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFlo
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueFactory;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFactory;
@@ -158,7 +158,7 @@ public class App extends Application {
 				: searchTrackFactory;
 	}
 
-	public ReceiversFactory getReceiversFactory(Context context, PlayerMvp.Player player) {
+	public ReceiversFactory getReceiversFactory(Context context, Player player) {
 		return (receiversFactory == null)
 				? new ReceiversFactory(context, player)
 				: receiversFactory;

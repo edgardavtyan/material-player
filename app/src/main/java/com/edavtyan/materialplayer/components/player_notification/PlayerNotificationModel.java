@@ -7,7 +7,7 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
@@ -15,8 +15,10 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import lombok.Setter;
 
 public class PlayerNotificationModel
-		implements ServiceConnection, PlayerNotificationMvp.Model,
-				   PlayerMvp.Player.OnNewTrackListener, PlayerMvp.Player.OnPlayPauseListener {
+		implements ServiceConnection,
+				   PlayerNotificationMvp.Model,
+				   Player.OnNewTrackListener,
+				   Player.OnPlayPauseListener {
 
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;

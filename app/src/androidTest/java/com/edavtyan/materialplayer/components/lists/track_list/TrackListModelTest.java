@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.lists.track_list;
 
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class TrackListModelTest extends BaseTest {
 	private List tracks;
 	private TrackListModel model;
-	private PlayerMvp.Player player;
+	private Player player;
 	private PlayerService service;
 
 	@SuppressWarnings({"unchecked", "WrongConstant"})
@@ -38,7 +38,7 @@ public class TrackListModelTest extends BaseTest {
 
 		model = spy(new TrackListModel(serviceModule, db, prefs));
 
-		player = mock(PlayerMvp.Player.class);
+		player = mock(Player.class);
 
 		service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);

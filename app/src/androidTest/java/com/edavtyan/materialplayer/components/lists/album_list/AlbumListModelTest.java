@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.lists.album_list;
 
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -80,7 +80,7 @@ public class AlbumListModelTest extends BaseTest {
 
 	@Test
 	public void addToPlaylist_serviceBound_addTracksToPlayer() {
-		PlayerMvp.Player player = mock(PlayerMvp.Player.class);
+		Player player = mock(Player.class);
 		when(service.getPlayer()).thenReturn(player);
 
 		model.onServiceConnected(service);

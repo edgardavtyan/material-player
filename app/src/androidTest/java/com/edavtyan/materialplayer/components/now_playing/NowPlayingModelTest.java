@@ -8,7 +8,7 @@ import android.support.v7.view.ContextThemeWrapper;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnPlayPauseListener;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
@@ -30,14 +30,14 @@ import static org.mockito.Mockito.when;
 public class NowPlayingModelTest extends BaseTest {
 	private NowPlayingModel model;
 	private PlayerService.PlayerBinder binder;
-	private PlayerMvp.Player player;
+	private Player player;
 	private AlbumArtProvider albumArtProvider;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		player = mock(PlayerMvp.Player.class);
+		player = mock(Player.class);
 
 		context = mock(ContextThemeWrapper.class);
 		PlayerService service = mock(PlayerService.class);

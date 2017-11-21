@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
@@ -16,8 +16,8 @@ import lombok.Setter;
 
 public class NowPlayingModel
 		implements NowPlayingMvp.Model,
-				   PlayerMvp.Player.OnNewTrackListener,
-				   PlayerMvp.Player.OnPlayPauseListener {
+				   Player.OnNewTrackListener,
+				   Player.OnPlayPauseListener {
 
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;

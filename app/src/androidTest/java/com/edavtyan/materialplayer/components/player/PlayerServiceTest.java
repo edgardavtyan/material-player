@@ -26,7 +26,7 @@ public class PlayerServiceTest extends BaseTest {
 	private final ServiceTestRule serviceTestRule = new ServiceTestRule();
 
 	private PlayerService playerService;
-	private PlayerMvp.Player player;
+	private Player player;
 	private Notification notification;
 	private PlayerNotificationPresenter notificationPresenter;
 
@@ -43,7 +43,7 @@ public class PlayerServiceTest extends BaseTest {
 		when(notificationFactory.getNotification()).thenReturn(nowPlayingNotification);
 		when(notificationFactory.getPresenter()).thenReturn(notificationPresenter);
 
-		player = mock(PlayerMvp.Player.class);
+		player = mock(Player.class);
 		AudioFocusManager audioFocusManager = mock(AudioFocusManager.class);
 		MediaSessionManager mediaSessionManager = mock(MediaSessionManager.class);
 

@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.support.v7.view.ContextThemeWrapper;
 
 import com.edavtyan.materialplayer.components.player.Player;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.player_notification.PlayerNotificationMvp.Model.OnPlayPauseListener;
@@ -27,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 public class PlayerNotificationModelTest extends BaseTest {
 	private PlayerNotificationModel model;
-	private PlayerMvp.Player player;
+	private Player player;
 	private AlbumArtProvider albumArtProvider;
 	private PlayerService.PlayerBinder binder;
 

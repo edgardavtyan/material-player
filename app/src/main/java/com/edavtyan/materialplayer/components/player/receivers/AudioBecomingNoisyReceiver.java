@@ -4,12 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 
 public class AudioBecomingNoisyReceiver extends BroadcastReceiver {
-	private final PlayerMvp.Player player;
+	private final Player player;
 
-	public AudioBecomingNoisyReceiver(PlayerMvp.Player player) {
+	public AudioBecomingNoisyReceiver(Player player) {
 		this.player = player;
 	}
 

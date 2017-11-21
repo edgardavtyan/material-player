@@ -5,12 +5,12 @@ import android.media.AudioManager;
 
 public class AudioFocusManager implements AudioManager.OnAudioFocusChangeListener {
 
-	private final PlayerMvp.Player player;
+	private final Player player;
 	private final AudioManager audioManager;
 	private boolean isPlaying;
 	private int currentFocus;
 
-	public AudioFocusManager(Context context, PlayerMvp.Player player) {
+	public AudioFocusManager(Context context, Player player) {
 		this.player = player;
 		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 	}

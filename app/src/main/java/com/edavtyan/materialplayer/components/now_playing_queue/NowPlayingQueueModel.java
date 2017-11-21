@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.lists.lib.ListModel;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -15,8 +15,8 @@ public class NowPlayingQueueModel
 
 	private @Setter OnNewTrackListener onNewTrackListener;
 
-	private final PlayerMvp.Player.OnNewTrackListener playerOnNewTrackListener
-			= new PlayerMvp.Player.OnNewTrackListener() {
+	private final Player.OnNewTrackListener playerOnNewTrackListener
+			= new Player.OnNewTrackListener() {
 		@Override
 		public void onNewTrack() {
 			if (onNewTrackListener != null) onNewTrackListener.onNewTrack();

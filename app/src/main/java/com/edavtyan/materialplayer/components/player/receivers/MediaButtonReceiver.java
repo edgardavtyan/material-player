@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 
 public class MediaButtonReceiver extends BroadcastReceiver {
-	private final PlayerMvp.Player player;
+	private final Player player;
 
-	public MediaButtonReceiver(PlayerMvp.Player player) {
+	public MediaButtonReceiver(Player player) {
 		this.player = player;
 	}
 

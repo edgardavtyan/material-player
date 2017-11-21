@@ -3,8 +3,6 @@ package com.edavtyan.materialplayer.components.player;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp.Player.OnNewTrackListener;
-import com.edavtyan.materialplayer.components.player.PlayerMvp.Player.OnPlayPauseListener;
 import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -29,8 +27,8 @@ public class PlayerTest extends BaseTest {
 	private SharedPreferences basePrefs;
 	private PlayerPrefs prefs;
 	private AudioEngine audioEngine;
-	private PlayerMvp.Queue queue;
-	private PlayerMvp.Player player;
+	private Queue queue;
+	private Player player;
 
 	@Override
 	public void beforeEach() {
@@ -38,7 +36,7 @@ public class PlayerTest extends BaseTest {
 		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs = new PlayerPrefs(new AdvancedSharedPrefs(basePrefs));
 		audioEngine = mock(AudioEngine.class);
-		queue = mock(PlayerMvp.Queue.class);
+		queue = mock(Queue.class);
 		player = new Player(audioEngine, queue, prefs);
 	}
 
@@ -244,7 +242,7 @@ public class PlayerTest extends BaseTest {
 
 	@Test
 	public void playPause_callOnPlayPauseListener() {
-		OnPlayPauseListener listener = mock(OnPlayPauseListener.class);
+		Player.OnPlayPauseListener listener = mock(Player.OnPlayPauseListener.class);
 		player.setOnPlayPauseListener(listener);
 		player.playPause();
 		verify(listener).onPlayPause();
@@ -282,7 +280,7 @@ public class PlayerTest extends BaseTest {
 
 	@Test
 	public void onPrepared_OnNewTrackListenerSet_callOnNewTrackListener() {
-		OnNewTrackListener listener = mock(OnNewTrackListener.class);
+		Player.OnNewTrackListener listener = mock(Player.OnNewTrackListener.class);
 		player.setOnNewTrackListener(listener);
 		player.onPrepared();
 		verify(listener).onNewTrack();

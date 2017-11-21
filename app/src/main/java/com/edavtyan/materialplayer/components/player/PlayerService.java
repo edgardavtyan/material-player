@@ -35,7 +35,7 @@ public class PlayerService extends Service {
 	private PlayerNotificationMvp.Presenter presenter;
 	private AudioFocusManager audioFocusManager;
 	private MediaSessionManager mediaSessionManager;
-	private @Getter PlayerMvp.Player player;
+	private @Getter Player player;
 	private @Getter Equalizer equalizer;
 	private @Getter Surround surround;
 	private @Getter BassBoost bassBoost;

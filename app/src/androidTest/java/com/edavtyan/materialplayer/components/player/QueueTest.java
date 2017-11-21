@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unchecked")
 public class QueueTest extends BaseTest {
-	private PlayerMvp.Queue queue;
+	private Queue queue;
 	private List innerList;
 
 	@Override

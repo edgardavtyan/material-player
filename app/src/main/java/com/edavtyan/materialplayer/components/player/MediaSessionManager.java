@@ -9,11 +9,11 @@ import static android.support.v4.media.session.PlaybackStateCompat.STATE_NONE;
 public class MediaSessionManager {
 
 	private final MediaSessionCompat mediaSession;
-	private final PlayerMvp.Player player;
+	private final Player player;
 	private final PlaybackStateCompat.Builder playbackState;
 
-	private final PlayerMvp.Player.OnPlayPauseListener playerOnPlayPauseListener
-			= new PlayerMvp.Player.OnPlayPauseListener() {
+	private final Player.OnPlayPauseListener playerOnPlayPauseListener
+			= new Player.OnPlayPauseListener() {
 
 		@Override
 		public void onPlayPause() {
@@ -50,7 +50,7 @@ public class MediaSessionManager {
 		}
 	};
 
-	public MediaSessionManager(Context context, PlayerMvp.Player player) {
+	public MediaSessionManager(Context context, Player player) {
 		this.player = player;
 		this.playbackState = new PlaybackStateCompat.Builder();
 		this.mediaSession = new MediaSessionCompat(context, context.getPackageName());

@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnNewTrackListener;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnServiceConnectedListener;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
@@ -28,7 +28,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 	private AlbumArtProvider albumArtProvider;
 	private PlayerService.PlayerBinder binder;
 	private NowPlayingFloatingModel model;
-	private PlayerMvp.Player player;
+	private Player player;
 
 	@Override
 	public void beforeEach() {
@@ -38,7 +38,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 		albumArtProvider = mock(AlbumArtProvider.class);
 		model = new NowPlayingFloatingModel(context, albumArtProvider);
 
-		player = mock(PlayerMvp.Player.class);
+		player = mock(Player.class);
 
 		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);

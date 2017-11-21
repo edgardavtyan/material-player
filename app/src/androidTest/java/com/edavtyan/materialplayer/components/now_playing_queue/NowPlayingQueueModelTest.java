@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -24,14 +24,14 @@ import static org.mockito.Mockito.when;
 public class NowPlayingQueueModelTest extends BaseTest {
 	private NowPlayingQueueMvp.Model model;
 	private PlayerService.PlayerBinder binder;
-	private PlayerMvp.Player player;
+	private Player player;
 	private ModelServiceModule serviceModule;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		player = mock(PlayerMvp.Player.class);
+		player = mock(Player.class);
 
 		PlayerService service = mock(PlayerService.class);
 		when(service.getPlayer()).thenReturn(player);

@@ -4,12 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 
 public class SkipToPreviousReceiver extends BroadcastReceiver {
-	private final PlayerMvp.Player player;
+	private final Player player;
 
-	public SkipToPreviousReceiver(PlayerMvp.Player player) {
+	public SkipToPreviousReceiver(Player player) {
 		this.player = player;
 	}
 

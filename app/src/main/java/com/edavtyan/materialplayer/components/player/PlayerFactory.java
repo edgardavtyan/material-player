@@ -53,7 +53,7 @@ public class PlayerFactory extends BaseFactory {
 		super(context);
 	}
 
-	public PlayerMvp.Player getPlayer() {
+	public Player getPlayer() {
 		if (player == null)
 			player = new Player(
 					getAudioEngine(),
@@ -139,7 +139,7 @@ public class PlayerFactory extends BaseFactory {
 		return queueList;
 	}
 
-	public PlayerMvp.Queue getQueue() {
+	public Queue getQueue() {
 		if (queue == null)
 			queue = new Queue(getQueueList());
 		return queue;

@@ -4,11 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.player.PlayOnHeadsetPluggedPref;
-import com.edavtyan.materialplayer.components.player.PlayerMvp;
+import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 public class ReceiversFactory extends BaseFactory {
-	private final PlayerMvp.Player player;
+	private final Player player;
 
 	private CloseReceiver closeReceiver;
 	private SkipToNextReceiver skipToNextReceiver;
@@ -19,7 +19,7 @@ public class ReceiversFactory extends BaseFactory {
 	private HeadphonesConnectedReceiver headphonesConnectedReceiver;
 	private PlayOnHeadsetPluggedPref playOnHeadsetPluggedPref;
 
-	public ReceiversFactory(Context context, PlayerMvp.Player player) {
+	public ReceiversFactory(Context context, Player player) {
 		super(context);
 		this.player = player;
 	}
