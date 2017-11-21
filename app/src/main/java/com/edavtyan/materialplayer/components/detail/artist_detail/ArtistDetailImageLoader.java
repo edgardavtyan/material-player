@@ -35,7 +35,7 @@ public class ArtistDetailImageLoader {
 			memoryCache.put(artistTitle, imageFromApi);
 			return imageFromApi;
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage(), e);
+			return null;
 		}
 	}
 
