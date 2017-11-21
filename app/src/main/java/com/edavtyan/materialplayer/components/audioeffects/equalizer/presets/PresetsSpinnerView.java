@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models.eq_presets;
+package com.edavtyan.materialplayer.components.audioeffects.equalizer.presets;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsMvp;
-import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.Equalizer;
 
 import java.util.List;
 

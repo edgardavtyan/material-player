@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models;
+package com.edavtyan.materialplayer.components.audioeffects.surround;
 
 import android.media.audiofx.Virtualizer;
 

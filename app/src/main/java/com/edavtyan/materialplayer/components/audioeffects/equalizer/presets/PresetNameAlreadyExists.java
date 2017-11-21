@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models.eq_presets;
+package com.edavtyan.materialplayer.components.audioeffects.equalizer.presets;
 
 public class PresetNameAlreadyExists extends Exception {
 	public PresetNameAlreadyExists(String presetName) {

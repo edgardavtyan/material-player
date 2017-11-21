@@ -5,6 +5,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.test.filters.SdkSuppress;
 
+import com.edavtyan.materialplayer.components.audioeffects.amplifier.AmplifierPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.amplifier.StandardAmplifier;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

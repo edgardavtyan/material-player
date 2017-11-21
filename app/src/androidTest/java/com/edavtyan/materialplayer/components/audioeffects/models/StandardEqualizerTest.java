@@ -4,7 +4,11 @@ import android.content.SharedPreferences;
 import android.media.audiofx.Equalizer;
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetsPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.EqualizerBase;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.EqualizerPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.StandardEqualizer;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.StandardEqualizerBase;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.presets.PresetsPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;

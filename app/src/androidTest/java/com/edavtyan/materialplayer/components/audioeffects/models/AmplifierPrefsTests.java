@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.edavtyan.materialplayer.components.audioeffects.amplifier.AmplifierPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 

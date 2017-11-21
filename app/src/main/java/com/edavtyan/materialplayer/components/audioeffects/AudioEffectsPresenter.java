@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
-import com.edavtyan.materialplayer.components.audioeffects.models.eq_presets.PresetNameAlreadyExists;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.presets.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 

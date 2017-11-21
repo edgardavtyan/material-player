@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models;
+package com.edavtyan.materialplayer.components.audioeffects.equalizer;
 
 public interface EqualizerBase {
 	int getBandsCount();

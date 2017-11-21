@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.components.audioeffects.models;
 
 import android.media.audiofx.Virtualizer;
 
+import com.edavtyan.materialplayer.components.audioeffects.surround.StandardSurround;
+import com.edavtyan.materialplayer.components.audioeffects.surround.SurroundPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

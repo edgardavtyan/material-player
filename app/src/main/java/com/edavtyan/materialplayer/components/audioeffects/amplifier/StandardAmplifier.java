@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models;
+package com.edavtyan.materialplayer.components.audioeffects.amplifier;
 
 import android.media.audiofx.LoudnessEnhancer;
 import android.os.Build;

@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.media.audiofx.BassBoost;
 import android.preference.PreferenceManager;
 
+import com.edavtyan.materialplayer.components.audioeffects.bassboost.BassBoostPrefs;
+import com.edavtyan.materialplayer.components.audioeffects.bassboost.StandardBassBoost;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 

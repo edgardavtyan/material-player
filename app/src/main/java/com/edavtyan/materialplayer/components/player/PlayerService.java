@@ -9,10 +9,10 @@ import android.os.Build;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
-import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
-import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.audioeffects.amplifier.Amplifier;
+import com.edavtyan.materialplayer.components.audioeffects.bassboost.BassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.surround.Surround;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;

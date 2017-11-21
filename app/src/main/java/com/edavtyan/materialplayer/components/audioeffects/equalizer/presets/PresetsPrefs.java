@@ -1,6 +1,6 @@
-package com.edavtyan.materialplayer.components.audioeffects.models.eq_presets;
+package com.edavtyan.materialplayer.components.audioeffects.equalizer.presets;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.google.gson.reflect.TypeToken;
 

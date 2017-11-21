@@ -1,6 +1,6 @@
-package com.edavtyan.materialplayer.components.audioeffects.models;
+package com.edavtyan.materialplayer.components.audioeffects.surround;
 
-public interface BassBoost {
+public interface Surround {
 	int getMaxStrength();
 	int getStrength();
 	void setStrength(int strength);

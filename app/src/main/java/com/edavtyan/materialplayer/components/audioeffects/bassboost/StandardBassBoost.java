@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.components.audioeffects.models;
+package com.edavtyan.materialplayer.components.audioeffects.bassboost;
 
 public class StandardBassBoost implements BassBoost {
 	private final android.media.audiofx.BassBoost bassBoost;

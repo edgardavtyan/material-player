@@ -1,9 +1,9 @@
 package com.edavtyan.materialplayer.components.audioeffects;
 
-import com.edavtyan.materialplayer.components.audioeffects.models.Amplifier;
-import com.edavtyan.materialplayer.components.audioeffects.models.BassBoost;
-import com.edavtyan.materialplayer.components.audioeffects.models.Equalizer;
-import com.edavtyan.materialplayer.components.audioeffects.models.Surround;
+import com.edavtyan.materialplayer.components.audioeffects.amplifier.Amplifier;
+import com.edavtyan.materialplayer.components.audioeffects.bassboost.BassBoost;
+import com.edavtyan.materialplayer.components.audioeffects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.audioeffects.surround.Surround;
 import com.edavtyan.materialplayer.components.audioeffects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
