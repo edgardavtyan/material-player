@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.components.audioeffects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.audioeffects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.components.audioeffects.bassboost.BassBoost;
 import com.edavtyan.materialplayer.components.audioeffects.equalizer.Equalizer;
@@ -59,14 +60,16 @@ public class PlayerService extends Service {
 		super.onCreate();
 
 		App app = (App) getApplicationContext();
+
 		PlayerFactory factory = app.getPlayerFactory(this);
 		player = factory.getPlayer();
-		equalizer = factory.getEqualizer();
-		bassBoost = factory.getBassBoost();
-		surround = factory.getSurround();
 
+		AudioEffectsFactory effectsFactory = app.getAudioEffectsFactory(this, player);
+		equalizer = effectsFactory.getEqualizer();
+		bassBoost = effectsFactory.getBassBoost();
+		surround = effectsFactory.getSurround();
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			amplifier = factory.getAmplifier();
+			amplifier = effectsFactory.getAmplifier();
 		}
 
 		ReceiversFactory receiversFactory = app.getReceiversFactory(this, player);

@@ -68,7 +68,7 @@ public class AudioEffectsActivity
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
 		App app = (App) getApplicationContext();
-		AudioEffectsFactory factory = app.getAudioEffectsFactory(this, this);
+		AudioEffectsMvpFactory factory = app.getAudioEffectsFactory(this, this);
 		presenter = factory.getPresenter();
 		presenter.onCreate();
 

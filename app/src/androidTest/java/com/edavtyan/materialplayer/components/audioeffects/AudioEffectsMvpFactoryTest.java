@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 
-public class AudioEffectsFactoryTest extends FactoryTest {
-	private AudioEffectsFactory factory;
+public class AudioEffectsMvpFactoryTest extends FactoryTest {
+	private AudioEffectsMvpFactory factory;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		AudioEffectsMvp.View view = mock(AudioEffectsMvp.View.class);
-		factory = new AudioEffectsFactory(context, view);
+		factory = new AudioEffectsMvpFactory(context, view);
 	}
 
 	@Test

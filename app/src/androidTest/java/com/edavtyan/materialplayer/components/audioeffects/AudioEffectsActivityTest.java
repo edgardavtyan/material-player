@@ -40,10 +40,10 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		if (activity == null) {
 			presenter = mock(AudioEffectsMvp.Presenter.class);
 
-			AudioEffectsFactory factory = mock(AudioEffectsFactory.class);
+			AudioEffectsMvpFactory factory = mock(AudioEffectsMvpFactory.class);
 			when(factory.getPresenter()).thenReturn(presenter);
 
-			app.setAudioEffectsFactory(factory);
+			app.setAudioEffectsMvpFactory(factory);
 
 			activity = spy(startActivity(AudioEffectsActivity.class));
 			doNothing().when(activity).baseOnCreate(any());
