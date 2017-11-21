@@ -32,6 +32,7 @@ import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousRec
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.h6ah4i.android.media.IBasicMediaPlayer;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import java.util.ArrayList;
@@ -230,7 +231,12 @@ public class PlayerFactory extends BaseFactory {
 
 	public OpenSLMediaPlayerFactory getOpenSLMediaPlayerFactory() {
 		if (openSlMediaPlayerFactory == null) {
-			openSlMediaPlayerFactory = new OpenSLMediaPlayerFactory(getContext());
+			OpenSLMediaPlayerContext.Parameters parameters = new OpenSLMediaPlayerContext.Parameters();
+			parameters.options =
+					OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER |
+					OpenSLMediaPlayerContext.OPTION_USE_BASSBOOST;
+			parameters.longFadeDuration = 400;
+			openSlMediaPlayerFactory = new OpenSLMediaPlayerFactory(getContext(), parameters);
 		}
 		return openSlMediaPlayerFactory;
 	}
