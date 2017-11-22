@@ -4,18 +4,18 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.utils.generic.GenericLinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Setter;
 
 public class TitledSeekbar
-		extends GenericLinearLayout
+		extends LinearLayout
 		implements AppCompatSeekBar.OnSeekBarChangeListener {
 
 	@BindView(R.id.seekbar) AppCompatSeekBar seekbar;

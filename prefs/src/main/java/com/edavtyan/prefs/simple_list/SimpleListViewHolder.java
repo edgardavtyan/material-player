@@ -1,18 +1,18 @@
 package com.edavtyan.prefs.simple_list;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R2;
-import com.edavtyan.utils.generic.GenericViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
 import lombok.Setter;
 
-public class SimpleListViewHolder extends GenericViewHolder implements View.OnClickListener {
+public class SimpleListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 	protected @Getter @Setter String value;
 	protected @Setter OnHolderClickListener onHolderClickListener;
 

@@ -3,10 +3,9 @@ package com.edavtyan.materialplayer.lib.testable;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
-import com.edavtyan.utils.generic.GenericFragment;
-
-public class TestableFragment extends GenericFragment {
+public class TestableFragment extends Fragment {
 	@Override
 	@SuppressLint("MissingSuperCall")
 	public void onCreate(@Nullable Bundle savedInstanceState) {

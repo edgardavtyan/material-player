@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
 import com.edavtyan.prefs.R2;
-import com.edavtyan.utils.generic.GenericLinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +23,7 @@ public class SummaryEntry implements View.OnClickListener {
 		void onEntryClick();
 	}
 
-	public SummaryEntry(Context context, GenericLinearLayout view) {
+	public SummaryEntry(Context context, LinearLayout view) {
 		LayoutInflater.from(context).inflate(R.layout.entry_summary, view, true);
 		ButterKnife.bind(this, view);
 		view.setOrientation(LinearLayout.VERTICAL);

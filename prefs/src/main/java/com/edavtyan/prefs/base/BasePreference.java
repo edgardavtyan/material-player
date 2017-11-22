@@ -3,12 +3,12 @@ package com.edavtyan.prefs.base;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.widget.LinearLayout;
 
 import com.edavtyan.prefs.R;
 import com.edavtyan.prefs.utils.AttributeResolver;
-import com.edavtyan.utils.generic.GenericLinearLayout;
 
-public abstract class BasePreference extends GenericLinearLayout {
+public abstract class BasePreference extends LinearLayout {
 	protected final Context context;
 
 	public BasePreference(Context context, AttributeSet attrs) {

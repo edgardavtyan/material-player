@@ -31,8 +31,8 @@ public class TrackListViewHolderTest extends BaseTest {
 		View itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		presenter = mock(TrackListMvp.Presenter.class);
 		holder = spy(new TrackListViewHolder(context, itemView, presenter));
-		titleView = holder.findView(R.id.title);
-		infoView = holder.findView(R.id.info);
+		titleView = (TextView) itemView.findViewById(R.id.title);
+		infoView = (TextView) itemView.findViewById(R.id.info);
 	}
 
 	@Test

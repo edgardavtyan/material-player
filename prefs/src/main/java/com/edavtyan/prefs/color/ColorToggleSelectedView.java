@@ -3,16 +3,16 @@ package com.edavtyan.prefs.color;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.edavtyan.prefs.R;
 import com.edavtyan.prefs.R2;
-import com.edavtyan.utils.generic.GenericFrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ColorToggleSelectedView extends GenericFrameLayout {
+public class ColorToggleSelectedView extends FrameLayout {
 	@BindView(R2.id.color_view) ColorCircleView colorView;
 	@BindView(R2.id.check_icon) ImageView checkIcon;
 

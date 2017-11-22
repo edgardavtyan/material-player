@@ -3,16 +3,16 @@ package com.edavtyan.materialplayer.components.audio_effects.views;
 import android.content.Context;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.utils.generic.GenericFrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Setter;
 
-public class DoubleSeekbar extends GenericFrameLayout implements SeekBar.OnSeekBarChangeListener {
+public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
 	@BindView(R.id.seekbar) AppCompatSeekBar seekbar;
 
 	private @Setter OnStopTrackingTouchListener onStopTrackingTouchListener;

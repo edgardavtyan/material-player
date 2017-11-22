@@ -2,10 +2,10 @@ package com.edavtyan.materialplayer.components.audio_effects.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.utils.generic.GenericFrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class EqualizerBandView
-		extends GenericFrameLayout
+		extends FrameLayout
 		implements DoubleSeekbar.OnProgressChangedListener,
 				   DoubleSeekbar.OnStopTrackingTouchListener {
 

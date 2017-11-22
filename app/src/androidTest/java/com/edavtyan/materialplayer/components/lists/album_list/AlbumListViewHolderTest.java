@@ -32,8 +32,8 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 	@Test
 	public void setters_setAllValues() {
-		TextView titleView = holder.findView(R.id.title);
-		TextView infoView = holder.findView(R.id.info);
+		TextView titleView = (TextView) itemView.findViewById(R.id.title);
+		TextView infoView = (TextView) itemView.findViewById(R.id.info);
 
 		holder.setTitle("title");
 		holder.setInfo(7, "artist");

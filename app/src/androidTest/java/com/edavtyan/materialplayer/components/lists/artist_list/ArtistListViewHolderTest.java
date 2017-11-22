@@ -31,8 +31,8 @@ public class ArtistListViewHolderTest extends BaseTest {
 
 	@Test
 	public void setters_setAllValues() {
-		TextView titleView = holder.findView(R.id.title);
-		TextView infoView = holder.findView(R.id.info);
+		TextView titleView = (TextView) holder.itemView.findViewById(R.id.title);
+		TextView infoView = (TextView) holder.itemView.findViewById(R.id.info);
 
 		holder.setInfo(1, 2);
 		holder.setTitle("title");

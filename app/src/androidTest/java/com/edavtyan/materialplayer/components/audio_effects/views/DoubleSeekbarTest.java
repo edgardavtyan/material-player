@@ -23,7 +23,7 @@ public class DoubleSeekbarTest extends BaseTest {
 		super.beforeEach();
 
 		doubleSeekbar = new DoubleSeekbar(context, null);
-		innerSeekbar = doubleSeekbar.findView(R.id.seekbar);
+		innerSeekbar = (SeekBar) doubleSeekbar.findViewById(R.id.seekbar);
 	}
 
 	@Test

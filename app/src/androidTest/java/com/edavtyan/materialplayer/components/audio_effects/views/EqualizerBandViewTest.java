@@ -24,9 +24,9 @@ public class EqualizerBandViewTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		equalizerView = new EqualizerBandView(context, null);
-		bandView = equalizerView.findView(R.id.band);
-		gainView = equalizerView.findView(R.id.gain);
-		frequencyView = equalizerView.findView(R.id.frequency);
+		bandView = (DoubleSeekbar) equalizerView.findViewById(R.id.band);
+		gainView = (TextView) equalizerView.findViewById(R.id.gain);
+		frequencyView = (TextView) equalizerView.findViewById(R.id.frequency);
 	}
 
 	@Test

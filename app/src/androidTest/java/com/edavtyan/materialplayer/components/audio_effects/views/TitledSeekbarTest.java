@@ -25,8 +25,8 @@ public class TitledSeekbarTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		titledSeekbar = (TitledSeekbar) View.inflate(context, R.layout.test_titled_seekbar, null);
-		titleView = titledSeekbar.findView(R.id.title);
-		seekbarView = titledSeekbar.findView(R.id.seekbar);
+		titleView = (TextView) titledSeekbar.findViewById(R.id.title);
+		seekbarView = (SeekBar) titledSeekbar.findViewById(R.id.seekbar);
 	}
 
 	@Test

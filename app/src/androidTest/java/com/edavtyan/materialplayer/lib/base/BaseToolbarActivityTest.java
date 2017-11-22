@@ -54,7 +54,7 @@ public class BaseToolbarActivityTest extends ActivityTest {
 		doNothing().when(activity).baseOnCreate(any());
 		runOnUiThread(() -> activity.onCreate(null));
 
-		toolbar = activity.findView(R.id.toolbar);
+		toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
 	}
 
 	@Test

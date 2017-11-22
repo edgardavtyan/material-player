@@ -52,7 +52,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void onCreate_initList() {
-		RecyclerView list = activity.findView(R.id.list);
+		RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
 		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 	}
@@ -71,14 +71,14 @@ public class AlbumDetailActivityTest extends ActivityTest {
 
 	@Test
 	public void setAlbumTitle_setTitleViewText() {
-		TextView titleView = activity.findView(R.id.title);
+		TextView titleView = (TextView) activity.findViewById(R.id.title);
 		runOnUiThread(() -> activity.setAlbumTitle("title"));
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
 	public void setAlbumInfo_setInfoTextWithPattern() {
-		TextView infoView = activity.findView(R.id.info);
+		TextView infoView = (TextView) activity.findViewById(R.id.info);
 		runOnUiThread(() -> activity.setAlbumInfo("artist", 9, 0));
 		assertThat(infoView.getText()).isEqualTo("artist \u2022 9 Tracks");
 	}

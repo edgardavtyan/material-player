@@ -29,6 +29,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 	private NowPlayingQueueMvp.Presenter presenter;
 	private SdkFactory sdkFactory;
 	private PopupMenu popupMenu;
+	private View itemView;
 
 	@SuppressLint("InflateParams")
 	@Override
@@ -44,7 +45,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 		presenter = mock(NowPlayingQueueMvp.Presenter.class);
 
-		View itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
+		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		holder = new NowPlayingQueueViewHolder(context, itemView, presenter);
 	}
 
@@ -56,7 +57,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 	@Test
 	public void constructor_initPopupMenu() {
-		ImageView menuButton = holder.findView(R.id.menu);
+		ImageView menuButton = (ImageView) itemView.findViewById(R.id.menu);
 
 		verify(sdkFactory).createPopupMenu(context, menuButton);
 		verify(popupMenu).inflate(R.menu.menu_queue);
@@ -65,21 +66,21 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 
 	@Test
 	public void setTitle_setTitleViewText() {
-		TextView titleView = holder.findView(R.id.title);
+		TextView titleView = (TextView) itemView.findViewById(R.id.title);
 		holder.setTitle("title");
 		assertThat(titleView.getText()).isEqualTo("title");
 	}
 
 	@Test
 	public void setInfo_setInfoViewTextWithPattern() {
-		TextView infoView = holder.findView(R.id.info);
+		TextView infoView = (TextView) itemView.findViewById(R.id.info);
 		holder.setInfo(448945, "artist", "album");
 		assertThat(infoView.getText()).isEqualTo("07:28 | artist \u2022 album");
 	}
 
 	@Test
 	public void menuClicked_showPopupMenu() {
-		ImageButton menuButton = holder.findView(R.id.menu);
+		ImageButton menuButton = (ImageButton) itemView.findViewById(R.id.menu);
 		menuButton.performClick();
 		verify(popupMenu).show();
 	}

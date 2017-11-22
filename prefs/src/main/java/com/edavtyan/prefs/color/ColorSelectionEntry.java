@@ -3,11 +3,11 @@ package com.edavtyan.prefs.color;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.edavtyan.prefs.R;
 import com.edavtyan.prefs.R2;
-import com.edavtyan.utils.generic.GenericLinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +23,7 @@ public class ColorSelectionEntry implements View.OnClickListener {
 		void onEntryClick();
 	}
 
-	public ColorSelectionEntry(Context context, GenericLinearLayout view) {
+	public ColorSelectionEntry(Context context, LinearLayout view) {
 		LayoutInflater.from(context).inflate(R.layout.entry_color, view, true);
 		ButterKnife.bind(this, view);
 		view.setOnClickListener(this);
