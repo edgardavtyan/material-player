@@ -63,8 +63,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.16.18'
     annotationProcessor 'org.projectlombok:lombok:1.16.18'
 
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     androidTestCompile 'com.android.support:support-annotations:25.3.1'
     androidTestCompile 'com.android.support.test:runner:0.5'
