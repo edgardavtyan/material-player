@@ -29,7 +29,7 @@
 		<attr name="cp_summaries" format="reference" />
 	</declare-styleable>
 
-	<declare-styleable name="ColorSelectionPref">
+	<declare-styleable name="ColorSelectionPreference">
 		<attr name="cp_key" />
 		<attr name="cp_title" />
 		<attr name="cp_summary" />

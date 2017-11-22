@@ -74,8 +74,8 @@ public class ColorSelectionPreference
 		if (isInEditMode()) {
 			@Cleanup("recycle")
 			@SuppressLint("Recycle")
-			TypedArray typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.ColorSelectionPref);
-			String title = typedAttrs.getString(R.styleable.ColorSelectionPref_cp_title);
+			TypedArray typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.ColorSelectionPreference);
+			String title = typedAttrs.getString(R.styleable.ColorSelectionPreference_cp_title);
 			entryView.setTitle(title);
 			entryView.setColor(Color.RED);
 			return;
