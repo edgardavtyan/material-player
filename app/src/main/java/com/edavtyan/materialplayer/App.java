@@ -139,7 +139,7 @@ public class App extends Application {
 	}
 
 	public PlayerNotificationFactory getPlayerNotificationFactory(Context context) {
-		return new PlayerNotificationFactory(context, R.layout.notification, R.layout.notification_big);
+		return new PlayerNotificationFactory(context);
 	}
 
 	public SdkFactory getSdkFactory() {

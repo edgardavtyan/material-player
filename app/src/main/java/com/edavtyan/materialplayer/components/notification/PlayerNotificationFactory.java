@@ -13,9 +13,6 @@ import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class PlayerNotificationFactory extends BaseFactory {
-
-	private final int normalLayoutId;
-	private final int bigLayoutId;
 	private PlayerNotificationMvp.View notification;
 	private AdvancedRemoteViews remoteViews;
 	private AdvancedRemoteViews bigRemoteViews;
@@ -29,10 +26,8 @@ public class PlayerNotificationFactory extends BaseFactory {
 	private PlayerNotificationMvp.Presenter presenter;
 	private PendingIntents pendingIntents;
 
-	public PlayerNotificationFactory(Context context, int normalLayoutId, int bigLayoutId) {
+	public PlayerNotificationFactory(Context context) {
 		super(context);
-		this.normalLayoutId = normalLayoutId;
-		this.bigLayoutId = bigLayoutId;
 	}
 
 	public PlayerNotificationMvp.View getNotification() {
@@ -65,7 +60,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 
 	public AdvancedRemoteViews getNormalRemoteViews() {
 		if (remoteViews == null)
-			remoteViews = new AdvancedRemoteViews(getContext(), normalLayoutId);
+			remoteViews = new AdvancedRemoteViews(getContext(), R.layout.notification);
 		return remoteViews;
 	}
 
@@ -77,7 +72,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 
 	public AdvancedRemoteViews getBigRemoteViews() {
 		if (bigRemoteViews == null)
-			bigRemoteViews = new AdvancedRemoteViews(getContext(), bigLayoutId);
+			bigRemoteViews = new AdvancedRemoteViews(getContext(), R.layout.notification_big);
 		return bigRemoteViews;
 	}
 
