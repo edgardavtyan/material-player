@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListViewHolder;
 
@@ -41,10 +42,14 @@ public class AlbumListViewHolder extends ListViewHolder {
 
 	public void setArt(String artPath) {
 		// TODO: unit test correct artPath
+
+		RequestOptions options = new RequestOptions()
+				.error(R.drawable.fallback_cover)
+				.placeholder(R.drawable.fallback_cover);
+
 		Glide.with(context)
 			 .load(artPath)
-			 .error(R.drawable.fallback_cover)
-			 .placeholder(R.drawable.fallback_cover)
+			 .apply(options)
 			 .into(artView);
 	}
 
