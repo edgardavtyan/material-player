@@ -32,7 +32,7 @@ public class PreferenceCategory extends LinearLayout {
 		ButterKnife.bind(this);
 
 		PreferenceCategoryModel model = new PreferenceCategoryModel(context, attrs);
-		headingView.setTypeface(Typeface.create("sans-serif-medium", 0));
+		headingView.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
 		headingView.setTextColor(model.getColor());
 		headingView.setText(model.getTitle());
 	}
