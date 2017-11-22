@@ -21,7 +21,7 @@ public class PlayerNotificationFactoryTest extends FactoryTest {
 		testFactoryMethod(factory::getBigRemoteViews);
 		testFactoryMethod(factory::getBaseManager);
 		testFactoryMethod(factory::getManager);
-		testFactoryMethod(factory::getBuilder);
+		testFactoryMethod(factory::getCompatBuilder);
 		testFactoryMethod(factory::getModel);
 		testFactoryMethod(factory::getPresenter);
 		testFactoryMethod(factory::getPendingIntents);

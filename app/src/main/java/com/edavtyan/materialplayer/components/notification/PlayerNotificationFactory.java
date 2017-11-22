@@ -37,7 +37,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 						getNormalRemoteViews(),
 						getBigRemoteViews(),
 						getManager(),
-						getBuilder(),
+						getCompatBuilder(),
 						getPendingIntents());
 			} else {
 				notification = new PlayerNotificationNougat(
@@ -45,7 +45,7 @@ public class PlayerNotificationFactory extends BaseFactory {
 						getNormalRemoteViewsNougat(),
 						getBigRemoteViewsNougat(),
 						getManager(),
-						getBuilder2(),
+						getBuilder(),
 						getPendingIntents());
 			}
 		}
@@ -94,13 +94,13 @@ public class PlayerNotificationFactory extends BaseFactory {
 		return baseManager;
 	}
 
-	public NotificationCompat.Builder getBuilder() {
+	public NotificationCompat.Builder getCompatBuilder() {
 		if (builder == null)
 			builder = new NotificationCompat.Builder(getContext());
 		return builder;
 	}
 
-	public Notification.Builder getBuilder2() {
+	public Notification.Builder getBuilder() {
 		if (builder2 == null)
 			builder2 = new Notification.Builder(getContext());
 		return builder2;
