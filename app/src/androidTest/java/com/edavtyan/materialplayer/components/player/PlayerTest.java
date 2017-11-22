@@ -235,12 +235,6 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
-	public void playPause_callEngine() {
-		player.playPause();
-		verify(audioEngine).playPause();
-	}
-
-	@Test
 	public void playPause_callOnPlayPauseListener() {
 		Player.OnPlayPauseListener listener = mock(Player.OnPlayPauseListener.class);
 		player.setOnPlayPauseListener(listener);

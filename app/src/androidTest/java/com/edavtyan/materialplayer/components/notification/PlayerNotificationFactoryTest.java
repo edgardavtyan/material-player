@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.components.notification;
 
-import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
 import org.junit.Test;
@@ -11,7 +10,7 @@ public class PlayerNotificationFactoryTest extends FactoryTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		factory = new PlayerNotificationFactory(context, R.layout.notification, R.layout.notification_big);
+		factory = new PlayerNotificationFactory(context);
 	}
 
 	@Test
