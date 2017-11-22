@@ -13,7 +13,6 @@ import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public abstract class ListViewHolder
 		extends BaseViewHolder
@@ -22,22 +21,15 @@ public abstract class ListViewHolder
 
 	@BindView(R.id.menu) ImageButton menuButton;
 
-	private final PopupMenu popupMenu;
-
 	public ListViewHolder(Context context, View itemView) {
 		super(itemView);
 		itemView.setOnClickListener(this);
 
 		SdkFactory sdkFactory = ((App) context.getApplicationContext()).getSdkFactory();
 
-		popupMenu = sdkFactory.createPopupMenu(context, menuButton);
+		PopupMenu popupMenu = sdkFactory.createPopupMenu(context, menuButton);
 		popupMenu.inflate(getMenuResource());
 		popupMenu.setOnMenuItemClickListener(this);
-	}
-
-	@OnClick(R.id.menu)
-	public void onMenuClick() {
-		popupMenu.show();
 	}
 
 	@MenuRes

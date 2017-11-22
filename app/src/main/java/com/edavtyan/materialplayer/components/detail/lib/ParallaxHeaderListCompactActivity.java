@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.detail.lib;
 import android.graphics.Bitmap;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,8 +17,7 @@ import butterknife.BindView;
 public abstract class ParallaxHeaderListCompactActivity
 		extends BaseToolbarActivity
 		implements ListMvp.View {
-	
-	@BindView(R.id.list) RecyclerView list;
+
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView imageView;
 	@BindView(R.id.info_top) @Nullable TextView portraitTopInfoView;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,7 +22,6 @@ import butterknife.BindView;
 public class SearchActivity extends BaseActivity {
 	@BindView(R.id.back) ImageButton backButton;
 	@BindView(R.id.search) EditText searchEditText;
-	@BindView(R.id.list) RecyclerView searchResultsList;
 	@BindView(R.id.tabs) TabLayout tabLayout;
 	@BindView(R.id.view_pager) ViewPager viewPager;
 
