@@ -46,12 +46,6 @@ public class QueueTest extends BaseTest {
 	}
 
 	@Test
-	public void clear_clearInnerList() {
-		queue.clear();
-		verify(innerList).clear();
-	}
-
-	@Test
 	public void getTrackAt_returnTrackFromInnerQueue() {
 		Track track = mock(Track.class);
 		when(innerList.get(2)).thenReturn(track);

@@ -59,10 +59,6 @@ public class PlayerQueue {
 		tracks.remove(position);
 	}
 
-	public void clear() {
-		tracks.clear();
-	}
-
 	public Track getTrackAt(int position) {
 		return tracks.get(position);
 	}
