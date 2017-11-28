@@ -13,7 +13,6 @@ import com.edavtyan.materialplayer.utils.PendingIntents;
 
 @TargetApi(24)
 public class PlayerNotificationNougat extends PlayerNotification {
-
 	public PlayerNotificationNougat(
 			Context context,
 			AdvancedRemoteViews normalRemoteViews,

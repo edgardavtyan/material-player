@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class PlayerNotificationCompat extends PlayerNotification {
-
 	public PlayerNotificationCompat(
 			AdvancedRemoteViews normalRemoteViews,
 			AdvancedRemoteViews bigRemoteViews,
