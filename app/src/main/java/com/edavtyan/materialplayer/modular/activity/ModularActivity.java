@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.modular.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,8 +13,8 @@ public abstract class ModularActivity extends TestableActivity {
 	private final ArrayList<ActivityModule> modules = new ArrayList<>();
 
 	@Override
-	protected void onResume() {
-		super.onResume();
+	protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
 
 		for (ActivityModule module : modules) {
 			module.onCreate();
