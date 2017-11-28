@@ -19,6 +19,17 @@ public class ArtistDetailActivity
 	private Navigator navigator;
 
 	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		ArtistDetailFactory factory = getDI();
+
+		navigator = factory.getNavigator();
+
+		init(factory.getAdapter(), factory.getPresenter());
+	}
+
+	@Override
 	public void setArtistTitle(String title) {
 		setTitle(title);
 	}
@@ -35,17 +46,6 @@ public class ArtistDetailActivity
 	@Override
 	public void setArtistImage(Bitmap image) {
 		setImage(image, R.drawable.fallback_artist);
-	}
-
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		ArtistDetailFactory factory = getDI();
-
-		navigator = factory.getNavigator();
-
-		init(factory.getAdapter(), factory.getPresenter());
 	}
 
 	@Override

@@ -17,6 +17,17 @@ public class AlbumDetailActivity
 	private Navigator navigator;
 
 	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		AlbumDetailFactory factory = getDI();
+
+		navigator = factory.getNavigator();
+
+		init(factory.getAdapter(), factory.getPresenter());
+	}
+
+	@Override
 	public void setAlbumTitle(String title) {
 		setTitle(title);
 	}
@@ -32,17 +43,6 @@ public class AlbumDetailActivity
 	@Override
 	public void setAlbumImage(Bitmap image) {
 		setImage(image, R.drawable.fallback_cover);
-	}
-
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		AlbumDetailFactory factory = getDI();
-
-		navigator = factory.getNavigator();
-
-		init(factory.getAdapter(), factory.getPresenter());
 	}
 
 	@Override
