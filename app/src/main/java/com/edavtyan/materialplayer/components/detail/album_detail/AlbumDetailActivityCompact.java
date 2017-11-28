@@ -29,9 +29,7 @@ public class AlbumDetailActivityCompact
 
 		navigator = factory.getNavigator();
 
-		addModule(new ParallaxHeaderListCompactModule(this, factory.getAdapter(), factory.getPresenter()));
-
-		init(factory.getAdapter());
+		init(factory.getAdapter(), factory.getPresenter());
 	}
 
 	@Override

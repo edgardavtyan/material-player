@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListModule;
 
 public class AlbumDetailActivity
 		extends ParallaxHeaderListActivity
@@ -43,9 +42,7 @@ public class AlbumDetailActivity
 
 		navigator = factory.getNavigator();
 
-		addModule(new ParallaxHeaderListModule(this, factory.getAdapter(), factory.getPresenter()));
-
-		init(factory.getAdapter());
+		init(factory.getAdapter(), factory.getPresenter());
 	}
 
 	@Override

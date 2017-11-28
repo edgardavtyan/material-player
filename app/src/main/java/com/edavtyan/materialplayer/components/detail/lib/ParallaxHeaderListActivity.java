@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.components.detail.lib;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +29,14 @@ public abstract class ParallaxHeaderListActivity
 		return R.layout.activity_detail;
 	}
 
-	public void init(TestableRecyclerAdapter adapter) {
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
+
+	public void init(TestableRecyclerAdapter adapter, ParallaxHeaderListPresenter presenter) {
 		this.adapter = adapter;
+		addModule(new ParallaxHeaderListModule(this, adapter, presenter));
 	}
 
 	public void setTitle(String title) {

@@ -31,8 +31,9 @@ public abstract class ParallaxHeaderListCompactActivity
 		return R.layout.activity_detail_compact;
 	}
 
-	protected void init(TestableRecyclerAdapter adapter) {
+	protected void init(TestableRecyclerAdapter adapter, ParallaxHeaderListPresenter presenter) {
 		this.adapter = adapter;
+		addModule(new ParallaxHeaderListCompactModule(this, adapter, presenter));
 	}
 
 	public void setTitle(String title) {
