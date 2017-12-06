@@ -20,6 +20,8 @@ public abstract class ParallaxHeaderListCompactActivity
 		extends BaseToolbarActivity
 		implements ListMvp.View {
 
+	private static final int SCALED_ART_SIZE_DP = 120;
+
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView imageView;
 	@BindView(R.id.info_top) @Nullable TextView portraitTopInfoView;
@@ -61,7 +63,7 @@ public abstract class ParallaxHeaderListCompactActivity
 	public void setImage(Bitmap image, @DrawableRes int fallback) {
 		if (image != null) {
 			if (WindowUtils.isPortrait(this)) {
-				int imageViewSize = DpConverter.convertDpToPixel(120);
+				int imageViewSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
 				Bitmap scaledImage = BitmapResizer.resize(image, imageViewSize);
 				imageView.setImageBitmap(scaledImage);
 			} else {
