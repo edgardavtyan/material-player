@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
+import com.edavtyan.materialplayer.utils.BitmapResizer;
+import com.edavtyan.materialplayer.utils.DpConverter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +26,8 @@ public class NowPlayingFloatingFragment
 		extends BaseFragment
 		implements NowPlayingFloatingMvp.View,
 				   View.OnClickListener {
+
+	public static final int SCALED_ART_SIZE_DP = 44;
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
@@ -101,7 +105,9 @@ public class NowPlayingFloatingFragment
 	@Override
 	public void setArt(Bitmap art) {
 		if (art != null) {
-			artView.setImageBitmap(art);
+			int scaledArtSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
+			Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);
+			artView.setImageBitmap(scaledArt);
 		} else {
 			artView.setImageResource(R.drawable.fallback_cover);
 		}
