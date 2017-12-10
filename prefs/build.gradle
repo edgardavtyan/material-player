@@ -26,12 +26,12 @@ dependencies {
 
     compile project(':utils')
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile "com.android.support:appcompat-v7:${appcompat_version}"
+    compile "com.android.support:recyclerview-v7:${appcompat_version}"
 
-    compileOnly 'org.projectlombok:lombok:1.16.6'
-    annotationProcessor 'org.projectlombok:lombok:1.16.6'
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
 
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile "com.jakewharton:butterknife:${butterknife_version}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife_version}"
 }

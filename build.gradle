@@ -18,5 +18,14 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        google()
     }
+}
+
+ext {
+    appcompat_version = '25.4.0'
+    lombok_version = '1.16.18'
+    butterknife_version = '8.8.1'
+    test_runner_version = '0.5'
+    dexmaker_version = '1.4'
 }
