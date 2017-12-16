@@ -11,6 +11,7 @@
 	<style name="NowPlayingBar_Art">
 		<item name="android:layout_width">?listPreferredItemHeightSmall</item>
 		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+		<item name="android:scaleType">centerCrop</item>
 	</style>
 
 	<style name="NowPlayingBar_InfoWrapper">

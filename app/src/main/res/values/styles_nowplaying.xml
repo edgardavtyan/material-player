@@ -32,6 +32,7 @@
 	<style name="NowPlaying_Art">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
+		<item name="android:scaleType">centerCrop</item>
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Container">

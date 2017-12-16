@@ -35,6 +35,7 @@
 	<style name="ListItem_AlbumArt">
 		<item name="android:layout_width">?listPreferredItemHeight</item>
 		<item name="android:layout_height">?listPreferredItemHeight</item>
+		<item name="android:scaleType">centerCrop</item>
 	</style>
 
 	<style name="ListItem_Title">
