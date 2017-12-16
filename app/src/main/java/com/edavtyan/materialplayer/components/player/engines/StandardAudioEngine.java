@@ -1,16 +1,12 @@
 package com.edavtyan.materialplayer.components.player.engines;
 
-import net.protyposis.android.mediaplayer.FileSource;
-import net.protyposis.android.mediaplayer.MediaPlayer;
+import android.media.MediaPlayer;
 
-import java.io.File;
 import java.io.IOException;
 
 import lombok.Setter;
 
-// Uses MediaPlayer-Extended library by protyposis
-// https://github.com/protyposis/MediaPlayer-Extended
-public class ExtendedAudioEngine
+public class StandardAudioEngine
 		implements AudioEngine,
 				   MediaPlayer.OnPreparedListener,
 				   MediaPlayer.OnCompletionListener {
@@ -20,7 +16,7 @@ public class ExtendedAudioEngine
 	private @Setter OnPreparedListener onPreparedListener;
 	private @Setter OnCompletedListener onCompletedListener;
 
-	public ExtendedAudioEngine(MediaPlayer player) {
+	public StandardAudioEngine(MediaPlayer player) {
 		this.player = player;
 		this.player.setOnPreparedListener(this);
 		this.player.setOnCompletionListener(this);
@@ -45,7 +41,7 @@ public class ExtendedAudioEngine
 	public void playTrack(String trackPath) {
 		try {
 			player.reset();
-			player.setDataSource(new FileSource(new File(trackPath)));
+			player.setDataSource(trackPath);
 			player.prepareAsync();
 		} catch (IOException e) {
 			e.printStackTrace();

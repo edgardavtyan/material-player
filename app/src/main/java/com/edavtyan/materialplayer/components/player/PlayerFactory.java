@@ -1,15 +1,14 @@
 package com.edavtyan.materialplayer.components.player;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 
 import com.edavtyan.materialplayer.components.player.engines.AudioEngine;
-import com.edavtyan.materialplayer.components.player.engines.ExtendedAudioEngine;
+import com.edavtyan.materialplayer.components.player.engines.StandardAudioEngine;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
-
-import net.protyposis.android.mediaplayer.MediaPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +55,7 @@ public class PlayerFactory extends BaseFactory {
 
 	public AudioEngine getAudioEngine() {
 		if (audioEngine == null)
-			audioEngine = new ExtendedAudioEngine(new MediaPlayer());
+			audioEngine = new StandardAudioEngine(new MediaPlayer());
 		return audioEngine;
 	}
 
