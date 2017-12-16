@@ -73,7 +73,7 @@ public class BaseFactory {
 
 	public AlbumArtFileStorage getArtFileStorage() {
 		if (dataStorage == null)
-			dataStorage = new AlbumArtFileStorage();
+			dataStorage = new AlbumArtFileStorage(getContext());
 		return dataStorage;
 	}
 

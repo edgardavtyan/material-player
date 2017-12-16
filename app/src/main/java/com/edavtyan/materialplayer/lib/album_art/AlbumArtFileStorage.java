@@ -1,12 +1,13 @@
 package com.edavtyan.materialplayer.lib.album_art;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.lib.file_storage.BitmapFileStorage;
 
 public class AlbumArtFileStorage extends BitmapFileStorage {
-	public AlbumArtFileStorage() {
-		super("album_art");
+	public AlbumArtFileStorage(Context context) {
+		super(context, "album_art");
 	}
 
 	public boolean exists(int albumId) {

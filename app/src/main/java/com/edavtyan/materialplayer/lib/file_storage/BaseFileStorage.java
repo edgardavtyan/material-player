@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
-import android.os.Environment;
+import android.content.Context;
 
 import com.edavtyan.utils.IOUtils;
 
@@ -9,14 +9,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 public abstract class BaseFileStorage {
-	private static final File DIR_BASE = Environment.getExternalStorageDirectory();
-	private static final File DIR_DATA = new File(DIR_BASE, "MaterialPlayer");
-
 	private final File dir;
 
 	@SuppressWarnings("ResultOfMethodCallIgnored")
-	public BaseFileStorage(String dirName) {
-		dir = new File(DIR_DATA, dirName);
+	public BaseFileStorage(Context context, String dirName) {
+		dir = new File(context.getCacheDir(), dirName);
 		dir.mkdirs();
 	}
 

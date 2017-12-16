@@ -1,9 +1,11 @@
 package com.edavtyan.materialplayer.components.lists.artist_list;
 
+import android.content.Context;
+
 import com.edavtyan.materialplayer.lib.file_storage.BitmapFileStorage;
 
 public class ArtistListImageFileStorage extends BitmapFileStorage {
-	public ArtistListImageFileStorage() {
-		super("artist_images");
+	public ArtistListImageFileStorage(Context context) {
+		super(context, "artist_images");
 	}
 }

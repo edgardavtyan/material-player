@@ -56,7 +56,7 @@ public class ArtistListFactory extends ListFactory {
 		if (lastfmApi == null)
 			lastfmApi = new LastfmApi(
 					getWebClient(),
-					new LastfmArtistInfoFileStorage(),
+					new LastfmArtistInfoFileStorage(getContext()),
 					getContext().getString(R.string.lastfm_api_key));
 		return lastfmApi;
 	}
@@ -74,7 +74,7 @@ public class ArtistListFactory extends ListFactory {
 
 	public ArtistListImageFileStorage getFileStorage() {
 		if (fileStorage == null)
-			fileStorage = new ArtistListImageFileStorage();
+			fileStorage = new ArtistListImageFileStorage(getContext());
 		return fileStorage;
 	}
 

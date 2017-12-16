@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
@@ -7,8 +8,8 @@ import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 public class BitmapFileStorage extends BaseFileStorage {
 	private final TestableBitmapFactory bitmapFactory;
 
-	public BitmapFileStorage(String dirName) {
-		super(dirName);
+	public BitmapFileStorage(Context context, String dirName) {
+		super(context, dirName);
 		bitmapFactory = new TestableBitmapFactory();
 	}
 

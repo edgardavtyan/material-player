@@ -1,8 +1,10 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
+import android.content.Context;
+
 public class StringFileStorage extends BaseFileStorage {
-	public StringFileStorage(String dirName) {
-		super(dirName);
+	public StringFileStorage(Context context, String dirName) {
+		super(context, dirName);
 	}
 
 	public void save(String filename, String data) {
