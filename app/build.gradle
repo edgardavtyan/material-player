@@ -57,6 +57,7 @@ dependencies {
     compile 'com.minimize.library:seekbar-compat:0.2.4'
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
     compile 'com.github.bumptech.glide:glide:4.3.1'
+    compile 'net.protyposis.android.mediaplayer:mediaplayer:4.3.0'
     compile 'com.google.code.gson:gson:2.8.2'
 
     compileOnly "org.projectlombok:lombok:${lombok_version}"
