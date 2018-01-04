@@ -15,14 +15,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class TrackListAdapterTest extends BaseTest {
-	private TrackListMvp.Presenter presenter;
+	private TrackListPresenter presenter;
 	private TrackListViewHolder holder;
 	private TrackListAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		presenter = mock(TrackListMvp.Presenter.class);
+		presenter = mock(TrackListPresenter.class);
 		holder = mock(TrackListViewHolder.class);
 		adapter = new TrackListAdapter(context, presenter);
 	}

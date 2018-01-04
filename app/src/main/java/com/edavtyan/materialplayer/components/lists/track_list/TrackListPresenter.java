@@ -1,16 +1,14 @@
 package com.edavtyan.materialplayer.components.lists.track_list;
 
-import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
+import com.edavtyan.materialplayer.db.Track;
 
-public class TrackListPresenter
-		extends ListPresenter<TrackListViewHolder>
-		implements TrackListMvp.Presenter {
+public class TrackListPresenter extends ListPresenter<TrackListViewHolder> {
 
-	private final TrackListMvp.View view;
-	private final TrackListMvp.Model model;
+	private final TrackListView view;
+	private final TrackListModel model;
 
-	public TrackListPresenter(TrackListMvp.View view, TrackListMvp.Model model) {
+	public TrackListPresenter(TrackListView view, TrackListModel model) {
 		super(model, view);
 		this.view = view;
 		this.model = model;
@@ -31,13 +29,11 @@ public class TrackListPresenter
 		return model.getItemCount();
 	}
 
-	@Override
 	public void onHolderClick(int position) {
 		model.playQueue(position);
 		view.gotoNowPlaying();
 	}
 
-	@Override
 	public void onAddToPlaylist(int position) {
 		model.addToQueue(position);
 	}

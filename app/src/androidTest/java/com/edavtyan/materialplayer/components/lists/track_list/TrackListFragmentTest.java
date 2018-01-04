@@ -27,7 +27,7 @@ public class TrackListFragmentTest extends FragmentTest2 {
 		if (fragment == null) {
 			adapter = mock(TrackListAdapter.class);
 			navigator = mock(Navigator.class);
-			TrackListMvp.Presenter presenter = mock(TrackListMvp.Presenter.class);
+			TrackListPresenter presenter = mock(TrackListPresenter.class);
 
 			TrackListFactory factory = mock(TrackListFactory.class);
 			when(factory.getAdapter()).thenReturn(adapter);

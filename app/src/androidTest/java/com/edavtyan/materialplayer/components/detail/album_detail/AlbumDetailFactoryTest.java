@@ -19,7 +19,6 @@ public class AlbumDetailFactoryTest extends FactoryTest {
 	public void testProviders() throws Exception {
 		testFactoryMethod(albumDetailFactory::getPresenter);
 		testFactoryMethod(albumDetailFactory::getAdapter);
-		testFactoryMethod(albumDetailFactory::getView);
 		testFactoryMethod(albumDetailFactory::getModel);
 	}
 }

@@ -17,9 +17,9 @@ public class TrackListViewHolder extends ListViewHolder {
 	@BindView(R.id.info) TextView infoView;
 
 	private final Context context;
-	private final TrackListMvp.Presenter presenter;
+	private final TrackListPresenter presenter;
 
-	public TrackListViewHolder(Context context, View itemView, TrackListMvp.Presenter presenter) {
+	public TrackListViewHolder(Context context, View itemView, TrackListPresenter presenter) {
 		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;

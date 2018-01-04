@@ -22,14 +22,14 @@ public class TrackListViewHolderTest extends BaseTest {
 	private TrackListViewHolder holder;
 	private TextView titleView;
 	private TextView infoView;
-	private TrackListMvp.Presenter presenter;
+	private TrackListPresenter presenter;
 
 	@SuppressLint("InflateParams")
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		View itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
-		presenter = mock(TrackListMvp.Presenter.class);
+		presenter = mock(TrackListPresenter.class);
 		holder = spy(new TrackListViewHolder(context, itemView, presenter));
 		titleView = (TextView) itemView.findViewById(R.id.title);
 		infoView = (TextView) itemView.findViewById(R.id.info);

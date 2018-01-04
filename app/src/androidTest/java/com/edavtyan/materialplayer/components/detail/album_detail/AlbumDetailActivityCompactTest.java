@@ -31,7 +31,7 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			AlbumDetailMvp.Presenter presenter = mock(AlbumDetailMvp.Presenter.class);
+			AlbumDetailPresenter presenter = mock(AlbumDetailPresenter.class);
 			navigator = mock(Navigator.class);
 			adapter = mock(AlbumDetailAdapter.class);
 

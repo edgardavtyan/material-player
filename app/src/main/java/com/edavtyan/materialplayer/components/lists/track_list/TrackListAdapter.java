@@ -8,9 +8,9 @@ import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
 
 public class TrackListAdapter extends ListAdapter<TrackListViewHolder> {
 
-	private final TrackListMvp.Presenter presenter;
+	private final TrackListPresenter presenter;
 
-	public TrackListAdapter(Context context, TrackListMvp.Presenter presenter) {
+	public TrackListAdapter(Context context, TrackListPresenter presenter) {
 		super(context, presenter);
 		this.presenter = presenter;
 	}

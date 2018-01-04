@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListPresenter;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListViewHolder;
 import com.edavtyan.materialplayer.utils.DurationUtils;
 
@@ -14,7 +14,7 @@ import butterknife.BindView;
 public class AlbumDetailViewHolder extends TrackListViewHolder {
 	@BindView(R.id.info) TextView infoView;
 
-	public AlbumDetailViewHolder(Context context, View itemView, TrackListMvp.Presenter presenter) {
+	public AlbumDetailViewHolder(Context context, View itemView, TrackListPresenter presenter) {
 		super(context, itemView, presenter);
 	}
 

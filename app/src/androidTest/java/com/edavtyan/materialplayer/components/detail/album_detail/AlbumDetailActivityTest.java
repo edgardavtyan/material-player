@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityTest extends ActivityTest {
-	private static AlbumDetailMvp.Presenter presenter;
+	private static AlbumDetailPresenter presenter;
 	private static AlbumDetailAdapter adapter;
 	private static AlbumDetailActivity activity;
 	private static Navigator navigator;
@@ -31,7 +31,7 @@ public class AlbumDetailActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			presenter = mock(AlbumDetailMvp.Presenter.class);
+			presenter = mock(AlbumDetailPresenter.class);
 			adapter = mock(AlbumDetailAdapter.class);
 			navigator = mock(Navigator.class);
 

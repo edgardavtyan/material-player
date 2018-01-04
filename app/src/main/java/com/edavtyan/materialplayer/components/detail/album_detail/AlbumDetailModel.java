@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
-public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.Model {
+public class AlbumDetailModel extends TrackListModel {
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
 	private final AlbumArtProvider albumArtProvider;
@@ -33,17 +33,14 @@ public class AlbumDetailModel extends TrackListModel implements AlbumDetailMvp.M
 		this.albumId = albumId;
 	}
 
-	@Override
 	public Album getAlbum() {
 		return albumDB.getAlbumWithAlbumId(albumId);
 	}
 
-	@Override
 	public Bitmap getAlbumArt() {
 		return albumArtProvider.load(getTrackAtIndex(0));
 	}
 
-	@Override
 	public long getTotalAlbumDuration() {
 		long totalDurationMS = 0;
 		for (Track track : tracks) {

@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsActivity
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
-import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailMvp;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailFactory;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFactory;
@@ -17,9 +17,10 @@ import com.edavtyan.materialplayer.components.lists.album_list.AlbumListMvp;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFactory;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListMvp;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListFactory;
-import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListFragment;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.main.MainFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
@@ -30,7 +31,6 @@ import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueM
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFragment;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
@@ -73,7 +73,7 @@ public class App extends Application {
 				: albumListFactory;
 	}
 
-	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailMvp.View view, int albumId) {
+	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailView view, int albumId) {
 		return (albumDetailFactory == null)
 				? new AlbumDetailFactory(context, view, albumId)
 				: albumDetailFactory;
@@ -94,7 +94,7 @@ public class App extends Application {
 				: artistDetailFactory;
 	}
 
-	public TrackListFactory getTrackListDI(Context context, TrackListMvp.View view) {
+	public TrackListFactory getTrackListDI(Context context, TrackListFragment view) {
 		return (trackListFactory == null)
 				? new TrackListFactory(context, view)
 				: trackListFactory;

@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListAdapter;
-import com.edavtyan.materialplayer.components.lists.track_list.TrackListMvp;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListPresenter;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListViewHolder;
 
 public class AlbumDetailAdapter extends TrackListAdapter {
-	private final TrackListMvp.Presenter presenter;
+	private final TrackListPresenter presenter;
 
-	public AlbumDetailAdapter(Context context, TrackListMvp.Presenter presenter) {
+	public AlbumDetailAdapter(Context context, TrackListPresenter presenter) {
 		super(context, presenter);
 		this.presenter = presenter;
 	}

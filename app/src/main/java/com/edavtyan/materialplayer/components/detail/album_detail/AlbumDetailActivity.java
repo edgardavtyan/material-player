@@ -10,10 +10,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
 
-public class AlbumDetailActivity
-		extends ParallaxHeaderListActivity
-		implements AlbumDetailMvp.View {
-
+public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailView {
 	private Navigator navigator;
 
 	@Override
@@ -51,7 +48,7 @@ public class AlbumDetailActivity
 	}
 
 	protected AlbumDetailFactory getDI() {
-		int albumId = getIntent().getIntExtra(AlbumDetailMvp.EXTRA_ALBUM_ID, -1);
+		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		return ((App) getApplicationContext()).getAlbumDetailDI(this, this, albumId);
 	}
 }

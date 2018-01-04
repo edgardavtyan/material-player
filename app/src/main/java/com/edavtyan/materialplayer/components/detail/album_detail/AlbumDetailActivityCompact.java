@@ -8,15 +8,12 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
-import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactModule;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailMvp.EXTRA_ALBUM_ID;
-
 public class AlbumDetailActivityCompact
 		extends ParallaxHeaderListCompactActivity
-		implements AlbumDetailMvp.View {
+		implements AlbumDetailView {
 
 	private Navigator navigator;
 
