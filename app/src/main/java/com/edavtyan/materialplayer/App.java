@@ -5,9 +5,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsMvp;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsMvpFactory;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailMvp;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailFactory;
@@ -50,7 +50,7 @@ public class App extends Application {
 	private @Setter ArtistDetailFactory artistDetailFactory;
 	private @Setter ArtistListFactory artistListFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
-	private @Setter AudioEffectsMvpFactory audioEffectsMvpFactory;
+	private @Setter AudioEffectsViewFactory audioEffectsViewFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
 	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
 	private @Setter TrackListFactory trackListFactory;
@@ -122,10 +122,10 @@ public class App extends Application {
 				: nowPlayingQueueFactory;
 	}
 
-	public AudioEffectsMvpFactory getAudioEffectsFactory(Context context, AudioEffectsMvp.View view) {
-		return (audioEffectsMvpFactory == null)
-				? new AudioEffectsMvpFactory(context, view)
-				: audioEffectsMvpFactory;
+	public AudioEffectsViewFactory getAudioEffectsFactory(Context context, AudioEffectsActivity view) {
+		return (audioEffectsViewFactory == null)
+				? new AudioEffectsViewFactory(context, view)
+				: audioEffectsViewFactory;
 	}
 
 	public AudioEffectsFactory getAudioEffectsFactory(Context context, Player player) {

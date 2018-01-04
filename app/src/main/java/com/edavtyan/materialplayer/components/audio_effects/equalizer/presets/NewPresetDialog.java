@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsMvp;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsPresenter;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.BindView;
@@ -21,7 +21,7 @@ public class NewPresetDialog {
 
 	private final AlertDialog dialog;
 	private final Context context;
-	private final AudioEffectsMvp.Presenter presenter;
+	private final AudioEffectsPresenter presenter;
 
 	@SuppressWarnings("FieldCanBeLocal")
 	private final View.OnClickListener positiveButtonListener
@@ -41,7 +41,7 @@ public class NewPresetDialog {
 		}
 	};
 
-	public NewPresetDialog(Context context, AudioEffectsMvp.Presenter presenter) {
+	public NewPresetDialog(Context context, AudioEffectsPresenter presenter) {
 		this.context = context;
 		this.presenter = presenter;
 

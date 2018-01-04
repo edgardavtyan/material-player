@@ -6,19 +6,18 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 
-public class AudioEffectsMvpFactoryTest extends FactoryTest {
-	private AudioEffectsMvpFactory factory;
+public class AudioEffectsViewFactoryTest extends FactoryTest {
+	private AudioEffectsViewFactory factory;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		AudioEffectsMvp.View view = mock(AudioEffectsMvp.View.class);
-		factory = new AudioEffectsMvpFactory(context, view);
+		AudioEffectsActivity view = mock(AudioEffectsActivity.class);
+		factory = new AudioEffectsViewFactory(context, view);
 	}
 
 	@Test
 	public void testProviders() throws Exception {
-		testFactoryMethod(factory::getView);
 		testFactoryMethod(factory::getPresenter);
 		testFactoryMethod(factory::getModel);
 	}

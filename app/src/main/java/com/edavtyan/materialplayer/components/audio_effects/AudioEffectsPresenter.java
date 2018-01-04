@@ -4,29 +4,27 @@ import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
-public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
+public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnectedListener {
 
-	private final AudioEffectsMvp.Model model;
-	private final AudioEffectsMvp.View view;
+	private final AudioEffectsModel model;
+	private final AudioEffectsActivity view;
 
-	public AudioEffectsPresenter(AudioEffectsMvp.Model model, AudioEffectsMvp.View view) {
+	public AudioEffectsPresenter(AudioEffectsModel model, AudioEffectsActivity view) {
 		this.model = model;
 		this.view = view;
 	}
 
-	@Override
 	public void onCreate() {
 		model.init();
 		model.setOnServiceConnectedListener(this);
 	}
 
-	@Override
 	public void onDestroy() {
 		model.close();
 	}
 
-	@Override
 	public void onEqualizerEnabledChanged(boolean enabled) {
 		if (!model.isConnected()) {
 			return;
@@ -36,18 +34,15 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 		model.getEqualizer().saveSettings();
 	}
 
-	@Override
 	public void onEqualizerBandChanged(EqualizerBandView band) {
 		model.getEqualizer().setBandGain(band.getIndex(), band.getGain());
 		view.setEqualizerPresetAsCustomNew();
 	}
 
-	@Override
 	public void onEqualizerBandStopTracking() {
 		model.getEqualizer().saveSettings();
 	}
 
-	@Override
 	public void onPresetSelected(int relativePosition, Equalizer.PresetType presetType) {
 		switch (presetType) {
 		case CUSTOM_NEW:
@@ -70,7 +65,6 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 				model.getEqualizer().getGains());
 	}
 
-	@Override
 	public void onNewPresetDialogOkButtonClicked(String name) {
 		try {
 			model.getEqualizer().savePreset(name);
@@ -84,12 +78,10 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 		}
 	}
 
-	@Override
 	public void onNewPresetDialogCancelButtonClicked() {
 		view.closeNewPresetCreationDialog();
 	}
 
-	@Override
 	public void onDeletePreset(int position) {
 		model.getEqualizer().deletePreset(position);
 		view.setEqualizerPresets(
@@ -97,42 +89,34 @@ public class AudioEffectsPresenter implements AudioEffectsMvp.Presenter {
 				model.getEqualizer().getCustomPresetNames());
 	}
 
-	@Override
 	public void onCreateNewPresetButtonClicked() {
 		view.showNewPresetCreationDialog();
 	}
 
-	@Override
 	public void onBassBoostStrengthChanged(int strength) {
 		model.getBassBoost().setStrength(strength);
 	}
 
-	@Override
 	public void onBassBoostStrengthStopChanging() {
 		model.getBassBoost().saveSettings();
 	}
 
-	@Override
 	public void onSurroundStrengthChanged(int strength) {
 		model.getSurround().setStrength(strength);
 	}
 
-	@Override
 	public void onSurroundStrengthStopChanging() {
 		model.getSurround().saveSettings();
 	}
 
-	@Override
 	public void onAmplifierStrengthChanged(int gain) {
 		model.getAmplifier().setGain(gain);
 	}
 
-	@Override
 	public void onAmplifierStrengthStopChanging() {
 		model.getAmplifier().saveSettings();
 	}
 
-	@Override
 	public void onServiceConnected(PlayerService service) {
 		view.setEqualizerEnabled(model.getEqualizer().isEnabled());
 		view.setEqualizerBands(

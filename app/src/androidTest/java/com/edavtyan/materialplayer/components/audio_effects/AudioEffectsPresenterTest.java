@@ -14,9 +14,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class AudioEffectsPresenterTest extends BaseTest {
-	private AudioEffectsMvp.Presenter presenter;
-	private AudioEffectsMvp.View view;
-	private AudioEffectsMvp.Model model;
+	private AudioEffectsPresenter presenter;
+	private AudioEffectsActivity view;
+	private AudioEffectsModel model;
 	private Equalizer equalizer;
 	private BassBoost bassBoost;
 	private Surround surround;
@@ -25,8 +25,8 @@ public class AudioEffectsPresenterTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		model = mock(AudioEffectsMvp.Model.class);
-		view = mock(AudioEffectsMvp.View.class);
+		model = mock(AudioEffectsModel.class);
+		view = mock(AudioEffectsActivity.class);
 		presenter = new AudioEffectsPresenter(model, view);
 
 		equalizer = mock(Equalizer.class);

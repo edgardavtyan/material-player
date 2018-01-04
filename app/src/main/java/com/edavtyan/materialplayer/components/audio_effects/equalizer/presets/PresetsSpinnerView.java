@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsMvp;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsPresenter;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class PresetsSpinnerView {
 	@BindView(R.id.presets_spinner) Spinner presetsSpinner;
 
 	private final PresetsAdapter presetsAdapter;
-	private final AudioEffectsMvp.Presenter presenter;
+	private final AudioEffectsPresenter presenter;
 
 	private boolean presetsSpinnerFirstLaunch = true;
 	private int customPresetsSize;
@@ -43,7 +43,7 @@ public class PresetsSpinnerView {
 		}
 	};
 
-	public PresetsSpinnerView(Activity activity, AudioEffectsMvp.Presenter presenter) {
+	public PresetsSpinnerView(Activity activity, AudioEffectsPresenter presenter) {
 		ButterKnife.bind(this, activity);
 
 		this.presenter = presenter;

@@ -23,8 +23,7 @@ import butterknife.BindView;
 
 public class AudioEffectsActivity
 		extends BaseToolbarActivity
-		implements AudioEffectsMvp.View,
-				   CompoundButton.OnCheckedChangeListener,
+		implements CompoundButton.OnCheckedChangeListener,
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {
 
@@ -36,8 +35,7 @@ public class AudioEffectsActivity
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
-	private AudioEffectsMvp.Presenter presenter;
-
+	private AudioEffectsPresenter presenter;
 	private NewPresetDialog newPresetDialog;
 	private PresetsSpinnerView presetsSpinner;
 
@@ -68,7 +66,7 @@ public class AudioEffectsActivity
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
 		App app = (App) getApplicationContext();
-		AudioEffectsMvpFactory factory = app.getAudioEffectsFactory(this, this);
+		AudioEffectsViewFactory factory = app.getAudioEffectsFactory(this, this);
 		presenter = factory.getPresenter();
 		presenter.onCreate();
 
@@ -87,48 +85,39 @@ public class AudioEffectsActivity
 		return R.layout.activity_effects;
 	}
 
-	@Override
 	public void setEqualizerEnabled(boolean enabled) {
 		equalizerSwitch.setChecked(enabled);
 		equalizerSwitch.jumpDrawablesToCurrentState();
 	}
 
-	@Override
 	public void setEqualizerBands(int count, int gainLimit, int[] frequencies, int[] gains) {
 		equalizerView.setBands(count, frequencies, gains, gainLimit);
 	}
 
-	@Override
 	public void setEqualizerPresets(List<String> builtInPresets, List<String> customPresets) {
 		presetsSpinner.setPresets(builtInPresets, customPresets);
 	}
 
-	@Override
 	public void setEqualizerPresetAsCustomNew() {
 		presetsSpinner.setCurrentPresetAsCustomNew();
 	}
 
-	@Override
 	public void selectLastCustomPreset() {
 		presetsSpinner.selectLastCustomPreset();
 	}
 
-	@Override
 	public void showNewPresetCreationDialog() {
 		newPresetDialog.show();
 	}
 
-	@Override
 	public void closeNewPresetCreationDialog() {
 		newPresetDialog.dismiss();
 	}
 
-	@Override
 	public void showPresetAlreadyExists() {
 		newPresetDialog.showPresetAlreadyExists();
 	}
 
-	@Override
 	public void setDeletePresetButtonEnabled(boolean enabled) {
 		if (enabled) {
 			deletePresetButton.setAlpha(1.0f);
@@ -139,25 +128,21 @@ public class AudioEffectsActivity
 		}
 	}
 
-	@Override
 	public void initBassBoost(int max, int strength) {
 		bassBoostView.setMax(max);
 		bassBoostView.setProgress(strength);
 	}
 
-	@Override
 	public void initSurround(int max, int strength) {
 		surroundView.setMax(max);
 		surroundView.setProgress(strength);
 	}
 
-	@Override
 	public void initAmplifier(int max, int gain) {
 		amplifierView.setMax(max);
 		amplifierView.setProgress(gain);
 	}
 
-	@Override
 	public void setCurrentEqualizerPreset(int presetIndex, Equalizer.PresetType presetType) {
 		presetsSpinner.selectPresetAt(presetIndex, presetType);
 	}

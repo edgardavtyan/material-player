@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class AudioEffectsActivityTest extends ActivityTest {
 	private static AudioEffectsActivity activity;
-	private static AudioEffectsMvp.Presenter presenter;
+	private static AudioEffectsPresenter presenter;
 	private static SwitchCompat equalizerSwitch;
 	private static EqualizerView equalizerView;
 	private static TitledSeekbar bassBoostView;
@@ -38,12 +38,12 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			presenter = mock(AudioEffectsMvp.Presenter.class);
+			presenter = mock(AudioEffectsPresenter.class);
 
-			AudioEffectsMvpFactory factory = mock(AudioEffectsMvpFactory.class);
+			AudioEffectsViewFactory factory = mock(AudioEffectsViewFactory.class);
 			when(factory.getPresenter()).thenReturn(presenter);
 
-			app.setAudioEffectsMvpFactory(factory);
+			app.setAudioEffectsViewFactory(factory);
 
 			activity = spy(startActivity(AudioEffectsActivity.class));
 			doNothing().when(activity).baseOnCreate(any());

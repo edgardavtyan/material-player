@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class AudioEffectsModelTest extends BaseTest {
-	private AudioEffectsMvp.Model model;
+	private AudioEffectsModel model;
 	private PlayerService service;
 	private ModelServiceModule serviceModule;
 
