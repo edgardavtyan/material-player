@@ -35,4 +35,8 @@ public abstract class BaseActivity extends ModularActivity {
 			WindowUtils.makeStatusBarSemiTransparent(this);
 		}
 	}
+
+	public App getApp() {
+		return (App) getApplication();
+	}
 }

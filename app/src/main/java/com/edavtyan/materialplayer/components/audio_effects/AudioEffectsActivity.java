@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.NewPresetDialog;
@@ -65,8 +64,7 @@ public class AudioEffectsActivity
 		newPresetButton.setOnClickListener(onNewPresetClicked);
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
-		App app = (App) getApplicationContext();
-		AudioEffectsViewFactory factory = app.getAudioEffectsFactory(this, this);
+		AudioEffectsViewFactory factory = getApp().getAudioEffectsFactory(this, this);
 		presenter = factory.getPresenter();
 		presenter.onCreate();
 

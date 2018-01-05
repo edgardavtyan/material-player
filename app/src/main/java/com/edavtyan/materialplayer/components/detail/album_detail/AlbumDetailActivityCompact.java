@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
@@ -22,7 +21,7 @@ public class AlbumDetailActivityCompact
 		super.onCreate(savedInstanceState);
 
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
-		AlbumDetailFactory factory = ((App) getApplicationContext()).getAlbumDetailDI(this, this, albumId);
+		AlbumDetailFactory factory = getApp().getAlbumDetailDI(this, this, albumId);
 
 		navigator = factory.getNavigator();
 

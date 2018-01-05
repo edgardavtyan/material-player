@@ -13,7 +13,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ArtistListFactory factory = app.getArtistListDI(getContext(), this);
+		ArtistListFactory factory = getApp().getArtistListDI(getContext(), this);
 		initListView(factory.getPresenter(), factory.getAdapter());
 		navigator = factory.getNavigator();
 	}

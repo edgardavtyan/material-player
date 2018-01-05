@@ -13,7 +13,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		TrackListFactory factory = app.getTrackListDI(getContext(), this);
+		TrackListFactory factory = getApp().getTrackListDI(getContext(), this);
 		initListView(factory.getPresenter(), factory.getAdapter());
 		navigator = factory.getNavigator();
 	}

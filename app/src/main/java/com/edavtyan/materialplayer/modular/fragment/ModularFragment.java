@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.lib.testable.TestableFragment;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 
 public abstract class ModularFragment extends TestableFragment {
-	protected App app;
 
 	private final ArrayList<FragmentModule> modules = new ArrayList<>();
 
@@ -28,7 +26,6 @@ public abstract class ModularFragment extends TestableFragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		app = (App) getActivity().getApplication();
 	}
 
 	@Nullable

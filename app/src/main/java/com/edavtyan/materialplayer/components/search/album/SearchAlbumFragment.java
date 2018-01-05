@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.search.album;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFragment;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
@@ -21,8 +20,7 @@ public class SearchAlbumFragment extends AlbumListFragment implements SearchView
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		App app = (App) getContext().getApplicationContext();
-		SearchAlbumFactory factory = app.getSearchAlbumFactory(getContext(), this);
+		SearchAlbumFactory factory = getApp().getSearchAlbumFactory(getContext(), this);
 		initListView(factory.getPresenter(), factory.getAdapter());
 		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
 	}

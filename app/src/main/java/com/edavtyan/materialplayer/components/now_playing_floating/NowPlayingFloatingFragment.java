@@ -53,7 +53,7 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		NowPlayingFloatingFactory factory = app.getNowPlayingFloatingFactory(getContext(), this);
+		NowPlayingFloatingFactory factory = getApp().getNowPlayingFloatingFactory(getContext(), this);
 		navigator = factory.getNavigator();
 		presenter = factory.getPresenter();
 	}

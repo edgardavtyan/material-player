@@ -20,7 +20,7 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SearchTrackFactory factory = app.getSearchTrackFactory(getContext(), this);
+		SearchTrackFactory factory = getApp().getSearchTrackFactory(getContext(), this);
 		initListView(factory.getPresenter(), factory.getAdapter());
 		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
 	}

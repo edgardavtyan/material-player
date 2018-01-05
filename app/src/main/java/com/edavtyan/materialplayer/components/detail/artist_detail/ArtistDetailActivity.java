@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
@@ -20,7 +19,8 @@ public class ArtistDetailActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		ArtistDetailFactory factory = getDI();
+		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
+		ArtistDetailFactory factory = getApp().getArtistDetailDI(this, this, artistTitle);
 
 		navigator = factory.getNavigator();
 
@@ -49,10 +49,5 @@ public class ArtistDetailActivity
 	@Override
 	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
-	}
-
-	protected ArtistDetailFactory getDI() {
-		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
-		return ((App) getApplication()).getArtistDetailDI(this, this, artistTitle);
 	}
 }

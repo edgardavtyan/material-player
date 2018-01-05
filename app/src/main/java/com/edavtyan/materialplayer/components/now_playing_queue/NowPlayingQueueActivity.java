@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
@@ -23,8 +22,7 @@ public class NowPlayingQueueActivity extends BaseToolbarActivity implements List
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		App app = ((App) getApplicationContext());
-		NowPlayingQueueFactory factory = app.getPlaylistFactory(this, this);
+		NowPlayingQueueFactory factory = getApp().getPlaylistFactory(this, this);
 		presenter = factory.getPresenter();
 		adapter = factory.getAdapter();
 		adapter.setHasStableIds(true);

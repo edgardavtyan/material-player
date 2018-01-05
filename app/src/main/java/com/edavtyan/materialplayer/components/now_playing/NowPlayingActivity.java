@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.now_playing;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
@@ -27,7 +26,7 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		NowPlayingFactory factory = getFactory();
+		NowPlayingFactory factory = getApp().getNowPlayingFactory(this);
 		presenter = factory.getPresenter();
 		controls = factory.getControls();
 		info = factory.getInfo();
@@ -57,10 +56,5 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 
 	public void gotoPlaylistScreen() {
 		navigator.gotoNowPlayingQueue(this);
-	}
-
-	protected NowPlayingFactory getFactory() {
-		App app = (App) getApplicationContext();
-		return app.getNowPlayingFactory(this);
 	}
 }

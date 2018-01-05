@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.lists.lib;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
@@ -19,5 +20,9 @@ public class ListFragment extends ModularFragment implements ListView {
 	@Override
 	public void notifyDataSetChanged() {
 		listFragmentModule.notifyDataSetChanged();
+	}
+
+	protected App getApp() {
+		return (App) getActivity().getApplication();
 	}
 }

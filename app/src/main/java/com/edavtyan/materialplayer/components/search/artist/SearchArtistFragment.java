@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFragment;
-import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
+import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 
 public class SearchArtistFragment extends ArtistListFragment implements SearchView {
 
@@ -20,7 +20,7 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SearchArtistFactory factory = app.getSearchArtistFactory(getContext(), this);
+		SearchArtistFactory factory = getApp().getSearchArtistFactory(getContext(), this);
 		initListView(factory.getPresenter(), factory.getAdapter());
 		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
 	}

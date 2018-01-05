@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
@@ -32,7 +31,7 @@ public class MainActivity extends BaseToolbarActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		MainFactory factory = ((App) getApplicationContext()).getMainFactory(this);
+		MainFactory factory = getApp().getMainFactory(this);
 		compactMainScreenPref = factory.getCompactMainScreenPref();
 		isCompactModeEnabled = compactMainScreenPref.isEnabled();
 

@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
@@ -21,7 +20,7 @@ public class ArtistDetailActivityCompact
 		super.onCreate(savedInstanceState);
 
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
-		ArtistDetailFactory factory = ((App) getApplicationContext()).getArtistDetailDI(this, this, artistTitle);
+		ArtistDetailFactory factory = getApp().getArtistDetailDI(this, this, artistTitle);
 
 		navigator = factory.getNavigator();
 

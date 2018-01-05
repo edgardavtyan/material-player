@@ -14,4 +14,8 @@ public class BaseFragment extends TestableFragment {
 		super.onCreate(savedInstanceState);
 		app = (App) getContext().getApplicationContext();
 	}
+
+	public App getApp() {
+		return (App) getActivity().getApplication();
+	}
 }
