@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.now_playing.models;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 
 import org.junit.Test;
 

@@ -5,14 +5,14 @@ import android.widget.ImageButton;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingPresenter;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnClickListener {
+public class NowPlayingControls implements View.OnClickListener {
 	public static final int CONTROL_ENABLED_ALPHA = 255;
 	public static final int CONTROL_DISABLED_ALPHA = 60;
 
@@ -22,11 +22,11 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 	@BindView(R.id.fast_forward) ImageButton fastForwardButton;
 	@BindView(R.id.repeat) ImageButton repeatButton;
 
-	private final NowPlayingMvp.Presenter presenter;
+	private final NowPlayingPresenter presenter;
 
 	public NowPlayingControls(
 			NowPlayingActivity activity,
-			NowPlayingMvp.Presenter presenter) {
+			NowPlayingPresenter presenter) {
 		ButterKnife.bind(this, activity);
 		this.presenter = presenter;
 
@@ -37,7 +37,6 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		repeatButton.setOnClickListener(this);
 	}
 
-	@Override
 	public void setShuffleMode(ShuffleMode shuffleMode) {
 		switch (shuffleMode) {
 		case ENABLED:
@@ -49,7 +48,6 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		}
 	}
 
-	@Override
 	public void setRepeatMode(RepeatMode repeatMode) {
 		switch (repeatMode) {
 		case REPEAT_ALL:
@@ -67,7 +65,6 @@ public class NowPlayingControls implements NowPlayingMvp.View.Controls, View.OnC
 		}
 	}
 
-	@Override
 	public void setIsPlaying(boolean isPlaying) {
 		playPauseButton.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
 	}

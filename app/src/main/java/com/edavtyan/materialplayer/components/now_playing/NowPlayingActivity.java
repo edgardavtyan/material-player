@@ -6,18 +6,22 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import lombok.Getter;
 
-public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayingMvp.View {
-	private NowPlayingMvp.Presenter presenter;
+public class NowPlayingActivity extends BaseToolbarActivity {
+	private NowPlayingPresenter presenter;
 	private Navigator navigator;
 
-	private @Getter Controls controls;
-	private @Getter Info info;
-	private @Getter Art art;
-	private @Getter Seekbar seekbar;
+	private @Getter NowPlayingControls controls;
+	private @Getter NowPlayingInfo info;
+	private @Getter NowPlayingArt art;
+	private @Getter NowPlayingSeekbar seekbar;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,13 +55,12 @@ public class NowPlayingActivity extends BaseToolbarActivity implements NowPlayin
 		return R.string.nowplaying_toolbar_title;
 	}
 
-	@Override
 	public void gotoPlaylistScreen() {
 		navigator.gotoNowPlayingQueue(this);
 	}
 
 	protected NowPlayingFactory getFactory() {
 		App app = (App) getApplicationContext();
-		return app.getNowPlayingFactory(this, this);
+		return app.getNowPlayingFactory(this);
 	}
 }

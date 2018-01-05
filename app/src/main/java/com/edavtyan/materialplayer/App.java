@@ -23,7 +23,6 @@ import com.edavtyan.materialplayer.components.main.MainFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
@@ -100,11 +99,9 @@ public class App extends Application {
 				: trackListFactory;
 	}
 
-	public NowPlayingFactory getNowPlayingFactory(
-			NowPlayingActivity activity,
-			NowPlayingMvp.View view) {
+	public NowPlayingFactory getNowPlayingFactory(NowPlayingActivity activity) {
 		return (nowPlayingFactory == null)
-				? new NowPlayingFactory(activity, view)
+				? new NowPlayingFactory(activity)
 				: nowPlayingFactory;
 	}
 

@@ -3,18 +3,18 @@ package com.edavtyan.materialplayer.components.now_playing;
 import com.edavtyan.materialplayer.utils.Timer;
 
 public class NowPlayingPresenter
-		implements NowPlayingMvp.Presenter,
-				   NowPlayingMvp.Model.OnNewTrackListener,
-				   NowPlayingMvp.Model.OnPlayPauseListener {
+		implements NowPlayingModel.OnModelBoundListener,
+				   NowPlayingModel.OnNewTrackListener,
+				   NowPlayingModel.OnPlayPauseListener {
 
 	private static final int SEEK_INTERVAL = 1000;
 
-	private final NowPlayingMvp.Model model;
-	private final NowPlayingMvp.View view;
+	private final NowPlayingModel model;
+	private final NowPlayingActivity view;
 
 	private final Timer seekbarTimer;
 
-	public NowPlayingPresenter(NowPlayingMvp.Model model, NowPlayingMvp.View view) {
+	public NowPlayingPresenter(NowPlayingModel model, NowPlayingActivity view) {
 		this.model = model;
 		this.model.setOnModelBoundListener(this);
 		this.model.setOnNewTrackListener(this);
@@ -28,38 +28,27 @@ public class NowPlayingPresenter
 		});
 	}
 
-	@Override
 	public void bind() {
 		model.bind();
 	}
 
-	@Override
 	public void unbind() {
 		model.unbind();
 	}
 
-	@Override
 	public void onFabClick() {
 		view.gotoPlaylistScreen();
 	}
 
-	@Override
-	public void onModelBound() {
-		updateViewInfo();
-	}
-
-	@Override
 	public void onShuffleClick() {
 		model.toggleShuffleMode();
 		view.getControls().setShuffleMode(model.getShuffleMode());
 	}
 
-	@Override
 	public void onRewindClick() {
 		model.rewind();
 	}
 
-	@Override
 	public void onPlayPauseClick() {
 		model.playPause();
 		view.getControls().setIsPlaying(model.isPlaying());
@@ -71,25 +60,26 @@ public class NowPlayingPresenter
 		}
 	}
 
-	@Override
 	public void onFastForwardClick() {
 		model.fastForward();
 	}
 
-	@Override
 	public void onRepeatClick() {
 		model.toggleRepeatMode();
 		view.getControls().setRepeatMode(model.getRepeatMode());
 	}
 
-	@Override
 	public void onSeekChanged(int position) {
 		view.getSeekbar().setPositionText(position);
 	}
 
-	@Override
 	public void onSeekStop(int position) {
 		model.seek(position);
+	}
+
+	@Override
+	public void onModelBound() {
+		updateViewInfo();
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.now_playing;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.IBinder;
 
@@ -15,7 +16,7 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import lombok.Setter;
 
 public class NowPlayingModel
-		implements NowPlayingMvp.Model,
+		implements ServiceConnection,
 				   Player.OnNewTrackListener,
 				   Player.OnPlayPauseListener {
 
@@ -28,95 +29,90 @@ public class NowPlayingModel
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnPlayPauseListener onPlayPauseListener;
 
+	public interface OnModelBoundListener {
+		void onModelBound();
+	}
+
+	public interface OnNewTrackListener {
+		void onNewTrack();
+	}
+
+	public interface OnPlayPauseListener {
+		void onPlayPause();
+	}
+
 	public NowPlayingModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
 	}
 
-	@Override
 	public void bind() {
 		Intent intent = new Intent(context, PlayerService.class);
 		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 	}
 
-	@Override
 	public void unbind() {
 		service.getPlayer().removeOnNewTrackListener(this);
 		service.getPlayer().removeOnPlayPauseListener(this);
 		context.unbindService(this);
 	}
 
-	@Override
 	public RepeatMode getRepeatMode() {
 		return service.getPlayer().getRepeatMode();
 	}
 
-	@Override
 	public ShuffleMode getShuffleMode() {
 		return service.getPlayer().getShuffleMode();
 	}
 
-	@Override
 	public void toggleRepeatMode() {
 		service.getPlayer().toggleRepeatMode();
 	}
 
-	@Override
 	public void toggleShuffleMode() {
 		service.getPlayer().toggleShuffleMode();
 	}
 
-	@Override
 	public boolean isPlaying() {
 		return service.getPlayer().isPlaying();
 	}
 
-	@Override
 	public void playPause() {
 		service.getPlayer().playPause();
 	}
 
-	@Override
 	public void rewind() {
 		service.getPlayer().skipToPrevious();
 	}
 
-	@Override
 	public void fastForward() {
 		service.getPlayer().skipToNext();
 	}
 
-	@Override
 	public void seek(int positionMS) {
 		service.getPlayer().setPosition(positionMS);
 	}
 
-	@Override
 	public int getDuration() {
 		return (int) service.getPlayer().getCurrentTrack().getDuration();
 	}
 
-	@Override
 	public int getPosition() {
 		return (int) service.getPlayer().getPosition();
 	}
 
-	@Override
 	public String getTitle() {
 		return service.getPlayer().getCurrentTrack().getTitle();
 	}
 
-	@Override
 	public String getArtist() {
 		return service.getPlayer().getCurrentTrack().getArtistTitle();
 	}
 
-	@Override
 	public String getAlbum() {
 		return service.getPlayer().getCurrentTrack().getAlbumTitle();
 	}
 
-	@Override
 	public Bitmap getArt() {
 		return albumArtProvider.load(service.getPlayer().getCurrentTrack());
 	}

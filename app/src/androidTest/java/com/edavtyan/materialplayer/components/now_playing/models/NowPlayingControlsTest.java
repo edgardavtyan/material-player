@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.components.now_playing.models;
 import android.widget.ImageButton;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 

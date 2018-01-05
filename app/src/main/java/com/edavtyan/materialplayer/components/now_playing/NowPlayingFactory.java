@@ -9,43 +9,37 @@ import com.edavtyan.materialplayer.lib.base.BaseFactory;
 
 public class NowPlayingFactory extends BaseFactory {
 	private final NowPlayingActivity activity;
-	private final NowPlayingMvp.View view;
 
-	private NowPlayingMvp.Model model;
-	private NowPlayingMvp.Presenter presenter;
-	private NowPlayingMvp.View.Controls controls;
-	private NowPlayingMvp.View.Info info;
-	private NowPlayingMvp.View.Art art;
-	private NowPlayingMvp.View.Seekbar seekbar;
-	private NowPlayingMvp.View.Fab fab;
+	private NowPlayingModel model;
+	private NowPlayingPresenter presenter;
+	private NowPlayingControls controls;
+	private NowPlayingInfo info;
+	private NowPlayingArt art;
+	private NowPlayingSeekbar seekbar;
+	private NowPlayingFab fab;
 
-	public NowPlayingFactory(NowPlayingActivity activity, NowPlayingMvp.View view) {
+	public NowPlayingFactory(NowPlayingActivity activity) {
 		super(activity);
 		this.activity = activity;
-		this.view = view;
 	}
 
 	public NowPlayingActivity getActivity() {
 		return activity;
 	}
 
-	public NowPlayingMvp.View getView() {
-		return view;
-	}
-
-	public NowPlayingMvp.Presenter getPresenter() {
+	public NowPlayingPresenter getPresenter() {
 		if (presenter == null)
-			presenter = new NowPlayingPresenter(getModel(), getView());
+			presenter = new NowPlayingPresenter(getModel(), activity);
 		return presenter;
 	}
 
-	public NowPlayingMvp.Model getModel() {
+	public NowPlayingModel getModel() {
 		if (model == null)
 			model = new NowPlayingModel(getActivity(), getArtProvider());
 		return model;
 	}
 
-	public NowPlayingMvp.View.Controls getControls() {
+	public NowPlayingControls getControls() {
 		if (controls == null)
 			controls = new NowPlayingControls(
 					getActivity(),
@@ -54,25 +48,25 @@ public class NowPlayingFactory extends BaseFactory {
 		return controls;
 	}
 
-	public NowPlayingMvp.View.Info getInfo() {
+	public NowPlayingInfo getInfo() {
 		if (info == null)
 			info = new NowPlayingInfo(getActivity());
 		return info;
 	}
 
-	public NowPlayingMvp.View.Art getArt() {
+	public NowPlayingArt getArt() {
 		if (art == null)
 			art = new NowPlayingArt(getActivity());
 		return art;
 	}
 
-	public NowPlayingMvp.View.Seekbar getSeekbar() {
+	public NowPlayingSeekbar getSeekbar() {
 		if (seekbar == null)
 			seekbar = new NowPlayingSeekbar(getActivity(), getPresenter());
 		return seekbar;
 	}
 
-	public NowPlayingMvp.View.Fab getFab() {
+	public NowPlayingFab getFab() {
 		if (fab == null)
 			fab = new NowPlayingFab(getActivity(), getPresenter());
 		return fab;

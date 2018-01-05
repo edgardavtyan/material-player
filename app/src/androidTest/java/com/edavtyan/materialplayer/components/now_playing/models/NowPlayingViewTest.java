@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import static org.mockito.Mockito.mock;
