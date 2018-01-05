@@ -22,10 +22,7 @@ import com.edavtyan.materialplayer.utils.DpConverter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NowPlayingFloatingFragment
-		extends BaseFragment
-		implements NowPlayingFloatingMvp.View,
-				   View.OnClickListener {
+public class NowPlayingFloatingFragment extends BaseFragment implements View.OnClickListener {
 
 	public static final int SCALED_ART_SIZE_DP = 44;
 
@@ -36,7 +33,7 @@ public class NowPlayingFloatingFragment
 	@BindView(R.id.container) LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoWrapper;
 
-	private NowPlayingFloatingMvp.Presenter presenter;
+	private NowPlayingFloatingPresenter presenter;
 	private Navigator navigator;
 
 	@Override
@@ -90,19 +87,16 @@ public class NowPlayingFloatingFragment
 		presenter.onDestroy();
 	}
 
-	@Override
 	public void setTrackTitle(String title) {
 		titleView.setText(title);
 	}
 
-	@Override
 	public void setTrackInfo(String artistTitle, String albumTitle) {
 		Resources res = getContext().getResources();
 		String info = res.getString(R.string.nowplaying_info_pattern, artistTitle, albumTitle);
 		infoView.setText(info);
 	}
 
-	@Override
 	public void setArt(Bitmap art) {
 		if (art != null) {
 			int scaledArtSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
@@ -113,17 +107,14 @@ public class NowPlayingFloatingFragment
 		}
 	}
 
-	@Override
 	public void setIsPlaying(boolean isPlaying) {
 		playPauseButton.setImageResource(isPlaying ? R.drawable.ic_pause : R.drawable.ic_play);
 	}
 
-	@Override
 	public void setIsVisible(boolean visibility) {
 		mainWrapper.setVisibility(visibility ? View.VISIBLE : View.GONE);
 	}
 
-	@Override
 	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
 	}

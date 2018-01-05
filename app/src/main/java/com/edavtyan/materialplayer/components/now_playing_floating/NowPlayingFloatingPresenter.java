@@ -2,35 +2,34 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import com.edavtyan.materialplayer.db.Track;
 
-public class NowPlayingFloatingPresenter implements NowPlayingFloatingMvp.Presenter {
-	private final NowPlayingFloatingMvp.Model model;
-	private final NowPlayingFloatingMvp.View view;
+public class NowPlayingFloatingPresenter
+		implements NowPlayingFloatingModel.OnNewTrackListener,
+				   NowPlayingFloatingModel.OnServiceConnectedListener {
+
+	private final NowPlayingFloatingModel model;
+	private final NowPlayingFloatingFragment view;
 
 	public NowPlayingFloatingPresenter(
-			NowPlayingFloatingMvp.Model model,
-			NowPlayingFloatingMvp.View view) {
+			NowPlayingFloatingModel model,
+			NowPlayingFloatingFragment view) {
 		this.model = model;
 		this.view = view;
 	}
 
-	@Override
 	public void onCreate() {
 		model.bind();
 		model.setOnNewTrackListener(this);
 		model.setOnServiceConnectedListener(this);
 	}
 
-	@Override
 	public void onDestroy() {
 		model.unbind();
 	}
 
-	@Override
 	public void onViewClick() {
 		view.gotoNowPlaying();
 	}
 
-	@Override
 	public void onPlayPauseClick() {
 		model.togglePlayPause();
 		view.setIsPlaying(model.isPlaying());

@@ -24,7 +24,7 @@ import com.edavtyan.materialplayer.components.notification.PlayerNotificationFac
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
-import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
+import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueFactory;
 import com.edavtyan.materialplayer.components.player.Player;
@@ -107,7 +107,7 @@ public class App extends Application {
 
 	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(
 			Context context,
-			NowPlayingFloatingMvp.View view) {
+			NowPlayingFloatingFragment view) {
 		return (nowPlayingFloatingFactory == null)
 				? new NowPlayingFloatingFactory(context, view)
 				: nowPlayingFloatingFactory;
