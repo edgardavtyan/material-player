@@ -10,24 +10,24 @@ import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class ArtistDetailFactory extends ListFactory {
 	private final String artistTitle;
-	private final ArtistDetailMvp.View view;
+	private final ArtistDetailView view;
 	private final DBModule dbModule;
-	private ArtistDetailMvp.Model model;
-	private ArtistDetailMvp.Presenter presenter;
+	private ArtistDetailModel model;
+	private ArtistDetailPresenter presenter;
 	private ArtistDetailAdapter adapter;
 	private ArtistDetailImageLoader artistDetailImageLoader;
 	private LastfmApi lastfmApi;
 	private ArtistDetailImageFileStorage fileStorage;
 	private ArtistDetailImageMemoryCache memoryCache;
 
-	public ArtistDetailFactory(Context context, ArtistDetailMvp.View view, String artistTitle) {
+	public ArtistDetailFactory(Context context, ArtistDetailView view, String artistTitle) {
 		super(context);
 		this.view = view;
 		this.artistTitle = artistTitle;
 		dbModule = new DBModule(context);
 	}
 
-	public ArtistDetailMvp.Model getModel() {
+	public ArtistDetailModel getModel() {
 		if (model == null)
 			model = new ArtistDetailModel(
 					getModelServiceModule(),
@@ -40,11 +40,11 @@ public class ArtistDetailFactory extends ListFactory {
 		return model;
 	}
 
-	public ArtistDetailMvp.View getView() {
+	public ArtistDetailView getView() {
 		return view;
 	}
 
-	public ArtistDetailMvp.Presenter getPresenter() {
+	public ArtistDetailPresenter getPresenter() {
 		if (presenter == null)
 			presenter = new ArtistDetailPresenter(getModel(), getView());
 		return presenter;

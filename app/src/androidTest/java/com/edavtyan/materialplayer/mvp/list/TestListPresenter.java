@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.mvp.list;
 
-import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 
 public class TestListPresenter extends ListPresenter {

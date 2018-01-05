@@ -17,12 +17,12 @@ public class ListFragmentModule extends FragmentModule {
 	@BindView(R.id.list) RecyclerView list;
 	private final Fragment fragment;
 	private final TestableRecyclerAdapter adapter;
-	private final ListMvp.Presenter presenter;
+	private final ListPresenter presenter;
 
 	public ListFragmentModule(
 			Fragment fragment,
 			TestableRecyclerAdapter adapter,
-			ListMvp.Presenter presenter) {
+			ListPresenter presenter) {
 		this.fragment = fragment;
 		this.adapter = adapter;
 		this.presenter = presenter;

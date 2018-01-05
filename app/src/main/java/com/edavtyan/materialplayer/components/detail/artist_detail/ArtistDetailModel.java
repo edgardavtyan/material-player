@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
-public class ArtistDetailModel extends AlbumListModel implements ArtistDetailMvp.Model {
+public class ArtistDetailModel extends AlbumListModel {
 	private final ArtistDB artistDB;
 	private final AlbumDB albumDB;
 	private final String artistTitle;

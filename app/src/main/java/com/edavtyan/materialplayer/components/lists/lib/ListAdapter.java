@@ -12,9 +12,9 @@ public abstract class ListAdapter<VH extends RecyclerView.ViewHolder>
 		extends TestableRecyclerAdapter<VH> {
 
 	private final Context context;
-	private final ListMvp.Presenter<VH> presenter;
+	private final ListPresenter<VH> presenter;
 
-	public ListAdapter(Context context, ListMvp.Presenter<VH> presenter) {
+	public ListAdapter(Context context, ListPresenter<VH> presenter) {
 		this.context = context;
 		this.presenter = presenter;
 	}

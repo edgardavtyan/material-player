@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.mvp.list;
 
-import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 

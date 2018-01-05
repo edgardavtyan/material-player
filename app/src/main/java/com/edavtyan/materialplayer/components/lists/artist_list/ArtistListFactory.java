@@ -3,13 +3,13 @@ package com.edavtyan.materialplayer.components.lists.artist_list;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmArtistInfoFileStorage;
-import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class ArtistListFactory extends ListFactory {
-	private final ArtistListMvp.View view;
+	private final ArtistListView view;
 	private final DBModule dbModule;
 	private ArtistListModel model;
 	private ArtistListPresenter presenter;
@@ -19,17 +19,17 @@ public class ArtistListFactory extends ListFactory {
 	private ArtistListImageMemoryCache memoryCache;
 	private ArtistListImageLoader imageLoader;
 
-	public ArtistListFactory(Context context, ArtistListMvp.View view) {
+	public ArtistListFactory(Context context, ArtistListView view) {
 		super(context);
 		this.view = view;
 		dbModule = new DBModule(context);
 	}
 
-	public ArtistListMvp.View getView() {
+	public ArtistListView getView() {
 		return view;
 	}
 
-	public ArtistListMvp.Model getModel() {
+	public ArtistListModel getModel() {
 		if (model == null)
 			model = new ArtistListModel(
 					getModelServiceModule(),
@@ -40,7 +40,7 @@ public class ArtistListFactory extends ListFactory {
 		return model;
 	}
 
-	public ArtistListMvp.Presenter getPresenter() {
+	public ArtistListPresenter getPresenter() {
 		if (presenter == null)
 			presenter = new ArtistListPresenter(getModel(), getView());
 		return presenter;

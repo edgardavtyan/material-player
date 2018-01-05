@@ -8,9 +8,9 @@ import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
 
 public class AlbumListAdapter extends ListAdapter<AlbumListViewHolder> {
 
-	private final AlbumListMvp.Presenter presenter;
+	private final AlbumListPresenter presenter;
 
-	public AlbumListAdapter(Context context, AlbumListMvp.Presenter presenter) {
+	public AlbumListAdapter(Context context, AlbumListPresenter presenter) {
 		super(context, presenter);
 		this.presenter = presenter;
 	}

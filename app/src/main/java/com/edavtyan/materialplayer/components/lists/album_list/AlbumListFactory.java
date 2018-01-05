@@ -6,23 +6,23 @@ import com.edavtyan.materialplayer.db.DBModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class AlbumListFactory extends ListFactory {
-	private final AlbumListMvp.View view;
+	private final AlbumListView view;
 	private final DBModule dbModule;
 	private AlbumListModel model;
 	private AlbumListPresenter presenter;
 	private AlbumListAdapter adapter;
 
-	public AlbumListFactory(Context context, AlbumListMvp.View view) {
+	public AlbumListFactory(Context context, AlbumListView view) {
 		super(context);
 		this.view = view;
 		this.dbModule = new DBModule(context);
 	}
 
-	public AlbumListMvp.View getView() {
+	public AlbumListView getView() {
 		return view;
 	}
 
-	public AlbumListMvp.Model getModel() {
+	public AlbumListModel getModel() {
 		if (model == null)
 			model = new AlbumListModel(
 					getModelServiceModule(),
@@ -32,7 +32,7 @@ public class AlbumListFactory extends ListFactory {
 		return model;
 	}
 
-	public AlbumListMvp.Presenter getPresenter() {
+	public AlbumListPresenter getPresenter() {
 		if (presenter == null)
 			presenter = new AlbumListPresenter(getModel(), getView());
 		return presenter;

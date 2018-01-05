@@ -23,12 +23,12 @@ public class NowPlayingQueueViewHolder
 	@BindView(R.id.now_playing) ImageView nowPlayingView;
 
 	private final Context context;
-	private final NowPlayingQueueMvp.Presenter presenter;
+	private final NowPlayingQueuePresenter presenter;
 
 	public NowPlayingQueueViewHolder(
 			Context context,
 			View itemView,
-			NowPlayingQueueMvp.Presenter presenter) {
+			NowPlayingQueuePresenter presenter) {
 		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;

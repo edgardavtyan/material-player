@@ -11,11 +11,11 @@ import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewFact
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailFactory;
-import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailView;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFactory;
-import com.edavtyan.materialplayer.components.lists.album_list.AlbumListMvp;
+import com.edavtyan.materialplayer.components.lists.album_list.AlbumListView;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFactory;
-import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListMvp;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListView;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListFactory;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListFragment;
 import com.edavtyan.materialplayer.components.main.MainActivity;
@@ -26,8 +26,8 @@ import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp;
+import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueFactory;
-import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueMvp;
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
@@ -67,7 +67,7 @@ public class App extends Application {
 				: baseFactory;
 	}
 
-	public AlbumListFactory getAlbumListDI(Context context, AlbumListMvp.View view) {
+	public AlbumListFactory getAlbumListDI(Context context, AlbumListView view) {
 		return (albumListFactory == null)
 				? new AlbumListFactory(context, view)
 				: albumListFactory;
@@ -79,7 +79,7 @@ public class App extends Application {
 				: albumDetailFactory;
 	}
 
-	public ArtistListFactory getArtistListDI(Context context, ArtistListMvp.View view) {
+	public ArtistListFactory getArtistListDI(Context context, ArtistListView view) {
 		return (artistListFactory == null)
 				? new ArtistListFactory(context, view)
 				: artistListFactory;
@@ -87,7 +87,7 @@ public class App extends Application {
 
 	public ArtistDetailFactory getArtistDetailDI(
 			Context context,
-			ArtistDetailMvp.View view,
+			ArtistDetailView view,
 			String artistTitle) {
 		return (artistDetailFactory == null)
 				? new ArtistDetailFactory(context, view, artistTitle)
@@ -116,7 +116,7 @@ public class App extends Application {
 				: nowPlayingFloatingFactory;
 	}
 
-	public NowPlayingQueueFactory getPlaylistFactory(Context context, NowPlayingQueueMvp.View view) {
+	public NowPlayingQueueFactory getPlaylistFactory(Context context, NowPlayingQueueActivity view) {
 		return (nowPlayingQueueFactory == null)
 				? new NowPlayingQueueFactory(context, view)
 				: nowPlayingQueueFactory;

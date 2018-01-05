@@ -1,19 +1,17 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import com.edavtyan.materialplayer.components.lists.lib.ListModel;
-import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
+import com.edavtyan.materialplayer.db.Track;
 
-public class NowPlayingQueuePresenter
-		extends ListPresenter<NowPlayingQueueViewHolder>
-		implements NowPlayingQueueMvp.Presenter {
+public class NowPlayingQueuePresenter extends ListPresenter<NowPlayingQueueViewHolder> {
 
-	private final NowPlayingQueueMvp.Model model;
-	private final NowPlayingQueueMvp.View view;
+	private final NowPlayingQueueModel model;
+	private final NowPlayingQueueActivity view;
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final NowPlayingQueueMvp.Model.OnNewTrackListener onNewTrackListener
-			= new NowPlayingQueueMvp.Model.OnNewTrackListener() {
+	private final NowPlayingQueueModel.OnNewTrackListener onNewTrackListener
+			= new NowPlayingQueueModel.OnNewTrackListener() {
 		@Override
 		public void onNewTrack() {
 			view.notifyDataSetChanged();
@@ -29,7 +27,7 @@ public class NowPlayingQueuePresenter
 		}
 	};
 
-	public NowPlayingQueuePresenter(NowPlayingQueueMvp.Model model, NowPlayingQueueMvp.View view) {
+	public NowPlayingQueuePresenter(NowPlayingQueueModel model, NowPlayingQueueActivity view) {
 		super(model, view);
 		this.model = model;
 		this.model.setOnNewTrackListener(onNewTrackListener);
@@ -47,13 +45,11 @@ public class NowPlayingQueuePresenter
 		model.unbindService();
 	}
 
-	@Override
 	public void onItemClick(int position) {
 		model.playItemAtPosition(position);
 		view.notifyDataSetChanged();
 	}
 
-	@Override
 	public void onRemoveItemClick(int position) {
 		model.removeItemAtPosition(position);
 		view.removeItem(position);
@@ -72,7 +68,6 @@ public class NowPlayingQueuePresenter
 		return model.getTrackCount();
 	}
 
-	@Override
 	public int getItemId(int position) {
 		return model.getTrackAtPosition(position).getId();
 	}

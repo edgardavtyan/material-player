@@ -19,9 +19,9 @@ public class ArtistListViewHolder extends ListViewHolder {
 	@BindView(R.id.art) ImageView artView;
 
 	private final Context context;
-	private final ArtistListMvp.Presenter presenter;
+	private final ArtistListPresenter presenter;
 
-	public ArtistListViewHolder(Context context, View itemView, ArtistListMvp.Presenter presenter) {
+	public ArtistListViewHolder(Context context, View itemView, ArtistListPresenter presenter) {
 		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;

@@ -11,9 +11,7 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
-public class ArtistListModel
-		extends ListModel
-		implements ArtistListMvp.Model {
+public class ArtistListModel extends ListModel {
 
 	private final ArtistDB db;
 	private final TrackDB trackDB;
@@ -32,29 +30,24 @@ public class ArtistListModel
 		this.imageLoader = imageLoader;
 	}
 
-	@Override
 	public void update() {
 		artists = queryArtists();
 	}
 
-	@Override
 	public void addToPlaylist(int artistId) {
 		service.getPlayer().addManyTracks(trackDB.getTracksWithArtistId(artistId));
 	}
 
-	@Override
 	public int getArtistCount() {
 		if (artists == null) return 0;
 		return artists.size();
 	}
 
-	@Override
 	public Artist getArtistAtIndex(int position) {
 		if (artists == null) return null;
 		return artists.get(position);
 	}
 
-	@Override
 	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {
 		String artistTitle = artists.get(position).getTitle();
 		Bitmap imageFromCache = imageLoader.getImageFromMemoryCache(artistTitle);

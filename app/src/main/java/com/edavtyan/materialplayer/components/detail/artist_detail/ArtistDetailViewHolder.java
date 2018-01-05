@@ -15,7 +15,7 @@ public class ArtistDetailViewHolder extends AlbumListViewHolder {
 
 	private final Context context;
 
-	public ArtistDetailViewHolder(Context context, View itemView, ArtistDetailMvp.Presenter presenter) {
+	public ArtistDetailViewHolder(Context context, View itemView, ArtistDetailPresenter presenter) {
 		super(context, itemView, presenter);
 		this.context = context;
 	}

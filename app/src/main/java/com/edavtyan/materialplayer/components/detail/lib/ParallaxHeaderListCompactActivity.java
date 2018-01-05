@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
+import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.utils.BitmapResizer;
@@ -18,7 +18,7 @@ import butterknife.BindView;
 
 public abstract class ParallaxHeaderListCompactActivity
 		extends BaseToolbarActivity
-		implements ListMvp.View {
+		implements ListView {
 
 	private static final int SCALED_ART_SIZE_DP = 120;
 

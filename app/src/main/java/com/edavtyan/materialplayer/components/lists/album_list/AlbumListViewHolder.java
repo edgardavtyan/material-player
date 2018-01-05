@@ -21,9 +21,9 @@ public class AlbumListViewHolder extends ListViewHolder {
 	@BindView(R.id.art) ImageView artView;
 
 	private final Context context;
-	private final AlbumListMvp.Presenter presenter;
+	private final AlbumListPresenter presenter;
 
-	public AlbumListViewHolder(Context context, View itemView, AlbumListMvp.Presenter presenter) {
+	public AlbumListViewHolder(Context context, View itemView, AlbumListPresenter presenter) {
 		super(context, itemView);
 		this.context = context;
 		this.presenter = presenter;

@@ -10,11 +10,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
 
-import static com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp.EXTRA_ARTIST_TITLE;
-
 public class ArtistDetailActivity
 		extends ParallaxHeaderListActivity
-		implements ArtistDetailMvp.View {
+		implements ArtistDetailView {
 
 	private Navigator navigator;
 

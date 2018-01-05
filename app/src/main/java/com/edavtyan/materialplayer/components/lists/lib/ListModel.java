@@ -5,9 +5,7 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import lombok.Setter;
 
-public class ListModel
-		implements ListMvp.Model,
-				   ModelServiceModule.OnServiceConnectedListener {
+public class ListModel implements ModelServiceModule.OnServiceConnectedListener {
 
 	protected PlayerService service;
 
@@ -26,17 +24,14 @@ public class ListModel
 		this.serviceModule.setOnServiceConnectedListener(this);
 	}
 
-	@Override
 	public void bindService() {
 		serviceModule.bind();
 	}
 
-	@Override
 	public void unbindService() {
 		serviceModule.unbind();
 	}
 
-	@Override
 	public boolean isCompactModeEnabled() {
 		return compactListPref.isEnabled();
 	}

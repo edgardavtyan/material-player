@@ -7,9 +7,9 @@ import com.edavtyan.materialplayer.components.lists.album_list.AlbumListAdapter;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListViewHolder;
 
 public class ArtistDetailAdapter extends AlbumListAdapter {
-	private final ArtistDetailMvp.Presenter presenter;
+	private final ArtistDetailPresenter presenter;
 
-	public ArtistDetailAdapter(Context context, ArtistDetailMvp.Presenter presenter) {
+	public ArtistDetailAdapter(Context context, ArtistDetailPresenter presenter) {
 		super(context, presenter);
 		this.presenter = presenter;
 	}

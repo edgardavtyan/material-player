@@ -11,7 +11,7 @@ import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailAct
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivityCompact;
-import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailMvp;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailView;
 import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
@@ -32,7 +32,7 @@ public class Navigator {
 				? ArtistDetailActivityCompact.class : ArtistDetailActivity.class;
 
 		Intent intent = new Intent(context, activityClass);
-		intent.putExtra(ArtistDetailMvp.EXTRA_ARTIST_TITLE, artistTitle);
+		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
 		context.startActivity(intent);
 	}
 

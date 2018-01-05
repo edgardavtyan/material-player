@@ -6,18 +6,17 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import butterknife.BindView;
 
-public class NowPlayingQueueActivity
-		extends BaseToolbarActivity
-		implements NowPlayingQueueMvp.View {
+public class NowPlayingQueueActivity extends BaseToolbarActivity implements ListView {
 
 	@BindView(R.id.list) RecyclerView list;
 
-	private NowPlayingQueueMvp.Presenter presenter;
+	private NowPlayingQueuePresenter presenter;
 	private NowPlayingQueueAdapter adapter;
 
 	@Override
@@ -52,7 +51,6 @@ public class NowPlayingQueueActivity
 		adapter.notifyDataSetChangedNonFinal();
 	}
 
-	@Override
 	public void removeItem(int position) {
 		adapter.notifyItemRemoved(position);
 	}

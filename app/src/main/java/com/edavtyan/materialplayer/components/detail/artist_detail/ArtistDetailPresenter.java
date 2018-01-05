@@ -1,16 +1,17 @@
 package com.edavtyan.materialplayer.components.detail.artist_detail;
 
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListPresenter;
 import com.edavtyan.materialplayer.db.Artist;
 
 public class ArtistDetailPresenter
 		extends AlbumListPresenter
-		implements ArtistDetailMvp.Presenter {
+		implements ParallaxHeaderListPresenter {
 
-	private final ArtistDetailMvp.Model model;
-	private final ArtistDetailMvp.View view;
+	private final ArtistDetailModel model;
+	private final ArtistDetailView view;
 
-	public ArtistDetailPresenter(ArtistDetailMvp.Model model, ArtistDetailMvp.View view) {
+	public ArtistDetailPresenter(ArtistDetailModel model, ArtistDetailView view) {
 		super(model, view);
 		this.model = model;
 		this.view = view;

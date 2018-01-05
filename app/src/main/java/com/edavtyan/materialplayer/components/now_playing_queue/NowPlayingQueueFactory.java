@@ -5,29 +5,25 @@ import android.content.Context;
 import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 
 public class NowPlayingQueueFactory extends ListFactory {
-	private final NowPlayingQueueMvp.View view;
+	private final NowPlayingQueueActivity view;
 	private NowPlayingQueueModel model;
 	private NowPlayingQueuePresenter presenter;
 	private NowPlayingQueueAdapter adapter;
 
-	public NowPlayingQueueFactory(Context context, NowPlayingQueueMvp.View view) {
+	public NowPlayingQueueFactory(Context context, NowPlayingQueueActivity view) {
 		super(context);
 		this.view = view;
 	}
 
-	public NowPlayingQueueMvp.View getView() {
-		return view;
-	}
-
-	public NowPlayingQueueMvp.Model getModel() {
+	public NowPlayingQueueModel getModel() {
 		if (model == null)
 			model = new NowPlayingQueueModel(getModelServiceModule(), getCompactListPref());
 		return model;
 	}
 
-	public NowPlayingQueueMvp.Presenter getPresenter() {
+	public NowPlayingQueuePresenter getPresenter() {
 		if (presenter == null)
-			presenter = new NowPlayingQueuePresenter(getModel(), getView());
+			presenter = new NowPlayingQueuePresenter(getModel(), view);
 		return presenter;
 	}
 

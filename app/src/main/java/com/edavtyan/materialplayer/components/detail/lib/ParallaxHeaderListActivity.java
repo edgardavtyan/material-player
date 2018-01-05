@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.lists.lib.ListMvp;
+import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 
@@ -16,7 +16,7 @@ import butterknife.BindView;
 
 public abstract class ParallaxHeaderListActivity
 		extends BaseToolbarActivity
-		implements ListMvp.View {
+		implements ListView {
 	
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;

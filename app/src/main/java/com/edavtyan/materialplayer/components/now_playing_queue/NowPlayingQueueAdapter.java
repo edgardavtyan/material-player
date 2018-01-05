@@ -8,9 +8,9 @@ import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
 
 public class NowPlayingQueueAdapter extends ListAdapter<NowPlayingQueueViewHolder> {
 
-	private final NowPlayingQueueMvp.Presenter presenter;
+	private final NowPlayingQueuePresenter presenter;
 
-	public NowPlayingQueueAdapter(Context context, NowPlayingQueueMvp.Presenter presenter) {
+	public NowPlayingQueueAdapter(Context context, NowPlayingQueuePresenter presenter) {
 		super(context, presenter);
 		this.presenter = presenter;
 	}

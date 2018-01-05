@@ -3,10 +3,10 @@ package com.edavtyan.materialplayer.components.lists.lib;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
-public class ListFragment extends ModularFragment implements ListMvp.View {
+public class ListFragment extends ModularFragment implements ListView {
 	private ListFragmentModule listFragmentModule;
 
-	protected void initListView(ListMvp.Presenter presenter, ListAdapter adapter) {
+	protected void initListView(ListPresenter presenter, ListAdapter adapter) {
 		listFragmentModule = new ListFragmentModule(this, adapter, presenter);
 		addModule(listFragmentModule);
 	}

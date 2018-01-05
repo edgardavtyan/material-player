@@ -9,9 +9,7 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.List;
 
-public class AlbumListModel
-		extends ListModel
-		implements AlbumListMvp.Model {
+public class AlbumListModel extends ListModel {
 
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
@@ -28,24 +26,20 @@ public class AlbumListModel
 		this.trackDB = trackDB;
 	}
 
-	@Override
 	public Album getAlbumAtIndex(int index) {
 		if (albums == null) return null;
 		return albums.get(index);
 	}
 
-	@Override
 	public int getAlbumsCount() {
 		if (albums == null) return 0;
 		return albums.size();
 	}
 
-	@Override
 	public void addToPlaylist(int albumId) {
 		service.getPlayer().addManyTracks(trackDB.getTracksWithAlbumId(albumId));
 	}
 
-	@Override
 	public void update() {
 		albums = queryAlbums();
 	}

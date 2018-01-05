@@ -7,7 +7,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
 
-public class AlbumListFragment extends ListFragment implements AlbumListMvp.View {
+public class AlbumListFragment extends ListFragment implements AlbumListView {
 
 	private Navigator navigator;
 
