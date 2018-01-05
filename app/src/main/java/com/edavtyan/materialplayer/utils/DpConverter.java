@@ -9,11 +9,4 @@ public class DpConverter {
 		int px = (int) (dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
 		return px;
 	}
-
-	public static int convertPixelsToDp(int px) {
-		DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-		int dp = (int) (px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-		return dp;
-	}
-
 }
