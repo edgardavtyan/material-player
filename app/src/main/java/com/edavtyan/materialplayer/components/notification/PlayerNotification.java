@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 
 import lombok.Getter;
 
-public abstract class PlayerNotification implements PlayerNotificationMvp.View {
+public abstract class PlayerNotification {
 	private static final int NOTIFICATION_ID = 1;
 
 	private final AdvancedRemoteViews normalRemoteViews;
@@ -42,20 +42,17 @@ public abstract class PlayerNotification implements PlayerNotificationMvp.View {
 		this.notification = notification;
 	}
 
-	@Override
 	public void setTitle(String title) {
 		normalRemoteViews.setTextViewText(R.id.title, title);
 		bigRemoteViews.setTextViewText(R.id.title, title);
 	}
 
-	@Override
 	public void setInfo(String artist, String album) {
 		normalRemoteViews.setTextViewText(R.id.info, album);
 		bigRemoteViews.setTextViewText(R.id.artist, artist);
 		bigRemoteViews.setTextViewText(R.id.album, album);
 	}
 
-	@Override
 	public void setArt(Bitmap art) {
 		if (art != null) {
 			normalRemoteViews.setImageViewBitmap(R.id.art, art);
@@ -66,7 +63,6 @@ public abstract class PlayerNotification implements PlayerNotificationMvp.View {
 		}
 	}
 
-	@Override
 	public void setIsPlaying(boolean isPlaying) {
 		if (isPlaying) {
 			normalRemoteViews.setImageViewResource(R.id.play_pause, R.drawable.ic_pause);
@@ -77,7 +73,6 @@ public abstract class PlayerNotification implements PlayerNotificationMvp.View {
 		}
 	}
 
-	@Override
 	public void update() {
 		manager.notify(NOTIFICATION_ID, notification);
 	}

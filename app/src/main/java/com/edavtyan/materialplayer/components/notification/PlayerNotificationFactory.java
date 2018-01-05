@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class PlayerNotificationFactory extends BaseFactory {
-	private PlayerNotificationMvp.View notification;
+	private PlayerNotification notification;
 	private AdvancedRemoteViews remoteViews;
 	private AdvancedRemoteViews bigRemoteViews;
 	private AdvancedRemoteViews remoteViewsNougat;
@@ -22,15 +22,15 @@ public class PlayerNotificationFactory extends BaseFactory {
 	private TestableNotificationManager manager;
 	private NotificationCompat.Builder builder;
 	private Notification.Builder builder2;
-	private PlayerNotificationMvp.Model model;
-	private PlayerNotificationMvp.Presenter presenter;
+	private PlayerNotificationModel model;
+	private PlayerNotificationPresenter presenter;
 	private PendingIntents pendingIntents;
 
 	public PlayerNotificationFactory(Context context) {
 		super(context);
 	}
 
-	public PlayerNotificationMvp.View getNotification() {
+	public PlayerNotification getNotification() {
 		if (notification == null) {
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
 				notification = new PlayerNotificationCompat(
@@ -106,13 +106,13 @@ public class PlayerNotificationFactory extends BaseFactory {
 		return builder2;
 	}
 
-	public PlayerNotificationMvp.Model getModel() {
+	public PlayerNotificationModel getModel() {
 		if (model == null)
 			model = new PlayerNotificationModel(getContext(), getArtProvider());
 		return model;
 	}
 
-	public PlayerNotificationMvp.Presenter getPresenter() {
+	public PlayerNotificationPresenter getPresenter() {
 		if (presenter == null)
 			presenter = new PlayerNotificationPresenter(getModel(), getNotification());
 		return presenter;

@@ -14,11 +14,12 @@ import com.edavtyan.materialplayer.components.audio_effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoost;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audio_effects.surround.Surround;
+import com.edavtyan.materialplayer.components.notification.PlayerNotification;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationMvp;
 
 import lombok.Getter;
 
@@ -34,8 +35,8 @@ public class PlayerService extends Service {
 		}
 	}
 
-	private PlayerNotificationMvp.View notification;
-	private PlayerNotificationMvp.Presenter presenter;
+	private PlayerNotification notification;
+	private PlayerNotificationPresenter presenter;
 	private AudioFocusManager audioFocusManager;
 	private MediaSessionManager mediaSessionManager;
 	private @Getter Player player;

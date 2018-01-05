@@ -3,28 +3,25 @@ package com.edavtyan.materialplayer.components.notification;
 import com.edavtyan.materialplayer.db.Track;
 
 public class PlayerNotificationPresenter
-		implements PlayerNotificationMvp.Presenter,
-				   PlayerNotificationMvp.Model.OnNewTrackListener,
-				   PlayerNotificationMvp.Model.OnPlayPauseListener {
+		implements PlayerNotificationModel.OnNewTrackListener,
+				   PlayerNotificationModel.OnPlayPauseListener {
 
-	private final PlayerNotificationMvp.Model model;
-	private final PlayerNotificationMvp.View view;
+	private final PlayerNotificationModel model;
+	private final PlayerNotification view;
 
 	public PlayerNotificationPresenter(
-			PlayerNotificationMvp.Model model,
-			PlayerNotificationMvp.View view) {
+			PlayerNotificationModel model,
+			PlayerNotification view) {
 		this.model = model;
 		this.model.setOnNewTrackListener(this);
 		this.model.setOnPlayPauseListener(this);
 		this.view = view;
 	}
 
-	@Override
 	public void onCreate() {
 		model.bind();
 	}
 
-	@Override
 	public void onDestroy() {
 		model.unbind();
 	}

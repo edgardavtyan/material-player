@@ -16,7 +16,6 @@ import lombok.Setter;
 
 public class PlayerNotificationModel
 		implements ServiceConnection,
-				   PlayerNotificationMvp.Model,
 				   Player.OnNewTrackListener,
 				   Player.OnPlayPauseListener {
 
@@ -28,35 +27,38 @@ public class PlayerNotificationModel
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnPlayPauseListener onPlayPauseListener;
 
+	public interface OnNewTrackListener {
+		void onNewTrack();
+	}
+
+	public interface OnPlayPauseListener {
+		void onPlayPause();
+	}
+
 	public PlayerNotificationModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
 	}
 
-	@Override
 	public void bind() {
 		Intent intent = new Intent(context, PlayerService.class);
 		context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 	}
 
-	@Override
 	public void unbind() {
 		service.getPlayer().removeOnNewTrackListener(this);
 		service.getPlayer().removeOnPlayPauseListener(this);
 		context.unbindService(this);
 	}
 
-	@Override
 	public boolean isPlaying() {
 		return service.getPlayer().isPlaying();
 	}
 
-	@Override
 	public Track getTrack() {
 		return service.getPlayer().getCurrentTrack();
 	}
 
-	@Override
 	public Bitmap getArt() {
 		return albumArtProvider.load(getTrack());
 	}
