@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	private static NowPlayingFloatingFragment fragment;
-	private static NowPlayingFloatingMvp.Presenter presenter;
+	private static NowPlayingFloatingPresenter presenter;
 	private static Navigator navigator;
 	private static LayoutInflater inflater;
 	private static TextView infoView;
@@ -47,7 +47,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		super.beforeEach();
 
 		if (fragment == null) {
-			presenter = mock(NowPlayingFloatingMvp.Presenter.class);
+			presenter = mock(NowPlayingFloatingPresenter.class);
 			navigator = mock(Navigator.class);
 
 			NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);

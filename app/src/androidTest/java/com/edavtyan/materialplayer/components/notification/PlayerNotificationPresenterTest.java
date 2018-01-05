@@ -13,14 +13,14 @@ import static org.mockito.Mockito.when;
 
 public class PlayerNotificationPresenterTest extends BaseTest {
 	private PlayerNotificationPresenter presenter;
-	private PlayerNotificationMvp.View view;
-	private PlayerNotificationMvp.Model model;
+	private PlayerNotification view;
+	private PlayerNotificationModel model;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		model = mock(PlayerNotificationMvp.Model.class);
-		view = mock(PlayerNotificationMvp.View.class);
+		model = mock(PlayerNotificationModel.class);
+		view = mock(PlayerNotification.class);
 		presenter = new PlayerNotificationPresenter(model, view);
 	}
 

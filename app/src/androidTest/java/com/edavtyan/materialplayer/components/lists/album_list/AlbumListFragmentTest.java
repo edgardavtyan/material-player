@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class AlbumListFragmentTest extends FragmentTest2 {
 	private static AlbumListAdapter adapter;
-	private static AlbumListMvp.Presenter presenter;
+	private static AlbumListPresenter presenter;
 	private static Navigator navigator;
 	private static AlbumListFragment fragment;
 
@@ -25,7 +25,7 @@ public class AlbumListFragmentTest extends FragmentTest2 {
 
 		if (fragment == null) {
 			adapter = mock(AlbumListAdapter.class);
-			presenter = mock(AlbumListMvp.Presenter.class);
+			presenter = mock(AlbumListPresenter.class);
 			navigator = mock(Navigator.class);
 
 			AlbumListFactory factory = mock(AlbumListFactory.class);

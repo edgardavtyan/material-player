@@ -6,10 +6,11 @@ import android.view.View;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
+import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 
 public class TestListAdapter extends ListAdapter {
 	@SuppressWarnings("unchecked")
-	public TestListAdapter(Context context, ListMvp.Presenter presenter) {
+	public TestListAdapter(Context context, ListPresenter presenter) {
 		super(context, presenter);
 	}
 

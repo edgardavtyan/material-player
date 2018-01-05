@@ -1,10 +1,8 @@
-package com.edavtyan.materialplayer.components.now_playing;
+package com.edavtyan.materialplayer.components.now_playing.models;
 
 import android.support.design.widget.FloatingActionButton;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
-import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingViewTest;
 
 import org.junit.Test;
 

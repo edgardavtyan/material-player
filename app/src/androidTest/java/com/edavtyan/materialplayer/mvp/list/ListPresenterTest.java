@@ -1,6 +1,8 @@
 package com.edavtyan.materialplayer.mvp.list;
 
+import com.edavtyan.materialplayer.components.lists.lib.ListModel;
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
+import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -14,14 +16,14 @@ import static org.mockito.Mockito.when;
 public class ListPresenterTest extends BaseTest {
 
 	private ListPresenter listPresenter;
-	private ListMvp.Model model;
-	private ListMvp.View view;
+	private ListModel model;
+	private ListView view;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		model = mock(ListMvp.Model.class);
-		view = mock(ListMvp.View.class);
+		model = mock(ListModel.class);
+		view = mock(ListView.class);
 		listPresenter = new TestListPresenter(model, view);
 	}
 

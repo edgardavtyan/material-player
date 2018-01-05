@@ -3,9 +3,11 @@ package com.edavtyan.materialplayer.components;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailActivity;
-import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsActivity;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivity;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailView;
 import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
@@ -41,7 +43,7 @@ public class NavigatorTest extends BaseTest {
 
 		assertThat(intentCaptor.getValue())
 				.hasClass(ArtistDetailActivity.class)
-				.hasExtraString(ArtistDetailMvp.EXTRA_ARTIST_TITLE, "title");
+				.hasExtraString(ArtistDetailView.EXTRA_ARTIST_TITLE, "title");
 	}
 
 	@Test
@@ -52,7 +54,7 @@ public class NavigatorTest extends BaseTest {
 
 		assertThat(intentCaptor.getValue())
 				.hasClass(AlbumDetailActivity.class)
-				.hasExtraInt(AlbumDetailMvp.EXTRA_ALBUM_ID, 7);
+				.hasExtraInt(AlbumDetailView.EXTRA_ALBUM_ID, 7);
 	}
 
 	@Test

@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.view.ContextThemeWrapper;
 
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnModelBoundListener;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnNewTrackListener;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingMvp.Model.OnPlayPauseListener;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingModel.OnModelBoundListener;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingModel.OnNewTrackListener;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingModel.OnPlayPauseListener;
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
@@ -59,7 +59,7 @@ public class NowPlayingModelTest extends BaseTest {
 	public void bind_bindServiceWithCorrectIntent() {
 		ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
 
-		NowPlayingMvp.Model model = new NowPlayingModel(context, albumArtProvider);
+		NowPlayingModel model = new NowPlayingModel(context, albumArtProvider);
 		model.bind();
 
 		verify(context).bindService(intentCaptor.capture(), eq(model), eq(Context.BIND_AUTO_CREATE));

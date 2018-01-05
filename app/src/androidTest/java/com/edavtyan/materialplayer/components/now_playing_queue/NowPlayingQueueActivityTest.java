@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class NowPlayingQueueActivityTest extends ActivityTest {
 	private static NowPlayingQueueActivity activity;
 	private static NowPlayingQueueAdapter adapter;
-	private static NowPlayingQueueMvp.Presenter presenter;
+	private static NowPlayingQueuePresenter presenter;
 
 	@Override
 	public void beforeEach() {
@@ -30,7 +30,7 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 
 		if (activity == null) {
 			adapter = mock(NowPlayingQueueAdapter.class);
-			presenter = mock(NowPlayingQueueMvp.Presenter.class);
+			presenter = mock(NowPlayingQueuePresenter.class);
 
 			NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
 			when(factory.getAdapter()).thenReturn(adapter);

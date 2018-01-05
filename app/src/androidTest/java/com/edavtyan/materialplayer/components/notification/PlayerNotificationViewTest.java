@@ -26,7 +26,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 	private TestableNotificationManager manager;
 	private NotificationCompat.Builder builder;
 	private PendingIntents pendingIntents;
-	private PlayerNotificationMvp.View view;
+	private PlayerNotification view;
 
 	@Override
 	public void beforeEach() {

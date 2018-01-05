@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class ArtistListFragmentTest extends FragmentTest2 {
 	private static ArtistListAdapter adapter;
-	private static ArtistListMvp.Presenter presenter;
+	private static ArtistListPresenter presenter;
 	private static Navigator navigator;
 	private static ArtistListFragment fragment;
 
@@ -29,7 +29,7 @@ public class ArtistListFragmentTest extends FragmentTest2 {
 
 		if (fragment == null) {
 			adapter = mock(ArtistListAdapter.class);
-			presenter = mock(ArtistListMvp.Presenter.class);
+			presenter = mock(ArtistListPresenter.class);
 			navigator = mock(Navigator.class);
 
 			ArtistListFactory factory = mock(ArtistListFactory.class);

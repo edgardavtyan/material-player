@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
+import android.content.Context;
 import android.os.Environment;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -16,8 +17,8 @@ public class BaseFileStorageTest extends BaseTest {
 	private static final File TEST_DIR = new File(Environment.getExternalStorageDirectory(), "MaterialPlayer/test/");
 
 	public static class TestBaseFileStorage extends BaseFileStorage {
-		public TestBaseFileStorage() {
-			super("test");
+		public TestBaseFileStorage(Context context) {
+			super(context, "test");
 		}
 	}
 
@@ -25,7 +26,7 @@ public class BaseFileStorageTest extends BaseTest {
 
 	@Override
 	public void beforeEach() {
-		fileStorage = new TestBaseFileStorage();
+		fileStorage = new TestBaseFileStorage(context);
 	}
 
 	@Override

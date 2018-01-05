@@ -12,14 +12,13 @@ public class NowPlayingQueueFactoryTest extends FactoryTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		NowPlayingQueueMvp.View view = mock(NowPlayingQueueMvp.View.class);
+		NowPlayingQueueActivity view = mock(NowPlayingQueueActivity.class);
 		nowPlayingQueueFactory = new NowPlayingQueueFactory(context, view);
 	}
 
 	@Test
 	public void testProviders() throws Exception {
 		testFactoryMethod(nowPlayingQueueFactory::getModel);
-		testFactoryMethod(nowPlayingQueueFactory::getView);
 		testFactoryMethod(nowPlayingQueueFactory::getPresenter);
 		testFactoryMethod(nowPlayingQueueFactory::getAdapter);
 	}

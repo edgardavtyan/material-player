@@ -12,7 +12,7 @@ import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertTh
 import static org.mockito.Mockito.verify;
 
 public class NowPlayingControlsTest extends NowPlayingViewTest {
-	private NowPlayingMvp.View.Controls controls;
+	private NowPlayingControls controls;
 	private ImageButton shuffleButton;
 	private ImageButton rewindButton;
 	private ImageButton playPauseButton;

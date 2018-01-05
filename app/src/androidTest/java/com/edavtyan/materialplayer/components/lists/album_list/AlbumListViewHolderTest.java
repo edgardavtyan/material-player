@@ -20,13 +20,13 @@ import static org.mockito.Mockito.when;
 public class AlbumListViewHolderTest extends BaseTest {
 	private AlbumListViewHolder holder;
 	private View itemView;
-	private AlbumListMvp.Presenter presenter;
+	private AlbumListPresenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_album, null);
-		presenter = mock(AlbumListMvp.Presenter.class);
+		presenter = mock(AlbumListPresenter.class);
 		holder = spy(new AlbumListViewHolder(context, itemView, presenter));
 	}
 

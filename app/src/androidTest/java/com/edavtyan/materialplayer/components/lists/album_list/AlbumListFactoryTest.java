@@ -12,7 +12,7 @@ public class AlbumListFactoryTest extends FactoryTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		AlbumListMvp.View view = mock(AlbumListMvp.View.class);
+		AlbumListView view = mock(AlbumListView.class);
 		albumListFactory = new AlbumListFactory(context, view);
 	}
 

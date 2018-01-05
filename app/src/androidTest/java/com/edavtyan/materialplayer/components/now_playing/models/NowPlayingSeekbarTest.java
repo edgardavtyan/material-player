@@ -12,7 +12,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class NowPlayingSeekbarTest extends NowPlayingViewTest {
-	private NowPlayingMvp.View.Seekbar seekbar;
+	private NowPlayingSeekbar seekbar;
 	private SeekBar seekbarView;
 
 	@Override

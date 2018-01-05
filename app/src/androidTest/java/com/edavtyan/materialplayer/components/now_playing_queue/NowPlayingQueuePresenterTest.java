@@ -11,15 +11,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingQueuePresenterTest extends BaseTest {
-	private NowPlayingQueueMvp.Presenter presenter;
-	private NowPlayingQueueMvp.Model model;
+	private NowPlayingQueuePresenter presenter;
+	private NowPlayingQueueModel model;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(NowPlayingQueueMvp.Model.class);
-		presenter = new NowPlayingQueuePresenter(model, mock(NowPlayingQueueMvp.View.class));
+		model = mock(NowPlayingQueueModel.class);
+		presenter = new NowPlayingQueuePresenter(model, mock(NowPlayingQueueActivity.class));
 	}
 
 	@Test

@@ -16,14 +16,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArtistListAdapterTest extends BaseTest {
-	private ArtistListMvp.Presenter presenter;
+	private ArtistListPresenter presenter;
 	private ArtistListViewHolder holder;
 	private ArtistListAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		presenter = mock(ArtistListMvp.Presenter.class);
+		presenter = mock(ArtistListPresenter.class);
 		holder = mock(ArtistListViewHolder.class);
 		adapter = new ArtistListAdapter(context, presenter);
 	}

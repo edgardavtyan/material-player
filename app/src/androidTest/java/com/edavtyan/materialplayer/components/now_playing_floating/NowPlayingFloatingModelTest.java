@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnNewTrackListener;
-import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingMvp.Model.OnServiceConnectedListener;
+import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingModel.OnNewTrackListener;
+import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingModel.OnServiceConnectedListener;
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.db.Track;

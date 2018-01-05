@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.components.notification.PlayerNotification;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class PlayerServiceTest extends BaseTest {
 		super.beforeEach();
 
 		notification = mock(Notification.class);
-		PlayerNotificationMvp.View nowPlayingNotification = mock(PlayerNotificationMvp.View.class);
+		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
 		when(nowPlayingNotification.getNotification()).thenReturn(notification);
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);

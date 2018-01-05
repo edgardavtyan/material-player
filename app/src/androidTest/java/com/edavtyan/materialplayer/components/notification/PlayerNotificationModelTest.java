@@ -7,8 +7,8 @@ import android.support.v7.view.ContextThemeWrapper;
 
 import com.edavtyan.materialplayer.components.player.Player;
 import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationMvp.Model.OnNewTrackListener;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationMvp.Model.OnPlayPauseListener;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationModel.OnNewTrackListener;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationModel.OnPlayPauseListener;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;

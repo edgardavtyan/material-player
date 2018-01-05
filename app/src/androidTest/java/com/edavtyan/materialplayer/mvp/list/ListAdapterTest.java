@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
+import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -18,12 +19,12 @@ import static org.mockito.Mockito.when;
 
 public class ListAdapterTest extends BaseTest {
 	private ListAdapter listAdapter;
-	private ListMvp.Presenter presenter;
+	private ListPresenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		presenter = mock(ListMvp.Presenter.class);
+		presenter = mock(ListPresenter.class);
 		listAdapter = new TestListAdapter(context, presenter);
 	}
 

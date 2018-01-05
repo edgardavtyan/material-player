@@ -2,6 +2,10 @@ package com.edavtyan.materialplayer.components.now_playing;
 
 import android.graphics.Bitmap;
 
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.components.player.RepeatMode;
 import com.edavtyan.materialplayer.components.player.ShuffleMode;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -13,26 +17,26 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingPresenterTest extends BaseTest {
-	private NowPlayingMvp.Model model;
-	private NowPlayingMvp.View view;
-	private NowPlayingMvp.Presenter presenter;
-	private NowPlayingMvp.View.Controls controls;
-	private NowPlayingMvp.View.Info info;
-	private NowPlayingMvp.View.Art art;
-	private NowPlayingMvp.View.Seekbar seekbar;
+	private NowPlayingModel model;
+	private NowPlayingActivity view;
+	private NowPlayingPresenter presenter;
+	private NowPlayingControls controls;
+	private NowPlayingInfo info;
+	private NowPlayingArt art;
+	private NowPlayingSeekbar seekbar;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(NowPlayingMvp.Model.class);
+		model = mock(NowPlayingModel.class);
 
-		controls = mock(NowPlayingMvp.View.Controls.class);
-		info = mock(NowPlayingMvp.View.Info.class);
-		art = mock(NowPlayingMvp.View.Art.class);
-		seekbar = mock(NowPlayingMvp.View.Seekbar.class);
+		controls = mock(NowPlayingControls.class);
+		info = mock(NowPlayingInfo.class);
+		art = mock(NowPlayingArt.class);
+		seekbar = mock(NowPlayingSeekbar.class);
 
-		view = mock(NowPlayingMvp.View.class);
+		view = mock(NowPlayingActivity.class);
 		when(view.getControls()).thenReturn(controls);
 		when(view.getInfo()).thenReturn(info);
 		when(view.getArt()).thenReturn(art);

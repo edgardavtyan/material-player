@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NowPlayingInfoTest extends NowPlayingViewTest {
-	private NowPlayingMvp.View.Info info;
+	private NowPlayingInfo info;
 
 	@Override
 	public void beforeEach() {

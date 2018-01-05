@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingQueueModelTest extends BaseTest {
-	private NowPlayingQueueMvp.Model model;
+	private NowPlayingQueueModel model;
 	private PlayerService.PlayerBinder binder;
 	private Player player;
 	private ModelServiceModule serviceModule;

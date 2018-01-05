@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Test;
@@ -20,11 +24,11 @@ import static org.mockito.Mockito.when;
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingActivityTest extends ActivityTest {
 	private static NowPlayingActivity activity;
-	private static NowPlayingMvp.Presenter presenter;
-	private static NowPlayingMvp.View.Art art;
-	private static NowPlayingMvp.View.Controls controls;
-	private static NowPlayingMvp.View.Info info;
-	private static NowPlayingMvp.View.Seekbar seekbar;
+	private static NowPlayingPresenter presenter;
+	private static NowPlayingArt art;
+	private static NowPlayingControls controls;
+	private static NowPlayingInfo info;
+	private static NowPlayingSeekbar seekbar;
 	private static Navigator navigator;
 
 	@Override
@@ -32,11 +36,11 @@ public class NowPlayingActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		if (activity == null) {
-			presenter = mock(NowPlayingMvp.Presenter.class);
-			art = mock(NowPlayingMvp.View.Art.class);
-			controls = mock(NowPlayingMvp.View.Controls.class);
-			info = mock(NowPlayingMvp.View.Info.class);
-			seekbar = mock(NowPlayingMvp.View.Seekbar.class);
+			presenter = mock(NowPlayingPresenter.class);
+			art = mock(NowPlayingArt.class);
+			controls = mock(NowPlayingControls.class);
+			info = mock(NowPlayingInfo.class);
+			seekbar = mock(NowPlayingSeekbar.class);
 			navigator = mock(Navigator.class);
 
 			NowPlayingFactory factory = mock(NowPlayingFactory.class);

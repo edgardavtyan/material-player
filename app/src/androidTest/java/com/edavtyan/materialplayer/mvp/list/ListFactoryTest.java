@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.mvp.list;
+package com.edavtyan.materialplayer.list;
 
 import com.edavtyan.materialplayer.components.lists.lib.ListFactory;
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;

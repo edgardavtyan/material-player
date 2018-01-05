@@ -17,16 +17,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArtistListPresenterTest extends BaseTest {
-	private ArtistListMvp.Model model;
-	private ArtistListMvp.View view;
+	private ArtistListModel model;
+	private ArtistListView view;
 	private ArtistListViewHolder holder;
 	private ArtistListPresenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		model = mock(ArtistListMvp.Model.class);
-		view = mock(ArtistListMvp.View.class);
+		model = mock(ArtistListModel.class);
+		view = mock(ArtistListView.class);
 		holder = mock(ArtistListViewHolder.class);
 		presenter = new ArtistListPresenter(model, view);
 	}

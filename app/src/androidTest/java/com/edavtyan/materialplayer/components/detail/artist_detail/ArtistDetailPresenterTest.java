@@ -11,16 +11,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArtistDetailPresenterTest extends BaseTest {
-	private ArtistDetailMvp.Model model;
-	private ArtistDetailMvp.View view;
-	private ArtistDetailMvp.Presenter presenter;
+	private ArtistDetailModel model;
+	private ArtistDetailView view;
+	private ArtistDetailPresenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(ArtistDetailMvp.Model.class);
-		view = mock(ArtistDetailMvp.View.class);
+		model = mock(ArtistDetailModel.class);
+		view = mock(ArtistDetailView.class);
 		presenter = new ArtistDetailPresenter(model, view);
 	}
 

@@ -16,14 +16,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class AlbumListAdapterTest extends BaseTest {
-	private AlbumListMvp.Presenter presenter;
+	private AlbumListPresenter presenter;
 	private AlbumListViewHolder holder;
 	private AlbumListAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		presenter = mock(AlbumListMvp.Presenter.class);
+		presenter = mock(AlbumListPresenter.class);
 		holder = mock(AlbumListViewHolder.class);
 		adapter = spy(new AlbumListAdapter(context, presenter));
 	}

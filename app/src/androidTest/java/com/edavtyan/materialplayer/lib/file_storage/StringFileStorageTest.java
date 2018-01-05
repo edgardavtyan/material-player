@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
+import android.content.Context;
 import android.os.Environment;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -14,8 +15,8 @@ public class StringFileStorageTest extends BaseTest {
 	private static final File TEST_DIR = new File(Environment.getExternalStorageDirectory(), "MaterialPlayer/test_string/");
 
 	public static class TestStringFileStorage extends StringFileStorage {
-		public TestStringFileStorage() {
-			super("test_string");
+		public TestStringFileStorage(Context context) {
+			super(context, "test_string");
 		}
 	}
 
@@ -24,7 +25,7 @@ public class StringFileStorageTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		fileStorage = new TestStringFileStorage();
+		fileStorage = new TestStringFileStorage(context);
 	}
 
 	@SuppressWarnings("ResultOfMethodCallIgnored")

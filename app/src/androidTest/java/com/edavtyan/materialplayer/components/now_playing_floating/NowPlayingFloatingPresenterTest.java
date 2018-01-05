@@ -11,16 +11,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingFloatingPresenterTest extends BaseTest {
-	private NowPlayingFloatingMvp.Presenter presenter;
-	private NowPlayingFloatingMvp.Model model;
-	private NowPlayingFloatingMvp.View view;
+	private NowPlayingFloatingPresenter presenter;
+	private NowPlayingFloatingModel model;
+	private NowPlayingFloatingFragment view;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(NowPlayingFloatingMvp.Model.class);
-		view = mock(NowPlayingFloatingMvp.View.class);
+		model = mock(NowPlayingFloatingModel.class);
+		view = mock(NowPlayingFloatingFragment.class);
 		presenter = new NowPlayingFloatingPresenter(model, view);
 	}
 

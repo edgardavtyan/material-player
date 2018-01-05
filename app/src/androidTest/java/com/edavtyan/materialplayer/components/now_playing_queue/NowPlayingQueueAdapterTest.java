@@ -17,13 +17,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class NowPlayingQueueAdapterTest extends BaseTest {
-	private NowPlayingQueueMvp.Presenter presenter;
+	private NowPlayingQueuePresenter presenter;
 	private NowPlayingQueueAdapter adapter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		presenter = mock(NowPlayingQueueMvp.Presenter.class);
+		presenter = mock(NowPlayingQueuePresenter.class);
 		adapter = spy(new NowPlayingQueueAdapter(context, presenter));
 	}
 

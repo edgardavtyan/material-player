@@ -12,14 +12,13 @@ public class NowPlayingFloatingFactoryTest extends FactoryTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		NowPlayingFloatingMvp.View view = mock(NowPlayingFloatingMvp.View.class);
+		NowPlayingFloatingFragment view = mock(NowPlayingFloatingFragment.class);
 		nowPlayingFloatingFactory = new NowPlayingFloatingFactory(context, view);
 	}
 
 	@Test
 	public void testProviders() throws Exception {
 		testFactoryMethod(nowPlayingFloatingFactory::getModel);
-		testFactoryMethod(nowPlayingFloatingFactory::getView);
 		testFactoryMethod(nowPlayingFloatingFactory::getPresenter);
 	}
 }
