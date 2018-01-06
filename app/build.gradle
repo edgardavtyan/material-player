@@ -70,9 +70,7 @@ dependencies {
     androidTestCompile "com.android.support.test:runner:${test_runner_version}"
     androidTestCompile "com.android.support.test:rules:${test_runner_version}"
     androidTestCompile 'junit:junit:4.12'
-    androidTestCompile "org.mockito:mockito-core:1.9.5"
+    androidTestCompile "org.mockito:mockito-core:2.13.0"
+    androidTestCompile "org.mockito:mockito-android:2.13.0"
     androidTestCompile 'org.assertj:assertj-core:2.5.0'
-    androidTestCompile "com.crittercism.dexmaker:dexmaker:${dexmaker_version}"
-    androidTestCompile "com.crittercism.dexmaker:dexmaker-mockito:${dexmaker_version}"
-    androidTestCompile "com.crittercism.dexmaker:dexmaker-dx:${dexmaker_version}"
 }
