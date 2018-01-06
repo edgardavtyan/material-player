@@ -2,65 +2,49 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
+import com.edavtyan.materialplayer.utils.DpConverter;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityCompactTest extends ActivityTest {
-	private static ArtistDetailActivityCompact activity;
-	private static ArtistDetailPresenter presenter;
-	private static Navigator navigator;
-	private static ArtistDetailAdapter adapter;
+	@Rule
+	public final ActivityTestRule<ArtistDetailActivityCompact> activityRule
+			= new ActivityTestRule<>(ArtistDetailActivityCompact.class, false, false);
+
+	private ArtistDetailActivityCompact activity;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			presenter = mock(ArtistDetailPresenter.class);
-			navigator = mock(Navigator.class);
-			adapter = mock(ArtistDetailAdapter.class);
+		navigator = mock(Navigator.class);
+		ArtistDetailPresenter presenter = mock(ArtistDetailPresenter.class);
+		ArtistDetailAdapter adapter = mock(ArtistDetailAdapter.class);
 
-			ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
-			when(factory.getPresenter()).thenReturn(presenter);
-			when(factory.getNavigator()).thenReturn(navigator);
-			when(factory.getAdapter()).thenReturn(adapter);
+		ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getNavigator()).thenReturn(navigator);
+		when(factory.getAdapter()).thenReturn(adapter);
+		app.setArtistDetailFactory(factory);
 
-			app.setArtistDetailFactory(factory);
-
-			activity = spy(startActivity(ArtistDetailActivityCompact.class));
-			doNothing().when(activity).baseOnDestroy();
-		}
-	}
-
-	@Test
-	public void onCreate_callPresenter() {
-		verify(presenter).onCreate();
-	}
-
-	@Test
-	public void onDestroy_callPresenter() {
-		activity.onDestroy();
-		verify(presenter).onDestroy();
-	}
-
-	@Test
-	public void getLayoutId_returnCorrectId() {
-		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_detail_compact);
+		activity = activityRule.launchActivity(null);
 	}
 
 	@Test
@@ -87,22 +71,20 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 	}
 
 	@Test
-	public void setArtistArt_artIsNotNull_setGivenArt() {
+	public void setArtistArt_artIsNotNull_setScaledArt() {
 		ImageView artView = (ImageView) activity.findViewById(R.id.art);
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+
 		runOnUiThread(() -> activity.setArtistImage(bitmap));
-		assertThat(artView).hasImageBitmap(bitmap);
+
+		int imageViewSize = DpConverter.convertDpToPixel(120);
+		Bitmap scaledImage = BitmapResizer.resize(bitmap, imageViewSize);
+		assertThat(artView).hasImageBitmap(scaledImage);
 	}
 
 	@Test
 	public void gotoAlbumDetail_callNavigator() {
 		activity.gotoAlbumDetail(3);
 		verify(navigator).gotoAlbumDetail(3);
-	}
-
-	@Test
-	public void notifyDataSetChanged_callAdapter() {
-		activity.notifyDataSetChanged();
-		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 }

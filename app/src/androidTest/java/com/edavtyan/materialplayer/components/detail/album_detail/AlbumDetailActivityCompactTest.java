@@ -2,49 +2,50 @@ package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
+import com.edavtyan.materialplayer.utils.DpConverter;
 
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityCompactTest extends ActivityTest {
-	private static AlbumDetailActivityCompact activity;
-	private static Navigator navigator;
-	private static AlbumDetailAdapter adapter;
+	@Rule
+	public final ActivityTestRule<AlbumDetailActivityCompact> activityRule
+			= new ActivityTestRule<>(AlbumDetailActivityCompact.class, false, false);
+
+	private AlbumDetailActivityCompact activity;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			AlbumDetailPresenter presenter = mock(AlbumDetailPresenter.class);
-			navigator = mock(Navigator.class);
-			adapter = mock(AlbumDetailAdapter.class);
+		navigator = mock(Navigator.class);
+		AlbumDetailPresenter presenter = mock(AlbumDetailPresenter.class);
+		AlbumDetailAdapter adapter = mock(AlbumDetailAdapter.class);
 
-			AlbumDetailFactory factory = mock(AlbumDetailFactory.class);
-			when(factory.getPresenter()).thenReturn(presenter);
-			when(factory.getNavigator()).thenReturn(navigator);
-			when(factory.getAdapter()).thenReturn(adapter);
+		AlbumDetailFactory factory = mock(AlbumDetailFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getNavigator()).thenReturn(navigator);
+		when(factory.getAdapter()).thenReturn(adapter);
+		app.setAlbumDetailFactory(factory);
 
-			app.setAlbumDetailFactory(factory);
-
-			activity = spy(startActivity(AlbumDetailActivityCompact.class));
-			doNothing().when(activity).baseOnDestroy();
-		}
+		activity = startActivity(AlbumDetailActivityCompact.class);
 	}
 
 	@Test
@@ -83,18 +84,14 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 		ImageView artView = (ImageView) activity.findViewById(R.id.art);
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		runOnUiThread(() -> activity.setAlbumImage(bitmap));
-		assertThat(artView).hasImageBitmap(bitmap);
+		int scaledBitmapSize = DpConverter.convertDpToPixel(120);
+		Bitmap scaledBitmap = BitmapResizer.resize(bitmap, scaledBitmapSize);
+		assertThat(artView).hasImageBitmap(scaledBitmap);
 	}
 
 	@Test
 	public void go_to_now_playing_screen_via_navigator() {
 		activity.gotoNowPlaying();
 		verify(navigator).gotoNowPlaying();
-	}
-
-	@Test
-	public void notify_adapter_data_changed() {
-		activity.notifyDataSetChanged();
-		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 }

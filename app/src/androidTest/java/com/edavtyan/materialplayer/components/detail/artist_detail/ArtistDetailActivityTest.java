@@ -2,71 +2,46 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.test.rule.ActivityTestRule;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityTest extends ActivityTest {
-	private static ArtistDetailActivity activity;
-	private static ArtistDetailPresenter presenter;
-	private static ArtistDetailAdapter adapter;
-	private static Navigator navigator;
+	@Rule
+	public final ActivityTestRule<ArtistDetailActivity> activityRule
+			= new ActivityTestRule<>(ArtistDetailActivity.class, false, false);
+
+	private ArtistDetailActivity activity;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			presenter = mock(ArtistDetailPresenter.class);
-			adapter = mock(ArtistDetailAdapter.class);
-			navigator = mock(Navigator.class);
+		navigator = mock(Navigator.class);
+		ArtistDetailPresenter presenter = mock(ArtistDetailPresenter.class);
+		ArtistDetailAdapter adapter = mock(ArtistDetailAdapter.class);
 
-			ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
-			when(factory.getPresenter()).thenReturn(presenter);
-			when(factory.getAdapter()).thenReturn(adapter);
-			when(factory.getNavigator()).thenReturn(navigator);
+		ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getAdapter()).thenReturn(adapter);
+		when(factory.getNavigator()).thenReturn(navigator);
+		app.setArtistDetailFactory(factory);
 
-			app.setArtistDetailFactory(factory);
-
-			activity = spy(startActivity(ArtistDetailActivity.class));
-			doNothing().when(activity).baseOnStop();
-		} else {
-			reset(adapter, presenter, navigator);
-		}
-	}
-
-	@Test
-	public void onCreate_initList() {
-		RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
-		assertThat(list.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
-		assertThat(list.getAdapter()).isEqualTo(adapter);
-	}
-
-	@Test
-	public void onStart_callPresenter() {
-		verify(presenter).onCreate();
-	}
-
-	@Test
-	public void onStop_callPresenter() {
-		instrumentation.callActivityOnStop(activity);
-		verify(presenter).onDestroy();
+		activity = startActivity(ArtistDetailActivity.class);
 	}
 
 	@Test
@@ -90,12 +65,6 @@ public class ArtistDetailActivityTest extends ActivityTest {
 			activity.setArtistImage(image);
 			assertThat(activity, R.id.art).hasImageBitmap(image);
 		});
-	}
-
-	@Test
-	public void notifyDataSetChanged_callAdapter() {
-		activity.notifyDataSetChanged();
-		verify(adapter).notifyDataSetChangedNonFinal();
 	}
 
 	@Test

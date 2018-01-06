@@ -19,11 +19,8 @@ public class ArtistDetailActivityCompact
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
-		ArtistDetailFactory factory = getApp().getArtistDetailDI(this, this, artistTitle);
-
+		ArtistDetailFactory factory = getFactory();
 		navigator = factory.getNavigator();
-
 		init(factory.getAdapter(), factory.getPresenter());
 	}
 
@@ -49,5 +46,10 @@ public class ArtistDetailActivityCompact
 	@Override
 	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
+	}
+
+	protected ArtistDetailFactory getFactory() {
+		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
+		return getApp().getArtistDetailDI(this, this, artistTitle);
 	}
 }
