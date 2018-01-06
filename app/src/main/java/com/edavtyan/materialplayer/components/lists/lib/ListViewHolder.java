@@ -30,6 +30,8 @@ public abstract class ListViewHolder
 		PopupMenu popupMenu = sdkFactory.createPopupMenu(context, menuButton);
 		popupMenu.inflate(getMenuResource());
 		popupMenu.setOnMenuItemClickListener(this);
+
+		menuButton.setOnClickListener(v -> popupMenu.show());
 	}
 
 	@MenuRes
