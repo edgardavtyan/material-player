@@ -3,11 +3,11 @@ package com.edavtyan.materialplayer.components.notification;
 import android.graphics.Bitmap;
 import android.support.v4.app.NotificationCompat;
 
+import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
-import com.edavtyan.materialplayer.utils.BitmapResizer;
 import com.edavtyan.materialplayer.utils.DpConverter;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
@@ -32,8 +32,12 @@ public class PlayerNotificationCompat extends PlayerNotification {
 
 	@Override
 	public void setArt(Bitmap art) {
-		int scaledArtSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
-		Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);
-		super.setArt(scaledArt);
+		if (art == null) {
+			super.setArt(art);
+		} else {
+			int scaledArtSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
+			Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);
+			super.setArt(scaledArt);
+		}
 	}
 }

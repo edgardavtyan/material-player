@@ -6,11 +6,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 
+import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
-import com.edavtyan.materialplayer.utils.BitmapResizer;
 import com.edavtyan.materialplayer.utils.DpConverter;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 

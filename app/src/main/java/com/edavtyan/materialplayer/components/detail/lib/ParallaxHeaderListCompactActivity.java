@@ -6,11 +6,11 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
-import com.edavtyan.materialplayer.utils.BitmapResizer;
 import com.edavtyan.materialplayer.utils.DpConverter;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 

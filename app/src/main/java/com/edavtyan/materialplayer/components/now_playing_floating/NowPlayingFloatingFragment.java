@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
-import com.edavtyan.materialplayer.utils.BitmapResizer;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
 import butterknife.BindView;
