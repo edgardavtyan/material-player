@@ -23,48 +23,43 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
-	private static NowPlayingFloatingFragment fragment;
-	private static NowPlayingFloatingPresenter presenter;
-	private static Navigator navigator;
-	private static LayoutInflater inflater;
-	private static TextView infoView;
-	private static TextView titleView;
-	private static ImageView artView;
-	private static ImageButton playPauseView;
-	private static LinearLayout infoWrapper;
-	private static LinearLayout mainWrapper;
+	private NowPlayingFloatingFragment fragment;
+	private NowPlayingFloatingPresenter presenter;
+	private Navigator navigator;
+	private LayoutInflater inflater;
+	private TextView infoView;
+	private TextView titleView;
+	private ImageView artView;
+	private ImageButton playPauseView;
+	private LinearLayout infoWrapper;
+	private LinearLayout mainWrapper;
 
 	@Override
 	@SuppressWarnings("ConstantConditions")
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (fragment == null) {
-			presenter = mock(NowPlayingFloatingPresenter.class);
-			navigator = mock(Navigator.class);
+		presenter = mock(NowPlayingFloatingPresenter.class);
+		navigator = mock(Navigator.class);
 
-			NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);
-			when(factory.getPresenter()).thenReturn(presenter);
-			when(factory.getNavigator()).thenReturn(navigator);
+		NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getNavigator()).thenReturn(navigator);
 
-			app.setNowPlayingFloatingFactory(factory);
+		app.setNowPlayingFloatingFactory(factory);
 
-			inflater = spy(LayoutInflater.from(context));
-			when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
+		inflater = spy(LayoutInflater.from(context));
+		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
-			fragment = spy(new NowPlayingFloatingFragment());
-			doReturn(context).when(fragment).getContext();
-			initFragment(fragment);
-		} else {
-			reset(presenter, navigator);
-		}
+		fragment = spy(new NowPlayingFloatingFragment());
+		doReturn(context).when(fragment).getContext();
+		initFragment(fragment);
 
 		infoView = (TextView) fragment.getView().findViewById(R.id.info);
 		titleView = (TextView) fragment.getView().findViewById(R.id.title);
@@ -76,7 +71,6 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 
 	@Test
 	public void onStart_callPresenter() {
-		fragment.onStart();
 		verify(presenter).onCreate();
 	}
 

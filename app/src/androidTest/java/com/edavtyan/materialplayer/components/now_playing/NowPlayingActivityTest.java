@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
 import android.annotation.SuppressLint;
+import android.support.test.rule.ActivityTestRule;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
@@ -10,66 +11,50 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingActivityTest extends ActivityTest {
-	private static NowPlayingActivity activity;
-	private static NowPlayingPresenter presenter;
-	private static NowPlayingArt art;
-	private static NowPlayingControls controls;
-	private static NowPlayingInfo info;
-	private static NowPlayingSeekbar seekbar;
-	private static Navigator navigator;
+	@Rule
+	public final ActivityTestRule<NowPlayingActivity> activityRule
+			= new ActivityTestRule<>(NowPlayingActivity.class, false, false);
+
+	private NowPlayingActivity activity;
+	private NowPlayingPresenter presenter;
+	private NowPlayingArt art;
+	private NowPlayingControls controls;
+	private NowPlayingInfo info;
+	private NowPlayingSeekbar seekbar;
+	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			presenter = mock(NowPlayingPresenter.class);
-			art = mock(NowPlayingArt.class);
-			controls = mock(NowPlayingControls.class);
-			info = mock(NowPlayingInfo.class);
-			seekbar = mock(NowPlayingSeekbar.class);
-			navigator = mock(Navigator.class);
+		presenter = mock(NowPlayingPresenter.class);
+		art = mock(NowPlayingArt.class);
+		controls = mock(NowPlayingControls.class);
+		info = mock(NowPlayingInfo.class);
+		seekbar = mock(NowPlayingSeekbar.class);
+		navigator = mock(Navigator.class);
 
-			NowPlayingFactory factory = mock(NowPlayingFactory.class);
-			when(factory.getPresenter()).thenReturn(presenter);
-			when(factory.getArt()).thenReturn(art);
-			when(factory.getControls()).thenReturn(controls);
-			when(factory.getInfo()).thenReturn(info);
-			when(factory.getSeekbar()).thenReturn(seekbar);
-			when(factory.getNavigator()).thenReturn(navigator);
+		NowPlayingFactory factory = mock(NowPlayingFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
+		when(factory.getArt()).thenReturn(art);
+		when(factory.getControls()).thenReturn(controls);
+		when(factory.getInfo()).thenReturn(info);
+		when(factory.getSeekbar()).thenReturn(seekbar);
+		when(factory.getNavigator()).thenReturn(navigator);
 
-			app.setNowPlayingFactory(factory);
+		app.setNowPlayingFactory(factory);
 
-			activity = spy(startActivity(NowPlayingActivity.class));
-			doNothing().when(activity).baseOnDestroy();
-			doNothing().when(activity).baseOnCreate(any());
-		} else {
-			reset(presenter, navigator);
-		}
-	}
-
-	@Test
-	public void onCreate_bindPresenter() {
-		verify(presenter).bind();
-	}
-
-	@Test
-	public void onDestroy_unbindPresenter() {
-		runOnUiThread(activity::onDestroy);
-		verify(presenter).unbind();
+		activity = startActivity(NowPlayingActivity.class);
 	}
 
 	@Test

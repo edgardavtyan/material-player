@@ -1,49 +1,46 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.annotation.SuppressLint;
+import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingQueueActivityTest extends ActivityTest {
-	private static NowPlayingQueueActivity activity;
-	private static NowPlayingQueueAdapter adapter;
-	private static NowPlayingQueuePresenter presenter;
+	@Rule
+	public final ActivityTestRule<NowPlayingActivity> activityRule
+			= new ActivityTestRule<>(NowPlayingActivity.class, false, false);
+
+	private NowPlayingQueueActivity activity;
+	private NowPlayingQueueAdapter adapter;
+	private NowPlayingQueuePresenter presenter;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			adapter = mock(NowPlayingQueueAdapter.class);
-			presenter = mock(NowPlayingQueuePresenter.class);
+		adapter = mock(NowPlayingQueueAdapter.class);
+		presenter = mock(NowPlayingQueuePresenter.class);
 
-			NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
-			when(factory.getAdapter()).thenReturn(adapter);
-			when(factory.getPresenter()).thenReturn(presenter);
+		NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
+		when(factory.getAdapter()).thenReturn(adapter);
+		when(factory.getPresenter()).thenReturn(presenter);
 
-			app.setNowPlayingQueueFactory(factory);
+		app.setNowPlayingQueueFactory(factory);
 
-			activity = spy(startActivity(NowPlayingQueueActivity.class));
-			doNothing().when(activity).baseOnCreate(any());
-			doNothing().when(activity).baseOnDestroy();
-		} else {
-			reset(adapter, presenter);
-		}
+		activity = startActivity(NowPlayingQueueActivity.class);
 	}
 
 	@Test
@@ -61,12 +58,6 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 	@Test
 	public void onCreate_initPresenter() {
 		verify(presenter).onCreate();
-	}
-
-	@Test
-	public void onDestroy_closePresenter() {
-		activity.onDestroy();
-		verify(presenter).onDestroy();
 	}
 
 	@Test
