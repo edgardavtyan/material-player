@@ -47,7 +47,7 @@ android {
 
 dependencies {
     compile project(':prefs')
-    compile project(':utils')
+    compile project(':libsutils')
 
     compile fileTree(include: '*.jar', dir: 'libs')
 

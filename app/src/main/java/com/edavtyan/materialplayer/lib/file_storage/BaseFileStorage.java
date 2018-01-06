@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.lib.file_storage;
 
 import android.content.Context;
 
-import com.edavtyan.utils.IOUtils;
+import com.ed.libsutils.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

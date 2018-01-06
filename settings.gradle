@@ -1,1 +1,2 @@
-include ':app', ':prefs', ':utils'
+include ':app', ':prefs', 'libsutils'
+project(':libsutils').projectDir = new File('../LibsUtils/library_libsutils')
