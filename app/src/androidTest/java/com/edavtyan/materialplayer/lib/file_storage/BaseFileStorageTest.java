@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
 import android.content.Context;
-import android.os.Environment;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -14,18 +13,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BaseFileStorageTest extends BaseTest {
-	private static final File TEST_DIR = new File(Environment.getExternalStorageDirectory(), "MaterialPlayer/test/");
-
 	public static class TestBaseFileStorage extends BaseFileStorage {
 		public TestBaseFileStorage(Context context) {
 			super(context, "test");
 		}
 	}
 
+	private File testDir;
 	private TestBaseFileStorage fileStorage;
 
 	@Override
 	public void beforeEach() {
+		super.beforeEach();
+		testDir = new File(context.getCacheDir(), "test");
 		fileStorage = new TestBaseFileStorage(context);
 	}
 
@@ -34,18 +34,18 @@ public class BaseFileStorageTest extends BaseTest {
 	public void afterEach() {
 		super.afterEach();
 
-		String[] files = TEST_DIR.list();
+		String[] files = testDir.list();
 		if (files != null) {
 			for (String file : files) {
-				new File(TEST_DIR, file).delete();
+				new File(testDir, file).delete();
 			}
 		}
-		TEST_DIR.delete();
+		testDir.delete();
 	}
 
 	@Test
 	public void create_given_dir() {
-		assertThat(TEST_DIR.exists()).isTrue();
+		assertThat(testDir.exists()).isTrue();
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class BaseFileStorageTest extends BaseTest {
 		byte[] bytes = new byte[]{1, 2, 3, 4, 5};
 		fileStorage.saveBytes("file100", bytes);
 		assertThat(fileStorage.loadBytes("file100")).isEqualTo(bytes);
-		assertThat(new File(TEST_DIR, "file100").exists()).isTrue();
+		assertThat(new File(testDir, "file100").exists()).isTrue();
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BaseFileStorageTest extends BaseTest {
 	@Test
 	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public void return_true_when_checking_if_existing_file_exists() throws IOException {
-		new File(TEST_DIR, "file300").createNewFile();
+		new File(testDir, "file300").createNewFile();
 		assertThat(fileStorage.exists("file300")).isTrue();
 	}
 }

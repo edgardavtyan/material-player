@@ -22,7 +22,7 @@ public abstract class BaseActivity extends ModularActivity {
 
 		BaseFactory factory = getApp().getBaseFactory(this);
 		addModule(new ActivityThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
-		addModule(new ActivityBaseMenuModule(this, factory.getNavigator()));
+		addModule(new ActivityBaseMenuModule(factory.getNavigator(), factory.createMenuInflater(this)));
 
 		setContentView(getLayoutId());
 

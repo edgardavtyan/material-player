@@ -1,19 +1,23 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
+import android.support.test.rule.ActivityTestRule;
+
 import com.edavtyan.materialplayer.testlib.tests.FactoryTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 
-import static org.mockito.Mockito.spy;
-
 public class NowPlayingFactoryTest extends FactoryTest {
+	@Rule
+	public final ActivityTestRule<NowPlayingActivity> activityRule
+			= new ActivityTestRule<>(NowPlayingActivity.class);
+
 	private NowPlayingFactory nowPlayingFactory;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		NowPlayingActivity activity = spy(startActivity(NowPlayingActivity.class));
-		nowPlayingFactory = new NowPlayingFactory(activity);
+		nowPlayingFactory = new NowPlayingFactory(activityRule.getActivity());
 	}
 
 	@Test

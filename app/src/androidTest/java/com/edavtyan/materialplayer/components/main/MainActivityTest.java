@@ -1,29 +1,28 @@
 package com.edavtyan.materialplayer.components.main;
 
 import android.annotation.SuppressLint;
+import android.support.test.rule.ActivityTestRule;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
 
 @SuppressLint("StaticFieldLeak")
 public class MainActivityTest extends ActivityTest {
-	private static MainActivity activity;
+	@Rule
+	public final ActivityTestRule<MainActivity> activityRule
+			= new ActivityTestRule<>(MainActivity.class);
+
+	private MainActivity activity;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-
-		if (activity == null) {
-			activity = spy(startActivity(MainActivity.class));
-		} else {
-			reset(activity);
-		}
+		activity = activityRule.getActivity();
 	}
 
 	@Test

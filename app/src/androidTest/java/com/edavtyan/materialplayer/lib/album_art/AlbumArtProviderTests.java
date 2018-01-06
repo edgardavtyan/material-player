@@ -47,14 +47,6 @@ public class AlbumArtProviderTests extends BaseTest {
 		assertThat(albumArtProvider.load(track)).isSameAs(art);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void return_null_if_track_has_no_art() {
-		init(5);
-		when(artReader.getAlbumArtBytes("path5")).thenThrow(Exception.class);
-		assertThat(albumArtProvider.load(track)).isNull();
-	}
-
 	private void init(int index) {
 		track = new Track();
 		track.setAlbumId(index);

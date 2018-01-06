@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.lib.file_storage;
 
 import android.content.Context;
-import android.os.Environment;
 
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -12,19 +11,19 @@ import java.io.File;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringFileStorageTest extends BaseTest {
-	private static final File TEST_DIR = new File(Environment.getExternalStorageDirectory(), "MaterialPlayer/test_string/");
-
-	public static class TestStringFileStorage extends StringFileStorage {
+	private class TestStringFileStorage extends StringFileStorage {
 		public TestStringFileStorage(Context context) {
 			super(context, "test_string");
 		}
 	}
 
+	private File testDir;
 	private TestStringFileStorage fileStorage;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
+		testDir = new File(context.getCacheDir(), "test_string");
 		fileStorage = new TestStringFileStorage(context);
 	}
 
@@ -32,11 +31,11 @@ public class StringFileStorageTest extends BaseTest {
 	@Override
 	public void afterEach() {
 		super.afterEach();
-		String[] files = TEST_DIR.list();
+		String[] files = testDir.list();
 		for (String file : files) {
-			new File(TEST_DIR, file).delete();
+			new File(testDir, file).delete();
 		}
-		TEST_DIR.delete();
+		testDir.delete();
 	}
 
 	@Test

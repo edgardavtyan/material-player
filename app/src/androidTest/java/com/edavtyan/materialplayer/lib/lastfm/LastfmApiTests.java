@@ -6,12 +6,7 @@ import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -65,13 +60,5 @@ public class LastfmApiTests extends BaseTest {
 		when(fileStorage.exists(ARTIST_TITLE)).thenReturn(true);
 
 		assertThat(lastfmApi.getArtistInfo(ARTIST_TITLE)).isEqualTo(info);
-	}
-
-	@Test
-	@SuppressWarnings("unchecked")
-	public void getInfoFromApi_somethingThrewException_throwRuntimeException() {
-		doThrow(IOException.class).when(webClient).getString(any());
-		assertThatThrownBy(() -> lastfmApi.getArtistInfo("title"))
-				.isInstanceOf(RuntimeException.class);
 	}
 }

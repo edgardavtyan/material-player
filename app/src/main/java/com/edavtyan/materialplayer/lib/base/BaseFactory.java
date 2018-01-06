@@ -1,12 +1,14 @@
 package com.edavtyan.materialplayer.lib.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaMetadataRetriever;
 import android.preference.PreferenceManager;
+import android.view.MenuInflater;
 
-import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtFileStorage;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtMemoryCache;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
@@ -129,5 +131,9 @@ public class BaseFactory {
 		if (gson == null)
 			gson = new Gson();
 		return gson;
+	}
+
+	public MenuInflater createMenuInflater(Activity activity) {
+		return new MenuInflater(activity);
 	}
 }

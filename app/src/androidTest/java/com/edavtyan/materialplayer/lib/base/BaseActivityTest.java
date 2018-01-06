@@ -1,16 +1,18 @@
 package com.edavtyan.materialplayer.lib.base;
 
 import android.annotation.SuppressLint;
+import android.support.test.rule.ActivityTestRule;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.SdkFactory;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,11 +23,6 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class BaseActivityTest extends ActivityTest {
-	private static TestBaseActivity activity;
-	private static ThemeUtils themeUtils;
-	private static MenuInflater menuInflater;
-	private static Navigator navigator;
-
 	public static class TestBaseActivity extends BaseActivity {
 		@Override
 		public int getLayoutId() {
@@ -33,28 +30,33 @@ public class BaseActivityTest extends ActivityTest {
 		}
 	}
 
+	@Rule
+	public final ActivityTestRule<TestBaseActivity> activityRule
+			= new ActivityTestRule<>(TestBaseActivity.class, false, false);
+
+	private TestBaseActivity activity;
+	private ThemeUtils themeUtils;
+	private MenuInflater menuInflater;
+	private Navigator navigator;
+
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			themeUtils = mock(ThemeUtils.class);
-			navigator = mock(Navigator.class);
+		themeUtils = mock(ThemeUtils.class);
+		navigator = mock(Navigator.class);
+		menuInflater = mock(MenuInflater.class);
 
-			BaseFactory factory = mock(BaseFactory.class);
-			when(factory.getThemeUtils()).thenReturn(themeUtils);
-			when(factory.getNavigator()).thenReturn(navigator);
+		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
 
-			app.setBaseFactory(factory);
-
-			menuInflater = mock(MenuInflater.class);
-			SdkFactory sdkFactory = mock(SdkFactory.class);
-			when(sdkFactory.createMenuInflater(any())).thenReturn(menuInflater);
-
-			app.setSdkFactory(sdkFactory);
-
-			activity = startActivity(TestBaseActivity.class);
-		}
+		BaseFactory factory = mock(BaseFactory.class);
+		when(factory.getThemeUtils()).thenReturn(themeUtils);
+		when(factory.getNavigator()).thenReturn(navigator);
+		when(factory.getPrefs()).thenReturn(prefs);
+		when(factory.createMenuInflater(any())).thenReturn(menuInflater);
+		app.setBaseFactory(factory);
+		
+		activity = activityRule.launchActivity(null);
 	}
 
 	@Test

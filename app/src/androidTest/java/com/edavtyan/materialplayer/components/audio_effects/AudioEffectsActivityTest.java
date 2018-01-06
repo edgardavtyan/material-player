@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
 import android.annotation.SuppressLint;
+import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.SwitchCompat;
 
 import com.edavtyan.materialplayer.R;
@@ -9,48 +10,43 @@ import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.R.id.equalizer;
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AudioEffectsActivityTest extends ActivityTest {
-	private static AudioEffectsActivity activity;
-	private static AudioEffectsPresenter presenter;
-	private static SwitchCompat equalizerSwitch;
-	private static EqualizerView equalizerView;
-	private static TitledSeekbar bassBoostView;
-	private static TitledSeekbar amplifierView;
-	private static TitledSeekbar surroundView;
+	@Rule
+	public final ActivityTestRule<AudioEffectsActivity> activityRule
+			= new ActivityTestRule<>(AudioEffectsActivity.class, false, false);
+
+	private AudioEffectsActivity activity;
+	private AudioEffectsPresenter presenter;
+	private SwitchCompat equalizerSwitch;
+	private EqualizerView equalizerView;
+	private TitledSeekbar bassBoostView;
+	private TitledSeekbar amplifierView;
+	private TitledSeekbar surroundView;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (activity == null) {
-			presenter = mock(AudioEffectsPresenter.class);
+		presenter = mock(AudioEffectsPresenter.class);
 
-			AudioEffectsViewFactory factory = mock(AudioEffectsViewFactory.class);
-			when(factory.getPresenter()).thenReturn(presenter);
+		AudioEffectsViewFactory factory = mock(AudioEffectsViewFactory.class);
+		when(factory.getPresenter()).thenReturn(presenter);
 
-			app.setAudioEffectsViewFactory(factory);
+		app.setAudioEffectsViewFactory(factory);
 
-			activity = spy(startActivity(AudioEffectsActivity.class));
-			doNothing().when(activity).baseOnCreate(any());
-			doNothing().when(activity).baseOnDestroy();
-		} else {
-			reset(presenter);
-		}
+		activity = activityRule.launchActivity(null);
 
 		equalizerSwitch = (SwitchCompat) activity.findViewById(R.id.equalizer_switch);
 		equalizerView = (EqualizerView) activity.findViewById(equalizer);
@@ -61,14 +57,7 @@ public class AudioEffectsActivityTest extends ActivityTest {
 
 	@Test
 	public void onCreate_initPresenter() {
-		runOnUiThread(() -> activity.onCreate(null));
 		verify(presenter).onCreate();
-	}
-
-	@Test
-	public void onDestroy_disposePresenter() {
-		activity.onDestroy();
-		verify(presenter).onDestroy();
 	}
 
 	@Test
