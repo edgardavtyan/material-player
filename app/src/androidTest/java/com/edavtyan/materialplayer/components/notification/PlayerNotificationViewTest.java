@@ -28,6 +28,15 @@ public class PlayerNotificationViewTest extends BaseTest {
 	private PendingIntents pendingIntents;
 	private PlayerNotification view;
 
+	private class PlayerNotificationTestInstance extends PlayerNotification {
+		public PlayerNotificationTestInstance(
+				AdvancedRemoteViews normalRemoteViews,
+				AdvancedRemoteViews bigRemoteViews,
+				TestableNotificationManager manager) {
+			super(normalRemoteViews, bigRemoteViews, manager);
+		}
+	}
+
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
@@ -36,9 +45,7 @@ public class PlayerNotificationViewTest extends BaseTest {
 		manager = mock(TestableNotificationManager.class);
 		builder = spy(new NotificationCompat.Builder(context));
 		pendingIntents = mock(PendingIntents.class);
-		view = new PlayerNotificationCompat(
-				remoteViews, bigRemoteViews, manager,
-				builder, pendingIntents);
+		view = new PlayerNotificationTestInstance(remoteViews, bigRemoteViews, manager);
 	}
 
 	@Test

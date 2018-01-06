@@ -10,10 +10,7 @@ import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.mock;
@@ -60,10 +57,9 @@ public class ArtistDetailImageLoaderTest extends BaseTest {
 
 	@Test
 	@SuppressWarnings("unchecked")
-	public void getImageFromApi_somethingThrowsException_throwsRuntimeException() {
-		when(lastfmApi.getArtistInfo("artist200")).thenThrow(IOException.class);
-		assertThatThrownBy(() -> imageLoader.getImageFromApi("artist200"))
-				.isInstanceOf(RuntimeException.class);
+	public void getImageFromApi_somethingThrowsException_returnNull() {
+		when(lastfmApi.getArtistInfo("artist200")).thenThrow(RuntimeException.class);
+		assertThat(imageLoader.getImageFromApi("artist200")).isNull();
 	}
 
 	@Test

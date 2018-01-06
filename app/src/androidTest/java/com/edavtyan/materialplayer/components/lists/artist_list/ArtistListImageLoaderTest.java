@@ -10,8 +10,6 @@ import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -82,7 +80,7 @@ public class ArtistListImageLoaderTest extends BaseTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void getImageFromFileSystemOrApi_somethingThrowsException_returnNull() {
-		when(fileStorage.exists("file400")).thenThrow(IOException.class);
+		when(fileStorage.exists("file400")).thenThrow(RuntimeException.class);
 		assertThat(imageLoader.getImageFromFileSystemOrApi("file400")).isNull();
 	}
 

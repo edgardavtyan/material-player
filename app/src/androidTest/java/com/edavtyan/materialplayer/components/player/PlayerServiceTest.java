@@ -6,17 +6,19 @@ import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotification;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
-import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
+import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -54,13 +56,18 @@ public class PlayerServiceTest extends BaseTest {
 		when(playerFactory.getAudioFocusManager()).thenReturn(audioFocusManager);
 		when(playerFactory.getMediaSessionManager()).thenReturn(mediaSessionManager);
 
+		AudioEffectsFactory audioEffectsFactory = new AudioEffectsFactory(context, player);
+		ReceiversFactory receiversFactory = new ReceiversFactory(context, player);
+
 		App app = mock(App.class);
 		when(app.getPlayerFactory(any())).thenReturn(playerFactory);
 		when(app.getPlayerNotificationFactory(any())).thenReturn(notificationFactory);
+		when(app.getAudioEffectsFactory(any(), eq(player))).thenReturn(audioEffectsFactory);
+		when(app.getReceiversFactory(any(), eq(player))).thenReturn(receiversFactory);
 
 		try {
 			Intent intent = new Intent(context, PlayerService.class);
-			PlayerBinder binder = (PlayerBinder) serviceTestRule.bindService(intent);
+			PlayerService.PlayerBinder binder = (PlayerService.PlayerBinder) serviceTestRule.bindService(intent);
 			playerService = spy(binder.getService());
 			doReturn(app).when(playerService).getApplicationContext();
 		} catch (Exception e) {

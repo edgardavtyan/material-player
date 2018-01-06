@@ -25,7 +25,7 @@ public class AlbumListAdapterTest extends BaseTest {
 		super.beforeEach();
 		presenter = mock(AlbumListPresenter.class);
 		holder = mock(AlbumListViewHolder.class);
-		adapter = spy(new AlbumListAdapter(context, presenter));
+		adapter = new AlbumListAdapter(context, presenter);
 	}
 
 	@Test

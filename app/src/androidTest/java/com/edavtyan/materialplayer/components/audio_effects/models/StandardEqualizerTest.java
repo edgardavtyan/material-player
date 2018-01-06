@@ -72,9 +72,9 @@ public class StandardEqualizerTest extends BaseTest {
 	}
 
 	@Test
-	public void set_band_gain_in_reverse_in_millibel() {
+	public void set_band_gain() {
 		equalizer.setBandGain(0, 5);
-		assertThat(baseEqualizer.getGains()[4]).isEqualTo((short) 500);
+		assertThat(baseEqualizer.getGains()[0]).isEqualTo(5);
 	}
 
 	@Test
