@@ -34,13 +34,15 @@ public class AlbumDetailActivityCompact
 	}
 
 	@Override
-	@SuppressWarnings("ConstantConditions")
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
-		String tracksCountStr = getResources().getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
+		String tracksCountStr = getResources().getQuantityString(
+				R.plurals.tracks, tracksCount, tracksCount);
 		long durationStr = TimeUnit.MILLISECONDS.toMinutes(duration);
 
-		String portraitBottomInfo = getString(R.string.pattern_track_time_count, tracksCountStr, durationStr);
-		String landscapeInfo = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);
+		String portraitBottomInfo = getString(
+				R.string.pattern_track_time_count, tracksCountStr, durationStr);
+		String landscapeInfo = getString(
+				R.string.pattern_album_info, artistTitle, tracksCountStr);
 
 		setInfo(artistTitle, portraitBottomInfo, landscapeInfo);
 	}

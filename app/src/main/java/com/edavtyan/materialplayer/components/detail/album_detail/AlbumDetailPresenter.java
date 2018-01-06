@@ -23,7 +23,10 @@ public class AlbumDetailPresenter
 
 		Album album = model.getAlbum();
 		view.setAlbumTitle(album.getTitle());
-		view.setAlbumInfo(album.getArtistTitle(), album.getTracksCount(), model.getTotalAlbumDuration());
+		view.setAlbumInfo(
+				album.getArtistTitle(),
+				album.getTracksCount(),
+				model.getTotalAlbumDuration());
 		view.setAlbumImage(model.getAlbumArt());
 	}
 }

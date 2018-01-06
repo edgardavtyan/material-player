@@ -20,10 +20,7 @@ public abstract class BaseActivity extends ModularActivity {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		App app = (App) getApplicationContext();
-
-		BaseFactory factory = app.getBaseFactory(this);
-
+		BaseFactory factory = getApp().getBaseFactory(this);
 		addModule(new ActivityThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
 		addModule(new ActivityBaseMenuModule(this, factory.getNavigator()));
 
@@ -31,7 +28,7 @@ public abstract class BaseActivity extends ModularActivity {
 
 		ButterKnife.bind(this);
 
-		if (Build.VERSION.SDK_INT == 19) {
+		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 			WindowUtils.makeStatusBarSemiTransparent(this);
 		}
 	}

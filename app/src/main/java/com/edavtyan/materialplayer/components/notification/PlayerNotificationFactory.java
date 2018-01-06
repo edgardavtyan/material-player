@@ -66,7 +66,8 @@ public class PlayerNotificationFactory extends BaseFactory {
 
 	public AdvancedRemoteViews getNormalRemoteViewsNougat() {
 		if (remoteViewsNougat == null)
-			remoteViewsNougat = new AdvancedRemoteViews(getContext(), R.layout.notification_nougat);
+			remoteViewsNougat = new AdvancedRemoteViews(
+					getContext(), R.layout.notification_nougat);
 		return remoteViewsNougat;
 	}
 
@@ -78,7 +79,8 @@ public class PlayerNotificationFactory extends BaseFactory {
 
 	public AdvancedRemoteViews getBigRemoteViewsNougat() {
 		if (bigRemoteViewsNougat == null)
-			bigRemoteViewsNougat = new AdvancedRemoteViews(getContext(), R.layout.notification_nougat_big);
+			bigRemoteViewsNougat = new AdvancedRemoteViews(
+					getContext(), R.layout.notification_nougat_big);
 		return bigRemoteViewsNougat;
 	}
 
