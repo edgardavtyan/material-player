@@ -1,9 +1,10 @@
-package com.edavtyan.materialplayer.modular.activity;
+package com.edavtyan.materialplayer.modular.activity.modules;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
 
 public class ActivityThemeSwitchModule

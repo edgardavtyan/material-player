@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.modular.activity;
+package com.edavtyan.materialplayer.modular.activity.modules;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 public class ActivityBaseMenuModule extends ActivityModule {
 	private final AppCompatActivity activity;

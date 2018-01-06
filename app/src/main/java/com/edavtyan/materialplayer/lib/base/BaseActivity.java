@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
-import com.edavtyan.materialplayer.modular.activity.ActivityBaseMenuModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityThemeSwitchModule;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
 import butterknife.ButterKnife;

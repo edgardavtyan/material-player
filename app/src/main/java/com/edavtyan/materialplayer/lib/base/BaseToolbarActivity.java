@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.modular.activity.ActivityToolbarModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 public abstract class BaseToolbarActivity extends BaseActivity {
 	@Override
