@@ -62,7 +62,7 @@ public class ArtistDetailActivityCompact
 				.builder()
 				.artistDetailModule(new ArtistDetailModule(this, this, artistTitle))
 				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
-				.modelModulesModule(new ModelModulesModule(this))
+				.modelModulesModule(new ModelModulesModule())
 				.utilsModule(new UtilsModule())
 				.daggerDBModule(new DaggerDBModule())
 				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())

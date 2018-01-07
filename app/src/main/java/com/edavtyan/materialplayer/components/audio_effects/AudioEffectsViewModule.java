@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
+import android.content.Context;
+
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.NewPresetDialog;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.PresetsSpinnerView;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -11,16 +13,22 @@ import dagger.Provides;
 
 @Module
 public class AudioEffectsViewModule {
-	private final AudioEffectsActivity view;
+	private final AudioEffectsActivity activity;
 
-	public AudioEffectsViewModule(AudioEffectsActivity view) {
-		this.view = view;
+	public AudioEffectsViewModule(AudioEffectsActivity activity) {
+		this.activity = activity;
+	}
+
+	@Provides
+	@Singleton
+	public Context provideContext() {
+		return activity;
 	}
 
 	@Provides
 	@Singleton
 	public AudioEffectsPresenter providePresenter(AudioEffectsModel model) {
-		return new AudioEffectsPresenter(model, view);
+		return new AudioEffectsPresenter(model, activity);
 	}
 
 	@Provides
@@ -32,12 +40,12 @@ public class AudioEffectsViewModule {
 	@Provides
 	@Singleton
 	public NewPresetDialog provideNewPresetDialog(AudioEffectsPresenter presenter) {
-		return new NewPresetDialog(view, presenter);
+		return new NewPresetDialog(activity, presenter);
 	}
 
 	@Provides
 	@Singleton
 	public PresetsSpinnerView providePresetsSpinnerView(AudioEffectsPresenter presenter) {
-		return new PresetsSpinnerView(view, presenter);
+		return new PresetsSpinnerView(activity, presenter);
 	}
 }

@@ -193,7 +193,7 @@ public class AudioEffectsActivity
 	protected AudioEffectsViewComponent getComponent() {
 		return DaggerAudioEffectsViewComponent
 				.builder()
-				.modelModulesModule(new ModelModulesModule(this))
+				.modelModulesModule(new ModelModulesModule())
 				.audioEffectsViewModule(new AudioEffectsViewModule(this))
 				.build();
 	}

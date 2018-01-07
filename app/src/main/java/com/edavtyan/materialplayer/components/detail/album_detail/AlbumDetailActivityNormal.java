@@ -57,7 +57,7 @@ public class AlbumDetailActivityNormal extends ParallaxHeaderListActivity
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		return DaggerAlbumDetailComponent
 				.builder()
-				.modelModulesModule(new ModelModulesModule(this))
+				.modelModulesModule(new ModelModulesModule())
 				.albumArtModule(new AlbumArtModule())
 				.daggerDBModule(new DaggerDBModule())
 				.albumDetailModule(new AlbumDetailModule(this, this, albumId))

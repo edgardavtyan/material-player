@@ -37,7 +37,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.albumListModule(new AlbumListModule(getActivity(), this))
 				.daggerDBModule(new DaggerDBModule())
-				.modelModulesModule(new ModelModulesModule(getActivity()))
+				.modelModulesModule(new ModelModulesModule())
 				.utilsModule(new UtilsModule())
 				.compactPrefsModule(new CompactPrefsModule())
 				.build();
