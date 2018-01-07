@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.components.lists.track_list.TrackListViewHold
 public class AlbumDetailAdapter extends TrackListAdapter {
 	private final TrackListPresenter presenter;
 
-	public AlbumDetailAdapter(Context context, TrackListPresenter presenter) {
+	public AlbumDetailAdapter(Context context, AlbumDetailPresenter presenter) {
 		super(context, presenter);
 		this.presenter = presenter;
 	}

@@ -9,19 +9,20 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
 
+import javax.inject.Inject;
+
 public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailView {
-	private Navigator navigator;
+	@Inject Navigator navigator;
+	@Inject AlbumDetailPresenter presenter;
+	@Inject AlbumDetailAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
-		AlbumDetailFactory factory = getApp().getAlbumDetailDI(this, this, albumId);
-
-		navigator = factory.getNavigator();
-
-		init(factory.getAdapter(), factory.getPresenter());
+		getApp().getAlbumDetailComponent(this, this, albumId).inject(this);
+		init(adapter, presenter);
 	}
 
 	@Override

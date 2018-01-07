@@ -5,14 +5,18 @@ import android.app.Application;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewComponent;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewFactory;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewModule;
 import com.edavtyan.materialplayer.components.audio_effects.DaggerAudioEffectsViewComponent;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailComponent;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailModule;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
+import com.edavtyan.materialplayer.components.detail.album_detail.DaggerAlbumDetailComponent;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailFactory;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailView;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFactory;
@@ -39,7 +43,10 @@ import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
+import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import lombok.Setter;
@@ -65,6 +72,7 @@ public class App extends Application {
 	private @Setter ReceiversFactory receiversFactory;
 
 	private @Setter AudioEffectsViewComponent audioEffectsComponent;
+	private @Setter AlbumDetailComponent albumDetailComponent;
 
 	@Override
 	public void onCreate() {
@@ -81,6 +89,21 @@ public class App extends Application {
 		}
 
 		return audioEffectsComponent;
+	}
+
+	public AlbumDetailComponent getAlbumDetailComponent(
+			Context context,
+			AlbumDetailView view,
+			int albumId) {
+		return DaggerAlbumDetailComponent
+				.builder()
+				.modelModulesModule(new ModelModulesModule(context))
+				.albumArtModule(new AlbumArtModule())
+				.daggerDBModule(new DaggerDBModule())
+				.albumDetailModule(new AlbumDetailModule(context, view, albumId))
+				.utilsModule(new UtilsModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.build();
 	}
 
 	public BaseFactory getBaseFactory(Activity activity) {

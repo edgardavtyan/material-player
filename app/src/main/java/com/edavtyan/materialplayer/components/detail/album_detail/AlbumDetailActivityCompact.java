@@ -10,22 +10,23 @@ import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompa
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 public class AlbumDetailActivityCompact
 		extends ParallaxHeaderListCompactActivity
 		implements AlbumDetailView {
 
-	private Navigator navigator;
+	@Inject Navigator navigator;
+	@Inject AlbumDetailPresenter presenter;
+	@Inject AlbumDetailAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
-		AlbumDetailFactory factory = getApp().getAlbumDetailDI(this, this, albumId);
-
-		navigator = factory.getNavigator();
-
-		init(factory.getAdapter(), factory.getPresenter());
+		getApp().getAlbumDetailComponent(this, this, albumId).inject(this);
+		init(adapter, presenter);
 	}
 
 	@Override
