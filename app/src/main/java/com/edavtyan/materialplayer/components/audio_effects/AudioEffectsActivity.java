@@ -18,6 +18,8 @@ import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
 public class AudioEffectsActivity
@@ -34,9 +36,9 @@ public class AudioEffectsActivity
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
-	private AudioEffectsPresenter presenter;
-	private NewPresetDialog newPresetDialog;
-	private PresetsSpinnerView presetsSpinner;
+	@Inject AudioEffectsPresenter presenter;
+	@Inject NewPresetDialog newPresetDialog;
+	@Inject PresetsSpinnerView presetsSpinner;
 
 	private final View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
 		@Override
@@ -64,12 +66,9 @@ public class AudioEffectsActivity
 		newPresetButton.setOnClickListener(onNewPresetClicked);
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
-		AudioEffectsViewFactory factory = getApp().getAudioEffectsFactory(this, this);
-		presenter = factory.getPresenter();
-		presenter.onCreate();
+		getApp().getAudioEffectsComponent(this).inject(this);
 
-		newPresetDialog = new NewPresetDialog(this, presenter);
-		presetsSpinner = new PresetsSpinnerView(this, presenter);
+		presenter.onCreate();
 	}
 
 	@Override

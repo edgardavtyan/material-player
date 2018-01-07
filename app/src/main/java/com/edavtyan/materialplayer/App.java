@@ -7,7 +7,10 @@ import android.content.Context;
 import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewComponent;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewFactory;
+import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewModule;
+import com.edavtyan.materialplayer.components.audio_effects.DaggerAudioEffectsViewComponent;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailFactory;
@@ -37,6 +40,7 @@ import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import lombok.Setter;
 
@@ -59,6 +63,25 @@ public class App extends Application {
 	private @Setter SearchAlbumFactory searchAlbumFactory;
 	private @Setter SearchTrackFactory searchTrackFactory;
 	private @Setter ReceiversFactory receiversFactory;
+
+	private @Setter AudioEffectsViewComponent audioEffectsComponent;
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+	}
+
+	public AudioEffectsViewComponent getAudioEffectsComponent(AudioEffectsActivity activity) {
+		if (audioEffectsComponent == null) {
+			audioEffectsComponent = DaggerAudioEffectsViewComponent
+					.builder()
+					.modelModulesModule(new ModelModulesModule(activity))
+					.audioEffectsViewModule(new AudioEffectsViewModule(activity))
+					.build();
+		}
+
+		return audioEffectsComponent;
+	}
 
 	public BaseFactory getBaseFactory(Activity activity) {
 		return (baseFactory == null)
