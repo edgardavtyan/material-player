@@ -6,8 +6,6 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
-import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFactory;
-import com.edavtyan.materialplayer.components.lists.album_list.AlbumListView;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFactory;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListView;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListFactory;
@@ -38,7 +36,6 @@ public class App extends Application {
 
 	private @Setter BaseFactory baseFactory;
 	private @Setter NowPlayingFactory nowPlayingFactory;
-	private @Setter AlbumListFactory albumListFactory;
 	private @Setter ArtistListFactory artistListFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
@@ -60,12 +57,6 @@ public class App extends Application {
 		return (baseFactory == null)
 				? new BaseFactory(activity)
 				: baseFactory;
-	}
-
-	public AlbumListFactory getAlbumListDI(Context context, AlbumListView view) {
-		return (albumListFactory == null)
-				? new AlbumListFactory(context, view)
-				: albumListFactory;
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListView view) {

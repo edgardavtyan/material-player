@@ -1,6 +1,8 @@
 package com.edavtyan.materialplayer.components.lists.album_list;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
@@ -8,38 +10,41 @@ import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumListFragmentTest extends FragmentTest2 {
 	private static AlbumListAdapter adapter;
 	private static AlbumListPresenter presenter;
 	private static Navigator navigator;
-	private static AlbumListFragment fragment;
+
+	public static class TestAlbumListFragment extends AlbumListFragment {
+		@Override
+		public void onCreate(@Nullable Bundle savedInstanceState) {
+			this.adapter = AlbumListFragmentTest.adapter;
+			this.presenter = AlbumListFragmentTest.presenter;
+			this.navigator = AlbumListFragmentTest.navigator;
+			super.onCreate(savedInstanceState);
+		}
+
+		@Override
+		protected AlbumListComponent getComponent() {
+			return mock(AlbumListComponent.class);
+		}
+	}
+
+	private TestAlbumListFragment fragment;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		if (fragment == null) {
-			adapter = mock(AlbumListAdapter.class);
-			presenter = mock(AlbumListPresenter.class);
-			navigator = mock(Navigator.class);
+		adapter = mock(AlbumListAdapter.class);
+		presenter = mock(AlbumListPresenter.class);
+		navigator = mock(Navigator.class);
 
-			AlbumListFactory factory = mock(AlbumListFactory.class);
-			when(factory.getAdapter()).thenReturn(adapter);
-			when(factory.getPresenter()).thenReturn(presenter);
-			when(factory.getNavigator()).thenReturn(navigator);
-
-			app.setAlbumListFactory(factory);
-
-			fragment = new AlbumListFragment();
-			initFragment(fragment);
-		} else {
-			reset(adapter, presenter, navigator);
-		}
+		fragment = new TestAlbumListFragment();
+		initFragment(fragment);
 	}
 
 	@Test

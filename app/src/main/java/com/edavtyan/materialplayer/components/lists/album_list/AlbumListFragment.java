@@ -4,22 +4,40 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
+import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
+
+import javax.inject.Inject;
 
 public class AlbumListFragment extends ListFragment implements AlbumListView {
 
-	private Navigator navigator;
+	@Inject Navigator navigator;
+	@Inject AlbumListPresenter presenter;
+	@Inject AlbumListAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		AlbumListFactory factory = getApp().getAlbumListDI(getActivity(), this);
-		navigator = factory.getNavigator();
-		initListView(factory.getPresenter(), factory.getAdapter());
+		getComponent().inject(this);
+		initListView(presenter, adapter);
 	}
 
 	@Override
 	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
+	}
+
+	protected AlbumListComponent getComponent() {
+		return DaggerAlbumListComponent
+				.builder()
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.albumListModule(new AlbumListModule(getActivity(), this))
+				.daggerDBModule(new DaggerDBModule())
+				.modelModulesModule(new ModelModulesModule(getActivity()))
+				.utilsModule(new UtilsModule())
+				.build();
 	}
 }
