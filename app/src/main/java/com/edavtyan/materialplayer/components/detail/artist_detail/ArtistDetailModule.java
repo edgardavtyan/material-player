@@ -2,13 +2,11 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.utils.WebClient;
