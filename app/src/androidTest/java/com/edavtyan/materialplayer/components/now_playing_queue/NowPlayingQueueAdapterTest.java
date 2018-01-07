@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -51,7 +52,8 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 	@Test
 	public void onBindViewHolder_callPresenter() {
 		adapter.onBindViewHolder(null, 0);
-		verify(presenter).onBindViewHolder(null, 0);
+		//noinspection RedundantCast
+		((ListPresenter<NowPlayingQueueViewHolder>)verify(presenter)).onBindViewHolder(null, 0);
 	}
 
 	@Test

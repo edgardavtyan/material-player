@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -52,7 +53,8 @@ public class ArtistListAdapterTest extends BaseTest {
 	@Test
 	public void onBindViewHolder_callPresenter() {
 		adapter.onBindViewHolder(holder, 0);
-		verify(presenter).onBindViewHolder(holder, 0);
+		//noinspection RedundantCast
+		((ListPresenter<ArtistListViewHolder>)verify(presenter)).onBindViewHolder(holder, 0);
 	}
 
 	@Test
