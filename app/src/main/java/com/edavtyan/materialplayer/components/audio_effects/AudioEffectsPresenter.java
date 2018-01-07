@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
+import android.os.Build;
+
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
@@ -132,7 +134,10 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 				model.getEqualizer().getCurrentPresetType());
 		view.initBassBoost(model.getBassBoost().getMaxStrength(), model.getBassBoost().getStrength());
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
-		view.initAmplifier(model.getAmplifier().getMaxGain(), model.getAmplifier().getGain());
 		view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			view.initAmplifier(model.getAmplifier().getMaxGain(), model.getAmplifier().getGain());
+		}
 	}
 }
