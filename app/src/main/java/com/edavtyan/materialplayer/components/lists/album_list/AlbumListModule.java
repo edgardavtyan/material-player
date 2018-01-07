@@ -2,11 +2,9 @@ package com.edavtyan.materialplayer.components.lists.album_list;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import javax.inject.Singleton;
@@ -60,17 +58,5 @@ public class AlbumListModule {
 	@Singleton
 	public AlbumListAdapter provideAdapter(Context context, AlbumListPresenter presenter) {
 		return new AlbumListAdapter(context, presenter);
-	}
-
-	@Provides
-	@Singleton
-	public CompactListPref provideCompactListPref(Context context, AdvancedSharedPrefs prefs) {
-		return new CompactListPref(context, prefs);
-	}
-
-	@Provides
-	@Singleton
-	public CompactDetailPref provideCompactDetailPref(Context context) {
-		return new CompactDetailPref(context);
 	}
 }

@@ -91,16 +91,4 @@ public class ArtistDetailModule {
 	public ArtistDetailImageMemoryCache provideImageMemoryCache() {
 		return new ArtistDetailImageMemoryCache();
 	}
-
-	@Provides
-	@Singleton
-	public CompactDetailPref provideCompactDetailPref(Context context) {
-		return new CompactDetailPref(context);
-	}
-
-	@Provides
-	@Singleton
-	public CompactListPref provideCompactListPref(Context context, AdvancedSharedPrefs prefs) {
-		return new CompactListPref(context, prefs);
-	}
 }

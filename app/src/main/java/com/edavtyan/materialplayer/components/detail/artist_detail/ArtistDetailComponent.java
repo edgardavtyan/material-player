@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.detail.artist_detail;
 
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.db.DaggerDBModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
@@ -17,7 +18,8 @@ import dagger.Component;
 		LastFmModule.class,
 		ModelModulesModule.class,
 		DaggerDBModule.class,
-		AdvancedSharedPrefsModule.class})
+		AdvancedSharedPrefsModule.class,
+		CompactPrefsModule.class})
 public interface ArtistDetailComponent {
 	void inject(ArtistDetailActivityNormal activity);
 	void inject(ArtistDetailActivityCompact activity);

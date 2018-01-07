@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.lists.album_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
@@ -38,6 +39,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 				.daggerDBModule(new DaggerDBModule())
 				.modelModulesModule(new ModelModulesModule(getActivity()))
 				.utilsModule(new UtilsModule())
+				.compactPrefsModule(new CompactPrefsModule())
 				.build();
 	}
 }

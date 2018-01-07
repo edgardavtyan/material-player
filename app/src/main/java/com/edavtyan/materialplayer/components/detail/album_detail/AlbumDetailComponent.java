@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.db.DaggerDBModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
@@ -17,6 +18,7 @@ import dagger.Component;
 		DaggerDBModule.class,
 		AlbumArtModule.class,
 		UtilsModule.class,
+		CompactPrefsModule.class,
 		AdvancedSharedPrefsModule.class})
 public interface AlbumDetailComponent {
 	void inject(AlbumDetailActivityNormal activity);

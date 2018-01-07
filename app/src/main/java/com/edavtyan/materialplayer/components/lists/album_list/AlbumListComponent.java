@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.lists.album_list;
 
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.db.DaggerDBModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
@@ -14,7 +15,8 @@ import dagger.Component;
 					  ModelModulesModule.class,
 					  DaggerDBModule.class,
 					  AdvancedSharedPrefsModule.class,
-					  UtilsModule.class})
+					  UtilsModule.class,
+					  CompactPrefsModule.class})
 public interface AlbumListComponent {
 	void inject(AlbumListFragment fragment);
 }

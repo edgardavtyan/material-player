@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
@@ -62,6 +63,7 @@ public class AlbumDetailActivityNormal extends ParallaxHeaderListActivity
 				.albumDetailModule(new AlbumDetailModule(this, this, albumId))
 				.utilsModule(new UtilsModule())
 				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.compactPrefsModule(new CompactPrefsModule())
 				.build();
 	}
 }
