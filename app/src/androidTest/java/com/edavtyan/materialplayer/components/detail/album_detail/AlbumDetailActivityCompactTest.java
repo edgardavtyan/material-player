@@ -38,6 +38,11 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 			this.adapter = AlbumDetailActivityCompactTest.adapter;
 			super.onCreate(savedInstanceState);
 		}
+
+		@Override
+		protected AlbumDetailComponent getComponent() {
+			return mock(AlbumDetailComponent.class);
+		}
 	}
 
 	@Rule
@@ -49,12 +54,9 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-
 		navigator = mock(Navigator.class);
 		presenter = mock(AlbumDetailPresenter.class);
 		adapter = mock(AlbumDetailAdapter.class);
-		app.setAlbumDetailComponent(mock(AlbumDetailComponent.class));
-
 		activity = activityRule.launchActivity(null);
 	}
 

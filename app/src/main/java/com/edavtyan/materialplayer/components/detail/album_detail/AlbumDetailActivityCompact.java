@@ -23,9 +23,7 @@ public class AlbumDetailActivityCompact
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
-		getApp().getAlbumDetailComponent(this, this, albumId).inject(this);
+		getComponent().inject(this);
 		init(adapter, presenter);
 	}
 
@@ -56,5 +54,10 @@ public class AlbumDetailActivityCompact
 	@Override
 	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
+	}
+
+	protected AlbumDetailComponent getComponent() {
+		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
+		return getApp().getAlbumDetailComponent(this, this, albumId);
 	}
 }

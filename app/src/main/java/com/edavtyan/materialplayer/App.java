@@ -13,7 +13,6 @@ import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewFact
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsViewModule;
 import com.edavtyan.materialplayer.components.audio_effects.DaggerAudioEffectsViewComponent;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailComponent;
-import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailFactory;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailModule;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
 import com.edavtyan.materialplayer.components.detail.album_detail.DaggerAlbumDetailComponent;
@@ -55,7 +54,6 @@ public class App extends Application {
 
 	private @Setter BaseFactory baseFactory;
 	private @Setter NowPlayingFactory nowPlayingFactory;
-	private @Setter AlbumDetailFactory albumDetailFactory;
 	private @Setter AlbumListFactory albumListFactory;
 	private @Setter ArtistDetailFactory artistDetailFactory;
 	private @Setter ArtistListFactory artistListFactory;
@@ -72,7 +70,7 @@ public class App extends Application {
 	private @Setter ReceiversFactory receiversFactory;
 
 	private @Setter AudioEffectsViewComponent audioEffectsComponent;
-	private @Setter AlbumDetailComponent albumDetailComponent;
+	private AlbumDetailComponent albumDetailComponent;
 
 	@Override
 	public void onCreate() {
@@ -116,12 +114,6 @@ public class App extends Application {
 		return (albumListFactory == null)
 				? new AlbumListFactory(context, view)
 				: albumListFactory;
-	}
-
-	public AlbumDetailFactory getAlbumDetailDI(Context context, AlbumDetailView view, int albumId) {
-		return (albumDetailFactory == null)
-				? new AlbumDetailFactory(context, view, albumId)
-				: albumDetailFactory;
 	}
 
 	public ArtistListFactory getArtistListDI(Context context, ArtistListView view) {
