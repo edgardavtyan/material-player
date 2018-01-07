@@ -7,7 +7,12 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import javax.inject.Inject;
 
@@ -49,6 +54,14 @@ public class AlbumDetailActivityNormal extends ParallaxHeaderListActivity
 
 	protected AlbumDetailComponent getComponent() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
-		return getApp().getAlbumDetailComponent(this, this, albumId);
+		return DaggerAlbumDetailComponent
+				.builder()
+				.modelModulesModule(new ModelModulesModule(this))
+				.albumArtModule(new AlbumArtModule())
+				.daggerDBModule(new DaggerDBModule())
+				.albumDetailModule(new AlbumDetailModule(this, this, albumId))
+				.utilsModule(new UtilsModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.build();
 	}
 }
