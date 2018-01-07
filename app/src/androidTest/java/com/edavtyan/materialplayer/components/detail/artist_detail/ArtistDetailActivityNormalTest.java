@@ -19,12 +19,12 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
-public class ArtistDetailActivityTest extends ActivityTest {
+public class ArtistDetailActivityNormalTest extends ActivityTest {
 	@Rule
-	public final ActivityTestRule<ArtistDetailActivity> activityRule
-			= new ActivityTestRule<>(ArtistDetailActivity.class, false, false);
+	public final ActivityTestRule<ArtistDetailActivityNormal> activityRule
+			= new ActivityTestRule<>(ArtistDetailActivityNormal.class, false, false);
 
-	private ArtistDetailActivity activity;
+	private ArtistDetailActivityNormal activity;
 	private Navigator navigator;
 
 	@Override
@@ -41,7 +41,7 @@ public class ArtistDetailActivityTest extends ActivityTest {
 		when(factory.getNavigator()).thenReturn(navigator);
 		app.setArtistDetailFactory(factory);
 
-		activity = startActivity(ArtistDetailActivity.class);
+		activity = startActivity(ArtistDetailActivityNormal.class);
 	}
 
 	@Test

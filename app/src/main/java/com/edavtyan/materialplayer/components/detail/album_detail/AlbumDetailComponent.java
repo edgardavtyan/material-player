@@ -19,6 +19,6 @@ import dagger.Component;
 		UtilsModule.class,
 		AdvancedSharedPrefsModule.class})
 public interface AlbumDetailComponent {
-	void inject(AlbumDetailActivity activity);
+	void inject(AlbumDetailActivityNormal activity);
 	void inject(AlbumDetailActivityCompact activity);
 }

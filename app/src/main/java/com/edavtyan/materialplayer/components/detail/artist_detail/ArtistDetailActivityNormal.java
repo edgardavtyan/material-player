@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
 
-public class ArtistDetailActivity
+public class ArtistDetailActivityNormal
 		extends ParallaxHeaderListActivity
 		implements ArtistDetailView {
 

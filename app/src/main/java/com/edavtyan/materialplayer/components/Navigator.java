@@ -6,10 +6,10 @@ import android.content.Intent;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsActivity;
-import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailActivityNormal;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailActivityCompact;
 import com.edavtyan.materialplayer.components.detail.album_detail.AlbumDetailView;
-import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivity;
+import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivityNormal;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailActivityCompact;
 import com.edavtyan.materialplayer.components.detail.artist_detail.ArtistDetailView;
 import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
@@ -29,7 +29,7 @@ public class Navigator {
 
 	public void gotoArtistDetail(String artistTitle) {
 		Class activityClass = compactDetailPref.isEnabled()
-				? ArtistDetailActivityCompact.class : ArtistDetailActivity.class;
+				? ArtistDetailActivityCompact.class : ArtistDetailActivityNormal.class;
 
 		Intent intent = new Intent(context, activityClass);
 		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
@@ -38,7 +38,7 @@ public class Navigator {
 
 	public void gotoAlbumDetail(int albumId) {
 		Class activityClass = compactDetailPref.isEnabled()
-				? AlbumDetailActivityCompact.class : AlbumDetailActivity.class;
+				? AlbumDetailActivityCompact.class : AlbumDetailActivityNormal.class;
 
 		Intent intent = new Intent(context, activityClass);
 		intent.putExtra(AlbumDetailView.EXTRA_ALBUM_ID, albumId);

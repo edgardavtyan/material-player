@@ -18,18 +18,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
-public class AlbumDetailActivityTest extends ActivityTest {
-	
+public class AlbumDetailActivityNormalTest extends ActivityTest {
+
 	private static Navigator navigator;
 	private static AlbumDetailPresenter presenter;
 	private static AlbumDetailAdapter adapter;
 
-	public static class TestAlbumDetailActivity extends AlbumDetailActivity {
+	public static class TestAlbumDetailActivityNormal extends AlbumDetailActivityNormal {
 		@Override
 		public void onCreate(@Nullable Bundle savedInstanceState) {
-			this.navigator = AlbumDetailActivityTest.navigator;
-			this.presenter = AlbumDetailActivityTest.presenter;
-			this.adapter = AlbumDetailActivityTest.adapter;
+			this.navigator = AlbumDetailActivityNormalTest.navigator;
+			this.presenter = AlbumDetailActivityNormalTest.presenter;
+			this.adapter = AlbumDetailActivityNormalTest.adapter;
 			super.onCreate(savedInstanceState);
 		}
 
@@ -40,10 +40,10 @@ public class AlbumDetailActivityTest extends ActivityTest {
 	}
 
 	@Rule
-	public final ActivityTestRule<TestAlbumDetailActivity> activityRule
-			= new ActivityTestRule<>(TestAlbumDetailActivity.class, false, false);
+	public final ActivityTestRule<TestAlbumDetailActivityNormal> activityRule
+			= new ActivityTestRule<>(TestAlbumDetailActivityNormal.class, false, false);
 
-	private TestAlbumDetailActivity activity;
+	private TestAlbumDetailActivityNormal activity;
 
 	@Override
 	public void beforeEach() {

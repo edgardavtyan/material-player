@@ -11,7 +11,8 @@ import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActiv
 
 import javax.inject.Inject;
 
-public class AlbumDetailActivity extends ParallaxHeaderListActivity implements AlbumDetailView {
+public class AlbumDetailActivityNormal extends ParallaxHeaderListActivity
+		implements AlbumDetailView {
 	@Inject Navigator navigator;
 	@Inject AlbumDetailPresenter presenter;
 	@Inject AlbumDetailAdapter adapter;
