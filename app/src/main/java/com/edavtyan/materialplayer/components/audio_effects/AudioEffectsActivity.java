@@ -15,6 +15,7 @@ import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandV
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class AudioEffectsActivity
 		newPresetButton.setOnClickListener(onNewPresetClicked);
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
-		getApp().getAudioEffectsComponent(this).inject(this);
+		getComponent().inject(this);
 
 		presenter.onCreate();
 	}
@@ -187,5 +188,13 @@ public class AudioEffectsActivity
 			presenter.onAmplifierStrengthStopChanging();
 			break;
 		}
+	}
+
+	protected AudioEffectsViewComponent getComponent() {
+		return DaggerAudioEffectsViewComponent
+				.builder()
+				.modelModulesModule(new ModelModulesModule(this))
+				.audioEffectsViewModule(new AudioEffectsViewModule(this))
+				.build();
 	}
 }

@@ -32,6 +32,11 @@ public class AudioEffectsActivityTest extends ActivityTest {
 			this.presenter = AudioEffectsActivityTest.presenter;
 			super.onCreate(savedInstanceState);
 		}
+
+		@Override
+		protected AudioEffectsViewComponent getComponent() {
+			return mock(AudioEffectsViewComponent.class);
+		}
 	}
 
 	@Rule
@@ -52,7 +57,6 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		presenter = mock(AudioEffectsPresenter.class);
 
 		activity = activityRule.launchActivity(null);
-		app.setAudioEffectsComponent(mock(AudioEffectsViewComponent.class));
 
 		equalizerSwitch = (SwitchCompat) activity.findViewById(R.id.equalizer_switch);
 		equalizerView = (EqualizerView) activity.findViewById(equalizer);
