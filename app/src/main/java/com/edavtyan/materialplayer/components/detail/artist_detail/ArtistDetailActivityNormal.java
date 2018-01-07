@@ -7,24 +7,28 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
+
+import javax.inject.Inject;
 
 public class ArtistDetailActivityNormal
 		extends ParallaxHeaderListActivity
 		implements ArtistDetailView {
 
-	private Navigator navigator;
+	@Inject Navigator navigator;
+	@Inject ArtistDetailPresenter presenter;
+	@Inject ArtistDetailAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
-		ArtistDetailFactory factory = getApp().getArtistDetailDI(this, this, artistTitle);
-
-		navigator = factory.getNavigator();
-
-		init(factory.getAdapter(), factory.getPresenter());
+		getComponent().inject(this);
+		init(adapter, presenter);
 	}
 
 	@Override
@@ -49,5 +53,18 @@ public class ArtistDetailActivityNormal
 	@Override
 	public void gotoAlbumDetail(int albumId) {
 		navigator.gotoAlbumDetail(albumId);
+	}
+
+	protected ArtistDetailComponent getComponent() {
+		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
+		return DaggerArtistDetailComponent
+				.builder()
+				.artistDetailModule(new ArtistDetailModule(this, this, artistTitle))
+				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
+				.modelModulesModule(new ModelModulesModule(this))
+				.utilsModule(new UtilsModule())
+				.daggerDBModule(new DaggerDBModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.build();
 	}
 }

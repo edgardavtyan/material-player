@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.TextView;
 
@@ -16,32 +18,41 @@ import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertTh
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityNormalTest extends ActivityTest {
+	private static Navigator navigator;
+	private static ArtistDetailPresenter presenter;
+	private static ArtistDetailAdapter adapter;
+
+	public static class TestArtistDetailActivityNormal extends ArtistDetailActivityNormal {
+		@Override
+		public void onCreate(@Nullable Bundle savedInstanceState) {
+			this.navigator = ArtistDetailActivityNormalTest.navigator;
+			this.presenter = ArtistDetailActivityNormalTest.presenter;
+			this.adapter = ArtistDetailActivityNormalTest.adapter;
+			super.onCreate(savedInstanceState);
+		}
+
+		@Override
+		protected ArtistDetailComponent getComponent() {
+			return mock(ArtistDetailComponent.class);
+		}
+	}
+
 	@Rule
 	public final ActivityTestRule<ArtistDetailActivityNormal> activityRule
 			= new ActivityTestRule<>(ArtistDetailActivityNormal.class, false, false);
 
 	private ArtistDetailActivityNormal activity;
-	private Navigator navigator;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-
 		navigator = mock(Navigator.class);
-		ArtistDetailPresenter presenter = mock(ArtistDetailPresenter.class);
-		ArtistDetailAdapter adapter = mock(ArtistDetailAdapter.class);
-
-		ArtistDetailFactory factory = mock(ArtistDetailFactory.class);
-		when(factory.getPresenter()).thenReturn(presenter);
-		when(factory.getAdapter()).thenReturn(adapter);
-		when(factory.getNavigator()).thenReturn(navigator);
-		app.setArtistDetailFactory(factory);
-
-		activity = startActivity(ArtistDetailActivityNormal.class);
+		presenter = mock(ArtistDetailPresenter.class);
+		adapter = mock(ArtistDetailAdapter.class);
+		activity = activityRule.launchActivity(null);
 	}
 
 	@Test
