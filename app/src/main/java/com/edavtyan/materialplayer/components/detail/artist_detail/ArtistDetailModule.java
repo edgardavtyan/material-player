@@ -72,10 +72,10 @@ public class ArtistDetailModule {
 			WebClient webClient,
 			LastfmApi lastFmApi,
 			TestableBitmapFactory bitmapFactory,
-			ArtistDetailImageFileStorage fileStrage,
+			ArtistDetailImageFileStorage fileStorage,
 			ArtistDetailImageMemoryCache memoryCache) {
 		return new ArtistDetailImageLoader(
-				webClient, lastFmApi, bitmapFactory, fileStrage, memoryCache);
+				webClient, lastFmApi, bitmapFactory, fileStorage, memoryCache);
 	}
 
 	@Provides
