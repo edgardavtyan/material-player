@@ -3,23 +3,46 @@ package com.edavtyan.materialplayer.components.lists.artist_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
+import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
+
+import javax.inject.Inject;
 
 public class ArtistListFragment extends ListFragment implements ArtistListView {
 
-	private Navigator navigator;
+	@Inject Navigator navigator;
+	@Inject ArtistListPresenter presenter;
+	@Inject ArtistListAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ArtistListFactory factory = getApp().getArtistListDI(getContext(), this);
-		initListView(factory.getPresenter(), factory.getAdapter());
-		navigator = factory.getNavigator();
+		getComponent().inject(this);
+		initListView(presenter, adapter);
 	}
 
 	@Override
 	public void gotoArtistDetail(String title) {
 		navigator.gotoArtistDetail(title);
+	}
+
+	protected ArtistListComponent getComponent() {
+		return DaggerArtistListComponent
+				.builder()
+				.artistListModule(new ArtistListModule(getActivity(), this))
+				.compactPrefsModule(new CompactPrefsModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.daggerDBModule(new DaggerDBModule())
+				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
+				.modelModulesModule(new ModelModulesModule())
+				.utilsModule(new UtilsModule())
+				.build();
 	}
 }

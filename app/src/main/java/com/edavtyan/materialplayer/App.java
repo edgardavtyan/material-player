@@ -36,7 +36,6 @@ public class App extends Application {
 
 	private @Setter BaseFactory baseFactory;
 	private @Setter NowPlayingFactory nowPlayingFactory;
-	private @Setter ArtistListFactory artistListFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
 	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
@@ -57,12 +56,6 @@ public class App extends Application {
 		return (baseFactory == null)
 				? new BaseFactory(activity)
 				: baseFactory;
-	}
-
-	public ArtistListFactory getArtistListDI(Context context, ArtistListView view) {
-		return (artistListFactory == null)
-				? new ArtistListFactory(context, view)
-				: artistListFactory;
 	}
 
 	public TrackListFactory getTrackListDI(Context context, TrackListFragment view) {
