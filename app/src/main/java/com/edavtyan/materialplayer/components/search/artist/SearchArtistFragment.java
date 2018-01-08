@@ -5,12 +5,18 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFragment;
+import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListModule;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
+
+import javax.inject.Inject;
 
 public class SearchArtistFragment extends ArtistListFragment implements SearchView {
 
-	private SearchViewImpl searchViewImpl;
+	@Inject SearchViewImpl searchViewImpl;
+	@Inject SearchArtistPresenter presenter;
+	@Inject SearchArtistAdapter adapter;
 
 	@Override
 	protected int getLayoutId() {
@@ -20,9 +26,8 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SearchArtistFactory factory = getApp().getSearchArtistFactory(getContext(), this);
-		initListView(factory.getPresenter(), factory.getAdapter());
-		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
+		getComponent2().inject(this);
+		initListView(presenter, adapter);
 	}
 
 	@Override
@@ -45,5 +50,14 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 	@Override
 	public void showEmptyResult() {
 		searchViewImpl.showEmptyResult();
+	}
+
+	protected SearchArtistComponent getComponent2() {
+		return DaggerSearchArtistComponent
+				.builder()
+				.searchArtistModule(new SearchArtistModule(this))
+				.artistListModule(new ArtistListModule(getActivity(), this))
+				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
+				.build();
 	}
 }
