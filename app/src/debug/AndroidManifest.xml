@@ -10,16 +10,17 @@
 	<application android:name="com.edavtyan.materialplayer.App">
 
 		<activity android:name=".testlib.TestActivity" />
-		<activity android:name=".components.detail.artist_detail.ArtistDetailActivityTest$TestArtistDetailActivity" />
-		<activity android:name=".components.detail.album_detail.AlbumDetailActivityTest$TestAlbumDetailActivity" />
-		<activity android:name=".components.now_playing_queue.NowPlayingQueueActivityTest$TestNowPlayingQueueActivity" />
-		<activity android:name=".components.audio_effects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
 		<activity android:name=".lib.base.BaseActivityTest$TestBaseActivity" />
 		<activity android:name=".lib.base.BaseToolbarActivityTest$TestBaseToolbarActivity" />
+		<activity android:name=".components.audio_effects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
 		<activity android:name=".components.detail.artist_detail.ArtistDetailActivityCompactTest$TestArtistDetailActivityCompact" />
+		<activity android:name=".components.detail.artist_detail.ArtistDetailActivityNormalTest$TestArtistDetailActivityNormal" />
 		<activity android:name=".components.detail.album_detail.AlbumDetailActivityCompactTest$TestAlbumDetailActivityCompact" />
+		<activity android:name=".components.detail.album_detail.AlbumDetailActivityNormalTest$TestAlbumDetailActivityNormal" />
 		<activity android:name=".components.now_playing.NowPlayingActivityTest$TestNowPlayingActivity" />
 		<activity android:name=".components.now_playing.models.NowPlayingViewTest$TestNowPlayingActivity" />
+		<activity android:name=".components.now_playing_queue.NowPlayingQueueActivityTest$TestNowPlayingQueueActivity" />
+
 		<service android:name=".components.player.PlayerServiceTest$TestPlayerService" />
 
 	</application>
