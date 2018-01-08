@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.notification;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
@@ -16,7 +17,7 @@ public class PlayerNotificationModule {
 	@Singleton
 	public PlayerNotification providePlayerNotification(
 			PlayerNotificationCompat notificationCompat,
-			PlayerNotificationNougat notificationNougat) {
+			@Nullable PlayerNotificationNougat notificationNougat) {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
 			return notificationCompat;
 		} else {
