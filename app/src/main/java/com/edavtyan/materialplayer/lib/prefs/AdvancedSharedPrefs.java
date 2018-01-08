@@ -44,8 +44,12 @@ public class AdvancedSharedPrefs {
 		String[] elementsAsString = arrayAsString.split(",");
 		int[] elements = new int[elementsAsString.length];
 
-		for (int i = 0; i < elements.length; i++) {
-			elements[i] = Integer.parseInt(elementsAsString[i]);
+		try {
+			for (int i = 0; i < elements.length; i++) {
+				elements[i] = Integer.parseInt(elementsAsString[i]);
+			}
+		} catch (NumberFormatException e) {
+			return new int[arraySize];
 		}
 
 		return elements;

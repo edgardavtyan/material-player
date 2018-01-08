@@ -9,15 +9,10 @@ import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.audio_effects.amplifier.Amplifier;
-import com.edavtyan.materialplayer.components.audio_effects.amplifier.AmplifierModule;
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoost;
-import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoostModule;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
-import com.edavtyan.materialplayer.components.audio_effects.equalizer.EqualizerModule;
 import com.edavtyan.materialplayer.components.audio_effects.surround.Surround;
-import com.edavtyan.materialplayer.components.audio_effects.surround.SurroundModule;
 import com.edavtyan.materialplayer.components.notification.PlayerNotification;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
@@ -28,7 +23,6 @@ import com.edavtyan.materialplayer.components.player.receivers.MediaButtonReceiv
 import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
 import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 
 import javax.inject.Inject;
 
@@ -53,8 +47,8 @@ public class PlayerService extends Service {
 	@Inject @Getter Amplifier amplifier;
 	@Inject AudioFocusManager audioFocusManager;
 	@Inject MediaSessionManager mediaSessionManager;
-	private PlayerNotification notification;
-	private PlayerNotificationPresenter presenter;
+	@Inject PlayerNotification notification;
+	@Inject PlayerNotificationPresenter presenter;
 
 	@Inject AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
 	@Inject CloseReceiver closeReceiver;
@@ -79,9 +73,7 @@ public class PlayerService extends Service {
 	public void onCreate() {
 		super.onCreate();
 
-		App app = (App) getApplicationContext();
-
-		getComponent().inject(this);
+		((App) getApplicationContext()).getPlayerServiceComponent(this).inject(this);
 
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));
@@ -93,10 +85,6 @@ public class PlayerService extends Service {
 
 		audioFocusManager.requestFocus();
 		mediaSessionManager.init();
-
-		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(this);
-		notification = notificationFactory.getNotification();
-		presenter = notificationFactory.getPresenter();
 		presenter.onCreate();
 	}
 
@@ -106,17 +94,5 @@ public class PlayerService extends Service {
 		presenter.onDestroy();
 		audioFocusManager.dropFocus();
 		mediaSessionManager.close();
-	}
-
-	protected PlayerServiceComponent getComponent() {
-		return DaggerPlayerServiceComponent
-				.builder()
-				.playerModule(new PlayerModule(this))
-				.equalizerModule(new EqualizerModule())
-				.amplifierModule(new AmplifierModule())
-				.bassBoostModule(new BassBoostModule())
-				.surroundModule(new SurroundModule())
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
-				.build();
 	}
 }

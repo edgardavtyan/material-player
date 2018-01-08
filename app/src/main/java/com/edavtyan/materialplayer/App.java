@@ -5,13 +5,16 @@ import android.app.Application;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.audio_effects.amplifier.AmplifierModule;
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoostModule;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.EqualizerModule;
 import com.edavtyan.materialplayer.components.audio_effects.surround.SurroundModule;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.main.MainFactory;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationCompatModule;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationModule;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationNougatModule;
 import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponent;
 import com.edavtyan.materialplayer.components.player.PlayerModule;
 import com.edavtyan.materialplayer.components.player.PlayerService;
@@ -22,6 +25,7 @@ import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 
@@ -54,7 +58,12 @@ public class App extends Application {
 					.amplifierModule(new AmplifierModule())
 					.bassBoostModule(new BassBoostModule())
 					.surroundModule(new SurroundModule())
+					.playerNotificationCompatModule(new PlayerNotificationCompatModule())
+					.playerNotificationNougatModule(new PlayerNotificationNougatModule())
+					.playerNotificationModule(new PlayerNotificationModule())
+					.albumArtModule(new AlbumArtModule())
 					.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+					.utilsModule(new UtilsModule())
 					.build();
 		}
 	}
@@ -63,10 +72,6 @@ public class App extends Application {
 		return (baseFactory == null)
 				? new BaseFactory(activity)
 				: baseFactory;
-	}
-
-	public PlayerNotificationFactory getPlayerNotificationFactory(Context context) {
-		return new PlayerNotificationFactory(context);
 	}
 
 	public SdkFactory getSdkFactory() {

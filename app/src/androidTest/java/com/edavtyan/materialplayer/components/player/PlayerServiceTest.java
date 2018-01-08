@@ -5,9 +5,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
-import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.components.notification.PlayerNotification;
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationModule;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.components.player.receivers.ReceiversModule;
@@ -37,29 +35,22 @@ public class PlayerServiceTest extends BaseTest {
 		super.beforeEach();
 
 		player = mock(Player.class);
-
-		ReceiversModule receiversModule = mock(ReceiversModule.class, RETURNS_MOCKS);
 		PlayerModule playerModule = mock(PlayerModule.class, RETURNS_MOCKS);
 		when(playerModule.providePlayer(any(), any(), any())).thenReturn(player);
+		when(playerModule.provideContext()).thenReturn(context);
+
+		notificationPresenter = mock(PlayerNotificationPresenter.class);
+		PlayerNotificationModule notificationModule = mock(PlayerNotificationModule.class, RETURNS_MOCKS);
+		when(notificationModule.providePresenter(any(), any())).thenReturn(notificationPresenter);
 
 		PlayerServiceComponent component = DaggerPlayerServiceComponent
 				.builder()
-				.receiversModule(receiversModule)
+				.receiversModule(mock(ReceiversModule.class, RETURNS_MOCKS))
 				.playerModule(playerModule)
+				.playerNotificationModule(notificationModule)
 				.build();
 
-		notification = mock(Notification.class);
-		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
-		when(nowPlayingNotification.getNotification()).thenReturn(notification);
-
-		notificationPresenter = mock(PlayerNotificationPresenter.class);
-		PlayerNotificationFactory notificationFactory = mock(PlayerNotificationFactory.class);
-		when(notificationFactory.getNotification()).thenReturn(nowPlayingNotification);
-		when(notificationFactory.getPresenter()).thenReturn(notificationPresenter);
-
-		App app = mock(App.class);
-		when(app.getPlayerNotificationFactory(any())).thenReturn(notificationFactory);
-		when(app.getPlayerServiceComponent(playerService)).thenReturn(component);
+		app.setPlayerServiceComponent(component);
 
 		try {
 			Intent intent = new Intent(context, PlayerService.class);
