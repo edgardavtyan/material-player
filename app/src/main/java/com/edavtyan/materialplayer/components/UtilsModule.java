@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.WebClient;
 
@@ -36,5 +37,11 @@ public class UtilsModule {
 	@Singleton
 	public PendingIntents providePendingIntents(Context context) {
 		return new PendingIntents(context);
+	}
+
+	@Provides
+	@Singleton
+	public AppColors provideAppColors(Context context) {
+		return new AppColors(context);
 	}
 }

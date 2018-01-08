@@ -9,8 +9,6 @@ import com.edavtyan.materialplayer.components.audio_effects.amplifier.AmplifierM
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoostModule;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.EqualizerModule;
 import com.edavtyan.materialplayer.components.audio_effects.surround.SurroundModule;
-import com.edavtyan.materialplayer.components.main.MainActivity;
-import com.edavtyan.materialplayer.components.main.MainFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationCompatModule;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationModule;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationNougatModule;
@@ -28,7 +26,6 @@ public class App extends Application {
 
 	private @Setter BaseFactory baseFactory;
 	private @Setter SdkFactory sdkFactory;
-	private @Setter MainFactory mainFactory;
 
 	private @Setter PlayerServiceComponent playerServiceComponent;
 
@@ -68,9 +65,5 @@ public class App extends Application {
 		return (sdkFactory == null)
 				? new SdkFactory()
 				: sdkFactory;
-	}
-
-	public MainFactory getMainFactory(MainActivity activity) {
-		return (mainFactory == null) ? new MainFactory(activity) : mainFactory;
 	}
 }

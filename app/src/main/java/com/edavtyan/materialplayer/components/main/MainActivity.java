@@ -12,6 +12,8 @@ import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.utils.WindowUtils;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
 public class MainActivity extends BaseToolbarActivity {
@@ -19,7 +21,10 @@ public class MainActivity extends BaseToolbarActivity {
 	@BindView(R.id.view_pager) ViewPager viewPager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
 
-	private CompactMainScreenPref compactMainScreenPref;
+	@Inject CompactMainScreenPref compactMainScreenPref;
+	@Inject IconsTabsAdapter iconsTabsAdapter;
+	@Inject TextTabsAdapter textTabsAdapter;
+
 	private boolean isCompactModeEnabled;
 
 	@Override
@@ -31,15 +36,14 @@ public class MainActivity extends BaseToolbarActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		MainFactory factory = getApp().getMainFactory(this);
-		compactMainScreenPref = factory.getCompactMainScreenPref();
+		getComponent().inject(this);
+
 		isCompactModeEnabled = compactMainScreenPref.isEnabled();
 
 		super.onCreate(savedInstanceState);
 
 		FragmentPagerAdapter adapter = compactMainScreenPref.isEnabled()
-				? factory.getIconsTabsAdapter()
-				: factory.getTextTabsAdapter();
+				? iconsTabsAdapter : textTabsAdapter;
 
 		if (isCompactModeEnabled && WindowUtils.isPortrait(this)) {
 			toolbar.setTitle(null);
@@ -63,5 +67,12 @@ public class MainActivity extends BaseToolbarActivity {
 	@Override
 	public boolean isBackIconEnabled() {
 		return false;
+	}
+
+	protected MainComponent getComponent() {
+		return DaggerMainComponent
+				.builder()
+				.mainModule(new MainModule(this))
+				.build();
 	}
 }
