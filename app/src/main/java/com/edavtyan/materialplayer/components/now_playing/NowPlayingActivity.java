@@ -7,33 +7,31 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
+import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+
+import javax.inject.Inject;
 
 import lombok.Getter;
 
 public class NowPlayingActivity extends BaseToolbarActivity {
-	private NowPlayingPresenter presenter;
-	private Navigator navigator;
+	@Inject NowPlayingPresenter presenter;
+	@Inject Navigator navigator;
 
-	private @Getter NowPlayingControls controls;
-	private @Getter NowPlayingInfo info;
-	private @Getter NowPlayingArt art;
-	private @Getter NowPlayingSeekbar seekbar;
+	@Inject @Getter NowPlayingControls controls;
+	@Inject @Getter NowPlayingInfo info;
+	@Inject @Getter NowPlayingArt art;
+	@Inject @Getter NowPlayingSeekbar seekbar;
+	@Inject @Getter NowPlayingFab fab;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		NowPlayingFactory factory = getApp().getNowPlayingFactory(this);
-		presenter = factory.getPresenter();
-		controls = factory.getControls();
-		info = factory.getInfo();
-		art = factory.getArt();
-		seekbar = factory.getSeekbar();
-		navigator = factory.getNavigator();
-		factory.getFab();
+		getComponent().inject(this);
 
 		presenter.bind();
 	}
@@ -56,5 +54,13 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 
 	public void gotoPlaylistScreen() {
 		navigator.gotoNowPlayingQueue(this);
+	}
+
+	protected NowPlayingComponent getComponent() {
+		return DaggerNowPlayingComponent
+				.builder()
+				.albumArtModule(new AlbumArtModule())
+				.nowPlayingModule(new NowPlayingModule(this))
+				.build();
 	}
 }

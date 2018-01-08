@@ -1,6 +1,8 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 
 import com.edavtyan.materialplayer.R;
@@ -17,21 +19,39 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingActivityTest extends ActivityTest {
-	@Rule
-	public final ActivityTestRule<NowPlayingActivity> activityRule
-			= new ActivityTestRule<>(NowPlayingActivity.class, false, false);
+	private static NowPlayingPresenter presenter;
+	private static NowPlayingArt art;
+	private static NowPlayingControls controls;
+	private static NowPlayingInfo info;
+	private static NowPlayingSeekbar seekbar;
+	private static Navigator navigator;
 
-	private NowPlayingActivity activity;
-	private NowPlayingPresenter presenter;
-	private NowPlayingArt art;
-	private NowPlayingControls controls;
-	private NowPlayingInfo info;
-	private NowPlayingSeekbar seekbar;
-	private Navigator navigator;
+	public static class TestNowPlayingActivity extends NowPlayingActivity {
+		@Override
+		public void onCreate(@Nullable Bundle savedInstanceState) {
+			this.presenter = NowPlayingActivityTest.presenter;
+			this.art = NowPlayingActivityTest.art;
+			this.controls = NowPlayingActivityTest.controls;
+			this.info = NowPlayingActivityTest.info;
+			this.seekbar = NowPlayingActivityTest.seekbar;
+			this.navigator = NowPlayingActivityTest.navigator;
+			super.onCreate(savedInstanceState);
+		}
+
+		@Override
+		protected NowPlayingComponent getComponent() {
+			return mock(NowPlayingComponent.class);
+		}
+	}
+
+	@Rule
+	public final ActivityTestRule<TestNowPlayingActivity> activityRule
+			= new ActivityTestRule<>(TestNowPlayingActivity.class, false, false);
+
+	private TestNowPlayingActivity activity;
 
 	@Override
 	public void beforeEach() {
@@ -44,17 +64,7 @@ public class NowPlayingActivityTest extends ActivityTest {
 		seekbar = mock(NowPlayingSeekbar.class);
 		navigator = mock(Navigator.class);
 
-		NowPlayingFactory factory = mock(NowPlayingFactory.class);
-		when(factory.getPresenter()).thenReturn(presenter);
-		when(factory.getArt()).thenReturn(art);
-		when(factory.getControls()).thenReturn(controls);
-		when(factory.getInfo()).thenReturn(info);
-		when(factory.getSeekbar()).thenReturn(seekbar);
-		when(factory.getNavigator()).thenReturn(navigator);
-
-		app.setNowPlayingFactory(factory);
-
-		activity = startActivity(NowPlayingActivity.class);
+		activity = activityRule.launchActivity(null);
 	}
 
 	@Test

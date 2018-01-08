@@ -9,8 +9,6 @@ import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.main.MainFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
 import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
@@ -31,7 +29,6 @@ import lombok.Setter;
 public class App extends Application {
 
 	private @Setter BaseFactory baseFactory;
-	private @Setter NowPlayingFactory nowPlayingFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
 	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
@@ -51,12 +48,6 @@ public class App extends Application {
 		return (baseFactory == null)
 				? new BaseFactory(activity)
 				: baseFactory;
-	}
-
-	public NowPlayingFactory getNowPlayingFactory(NowPlayingActivity activity) {
-		return (nowPlayingFactory == null)
-				? new NowPlayingFactory(activity)
-				: nowPlayingFactory;
 	}
 
 	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(

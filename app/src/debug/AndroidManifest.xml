@@ -18,6 +18,8 @@
 		<activity android:name=".lib.base.BaseToolbarActivityTest$TestBaseToolbarActivity" />
 		<activity android:name=".components.detail.artist_detail.ArtistDetailActivityCompactTest$TestArtistDetailActivityCompact" />
 		<activity android:name=".components.detail.album_detail.AlbumDetailActivityCompactTest$TestAlbumDetailActivityCompact" />
+		<activity android:name=".components.now_playing.NowPlayingActivityTest$TestNowPlayingActivity" />
+		<activity android:name=".components.now_playing.models.NowPlayingViewTest$TestNowPlayingActivity" />
 
 	</application>
 
