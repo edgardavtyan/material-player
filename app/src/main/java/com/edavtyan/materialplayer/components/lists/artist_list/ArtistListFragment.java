@@ -5,10 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import javax.inject.Inject;
 

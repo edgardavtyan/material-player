@@ -3,40 +3,19 @@ package com.edavtyan.materialplayer.lib.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaMetadataRetriever;
 import android.preference.PreferenceManager;
 import android.view.MenuInflater;
 
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtFileStorage;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtMemoryCache;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtReader;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.utils.ThemeUtils;
-import com.edavtyan.materialplayer.utils.WebClient;
-import com.google.gson.Gson;
 
 public class BaseFactory {
 	private final Context context;
 	private Navigator navigator;
-	private AlbumArtProvider albumArtProvider;
-	private TestableBitmapFactory bitmapFactory;
-	private AlbumArtFileStorage dataStorage;
-	private AlbumArtMemoryCache memoryCache;
-	private WebClient webClient;
-	private AlbumArtReader albumArtReader;
 	private ThemeUtils themeUtils;
 	private AdvancedSharedPrefs prefs;
-	private AdvancedGsonSharedPrefs advancedGsonSharedPrefs;
 	private SharedPreferences basePrefs;
-	private CompactDetailPref compactDetailPref;
-	private ModelServiceModule modelServiceModule;
-	private Gson gson;
 
 	public BaseFactory(Context context) {
 		this.context = context;
@@ -49,40 +28,6 @@ public class BaseFactory {
 	public Navigator getNavigator() {
 		if (navigator == null) navigator = new Navigator(context);
 		return navigator;
-	}
-
-	public AlbumArtProvider getArtProvider() {
-		if (albumArtProvider == null)
-			albumArtProvider = new AlbumArtProvider(
-					getArtFileStorage(),
-					getArtMemoryCache(),
-					getMusicTagReader(),
-					getBitmapFactory());
-		return albumArtProvider;
-	}
-
-	public AlbumArtReader getMusicTagReader() {
-		if (albumArtReader == null)
-			albumArtReader = new AlbumArtReader(new MediaMetadataRetriever());
-		return albumArtReader;
-	}
-
-	public AlbumArtMemoryCache getArtMemoryCache() {
-		if (memoryCache == null)
-			memoryCache = new AlbumArtMemoryCache();
-		return memoryCache;
-	}
-
-	public AlbumArtFileStorage getArtFileStorage() {
-		if (dataStorage == null)
-			dataStorage = new AlbumArtFileStorage(getContext());
-		return dataStorage;
-	}
-
-	public TestableBitmapFactory getBitmapFactory() {
-		if (bitmapFactory == null)
-			bitmapFactory = new TestableBitmapFactory();
-		return bitmapFactory;
 	}
 
 	public ThemeUtils getThemeUtils() {

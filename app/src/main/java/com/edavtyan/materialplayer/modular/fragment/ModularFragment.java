@@ -23,11 +23,6 @@ public abstract class ModularFragment extends TestableFragment {
 	@LayoutRes
 	protected abstract int getLayoutId();
 
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-
 	@Nullable
 	@Override
 	public View onCreateView(

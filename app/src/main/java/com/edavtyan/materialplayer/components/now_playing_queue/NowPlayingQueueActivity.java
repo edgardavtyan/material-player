@@ -5,12 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import javax.inject.Inject;
 

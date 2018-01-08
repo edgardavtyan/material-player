@@ -10,7 +10,6 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingContr
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 
 import javax.inject.Inject;

@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 
 import javax.inject.Inject;
 

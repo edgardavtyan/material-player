@@ -16,8 +16,6 @@ import android.widget.TextView;
 import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.UtilsModule;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.testable.TestableFragment;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
