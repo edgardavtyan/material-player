@@ -20,7 +20,6 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
 import javax.inject.Inject;
@@ -129,7 +128,6 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 				.albumArtModule(new AlbumArtModule())
 				.utilsModule(new UtilsModule())
 				.compactPrefsModule(new CompactPrefsModule())
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.build();
 	}
 }
