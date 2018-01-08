@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.main;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
-import com.edavtyan.materialplayer.components.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 
 import javax.inject.Singleton;

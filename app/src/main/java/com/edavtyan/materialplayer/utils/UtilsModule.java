@@ -1,11 +1,9 @@
-package com.edavtyan.materialplayer.components;
+package com.edavtyan.materialplayer.utils;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.utils.AppColors;
-import com.edavtyan.materialplayer.utils.PendingIntents;
-import com.edavtyan.materialplayer.utils.WebClient;
 
 import javax.inject.Singleton;
 

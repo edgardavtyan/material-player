@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.player;
 
-import com.edavtyan.materialplayer.components.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.components.audio_effects.amplifier.AmplifierModule;
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoostModule;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.EqualizerModule;

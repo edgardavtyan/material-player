@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
-import com.edavtyan.materialplayer.components.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 
 import javax.inject.Singleton;

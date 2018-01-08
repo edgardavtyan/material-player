@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
 
 import org.junit.Test;

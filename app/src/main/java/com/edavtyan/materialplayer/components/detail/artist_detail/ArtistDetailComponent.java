@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
-import com.edavtyan.materialplayer.components.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
