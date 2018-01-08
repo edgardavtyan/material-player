@@ -29,11 +29,6 @@ public class App extends Application {
 
 	private @Setter PlayerServiceComponent playerServiceComponent;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-	}
-
 	public PlayerServiceComponent getPlayerServiceComponent(PlayerService service) {
 		if (playerServiceComponent != null) {
 			return playerServiceComponent;

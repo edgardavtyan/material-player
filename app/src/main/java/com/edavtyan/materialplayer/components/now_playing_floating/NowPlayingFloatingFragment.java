@@ -19,7 +19,7 @@ import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
-import com.edavtyan.materialplayer.lib.base.BaseFragment;
+import com.edavtyan.materialplayer.lib.testable.TestableFragment;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
 import javax.inject.Inject;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NowPlayingFloatingFragment extends BaseFragment implements View.OnClickListener {
+public class NowPlayingFloatingFragment extends TestableFragment implements View.OnClickListener {
 
 	public static final int SCALED_ART_SIZE_DP = 44;
 

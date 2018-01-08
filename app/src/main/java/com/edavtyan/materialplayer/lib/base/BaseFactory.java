@@ -79,12 +79,6 @@ public class BaseFactory {
 		return dataStorage;
 	}
 
-	public WebClient getWebClient() {
-		if (webClient == null)
-			webClient = new WebClient();
-		return webClient;
-	}
-
 	public TestableBitmapFactory getBitmapFactory() {
 		if (bitmapFactory == null)
 			bitmapFactory = new TestableBitmapFactory();
@@ -103,34 +97,10 @@ public class BaseFactory {
 		return prefs;
 	}
 
-	public AdvancedGsonSharedPrefs getAdvancedGsonSharedPrefs() {
-		if (advancedGsonSharedPrefs == null)
-			advancedGsonSharedPrefs = new AdvancedGsonSharedPrefs(getBasePrefs(), getGson());
-		return advancedGsonSharedPrefs;
-	}
-
 	public SharedPreferences getBasePrefs() {
 		if (basePrefs == null)
 			basePrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 		return basePrefs;
-	}
-
-	public CompactDetailPref getCompactDetailPref() {
-		if (compactDetailPref == null)
-			compactDetailPref = new CompactDetailPref(getContext());
-		return compactDetailPref;
-	}
-
-	public ModelServiceModule getModelServiceModule() {
-		if (modelServiceModule == null)
-			modelServiceModule = new ModelServiceModule(getContext());
-		return modelServiceModule;
-	}
-
-	public Gson getGson() {
-		if (gson == null)
-			gson = new Gson();
-		return gson;
 	}
 
 	public MenuInflater createMenuInflater(Activity activity) {

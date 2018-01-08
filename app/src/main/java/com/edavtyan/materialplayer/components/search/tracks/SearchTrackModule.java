@@ -37,7 +37,6 @@ public class SearchTrackModule {
 	@Singleton
 	public SearchTrackModel provideModel(
 			ModelServiceModule serviceModule,
-			TrackDB albumDB,
 			TrackDB trackDB,
 			CompactListPref compactListPref) {
 		return new SearchTrackModel(serviceModule, trackDB, compactListPref);
