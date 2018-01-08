@@ -23,6 +23,8 @@ import com.edavtyan.materialplayer.lib.base.BaseFragment;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -37,8 +39,8 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 	@BindView(R.id.container) LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoWrapper;
 
-	NowPlayingFloatingPresenter presenter;
-	Navigator navigator;
+	@Inject NowPlayingFloatingPresenter presenter;
+	@Inject Navigator navigator;
 
 	@Override
 	public void onClick(View view) {

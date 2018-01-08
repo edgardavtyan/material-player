@@ -3,8 +3,6 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +13,17 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
 
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.notNull;
+import static org.mockito.Mockito.RETURNS_MOCKS;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -31,24 +32,19 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
-	private static NowPlayingFloatingPresenter presenter;
-	private static Navigator navigator;
+	private static NowPlayingFloatingComponent component;
 
 	public static class TestNowPlayingFloatingFragment extends NowPlayingFloatingFragment {
 		@Override
-		public void onCreate(@Nullable Bundle savedInstanceState) {
-			this.presenter = NowPlayingFloatingFragmentTest.presenter;
-			this.navigator = NowPlayingFloatingFragmentTest.navigator;
-			super.onCreate(savedInstanceState);
-		}
-
-		@Override
 		protected NowPlayingFloatingComponent getComponent() {
-			return mock(NowPlayingFloatingComponent.class);
+			return component;
 		}
 	}
 
+	private NowPlayingFloatingPresenter presenter;
+	private Navigator navigator;
 	private TestNowPlayingFloatingFragment fragment;
+
 	private LayoutInflater inflater;
 	private TextView infoView;
 	private TextView titleView;
@@ -63,7 +59,18 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		super.beforeEach();
 
 		presenter = mock(NowPlayingFloatingPresenter.class);
+		NowPlayingFloatingModule mainModule = mock(NowPlayingFloatingModule.class, RETURNS_MOCKS);
+		when(mainModule.providePresenter(any(), any())).thenReturn(presenter);
+
 		navigator = mock(Navigator.class);
+		UtilsModule utilsModule = mock(UtilsModule.class, RETURNS_MOCKS);
+		when(utilsModule.provideNavigator(any(), any())).thenReturn(navigator);
+
+		component = DaggerNowPlayingFloatingComponent
+				.builder()
+				.nowPlayingFloatingModule(mainModule)
+				.utilsModule(utilsModule)
+				.build();
 
 		inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
