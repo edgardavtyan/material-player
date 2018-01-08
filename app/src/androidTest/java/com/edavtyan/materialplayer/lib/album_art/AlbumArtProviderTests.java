@@ -18,7 +18,6 @@ public class AlbumArtProviderTests extends BaseTest {
 	private AlbumArtFileStorage fileStorage;
 	private AlbumArtMemoryCache memoryCache;
 	private AlbumArtProvider albumArtProvider;
-	private AlbumArtReader artReader;
 	private Track track;
 	private Bitmap art;
 	private byte[] artBytes;
@@ -59,7 +58,7 @@ public class AlbumArtProviderTests extends BaseTest {
 		when(fileStorage.load(Integer.toString(index))).thenReturn(art);
 
 		artBytes = new byte[]{1, 2, 3, 4, 5};
-		artReader = mock(AlbumArtReader.class);
+		AlbumArtReader artReader = mock(AlbumArtReader.class);
 		when(artReader.getAlbumArtBytes(track.getPath())).thenReturn(artBytes);
 
 		TestableBitmapFactory bitmapFactory = mock(TestableBitmapFactory.class);

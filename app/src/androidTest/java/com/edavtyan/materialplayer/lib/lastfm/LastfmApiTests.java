@@ -18,14 +18,13 @@ public class LastfmApiTests extends BaseTest {
 	private static final String ARTIST_IMAGE_XLARGE = "https://lastfm-img2.akamaized.net/i/u/300x300/96516a40ea0440ea90e3a438a08ae7e1.png";
 	private static final String ARTIST_IMAGE_MEGA = "https://lastfm-img2.akamaized.net/i/u/300x300/96516a40ea0440ea90e3a438a08ae7e1.png";
 
-	private WebClient webClient;
 	private LastfmApi lastfmApi;
 	private LastfmArtistInfoFileStorage fileStorage;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		webClient = spy(new WebClient());
+		WebClient webClient = spy(new WebClient());
 		fileStorage = mock(LastfmArtistInfoFileStorage.class);
 		String apiKey = context.getString(R.string.lastfm_api_key);
 		lastfmApi = new LastfmApi(webClient, fileStorage, apiKey);
