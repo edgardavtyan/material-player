@@ -69,13 +69,25 @@ public class ArtistListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClick_gotoArtistDetail() {
+	public void onHolderClick_compactModeEnabled_gotoArtistDetailCompact() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
+		when(model.isCompactModeEnabled()).thenReturn(true);
 
 		presenter.onHolderClick(3);
-		verify(view).gotoArtistDetail("title");
+		verify(view).gotoArtistDetailCompact("title");
+	}
+
+	@Test
+	public void onHolderClick_compactModeDisabled_gotoArtistDetailNormal() {
+		Artist artist = new Artist();
+		artist.setTitle("title");
+		when(model.getArtistAtIndex(3)).thenReturn(artist);
+		when(model.isCompactModeEnabled()).thenReturn(false);
+
+		presenter.onHolderClick(3);
+		verify(view).gotoArtistDetailNormal("title");
 	}
 
 	@Test

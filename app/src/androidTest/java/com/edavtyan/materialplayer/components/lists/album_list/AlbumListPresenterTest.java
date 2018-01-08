@@ -50,13 +50,25 @@ public class AlbumListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClick_gotoAlbumDetail() {
+	public void onHolderClick_compactModeEnabled_gotoAlbumDetailCompact() {
 		Album album = new Album();
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
+		when(model.isCompactModeEnabled()).thenReturn(true);
 
 		presenter.onHolderClick(3);
-		verify(view).gotoAlbumDetail(7);
+		verify(view).gotoAlbumDetailCompact(7);
+	}
+
+	@Test
+	public void onHolderClick_compactModeDisabled_gotoAlbumDetailNormal() {
+		Album album = new Album();
+		album.setId(7);
+		when(model.getAlbumAtIndex(3)).thenReturn(album);
+		when(model.isCompactModeEnabled()).thenReturn(false);
+
+		presenter.onHolderClick(3);
+		verify(view).gotoAlbumDetailNormal(7);
 	}
 
 	@Test

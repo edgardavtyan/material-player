@@ -80,7 +80,7 @@ public class ArtistDetailActivityNormalTest extends ActivityTest {
 
 	@Test
 	public void gotoAlbumDetail_callNavigator() {
-		activity.gotoAlbumDetail(3);
-		verify(navigator).gotoAlbumDetail(3);
+		activity.gotoAlbumDetailNormal(3);
+		verify(navigator).gotoAlbumDetailNormal(3);
 	}
 }

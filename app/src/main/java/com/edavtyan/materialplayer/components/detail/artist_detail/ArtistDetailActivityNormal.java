@@ -52,8 +52,13 @@ public class ArtistDetailActivityNormal
 	}
 
 	@Override
-	public void gotoAlbumDetail(int albumId) {
-		navigator.gotoAlbumDetail(albumId);
+	public void gotoAlbumDetailNormal(int albumId) {
+		navigator.gotoAlbumDetailNormal(albumId);
+	}
+
+	@Override
+	public void gotoAlbumDetailCompact(int albumId) {
+		navigator.gotoAlbumDetailCompact(albumId);
 	}
 
 	protected ArtistDetailComponent getComponent() {

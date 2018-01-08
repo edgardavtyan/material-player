@@ -40,7 +40,12 @@ public class ArtistListPresenter extends ListPresenter<ArtistListViewHolder> {
 
 	public void onHolderClick(int position) {
 		Artist artist = model.getArtistAtIndex(position);
-		view.gotoArtistDetail(artist.getTitle());
+
+		if (model.isCompactModeEnabled()) {
+			view.gotoArtistDetailCompact(artist.getTitle());
+		} else {
+			view.gotoArtistDetailNormal(artist.getTitle());
+		}
 	}
 
 	public void onAddToPlaylist(int position) {

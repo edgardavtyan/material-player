@@ -29,8 +29,13 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	}
 
 	@Override
-	public void gotoArtistDetail(String title) {
-		navigator.gotoArtistDetail(title);
+	public void gotoArtistDetailNormal(String title) {
+		navigator.gotoArtistDetailNormal(title);
+	}
+
+	@Override
+	public void gotoArtistDetailCompact(String title) {
+		navigator.gotoArtistDetailComapct(title);
 	}
 
 	protected ArtistListComponent getComponent() {

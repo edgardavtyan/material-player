@@ -31,13 +31,13 @@ public class NavigatorTest extends BaseTest {
 		super.beforeEach();
 		CompactDetailPref compactDetailPref = mock(CompactDetailPref.class);
 		activity = mock(AppCompatActivity.class);
-		navigator = new Navigator(activity, compactDetailPref);
+		navigator = new Navigator(activity);
 		intentCaptor = ArgumentCaptor.forClass(Intent.class);
 	}
 
 	@Test
 	public void gotoArtistDetail_startActivityWithCorrectParameters() {
-		navigator.gotoArtistDetail("title");
+		navigator.gotoArtistDetailNormal("title");
 
 		verify(activity).startActivity(intentCaptor.capture());
 
@@ -48,7 +48,7 @@ public class NavigatorTest extends BaseTest {
 
 	@Test
 	public void gotoAlbumDetail_startAlbumDetailActivityWithCorrectParameters() {
-		navigator.gotoAlbumDetail(7);
+		navigator.gotoAlbumDetailNormal(7);
 
 		verify(activity).startActivity(intentCaptor.capture());
 

@@ -47,7 +47,7 @@ public class BaseFactory {
 	}
 
 	public Navigator getNavigator() {
-		if (navigator == null) navigator = new Navigator(context, getCompactDetailPref());
+		if (navigator == null) navigator = new Navigator(context);
 		return navigator;
 	}
 

@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.components;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.PendingIntents;
@@ -17,8 +16,8 @@ import dagger.Provides;
 public class UtilsModule {
 	@Provides
 	@Singleton
-	public Navigator provideNavigator(Context context, CompactDetailPref compactDetailPref) {
-		return new Navigator(context, compactDetailPref);
+	public Navigator provideNavigator(Context context) {
+		return new Navigator(context);
 	}
 
 	@Provides

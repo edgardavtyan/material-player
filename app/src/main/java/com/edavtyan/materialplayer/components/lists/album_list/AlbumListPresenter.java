@@ -31,7 +31,11 @@ public class AlbumListPresenter extends ListPresenter<AlbumListViewHolder> {
 
 	public void onHolderClick(int position) {
 		int albumId = model.getAlbumAtIndex(position).getId();
-		view.gotoAlbumDetail(albumId);
+		if (model.isCompactModeEnabled()) {
+			view.gotoAlbumDetailCompact(albumId);
+		} else {
+			view.gotoAlbumDetailNormal(albumId);
+		}
 	}
 
 	public void onAddToPlaylist(int position) {

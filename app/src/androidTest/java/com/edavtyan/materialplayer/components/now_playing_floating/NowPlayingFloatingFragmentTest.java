@@ -64,7 +64,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 
 		navigator = mock(Navigator.class);
 		UtilsModule utilsModule = mock(UtilsModule.class, RETURNS_MOCKS);
-		when(utilsModule.provideNavigator(any(), any())).thenReturn(navigator);
+		when(utilsModule.provideNavigator(any())).thenReturn(navigator);
 
 		component = DaggerNowPlayingFloatingComponent
 				.builder()
