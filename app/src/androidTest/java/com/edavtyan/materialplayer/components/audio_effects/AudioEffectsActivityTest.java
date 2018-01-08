@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.audio_effects;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.test.filters.SdkSuppress;
 import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.SwitchCompat;
 
@@ -157,6 +158,7 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	}
 
 	@Test
+	@SdkSuppress(minSdkVersion = 19)
 	public void initAmplifier_setAmplifierSeekbarMaxAndProgress() {
 		runOnUiThread(() -> activity.initAmplifier(300, 25));
 		assertThat(amplifierView)
@@ -165,12 +167,14 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	}
 
 	@Test
+	@SdkSuppress(minSdkVersion = 19)
 	public void onProgressChanged_amplifierId_changAmplifierStrengthViaPresenter() {
 		runOnUiThread(() -> activity.onProgressChange(R.id.amplifier, 30));
 		verify(presenter).onAmplifierStrengthChanged(30);
 	}
 
 	@Test
+	@SdkSuppress(minSdkVersion = 19)
 	public void onStopTrackingTouch_amplifierId_callPresenter() {
 		runOnUiThread(() -> activity.onStopTrackingTouch(R.id.amplifier));
 		verify(presenter).onAmplifierStrengthStopChanging();

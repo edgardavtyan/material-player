@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
+import android.os.Build;
+
 import com.edavtyan.materialplayer.components.audio_effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoost;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
@@ -60,7 +62,10 @@ public class AudioEffectsPresenterTest extends BaseTest {
 		verify(view).setEqualizerBands(5, 15, new int[]{10, 20, 30, 40, 50}, new int[]{4, 5, 6, 7, 8});
 		verify(view).initBassBoost(100, 15);
 		verify(view).initSurround(200, 4);
-		verify(view).initAmplifier(300, 5);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			verify(view).initAmplifier(300, 5);
+		}
 	}
 
 	@Test
