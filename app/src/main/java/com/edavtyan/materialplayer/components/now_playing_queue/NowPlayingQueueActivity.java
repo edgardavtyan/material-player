@@ -5,9 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
+import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -15,16 +20,15 @@ public class NowPlayingQueueActivity extends BaseToolbarActivity implements List
 
 	@BindView(R.id.list) RecyclerView list;
 
-	private NowPlayingQueuePresenter presenter;
-	private NowPlayingQueueAdapter adapter;
+	@Inject NowPlayingQueuePresenter presenter;
+	@Inject NowPlayingQueueAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		NowPlayingQueueFactory factory = getApp().getPlaylistFactory(this, this);
-		presenter = factory.getPresenter();
-		adapter = factory.getAdapter();
+		getComponent().inject(this);
+
 		adapter.setHasStableIds(true);
 
 		list.setLayoutManager(new AnimatingLinearLayoutManager(this));
@@ -51,5 +55,15 @@ public class NowPlayingQueueActivity extends BaseToolbarActivity implements List
 
 	public void removeItem(int position) {
 		adapter.notifyItemRemoved(position);
+	}
+
+	protected NowPlayingQueueComponent getComponent() {
+		return DaggerNowPlayingQueueComponent
+				.builder()
+				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
+				.modelModulesModule(new ModelModulesModule())
+				.compactPrefsModule(new CompactPrefsModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.build();
 	}
 }

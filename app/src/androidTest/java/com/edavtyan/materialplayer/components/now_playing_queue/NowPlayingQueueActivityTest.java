@@ -1,12 +1,13 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Rule;
@@ -15,17 +16,31 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingQueueActivityTest extends ActivityTest {
-	@Rule
-	public final ActivityTestRule<NowPlayingActivity> activityRule
-			= new ActivityTestRule<>(NowPlayingActivity.class, false, false);
+	private static NowPlayingQueueAdapter adapter;
+	private static NowPlayingQueuePresenter presenter;
 
-	private NowPlayingQueueActivity activity;
-	private NowPlayingQueueAdapter adapter;
-	private NowPlayingQueuePresenter presenter;
+	public static class TestNowPlayingQueueActivity extends NowPlayingQueueActivity {
+		@Override
+		public void onCreate(@Nullable Bundle savedInstanceState) {
+			this.presenter = NowPlayingQueueActivityTest.presenter;
+			this.adapter = NowPlayingQueueActivityTest.adapter;
+			super.onCreate(savedInstanceState);
+		}
+
+		@Override
+		protected NowPlayingQueueComponent getComponent() {
+			return mock(NowPlayingQueueComponent.class);
+		}
+	}
+
+	@Rule
+	public final ActivityTestRule<TestNowPlayingQueueActivity> activityRule
+			= new ActivityTestRule<>(TestNowPlayingQueueActivity.class, false, false);
+
+	private TestNowPlayingQueueActivity activity;
 
 	@Override
 	public void beforeEach() {
@@ -34,13 +49,7 @@ public class NowPlayingQueueActivityTest extends ActivityTest {
 		adapter = mock(NowPlayingQueueAdapter.class);
 		presenter = mock(NowPlayingQueuePresenter.class);
 
-		NowPlayingQueueFactory factory = mock(NowPlayingQueueFactory.class);
-		when(factory.getAdapter()).thenReturn(adapter);
-		when(factory.getPresenter()).thenReturn(presenter);
-
-		app.setNowPlayingQueueFactory(factory);
-
-		activity = startActivity(NowPlayingQueueActivity.class);
+		activity = activityRule.launchActivity(null);
 	}
 
 	@Test
