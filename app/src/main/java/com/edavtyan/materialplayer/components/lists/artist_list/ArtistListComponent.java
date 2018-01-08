@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.lists.artist_list;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.UtilsModule;
-import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
@@ -16,7 +16,7 @@ import dagger.Component;
 		ArtistListModule.class,
 		ModelModulesModule.class,
 		UtilsModule.class,
-		DaggerDBModule.class,
+		DbModule.class,
 		CompactPrefsModule.class,
 		AdvancedSharedPrefsModule.class,
 		LastFmModule.class})

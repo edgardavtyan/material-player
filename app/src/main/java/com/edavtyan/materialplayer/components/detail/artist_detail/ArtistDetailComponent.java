@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.UtilsModule;
-import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
@@ -17,7 +17,7 @@ import dagger.Component;
 		UtilsModule.class,
 		LastFmModule.class,
 		ModelModulesModule.class,
-		DaggerDBModule.class,
+		DbModule.class,
 		AdvancedSharedPrefsModule.class,
 		CompactPrefsModule.class})
 public interface ArtistDetailComponent {

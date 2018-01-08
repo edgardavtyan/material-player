@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
@@ -44,7 +44,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 				.artistListModule(new ArtistListModule(getActivity(), this))
 				.compactPrefsModule(new CompactPrefsModule())
 				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
-				.daggerDBModule(new DaggerDBModule())
+				.dbModule(new DbModule())
 				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
 				.modelModulesModule(new ModelModulesModule())
 				.utilsModule(new UtilsModule())

@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DaggerDBModule {
+public class DbModule {
 	@Provides
 	@Singleton
 	public ArtistDB provideArtistDB(Context context) {

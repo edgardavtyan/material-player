@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.UtilsModule;
-import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
@@ -15,7 +15,7 @@ import dagger.Component;
 @Component(modules = {
 		AlbumDetailModule.class,
 		ModelModulesModule.class,
-		DaggerDBModule.class,
+		DbModule.class,
 		AlbumArtModule.class,
 		UtilsModule.class,
 		CompactPrefsModule.class,

@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
-import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
@@ -69,7 +69,7 @@ public class ArtistDetailActivityCompact
 				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
 				.modelModulesModule(new ModelModulesModule())
 				.utilsModule(new UtilsModule())
-				.daggerDBModule(new DaggerDBModule())
+				.dbModule(new DbModule())
 				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.compactPrefsModule(new CompactPrefsModule())
 				.build();

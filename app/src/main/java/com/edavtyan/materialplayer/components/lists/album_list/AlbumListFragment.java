@@ -7,7 +7,7 @@ import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.db.DaggerDBModule;
+import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
@@ -41,7 +41,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 				.builder()
 				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.albumListModule(new AlbumListModule(getActivity(), this))
-				.daggerDBModule(new DaggerDBModule())
+				.dbModule(new DbModule())
 				.modelModulesModule(new ModelModulesModule())
 				.utilsModule(new UtilsModule())
 				.compactPrefsModule(new CompactPrefsModule())
