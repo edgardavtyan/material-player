@@ -4,13 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
-import com.edavtyan.materialplayer.components.search.base.SearchView;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListFragment;
+import com.edavtyan.materialplayer.components.lists.track_list.TrackListModule;
+import com.edavtyan.materialplayer.components.search.base.SearchView;
+import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
+
+import javax.inject.Inject;
 
 public class SearchTrackFragment extends TrackListFragment implements SearchView {
 
-	private SearchViewImpl searchViewImpl;
+	@Inject SearchViewImpl searchViewImpl;
+	@Inject SearchTrackPresenter presenter;
+	@Inject SearchTrackAdapter adapter;
 
 	@Override
 	protected int getLayoutId() {
@@ -20,9 +25,8 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SearchTrackFactory factory = getApp().getSearchTrackFactory(getContext(), this);
-		initListView(factory.getPresenter(), factory.getAdapter());
-		searchViewImpl = new SearchViewImpl(this, factory.getPresenter());
+		getComponent2().inject(this);
+		initListView(presenter, adapter);
 	}
 
 	@Override
@@ -45,5 +49,13 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 	@Override
 	public void showEmptyResult() {
 		searchViewImpl.showEmptyResult();
+	}
+
+	protected SearchTrackComponent getComponent2() {
+		return DaggerSearchTrackComponent
+				.builder()
+				.searchTrackModule(new SearchTrackModule(this))
+				.trackListModule(new TrackListModule(getActivity(), this))
+				.build();
 	}
 }

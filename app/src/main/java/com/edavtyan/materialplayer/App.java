@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
 import com.edavtyan.materialplayer.components.UtilsModule;
@@ -19,8 +18,6 @@ import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponen
 import com.edavtyan.materialplayer.components.player.PlayerModule;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.PlayerServiceComponent;
-import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
-import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
@@ -32,7 +29,6 @@ public class App extends Application {
 	private @Setter BaseFactory baseFactory;
 	private @Setter SdkFactory sdkFactory;
 	private @Setter MainFactory mainFactory;
-	private @Setter SearchTrackFactory searchTrackFactory;
 
 	private @Setter PlayerServiceComponent playerServiceComponent;
 
@@ -72,12 +68,6 @@ public class App extends Application {
 		return (sdkFactory == null)
 				? new SdkFactory()
 				: sdkFactory;
-	}
-
-	public SearchTrackFactory getSearchTrackFactory(Context context, SearchTrackFragment view) {
-		return (searchTrackFactory == null)
-				? new SearchTrackFactory(context, view)
-				: searchTrackFactory;
 	}
 
 	public MainFactory getMainFactory(MainActivity activity) {
