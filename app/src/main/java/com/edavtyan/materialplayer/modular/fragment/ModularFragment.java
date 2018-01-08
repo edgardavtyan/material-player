@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.modular.fragment;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,13 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.edavtyan.materialplayer.lib.testable.TestableFragment;
-
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
-public abstract class ModularFragment extends TestableFragment {
+public abstract class ModularFragment extends Fragment {
 
 	private final ArrayList<FragmentModule> modules = new ArrayList<>();
 

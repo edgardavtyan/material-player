@@ -2,14 +2,13 @@ package com.edavtyan.materialplayer.modular.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.edavtyan.materialplayer.lib.testable.TestableActivity;
-
 import java.util.ArrayList;
 
-public abstract class ModularActivity extends TestableActivity {
+public abstract class ModularActivity extends AppCompatActivity {
 	private final ArrayList<ActivityModule> modules = new ArrayList<>();
 
 	@Override

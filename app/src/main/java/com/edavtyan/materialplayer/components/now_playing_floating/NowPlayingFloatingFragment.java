@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.testable.TestableFragment;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NowPlayingFloatingFragment extends TestableFragment implements View.OnClickListener {
+public class NowPlayingFloatingFragment extends Fragment implements View.OnClickListener {
 
 	public static final int SCALED_ART_SIZE_DP = 44;
 
