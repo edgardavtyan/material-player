@@ -19,8 +19,6 @@ import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponen
 import com.edavtyan.materialplayer.components.player.PlayerModule;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.PlayerServiceComponent;
-import com.edavtyan.materialplayer.components.search.album.SearchAlbumFactory;
-import com.edavtyan.materialplayer.components.search.album.SearchAlbumFragment;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
@@ -37,7 +35,6 @@ public class App extends Application {
 	private @Setter SdkFactory sdkFactory;
 	private @Setter MainFactory mainFactory;
 	private @Setter SearchArtistFactory searchArtistFactory;
-	private @Setter SearchAlbumFactory searchAlbumFactory;
 	private @Setter SearchTrackFactory searchTrackFactory;
 
 	private @Setter PlayerServiceComponent playerServiceComponent;
@@ -84,12 +81,6 @@ public class App extends Application {
 		return (searchArtistFactory == null)
 				? new SearchArtistFactory(context, view)
 				: searchArtistFactory;
-	}
-
-	public SearchAlbumFactory getSearchAlbumFactory(Context context, SearchAlbumFragment view) {
-		return (searchAlbumFactory == null)
-				? new SearchAlbumFactory(context, view)
-				: searchAlbumFactory;
 	}
 
 	public SearchTrackFactory getSearchTrackFactory(Context context, SearchTrackFragment view) {
