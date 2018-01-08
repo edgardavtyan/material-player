@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
@@ -127,7 +126,6 @@ public class NowPlayingFloatingFragment extends TestableFragment implements View
 				.nowPlayingFloatingModule(new NowPlayingFloatingModule(getActivity(), this))
 				.albumArtModule(new AlbumArtModule())
 				.utilsModule(new UtilsModule())
-				.compactPrefsModule(new CompactPrefsModule())
 				.build();
 	}
 }
