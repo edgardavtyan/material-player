@@ -27,8 +27,8 @@ public class ReceiversModule {
 	@Provides
 	@Singleton
 	public HeadphonesConnectedReceiver provideHeadphonesConnectedReceiver(
-			Player player, PlayOnHeadsetPluggedPref playerOnHeadsetPluggeedPref) {
-		return new HeadphonesConnectedReceiver(player, playerOnHeadsetPluggeedPref);
+			Player player, PlayOnHeadsetPluggedPref playerOnHeadsetPluggedPref) {
+		return new HeadphonesConnectedReceiver(player, playerOnHeadsetPluggedPref);
 	}
 
 	@Provides

@@ -30,7 +30,7 @@ public class Navigator {
 		context.startActivity(intent);
 	}
 
-	public void gotoArtistDetailComapct(String artistTitle) {
+	public void gotoArtistDetailCompact(String artistTitle) {
 		Intent intent = new Intent(context, ArtistDetailActivityCompact.class);
 		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
 		context.startActivity(intent);
