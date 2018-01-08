@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.audio_effects.amplifier;
 import android.annotation.TargetApi;
 import android.media.audiofx.LoudnessEnhancer;
 import android.os.Build;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
@@ -16,8 +17,13 @@ import dagger.Provides;
 public class AmplifierModule {
 	@Provides
 	@Singleton
+	@Nullable
 	public Amplifier provideAmplifier(AmplifierPrefs prefs, int sessionId) {
-		return new StandardAmplifier(new LoudnessEnhancer(sessionId), prefs);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			return new StandardAmplifier(new LoudnessEnhancer(sessionId), prefs);
+		} else {
+			return null;
+		}
 	}
 
 	@Provides

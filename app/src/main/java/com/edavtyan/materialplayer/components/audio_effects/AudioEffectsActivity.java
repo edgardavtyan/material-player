@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.SwitchCompat;
@@ -62,9 +63,14 @@ public class AudioEffectsActivity
 		equalizerView.setOnBandChangedListener(this);
 		bassBoostView.setOnProgressChangedListener(this);
 		surroundView.setOnProgressChangedListener(this);
-		amplifierView.setOnProgressChangedListener(this);
 		newPresetButton.setOnClickListener(onNewPresetClicked);
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
+
+		if (isAmplifierAvailable()) {
+			amplifierView.setOnProgressChangedListener(this);
+		} else {
+			amplifierView.setVisibility(View.GONE);
+		}
 
 		getComponent().inject(this);
 
@@ -136,6 +142,7 @@ public class AudioEffectsActivity
 	}
 
 	public void initAmplifier(int max, int gain) {
+		if (!isAmplifierAvailable()) return;
 		amplifierView.setMax(max);
 		amplifierView.setProgress(gain);
 	}
@@ -194,5 +201,9 @@ public class AudioEffectsActivity
 				.builder()
 				.audioEffectsViewModule(new AudioEffectsViewModule(this))
 				.build();
+	}
+
+	private boolean isAmplifierAvailable() {
+		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 	}
 }

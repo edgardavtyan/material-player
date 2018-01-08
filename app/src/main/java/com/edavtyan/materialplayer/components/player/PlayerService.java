@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.audio_effects.amplifier.Amplifier;
@@ -44,7 +45,7 @@ public class PlayerService extends Service {
 	@Inject @Getter Equalizer equalizer;
 	@Inject @Getter Surround surround;
 	@Inject @Getter BassBoost bassBoost;
-	@Inject @Getter Amplifier amplifier;
+	@Inject @Nullable @Getter Amplifier amplifier;
 	@Inject AudioFocusManager audioFocusManager;
 	@Inject MediaSessionManager mediaSessionManager;
 	@Inject PlayerNotification notification;
