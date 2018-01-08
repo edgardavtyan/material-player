@@ -61,9 +61,6 @@ public class NowPlayingQueueActivity extends BaseToolbarActivity implements List
 		return DaggerNowPlayingQueueComponent
 				.builder()
 				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
-				.modelModulesModule(new ModelModulesModule())
-				.compactPrefsModule(new CompactPrefsModule())
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.build();
 	}
 }

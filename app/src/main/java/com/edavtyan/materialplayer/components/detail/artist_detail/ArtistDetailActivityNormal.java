@@ -67,11 +67,6 @@ public class ArtistDetailActivityNormal
 				.builder()
 				.artistDetailModule(new ArtistDetailModule(this, this, artistTitle))
 				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
-				.modelModulesModule(new ModelModulesModule())
-				.utilsModule(new UtilsModule())
-				.dbModule(new DbModule())
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
-				.compactPrefsModule(new CompactPrefsModule())
 				.build();
 	}
 }

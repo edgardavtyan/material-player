@@ -59,7 +59,6 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	protected NowPlayingComponent getComponent() {
 		return DaggerNowPlayingComponent
 				.builder()
-				.albumArtModule(new AlbumArtModule())
 				.nowPlayingModule(new NowPlayingModule(this))
 				.build();
 	}

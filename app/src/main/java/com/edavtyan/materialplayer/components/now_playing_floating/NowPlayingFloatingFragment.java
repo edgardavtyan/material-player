@@ -124,8 +124,6 @@ public class NowPlayingFloatingFragment extends TestableFragment implements View
 		return DaggerNowPlayingFloatingComponent
 				.builder()
 				.nowPlayingFloatingModule(new NowPlayingFloatingModule(getActivity(), this))
-				.albumArtModule(new AlbumArtModule())
-				.utilsModule(new UtilsModule())
 				.build();
 	}
 }

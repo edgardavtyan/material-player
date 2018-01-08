@@ -3,13 +3,8 @@ package com.edavtyan.materialplayer.components.lists.album_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.db.DbModule;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import javax.inject.Inject;
 
@@ -39,12 +34,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	protected AlbumListComponent getComponent() {
 		return DaggerAlbumListComponent
 				.builder()
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.albumListModule(new AlbumListModule(getActivity(), this))
-				.dbModule(new DbModule())
-				.modelModulesModule(new ModelModulesModule())
-				.utilsModule(new UtilsModule())
-				.compactPrefsModule(new CompactPrefsModule())
 				.build();
 	}
 }

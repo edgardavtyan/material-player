@@ -15,7 +15,6 @@ import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandV
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import java.util.List;
 
@@ -193,7 +192,6 @@ public class AudioEffectsActivity
 	protected AudioEffectsViewComponent getComponent() {
 		return DaggerAudioEffectsViewComponent
 				.builder()
-				.modelModulesModule(new ModelModulesModule())
 				.audioEffectsViewModule(new AudioEffectsViewModule(this))
 				.build();
 	}

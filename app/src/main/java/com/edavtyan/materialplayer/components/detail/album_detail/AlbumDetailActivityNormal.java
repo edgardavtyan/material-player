@@ -10,10 +10,7 @@ import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.UtilsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.db.DbModule;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 
 import javax.inject.Inject;
 
@@ -57,13 +54,7 @@ public class AlbumDetailActivityNormal extends ParallaxHeaderListActivity
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		return DaggerAlbumDetailComponent
 				.builder()
-				.modelModulesModule(new ModelModulesModule())
-				.albumArtModule(new AlbumArtModule())
-				.dbModule(new DbModule())
 				.albumDetailModule(new AlbumDetailModule(this, this, albumId))
-				.utilsModule(new UtilsModule())
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
-				.compactPrefsModule(new CompactPrefsModule())
 				.build();
 	}
 }

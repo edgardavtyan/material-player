@@ -35,11 +35,6 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 		return DaggerTrackListComponent
 				.builder()
 				.trackListModule(new TrackListModule(getActivity(), this))
-				.compactPrefsModule(new CompactPrefsModule())
-				.dbModule(new DbModule())
-				.modelModulesModule(new ModelModulesModule())
-				.utilsModule(new UtilsModule())
-				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
 				.build();
 	}
 }
