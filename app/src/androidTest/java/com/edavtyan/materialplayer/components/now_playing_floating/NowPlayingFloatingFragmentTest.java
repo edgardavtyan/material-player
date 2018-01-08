@@ -22,7 +22,6 @@ import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertTh
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.RETURNS_MOCKS;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -103,7 +102,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	public void onCreateView_inflateViewWithCorrectParameters() {
 		verify(inflater).inflate(
 				eq(R.layout.fragment_nowplaying_floating),
-				notNull(ViewGroup.class),
+				any(ViewGroup.class),
 				eq(false));
 	}
 
