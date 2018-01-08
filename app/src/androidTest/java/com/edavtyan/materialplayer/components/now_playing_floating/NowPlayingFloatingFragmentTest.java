@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.components.now_playing_floating;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +31,24 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
-	private NowPlayingFloatingFragment fragment;
-	private NowPlayingFloatingPresenter presenter;
-	private Navigator navigator;
+	private static NowPlayingFloatingPresenter presenter;
+	private static Navigator navigator;
+
+	public static class TestNowPlayingFloatingFragment extends NowPlayingFloatingFragment {
+		@Override
+		public void onCreate(@Nullable Bundle savedInstanceState) {
+			this.presenter = NowPlayingFloatingFragmentTest.presenter;
+			this.navigator = NowPlayingFloatingFragmentTest.navigator;
+			super.onCreate(savedInstanceState);
+		}
+
+		@Override
+		protected NowPlayingFloatingComponent getComponent() {
+			return mock(NowPlayingFloatingComponent.class);
+		}
+	}
+
+	private TestNowPlayingFloatingFragment fragment;
 	private LayoutInflater inflater;
 	private TextView infoView;
 	private TextView titleView;
@@ -48,16 +65,10 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		presenter = mock(NowPlayingFloatingPresenter.class);
 		navigator = mock(Navigator.class);
 
-		NowPlayingFloatingFactory factory = mock(NowPlayingFloatingFactory.class);
-		when(factory.getPresenter()).thenReturn(presenter);
-		when(factory.getNavigator()).thenReturn(navigator);
-
-		app.setNowPlayingFloatingFactory(factory);
-
 		inflater = spy(LayoutInflater.from(context));
 		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
 
-		fragment = spy(new NowPlayingFloatingFragment());
+		fragment = spy(new TestNowPlayingFloatingFragment());
 		doReturn(context).when(fragment).getContext();
 		initFragment(fragment);
 

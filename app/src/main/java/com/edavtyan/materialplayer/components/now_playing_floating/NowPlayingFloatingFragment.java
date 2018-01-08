@@ -15,8 +15,12 @@ import android.widget.TextView;
 
 import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.UtilsModule;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.utils.DpConverter;
 
 import butterknife.BindView;
@@ -33,8 +37,8 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 	@BindView(R.id.container) LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoWrapper;
 
-	private NowPlayingFloatingPresenter presenter;
-	private Navigator navigator;
+	NowPlayingFloatingPresenter presenter;
+	Navigator navigator;
 
 	@Override
 	public void onClick(View view) {
@@ -52,10 +56,7 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		NowPlayingFloatingFactory factory = getApp().getNowPlayingFloatingFactory(getContext(), this);
-		navigator = factory.getNavigator();
-		presenter = factory.getPresenter();
+		getComponent().inject(this);
 	}
 
 	@Nullable
@@ -117,5 +118,16 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 
 	public void gotoNowPlaying() {
 		navigator.gotoNowPlaying();
+	}
+
+	protected NowPlayingFloatingComponent getComponent() {
+		return DaggerNowPlayingFloatingComponent
+				.builder()
+				.nowPlayingFloatingModule(new NowPlayingFloatingModule(getActivity(), this))
+				.albumArtModule(new AlbumArtModule())
+				.utilsModule(new UtilsModule())
+				.compactPrefsModule(new CompactPrefsModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.build();
 	}
 }

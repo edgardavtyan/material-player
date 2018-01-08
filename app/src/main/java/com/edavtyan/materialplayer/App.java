@@ -9,8 +9,6 @@ import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.main.MainFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFactory;
-import com.edavtyan.materialplayer.components.now_playing_floating.NowPlayingFloatingFragment;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.components.now_playing_queue.NowPlayingQueueFactory;
 import com.edavtyan.materialplayer.components.player.Player;
@@ -31,7 +29,6 @@ public class App extends Application {
 	private @Setter BaseFactory baseFactory;
 	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter NowPlayingQueueFactory nowPlayingQueueFactory;
-	private @Setter NowPlayingFloatingFactory nowPlayingFloatingFactory;
 	private @Setter SdkFactory sdkFactory;
 	private @Setter MainFactory mainFactory;
 	private @Setter SearchArtistFactory searchArtistFactory;
@@ -48,14 +45,6 @@ public class App extends Application {
 		return (baseFactory == null)
 				? new BaseFactory(activity)
 				: baseFactory;
-	}
-
-	public NowPlayingFloatingFactory getNowPlayingFloatingFactory(
-			Context context,
-			NowPlayingFloatingFragment view) {
-		return (nowPlayingFloatingFactory == null)
-				? new NowPlayingFloatingFactory(context, view)
-				: nowPlayingFloatingFactory;
 	}
 
 	public NowPlayingQueueFactory getPlaylistFactory(Context context, NowPlayingQueueActivity view) {
