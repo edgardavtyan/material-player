@@ -41,8 +41,8 @@ public class ArtistDetailActivityNormalTest extends ActivityTest {
 	}
 
 	@Rule
-	public final ActivityTestRule<ArtistDetailActivityNormal> activityRule
-			= new ActivityTestRule<>(ArtistDetailActivityNormal.class, false, false);
+	public final ActivityTestRule<TestArtistDetailActivityNormal> activityRule
+			= new ActivityTestRule<>(TestArtistDetailActivityNormal.class, false, false);
 
 	private ArtistDetailActivityNormal activity;
 

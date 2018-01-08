@@ -44,8 +44,8 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 	}
 
 	@Rule
-	public final ActivityTestRule<ArtistDetailActivityCompact> activityRule
-			= new ActivityTestRule<>(ArtistDetailActivityCompact.class, false, false);
+	public final ActivityTestRule<TestArtistDetailActivityCompact> activityRule
+			= new ActivityTestRule<>(TestArtistDetailActivityCompact.class, false, false);
 
 	private ArtistDetailActivityCompact activity;
 
