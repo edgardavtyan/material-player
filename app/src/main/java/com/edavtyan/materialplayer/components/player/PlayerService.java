@@ -5,21 +5,32 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.audio_effects.amplifier.Amplifier;
+import com.edavtyan.materialplayer.components.audio_effects.amplifier.AmplifierModule;
 import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoost;
+import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoostModule;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.components.audio_effects.equalizer.EqualizerModule;
 import com.edavtyan.materialplayer.components.audio_effects.surround.Surround;
+import com.edavtyan.materialplayer.components.audio_effects.surround.SurroundModule;
 import com.edavtyan.materialplayer.components.notification.PlayerNotification;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
-import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
+import com.edavtyan.materialplayer.components.player.receivers.AudioBecomingNoisyReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.CloseReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.HeadphonesConnectedReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.MediaButtonReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.PlayPauseReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.SkipToNextReceiver;
+import com.edavtyan.materialplayer.components.player.receivers.SkipToPreviousReceiver;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
+
+import javax.inject.Inject;
 
 import lombok.Getter;
 
@@ -35,15 +46,23 @@ public class PlayerService extends Service {
 		}
 	}
 
+	@Inject @Getter Player player;
+	@Inject @Getter Equalizer equalizer;
+	@Inject @Getter Surround surround;
+	@Inject @Getter BassBoost bassBoost;
+	@Inject @Getter Amplifier amplifier;
+	@Inject AudioFocusManager audioFocusManager;
+	@Inject MediaSessionManager mediaSessionManager;
 	private PlayerNotification notification;
 	private PlayerNotificationPresenter presenter;
-	private AudioFocusManager audioFocusManager;
-	private MediaSessionManager mediaSessionManager;
-	private @Getter Player player;
-	private @Getter Equalizer equalizer;
-	private @Getter Surround surround;
-	private @Getter BassBoost bassBoost;
-	private @Getter Amplifier amplifier;
+
+	@Inject AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
+	@Inject CloseReceiver closeReceiver;
+	@Inject HeadphonesConnectedReceiver headphonesConnectedReceiver;
+	@Inject MediaButtonReceiver mediaButtonReceiver;
+	@Inject PlayPauseReceiver playPauseReceiver;
+	@Inject SkipToNextReceiver skipToNextReceiver;
+	@Inject SkipToPreviousReceiver skipToPreviousReceiver;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -62,30 +81,17 @@ public class PlayerService extends Service {
 
 		App app = (App) getApplicationContext();
 
-		PlayerFactory factory = app.getPlayerFactory(this);
-		player = factory.getPlayer();
+		getComponent().inject(this);
 
-		AudioEffectsFactory effectsFactory = app.getAudioEffectsFactory(this, player);
-		equalizer = effectsFactory.getEqualizer();
-		bassBoost = effectsFactory.getBassBoost();
-		surround = effectsFactory.getSurround();
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			amplifier = effectsFactory.getAmplifier();
-		}
+		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
+		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));
+		registerReceiver(skipToNextReceiver, new IntentFilter(ACTION_FAST_FORWARD));
+		registerReceiver(closeReceiver, new IntentFilter(ACTION_CLOSE));
+		registerReceiver(audioBecomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
+		registerReceiver(mediaButtonReceiver, new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
+		registerReceiver(headphonesConnectedReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
-		ReceiversFactory receiversFactory = app.getReceiversFactory(this, player);
-		registerReceiver(receiversFactory.getPlayPauseReceiver(), new IntentFilter(ACTION_PLAY_PAUSE));
-		registerReceiver(receiversFactory.getSkipToPreviousReceiver(), new IntentFilter(ACTION_REWIND));
-		registerReceiver(receiversFactory.getSkipToNextReceiver(), new IntentFilter(ACTION_FAST_FORWARD));
-		registerReceiver(receiversFactory.getCloseReceiver(), new IntentFilter(ACTION_CLOSE));
-		registerReceiver(receiversFactory.getAudioBecomingNoisyReceiver(), new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
-		registerReceiver(receiversFactory.getMediaButtonReceiver(), new IntentFilter(Intent.ACTION_MEDIA_BUTTON));
-		registerReceiver(receiversFactory.getHeadphonesConnectedReceiver(), new IntentFilter(Intent.ACTION_HEADSET_PLUG));
-
-		audioFocusManager = factory.getAudioFocusManager();
 		audioFocusManager.requestFocus();
-
-		mediaSessionManager = factory.getMediaSessionManager();
 		mediaSessionManager.init();
 
 		PlayerNotificationFactory notificationFactory = app.getPlayerNotificationFactory(this);
@@ -100,5 +106,17 @@ public class PlayerService extends Service {
 		presenter.onDestroy();
 		audioFocusManager.dropFocus();
 		mediaSessionManager.close();
+	}
+
+	protected PlayerServiceComponent getComponent() {
+		return DaggerPlayerServiceComponent
+				.builder()
+				.playerModule(new PlayerModule(this))
+				.equalizerModule(new EqualizerModule())
+				.amplifierModule(new AmplifierModule())
+				.bassBoostModule(new BassBoostModule())
+				.surroundModule(new SurroundModule())
+				.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+				.build();
 	}
 }

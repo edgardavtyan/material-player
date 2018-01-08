@@ -6,20 +6,18 @@ import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotification;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
-import com.edavtyan.materialplayer.components.player.managers.AudioFocusManager;
-import com.edavtyan.materialplayer.components.player.managers.MediaSessionManager;
-import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
+import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
+import com.edavtyan.materialplayer.components.player.receivers.ReceiversModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.RETURNS_MOCKS;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -29,14 +27,26 @@ import static org.mockito.Mockito.when;
 public class PlayerServiceTest extends BaseTest {
 	private final ServiceTestRule serviceTestRule = new ServiceTestRule();
 
-	private PlayerService playerService;
 	private Player player;
 	private Notification notification;
 	private PlayerNotificationPresenter notificationPresenter;
+	private PlayerService playerService;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
+
+		player = mock(Player.class);
+
+		ReceiversModule receiversModule = mock(ReceiversModule.class, RETURNS_MOCKS);
+		PlayerModule playerModule = mock(PlayerModule.class, RETURNS_MOCKS);
+		when(playerModule.providePlayer(any(), any(), any())).thenReturn(player);
+
+		PlayerServiceComponent component = DaggerPlayerServiceComponent
+				.builder()
+				.receiversModule(receiversModule)
+				.playerModule(playerModule)
+				.build();
 
 		notification = mock(Notification.class);
 		PlayerNotification nowPlayingNotification = mock(PlayerNotification.class);
@@ -47,27 +57,13 @@ public class PlayerServiceTest extends BaseTest {
 		when(notificationFactory.getNotification()).thenReturn(nowPlayingNotification);
 		when(notificationFactory.getPresenter()).thenReturn(notificationPresenter);
 
-		player = mock(Player.class);
-		AudioFocusManager audioFocusManager = mock(AudioFocusManager.class);
-		MediaSessionManager mediaSessionManager = mock(MediaSessionManager.class);
-
-		PlayerFactory playerFactory = mock(PlayerFactory.class);
-		when(playerFactory.getPlayer()).thenReturn(player);
-		when(playerFactory.getAudioFocusManager()).thenReturn(audioFocusManager);
-		when(playerFactory.getMediaSessionManager()).thenReturn(mediaSessionManager);
-
-		AudioEffectsFactory audioEffectsFactory = new AudioEffectsFactory(context, player);
-		ReceiversFactory receiversFactory = new ReceiversFactory(context, player);
-
 		App app = mock(App.class);
-		when(app.getPlayerFactory(any())).thenReturn(playerFactory);
 		when(app.getPlayerNotificationFactory(any())).thenReturn(notificationFactory);
-		when(app.getAudioEffectsFactory(any(), eq(player))).thenReturn(audioEffectsFactory);
-		when(app.getReceiversFactory(any(), eq(player))).thenReturn(receiversFactory);
+		when(app.getPlayerServiceComponent(playerService)).thenReturn(component);
 
 		try {
 			Intent intent = new Intent(context, PlayerService.class);
-			PlayerService.PlayerBinder binder = (PlayerService.PlayerBinder) serviceTestRule.bindService(intent);
+			PlayerBinder binder = (PlayerBinder) serviceTestRule.bindService(intent);
 			playerService = spy(binder.getService());
 			doReturn(app).when(playerService).getApplicationContext();
 		} catch (Exception e) {
@@ -77,7 +73,7 @@ public class PlayerServiceTest extends BaseTest {
 
 	@Test
 	public void onBind_returnPlayerBinder() {
-		assertThat(playerService.onBind(null)).isInstanceOf(PlayerService.PlayerBinder.class);
+		assertThat(playerService.onBind(null)).isInstanceOf(PlayerBinder.class);
 	}
 
 	@Test

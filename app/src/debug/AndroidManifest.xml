@@ -20,6 +20,7 @@
 		<activity android:name=".components.detail.album_detail.AlbumDetailActivityCompactTest$TestAlbumDetailActivityCompact" />
 		<activity android:name=".components.now_playing.NowPlayingActivityTest$TestNowPlayingActivity" />
 		<activity android:name=".components.now_playing.models.NowPlayingViewTest$TestNowPlayingActivity" />
+		<service android:name=".components.player.PlayerServiceTest$TestPlayerService" />
 
 	</application>
 

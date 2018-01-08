@@ -5,13 +5,17 @@ import android.app.Application;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsFactory;
+import com.edavtyan.materialplayer.components.audio_effects.amplifier.AmplifierModule;
+import com.edavtyan.materialplayer.components.audio_effects.bassboost.BassBoostModule;
+import com.edavtyan.materialplayer.components.audio_effects.equalizer.EqualizerModule;
+import com.edavtyan.materialplayer.components.audio_effects.surround.SurroundModule;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.components.main.MainFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
-import com.edavtyan.materialplayer.components.player.Player;
-import com.edavtyan.materialplayer.components.player.PlayerFactory;
-import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
+import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponent;
+import com.edavtyan.materialplayer.components.player.PlayerModule;
+import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.components.player.PlayerServiceComponent;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFactory;
 import com.edavtyan.materialplayer.components.search.album.SearchAlbumFragment;
 import com.edavtyan.materialplayer.components.search.artist.SearchArtistFactory;
@@ -19,39 +23,46 @@ import com.edavtyan.materialplayer.components.search.artist.SearchArtistFragment
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFactory;
 import com.edavtyan.materialplayer.components.search.tracks.SearchTrackFragment;
 import com.edavtyan.materialplayer.lib.base.BaseFactory;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 
 import lombok.Setter;
 
 public class App extends Application {
 
 	private @Setter BaseFactory baseFactory;
-	private @Setter AudioEffectsFactory audioEffectsFactory;
 	private @Setter SdkFactory sdkFactory;
 	private @Setter MainFactory mainFactory;
 	private @Setter SearchArtistFactory searchArtistFactory;
 	private @Setter SearchAlbumFactory searchAlbumFactory;
 	private @Setter SearchTrackFactory searchTrackFactory;
-	private @Setter ReceiversFactory receiversFactory;
+
+	private @Setter PlayerServiceComponent playerServiceComponent;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 	}
 
+	public PlayerServiceComponent getPlayerServiceComponent(PlayerService service) {
+		if (playerServiceComponent != null) {
+			return playerServiceComponent;
+		} else {
+			return DaggerPlayerServiceComponent
+					.builder()
+					.playerModule(new PlayerModule(service))
+					.equalizerModule(new EqualizerModule())
+					.amplifierModule(new AmplifierModule())
+					.bassBoostModule(new BassBoostModule())
+					.surroundModule(new SurroundModule())
+					.advancedSharedPrefsModule(new AdvancedSharedPrefsModule())
+					.build();
+		}
+	}
+
 	public BaseFactory getBaseFactory(Activity activity) {
 		return (baseFactory == null)
 				? new BaseFactory(activity)
 				: baseFactory;
-	}
-
-	public AudioEffectsFactory getAudioEffectsFactory(Context context, Player player) {
-		return (audioEffectsFactory == null)
-				? new AudioEffectsFactory(context, player)
-				: audioEffectsFactory;
-	}
-
-	public PlayerFactory getPlayerFactory(Context context) {
-		return new PlayerFactory(context);
 	}
 
 	public PlayerNotificationFactory getPlayerNotificationFactory(Context context) {
@@ -80,12 +91,6 @@ public class App extends Application {
 		return (searchTrackFactory == null)
 				? new SearchTrackFactory(context, view)
 				: searchTrackFactory;
-	}
-
-	public ReceiversFactory getReceiversFactory(Context context, Player player) {
-		return (receiversFactory == null)
-				? new ReceiversFactory(context, player)
-				: receiversFactory;
 	}
 
 	public MainFactory getMainFactory(MainActivity activity) {

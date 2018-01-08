@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -21,5 +23,17 @@ public class AdvancedSharedPrefsModule {
 	@Singleton
 	public SharedPreferences provideBasePrefs(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context);
+	}
+
+	@Provides
+	@Singleton
+	public AdvancedGsonSharedPrefs provideAdvancedGsonPrefs(SharedPreferences basePrefs, Gson gson) {
+		return new AdvancedGsonSharedPrefs(basePrefs, gson);
+	}
+
+	@Provides
+	@Singleton
+	public Gson provideGson() {
+		return new Gson();
 	}
 }
