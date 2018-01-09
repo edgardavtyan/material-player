@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.utils.WindowUtils;
+import com.ed.libsutils.WindowUtils;
 
 import javax.inject.Inject;
 

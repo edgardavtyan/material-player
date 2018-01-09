@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.utils;
 
+import com.ed.libsutils.DurationUtils;
+
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;

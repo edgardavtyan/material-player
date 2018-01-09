@@ -11,8 +11,8 @@ import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
-import com.edavtyan.materialplayer.utils.ColorUtils;
-import com.edavtyan.materialplayer.utils.WindowUtils;
+import com.ed.libsutils.ColorUtils;
+import com.ed.libsutils.WindowUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

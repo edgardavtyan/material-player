@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.utils;
 
+import com.ed.libsutils.Strings;
+
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

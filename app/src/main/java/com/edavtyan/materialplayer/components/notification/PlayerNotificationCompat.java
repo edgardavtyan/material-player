@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.main.MainActivity;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
-import com.edavtyan.materialplayer.utils.DpConverter;
+import com.ed.libsutils.DpConverter;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 
 public class PlayerNotificationCompat extends PlayerNotification {

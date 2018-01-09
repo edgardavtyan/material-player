@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.components.now_playing.NowPlayingPresenter;
-import com.edavtyan.materialplayer.utils.DurationUtils;
+import com.ed.libsutils.DurationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

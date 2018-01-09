@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.lib.prefs;
 
 import android.content.SharedPreferences;
 
-import com.edavtyan.materialplayer.utils.Strings;
+import com.ed.libsutils.Strings;
 
 public class AdvancedSharedPrefsEditor {
 	private final SharedPreferences.Editor baseEditor;

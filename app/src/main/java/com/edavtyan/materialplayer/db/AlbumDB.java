@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.edavtyan.materialplayer.utils.Strings;
+import com.ed.libsutils.Strings;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ed.libsutils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.utils.DpConverter;
+import com.ed.libsutils.DpConverter;
 
 import javax.inject.Inject;
 
