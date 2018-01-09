@@ -4,11 +4,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
-import com.edavtyan.materialplayer.modular.activity.modules.ActivityThemeSwitchModule;
-import com.ed.libsutils.WindowUtils;
 
 import butterknife.ButterKnife;
 
@@ -21,7 +20,6 @@ public abstract class BaseActivity extends ModularActivity {
 		super.onCreate(savedInstanceState);
 
 		BaseFactory factory = getApp().getBaseFactory(this);
-		addModule(new ActivityThemeSwitchModule(this, factory.getPrefs(), factory.getThemeUtils()));
 		addModule(new ActivityBaseMenuModule(factory.getNavigator(), factory.createMenuInflater(this)));
 
 		setContentView(getLayoutId());

@@ -27,28 +27,6 @@
 				app:cp_color="?prefCategoryTitleColor"
 				>
 
-				<com.edavtyan.prefs.simple_list.SimpleListPreference
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					app:cp_key="@string/pref_theme_base_key"
-					app:cp_title="@string/pref_theme_base_title"
-					app:cp_summary="@string/pref_theme_base_summary"
-					app:cp_defaultValue="@string/pref_theme_base_default"
-					app:cp_entries="@array/pref_theme_base_entries"
-					app:cp_entryValues="@array/pref_theme_base_entries"
-					/>
-
-				<com.edavtyan.prefs.color.ColorSelectionPreference
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					app:cp_key="@string/pref_theme_primary_key"
-					app:cp_title="@string/pref_theme_primary_title"
-					app:cp_summary="@string/pref_theme_primary_summary"
-					app:cp_defaultValue="@string/pref_theme_primary_default"
-					app:cp_entries="@array/pref_theme_primary_entries"
-					app:cp_entryValues="@array/pref_theme_primary_values"
-					/>
-
 				<com.edavtyan.prefs.checkbox.CheckboxPreference
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"

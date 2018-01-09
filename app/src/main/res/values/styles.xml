@@ -1,5 +1,48 @@
 <resources>
 
-	<style name="AppTheme.Standard" parent="AppTheme.Light.Orange" />
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorControlNormal">@color/primary</item>
+		<item name="colorControlActivated">@color/primary_dark</item>
+		<item name="prefCategoryTitleColor">@color/primary</item>
+		<item name="fabIconColor">@color/black</item>
+
+		<item name="textColorPrimary">@color/black_dim_slight</item>
+		<item name="textColorSecondary">@color/black_dim_medium</item>
+		<item name="textColorContrastPrimary">@color/white</item>
+		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
+		<item name="android:textColor">?attr/textColorPrimary</item>
+		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
+		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
+
+		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
+		<item name="nowPlayingBarBackground">?colorPrimary</item>
+
+		<item name="android:alertDialogTheme">@style/Dialog</item>
+
+		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
+		<item name="actionBarPopupTheme">@style/LightHardwareMenuTheme</item>
+
+		<item name="rippleContrast">@drawable/ripple_primary</item>
+		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
+
+		<item name="iconMenuSearch">@drawable/ic_search_white</item>
+		<item name="iconBackArrow">@drawable/ic_arrow_back_white</item>
+	</style>
+
+	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+		<item name="android:textColorSecondary">?textColorPrimary</item>
+	</style>
+
+	<style name="Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="colorAccent">@color/primary</item>
+		<item name="buttonBarButtonStyle">@style/BarButton</item>
+	</style>
+
+	<style name="BarButton" parent="Base.Widget.AppCompat.Button.Borderless">
+		<item name="android:textColor">@color/primary</item>
+	</style>
 
 </resources>

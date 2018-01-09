@@ -22,7 +22,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="24dp"
-		android:textColor="@color/primary_red"
+		android:textColor="@color/red"
 		android:visibility="gone"
 		android:text="@string/equalizer_presets_error_exists"
 		/>

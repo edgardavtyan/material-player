@@ -32,7 +32,7 @@ public class PlayerNotificationNougat extends PlayerNotification {
 				.setCustomContentView(normalRemoteViews)
 				.setCustomBigContentView(bigRemoteViews)
 				.setStyle(new Notification.DecoratedCustomViewStyle())
-				.setColor(ContextCompat.getColor(context, R.color.primary_orange))
+				.setColor(ContextCompat.getColor(context, R.color.primary))
 				.build());
 	}
 

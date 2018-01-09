@@ -10,7 +10,6 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
-import com.edavtyan.materialplayer.utils.ThemeUtils;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,7 +34,6 @@ public class BaseActivityTest extends ActivityTest {
 			= new ActivityTestRule<>(TestBaseActivity.class, false, false);
 
 	private TestBaseActivity activity;
-	private ThemeUtils themeUtils;
 	private MenuInflater menuInflater;
 	private Navigator navigator;
 
@@ -43,30 +41,23 @@ public class BaseActivityTest extends ActivityTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		themeUtils = mock(ThemeUtils.class);
 		navigator = mock(Navigator.class);
 		menuInflater = mock(MenuInflater.class);
 
 		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
 
 		BaseFactory factory = mock(BaseFactory.class);
-		when(factory.getThemeUtils()).thenReturn(themeUtils);
 		when(factory.getNavigator()).thenReturn(navigator);
 		when(factory.getPrefs()).thenReturn(prefs);
 		when(factory.createMenuInflater(any())).thenReturn(menuInflater);
 		app.setBaseFactory(factory);
-		
+
 		activity = activityRule.launchActivity(null);
 	}
 
 	@Test
 	public void onCreate_setContentView() {
 		assertThat(activity.findViewById(R.id.test_layout_root)).isNotNull();
-	}
-
-	@Test
-	public void onCreate_setTheme() {
-		verify(themeUtils).setTheme(activity);
 	}
 
 	@Test
