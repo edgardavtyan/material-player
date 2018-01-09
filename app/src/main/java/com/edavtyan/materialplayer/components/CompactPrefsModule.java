@@ -22,8 +22,8 @@ public class CompactPrefsModule {
 
 	@Provides
 	@Singleton
-	public CompactDetailPref provideCompactDetailPref(Context context) {
-		return new CompactDetailPref(context);
+	public CompactDetailPref provideCompactDetailPref(Context context, AdvancedSharedPrefs prefs) {
+		return new CompactDetailPref(context, prefs);
 	}
 
 	@Provides
