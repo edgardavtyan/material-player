@@ -8,6 +8,8 @@ import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityThemeSwitchModule;
+import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import butterknife.ButterKnife;
 
@@ -21,6 +23,7 @@ public abstract class BaseActivity extends ModularActivity {
 
 		BaseFactory factory = getApp().getBaseFactory(this);
 		addModule(new ActivityBaseMenuModule(factory.getNavigator(), factory.createMenuInflater(this)));
+		addModule(new ActivityThemeSwitchModule(this, factory.getPrefs()));
 
 		setContentView(getLayoutId());
 
@@ -33,5 +36,8 @@ public abstract class BaseActivity extends ModularActivity {
 
 	public App getApp() {
 		return (App) getApplication();
+	}
+
+	public void onThemeChanged(ThemeColors colors) {
 	}
 }

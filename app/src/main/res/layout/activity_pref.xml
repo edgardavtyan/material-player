@@ -27,6 +27,17 @@
 				app:cp_color="?prefCategoryTitleColor"
 				>
 
+				<com.edavtyan.prefs.color.ColorSelectionPreference
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="@string/pref_colors_key"
+					app:cp_entries="@array/pref_colors_values"
+					app:cp_entryValues="@array/pref_colors_values"
+					app:cp_defaultValue="@color/pref_colors_default"
+					app:cp_title="@string/pref_colors_title"
+					app:cp_summary="%d"
+					/>
+
 				<com.edavtyan.prefs.checkbox.CheckboxPreference
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"

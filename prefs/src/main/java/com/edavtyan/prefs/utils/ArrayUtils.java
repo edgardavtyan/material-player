@@ -12,4 +12,13 @@ public class ArrayUtils {
 
 		return list;
 	}
+
+	public static List<Integer> asIntList(int[] array) {
+		List<Integer> list = new ArrayList<>(array.length);
+		for (int element : array) {
+			list.add(element);
+		}
+
+		return list;
+	}
 }
