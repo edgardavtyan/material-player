@@ -1,10 +1,12 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
 import android.support.annotation.StringRes;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
@@ -17,6 +19,7 @@ public class ActivityToolbarModule extends ActivityModule {
 	private static final boolean DEFAULT_BACK_ICON_ENABLED = true;
 
 	@BindView(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.appbar) AppBarLayout appBarLayout;
 
 	private final AppCompatActivity activity;
 
@@ -37,6 +40,14 @@ public class ActivityToolbarModule extends ActivityModule {
 		this.isBackIconEnabled = isBackIconEnabled;
 	}
 
+	public void setBackgroundColor(int color) {
+		appBarLayout.setBackgroundColor(color);
+	}
+
+	public void setStatusBarColor(int color) {
+		WindowUtils.setStatusBarColor(activity, color);
+	}
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -47,6 +58,7 @@ public class ActivityToolbarModule extends ActivityModule {
 		activity.setSupportActionBar(toolbar);
 		if (isBackIconEnabled) activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
