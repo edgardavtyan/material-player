@@ -14,19 +14,30 @@ public class ActivityThemeSwitchModule
 
 	private final AdvancedSharedPrefs prefs;
 	private final BaseActivity activity;
+	private final String themePrefKey;
 
 	public ActivityThemeSwitchModule(BaseActivity activity, AdvancedSharedPrefs prefs) {
 		this.activity = activity;
 		this.prefs = prefs;
+		themePrefKey = activity.getString(R.string.pref_colors_key);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if (key.equals(activity.getString(R.string.pref_colors_key))) {
-			ThemeColors colors = new ThemeColors(activity, prefs.getInt(key, 0));
-			activity.recreate();
-			activity.onThemeChanged(colors);
+		if (key.equals(themePrefKey)) {
+			callOnThemeChanged();
 		}
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		callOnThemeChanged();
+	}
+
+	private void callOnThemeChanged() {
+		ThemeColors colors = new ThemeColors(activity, prefs.getInt(themePrefKey, 0));
+		activity.onThemeChanged(colors);
 	}
 }
