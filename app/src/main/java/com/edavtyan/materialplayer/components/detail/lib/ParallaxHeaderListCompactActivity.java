@@ -4,15 +4,17 @@ import android.graphics.Bitmap;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ed.libsutils.BitmapResizer;
+import com.ed.libsutils.DpConverter;
+import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
-import com.ed.libsutils.DpConverter;
-import com.ed.libsutils.WindowUtils;
+import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import butterknife.BindView;
 
@@ -24,11 +26,18 @@ public abstract class ParallaxHeaderListCompactActivity
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView imageView;
+	@BindView(R.id.info_container) LinearLayout infoContainer;
 	@BindView(R.id.info_top) @Nullable TextView portraitTopInfoView;
 	@BindView(R.id.info_bottom) @Nullable TextView portraitBottomInfoView;
 	@BindView(R.id.info) @Nullable TextView landscapeInfoView;
 
 	private TestableRecyclerAdapter adapter;
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
+		infoContainer.setBackgroundColor(colors.getColorPrimary());
+	}
 
 	@Override
 	public int getLayoutId() {
