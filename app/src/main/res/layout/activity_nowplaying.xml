@@ -10,7 +10,10 @@
 		style="@style/NowPlaying_FAB"
 		/>
 
-	<LinearLayout style="@style/NowPlaying_InnerContainer">
+	<LinearLayout
+		android:id="@+id/inner_container"
+		style="@style/NowPlaying_InnerContainer"
+		>
 
 		<include layout="@layout/partial_appbar" />
 

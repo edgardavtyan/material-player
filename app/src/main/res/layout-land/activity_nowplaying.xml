@@ -27,7 +27,10 @@
 
 			<FrameLayout style="@style/NowPlaying_Land_InnerShadowContainer">
 
-				<LinearLayout style="@style/NowPlaying_Land_InnerContainer">
+				<LinearLayout
+					android:id="@+id/inner_container"
+					style="@style/NowPlaying_Land_InnerContainer"
+					>
 
 					<TextView
 						android:id="@+id/title"
