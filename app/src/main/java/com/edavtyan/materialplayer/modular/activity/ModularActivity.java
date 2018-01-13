@@ -14,10 +14,6 @@ public abstract class ModularActivity extends AppCompatActivity {
 	@Override
 	protected void onPostCreate(@Nullable Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-
-		for (ActivityModule module : modules) {
-			module.onCreate();
-		}
 	}
 
 	@Override
@@ -58,5 +54,6 @@ public abstract class ModularActivity extends AppCompatActivity {
 
 	protected void addModule(ActivityModule module) {
 		modules.add(module);
+		module.onCreate();
 	}
 }
