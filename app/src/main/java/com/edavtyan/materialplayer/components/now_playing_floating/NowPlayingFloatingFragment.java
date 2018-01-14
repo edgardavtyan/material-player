@@ -1,11 +1,9 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +16,14 @@ import com.ed.libsutils.BitmapResizer;
 import com.ed.libsutils.DpConverter;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.lib.base.BaseFragment;
+import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class NowPlayingFloatingFragment extends Fragment implements View.OnClickListener {
+public class NowPlayingFloatingFragment extends BaseFragment implements View.OnClickListener {
 
 	public static final int SCALED_ART_SIZE_DP = 44;
 
@@ -52,6 +51,11 @@ public class NowPlayingFloatingFragment extends Fragment implements View.OnClick
 	}
 
 	@Override
+	protected int getLayoutId() {
+		return R.layout.fragment_nowplaying_floating;
+	}
+
+	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
@@ -63,14 +67,10 @@ public class NowPlayingFloatingFragment extends Fragment implements View.OnClick
 			LayoutInflater inflater,
 			@Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
-		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.fragment_nowplaying_floating, container, false);
-		ButterKnife.bind(this, view);
-
+		View view = super.onCreateView(inflater, container, savedInstanceState);
 		playPauseButton.setOnClickListener(this);
 		artView.setOnClickListener(this);
 		infoWrapper.setOnClickListener(this);
-
 		return view;
 	}
 
@@ -84,6 +84,11 @@ public class NowPlayingFloatingFragment extends Fragment implements View.OnClick
 	public void onStop() {
 		super.onStop();
 		presenter.onDestroy();
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		mainWrapper.setBackgroundColor(colors.getColorPrimary());
 	}
 
 	public void setTrackTitle(String title) {
