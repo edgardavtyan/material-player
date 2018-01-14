@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		int titleStringId = isCompactModeEnabled ? R.string.empty : R.string.app_name;
-		addModule(new ActivityToolbarModule(this, titleStringId, true));
+		addModule(new ActivityToolbarModule(this, titleStringId, false));
 
 		FragmentPagerAdapter adapter = compactMainScreenPref.isEnabled()
 				? iconsTabsAdapter : textTabsAdapter;
