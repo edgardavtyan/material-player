@@ -40,7 +40,6 @@ public class ThemeSwitchModule
 
 	@Override
 	public void onStart() {
-		super.onStart();
 		callOnThemeChanged();
 	}
 

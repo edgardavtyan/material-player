@@ -6,16 +6,15 @@ import android.support.annotation.Nullable;
 
 import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity
 		extends ModularActivity
-		implements
-		ThemeSwitchModule.ThemeSwitchingView {
+		implements ThemeSwitchModule.ThemeSwitchingView {
 
 	public abstract int getLayoutId();
 

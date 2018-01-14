@@ -77,7 +77,6 @@ public class SearchActivity extends BaseActivity {
 
 	@Override
 	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
 		appbar.setBackgroundColor(colors.getColorPrimary());
 		searchEditText.getBackground().setColorFilter(colors.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		WindowUtils.setStatusBarColor(this, colors.getColorPrimaryDark());
