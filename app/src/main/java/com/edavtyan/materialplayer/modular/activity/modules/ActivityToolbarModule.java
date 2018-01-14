@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 import butterknife.BindView;
@@ -40,14 +41,6 @@ public class ActivityToolbarModule extends ActivityModule {
 		this.isBackIconEnabled = isBackIconEnabled;
 	}
 
-	public void setBackgroundColor(int color) {
-		appBarLayout.setBackgroundColor(color);
-	}
-
-	public void setStatusBarColor(int color) {
-		WindowUtils.setStatusBarColor(activity, color);
-	}
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -69,5 +62,11 @@ public class ActivityToolbarModule extends ActivityModule {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		toolbar.setBackgroundColor(colors.getColorPrimary());
+		WindowUtils.setStatusBarColor(activity, colors.getColorPrimaryDark());
 	}
 }
