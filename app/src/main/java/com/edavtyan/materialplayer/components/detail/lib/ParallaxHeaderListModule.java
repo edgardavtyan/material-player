@@ -17,7 +17,7 @@ import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.edavtyan.materialplayer.utils.CustomColor;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

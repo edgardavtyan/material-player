@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
-import com.edavtyan.materialplayer.modular.universal_view.modules.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
 
 public abstract class BaseFragment
 		extends ModularFragment

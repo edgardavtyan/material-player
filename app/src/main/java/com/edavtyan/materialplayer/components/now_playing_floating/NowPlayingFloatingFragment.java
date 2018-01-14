@@ -17,7 +17,7 @@ import com.ed.libsutils.DpConverter;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import javax.inject.Inject;
 

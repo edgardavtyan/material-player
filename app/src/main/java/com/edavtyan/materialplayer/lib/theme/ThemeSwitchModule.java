@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.modular.universal_view.modules;
+package com.edavtyan.materialplayer.lib.theme;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
-import com.edavtyan.materialplayer.utils.ThemeColors;
 
 public class ThemeSwitchModule
 		extends UniversalViewModule

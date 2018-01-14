@@ -8,7 +8,7 @@ import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
-import com.edavtyan.materialplayer.modular.universal_view.modules.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
 
 import butterknife.ButterKnife;
 

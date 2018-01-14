@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.prefs;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.prefs.category.PreferenceCategory;
 import com.edavtyan.prefs.checkbox.CheckboxPreference;
 import com.edavtyan.prefs.color.ColorSelectionPreference;

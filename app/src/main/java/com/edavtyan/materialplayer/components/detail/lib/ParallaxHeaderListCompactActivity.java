@@ -14,7 +14,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import butterknife.BindView;
 

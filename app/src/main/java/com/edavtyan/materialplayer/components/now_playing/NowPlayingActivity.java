@@ -12,7 +12,7 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import javax.inject.Inject;
 

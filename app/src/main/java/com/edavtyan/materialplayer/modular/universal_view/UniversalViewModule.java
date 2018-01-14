@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.modular.universal_view;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 public class UniversalViewModule {
 	public void onCreate() {

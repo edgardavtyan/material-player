@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.lib.theme.ThemeActivity;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import java.util.ArrayList;
 

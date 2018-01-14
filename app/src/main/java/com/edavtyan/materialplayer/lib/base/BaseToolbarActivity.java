@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import butterknife.BindView;
 

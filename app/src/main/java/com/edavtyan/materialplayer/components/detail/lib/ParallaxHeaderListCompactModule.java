@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.ed.libsutils.ColorUtils;
 import com.ed.libsutils.WindowUtils;
-import com.edavtyan.materialplayer.utils.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
