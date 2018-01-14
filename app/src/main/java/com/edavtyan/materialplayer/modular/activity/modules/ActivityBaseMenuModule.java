@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
@@ -9,17 +9,17 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 public class ActivityBaseMenuModule extends ActivityModule {
+	private final AppCompatActivity activity;
 	private final Navigator navigator;
-	private final MenuInflater menuInflater;
 
-	public ActivityBaseMenuModule(Navigator navigator, MenuInflater menuInflater) {
+	public ActivityBaseMenuModule(AppCompatActivity activity, Navigator navigator) {
+		this.activity = activity;
 		this.navigator = navigator;
-		this.menuInflater = menuInflater;
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu) {
-		menuInflater.inflate(R.menu.menu_base, menu);
+		activity.getMenuInflater().inflate(R.menu.menu_base, menu);
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public abstract class BaseActivity extends ModularActivity {
 		super.onCreate(savedInstanceState);
 
 		BaseFactory factory = ((App) getApplication()).getBaseFactory(this);
-		addModule(new ActivityBaseMenuModule(factory.getNavigator(), factory.createMenuInflater(this)));
+		addModule(new ActivityBaseMenuModule(this, factory.getNavigator()));
 		addModule(new ThemeSwitchModule(this, this, factory.getPrefs()));
 
 		setContentView(getLayoutId());
