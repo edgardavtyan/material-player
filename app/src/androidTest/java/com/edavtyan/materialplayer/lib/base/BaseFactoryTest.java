@@ -17,7 +17,6 @@ public class BaseFactoryTest extends FactoryTest {
 	public void testProviders() throws Exception {
 		testFactoryMethod(baseFactory::getContext);
 		testFactoryMethod(baseFactory::getNavigator);
-		testFactoryMethod(baseFactory::getThemeUtils);
 		testFactoryMethod(baseFactory::getPrefs);
 		testFactoryMethod(baseFactory::getBasePrefs);
 	}

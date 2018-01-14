@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 
-import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
@@ -65,11 +64,6 @@ public class NowPlayingActivityTest extends ActivityTest {
 		navigator = mock(Navigator.class);
 
 		activity = activityRule.launchActivity(null);
-	}
-
-	@Test
-	public void getToolbarTitleStringId_returnCorrectStringId() {
-		assertThat(activity.getToolbarTitleStringId()).isEqualTo(R.string.nowplaying_toolbar_title);
 	}
 
 	@Test

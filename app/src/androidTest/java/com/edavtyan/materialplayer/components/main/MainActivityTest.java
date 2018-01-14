@@ -29,9 +29,4 @@ public class MainActivityTest extends ActivityTest {
 	public void return_correct_layout_id() {
 		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_main);
 	}
-
-	@Test
-	public void has_back_icon_disabled() {
-		assertThat(activity.isBackIconEnabled()).isFalse();
-	}
 }

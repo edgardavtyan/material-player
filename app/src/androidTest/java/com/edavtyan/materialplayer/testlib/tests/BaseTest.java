@@ -33,7 +33,7 @@ public class BaseTest {
 	public void beforeEach() {
 		instrumentation = InstrumentationRegistry.getInstrumentation();
 		Context appContext = instrumentation.getTargetContext();
-		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme_Light_Orange));
+		context = spy(new ContextThemeWrapper(appContext, R.style.AppTheme));
 		app = (App) instrumentation.getTargetContext().getApplicationContext();
 	}
 
