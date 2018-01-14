@@ -30,10 +30,7 @@ public class PrefActivity extends BaseActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		ActivityToolbarModule toolbarModule = new ActivityToolbarModule(this);
-		toolbarModule.setTitleStringId(R.string.pref_title);
-		addModule(toolbarModule);
+		addModule(new ActivityToolbarModule(this, R.string.pref_title));
 	}
 
 	@Override

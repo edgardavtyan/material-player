@@ -33,11 +33,18 @@ public class ActivityToolbarModule extends ActivityModule {
 		isBackIconEnabled = DEFAULT_BACK_ICON_ENABLED;
 	}
 
-	public void setTitleStringId(@StringRes int titleStringId) {
+	public ActivityToolbarModule(AppCompatActivity activity, @StringRes int titleStringId) {
+		this(activity);
 		this.titleStringId = titleStringId;
+		this.isBackIconEnabled = DEFAULT_BACK_ICON_ENABLED;
 	}
 
-	public void setBackIconEnabled(boolean isBackIconEnabled) {
+	public ActivityToolbarModule(
+			AppCompatActivity activity,
+			@StringRes int titleStringId,
+			boolean isBackIconEnabled) {
+		this(activity);
+		this.titleStringId = titleStringId;
 		this.isBackIconEnabled = isBackIconEnabled;
 	}
 
@@ -51,7 +58,6 @@ public class ActivityToolbarModule extends ActivityModule {
 		activity.setSupportActionBar(toolbar);
 		if (isBackIconEnabled) activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

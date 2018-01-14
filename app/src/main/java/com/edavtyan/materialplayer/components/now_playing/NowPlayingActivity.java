@@ -35,13 +35,8 @@ public class NowPlayingActivity extends BaseActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		ActivityToolbarModule toolbarModule = new ActivityToolbarModule(this);
-		toolbarModule.setTitleStringId(R.string.nowplaying_toolbar_title);
-		addModule(toolbarModule);
-
+		addModule(new ActivityToolbarModule(this, R.string.nowplaying_toolbar_title));
 		getComponent().inject(this);
-
 		presenter.bind();
 	}
 
