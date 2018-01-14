@@ -35,6 +35,7 @@ public class ThemeColors {
 			COLORS.append(ContextCompat.getColor(context, R.color.deepOrange), R.array.color_deepOrange);
 			COLORS.append(ContextCompat.getColor(context, R.color.brown), R.array.color_brown);
 			COLORS.append(ContextCompat.getColor(context, R.color.grey), R.array.color_grey);
+			COLORS.append(ContextCompat.getColor(context, R.color.blueGrey), R.array.color_blueGrey);
 		}
 
 		int colorsId = COLORS.get(color);
