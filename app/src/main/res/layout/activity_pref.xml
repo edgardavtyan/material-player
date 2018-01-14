@@ -29,6 +29,7 @@
 				>
 
 				<com.edavtyan.prefs.color.ColorSelectionPreference
+					android:id="@+id/pref_primary_color"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					app:cp_key="@string/pref_colors_key"

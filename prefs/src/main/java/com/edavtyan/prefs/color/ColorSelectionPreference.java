@@ -50,6 +50,10 @@ public class ColorSelectionPreference
 		entryView.setColor(color);
 	}
 
+	public void setDialogButtonsColor(int color) {
+		dialog.setButtonsColor(color);
+	}
+
 	public void showDialog() {
 		dialog.show();
 	}

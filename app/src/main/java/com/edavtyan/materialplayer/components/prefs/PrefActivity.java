@@ -5,6 +5,7 @@ import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
 import com.edavtyan.materialplayer.utils.ThemeColors;
 import com.edavtyan.prefs.category.PreferenceCategory;
 import com.edavtyan.prefs.checkbox.CheckboxPreference;
+import com.edavtyan.prefs.color.ColorSelectionPreference;
 
 import butterknife.BindView;
 
@@ -15,6 +16,7 @@ public class PrefActivity extends BaseToolbarActivity {
 	@BindView(R.id.pref_compact_detail) CheckboxPreference compactDetailPrefView;
 	@BindView(R.id.pref_compact_main) CheckboxPreference compactMainPrefView;
 	@BindView(R.id.pref_resume) CheckboxPreference resumePrefView;
+	@BindView(R.id.pref_primary_color) ColorSelectionPreference primaryColorPrefView;
 
 	@Override
 	public int getLayoutId() {
@@ -35,5 +37,6 @@ public class PrefActivity extends BaseToolbarActivity {
 		compactDetailPrefView.setCheckBoxColor(colors.getColorPrimary());
 		compactMainPrefView.setCheckBoxColor(colors.getColorPrimary());
 		resumePrefView.setCheckBoxColor(colors.getColorPrimary());
+		primaryColorPrefView.setDialogButtonsColor(colors.getColorPrimary());
 	}
 }
