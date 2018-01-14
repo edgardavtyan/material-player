@@ -2,16 +2,15 @@ package com.edavtyan.materialplayer.modular.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.edavtyan.materialplayer.lib.theme.ThemeActivity;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import java.util.ArrayList;
 
-public abstract class ModularActivity extends ThemeActivity {
+public abstract class ModularActivity extends AppCompatActivity {
 	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 
 	@Override
@@ -53,13 +52,6 @@ public abstract class ModularActivity extends ThemeActivity {
 		}
 
 		return false;
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		for (UniversalViewModule module : modules) {
-			module.onThemeChanged(colors);
-		}
 	}
 
 	protected void addModule(UniversalViewModule module) {
