@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.components.search;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
@@ -11,8 +13,10 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,7 @@ public class SearchActivity extends BaseActivity {
 	@BindView(R.id.search) EditText searchEditText;
 	@BindView(R.id.tabs) TabLayout tabLayout;
 	@BindView(R.id.view_pager) ViewPager viewPager;
+	@BindView(R.id.appbar) AppBarLayout appbar;
 
 	private List<OnSearchQueryChangedListener> onSearchQueryChangedListeners;
 
@@ -68,6 +73,14 @@ public class SearchActivity extends BaseActivity {
 		tabLayout.setupWithViewPager(viewPager);
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
+		appbar.setBackgroundColor(colors.getColorPrimary());
+		searchEditText.getBackground().setColorFilter(colors.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
+		WindowUtils.setStatusBarColor(this, colors.getColorPrimaryDark());
 	}
 
 	public void addOnSearchQueryChangedListener(OnSearchQueryChangedListener listener) {
