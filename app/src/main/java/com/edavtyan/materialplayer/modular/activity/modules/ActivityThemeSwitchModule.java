@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseActivity;
@@ -15,11 +16,13 @@ public class ActivityThemeSwitchModule
 	private final AdvancedSharedPrefs prefs;
 	private final BaseActivity activity;
 	private final String themePrefKey;
+	private final int defaultColor;
 
 	public ActivityThemeSwitchModule(BaseActivity activity, AdvancedSharedPrefs prefs) {
 		this.activity = activity;
 		this.prefs = prefs;
 		themePrefKey = activity.getString(R.string.pref_colors_key);
+		defaultColor = ContextCompat.getColor(activity, R.color.pref_colors_default);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
@@ -37,7 +40,7 @@ public class ActivityThemeSwitchModule
 	}
 
 	private void callOnThemeChanged() {
-		ThemeColors colors = new ThemeColors(activity, prefs.getInt(themePrefKey, 0));
+		ThemeColors colors = new ThemeColors(activity, prefs.getInt(themePrefKey, defaultColor));
 		activity.onThemeChanged(colors);
 	}
 }
