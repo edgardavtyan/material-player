@@ -11,13 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeModularScreen;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
-public abstract class ModularFragment extends Fragment {
+public abstract class ModularFragment extends Fragment implements ThemeModularScreen {
 
 	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 
@@ -98,6 +100,13 @@ public abstract class ModularFragment extends Fragment {
 		}
 
 		return false;
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		for (UniversalViewModule module : modules) {
+			module.onThemeChanged(colors);
+		}
 	}
 
 	protected void addModule(UniversalViewModule module) {

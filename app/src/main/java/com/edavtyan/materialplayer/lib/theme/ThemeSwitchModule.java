@@ -13,17 +13,17 @@ public class ThemeSwitchModule
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 	private final AdvancedSharedPrefs prefs;
-	private final String themePrefKey;
-	private final ThemeSwitchingView view;
+	private final ThemeModularScreen modularScreen;
 	private final Context context;
+	private final String themePrefKey;
 	private final int defaultColor;
 
 	public interface ThemeSwitchingView {
 		void onThemeChanged(ThemeColors colors);
 	}
 
-	public ThemeSwitchModule(ThemeSwitchingView view, Context context, AdvancedSharedPrefs prefs) {
-		this.view = view;
+	public ThemeSwitchModule(ThemeModularScreen modularScreen, Context context, AdvancedSharedPrefs prefs) {
+		this.modularScreen = modularScreen;
 		this.context = context;
 		this.prefs = prefs;
 		themePrefKey = context.getString(R.string.pref_colors_key);
@@ -45,6 +45,6 @@ public class ThemeSwitchModule
 
 	private void callOnThemeChanged() {
 		ThemeColors colors = new ThemeColors(context, prefs.getInt(themePrefKey, defaultColor));
-		view.onThemeChanged(colors);
+		modularScreen.onThemeChanged(colors);
 	}
 }
