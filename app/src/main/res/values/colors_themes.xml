@@ -22,97 +22,97 @@
 	<color name="blueGrey">#607d8b</color>
 
 	<array name="color_red">
-		<item>#f44336</item>
+		<item>@color/red</item>
 		<item>#c62828</item>
 	</array>
 
 	<array name="color_pink">
-		<item>#e91e63</item>
+		<item>@color/pink</item>
 		<item>#ad1457</item>
 	</array>
 
 	<array name="color_purple">
-		<item>#9c27b0</item>
+		<item>@color/purple</item>
 		<item>#6a1b9a</item>
 	</array>
 
 	<array name="color_deepPurple">
-		<item>#673ab7</item>
+		<item>@color/deepPurple</item>
 		<item>#4527a0</item>
 	</array>
 
 	<array name="color_indigo">
-		<item>#3f51b5</item>
+		<item>@color/indigo</item>
 		<item>#283593</item>
 	</array>
 
 	<array name="color_blue">
-		<item>#2196f3</item>
+		<item>@color/blue</item>
 		<item>#1565c0</item>
 	</array>
 
 	<array name="color_lightBlue">
-		<item>#03a9f4</item>
+		<item>@color/lightBlue</item>
 		<item>#0277bd</item>
 	</array>
 
 	<array name="color_cyan">
-		<item>#00bcd4</item>
+		<item>@color/cyan</item>
 		<item>#00838f</item>
 	</array>
 
 	<array name="color_teal">
-		<item>#009688</item>
+		<item>@color/teal</item>
 		<item>#00695c</item>
 	</array>
 
 	<array name="color_green">
-		<item>#4caf50</item>
+		<item>@color/green</item>
 		<item>#2e7d32</item>
 	</array>
 
 	<array name="color_lightGreen">
-		<item>#8bc34a</item>
+		<item>@color/lightGreen</item>
 		<item>#558b2f</item>
 	</array>
 
 	<array name="color_lime">
-		<item>#cddc39</item>
+		<item>@color/lime</item>
 		<item>#9e9d24</item>
 	</array>
 
 	<array name="color_yellow">
-		<item>#ffeb3b</item>
+		<item>@color/yellow</item>
 		<item>#f9a825</item>
 	</array>
 
 	<array name="color_amber">
-		<item>#ffc107</item>
+		<item>@color/amber</item>
 		<item>#ff8f00</item>
 	</array>
 
 	<array name="color_orange">
-		<item>#ff9800</item>
+		<item>@color/orange</item>
 		<item>#ef6c00</item>
 	</array>
 
 	<array name="color_deepOrange">
-		<item>#ff5722</item>
+		<item>@color/deepOrange</item>
 		<item>#d84315</item>
 	</array>
 
 	<array name="color_brown">
-		<item>#795548</item>
+		<item>@color/brown</item>
 		<item>#4e342e</item>
 	</array>
 
 	<array name="color_grey">
-		<item>#9e9e9e</item>
+		<item>@color/grey</item>
 		<item>#424242</item>
 	</array>
 
 	<array name="color_blueGrey">
-		<item>#607d8b</item>
+		<item>@color/blueGrey</item>
 		<item>#37474f</item>
 	</array>
 
