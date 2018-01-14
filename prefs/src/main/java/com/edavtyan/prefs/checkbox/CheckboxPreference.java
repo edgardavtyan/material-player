@@ -1,6 +1,8 @@
 package com.edavtyan.prefs.checkbox;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.support.v4.widget.CompoundButtonCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,10 @@ public class CheckboxPreference extends BasePreference implements View.OnClickLi
 
 	public void setChecked(boolean checked) {
 		checkboxView.setChecked(checked);
+	}
+
+	public void setCheckBoxColor(int color) {
+		CompoundButtonCompat.setButtonTintList(checkboxView, ColorStateList.valueOf(color));
 	}
 
 	@Override
