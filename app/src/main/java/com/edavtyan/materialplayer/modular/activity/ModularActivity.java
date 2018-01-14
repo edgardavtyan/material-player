@@ -6,12 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.lib.theme.ThemeActivity;
+import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import java.util.ArrayList;
 
 public abstract class ModularActivity extends ThemeActivity {
-	private final ArrayList<ActivityModule> modules = new ArrayList<>();
+	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 
 	@Override
 	protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public abstract class ModularActivity extends ThemeActivity {
 	public void onStart() {
 		super.onStart();
 
-		for (ActivityModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onStart();
 		}
 	}
@@ -31,14 +32,14 @@ public abstract class ModularActivity extends ThemeActivity {
 	public void onStop() {
 		super.onStop();
 
-		for (ActivityModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onStop();
 		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		for (ActivityModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onCreateOptionsMenu(menu);
 		}
 
@@ -47,7 +48,7 @@ public abstract class ModularActivity extends ThemeActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		for (ActivityModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onOptionsItemSelected(item);
 		}
 
@@ -56,12 +57,12 @@ public abstract class ModularActivity extends ThemeActivity {
 
 	@Override
 	public void onThemeChanged(ThemeColors colors) {
-		for (ActivityModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onThemeChanged(colors);
 		}
 	}
 
-	protected void addModule(ActivityModule module) {
+	protected void addModule(UniversalViewModule module) {
 		modules.add(module);
 		module.onCreate();
 	}

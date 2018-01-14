@@ -11,13 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
+
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
 public abstract class ModularFragment extends Fragment {
 
-	private final ArrayList<FragmentModule> modules = new ArrayList<>();
+	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 
 	@LayoutRes
 	protected abstract int getLayoutId();
@@ -33,8 +35,10 @@ public abstract class ModularFragment extends Fragment {
 
 		ButterKnife.bind(this, view);
 
-		for (FragmentModule module : modules) {
-			module.onCreateView(view);
+		for (UniversalViewModule module : modules) {
+			if (module instanceof FragmentModule) {
+				((FragmentModule) module).onCreateView(view);
+			}
 		}
 
 		return view;
@@ -44,8 +48,10 @@ public abstract class ModularFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 
-		for (FragmentModule module : modules) {
-			module.onResume();
+		for (UniversalViewModule module : modules) {
+			if (module instanceof FragmentModule) {
+				((FragmentModule) module).onResume();
+			}
 		}
 	}
 
@@ -53,7 +59,7 @@ public abstract class ModularFragment extends Fragment {
 	public void onStart() {
 		super.onStart();
 
-		for (FragmentModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onStart();
 		}
 	}
@@ -62,7 +68,7 @@ public abstract class ModularFragment extends Fragment {
 	public void onStop() {
 		super.onStop();
 
-		for (FragmentModule module : modules) {
+		for (UniversalViewModule module : modules) {
 			module.onStop();
 		}
 	}
@@ -71,28 +77,30 @@ public abstract class ModularFragment extends Fragment {
 	public void onDestroy() {
 		super.onDestroy();
 
-		for (FragmentModule module : modules) {
-			module.onDestroy();
+		for (UniversalViewModule module : modules) {
+			if (module instanceof FragmentModule) {
+				((FragmentModule) module).onDestroy();
+			}
 		}
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		for (FragmentModule module : modules) {
-			module.onCreateOptionsMenu();
+		for (UniversalViewModule module : modules) {
+			module.onCreateOptionsMenu(menu);
 		}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		for (FragmentModule module : modules) {
-			module.onOptionsItemSelected();
+		for (UniversalViewModule module : modules) {
+			module.onOptionsItemSelected(item);
 		}
 
 		return false;
 	}
 
-	protected void addModule(FragmentModule module) {
+	protected void addModule(UniversalViewModule module) {
 		modules.add(module);
 	}
 }

@@ -2,26 +2,16 @@ package com.edavtyan.materialplayer.modular.fragment;
 
 import android.view.View;
 
+import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
+
 @SuppressWarnings("EmptyMethod")
-public class FragmentModule {
+public class FragmentModule extends UniversalViewModule {
 	public void onCreateView(View view) {
 	}
 
 	public void onResume() {
 	}
 
-	public void onStart() {
-	}
-
-	public void onStop() {
-	}
-
 	public void onDestroy() {
-	}
-
-	public void onCreateOptionsMenu() {
-	}
-
-	public void onOptionsItemSelected() {
 	}
 }

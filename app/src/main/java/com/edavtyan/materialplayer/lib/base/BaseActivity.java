@@ -8,11 +8,14 @@ import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
-import com.edavtyan.materialplayer.modular.activity.modules.ActivityThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.universal_view.modules.ThemeSwitchModule;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends ModularActivity {
+public abstract class BaseActivity
+		extends ModularActivity
+		implements
+		ThemeSwitchModule.ThemeSwitchingView {
 
 	public abstract int getLayoutId();
 
@@ -22,7 +25,7 @@ public abstract class BaseActivity extends ModularActivity {
 
 		BaseFactory factory = getApp().getBaseFactory(this);
 		addModule(new ActivityBaseMenuModule(factory.getNavigator(), factory.createMenuInflater(this)));
-		addModule(new ActivityThemeSwitchModule(this, factory.getPrefs()));
+		addModule(new ThemeSwitchModule(this, this, factory.getPrefs()));
 
 		setContentView(getLayoutId());
 

@@ -1,28 +1,34 @@
-package com.edavtyan.materialplayer.modular.activity.modules;
+package com.edavtyan.materialplayer.modular.universal_view.modules;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-import com.edavtyan.materialplayer.modular.activity.ActivityModule;
+import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 import com.edavtyan.materialplayer.utils.ThemeColors;
 
-public class ActivityThemeSwitchModule
-		extends ActivityModule
+public class ThemeSwitchModule
+		extends UniversalViewModule
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 	private final AdvancedSharedPrefs prefs;
-	private final BaseActivity activity;
 	private final String themePrefKey;
+	private final ThemeSwitchingView view;
+	private final Context context;
 	private final int defaultColor;
 
-	public ActivityThemeSwitchModule(BaseActivity activity, AdvancedSharedPrefs prefs) {
-		this.activity = activity;
+	public interface ThemeSwitchingView {
+		void onThemeChanged(ThemeColors colors);
+	}
+
+	public ThemeSwitchModule(ThemeSwitchingView view, Context context, AdvancedSharedPrefs prefs) {
+		this.view = view;
+		this.context = context;
 		this.prefs = prefs;
-		themePrefKey = activity.getString(R.string.pref_colors_key);
-		defaultColor = ContextCompat.getColor(activity, R.color.pref_colors_default);
+		themePrefKey = context.getString(R.string.pref_colors_key);
+		defaultColor = ContextCompat.getColor(context, R.color.pref_colors_default);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
@@ -40,7 +46,7 @@ public class ActivityThemeSwitchModule
 	}
 
 	private void callOnThemeChanged() {
-		ThemeColors colors = new ThemeColors(activity, prefs.getInt(themePrefKey, defaultColor));
-		activity.onThemeChanged(colors);
+		ThemeColors colors = new ThemeColors(context, prefs.getInt(themePrefKey, defaultColor));
+		view.onThemeChanged(colors);
 	}
 }
