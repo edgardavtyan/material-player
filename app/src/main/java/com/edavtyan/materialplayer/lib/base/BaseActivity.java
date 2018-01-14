@@ -13,8 +13,7 @@ import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModu
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity
-		extends ModularActivity
-		implements ThemeSwitchModule.ThemeSwitchingView {
+		extends ModularActivity {
 
 	public abstract int getLayoutId();
 
@@ -22,7 +21,7 @@ public abstract class BaseActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		BaseFactory factory = getApp().getBaseFactory(this);
+		BaseFactory factory = ((App) getApplication()).getBaseFactory(this);
 		addModule(new ActivityBaseMenuModule(factory.getNavigator(), factory.createMenuInflater(this)));
 		addModule(new ThemeSwitchModule(this, this, factory.getPrefs()));
 
@@ -33,9 +32,5 @@ public abstract class BaseActivity
 		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 			WindowUtils.makeStatusBarSemiTransparent(this);
 		}
-	}
-
-	public App getApp() {
-		return (App) getApplication();
 	}
 }

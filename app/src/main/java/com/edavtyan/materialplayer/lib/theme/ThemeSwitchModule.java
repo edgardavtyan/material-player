@@ -18,10 +18,6 @@ public class ThemeSwitchModule
 	private final String themePrefKey;
 	private final int defaultColor;
 
-	public interface ThemeSwitchingView {
-		void onThemeChanged(ThemeColors colors);
-	}
-
 	public ThemeSwitchModule(ThemeModularScreen modularScreen, Context context, AdvancedSharedPrefs prefs) {
 		this.modularScreen = modularScreen;
 		this.context = context;

@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.modular.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,11 +12,6 @@ import java.util.ArrayList;
 
 public abstract class ModularActivity extends AppCompatActivity implements ThemeModularScreen {
 	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
-
-	@Override
-	protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-	}
 
 	@Override
 	public void onStart() {

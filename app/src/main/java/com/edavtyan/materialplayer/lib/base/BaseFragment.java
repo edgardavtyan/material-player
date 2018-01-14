@@ -4,12 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
-public abstract class BaseFragment
-		extends ModularFragment
-		implements ThemeSwitchModule.ThemeSwitchingView {
+public abstract class BaseFragment extends ModularFragment {
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
