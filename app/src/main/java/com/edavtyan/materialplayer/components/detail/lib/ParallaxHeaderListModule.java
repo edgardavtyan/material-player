@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.components.detail.lib;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,19 +12,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.ed.libsutils.ColorUtils;
 import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.edavtyan.materialplayer.utils.CustomColor;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ParallaxHeaderListModule extends ActivityModule {
+	@BindView(R.id.title) TextView titleView;
+	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView imageView;
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.appbar_wrapper) @Nullable LinearLayout appbarWrapper;
@@ -32,7 +38,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	@BindView(R.id.statusbar_tint) @Nullable View statusShadow;
 
 	private final AppCompatActivity activity;
-	private final RecyclerView.Adapter adapter;
+	private final TestableRecyclerAdapter adapter;
 	private final ParallaxHeaderListPresenter presenter;
 
 	private CustomColor appbarColor;
@@ -40,7 +46,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 
 	public ParallaxHeaderListModule(
 			AppCompatActivity activity,
-			RecyclerView.Adapter adapter,
+			TestableRecyclerAdapter adapter,
 			ParallaxHeaderListPresenter presenter) {
 		this.activity = activity;
 		this.adapter = adapter;
@@ -104,5 +110,25 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	@Override
 	public void onStop() {
 		presenter.onDestroy();
+	}
+
+	public void setTitle(String title) {
+		titleView.setText(title);
+	}
+
+	public void setInfo(String info) {
+		infoView.setText(info);
+	}
+
+	public void setImage(Bitmap image, @DrawableRes int fallback) {
+		if (image == null) {
+			imageView.setImageResource(fallback);
+		} else {
+			imageView.setImageBitmap(image);
+		}
+	}
+
+	public void notifyDataSetChanged() {
+		adapter.notifyDataSetChangedNonFinal();
 	}
 }
