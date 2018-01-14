@@ -30,7 +30,7 @@ public abstract class ParallaxHeaderListActivity
 
 	public void init(TestableRecyclerAdapter adapter, ParallaxHeaderListPresenter presenter) {
 		parallaxHeaderListModule = new ParallaxHeaderListModule(this, adapter, presenter);
-		addModule(new ParallaxHeaderListModule(this, adapter, presenter));
+		addModule(parallaxHeaderListModule);
 	}
 
 	public void setTitle(String title) {
