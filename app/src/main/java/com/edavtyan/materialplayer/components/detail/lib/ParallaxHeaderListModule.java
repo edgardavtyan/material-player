@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.components.detail.lib;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -11,12 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
+import com.ed.libsutils.ColorUtils;
+import com.ed.libsutils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
-import com.edavtyan.materialplayer.utils.AppColors;
-import com.ed.libsutils.ColorUtils;
 import com.edavtyan.materialplayer.utils.CustomColor;
-import com.ed.libsutils.WindowUtils;
+import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,9 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	private final RecyclerView.Adapter adapter;
 	private final ParallaxHeaderListPresenter presenter;
 
+	private CustomColor appbarColor;
+	private CustomColor statusbarColor;
+
 	public ParallaxHeaderListModule(
 			AppCompatActivity activity,
 			RecyclerView.Adapter adapter,
@@ -41,11 +45,12 @@ public class ParallaxHeaderListModule extends ActivityModule {
 		this.activity = activity;
 		this.adapter = adapter;
 		this.presenter = presenter;
+		appbarColor = new CustomColor(0);
+		statusbarColor = new CustomColor(0);
 	}
 
 	@Override
 	public void onCreate() {
-
 		ButterKnife.bind(this, activity);
 
 		list.setAdapter(adapter);
@@ -67,10 +72,6 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			appbarWrapper.bringToFront();
 			header.attachTo(list);
 
-			AppColors appColors = new AppColors(activity);
-			CustomColor primaryColor = new CustomColor(appColors.primary);
-			CustomColor primaryDarkColor = new CustomColor(appColors.primaryDark);
-
 			list.addOnScrollListener(new RecyclerView.OnScrollListener() {
 				private final int parallaxAmount = 2;
 				private int totalScrolled = 0;
@@ -80,12 +81,19 @@ public class ParallaxHeaderListModule extends ActivityModule {
 					totalScrolled += dy;
 
 					imageView.setTranslationY(totalScrolled / parallaxAmount);
-					appbar.setBackgroundColor(primaryColor.fade(totalScrolled));
+					appbar.setBackgroundColor(appbarColor.fade(totalScrolled));
 					appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(totalScrolled));
-					statusShadow.setBackgroundColor(primaryDarkColor.fade(totalScrolled));
+					statusShadow.setBackgroundColor(statusbarColor.fade(totalScrolled));
 				}
 			});
 		}
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
+		appbarColor = new CustomColor(((ColorDrawable) appbar.getBackground()).getColor());
+		statusbarColor = new CustomColor(WindowUtils.getStatusBarColor(activity));
 	}
 
 	@Override

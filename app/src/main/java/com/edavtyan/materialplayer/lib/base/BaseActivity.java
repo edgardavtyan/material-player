@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityThemeSwitchModule;
-import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import butterknife.ButterKnife;
 
@@ -36,8 +35,5 @@ public abstract class BaseActivity extends ModularActivity {
 
 	public App getApp() {
 		return (App) getApplication();
-	}
-
-	public void onThemeChanged(ThemeColors colors) {
 	}
 }

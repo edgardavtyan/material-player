@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.ed.libsutils.ColorUtils;
 import com.ed.libsutils.WindowUtils;
+import com.edavtyan.materialplayer.utils.ThemeColors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,5 +78,10 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@Override
 	public void onStop() {
 		presenter.onDestroy();
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
 	}
 }
