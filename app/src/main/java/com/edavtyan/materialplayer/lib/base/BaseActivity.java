@@ -12,8 +12,7 @@ import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModu
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity
-		extends ModularActivity {
+public abstract class BaseActivity extends ModularActivity {
 
 	public abstract int getLayoutId();
 
