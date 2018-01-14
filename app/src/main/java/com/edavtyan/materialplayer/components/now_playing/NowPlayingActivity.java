@@ -11,15 +11,16 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingContr
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import lombok.Getter;
 
-public class NowPlayingActivity extends BaseToolbarActivity {
+public class NowPlayingActivity extends BaseActivity {
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
 
@@ -34,6 +35,10 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		ActivityToolbarModule toolbarModule = new ActivityToolbarModule(this);
+		toolbarModule.setTitleStringId(R.string.nowplaying_toolbar_title);
+		addModule(toolbarModule);
 
 		getComponent().inject(this);
 
@@ -55,11 +60,6 @@ public class NowPlayingActivity extends BaseToolbarActivity {
 	@Override
 	public int getLayoutId() {
 		return R.layout.activity_nowplaying;
-	}
-
-	@Override
-	protected int getToolbarTitleStringId() {
-		return R.string.nowplaying_toolbar_title;
 	}
 
 	public void gotoPlaylistScreen() {

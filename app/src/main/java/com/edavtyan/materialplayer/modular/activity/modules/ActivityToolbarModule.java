@@ -66,7 +66,7 @@ public class ActivityToolbarModule extends ActivityModule {
 
 	@Override
 	public void onThemeChanged(ThemeColors colors) {
-		toolbar.setBackgroundColor(colors.getColorPrimary());
+		appBarLayout.setBackgroundColor(colors.getColorPrimary());
 		WindowUtils.setStatusBarColor(activity, colors.getColorPrimaryDark());
 	}
 }

@@ -15,7 +15,8 @@ import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.Pr
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 
 public class AudioEffectsActivity
-		extends BaseToolbarActivity
+		extends BaseActivity
 		implements CompoundButton.OnCheckedChangeListener,
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {
@@ -73,6 +74,8 @@ public class AudioEffectsActivity
 		}
 
 		getComponent().inject(this);
+
+		addModule(new ActivityToolbarModule(this));
 
 		presenter.onCreate();
 	}

@@ -7,13 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class NowPlayingQueueActivity extends BaseToolbarActivity implements ListView {
+public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 
 	@BindView(R.id.list) RecyclerView list;
 
@@ -23,6 +24,8 @@ public class NowPlayingQueueActivity extends BaseToolbarActivity implements List
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		addModule(new ActivityToolbarModule(this));
 
 		getComponent().inject(this);
 

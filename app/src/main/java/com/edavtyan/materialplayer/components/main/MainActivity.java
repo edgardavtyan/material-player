@@ -9,14 +9,14 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.lib.base.BaseToolbarActivity;
-import com.ed.libsutils.WindowUtils;
+import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseToolbarActivity {
+public class MainActivity extends BaseActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.view_pager) ViewPager viewPager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
@@ -42,12 +42,13 @@ public class MainActivity extends BaseToolbarActivity {
 
 		super.onCreate(savedInstanceState);
 
+		ActivityToolbarModule toolbarModule = new ActivityToolbarModule(this);
+		toolbarModule.setBackIconEnabled(false);
+		toolbarModule.setTitleStringId(isCompactModeEnabled ? R.string.empty : R.string.app_name);
+		addModule(toolbarModule);
+
 		FragmentPagerAdapter adapter = compactMainScreenPref.isEnabled()
 				? iconsTabsAdapter : textTabsAdapter;
-
-		if (isCompactModeEnabled && WindowUtils.isPortrait(this)) {
-			toolbar.setTitle(null);
-		}
 
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);
@@ -62,11 +63,6 @@ public class MainActivity extends BaseToolbarActivity {
 		if (isCompactModeEnabled != compactMainScreenPref.isEnabled()) {
 			this.recreate();
 		}
-	}
-
-	@Override
-	public boolean isBackIconEnabled() {
-		return false;
 	}
 
 	protected MainComponent getComponent() {
