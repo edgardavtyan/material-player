@@ -7,8 +7,6 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.edavtyan.prefs.R;
-import com.edavtyan.prefs.utils.AttributeResolver;
 import com.edavtyan.prefs.utils.PixelConverter;
 
 public class ColorCircleView extends View {
@@ -53,11 +51,10 @@ public class ColorCircleView extends View {
 	}
 
 	private Paint initBorderPaint() {
-		AttributeResolver attributeResolver = new AttributeResolver(getContext());
 		Paint paint = new Paint();
 		paint.setAntiAlias(true);
 		paint.setStrokeWidth(PixelConverter.dpToPx(STROKE_WIDTH));
-		paint.setColor(attributeResolver.getColor(R.attr.colorControlNormal));
+		paint.setColor(Color.BLACK);
 		paint.setStyle(Paint.Style.STROKE);
 		return paint;
 	}
