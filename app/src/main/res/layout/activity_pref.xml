@@ -21,6 +21,7 @@
 			>
 
 			<com.edavtyan.prefs.category.PreferenceCategory
+				android:id="@+id/pref_category_appearance"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:cp_title="@string/pref_category_appearance"
@@ -65,6 +66,7 @@
 			</com.edavtyan.prefs.category.PreferenceCategory>
 
 			<com.edavtyan.prefs.category.PreferenceCategory
+				android:id="@+id/pref_category_playback"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:cp_title="@string/pref_category_playback"

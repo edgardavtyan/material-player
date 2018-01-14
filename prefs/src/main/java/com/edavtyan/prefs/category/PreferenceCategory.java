@@ -25,6 +25,10 @@ public class PreferenceCategory extends LinearLayout {
 		init(context, attrs);
 	}
 
+	public void setTextColor(int color) {
+		headingView.setTextColor(color);
+	}
+
 	private void init(Context context, AttributeSet attrs) {
 		inflate(context, R.layout.category, this);
 		setOrientation(VERTICAL);
