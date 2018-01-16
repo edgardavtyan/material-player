@@ -1,10 +1,8 @@
 package com.edavtyan.materialplayer.lib.base;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
@@ -27,9 +25,5 @@ public abstract class BaseActivity extends ModularActivity {
 		setContentView(getLayoutId());
 
 		ButterKnife.bind(this);
-
-		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-			WindowUtils.makeStatusBarSemiTransparent(this);
-		}
 	}
 }

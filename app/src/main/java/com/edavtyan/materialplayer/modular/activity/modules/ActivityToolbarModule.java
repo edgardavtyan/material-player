@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
+import android.os.Build;
 import android.support.annotation.StringRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,10 @@ public class ActivityToolbarModule extends ActivityModule {
 		toolbar.setTitle(activity.getResources().getString(titleStringId));
 		activity.setSupportActionBar(toolbar);
 		if (isBackIconEnabled) activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+			WindowUtils.makeStatusBarSemiTransparent(activity);
+		}
 	}
 
 	@Override
