@@ -2,12 +2,14 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.utils.WebClient;
 
@@ -62,8 +64,20 @@ public class ArtistDetailModule {
 
 	@Provides
 	@Singleton
+	public TestableRecyclerAdapter provideTestableRecyclerAdapter(ArtistDetailAdapter adapter) {
+		return adapter;
+	}
+
+	@Provides
+	@Singleton
 	public ArtistDetailPresenter providePresenter(ArtistDetailModel model, ArtistDetailView view) {
 		return new ArtistDetailPresenter(model, view);
+	}
+
+	@Provides
+	@Singleton
+	public ParallaxHeaderListPresenter provideParallaxPresenter(ArtistDetailPresenter presenter) {
+		return presenter;
 	}
 
 	@Provides

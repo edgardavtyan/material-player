@@ -9,6 +9,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 
 import javax.inject.Inject;
 
@@ -17,14 +19,11 @@ public class ArtistDetailActivityCompact
 		implements ArtistDetailView {
 
 	@Inject Navigator navigator;
-	@Inject ArtistDetailPresenter presenter;
-	@Inject ArtistDetailAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
-		init(adapter, presenter);
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
@@ -62,6 +61,8 @@ public class ArtistDetailActivityCompact
 				.builder()
 				.artistDetailModule(new ArtistDetailModule(this, this, artistTitle))
 				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
+				.activityModulesModule(new ActivityModulesModule(this))
+				.themeModule(new ThemeModule(this))
 				.build();
 	}
 }

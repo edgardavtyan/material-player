@@ -7,45 +7,50 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
-import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+
 public abstract class ParallaxHeaderListCompactActivity
-		extends BaseActivity
+		extends ModularActivity
 		implements ListView {
 
-	private ParallaxHeaderListCompactModule parallaxHeaderListModule;
-
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_detail_compact;
-	}
+	@Inject ActivityToolbarModule toolbarModule;
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ThemeSwitchModule themeSwitchModule;
+	@Inject ParallaxHeaderListCompactModule parallaxListModule;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addModule(new ActivityToolbarModule(this));
-	}
 
-	protected void init(TestableRecyclerAdapter adapter, ParallaxHeaderListPresenter presenter) {
-		parallaxHeaderListModule = new ParallaxHeaderListCompactModule(this, adapter, presenter);
-		addModule(parallaxHeaderListModule);
+		setContentView(R.layout.activity_detail_compact);
+		ButterKnife.bind(this);
+
+		addModule(baseMenuModule);
+		addModule(toolbarModule);
+		addModule(themeSwitchModule);
+		addModule(parallaxListModule);
 	}
 
 	public void setTitle(String title) {
-		parallaxHeaderListModule.setTitle(title);
+		parallaxListModule.setTitle(title);
 	}
 
 	public void setInfo(String portraitTopInfo, String portraitBottomInfo, String landscapeInfo) {
-		parallaxHeaderListModule.setInfo(portraitTopInfo, portraitBottomInfo, landscapeInfo);
+		parallaxListModule.setInfo(portraitTopInfo, portraitBottomInfo, landscapeInfo);
 	}
 
 	public void setImage(Bitmap image, @DrawableRes int fallback) {
-		parallaxHeaderListModule.setImage(image, fallback);
+		parallaxListModule.setImage(image, fallback);
 	}
 
 	public void notifyDataSetChanged() {
-		parallaxHeaderListModule.notifyDataSetChanged();
+		parallaxListModule.notifyDataSetChanged();
 	}
 }

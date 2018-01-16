@@ -1,6 +1,9 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.db.DbModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtModule;
@@ -14,6 +17,9 @@ import dagger.Component;
 @Singleton
 @Component(modules = {
 		AlbumDetailModule.class,
+		ParallaxHeaderModule.class,
+		ActivityModulesModule.class,
+		ThemeModule.class,
 		ModelModulesModule.class,
 		DbModule.class,
 		AlbumArtModule.class,
