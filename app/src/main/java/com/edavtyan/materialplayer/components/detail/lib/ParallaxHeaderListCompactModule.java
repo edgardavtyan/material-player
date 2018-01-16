@@ -122,7 +122,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	public void setImage(Bitmap image, @DrawableRes int fallback) {
 		if (image != null) {
 			if (WindowUtils.isPortrait(activity)) {
-				int imageViewSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
+				int imageViewSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 				Bitmap scaledImage = BitmapResizer.resize(image, imageViewSize);
 				imageView.setImageBitmap(scaledImage);
 			} else {

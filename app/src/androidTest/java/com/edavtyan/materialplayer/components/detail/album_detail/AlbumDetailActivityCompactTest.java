@@ -96,7 +96,7 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 		ImageView artView = (ImageView) activity.findViewById(R.id.art);
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		runOnUiThread(() -> activity.setAlbumImage(bitmap));
-		int scaledBitmapSize = DpConverter.convertDpToPixel(120);
+		int scaledBitmapSize = DpConverter.dpToPixel(120);
 		Bitmap scaledBitmap = BitmapResizer.resize(bitmap, scaledBitmapSize);
 		assertThat(artView).hasImageBitmap(scaledBitmap);
 	}

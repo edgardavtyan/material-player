@@ -50,14 +50,14 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 
 	@SuppressWarnings("UnusedReturnValue")
 	public ImageViewAssert hasScaledImageBitmap(Bitmap expectedBitmap, int expectedSizeDp) {
-		int actualSizeDp = DpConverter.convertPixelsToDp(actual.getDrawable().getIntrinsicWidth());
+		int actualSizeDp = DpConverter.pixelToDp(actual.getDrawable().getIntrinsicWidth());
 		if (expectedSizeDp != actualSizeDp) {
 			failWithMessage(
 					"Expected bitmap to has size %ddp, but was %ddp",
 					expectedSizeDp, actualSizeDp);
 		}
 
-		int expectedSizePx = DpConverter.convertDpToPixel(expectedSizeDp);
+		int expectedSizePx = DpConverter.dpToPixel(expectedSizeDp);
 		return hasImageBitmap(BitmapResizer.resize(expectedBitmap, expectedSizePx));
 	}
 

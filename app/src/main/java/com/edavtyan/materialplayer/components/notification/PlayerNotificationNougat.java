@@ -38,7 +38,7 @@ public class PlayerNotificationNougat extends PlayerNotification {
 
 	@Override
 	public void setArt(Bitmap art) {
-		int scaledArtSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
+		int scaledArtSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 		Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);
 		super.setArt(scaledArt);
 	}

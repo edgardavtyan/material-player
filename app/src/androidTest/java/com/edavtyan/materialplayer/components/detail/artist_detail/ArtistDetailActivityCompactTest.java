@@ -88,7 +88,7 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 
 		runOnUiThread(() -> activity.setArtistImage(bitmap));
 
-		int imageViewSize = DpConverter.convertDpToPixel(120);
+		int imageViewSize = DpConverter.dpToPixel(120);
 		Bitmap scaledImage = BitmapResizer.resize(bitmap, imageViewSize);
 		assertThat(artView).hasImageBitmap(scaledImage);
 	}

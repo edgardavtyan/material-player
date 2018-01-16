@@ -103,7 +103,7 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 
 	public void setArt(Bitmap art) {
 		if (art != null) {
-			int scaledArtSize = DpConverter.convertDpToPixel(SCALED_ART_SIZE_DP);
+			int scaledArtSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 			Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);
 			artView.setImageBitmap(scaledArt);
 		} else {
