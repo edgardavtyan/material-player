@@ -1,11 +1,8 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,11 +18,8 @@ import org.junit.Test;
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.RETURNS_MOCKS;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +38,6 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	private Navigator navigator;
 	private TestNowPlayingFloatingFragment fragment;
 
-	private LayoutInflater inflater;
 	private TextView infoView;
 	private TextView titleView;
 	private ImageView artView;
@@ -71,11 +64,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 				.utilsModule(utilsModule)
 				.build();
 
-		inflater = spy(LayoutInflater.from(context));
-		when(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(inflater);
-
-		fragment = spy(new TestNowPlayingFloatingFragment());
-		doReturn(context).when(fragment).getContext();
+		fragment = new TestNowPlayingFloatingFragment();
 		initFragment(fragment);
 
 		infoView = (TextView) fragment.getView().findViewById(R.id.info);
@@ -99,11 +88,8 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	}
 
 	@Test
-	public void onCreateView_inflateViewWithCorrectParameters() {
-		verify(inflater).inflate(
-				eq(R.layout.fragment_nowplaying_floating),
-				any(ViewGroup.class),
-				eq(false));
+	public void getLayoutId_returnCorrectId() {
+		assertThat(fragment.getLayoutId()).isEqualTo(R.layout.fragment_nowplaying_floating);
 	}
 
 	@Test
