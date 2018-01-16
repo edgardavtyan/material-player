@@ -11,6 +11,9 @@ import android.support.test.InstrumentationRegistry;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
+import com.ed.libsutils.BitmapResizer;
+import com.ed.libsutils.DpConverter;
+
 import org.assertj.core.api.AbstractAssert;
 
 public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> {
@@ -43,6 +46,19 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 			failWithMessage(errorMessage, drawableId);
 
 		return this;
+	}
+
+	@SuppressWarnings("UnusedReturnValue")
+	public ImageViewAssert hasScaledImageBitmap(Bitmap expectedBitmap, int expectedSizeDp) {
+		int actualSizeDp = DpConverter.convertPixelsToDp(actual.getDrawable().getIntrinsicWidth());
+		if (expectedSizeDp != actualSizeDp) {
+			failWithMessage(
+					"Expected bitmap to has size %ddp, but was %ddp",
+					expectedSizeDp, actualSizeDp);
+		}
+
+		int expectedSizePx = DpConverter.convertDpToPixel(expectedSizeDp);
+		return hasImageBitmap(BitmapResizer.resize(expectedBitmap, expectedSizePx));
 	}
 
 	@SuppressWarnings("UnusedReturnValue")

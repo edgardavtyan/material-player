@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 
 import org.junit.Test;
 
@@ -124,7 +124,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 	public void setArt_bitmapIsNotNull_setBitmap() {
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 		runOnUiThread(() -> fragment.setArt(art));
-		assertThat(artView).hasImageBitmap(art);
+		assertThat(artView).hasScaledImageBitmap(art, 44);
 	}
 
 	@Test
