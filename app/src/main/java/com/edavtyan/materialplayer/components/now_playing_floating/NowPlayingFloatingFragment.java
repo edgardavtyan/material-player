@@ -16,14 +16,16 @@ import com.ed.libsutils.utils.BitmapResizer;
 import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.lib.base.BaseFragment;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class NowPlayingFloatingFragment extends BaseFragment implements View.OnClickListener {
+public class NowPlayingFloatingFragment extends ModularFragment implements View.OnClickListener {
 
 	public static final int SCALED_ART_SIZE_DP = 44;
 
@@ -34,6 +36,7 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 	@BindView(R.id.container) LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoWrapper;
 
+	@Inject ThemeSwitchModule themeModule;
 	@Inject NowPlayingFloatingPresenter presenter;
 	@Inject Navigator navigator;
 
@@ -59,6 +62,7 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
+		addModule(themeModule);
 	}
 
 	@Nullable
@@ -127,6 +131,7 @@ public class NowPlayingFloatingFragment extends BaseFragment implements View.OnC
 		return DaggerNowPlayingFloatingComponent
 				.builder()
 				.nowPlayingFloatingModule(new NowPlayingFloatingModule(getActivity(), this))
+				.themeModule(new ThemeModule(this))
 				.build();
 	}
 }
