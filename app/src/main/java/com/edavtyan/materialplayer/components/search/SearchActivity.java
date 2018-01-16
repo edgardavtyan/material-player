@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.search;
 
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -87,6 +88,9 @@ public class SearchActivity extends ModularActivity {
 		tabLayout.setupWithViewPager(viewPager);
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+			WindowUtils.makeStatusBarSemiTransparent(this);
+		}
 	}
 
 	@Override
