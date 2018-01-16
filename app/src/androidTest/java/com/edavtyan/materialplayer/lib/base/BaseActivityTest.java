@@ -1,6 +1,9 @@
 package com.edavtyan.materialplayer.lib.base;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.test.rule.ActivityTestRule;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,17 +18,24 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class BaseActivityTest extends ActivityTest {
+	private static MenuInflater menuInflater;
+
 	public static class TestBaseActivity extends BaseActivity {
 		@Override
 		public int getLayoutId() {
 			return R.layout.test_layout;
+		}
+
+		@Override
+		@NonNull
+		public MenuInflater getMenuInflater() {
+			return BaseActivityTest.menuInflater;
 		}
 	}
 
@@ -34,7 +44,6 @@ public class BaseActivityTest extends ActivityTest {
 			= new ActivityTestRule<>(TestBaseActivity.class, false, false);
 
 	private TestBaseActivity activity;
-	private MenuInflater menuInflater;
 	private Navigator navigator;
 
 	@Override
@@ -44,12 +53,12 @@ public class BaseActivityTest extends ActivityTest {
 		navigator = mock(Navigator.class);
 		menuInflater = mock(MenuInflater.class);
 
-		AdvancedSharedPrefs prefs = mock(AdvancedSharedPrefs.class);
+		SharedPreferences basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(basePrefs);
 
 		BaseFactory factory = mock(BaseFactory.class);
 		when(factory.getNavigator()).thenReturn(navigator);
 		when(factory.getPrefs()).thenReturn(prefs);
-		when(factory.createMenuInflater(any())).thenReturn(menuInflater);
 		app.setBaseFactory(factory);
 
 		activity = activityRule.launchActivity(null);
@@ -64,7 +73,7 @@ public class BaseActivityTest extends ActivityTest {
 	public void onCreateOptionsMenu_inflateMenu() {
 		Menu menu = mock(Menu.class);
 		activity.onCreateOptionsMenu(menu);
-		verify(menuInflater).inflate(R.menu.menu_base, menu);
+		verify(activity.getMenuInflater()).inflate(R.menu.menu_base, menu);
 	}
 
 	@Test
