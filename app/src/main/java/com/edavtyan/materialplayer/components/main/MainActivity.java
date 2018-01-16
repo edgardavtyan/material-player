@@ -9,8 +9,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -28,7 +28,7 @@ public class MainActivity extends ModularActivity {
 
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
-	@Inject ThemeSwitchModule themeModule;
+	@Inject ScreenThemeModule themeModule;
 
 	@Inject CompactMainScreenPref compactMainScreenPref;
 	@Inject IconsTabsAdapter iconsTabsAdapter;
@@ -77,7 +77,7 @@ public class MainActivity extends ModularActivity {
 				.builder()
 				.mainModule(new MainModule(this))
 				.activityModulesModule(new ActivityModulesModule(this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 }

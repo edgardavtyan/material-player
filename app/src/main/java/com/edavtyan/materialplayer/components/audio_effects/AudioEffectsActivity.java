@@ -17,9 +17,9 @@ import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.Pr
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -46,7 +46,7 @@ public class AudioEffectsActivity
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
-	@Inject ThemeSwitchModule themeSwitchModule;
+	@Inject ScreenThemeModule themeModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject AudioEffectsPresenter presenter;
@@ -90,7 +90,7 @@ public class AudioEffectsActivity
 		getComponent().inject(this);
 		addModule(baseMenuModule);
 		addModule(toolbarModule);
-		addModule(themeSwitchModule);
+		addModule(themeModule);
 
 		presenter.onCreate();
 	}
@@ -227,7 +227,7 @@ public class AudioEffectsActivity
 				.builder()
 				.activityModulesModule(new ActivityModulesModule(this))
 				.audioEffectsViewModule(new AudioEffectsViewModule(this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 

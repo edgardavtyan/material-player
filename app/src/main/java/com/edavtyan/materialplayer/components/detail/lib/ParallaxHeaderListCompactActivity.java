@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -22,7 +22,7 @@ public abstract class ParallaxHeaderListCompactActivity
 
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
-	@Inject ThemeSwitchModule themeSwitchModule;
+	@Inject ScreenThemeModule themeModule;
 	@Inject ParallaxHeaderListCompactModule parallaxListModule;
 
 	@Override
@@ -34,7 +34,7 @@ public abstract class ParallaxHeaderListCompactActivity
 
 		addModule(baseMenuModule);
 		addModule(toolbarModule);
-		addModule(themeSwitchModule);
+		addModule(themeModule);
 		addModule(parallaxListModule);
 	}
 

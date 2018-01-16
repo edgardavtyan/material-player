@@ -5,12 +5,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModularScreen;
+import com.edavtyan.materialplayer.lib.theme.ThemeableScreen;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 
 import java.util.ArrayList;
 
-public abstract class ModularActivity extends AppCompatActivity implements ThemeModularScreen {
+public abstract class ModularActivity extends AppCompatActivity implements ThemeableScreen {
 	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 
 	@Override

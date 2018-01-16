@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 
 import javax.inject.Inject;
@@ -54,7 +54,7 @@ public class AlbumDetailActivityNormal
 				.builder()
 				.albumDetailModule(new AlbumDetailModule(this, this, albumId))
 				.activityModulesModule(new ActivityModulesModule(this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 }

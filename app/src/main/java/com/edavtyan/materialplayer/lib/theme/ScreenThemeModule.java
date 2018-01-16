@@ -8,18 +8,19 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 
-public class ThemeSwitchModule
+public class ScreenThemeModule
 		extends UniversalViewModule
 		implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 	private final AdvancedSharedPrefs prefs;
-	private final ThemeModularScreen modularScreen;
+	private final ThemeableScreen themeableScreen;
 	private final Context context;
 	private final String themePrefKey;
 	private final int defaultColor;
 
-	public ThemeSwitchModule(ThemeModularScreen modularScreen, Context context, AdvancedSharedPrefs prefs) {
-		this.modularScreen = modularScreen;
+	public ScreenThemeModule(
+			ThemeableScreen themeableScreen, Context context, AdvancedSharedPrefs prefs) {
+		this.themeableScreen = themeableScreen;
 		this.context = context;
 		this.prefs = prefs;
 		themePrefKey = context.getString(R.string.pref_colors_key);
@@ -41,6 +42,6 @@ public class ThemeSwitchModule
 
 	private void callOnThemeChanged() {
 		ThemeColors colors = new ThemeColors(context, prefs.getInt(themePrefKey, defaultColor));
-		modularScreen.onThemeChanged(colors);
+		themeableScreen.onThemeChanged(colors);
 	}
 }

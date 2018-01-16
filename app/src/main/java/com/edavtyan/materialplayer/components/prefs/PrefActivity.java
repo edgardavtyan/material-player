@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -31,7 +31,7 @@ public class PrefActivity extends ModularActivity {
 
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
-	@Inject ThemeSwitchModule themeModule;
+	@Inject ScreenThemeModule themeModule;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class PrefActivity extends ModularActivity {
 				.builder()
 				.prefModule(new PrefModule(this))
 				.activityModulesModule(new ActivityModulesModule(this, R.string.pref_title))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 }

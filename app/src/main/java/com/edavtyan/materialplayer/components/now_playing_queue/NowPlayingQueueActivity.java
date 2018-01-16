@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -25,7 +25,7 @@ public class NowPlayingQueueActivity extends ModularActivity implements ListView
 
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
-	@Inject ThemeSwitchModule themeModule;
+	@Inject ScreenThemeModule themeModule;
 
 	@Inject NowPlayingQueuePresenter presenter;
 	@Inject NowPlayingQueueAdapter adapter;
@@ -69,7 +69,7 @@ public class NowPlayingQueueActivity extends ModularActivity implements ListView
 				.builder()
 				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
 				.activityModulesModule(new ActivityModulesModule(this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 }

@@ -11,9 +11,9 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingContr
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -28,7 +28,7 @@ import lombok.Getter;
 public class NowPlayingActivity extends ModularActivity {
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
-	@Inject ThemeSwitchModule themeModule;
+	@Inject ScreenThemeModule themeModule;
 
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
@@ -73,7 +73,7 @@ public class NowPlayingActivity extends ModularActivity {
 		return DaggerNowPlayingComponent
 				.builder()
 				.nowPlayingModule(new NowPlayingModule(this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.activityModulesModule(new ActivityModulesModule(this, R.string.nowplaying_toolbar_title))
 				.build();
 	}

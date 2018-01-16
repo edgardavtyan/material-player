@@ -1,5 +1,5 @@
 package com.edavtyan.materialplayer.lib.theme;
 
-public interface ThemeModularScreen {
+public interface ThemeableScreen {
 	void onThemeChanged(ThemeColors colors);
 }

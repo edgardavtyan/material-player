@@ -12,14 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModularScreen;
+import com.edavtyan.materialplayer.lib.theme.ThemeableScreen;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
-public abstract class ModularFragment extends Fragment implements ThemeModularScreen {
+public abstract class ModularFragment extends Fragment implements ThemeableScreen {
 
 	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 

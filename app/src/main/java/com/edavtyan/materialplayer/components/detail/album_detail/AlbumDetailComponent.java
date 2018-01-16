@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.utils.UtilsModule;
 import com.edavtyan.materialplayer.db.DbModule;
@@ -19,7 +19,7 @@ import dagger.Component;
 		AlbumDetailModule.class,
 		ParallaxHeaderModule.class,
 		ActivityModulesModule.class,
-		ThemeModule.class,
+		ThemeDaggerModule.class,
 		ModelModulesModule.class,
 		DbModule.class,
 		AlbumArtModule.class,

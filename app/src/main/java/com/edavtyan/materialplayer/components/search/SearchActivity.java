@@ -17,8 +17,8 @@ import android.widget.ImageButton;
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -41,7 +41,7 @@ public class SearchActivity extends ModularActivity {
 
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
-	@Inject ThemeSwitchModule themeModule;
+	@Inject ScreenThemeModule themeModule;
 
 	private List<OnSearchQueryChangedListener> onSearchQueryChangedListeners;
 
@@ -117,7 +117,7 @@ public class SearchActivity extends ModularActivity {
 				.builder()
 				.searchModule(new SearchModule(this))
 				.activityModulesModule(new ActivityModulesModule(this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 }

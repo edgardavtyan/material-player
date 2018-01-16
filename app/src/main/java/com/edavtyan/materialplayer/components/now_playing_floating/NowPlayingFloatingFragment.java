@@ -16,9 +16,9 @@ import com.ed.libsutils.utils.BitmapResizer;
 import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
 import javax.inject.Inject;
@@ -36,7 +36,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	@BindView(R.id.container) LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoWrapper;
 
-	@Inject ThemeSwitchModule themeModule;
+	@Inject ScreenThemeModule themeModule;
 	@Inject NowPlayingFloatingPresenter presenter;
 	@Inject Navigator navigator;
 
@@ -131,7 +131,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 		return DaggerNowPlayingFloatingComponent
 				.builder()
 				.nowPlayingFloatingModule(new NowPlayingFloatingModule(getActivity(), this))
-				.themeModule(new ThemeModule(this))
+				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}
 }
