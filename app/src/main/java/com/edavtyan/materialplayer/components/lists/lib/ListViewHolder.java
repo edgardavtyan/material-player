@@ -10,12 +10,13 @@ import android.widget.PopupMenu;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.lib.base.BaseViewHolder;
+import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public abstract class ListViewHolder
-		extends BaseViewHolder
+		extends TestableViewHolder
 		implements View.OnClickListener,
 				   PopupMenu.OnMenuItemClickListener {
 
@@ -23,6 +24,9 @@ public abstract class ListViewHolder
 
 	public ListViewHolder(Context context, View itemView) {
 		super(itemView);
+
+		ButterKnife.bind(this, itemView);
+
 		itemView.setOnClickListener(this);
 
 		SdkFactory sdkFactory = ((App) context.getApplicationContext()).getSdkFactory();
