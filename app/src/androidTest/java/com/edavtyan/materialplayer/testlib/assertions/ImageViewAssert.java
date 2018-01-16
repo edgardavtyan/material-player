@@ -23,18 +23,17 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 
 	@SuppressWarnings("UnusedReturnValue")
 	public ImageViewAssert hasImageResource(@DrawableRes int drawableRes) {
-		Drawable expectedDrawable = ContextCompat.getDrawable(context, drawableRes);
 		Drawable actualDrawable = actual.getDrawable();
-
 		Bitmap actualBitmap = getBitmap(actualDrawable);
-		Bitmap expectedBitmap;
-		if (actualDrawable instanceof VectorDrawableCompat) {
-			VectorDrawableCompat expectedDrawableCompat = VectorDrawableCompat.create(
-					context.getResources(), drawableRes, context.getTheme());
-			expectedBitmap = getBitmap(expectedDrawableCompat);
-		} else {
-			expectedBitmap = getBitmap(expectedDrawable);
-		}
+
+		Drawable expectedDrawable = actualDrawable instanceof VectorDrawableCompat
+				? VectorDrawableCompat.create(context.getResources(), drawableRes, context.getTheme())
+				: ContextCompat.getDrawable(context, drawableRes);
+		expectedDrawable.setTintList(actual.getImageTintList());
+		expectedDrawable.setTintMode(actual.getImageTintMode());
+		expectedDrawable.setColorFilter(actual.getColorFilter());
+		expectedDrawable.setAlpha(actual.getImageAlpha());
+		Bitmap expectedBitmap = getBitmap(expectedDrawable);
 
 		String drawableId = context.getResources().getResourceEntryName(drawableRes);
 		String errorMessage = "\nExpecting to have resource with id='%s'\n";
