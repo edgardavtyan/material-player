@@ -49,6 +49,14 @@ public class ActivityToolbarModule extends ActivityModule {
 		this.isBackIconEnabled = isBackIconEnabled;
 	}
 
+	public void setTitleString(String title) {
+		toolbar.setTitle(title);
+	}
+
+	public void setBackIconEnabled(boolean enabled) {
+		activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+	}
+
 	@Override
 	public void onCreate() {
 		super.onCreate();

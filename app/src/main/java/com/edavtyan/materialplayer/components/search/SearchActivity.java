@@ -15,20 +15,32 @@ import android.widget.ImageButton;
 
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import javax.inject.Inject;
 
-public class SearchActivity extends BaseActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class SearchActivity extends ModularActivity {
 	@BindView(R.id.back) ImageButton backButton;
 	@BindView(R.id.search) EditText searchEditText;
 	@BindView(R.id.tabs) TabLayout tabLayout;
 	@BindView(R.id.view_pager) ViewPager viewPager;
 	@BindView(R.id.appbar) AppBarLayout appbar;
+
+	@Inject ActivityToolbarModule toolbarModule;
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ThemeSwitchModule themeModule;
 
 	private List<OnSearchQueryChangedListener> onSearchQueryChangedListeners;
 
@@ -56,13 +68,15 @@ public class SearchActivity extends BaseActivity {
 	}
 
 	@Override
-	public int getLayoutId() {
-		return R.layout.activity_search;
-	}
-
-	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_search);
+		ButterKnife.bind(this);
+
+		getComponent().inject(this);
+		addModule(baseMenuModule);
+		addModule(themeModule);
 
 		onSearchQueryChangedListeners = new ArrayList<>();
 
@@ -92,5 +106,14 @@ public class SearchActivity extends BaseActivity {
 
 	public String getSearchQuery() {
 		return searchEditText.getText().toString();
+	}
+
+	protected SearchComponent getComponent() {
+		return DaggerSearchComponent
+				.builder()
+				.searchModule(new SearchModule(this))
+				.activityModulesModule(new ActivityModulesModule(this))
+				.themeModule(new ThemeModule(this))
+				.build();
 	}
 }

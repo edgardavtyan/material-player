@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -9,10 +9,10 @@ import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 public class ActivityBaseMenuModule extends ActivityModule {
-	private final AppCompatActivity activity;
+	private final Activity activity;
 	private final Navigator navigator;
 
-	public ActivityBaseMenuModule(AppCompatActivity activity, Navigator navigator) {
+	public ActivityBaseMenuModule(Activity activity, Navigator navigator) {
 		this.activity = activity;
 		this.navigator = navigator;
 	}

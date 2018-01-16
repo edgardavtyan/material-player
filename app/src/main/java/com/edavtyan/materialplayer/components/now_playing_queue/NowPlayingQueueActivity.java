@@ -7,16 +7,25 @@ import android.support.v7.widget.RecyclerView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class NowPlayingQueueActivity extends BaseActivity implements ListView {
+public class NowPlayingQueueActivity extends ModularActivity implements ListView {
 
 	@BindView(R.id.list) RecyclerView list;
+
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ActivityToolbarModule toolbarModule;
+	@Inject ThemeSwitchModule themeModule;
 
 	@Inject NowPlayingQueuePresenter presenter;
 	@Inject NowPlayingQueueAdapter adapter;
@@ -24,10 +33,13 @@ public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		addModule(new ActivityToolbarModule(this));
+		setContentView(R.layout.activity_playlist);
+		ButterKnife.bind(this);
 
 		getComponent().inject(this);
+		addModule(baseMenuModule);
+		addModule(toolbarModule);
+		addModule(themeModule);
 
 		adapter.setHasStableIds(true);
 
@@ -44,11 +56,6 @@ public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 	}
 
 	@Override
-	public int getLayoutId() {
-		return R.layout.activity_playlist;
-	}
-
-	@Override
 	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
 	}
@@ -61,6 +68,8 @@ public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 		return DaggerNowPlayingQueueComponent
 				.builder()
 				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
+				.activityModulesModule(new ActivityModulesModule(this))
+				.themeModule(new ThemeModule(this))
 				.build();
 	}
 }

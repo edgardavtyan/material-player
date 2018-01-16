@@ -9,17 +9,26 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends ModularActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.view_pager) ViewPager viewPager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
+
+	@Inject ActivityToolbarModule toolbarModule;
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ThemeSwitchModule themeModule;
 
 	@Inject CompactMainScreenPref compactMainScreenPref;
 	@Inject IconsTabsAdapter iconsTabsAdapter;
@@ -28,25 +37,25 @@ public class MainActivity extends BaseActivity {
 	private boolean isCompactModeEnabled;
 
 	@Override
-	public int getLayoutId() {
-		return compactMainScreenPref.isEnabled()
-				? R.layout.activity_main_compact
-				: R.layout.activity_main;
-	}
-
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
 		getComponent().inject(this);
 
 		isCompactModeEnabled = compactMainScreenPref.isEnabled();
+		setContentView(isCompactModeEnabled
+				? R.layout.activity_main_compact
+				: R.layout.activity_main);
+		ButterKnife.bind(this);
 
-		super.onCreate(savedInstanceState);
+		addModule(toolbarModule);
+		addModule(baseMenuModule);
+		addModule(themeModule);
 
-		int titleStringId = isCompactModeEnabled ? R.string.empty : R.string.app_name;
-		addModule(new ActivityToolbarModule(this, titleStringId, false));
+		toolbarModule.setTitleString(null);
+		toolbarModule.setBackIconEnabled(false);
 
-		FragmentPagerAdapter adapter = compactMainScreenPref.isEnabled()
-				? iconsTabsAdapter : textTabsAdapter;
+		FragmentPagerAdapter adapter = isCompactModeEnabled ? iconsTabsAdapter : textTabsAdapter;
 
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);
@@ -67,6 +76,8 @@ public class MainActivity extends BaseActivity {
 		return DaggerMainComponent
 				.builder()
 				.mainModule(new MainModule(this))
+				.activityModulesModule(new ActivityModulesModule(this))
+				.themeModule(new ThemeModule(this))
 				.build();
 	}
 }

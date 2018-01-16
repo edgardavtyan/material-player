@@ -1,9 +1,8 @@
-package com.edavtyan.materialplayer.components.audio_effects;
+package com.edavtyan.materialplayer.components.prefs;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
 import com.edavtyan.materialplayer.utils.UtilsModule;
 
 import javax.inject.Singleton;
@@ -11,12 +10,11 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AudioEffectsViewModule.class,
-					  ModelModulesModule.class,
+@Component(modules = {PrefModule.class,
 					  ActivityModulesModule.class,
 					  ThemeModule.class,
 					  UtilsModule.class,
 					  AdvancedSharedPrefsModule.class})
-public interface AudioEffectsViewComponent {
-	void inject(AudioEffectsActivity activity);
+public interface PrefComponent {
+	void inject(PrefActivity activity);
 }

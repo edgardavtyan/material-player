@@ -17,8 +17,12 @@ import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.Pr
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import java.util.List;
@@ -26,9 +30,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AudioEffectsActivity
-		extends BaseActivity
+		extends ModularActivity
 		implements CompoundButton.OnCheckedChangeListener,
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {
@@ -41,6 +46,9 @@ public class AudioEffectsActivity
 	@BindView(R.id.surround) TitledSeekbar surroundView;
 	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
+	@Inject ThemeSwitchModule themeSwitchModule;
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ActivityToolbarModule toolbarModule;
 	@Inject AudioEffectsPresenter presenter;
 	@Inject NewPresetDialog newPresetDialog;
 	@Inject PresetsSpinnerView presetsSpinner;
@@ -63,6 +71,9 @@ public class AudioEffectsActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		setContentView(R.layout.activity_effects);
+		ButterKnife.bind(this);
+
 		equalizerSwitch.setOnCheckedChangeListener(this);
 		equalizerView.setOnBandChangedListener(this);
 		bassBoostView.setOnProgressChangedListener(this);
@@ -77,8 +88,9 @@ public class AudioEffectsActivity
 		}
 
 		getComponent().inject(this);
-
-		addModule(new ActivityToolbarModule(this));
+		addModule(baseMenuModule);
+		addModule(toolbarModule);
+		addModule(themeSwitchModule);
 
 		presenter.onCreate();
 	}
@@ -100,11 +112,6 @@ public class AudioEffectsActivity
 		bassBoostView.setTint(colors.getColorPrimary());
 		surroundView.setTint(colors.getColorPrimary());
 		amplifierView.setTint(colors.getColorPrimary());
-	}
-
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_effects;
 	}
 
 	public void setEqualizerEnabled(boolean enabled) {
@@ -218,7 +225,9 @@ public class AudioEffectsActivity
 	protected AudioEffectsViewComponent getComponent() {
 		return DaggerAudioEffectsViewComponent
 				.builder()
+				.activityModulesModule(new ActivityModulesModule(this))
 				.audioEffectsViewModule(new AudioEffectsViewModule(this))
+				.themeModule(new ThemeModule(this))
 				.build();
 	}
 

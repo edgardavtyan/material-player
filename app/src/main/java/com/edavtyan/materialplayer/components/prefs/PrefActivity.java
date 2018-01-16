@@ -4,16 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.prefs.category.PreferenceCategory;
 import com.edavtyan.prefs.checkbox.CheckboxPreference;
 import com.edavtyan.prefs.color.ColorSelectionPreference;
 
-import butterknife.BindView;
+import javax.inject.Inject;
 
-public class PrefActivity extends BaseActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class PrefActivity extends ModularActivity {
 	@BindView(R.id.pref_category_appearance) PreferenceCategory appearanceCategoryView;
 	@BindView(R.id.pref_category_playback) PreferenceCategory playbackCategoryView;
 	@BindView(R.id.pref_compact_lists) CheckboxPreference compactListsPrefView;
@@ -22,15 +29,21 @@ public class PrefActivity extends BaseActivity {
 	@BindView(R.id.pref_resume) CheckboxPreference resumePrefView;
 	@BindView(R.id.pref_primary_color) ColorSelectionPreference primaryColorPrefView;
 
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_pref;
-	}
+	@Inject ActivityToolbarModule toolbarModule;
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ThemeSwitchModule themeModule;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addModule(new ActivityToolbarModule(this, R.string.pref_title));
+
+		setContentView(R.layout.activity_pref);
+		ButterKnife.bind(this);
+
+		getComponent().inject(this);
+		addModule(toolbarModule);
+		addModule(baseMenuModule);
+		addModule(themeModule);
 	}
 
 	@Override
@@ -43,5 +56,14 @@ public class PrefActivity extends BaseActivity {
 		compactMainPrefView.setCheckBoxColor(colors.getColorPrimary());
 		resumePrefView.setCheckBoxColor(colors.getColorPrimary());
 		primaryColorPrefView.setDialogButtonsColor(colors.getColorPrimary());
+	}
+
+	protected PrefComponent getComponent() {
+		return DaggerPrefComponent
+				.builder()
+				.prefModule(new PrefModule(this))
+				.activityModulesModule(new ActivityModulesModule(this, R.string.pref_title))
+				.themeModule(new ThemeModule(this))
+				.build();
 	}
 }

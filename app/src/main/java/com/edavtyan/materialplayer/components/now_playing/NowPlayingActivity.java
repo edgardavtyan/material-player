@@ -11,16 +11,25 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingContr
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.theme.ThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.ModularActivity;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.Getter;
 
-public class NowPlayingActivity extends BaseActivity {
+public class NowPlayingActivity extends ModularActivity {
+	@Inject ActivityBaseMenuModule baseMenuModule;
+	@Inject ActivityToolbarModule toolbarModule;
+	@Inject ThemeSwitchModule themeModule;
+
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
 
@@ -35,8 +44,12 @@ public class NowPlayingActivity extends BaseActivity {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addModule(new ActivityToolbarModule(this, R.string.nowplaying_toolbar_title));
+		setContentView(R.layout.activity_nowplaying);
+		ButterKnife.bind(this);
 		getComponent().inject(this);
+		addModule(baseMenuModule);
+		addModule(toolbarModule);
+		addModule(themeModule);
 		presenter.bind();
 	}
 
@@ -52,11 +65,6 @@ public class NowPlayingActivity extends BaseActivity {
 		innerContainerView.setBackgroundColor(colors.getColorPrimary());
 	}
 
-	@Override
-	public int getLayoutId() {
-		return R.layout.activity_nowplaying;
-	}
-
 	public void gotoPlaylistScreen() {
 		navigator.gotoNowPlayingQueue(this);
 	}
@@ -65,6 +73,8 @@ public class NowPlayingActivity extends BaseActivity {
 		return DaggerNowPlayingComponent
 				.builder()
 				.nowPlayingModule(new NowPlayingModule(this))
+				.themeModule(new ThemeModule(this))
+				.activityModulesModule(new ActivityModulesModule(this, R.string.nowplaying_toolbar_title))
 				.build();
 	}
 }
