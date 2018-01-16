@@ -9,7 +9,7 @@
 	<color name="blue">#2196f3</color>
 	<color name="lightBlue">#03a9f4</color>
 	<color name="cyan">#00bcd4</color>
-	<color name="teal">#00897b</color>
+	<color name="teal">#00796b</color>
 	<color name="green">#4caf50</color>
 	<color name="lightGreen">#8bc34a</color>
 	<color name="lime">#cddc39</color>
@@ -63,7 +63,7 @@
 
 	<array name="color_teal">
 		<item>@color/teal</item>
-		<item>#00695c</item>
+		<item>#005d51</item>
 	</array>
 
 	<array name="color_green">
