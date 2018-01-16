@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.utils;
 
-import com.ed.libsutils.DurationUtils;
+import com.ed.libsutils.utils.DurationUtils;
 
 import org.junit.Test;
 

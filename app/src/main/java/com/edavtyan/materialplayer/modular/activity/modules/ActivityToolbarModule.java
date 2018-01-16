@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.ed.libsutils.WindowUtils;
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;

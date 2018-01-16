@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.search.base;
 
-import com.ed.libsutils.Strings;
+import com.ed.libsutils.utils.Strings;
 
 public class SearchPresenterImpl implements SearchPresenter {
 	private final SearchModel model;

@@ -8,11 +8,11 @@ import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ed.libsutils.BitmapResizer;
+import com.ed.libsutils.utils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
-import com.ed.libsutils.DpConverter;
+import com.ed.libsutils.utils.DpConverter;
 
 import org.junit.Ignore;
 import org.junit.Rule;

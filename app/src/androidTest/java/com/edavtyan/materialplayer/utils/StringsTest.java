@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.utils;
 
-import com.ed.libsutils.Strings;
+import com.ed.libsutils.utils.Strings;
 
 import org.junit.Test;
 

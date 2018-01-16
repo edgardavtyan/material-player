@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.utils;
 
-import com.ed.libsutils.ColorUtils;
+import com.ed.libsutils.utils.ColorUtils;
 
 import org.junit.Test;
 

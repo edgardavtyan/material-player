@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
-import com.ed.libsutils.Timer;
+import com.ed.libsutils.utils.Timer;
 
 public class NowPlayingPresenter
 		implements NowPlayingModel.OnModelBoundListener,

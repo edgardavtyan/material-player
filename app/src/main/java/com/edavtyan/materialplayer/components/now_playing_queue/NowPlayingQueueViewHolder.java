@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListViewHolder;
-import com.ed.libsutils.DurationUtils;
+import com.ed.libsutils.utils.DurationUtils;
 
 import butterknife.BindView;
 

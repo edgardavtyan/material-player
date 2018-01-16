@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.components.lists.album_list;
 
 import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.db.Album;
-import com.ed.libsutils.Logger;
+import com.ed.libsutils.utils.Logger;
 
 public class AlbumListPresenter extends ListPresenter<AlbumListViewHolder> {
 

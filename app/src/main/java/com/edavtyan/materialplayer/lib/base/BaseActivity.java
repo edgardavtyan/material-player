@@ -4,7 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.ed.libsutils.WindowUtils;
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.lib.theme.ThemeSwitchModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audio_effects.AudioEffectsPresenter;
-import com.ed.libsutils.WindowUtils;
+import com.ed.libsutils.utils.WindowUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

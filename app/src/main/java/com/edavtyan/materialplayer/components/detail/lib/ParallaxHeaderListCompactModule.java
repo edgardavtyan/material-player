@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.ed.libsutils.BitmapResizer;
-import com.ed.libsutils.ColorUtils;
-import com.ed.libsutils.DpConverter;
-import com.ed.libsutils.WindowUtils;
+import com.ed.libsutils.utils.BitmapResizer;
+import com.ed.libsutils.utils.ColorUtils;
+import com.ed.libsutils.utils.DpConverter;
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;

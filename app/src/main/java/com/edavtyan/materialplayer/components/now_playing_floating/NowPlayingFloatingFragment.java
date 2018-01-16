@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ed.libsutils.BitmapResizer;
-import com.ed.libsutils.DpConverter;
+import com.ed.libsutils.utils.BitmapResizer;
+import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.base.BaseFragment;

@@ -11,8 +11,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
-import com.ed.libsutils.BitmapResizer;
-import com.ed.libsutils.DpConverter;
+import com.ed.libsutils.utils.BitmapResizer;
+import com.ed.libsutils.utils.DpConverter;
 
 import org.assertj.core.api.AbstractAssert;
 

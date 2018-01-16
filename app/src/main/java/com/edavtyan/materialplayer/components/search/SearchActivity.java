@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.ed.libsutils.WindowUtils;
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;

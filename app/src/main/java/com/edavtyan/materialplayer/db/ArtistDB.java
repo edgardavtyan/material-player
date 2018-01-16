@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.ed.libsutils.Strings;
+import com.ed.libsutils.utils.Strings;
 
 import java.util.ArrayList;
 import java.util.Collections;
