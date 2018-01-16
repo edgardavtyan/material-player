@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.test.InstrumentationRegistry;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
@@ -22,8 +23,19 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 
 	@SuppressWarnings("UnusedReturnValue")
 	public ImageViewAssert hasImageResource(@DrawableRes int drawableRes) {
-		Bitmap expectedBitmap = getBitmap(ContextCompat.getDrawable(context, drawableRes));
-		Bitmap actualBitmap = getBitmap(actual.getDrawable());
+		Drawable expectedDrawable = ContextCompat.getDrawable(context, drawableRes);
+		Drawable actualDrawable = actual.getDrawable();
+
+		Bitmap actualBitmap = getBitmap(actualDrawable);
+		Bitmap expectedBitmap;
+		if (actualDrawable instanceof VectorDrawableCompat) {
+			VectorDrawableCompat expectedDrawableCompat = VectorDrawableCompat.create(
+					context.getResources(), drawableRes, context.getTheme());
+			expectedBitmap = getBitmap(expectedDrawableCompat);
+		} else {
+			expectedBitmap = getBitmap(expectedDrawable);
+		}
+
 		String drawableId = context.getResources().getResourceEntryName(drawableRes);
 		String errorMessage = "\nExpecting to have resource with id='%s'\n";
 
