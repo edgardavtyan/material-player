@@ -21,7 +21,7 @@
 				style="@style/AudioEffects_Equalizer_Title"
 				/>
 
-			<android.support.v7.widget.SwitchCompat
+			<com.ed.libsutils.views.CustomSwitchCompat
 				android:id="@+id/equalizer_switch"
 				style="@style/AudioEffects_Equalizer_Switch"
 				/>

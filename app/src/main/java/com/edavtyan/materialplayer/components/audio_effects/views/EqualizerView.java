@@ -11,6 +11,7 @@ public class EqualizerView
 		implements EqualizerBandView.OnBandChangedListener {
 
 	private @Setter OnBandChangedListener onBandChangedListener;
+	private @Setter int tint;
 
 	public interface OnBandChangedListener {
 		void onBandChanged(EqualizerBandView band);
@@ -38,6 +39,7 @@ public class EqualizerView
 			band.setFrequency(frequencies[i]);
 			band.setGain(gains[i]);
 			band.setOnBandChangedListener(this);
+			band.setTint(tint);
 			addView(band);
 		}
 	}

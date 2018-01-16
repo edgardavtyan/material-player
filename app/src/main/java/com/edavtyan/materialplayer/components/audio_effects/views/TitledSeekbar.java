@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects.views;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -58,6 +59,11 @@ public class TitledSeekbar
 
 	public void setMax(int max) {
 		seekbar.setMax(max);
+	}
+
+	public void setTint(int color) {
+		seekbar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+		seekbar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
 	}
 
 	@Override

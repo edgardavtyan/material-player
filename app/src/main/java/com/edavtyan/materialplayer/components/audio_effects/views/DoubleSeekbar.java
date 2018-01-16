@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects.views;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
@@ -48,6 +49,11 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 
 	public void setProgress(int progress) {
 		seekbar.setProgress(progress + getMax());
+	}
+
+	public void setTint(int color) {
+		seekbar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+		seekbar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
 	}
 
 	@Override

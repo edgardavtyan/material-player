@@ -1,13 +1,15 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
+import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.SwitchCompat;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
+import com.ed.libsutils.views.CustomSwitchCompat;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.NewPresetDialog;
@@ -16,6 +18,7 @@ import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandV
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.base.BaseActivity;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
 import java.util.List;
@@ -30,7 +33,7 @@ public class AudioEffectsActivity
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {
 
-	@BindView(R.id.equalizer_switch) SwitchCompat equalizerSwitch;
+	@BindView(R.id.equalizer_switch) CustomSwitchCompat equalizerSwitch;
 	@BindView(R.id.equalizer) EqualizerView equalizerView;
 	@BindView(R.id.preset_new) Button newPresetButton;
 	@BindView(R.id.preset_remove) Button deletePresetButton;
@@ -84,6 +87,19 @@ public class AudioEffectsActivity
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
+		ViewCompat.setBackgroundTintList(
+				newPresetButton,
+				ColorStateList.valueOf(colors.getColorPrimary()));
+		equalizerSwitch.setTint(colors.getColorPrimary());
+		equalizerView.setTint(colors.getColorPrimary());
+		bassBoostView.setTint(colors.getColorPrimary());
+		surroundView.setTint(colors.getColorPrimary());
+		amplifierView.setTint(colors.getColorPrimary());
 	}
 
 	@Override

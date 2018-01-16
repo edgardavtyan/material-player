@@ -132,7 +132,9 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 		view.setCurrentEqualizerPreset(
 				model.getEqualizer().getCurrentPresetIndex(),
 				model.getEqualizer().getCurrentPresetType());
-		view.initBassBoost(model.getBassBoost().getMaxStrength(), model.getBassBoost().getStrength());
+		view.initBassBoost(model.getBassBoost().getMaxStrength(), model
+				.getBassBoost()
+				.getStrength());
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
 		view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
 
