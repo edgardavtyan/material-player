@@ -1,10 +1,8 @@
 package com.edavtyan.materialplayer.lib.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.view.MenuInflater;
 
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -38,9 +36,5 @@ public class BaseFactory {
 		if (basePrefs == null)
 			basePrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 		return basePrefs;
-	}
-
-	public MenuInflater createMenuInflater(Activity activity) {
-		return new MenuInflater(activity);
 	}
 }
