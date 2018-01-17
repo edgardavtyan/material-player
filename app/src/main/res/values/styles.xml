@@ -20,8 +20,6 @@
 		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
-		<item name="android:alertDialogTheme">@style/Dialog</item>
-
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 		<item name="actionBarPopupTheme">@style/LightHardwareMenuTheme</item>
 
@@ -34,15 +32,6 @@
 
 	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
 		<item name="android:textColorSecondary">?textColorPrimary</item>
-	</style>
-
-	<style name="Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-		<item name="colorAccent">@color/primary</item>
-		<item name="buttonBarButtonStyle">@style/BarButton</item>
-	</style>
-
-	<style name="BarButton" parent="Base.Widget.AppCompat.Button.Borderless">
-		<item name="android:textColor">@color/primary</item>
 	</style>
 
 </resources>
