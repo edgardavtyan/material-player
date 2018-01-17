@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects.equalizer.presets;
 
 import android.app.Activity;
+import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -106,5 +107,9 @@ public class PresetsSpinnerView {
 		} else {
 			return position - 1 - customPresetsSize;
 		}
+	}
+
+	public void setTint(int tint) {
+		presetsSpinner.getBackground().setColorFilter(tint, PorterDuff.Mode.SRC_ATOP);
 	}
 }

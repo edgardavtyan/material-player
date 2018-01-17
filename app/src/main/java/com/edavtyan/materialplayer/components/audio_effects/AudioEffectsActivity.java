@@ -113,6 +113,7 @@ public class AudioEffectsActivity
 		surroundView.setTint(colors.getColorPrimary());
 		amplifierView.setTint(colors.getColorPrimary());
 		newPresetDialog.setTint(colors.getColorPrimary());
+		presetsSpinner.setTint(colors.getColorPrimary());
 	}
 
 	public void setEqualizerEnabled(boolean enabled) {
