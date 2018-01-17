@@ -44,8 +44,7 @@ public class MainActivity extends ModularActivity {
 
 		isCompactModeEnabled = compactMainScreenPref.isEnabled();
 		setContentView(isCompactModeEnabled
-				? R.layout.activity_main_compact
-				: R.layout.activity_main);
+				? R.layout.activity_main_compact : R.layout.activity_main);
 		ButterKnife.bind(this);
 
 		addModule(toolbarModule);
@@ -55,7 +54,8 @@ public class MainActivity extends ModularActivity {
 		toolbarModule.setTitleString(null);
 		toolbarModule.setBackIconEnabled(false);
 
-		FragmentPagerAdapter adapter = isCompactModeEnabled ? iconsTabsAdapter : textTabsAdapter;
+		FragmentPagerAdapter adapter = isCompactModeEnabled
+				? iconsTabsAdapter : textTabsAdapter;
 
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);

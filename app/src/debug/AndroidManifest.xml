@@ -20,7 +20,7 @@
 		<activity android:name=".components.now_playing.NowPlayingActivityTest$TestNowPlayingActivity" />
 		<activity android:name=".components.now_playing.models.NowPlayingViewTest$TestNowPlayingActivity" />
 		<activity android:name=".components.now_playing_queue.NowPlayingQueueActivityTest$TestNowPlayingQueueActivity" />
-
+		<activity android:name=".components.main.MainActivityTest$TestMainActivity" />
 		<service android:name=".components.player.PlayerServiceTest$TestPlayerService" />
 
 	</application>
