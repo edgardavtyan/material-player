@@ -112,6 +112,7 @@ public class AudioEffectsActivity
 		bassBoostView.setTint(colors.getColorPrimary());
 		surroundView.setTint(colors.getColorPrimary());
 		amplifierView.setTint(colors.getColorPrimary());
+		newPresetDialog.setTint(colors.getColorPrimary());
 	}
 
 	public void setEqualizerEnabled(boolean enabled) {
