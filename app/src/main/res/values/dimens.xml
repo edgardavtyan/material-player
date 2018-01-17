@@ -17,4 +17,6 @@
 	<dimen name="shadow_tiny">3dp</dimen>
 	<dimen name="shadow_small">5dp</dimen>
 
+	<dimen name="placeholder_toolbar_height">56dp</dimen>
+
 </resources>
