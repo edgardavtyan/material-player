@@ -27,15 +27,11 @@ import static org.mockito.Mockito.verify;
 public class AlbumDetailActivityCompactTest extends ActivityTest {
 
 	private static Navigator navigator;
-	private static AlbumDetailPresenter presenter;
-	private static AlbumDetailAdapter adapter;
 
 	public static class TestAlbumDetailActivityCompact extends AlbumDetailActivityCompact {
 		@Override
 		public void onCreate(@Nullable Bundle savedInstanceState) {
 			this.navigator = AlbumDetailActivityCompactTest.navigator;
-			this.presenter = AlbumDetailActivityCompactTest.presenter;
-			this.adapter = AlbumDetailActivityCompactTest.adapter;
 			super.onCreate(savedInstanceState);
 		}
 
@@ -55,8 +51,6 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 	public void beforeEach() {
 		super.beforeEach();
 		navigator = mock(Navigator.class);
-		presenter = mock(AlbumDetailPresenter.class);
-		adapter = mock(AlbumDetailAdapter.class);
 		activity = activityRule.launchActivity(null);
 	}
 

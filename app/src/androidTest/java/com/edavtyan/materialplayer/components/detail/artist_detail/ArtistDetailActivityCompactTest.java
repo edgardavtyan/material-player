@@ -25,15 +25,11 @@ import static org.mockito.Mockito.verify;
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityCompactTest extends ActivityTest {
 	private static Navigator navigator;
-	private static ArtistDetailPresenter presenter;
-	private static ArtistDetailAdapter adapter;
 
 	public static class TestArtistDetailActivityCompact extends ArtistDetailActivityCompact {
 		@Override
 		public void onCreate(@Nullable Bundle savedInstanceState) {
 			this.navigator = ArtistDetailActivityCompactTest.navigator;
-			this.presenter = ArtistDetailActivityCompactTest.presenter;
-			this.adapter = ArtistDetailActivityCompactTest.adapter;
 			super.onCreate(savedInstanceState);
 		}
 
@@ -53,8 +49,6 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 	public void beforeEach() {
 		super.beforeEach();
 		navigator = mock(Navigator.class);
-		presenter = mock(ArtistDetailPresenter.class);
-		adapter = mock(ArtistDetailAdapter.class);
 		activity = activityRule.launchActivity(null);
 	}
 

@@ -72,11 +72,6 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void getLayoutId_returnCorrectLayoutId() {
-		assertThat(activity.getLayoutId()).isEqualTo(R.layout.activity_effects);
-	}
-
-	@Test
 	public void setEqualizerEnabled_true_setSwitchToEnabled() {
 		runOnUiThread(() -> activity.setEqualizerEnabled(true));
 		assertThat(equalizerSwitch.isChecked()).isTrue();
