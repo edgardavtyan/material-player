@@ -16,9 +16,9 @@ import android.widget.ImageButton;
 
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -43,7 +43,7 @@ public class SearchActivity extends ModularActivity {
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ScreenThemeModule themeModule;
 
-	private List<OnSearchQueryChangedListener> onSearchQueryChangedListeners;
+	private final List<OnSearchQueryChangedListener> onSearchQueryChangedListeners = new ArrayList<>();
 
 	private final View.OnClickListener onBackButtonClickListener = v -> finish();
 
@@ -79,8 +79,6 @@ public class SearchActivity extends ModularActivity {
 		addModule(baseMenuModule);
 		addModule(themeModule);
 
-		onSearchQueryChangedListeners = new ArrayList<>();
-
 		backButton.setOnClickListener(onBackButtonClickListener);
 		searchEditText.addTextChangedListener(onSearchQueryChangeWatcher);
 
@@ -97,7 +95,9 @@ public class SearchActivity extends ModularActivity {
 	public void onThemeChanged(ThemeColors colors) {
 		super.onThemeChanged(colors);
 		appbar.setBackgroundColor(colors.getColorPrimary());
-		searchEditText.getBackground().setColorFilter(colors.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
+		searchEditText
+				.getBackground()
+				.setColorFilter(colors.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		WindowUtils.setStatusBarColor(this, colors.getColorPrimaryDark());
 	}
 
