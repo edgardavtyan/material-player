@@ -62,7 +62,7 @@ public class PrefActivity extends ModularActivity {
 		return DaggerPrefComponent
 				.builder()
 				.prefModule(new PrefModule(this))
-				.activityModulesModule(new ActivityModulesModule(this, R.string.pref_title))
+				.activityModulesModule(new ActivityModulesModule(R.string.pref_title))
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}

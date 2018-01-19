@@ -60,7 +60,7 @@ public class AlbumDetailActivityCompact
 		return DaggerAlbumDetailComponent
 				.builder()
 				.albumDetailModule(new AlbumDetailModule(this, this, albumId))
-				.activityModulesModule(new ActivityModulesModule(this))
+				.activityModulesModule(new ActivityModulesModule())
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}

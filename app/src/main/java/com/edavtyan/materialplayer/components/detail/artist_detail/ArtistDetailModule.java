@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
@@ -20,12 +21,12 @@ import dagger.Provides;
 
 @Module
 public class ArtistDetailModule {
-	private final Context context;
+	private final AppCompatActivity activity;
 	private final ArtistDetailView view;
 	private final String artistTitle;
 
-	public ArtistDetailModule(Context context, ArtistDetailView view, String artistTitle) {
-		this.context = context;
+	public ArtistDetailModule(AppCompatActivity activity, ArtistDetailView view, String artistTitle) {
+		this.activity = activity;
 		this.view = view;
 		this.artistTitle = artistTitle;
 	}
@@ -33,7 +34,13 @@ public class ArtistDetailModule {
 	@Provides
 	@Singleton
 	public Context provideContext() {
-		return context;
+		return activity;
+	}
+
+	@Provides
+	@Singleton
+	public AppCompatActivity provideActivity() {
+		return activity;
 	}
 
 	@Provides

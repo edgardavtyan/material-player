@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
@@ -17,12 +18,12 @@ import dagger.Provides;
 
 @Module
 public class AlbumDetailModule {
+	private final AppCompatActivity activity;
 	private final AlbumDetailView view;
-	private final Context context;
 	private final int albumId;
 
-	public AlbumDetailModule(Context context, AlbumDetailView view, int albumId) {
-		this.context = context;
+	public AlbumDetailModule(AppCompatActivity activity, AlbumDetailView view, int albumId) {
+		this.activity = activity;
 		this.view = view;
 		this.albumId = albumId;
 	}
@@ -30,7 +31,13 @@ public class AlbumDetailModule {
 	@Provides
 	@Singleton
 	public Context provideContext() {
-		return context;
+		return activity;
+	}
+
+	@Provides
+	@Singleton
+	public AppCompatActivity provideActivity() {
+		return activity;
 	}
 
 	@Provides
@@ -48,7 +55,7 @@ public class AlbumDetailModule {
 	@Provides
 	@Singleton
 	public AlbumDetailAdapter provideAdapter(AlbumDetailPresenter presenter) {
-		return new AlbumDetailAdapter(context, presenter);
+		return new AlbumDetailAdapter(activity, presenter);
 	}
 
 	@Provides

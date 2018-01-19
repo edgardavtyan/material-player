@@ -74,7 +74,7 @@ public class NowPlayingActivity extends ModularActivity {
 				.builder()
 				.nowPlayingModule(new NowPlayingModule(this))
 				.themeDaggerModule(new ThemeDaggerModule(this))
-				.activityModulesModule(new ActivityModulesModule(this, R.string.nowplaying_toolbar_title))
+				.activityModulesModule(new ActivityModulesModule(R.string.nowplaying_toolbar_title))
 				.build();
 	}
 }

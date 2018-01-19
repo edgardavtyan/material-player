@@ -61,7 +61,7 @@ public class ArtistDetailActivityCompact
 				.builder()
 				.artistDetailModule(new ArtistDetailModule(this, this, artistTitle))
 				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
-				.activityModulesModule(new ActivityModulesModule(this))
+				.activityModulesModule(new ActivityModulesModule())
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}

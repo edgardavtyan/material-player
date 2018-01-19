@@ -14,35 +14,24 @@ import dagger.Provides;
 
 @Module
 public class ActivityModulesModule {
-	private final AppCompatActivity activity;
 	private final @Nullable Integer titleStringId;
 	private final @Nullable Boolean isBackIconEnabled;
 
-	public ActivityModulesModule(AppCompatActivity activity) {
-		this.activity = activity;
+	public ActivityModulesModule() {
 		this.titleStringId = null;
 		this.isBackIconEnabled = null;
 	}
 
-	public ActivityModulesModule(AppCompatActivity activity, @Nullable Integer titleStringId) {
-		this.activity = activity;
+	public ActivityModulesModule(@Nullable Integer titleStringId) {
 		this.titleStringId = titleStringId;
 		this.isBackIconEnabled = null;
 	}
 
 	public ActivityModulesModule(
-			AppCompatActivity activity,
 			@Nullable Integer titleStringId,
 			@Nullable Boolean isBackIconEnabled) {
-		this.activity = activity;
 		this.titleStringId = titleStringId;
 		this.isBackIconEnabled = isBackIconEnabled;
-	}
-
-	@Provides
-	@Singleton
-	public AppCompatActivity provideActivity() {
-		return activity;
 	}
 
 	@Provides

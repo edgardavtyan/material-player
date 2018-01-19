@@ -76,7 +76,7 @@ public class MainActivity extends ModularActivity {
 		return DaggerMainComponent
 				.builder()
 				.mainModule(new MainModule(this))
-				.activityModulesModule(new ActivityModulesModule(this))
+				.activityModulesModule(new ActivityModulesModule())
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}

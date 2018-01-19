@@ -117,7 +117,7 @@ public class SearchActivity extends ModularActivity {
 		return DaggerSearchComponent
 				.builder()
 				.searchModule(new SearchModule(this))
-				.activityModulesModule(new ActivityModulesModule(this))
+				.activityModulesModule(new ActivityModulesModule())
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}

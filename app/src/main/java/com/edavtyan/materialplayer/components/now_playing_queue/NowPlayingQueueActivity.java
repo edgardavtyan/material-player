@@ -68,7 +68,7 @@ public class NowPlayingQueueActivity extends ModularActivity implements ListView
 		return DaggerNowPlayingQueueComponent
 				.builder()
 				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
-				.activityModulesModule(new ActivityModulesModule(this))
+				.activityModulesModule(new ActivityModulesModule())
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();
 	}

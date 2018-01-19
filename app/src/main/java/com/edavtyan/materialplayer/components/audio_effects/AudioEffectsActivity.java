@@ -227,7 +227,7 @@ public class AudioEffectsActivity
 	protected AudioEffectsViewComponent getComponent() {
 		return DaggerAudioEffectsViewComponent
 				.builder()
-				.activityModulesModule(new ActivityModulesModule(this))
+				.activityModulesModule(new ActivityModulesModule())
 				.audioEffectsViewModule(new AudioEffectsViewModule(this))
 				.themeDaggerModule(new ThemeDaggerModule(this))
 				.build();

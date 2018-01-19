@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.NewPresetDialog;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.PresetsSpinnerView;
@@ -22,6 +23,12 @@ public class AudioEffectsViewModule {
 	@Provides
 	@Singleton
 	public Context provideContext() {
+		return activity;
+	}
+
+	@Provides
+	@Singleton
+	public AppCompatActivity provideActivity() {
 		return activity;
 	}
 

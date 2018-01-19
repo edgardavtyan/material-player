@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
@@ -31,6 +32,12 @@ public class NowPlayingModule {
 	@Provides
 	@Singleton
 	public Context provideContext() {
+		return activity;
+	}
+
+	@Provides
+	@Singleton
+	public AppCompatActivity provideAppCompatActivity() {
 		return activity;
 	}
 

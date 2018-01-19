@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -27,6 +28,12 @@ public class NowPlayingQueueModule {
 	@Provides
 	@Singleton
 	public NowPlayingQueueActivity provideView() {
+		return activity;
+	}
+
+	@Provides
+	@Singleton
+	public AppCompatActivity provideAppCompatActivity() {
 		return activity;
 	}
 

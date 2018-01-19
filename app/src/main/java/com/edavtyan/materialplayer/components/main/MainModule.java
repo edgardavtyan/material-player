@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.components.main;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.utils.AppColors;
 
@@ -12,15 +13,15 @@ import dagger.Provides;
 
 @Module
 public class MainModule {
-	private final MainActivity activity;
+	private final AppCompatActivity activity;
 
-	public MainModule(MainActivity activity) {
+	public MainModule(AppCompatActivity activity) {
 		this.activity = activity;
 	}
 
 	@Provides
 	@Singleton
-	public MainActivity provideActivity() {
+	public AppCompatActivity provideActivity() {
 		return activity;
 	}
 
@@ -39,13 +40,13 @@ public class MainModule {
 	@Provides
 	@Singleton
 	public IconsTabsAdapter provideIconsTabsAdapter(
-			FragmentManager fragmentManager, MainActivity activity, AppColors appColors) {
+			FragmentManager fragmentManager, AppCompatActivity activity, AppColors appColors) {
 		return new IconsTabsAdapter(fragmentManager, activity, appColors);
 	}
 
 	@Provides
 	@Singleton
-	public FragmentManager provideFragmentManager(MainActivity activity) {
+	public FragmentManager provideFragmentManager(AppCompatActivity activity) {
 		return activity.getSupportFragmentManager();
 	}
 }
