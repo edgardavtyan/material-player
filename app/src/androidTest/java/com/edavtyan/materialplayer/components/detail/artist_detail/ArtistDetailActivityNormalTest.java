@@ -52,11 +52,9 @@ public class ArtistDetailActivityNormalTest extends BaseArtistDetailActivityTest
 
 	@Test
 	public void setImage_setHeaderImage() {
-		runOnUiThread(() -> {
-			Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-			activity.setArtistImage(image);
-			assertThat(activity, R.id.art).hasImageBitmap(image);
-		});
+		Bitmap image = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+		runOnUiThread(() -> activity.setArtistImage(image));
+		assertThat(activity, R.id.art).hasImageBitmap(image);
 	}
 
 	@Test
