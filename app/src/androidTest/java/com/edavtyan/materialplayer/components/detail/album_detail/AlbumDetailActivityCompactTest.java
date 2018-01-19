@@ -2,17 +2,22 @@ package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ed.libsutils.utils.BitmapResizer;
+import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactModule;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
-import com.ed.libsutils.utils.DpConverter;
+import com.edavtyan.materialplayer.utils.UtilsModule;
 
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -20,24 +25,33 @@ import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.RETURNS_MOCKS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityCompactTest extends ActivityTest {
 
-	private static Navigator navigator;
+	private static ActivityModulesModule activityModulesModule;
+	private static ThemeDaggerModule themeDaggerModule;
+	private static UtilsModule utilsModule;
 
 	public static class TestAlbumDetailActivityCompact extends AlbumDetailActivityCompact {
 		@Override
-		public void onCreate(@Nullable Bundle savedInstanceState) {
-			this.navigator = AlbumDetailActivityCompactTest.navigator;
-			super.onCreate(savedInstanceState);
-		}
-
-		@Override
 		protected AlbumDetailComponent getComponent() {
-			return mock(AlbumDetailComponent.class);
+			AlbumDetailModule albumDetailModule = mock(AlbumDetailModule.class, RETURNS_MOCKS);
+			when(albumDetailModule.provideActivity()).thenReturn(this);
+			when(albumDetailModule.provideContext()).thenReturn(this);
+
+			return DaggerAlbumDetailComponent
+					.builder()
+					.albumDetailModule(albumDetailModule)
+					.activityModulesModule(activityModulesModule)
+					.themeDaggerModule(themeDaggerModule)
+					.utilsModule(utilsModule)
+					.build();
 		}
 	}
 
@@ -45,12 +59,28 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 	public final ActivityTestRule<TestAlbumDetailActivityCompact> activityRule
 			= new ActivityTestRule<>(TestAlbumDetailActivityCompact.class, false, false);
 
+	private Navigator navigator;
 	private TestAlbumDetailActivityCompact activity;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
+
+		ActivityToolbarModule toolbarModule = mock(ActivityToolbarModule.class);
+		ActivityBaseMenuModule baseMenuModule = mock(ActivityBaseMenuModule.class);
+		ParallaxHeaderListCompactModule parallaxListModule = mock(ParallaxHeaderListCompactModule.class);
+		activityModulesModule = mock(ActivityModulesModule.class, RETURNS_MOCKS);
+		when(activityModulesModule.provideActivityToolbarModule(any())).thenReturn(toolbarModule);
+		when(activityModulesModule.provideBaseMenuModule(any(), any())).thenReturn(baseMenuModule);
+
+		ScreenThemeModule themeModule = mock(ScreenThemeModule.class);
+		themeDaggerModule = mock(ThemeDaggerModule.class, RETURNS_MOCKS);
+		when(themeDaggerModule.provideScreenThemeModule(any(), any(), any())).thenReturn(themeModule);
+
 		navigator = mock(Navigator.class);
+		utilsModule = mock(UtilsModule.class, RETURNS_MOCKS);
+		when(utilsModule.provideNavigator(any())).thenReturn(navigator);
+
 		activity = activityRule.launchActivity(null);
 	}
 
