@@ -9,6 +9,8 @@ import android.support.annotation.DrawableRes;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.test.InstrumentationRegistry;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.widget.ImageViewCompat;
 import android.widget.ImageView;
 
 import com.ed.libsutils.utils.BitmapResizer;
@@ -32,8 +34,9 @@ public class ImageViewAssert extends AbstractAssert<ImageViewAssert, ImageView> 
 		Drawable expectedDrawable = actualDrawable instanceof VectorDrawableCompat
 				? VectorDrawableCompat.create(context.getResources(), drawableRes, context.getTheme())
 				: ContextCompat.getDrawable(context, drawableRes);
-		expectedDrawable.setTintList(actual.getImageTintList());
-		expectedDrawable.setTintMode(actual.getImageTintMode());
+
+		DrawableCompat.setTintList(expectedDrawable, ImageViewCompat.getImageTintList(actual));
+		DrawableCompat.setTintMode(expectedDrawable, ImageViewCompat.getImageTintMode(actual));
 		expectedDrawable.setColorFilter(actual.getColorFilter());
 		expectedDrawable.setAlpha(actual.getImageAlpha());
 		Bitmap expectedBitmap = getBitmap(expectedDrawable);
