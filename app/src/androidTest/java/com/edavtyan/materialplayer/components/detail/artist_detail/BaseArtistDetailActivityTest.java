@@ -20,7 +20,6 @@ public class BaseArtistDetailActivityTest extends BaseDetailActivityTest {
 		return DaggerArtistDetailComponent
 				.builder()
 				.artistDetailModule(artistDetailModule)
-				.activityModulesModule(activityModulesModule)
 				.themeDaggerModule(themeDaggerModule)
 				.utilsModule(utilsModule)
 				.lastFmModule(lasFmModule)

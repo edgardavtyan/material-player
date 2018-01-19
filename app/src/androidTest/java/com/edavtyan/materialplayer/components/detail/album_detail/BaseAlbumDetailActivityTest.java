@@ -17,7 +17,6 @@ public class BaseAlbumDetailActivityTest extends BaseDetailActivityTest {
 		return DaggerAlbumDetailComponent
 				.builder()
 				.albumDetailModule(albumDetailModule)
-				.activityModulesModule(activityModulesModule)
 				.themeDaggerModule(themeDaggerModule)
 				.utilsModule(utilsModule)
 				.build();
