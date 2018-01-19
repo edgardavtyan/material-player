@@ -2,40 +2,27 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ed.libsutils.utils.BitmapResizer;
-import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import com.ed.libsutils.utils.DpConverter;
+import com.edavtyan.materialplayer.R;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
-public class ArtistDetailActivityCompactTest extends ActivityTest {
-	private static Navigator navigator;
-
+public class ArtistDetailActivityCompactTest extends BaseArtistDetailActivityTest {
 	public static class TestArtistDetailActivityCompact extends ArtistDetailActivityCompact {
 		@Override
-		public void onCreate(@Nullable Bundle savedInstanceState) {
-			this.navigator = ArtistDetailActivityCompactTest.navigator;
-			super.onCreate(savedInstanceState);
-		}
-
-		@Override
 		protected ArtistDetailComponent getComponent() {
-			return mock(ArtistDetailComponent.class);
+			return createMockComponent(this);
 		}
 	}
 
@@ -48,7 +35,6 @@ public class ArtistDetailActivityCompactTest extends ActivityTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		navigator = mock(Navigator.class);
 		activity = activityRule.launchActivity(null);
 	}
 
