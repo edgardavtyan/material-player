@@ -3,12 +3,12 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 import com.edavtyan.materialplayer.components.CompactPrefsModule;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderModule;
 import com.edavtyan.materialplayer.db.DbModule;
-import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsFactory;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
-import com.edavtyan.materialplayer.utils.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsFactory;
 
 import javax.inject.Singleton;
 
@@ -16,15 +16,15 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		ArtistDetailModule.class,
-		ActivityModulesModule.class,
-		ThemeDaggerModule.class,
+		ArtistDetailFactory.class,
+		ActivityModulesFactory.class,
+		ThemeFactory.class,
 		ParallaxHeaderModule.class,
-		UtilsModule.class,
-		LastFmModule.class,
+		UtilsFactory.class,
+		LastFmFactory.class,
 		ModelModulesModule.class,
 		DbModule.class,
-		AdvancedSharedPrefsModule.class,
+		AdvancedSharedPrefsFactory.class,
 		CompactPrefsModule.class})
 public interface ArtistDetailComponent {
 	void inject(ArtistDetailActivityNormal activity);

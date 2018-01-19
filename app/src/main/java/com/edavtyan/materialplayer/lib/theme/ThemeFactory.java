@@ -10,10 +10,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ThemeDaggerModule {
+public class ThemeFactory {
 	private final ThemeableScreen screen;
 
-	public ThemeDaggerModule(ThemeableScreen screen) {
+	public ThemeFactory(ThemeableScreen screen) {
 		this.screen = screen;
 	}
 

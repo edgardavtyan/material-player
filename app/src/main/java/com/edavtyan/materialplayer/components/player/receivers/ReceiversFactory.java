@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ReceiversModule {
+public class ReceiversFactory {
 	@Provides
 	@Singleton
 	public AudioBecomingNoisyReceiver provideAudioBecomingNoisyReceiver(Player player) {

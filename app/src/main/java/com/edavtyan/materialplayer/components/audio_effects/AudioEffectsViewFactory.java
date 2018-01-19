@@ -13,10 +13,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AudioEffectsViewModule {
+public class AudioEffectsViewFactory {
 	private final AudioEffectsActivity activity;
 
-	public AudioEffectsViewModule(AudioEffectsActivity activity) {
+	public AudioEffectsViewFactory(AudioEffectsActivity activity) {
 		this.activity = activity;
 	}
 

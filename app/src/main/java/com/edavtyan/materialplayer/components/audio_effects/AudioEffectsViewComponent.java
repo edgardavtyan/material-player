@@ -1,22 +1,22 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsFactory;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
-import com.edavtyan.materialplayer.utils.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsFactory;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AudioEffectsViewModule.class,
+@Component(modules = {AudioEffectsViewFactory.class,
 					  ModelModulesModule.class,
-					  ActivityModulesModule.class,
-					  ThemeDaggerModule.class,
-					  UtilsModule.class,
-					  AdvancedSharedPrefsModule.class})
+					  ActivityModulesFactory.class,
+					  ThemeFactory.class,
+					  UtilsFactory.class,
+					  AdvancedSharedPrefsFactory.class})
 public interface AudioEffectsViewComponent {
 	void inject(AudioEffectsActivity activity);
 }

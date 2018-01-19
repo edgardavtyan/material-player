@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class BassBoostModule {
+public class BassBoostFactory {
 	@Provides
 	@Singleton
 	public BassBoost provideBassBoost(BassBoostPrefs prefs, int sessionId) {

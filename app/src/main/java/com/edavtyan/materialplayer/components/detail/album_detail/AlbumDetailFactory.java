@@ -17,12 +17,12 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AlbumDetailModule {
+public class AlbumDetailFactory {
 	private final AppCompatActivity activity;
 	private final AlbumDetailView view;
 	private final int albumId;
 
-	public AlbumDetailModule(AppCompatActivity activity, AlbumDetailView view, int albumId) {
+	public AlbumDetailFactory(AppCompatActivity activity, AlbumDetailView view, int albumId) {
 		this.activity = activity;
 		this.view = view;
 		this.albumId = albumId;

@@ -8,8 +8,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -68,8 +68,8 @@ public class NowPlayingQueueActivity extends ModularActivity implements ListView
 		return DaggerNowPlayingQueueComponent
 				.builder()
 				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
-				.activityModulesModule(new ActivityModulesModule())
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.activityModulesFactory(new ActivityModulesFactory())
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

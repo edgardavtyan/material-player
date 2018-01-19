@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListCompactActivity;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -59,9 +59,9 @@ public class AlbumDetailActivityCompact
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		return DaggerAlbumDetailComponent
 				.builder()
-				.albumDetailModule(new AlbumDetailModule(this, this, albumId))
-				.activityModulesModule(new ActivityModulesModule())
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.albumDetailFactory(new AlbumDetailFactory(this, this, albumId))
+				.activityModulesFactory(new ActivityModulesFactory())
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

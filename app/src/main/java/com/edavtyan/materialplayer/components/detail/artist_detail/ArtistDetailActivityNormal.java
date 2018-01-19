@@ -8,9 +8,9 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListActivity;
-import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 
 import javax.inject.Inject;
 
@@ -59,10 +59,10 @@ public class ArtistDetailActivityNormal
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
 		return DaggerArtistDetailComponent
 				.builder()
-				.artistDetailModule(new ArtistDetailModule(this, this, artistTitle))
-				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
-				.activityModulesModule(new ActivityModulesModule())
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.artistDetailFactory(new ArtistDetailFactory(this, this, artistTitle))
+				.lastFmFactory(new LastFmFactory(getString(R.string.lastfm_api_key)))
+				.activityModulesFactory(new ActivityModulesFactory())
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

@@ -14,7 +14,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlayerNotificationCompatModule {
+public class PlayerNotificationCompatFactory {
 	@Provides
 	@Singleton
 	public PlayerNotificationCompat provideNotification(

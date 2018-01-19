@@ -12,7 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AdvancedSharedPrefsModule {
+public class AdvancedSharedPrefsFactory {
 	@Provides
 	@Singleton
 	public AdvancedSharedPrefs provideAdvancedPrefs(SharedPreferences basePrefs) {

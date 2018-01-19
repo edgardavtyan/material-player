@@ -10,7 +10,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class EqualizerModule {
+public class EqualizerFactory {
 	@Provides
 	@Singleton
 	public Equalizer provideEqualizer(

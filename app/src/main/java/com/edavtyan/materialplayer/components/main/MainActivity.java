@@ -10,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -76,8 +76,8 @@ public class MainActivity extends ModularActivity {
 		return DaggerMainComponent
 				.builder()
 				.mainModule(new MainModule(this))
-				.activityModulesModule(new ActivityModulesModule())
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.activityModulesFactory(new ActivityModulesFactory())
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

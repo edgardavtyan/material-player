@@ -12,7 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlayerNotificationModule {
+public class PlayerNotificationFactory {
 	@Provides
 	@Singleton
 	public PlayerNotification providePlayerNotification(

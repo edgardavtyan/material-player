@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class SurroundModule {
+public class SurroundFactory {
 	@Provides
 	@Singleton
 	public Surround provideSurround(SurroundPrefs prefs, int sessionId) {

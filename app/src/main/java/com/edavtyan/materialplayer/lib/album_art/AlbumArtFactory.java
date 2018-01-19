@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AlbumArtModule {
+public class AlbumArtFactory {
 	@Provides
 	@Singleton
 	public AlbumArtProvider provideAlbumArtProvider(Context context) {

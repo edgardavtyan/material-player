@@ -2,9 +2,9 @@ package com.edavtyan.materialplayer.components.detail;
 
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
-import com.edavtyan.materialplayer.utils.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsFactory;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.RETURNS_MOCKS;
@@ -12,8 +12,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class BaseDetailActivityTest extends ActivityTest {
-	protected static ThemeDaggerModule themeDaggerModule;
-	protected static UtilsModule utilsModule;
+	protected static ThemeFactory themeFactory;
+	protected static UtilsFactory utilsFactory;
 
 	protected Navigator navigator;
 
@@ -22,11 +22,11 @@ public class BaseDetailActivityTest extends ActivityTest {
 		super.beforeEach();
 
 		ScreenThemeModule themeModule = mock(ScreenThemeModule.class);
-		themeDaggerModule = mock(ThemeDaggerModule.class, RETURNS_MOCKS);
-		when(themeDaggerModule.provideScreenThemeModule(any(), any(), any())).thenReturn(themeModule);
+		themeFactory = mock(ThemeFactory.class, RETURNS_MOCKS);
+		when(themeFactory.provideScreenThemeModule(any(), any(), any())).thenReturn(themeModule);
 
 		navigator = mock(Navigator.class);
-		utilsModule = mock(UtilsModule.class, RETURNS_MOCKS);
-		when(utilsModule.provideNavigator(any())).thenReturn(navigator);
+		utilsFactory = mock(UtilsFactory.class, RETURNS_MOCKS);
+		when(utilsFactory.provideNavigator(any())).thenReturn(navigator);
 	}
 }

@@ -10,15 +10,15 @@ import static org.mockito.Mockito.when;
 
 public class BaseAlbumDetailActivityTest extends BaseDetailActivityTest {
 	protected static AlbumDetailComponent createMockComponent(AppCompatActivity activity) {
-		AlbumDetailModule albumDetailModule = mock(AlbumDetailModule.class, RETURNS_MOCKS);
-		when(albumDetailModule.provideActivity()).thenReturn(activity);
-		when(albumDetailModule.provideContext()).thenReturn(activity);
+		AlbumDetailFactory albumDetailFactory = mock(AlbumDetailFactory.class, RETURNS_MOCKS);
+		when(albumDetailFactory.provideActivity()).thenReturn(activity);
+		when(albumDetailFactory.provideContext()).thenReturn(activity);
 
 		return DaggerAlbumDetailComponent
 				.builder()
-				.albumDetailModule(albumDetailModule)
-				.themeDaggerModule(themeDaggerModule)
-				.utilsModule(utilsModule)
+				.albumDetailFactory(albumDetailFactory)
+				.themeFactory(themeFactory)
+				.utilsFactory(utilsFactory)
 				.build();
 	}
 }

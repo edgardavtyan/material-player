@@ -18,7 +18,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 
 import javax.inject.Inject;
@@ -130,8 +130,8 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	protected NowPlayingFloatingComponent getComponent() {
 		return DaggerNowPlayingFloatingComponent
 				.builder()
-				.nowPlayingFloatingModule(new NowPlayingFloatingModule(getActivity(), this))
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.nowPlayingFloatingFactory(new NowPlayingFloatingFactory(getActivity(), this))
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

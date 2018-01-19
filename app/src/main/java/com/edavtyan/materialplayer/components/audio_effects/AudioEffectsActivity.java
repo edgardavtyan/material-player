@@ -19,8 +19,8 @@ import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -227,9 +227,9 @@ public class AudioEffectsActivity
 	protected AudioEffectsViewComponent getComponent() {
 		return DaggerAudioEffectsViewComponent
 				.builder()
-				.activityModulesModule(new ActivityModulesModule())
-				.audioEffectsViewModule(new AudioEffectsViewModule(this))
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.activityModulesFactory(new ActivityModulesFactory())
+				.audioEffectsViewFactory(new AudioEffectsViewFactory(this))
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 

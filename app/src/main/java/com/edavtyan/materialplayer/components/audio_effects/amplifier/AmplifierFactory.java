@@ -14,7 +14,7 @@ import dagger.Provides;
 
 @Module
 @TargetApi(Build.VERSION_CODES.KITKAT)
-public class AmplifierModule {
+public class AmplifierFactory {
 	@Provides
 	@Singleton
 	@Nullable

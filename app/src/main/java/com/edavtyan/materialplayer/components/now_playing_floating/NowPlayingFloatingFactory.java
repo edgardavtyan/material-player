@@ -10,11 +10,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class NowPlayingFloatingModule {
+public class NowPlayingFloatingFactory {
 	private final Context context;
 	private final NowPlayingFloatingFragment view;
 
-	public NowPlayingFloatingModule(Context context, NowPlayingFloatingFragment view) {
+	public NowPlayingFloatingFactory(Context context, NowPlayingFloatingFragment view) {
 		this.context = context;
 		this.view = view;
 	}

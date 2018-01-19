@@ -17,7 +17,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlayerNotificationNougatModule {
+public class PlayerNotificationNougatFactory {
 	@Provides
 	@Singleton
 	@Nullable

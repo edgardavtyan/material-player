@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class UtilsModule {
+public class UtilsFactory {
 	@Provides
 	@Singleton
 	public Navigator provideNavigator(Context context) {

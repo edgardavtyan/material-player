@@ -18,8 +18,8 @@ import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeDaggerModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -117,8 +117,8 @@ public class SearchActivity extends ModularActivity {
 		return DaggerSearchComponent
 				.builder()
 				.searchModule(new SearchModule(this))
-				.activityModulesModule(new ActivityModulesModule())
-				.themeDaggerModule(new ThemeDaggerModule(this))
+				.activityModulesFactory(new ActivityModulesFactory())
+				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

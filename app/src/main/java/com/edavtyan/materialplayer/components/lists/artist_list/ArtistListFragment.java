@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.lib.lastfm.LastFmModule;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
 
 import javax.inject.Inject;
 
@@ -37,7 +37,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 		return DaggerArtistListComponent
 				.builder()
 				.artistListModule(new ArtistListModule(getActivity(), this))
-				.lastFmModule(new LastFmModule(getString(R.string.lastfm_api_key)))
+				.lastFmFactory(new LastFmFactory(getString(R.string.lastfm_api_key)))
 				.build();
 	}
 }

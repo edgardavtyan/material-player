@@ -18,10 +18,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlayerModule {
+public class PlayerFactory {
 	private final Context context;
 
-	public PlayerModule(Context context) {
+	public PlayerFactory(Context context) {
 		this.context = context;
 	}
 

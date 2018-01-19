@@ -5,10 +5,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
-import com.edavtyan.materialplayer.components.notification.PlayerNotificationModule;
+import com.edavtyan.materialplayer.components.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.components.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.components.player.PlayerService.PlayerBinder;
-import com.edavtyan.materialplayer.components.player.receivers.ReceiversModule;
+import com.edavtyan.materialplayer.components.player.receivers.ReceiversFactory;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -35,19 +35,19 @@ public class PlayerServiceTest extends BaseTest {
 		super.beforeEach();
 
 		player = mock(Player.class);
-		PlayerModule playerModule = mock(PlayerModule.class, RETURNS_MOCKS);
-		when(playerModule.providePlayer(any(), any(), any())).thenReturn(player);
-		when(playerModule.provideContext()).thenReturn(context);
+		PlayerFactory playerFactory = mock(PlayerFactory.class, RETURNS_MOCKS);
+		when(playerFactory.providePlayer(any(), any(), any())).thenReturn(player);
+		when(playerFactory.provideContext()).thenReturn(context);
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);
-		PlayerNotificationModule notificationModule = mock(PlayerNotificationModule.class, RETURNS_MOCKS);
+		PlayerNotificationFactory notificationModule = mock(PlayerNotificationFactory.class, RETURNS_MOCKS);
 		when(notificationModule.providePresenter(any(), any())).thenReturn(notificationPresenter);
 
 		PlayerServiceComponent component = DaggerPlayerServiceComponent
 				.builder()
-				.receiversModule(mock(ReceiversModule.class, RETURNS_MOCKS))
-				.playerModule(playerModule)
-				.playerNotificationModule(notificationModule)
+				.receiversFactory(mock(ReceiversFactory.class, RETURNS_MOCKS))
+				.playerFactory(playerFactory)
+				.playerNotificationFactory(notificationModule)
 				.build();
 
 		app.setPlayerServiceComponent(component);

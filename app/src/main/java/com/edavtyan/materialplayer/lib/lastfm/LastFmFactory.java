@@ -10,10 +10,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class LastFmModule {
+public class LastFmFactory {
 	private final String apiKey;
 
-	public LastFmModule(String apiKey) {
+	public LastFmFactory(String apiKey) {
 		this.apiKey = apiKey;
 	}
 

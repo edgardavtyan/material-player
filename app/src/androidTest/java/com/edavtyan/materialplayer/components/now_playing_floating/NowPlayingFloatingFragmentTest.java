@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
-import com.edavtyan.materialplayer.utils.UtilsModule;
+import com.edavtyan.materialplayer.utils.UtilsFactory;
 
 import org.junit.Test;
 
@@ -51,17 +51,17 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		super.beforeEach();
 
 		presenter = mock(NowPlayingFloatingPresenter.class);
-		NowPlayingFloatingModule mainModule = mock(NowPlayingFloatingModule.class, RETURNS_MOCKS);
+		NowPlayingFloatingFactory mainModule = mock(NowPlayingFloatingFactory.class, RETURNS_MOCKS);
 		when(mainModule.providePresenter(any(), any())).thenReturn(presenter);
 
 		navigator = mock(Navigator.class);
-		UtilsModule utilsModule = mock(UtilsModule.class, RETURNS_MOCKS);
-		when(utilsModule.provideNavigator(any())).thenReturn(navigator);
+		UtilsFactory utilsFactory = mock(UtilsFactory.class, RETURNS_MOCKS);
+		when(utilsFactory.provideNavigator(any())).thenReturn(navigator);
 
 		component = DaggerNowPlayingFloatingComponent
 				.builder()
-				.nowPlayingFloatingModule(mainModule)
-				.utilsModule(utilsModule)
+				.nowPlayingFloatingFactory(mainModule)
+				.utilsFactory(utilsFactory)
 				.build();
 
 		fragment = new TestNowPlayingFloatingFragment();

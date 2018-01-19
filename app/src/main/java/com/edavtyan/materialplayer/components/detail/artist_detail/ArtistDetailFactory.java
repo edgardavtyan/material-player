@@ -20,12 +20,12 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ArtistDetailModule {
+public class ArtistDetailFactory {
 	private final AppCompatActivity activity;
 	private final ArtistDetailView view;
 	private final String artistTitle;
 
-	public ArtistDetailModule(AppCompatActivity activity, ArtistDetailView view, String artistTitle) {
+	public ArtistDetailFactory(AppCompatActivity activity, ArtistDetailView view, String artistTitle) {
 		this.activity = activity;
 		this.view = view;
 		this.artistTitle = artistTitle;

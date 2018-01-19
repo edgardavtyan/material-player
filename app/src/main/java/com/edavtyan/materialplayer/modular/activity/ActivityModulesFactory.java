@@ -13,21 +13,21 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ActivityModulesModule {
+public class ActivityModulesFactory {
 	private final @Nullable Integer titleStringId;
 	private final @Nullable Boolean isBackIconEnabled;
 
-	public ActivityModulesModule() {
+	public ActivityModulesFactory() {
 		this.titleStringId = null;
 		this.isBackIconEnabled = null;
 	}
 
-	public ActivityModulesModule(@Nullable Integer titleStringId) {
+	public ActivityModulesFactory(@Nullable Integer titleStringId) {
 		this.titleStringId = titleStringId;
 		this.isBackIconEnabled = null;
 	}
 
-	public ActivityModulesModule(
+	public ActivityModulesFactory(
 			@Nullable Integer titleStringId,
 			@Nullable Boolean isBackIconEnabled) {
 		this.titleStringId = titleStringId;
