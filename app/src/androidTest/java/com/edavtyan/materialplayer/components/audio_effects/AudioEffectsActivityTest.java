@@ -11,6 +11,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
+import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Rule;
@@ -30,6 +33,9 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	public static class TestAudioEffectsActivity extends AudioEffectsActivity {
 		@Override
 		public void onCreate(@Nullable Bundle savedInstanceState) {
+			toolbarModule = mock(ActivityToolbarModule.class);
+			baseMenuModule = mock(ActivityBaseMenuModule.class);
+			themeModule = mock(ScreenThemeModule.class);
 			this.presenter = AudioEffectsActivityTest.presenter;
 			super.onCreate(savedInstanceState);
 		}
