@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
@@ -19,7 +20,6 @@ import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModul
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 import com.edavtyan.materialplayer.utils.UtilsModule;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -101,8 +101,9 @@ public class AlbumDetailActivityCompactTest extends ActivityTest {
 	}
 
 	@Test
-	@Ignore
 	public void set_album_info_in_landscape_mode() {
+		activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		instrumentation.waitForIdleSync();
 		TextView infoView = (TextView) activity.findViewById(R.id.info);
 		runOnUiThread(() -> activity.setAlbumInfo("artist", 2, 122234));
 		assertThat(infoView.getText()).isEqualTo("artist \u2022 2 Tracks");
