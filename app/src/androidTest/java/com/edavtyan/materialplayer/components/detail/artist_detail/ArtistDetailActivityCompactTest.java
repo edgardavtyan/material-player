@@ -6,8 +6,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ed.libsutils.utils.BitmapResizer;
-import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.R;
 
 import org.junit.Rule;
@@ -65,12 +63,8 @@ public class ArtistDetailActivityCompactTest extends BaseArtistDetailActivityTes
 	public void setArtistArt_artIsNotNull_setScaledArt() {
 		ImageView artView = (ImageView) activity.findViewById(R.id.art);
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
-
 		runOnUiThread(() -> activity.setArtistImage(bitmap));
-
-		int imageViewSize = DpConverter.dpToPixel(120);
-		Bitmap scaledImage = BitmapResizer.resize(bitmap, imageViewSize);
-		assertThat(artView).hasImageBitmap(scaledImage);
+		assertThat(artView).hasScaledImageBitmap(bitmap, 120);
 	}
 
 	@Test

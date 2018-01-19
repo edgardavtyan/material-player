@@ -7,8 +7,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ed.libsutils.utils.BitmapResizer;
-import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.R;
 
 import org.junit.Rule;
@@ -77,9 +75,7 @@ public class AlbumDetailActivityCompactTest extends BaseAlbumDetailActivityTest 
 		ImageView artView = (ImageView) activity.findViewById(R.id.art);
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		runOnUiThread(() -> activity.setAlbumImage(bitmap));
-		int scaledBitmapSize = DpConverter.dpToPixel(120);
-		Bitmap scaledBitmap = BitmapResizer.resize(bitmap, scaledBitmapSize);
-		assertThat(artView).hasImageBitmap(scaledBitmap);
+		assertThat(artView).hasScaledImageBitmap(bitmap, 120);
 	}
 
 	@Test
