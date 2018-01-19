@@ -1,37 +1,24 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
-public class AlbumDetailActivityNormalTest extends ActivityTest {
-
-	private static Navigator navigator;
+public class AlbumDetailActivityNormalTest extends BaseAlbumDetailActivityTest {
 
 	public static class TestAlbumDetailActivityNormal extends AlbumDetailActivityNormal {
 		@Override
-		public void onCreate(@Nullable Bundle savedInstanceState) {
-			this.navigator = AlbumDetailActivityNormalTest.navigator;
-			super.onCreate(savedInstanceState);
-		}
-
-		@Override
 		protected AlbumDetailComponent getComponent() {
-			return mock(AlbumDetailComponent.class);
+			return createMockComponent(this);
 		}
 	}
 
@@ -44,7 +31,6 @@ public class AlbumDetailActivityNormalTest extends ActivityTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		navigator = mock(Navigator.class);
 		activity = activityRule.launchActivity(null);
 	}
 
