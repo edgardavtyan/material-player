@@ -47,9 +47,8 @@ android {
 
 dependencies {
     compile project(':prefs')
-    compile project(':libsutils')
 
-    compile fileTree(include: '*.jar', dir: 'libs')
+    compile fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
     compile "com.android.support:appcompat-v7:${appcompat_version}"
     compile "com.android.support:design:${appcompat_version}"

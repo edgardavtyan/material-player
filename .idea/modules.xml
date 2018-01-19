@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../LibsUtils/library_libsutils/libsutils.iml" filepath="$PROJECT_DIR$/../LibsUtils/library_libsutils/libsutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/material-player.iml" filepath="$PROJECT_DIR$/material-player.iml" />
       <module fileurl="file://$PROJECT_DIR$/prefs/prefs.iml" filepath="$PROJECT_DIR$/prefs/prefs.iml" />
     </modules>
