@@ -4,7 +4,7 @@ import com.edavtyan.materialplayer.AppComponent;
 import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.lib.theme.ThemeableActivityFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
-import com.edavtyan.materialplayer.modular.model.ModelModulesModule;
+import com.edavtyan.materialplayer.modular.model.ModelModulesFactory;
 
 import dagger.Component;
 
@@ -13,7 +13,7 @@ import dagger.Component;
 		dependencies = AppComponent.class,
 		modules = {
 				NowPlayingQueueFactory.class,
-				ModelModulesModule.class,
+				ModelModulesFactory.class,
 				ActivityModulesFactory.class,
 				ThemeableActivityFactory.class})
 public interface NowPlayingQueueComponent {
