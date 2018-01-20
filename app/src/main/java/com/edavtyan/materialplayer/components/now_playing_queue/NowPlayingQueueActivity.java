@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -69,7 +68,6 @@ public class NowPlayingQueueActivity extends ModularActivity implements ListView
 				.builder()
 				.appComponent(((App)getApplication()).getAppComponent())
 				.nowPlayingQueueFactory(new NowPlayingQueueFactory(this))
-				.activityModulesFactory(new ActivityModulesFactory())
 				.build();
 	}
 }

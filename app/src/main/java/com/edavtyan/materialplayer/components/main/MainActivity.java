@@ -77,7 +77,6 @@ public class MainActivity extends ModularActivity {
 				.builder()
 				.appComponent(((App)getApplication()).getAppComponent())
 				.mainModule(new MainModule(this))
-				.activityModulesFactory(new ActivityModulesFactory())
 				.build();
 	}
 }

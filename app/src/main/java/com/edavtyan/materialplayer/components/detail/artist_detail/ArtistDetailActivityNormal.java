@@ -60,7 +60,6 @@ public class ArtistDetailActivityNormal
 				.builder()
 				.appComponent(((App)getApplication()).getAppComponent())
 				.artistDetailFactory(new ArtistDetailFactory(this, this, artistTitle))
-				.activityModulesFactory(new ActivityModulesFactory())
 				.build();
 	}
 }

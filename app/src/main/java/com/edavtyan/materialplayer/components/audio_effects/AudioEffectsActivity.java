@@ -228,7 +228,6 @@ public class AudioEffectsActivity
 		return DaggerAudioEffectsViewComponent
 				.builder()
 				.appComponent(((App)getApplication()).getAppComponent())
-				.activityModulesFactory(new ActivityModulesFactory())
 				.audioEffectsViewFactory(new AudioEffectsViewFactory(this))
 				.build();
 	}

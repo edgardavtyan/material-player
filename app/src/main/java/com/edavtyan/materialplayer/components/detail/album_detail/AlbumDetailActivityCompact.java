@@ -61,7 +61,6 @@ public class AlbumDetailActivityCompact
 				.builder()
 				.appComponent(((App)getApplication()).getAppComponent())
 				.albumDetailFactory(new AlbumDetailFactory(this, this, albumId))
-				.activityModulesFactory(new ActivityModulesFactory())
 				.build();
 	}
 }
