@@ -1,51 +1,51 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
+import com.edavtyan.materialplayer.components.FragmentScope;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class NowPlayingFloatingFactory {
-	private final Context context;
 	private final NowPlayingFloatingFragment view;
+	private final FragmentActivity activity;
 
-	public NowPlayingFloatingFactory(Context context, NowPlayingFloatingFragment view) {
-		this.context = context;
+	public NowPlayingFloatingFactory(FragmentActivity activity, NowPlayingFloatingFragment view) {
+		this.activity = activity;
 		this.view = view;
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return context;
+	@FragmentScope
+	public FragmentActivity provideActivity() {
+		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public Fragment provideFragment() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public NowPlayingFloatingFragment provideView() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
-	public NowPlayingFloatingModel provideModel(Context context, AlbumArtProvider albumArtProvider) {
-		return new NowPlayingFloatingModel(context, albumArtProvider);
+	@FragmentScope
+	public NowPlayingFloatingModel provideModel(
+			FragmentActivity activity, AlbumArtProvider albumArtProvider) {
+		return new NowPlayingFloatingModel(activity, albumArtProvider);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public NowPlayingFloatingPresenter providePresenter(
 			NowPlayingFloatingModel model,
 			NowPlayingFloatingFragment view) {

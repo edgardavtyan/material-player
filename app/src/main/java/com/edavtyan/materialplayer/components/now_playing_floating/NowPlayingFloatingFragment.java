@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ed.libsutils.utils.BitmapResizer;
 import com.ed.libsutils.utils.DpConverter;
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
@@ -129,6 +130,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	protected NowPlayingFloatingComponent getComponent() {
 		return DaggerNowPlayingFloatingComponent
 				.builder()
+				.appComponent(((App) getContext().getApplicationContext()).getAppComponent())
 				.nowPlayingFloatingFactory(new NowPlayingFloatingFactory(getActivity(), this))
 				.build();
 	}
