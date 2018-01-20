@@ -3,10 +3,9 @@ package com.edavtyan.materialplayer.components.lists.artist_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
 
 import javax.inject.Inject;
 
@@ -36,6 +35,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	protected ArtistListComponent getComponent() {
 		return DaggerArtistListComponent
 				.builder()
+				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.artistListModule(new ArtistListModule(getActivity(), this))
 				.build();
 	}

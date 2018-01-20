@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.search.artist;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFragment;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListModule;
@@ -54,6 +55,7 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 	protected SearchArtistComponent getComponent2() {
 		return DaggerSearchArtistComponent
 				.builder()
+				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.searchArtistModule(new SearchArtistModule(this))
 				.artistListModule(new ArtistListModule(getActivity(), this))
 				.build();

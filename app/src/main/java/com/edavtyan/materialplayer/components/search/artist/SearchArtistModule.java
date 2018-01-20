@@ -1,15 +1,14 @@
 package com.edavtyan.materialplayer.components.search.artist;
 
-import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 
+import com.edavtyan.materialplayer.components.FragmentScope;
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListImageLoader;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,20 +22,20 @@ public class SearchArtistModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchArtistFragment provideView() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchArtistAdapter provideAdapter(
-			Context context, SearchArtistPresenter presenter) {
-		return new SearchArtistAdapter(context, presenter);
+			FragmentActivity activity, SearchArtistPresenter presenter) {
+		return new SearchArtistAdapter(activity, presenter);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchArtistModel provideModel(
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
@@ -48,14 +47,14 @@ public class SearchArtistModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchArtistPresenter providePresenter(
 			SearchArtistModel model, SearchArtistFragment view) {
 		return new SearchArtistPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchViewImpl provideSearchViewImpl(
 			SearchArtistFragment view, SearchArtistPresenter presenter) {
 		return new SearchViewImpl(view, presenter);
