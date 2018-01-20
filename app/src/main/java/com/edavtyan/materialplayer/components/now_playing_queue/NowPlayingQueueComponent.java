@@ -12,7 +12,7 @@ import dagger.Component;
 @Component(
 		dependencies = AppComponent.class,
 		modules = {
-				NowPlayingQueueModule.class,
+				NowPlayingQueueFactory.class,
 				ModelModulesModule.class,
 				ActivityModulesFactory.class,
 				ThemeableActivityFactory.class})

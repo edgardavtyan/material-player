@@ -10,10 +10,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class NowPlayingQueueModule {
+public class NowPlayingQueueFactory {
 	private final NowPlayingQueueActivity activity;
 
-	public NowPlayingQueueModule(NowPlayingQueueActivity activity) {
+	public NowPlayingQueueFactory(NowPlayingQueueActivity activity) {
 		this.activity = activity;
 	}
 

@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.main.CompactMainScreenPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.db.DbModule;
+import com.edavtyan.materialplayer.db.DbFactory;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtFactory;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
@@ -34,7 +34,7 @@ import dagger.Component;
 		AdvancedSharedPrefsFactory.class,
 		UtilsFactory.class,
 		LastFmFactory.class,
-		DbModule.class,
+		DbFactory.class,
 		AlbumArtFactory.class,
 		CompactPrefsModule.class})
 public interface AppComponent {
