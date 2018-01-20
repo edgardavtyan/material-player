@@ -4,7 +4,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.screens.ActivityScope;
-import com.edavtyan.materialplayer.utils.AppColors;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,8 +31,8 @@ public class MainModule {
 	@Provides
 	@ActivityScope
 	public IconsTabsAdapter provideIconsTabsAdapter(
-			FragmentManager fragmentManager, AppCompatActivity activity, AppColors appColors) {
-		return new IconsTabsAdapter(fragmentManager, activity, appColors);
+			FragmentManager fragmentManager, AppCompatActivity activity) {
+		return new IconsTabsAdapter(fragmentManager, activity);
 	}
 
 	@Provides
