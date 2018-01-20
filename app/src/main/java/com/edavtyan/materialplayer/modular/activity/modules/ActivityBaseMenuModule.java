@@ -5,7 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 public class ActivityBaseMenuModule extends ActivityModule {

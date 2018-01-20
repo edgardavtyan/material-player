@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar
+<com.edavtyan.materialplayer.screens.audio_effects.views.TitledSeekbar
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/test_titled_seekbar"

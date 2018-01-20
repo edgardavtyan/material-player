@@ -3,8 +3,8 @@ package com.edavtyan.materialplayer.modular.activity;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.components.ActivityScope;
-import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 

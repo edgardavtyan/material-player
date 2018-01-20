@@ -18,7 +18,7 @@
 		>
 
 		<activity
-			android:name=".components.main.MainActivity"
+			android:name=".screens.main.MainActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -30,7 +30,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.prefs.PrefActivity"
+			android:name=".screens.prefs.PrefActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -40,7 +40,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.detail.artist_detail.ArtistDetailActivityNormal"
+			android:name=".screens.detail.artist_detail.ArtistDetailActivityNormal"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -49,10 +49,10 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".components.detail.artist_detail.ArtistDetailActivityCompact" />
+		<activity android:name=".screens.detail.artist_detail.ArtistDetailActivityCompact" />
 
 		<activity
-			android:name=".components.detail.album_detail.AlbumDetailActivityNormal"
+			android:name=".screens.detail.album_detail.AlbumDetailActivityNormal"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -61,20 +61,10 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".components.detail.album_detail.AlbumDetailActivityCompact" />
+		<activity android:name=".screens.detail.album_detail.AlbumDetailActivityCompact" />
 
 		<activity
-			android:name=".components.now_playing.NowPlayingActivity"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
-		<activity
-			android:name=".components.now_playing_queue.NowPlayingQueueActivity"
+			android:name=".screens.now_playing.NowPlayingActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -84,7 +74,7 @@
 		</activity>
 
 		<activity
-			android:name=".components.audio_effects.AudioEffectsActivity"
+			android:name=".screens.now_playing_queue.NowPlayingQueueActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -93,14 +83,24 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".components.search.SearchActivity" />
+		<activity
+			android:name=".screens.audio_effects.AudioEffectsActivity"
+			android:launchMode="singleTop"
+			>
+			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".screens.search.SearchActivity" />
 
 		<service
-			android:name="com.edavtyan.materialplayer.components.player.PlayerService"
+			android:name=".service.PlayerService"
 			android:enabled="true"
 			/>
 
-		<receiver android:name=".components.player.receivers.MediaButtonReceiver">
+		<receiver android:name=".service.receivers.MediaButtonReceiver">
 			<intent-filter>
 				<action android:name="android.intent.action.MEDIA_BUTTON" />
 			</intent-filter>

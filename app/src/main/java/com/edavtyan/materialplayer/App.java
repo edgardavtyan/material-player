@@ -2,11 +2,10 @@ package com.edavtyan.materialplayer;
 
 import android.app.Application;
 
-import com.edavtyan.materialplayer.components.SdkFactory;
-import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponent;
-import com.edavtyan.materialplayer.components.player.PlayerFactory;
-import com.edavtyan.materialplayer.components.player.PlayerService;
-import com.edavtyan.materialplayer.components.player.PlayerServiceComponent;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.service.DaggerPlayerServiceComponent;
+import com.edavtyan.materialplayer.service.PlayerService;
+import com.edavtyan.materialplayer.service.PlayerServiceComponent;
 
 import lombok.Setter;
 

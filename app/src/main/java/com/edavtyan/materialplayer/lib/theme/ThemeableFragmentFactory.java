@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.lib.theme;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.edavtyan.materialplayer.components.FragmentScope;
+import com.edavtyan.materialplayer.screens.FragmentScope;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import dagger.Module;

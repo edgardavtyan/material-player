@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.utils;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.Navigator;
+import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 
 import javax.inject.Singleton;

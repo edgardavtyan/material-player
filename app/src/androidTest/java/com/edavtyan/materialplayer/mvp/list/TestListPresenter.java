@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.mvp.list;
 
-import com.edavtyan.materialplayer.components.lists.lib.ListModel;
-import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
-import com.edavtyan.materialplayer.components.lists.lib.ListView;
+import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
+import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
+import com.edavtyan.materialplayer.screens.lists.lib.ListView;
 
 public class TestListPresenter extends ListPresenter {
 	public TestListPresenter(ListModel model, ListView view) {

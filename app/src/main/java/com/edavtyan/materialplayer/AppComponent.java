@@ -2,11 +2,10 @@ package com.edavtyan.materialplayer;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.components.CompactPrefsModule;
-import com.edavtyan.materialplayer.components.Navigator;
-import com.edavtyan.materialplayer.components.detail.lib.CompactDetailPref;
-import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.components.main.CompactMainScreenPref;
+import com.edavtyan.materialplayer.screens.Navigator;
+import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
+import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.DbFactory;

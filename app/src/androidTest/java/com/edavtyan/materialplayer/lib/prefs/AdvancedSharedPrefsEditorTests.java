@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.lib.prefs;
 
 import android.content.SharedPreferences;
 
-import com.edavtyan.materialplayer.components.player.RepeatMode;
+import com.edavtyan.materialplayer.player.RepeatMode;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

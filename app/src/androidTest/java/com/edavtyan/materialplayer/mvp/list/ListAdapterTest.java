@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.components.lists.lib.ListAdapter;
-import com.edavtyan.materialplayer.components.lists.lib.ListPresenter;
+import com.edavtyan.materialplayer.screens.lists.lib.ListAdapter;
+import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;

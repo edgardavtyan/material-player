@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.edavtyan.materialplayer.components.player.PlayerService;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Getter;
 import lombok.Setter;
