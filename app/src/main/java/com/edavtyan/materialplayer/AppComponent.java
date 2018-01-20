@@ -20,6 +20,7 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.AppColors;
+import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
 
@@ -44,6 +45,7 @@ public interface AppComponent {
 	Navigator navigator();
 	WebClient webClient();
 	TestableBitmapFactory testableBitmapFactory();
+	PendingIntents pendingIntents();
 	AppColors appColors();
 	ArtistDB artistDB();
 	AlbumDB albumDB();

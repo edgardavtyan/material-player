@@ -7,11 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.components.player.PlayerServiceScope;
 import com.edavtyan.materialplayer.lib.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,7 +18,7 @@ import dagger.Provides;
 @Module
 public class PlayerNotificationNougatFactory {
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	@Nullable
 	public PlayerNotificationNougat provideNotification(
 			Context context,
@@ -38,13 +37,13 @@ public class PlayerNotificationNougatFactory {
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public TestableNotificationManager provideManager(Context context) {
 		return new TestableNotificationManager(NotificationManagerCompat.from(context));
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public Notification.Builder provideBuilder(Context context) {
 		return new Notification.Builder(context);
 	}

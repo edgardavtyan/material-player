@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.player.receivers;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.components.player.Player;
+import com.edavtyan.materialplayer.components.player.PlayerServiceScope;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import javax.inject.Singleton;
@@ -13,50 +14,50 @@ import dagger.Provides;
 @Module
 public class ReceiversFactory {
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public AudioBecomingNoisyReceiver provideAudioBecomingNoisyReceiver(Player player) {
 		return new AudioBecomingNoisyReceiver(player);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public CloseReceiver provideCloseReceiver() {
 		return new CloseReceiver();
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public HeadphonesConnectedReceiver provideHeadphonesConnectedReceiver(
 			Player player, PlayOnHeadsetPluggedPref playerOnHeadsetPluggedPref) {
 		return new HeadphonesConnectedReceiver(player, playerOnHeadsetPluggedPref);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public MediaButtonReceiver provideMediaButtonReceiver(Player player) {
 		return new MediaButtonReceiver(player);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public PlayPauseReceiver providePlayPauseReceiver(Player player) {
 		return new PlayPauseReceiver(player);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public SkipToNextReceiver provideSkipToNextReceiver(Player player) {
 		return new SkipToNextReceiver(player);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public SkipToPreviousReceiver provideSkipToPreviousReceiver(Player player) {
 		return new SkipToPreviousReceiver(player);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public PlayOnHeadsetPluggedPref providePlayOnHeadsetPluggedPref(
 			Context context, AdvancedSharedPrefs prefs) {
 		return new PlayOnHeadsetPluggedPref(context, prefs);

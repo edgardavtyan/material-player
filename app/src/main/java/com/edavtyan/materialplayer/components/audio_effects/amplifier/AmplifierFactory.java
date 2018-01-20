@@ -5,9 +5,8 @@ import android.media.audiofx.LoudnessEnhancer;
 import android.os.Build;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.components.player.PlayerServiceScope;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,7 +15,7 @@ import dagger.Provides;
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public class AmplifierFactory {
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	@Nullable
 	public Amplifier provideAmplifier(AmplifierPrefs prefs, int sessionId) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -27,7 +26,7 @@ public class AmplifierFactory {
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public AmplifierPrefs provideAmplifierPrefs(AdvancedSharedPrefs prefs) {
 		return new AmplifierPrefs(prefs);
 	}

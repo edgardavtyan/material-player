@@ -7,7 +7,6 @@ import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponen
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.PlayerServiceComponent;
-import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
 
 import lombok.Setter;
 
@@ -24,7 +23,7 @@ public class App extends Application {
 		} else {
 			return DaggerPlayerServiceComponent
 					.builder()
-					.playerFactory(new PlayerFactory(service))
+					.appComponent(getAppComponent())
 					.build();
 		}
 	}

@@ -12,63 +12,49 @@ import net.protyposis.android.mediaplayer.MediaPlayer;
 
 import java.util.ArrayList;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class PlayerFactory {
-	private final Context context;
-
-	public PlayerFactory(Context context) {
-		this.context = context;
-	}
-
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return context;
-	}
-
-	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public int provideSessionId(Player player) {
 		return player.getSessionId();
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public Player providePlayer(AudioEngine audioEngine, PlayerQueue queue, PlayerPrefs prefs) {
 		return new Player(audioEngine, queue, prefs);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public AudioEngine provideAudioEngine() {
 		return new ExtendedAudioEngine(new MediaPlayer());
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public PlayerQueue providePlayerQueue() {
 		return new PlayerQueue(new ArrayList<>());
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public PlayerPrefs providePlayerPrefs(AdvancedSharedPrefs basePrefs) {
 		return new PlayerPrefs(basePrefs);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public AudioFocusManager provideAudioFocusManager(Context context, Player player) {
 		return new AudioFocusManager(context, player);
 	}
 
 	@Provides
-	@Singleton
+	@PlayerServiceScope
 	public MediaSessionManager provideMediaSessionManager(Context context, Player player) {
 		return new MediaSessionManager(context, player);
 	}
