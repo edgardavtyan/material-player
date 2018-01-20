@@ -1,13 +1,12 @@
 package com.edavtyan.materialplayer.components.search.tracks;
 
-import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 
+import com.edavtyan.materialplayer.components.FragmentScope;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,20 +20,20 @@ public class SearchTrackModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchTrackFragment provideView() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchTrackAdapter provideAdapter(
-			Context context, SearchTrackPresenter presenter) {
-		return new SearchTrackAdapter(context, presenter);
+			FragmentActivity activity, SearchTrackPresenter presenter) {
+		return new SearchTrackAdapter(activity, presenter);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchTrackModel provideModel(
 			ModelServiceModule serviceModule,
 			TrackDB trackDB,
@@ -43,14 +42,14 @@ public class SearchTrackModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchTrackPresenter providePresenter(
 			SearchTrackModel model, SearchTrackFragment view) {
 		return new SearchTrackPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchViewImpl provideSearchViewImpl(
 			SearchTrackFragment view, SearchTrackPresenter presenter) {
 		return new SearchViewImpl(view, presenter);

@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.search.tracks;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListFragment;
 import com.edavtyan.materialplayer.components.lists.track_list.TrackListModule;
@@ -54,6 +55,7 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 	protected SearchTrackComponent getComponent2() {
 		return DaggerSearchTrackComponent
 				.builder()
+				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.searchTrackModule(new SearchTrackModule(this))
 				.trackListModule(new TrackListModule(getActivity(), this))
 				.build();

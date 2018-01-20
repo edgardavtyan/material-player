@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.lists.track_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
 
@@ -29,6 +30,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	protected TrackListComponent getComponent() {
 		return DaggerTrackListComponent
 				.builder()
+				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.trackListModule(new TrackListModule(getActivity(), this))
 				.build();
 	}
