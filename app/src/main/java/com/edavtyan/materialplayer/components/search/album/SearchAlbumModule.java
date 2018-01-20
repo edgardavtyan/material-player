@@ -1,14 +1,13 @@
 package com.edavtyan.materialplayer.components.search.album;
 
-import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 
+import com.edavtyan.materialplayer.components.FragmentScope;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,20 +21,20 @@ public class SearchAlbumModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchAlbumFragment provideView() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchAlbumAdapter provideAdapter(
-			Context context, SearchAlbumPresenter presenter) {
-		return new SearchAlbumAdapter(context, presenter);
+			FragmentActivity activity, SearchAlbumPresenter presenter) {
+		return new SearchAlbumAdapter(activity, presenter);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchAlbumModel provideModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
@@ -45,14 +44,14 @@ public class SearchAlbumModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchAlbumPresenter providePresenter(
 			SearchAlbumModel model, SearchAlbumFragment view) {
 		return new SearchAlbumPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public SearchViewImpl provideSearchViewImpl(
 			SearchAlbumFragment view, SearchAlbumPresenter presenter) {
 		return new SearchViewImpl(view, presenter);

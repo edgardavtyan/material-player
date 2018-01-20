@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.search.album;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListFragment;
 import com.edavtyan.materialplayer.components.lists.album_list.AlbumListModule;
@@ -52,6 +53,7 @@ public class SearchAlbumFragment extends AlbumListFragment implements SearchView
 	protected SearchAlbumComponent getComponent2() {
 		return DaggerSearchAlbumComponent
 				.builder()
+				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.searchAlbumModule(new SearchAlbumModule(this))
 				.albumListModule(new AlbumListModule(getActivity(), this))
 				.build();

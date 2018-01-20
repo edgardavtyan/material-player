@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.lists.album_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.lists.lib.ListFragment;
 
@@ -34,6 +35,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	protected AlbumListComponent getComponent() {
 		return DaggerAlbumListComponent
 				.builder()
+				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.albumListModule(new AlbumListModule(getActivity(), this))
 				.build();
 	}

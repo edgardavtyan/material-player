@@ -1,41 +1,40 @@
 package com.edavtyan.materialplayer.components.lists.album_list;
 
-import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 
+import com.edavtyan.materialplayer.components.FragmentScope;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class AlbumListModule {
-	private final Context context;
+	private final FragmentActivity activity;
 	private final AlbumListView view;
 
-	public AlbumListModule(Context context, AlbumListView view) {
-		this.context = context;
+	public AlbumListModule(FragmentActivity activity, AlbumListView view) {
+		this.activity = activity;
 		this.view = view;
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return context;
+	@FragmentScope
+	public FragmentActivity provideActivity() {
+		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public AlbumListView provideView() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public AlbumListModel provideModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
@@ -49,14 +48,14 @@ public class AlbumListModule {
 	}
 
 	@Provides
-	@Singleton
+	@FragmentScope
 	public AlbumListPresenter providePresenter(AlbumListModel model, AlbumListView view) {
 		return new AlbumListPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
-	public AlbumListAdapter provideAdapter(Context context, AlbumListPresenter presenter) {
-		return new AlbumListAdapter(context, presenter);
+	@FragmentScope
+	public AlbumListAdapter provideAdapter(FragmentActivity activity, AlbumListPresenter presenter) {
+		return new AlbumListAdapter(activity, presenter);
 	}
 }
