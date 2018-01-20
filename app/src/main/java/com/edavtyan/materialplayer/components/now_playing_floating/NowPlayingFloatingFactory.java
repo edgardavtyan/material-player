@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.components.now_playing_floating;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
@@ -23,6 +24,12 @@ public class NowPlayingFloatingFactory {
 	@Singleton
 	public Context provideContext() {
 		return context;
+	}
+
+	@Provides
+	@Singleton
+	public Fragment provideFragment() {
+		return view;
 	}
 
 	@Provides

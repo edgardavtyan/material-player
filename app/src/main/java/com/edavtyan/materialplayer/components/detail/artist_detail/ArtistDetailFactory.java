@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.components.detail.artist_detail;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -13,8 +14,6 @@ import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.utils.WebClient;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,25 +31,19 @@ public class ArtistDetailFactory {
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ArtistDetailView provideView() {
 		return view;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ArtistDetailModel provideModel(
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
@@ -64,31 +57,31 @@ public class ArtistDetailFactory {
 	}
 
 	@Provides
-	@Singleton
-	public ArtistDetailAdapter provideAdapter(Context context, ArtistDetailPresenter presenter) {
-		return new ArtistDetailAdapter(context, presenter);
+	@ActivityScope
+	public ArtistDetailAdapter provideAdapter(AppCompatActivity activity, ArtistDetailPresenter presenter) {
+		return new ArtistDetailAdapter(activity, presenter);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public TestableRecyclerAdapter provideTestableRecyclerAdapter(ArtistDetailAdapter adapter) {
 		return adapter;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ArtistDetailPresenter providePresenter(ArtistDetailModel model, ArtistDetailView view) {
 		return new ArtistDetailPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ParallaxHeaderListPresenter provideParallaxPresenter(ArtistDetailPresenter presenter) {
 		return presenter;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ArtistDetailImageLoader provideImageLoader(
 			WebClient webClient,
 			LastfmApi lastFmApi,
@@ -100,13 +93,13 @@ public class ArtistDetailFactory {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ArtistDetailImageFileStorage provideImageFileStorage(Context context) {
 		return new ArtistDetailImageFileStorage(context);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ArtistDetailImageMemoryCache provideImageMemoryCache() {
 		return new ArtistDetailImageMemoryCache();
 	}

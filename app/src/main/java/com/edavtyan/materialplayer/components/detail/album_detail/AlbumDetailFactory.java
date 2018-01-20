@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.components.detail.album_detail;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.components.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -10,8 +10,6 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,19 +27,13 @@ public class AlbumDetailFactory {
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AlbumDetailModel provideModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
@@ -53,25 +45,25 @@ public class AlbumDetailFactory {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AlbumDetailAdapter provideAdapter(AlbumDetailPresenter presenter) {
 		return new AlbumDetailAdapter(activity, presenter);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public TestableRecyclerAdapter provideTestableRecyclerAdapter(AlbumDetailAdapter adapter) {
 		return adapter;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AlbumDetailPresenter providePresenter(AlbumDetailModel model) {
 		return new AlbumDetailPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ParallaxHeaderListPresenter provideParallaxPresenter(AlbumDetailPresenter presenter) {
 		return presenter;
 	}

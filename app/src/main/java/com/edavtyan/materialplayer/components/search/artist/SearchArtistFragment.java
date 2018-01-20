@@ -8,7 +8,6 @@ import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListFragme
 import com.edavtyan.materialplayer.components.lists.artist_list.ArtistListModule;
 import com.edavtyan.materialplayer.components.search.base.SearchView;
 import com.edavtyan.materialplayer.components.search.base.SearchViewImpl;
-import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
 
 import javax.inject.Inject;
 
@@ -57,7 +56,6 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 				.builder()
 				.searchArtistModule(new SearchArtistModule(this))
 				.artistListModule(new ArtistListModule(getActivity(), this))
-				.lastFmFactory(new LastFmFactory(getString(R.string.lastfm_api_key)))
 				.build();
 	}
 }

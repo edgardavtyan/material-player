@@ -1,12 +1,10 @@
 package com.edavtyan.materialplayer.components.main;
 
-import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.utils.AppColors;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,32 +18,26 @@ public class MainModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public TextTabsAdapter provideTextTabsAdapter(FragmentManager fragmentManager) {
 		return new TextTabsAdapter(fragmentManager);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public IconsTabsAdapter provideIconsTabsAdapter(
 			FragmentManager fragmentManager, AppCompatActivity activity, AppColors appColors) {
 		return new IconsTabsAdapter(fragmentManager, activity, appColors);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public FragmentManager provideFragmentManager(AppCompatActivity activity) {
 		return activity.getSupportFragmentManager();
 	}

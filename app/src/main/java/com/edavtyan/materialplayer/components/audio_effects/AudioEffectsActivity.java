@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 
 import com.ed.libsutils.views.CustomSwitchCompat;
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.NewPresetDialog;
@@ -19,7 +20,6 @@ import com.edavtyan.materialplayer.components.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.components.audio_effects.views.TitledSeekbar;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -227,9 +227,9 @@ public class AudioEffectsActivity
 	protected AudioEffectsViewComponent getComponent() {
 		return DaggerAudioEffectsViewComponent
 				.builder()
+				.appComponent(((App)getApplication()).getAppComponent())
 				.activityModulesFactory(new ActivityModulesFactory())
 				.audioEffectsViewFactory(new AudioEffectsViewFactory(this))
-				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 

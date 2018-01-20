@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -75,9 +75,9 @@ public class MainActivity extends ModularActivity {
 	protected MainComponent getComponent() {
 		return DaggerMainComponent
 				.builder()
+				.appComponent(((App)getApplication()).getAppComponent())
 				.mainModule(new MainModule(this))
 				.activityModulesFactory(new ActivityModulesFactory())
-				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

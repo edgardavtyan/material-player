@@ -1,25 +1,18 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
-import com.edavtyan.materialplayer.components.CompactPrefsModule;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtFactory;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsFactory;
-import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
+import com.edavtyan.materialplayer.AppComponent;
+import com.edavtyan.materialplayer.components.ActivityScope;
+import com.edavtyan.materialplayer.lib.theme.ThemeableActivityFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
-import com.edavtyan.materialplayer.utils.UtilsFactory;
-
-import javax.inject.Singleton;
 
 import dagger.Component;
 
-@Singleton
-@Component(modules = {
-		NowPlayingModule.class,
-		AlbumArtFactory.class,
-		UtilsFactory.class,
-		CompactPrefsModule.class,
-		ActivityModulesFactory.class,
-		ThemeFactory.class,
-		AdvancedSharedPrefsFactory.class})
+@ActivityScope
+@Component(dependencies = AppComponent.class,
+		   modules = {
+				   NowPlayingModule.class,
+				   ActivityModulesFactory.class,
+				   ThemeableActivityFactory.class})
 public interface NowPlayingComponent {
 	void inject(NowPlayingActivity activity);
 }

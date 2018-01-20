@@ -1,9 +1,8 @@
 package com.edavtyan.materialplayer.components.prefs;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import javax.inject.Singleton;
+import com.edavtyan.materialplayer.components.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,13 +16,7 @@ public class PrefModule {
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideAppCompatActivity() {
 		return activity;
 	}

@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -67,9 +67,9 @@ public class NowPlayingQueueActivity extends ModularActivity implements ListView
 	protected NowPlayingQueueComponent getComponent() {
 		return DaggerNowPlayingQueueComponent
 				.builder()
+				.appComponent(((App)getApplication()).getAppComponent())
 				.nowPlayingQueueModule(new NowPlayingQueueModule(this))
 				.activityModulesFactory(new ActivityModulesFactory())
-				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

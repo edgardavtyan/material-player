@@ -1,13 +1,11 @@
 package com.edavtyan.materialplayer.components.audio_effects;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.NewPresetDialog;
 import com.edavtyan.materialplayer.components.audio_effects.equalizer.presets.PresetsSpinnerView;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,37 +19,31 @@ public class AudioEffectsViewFactory {
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AudioEffectsPresenter providePresenter(AudioEffectsModel model) {
 		return new AudioEffectsPresenter(model, activity);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AudioEffectsModel provideModel(ModelServiceModule serviceModule) {
 		return new AudioEffectsModel(serviceModule);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NewPresetDialog provideNewPresetDialog(AudioEffectsPresenter presenter) {
 		return new NewPresetDialog(activity, presenter);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public PresetsSpinnerView providePresetsSpinnerView(AudioEffectsPresenter presenter) {
 		return new PresetsSpinnerView(activity, presenter);
 	}

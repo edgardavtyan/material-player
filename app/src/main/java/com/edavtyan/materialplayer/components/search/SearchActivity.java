@@ -15,10 +15,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ed.libsutils.utils.WindowUtils;
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -116,9 +116,9 @@ public class SearchActivity extends ModularActivity {
 	protected SearchComponent getComponent() {
 		return DaggerSearchComponent
 				.builder()
+				.appComponent(((App)getApplication()).getAppComponent())
 				.searchModule(new SearchModule(this))
 				.activityModulesFactory(new ActivityModulesFactory())
-				.themeFactory(new ThemeFactory(this))
 				.build();
 	}
 }

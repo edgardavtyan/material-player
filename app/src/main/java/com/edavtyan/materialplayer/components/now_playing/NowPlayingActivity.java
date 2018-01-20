@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.LinearLayout;
 
+import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
@@ -13,7 +14,6 @@ import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.lib.theme.ThemeFactory;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -72,8 +72,8 @@ public class NowPlayingActivity extends ModularActivity {
 	protected NowPlayingComponent getComponent() {
 		return DaggerNowPlayingComponent
 				.builder()
+				.appComponent(((App)getApplication()).getAppComponent())
 				.nowPlayingModule(new NowPlayingModule(this))
-				.themeFactory(new ThemeFactory(this))
 				.activityModulesFactory(new ActivityModulesFactory(R.string.nowplaying_toolbar_title))
 				.build();
 	}

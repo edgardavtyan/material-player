@@ -1,12 +1,10 @@
 package com.edavtyan.materialplayer.components.now_playing_queue;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.components.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,25 +18,19 @@ public class NowPlayingQueueModule {
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingQueueActivity provideView() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideAppCompatActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingQueueModel provideModel(
 			ModelServiceModule serviceModule,
 			CompactListPref compactListPref) {
@@ -46,7 +38,7 @@ public class NowPlayingQueueModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingQueuePresenter providePresenter(
 			NowPlayingQueueModel model,
 			NowPlayingQueueActivity view) {
@@ -54,10 +46,10 @@ public class NowPlayingQueueModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingQueueAdapter provideAdapter(
-			Context context,
+			AppCompatActivity activity,
 			NowPlayingQueuePresenter presenter) {
-		return new NowPlayingQueueAdapter(context, presenter);
+		return new NowPlayingQueueAdapter(activity, presenter);
 	}
 }

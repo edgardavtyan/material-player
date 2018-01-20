@@ -1,16 +1,14 @@
 package com.edavtyan.materialplayer.components.now_playing;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingControls;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.components.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -24,25 +22,19 @@ public class NowPlayingModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingActivity provideActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
-	public Context provideContext() {
-		return activity;
-	}
-
-	@Provides
-	@Singleton
+	@ActivityScope
 	public AppCompatActivity provideAppCompatActivity() {
 		return activity;
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingModel provideModel(
 			NowPlayingActivity activity,
 			AlbumArtProvider albumArtProvider) {
@@ -50,19 +42,19 @@ public class NowPlayingModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingPresenter providePresenter(NowPlayingModel model, NowPlayingActivity view) {
 		return new NowPlayingPresenter(model, view);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingArt provideArtPartial(NowPlayingActivity activity) {
 		return new NowPlayingArt(activity);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingControls provideControlsPartial(
 			NowPlayingActivity activity,
 			NowPlayingPresenter presenter) {
@@ -70,7 +62,7 @@ public class NowPlayingModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingFab provideFabPartial(
 			NowPlayingActivity activity,
 			NowPlayingPresenter presenter) {
@@ -78,13 +70,13 @@ public class NowPlayingModule {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingInfo provideInfoPartial(NowPlayingActivity activity) {
 		return new NowPlayingInfo(activity);
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public NowPlayingSeekbar provideSeekbarPartial(
 			NowPlayingActivity activity,
 			NowPlayingPresenter presenter) {

@@ -7,6 +7,7 @@ import com.edavtyan.materialplayer.components.player.DaggerPlayerServiceComponen
 import com.edavtyan.materialplayer.components.player.PlayerFactory;
 import com.edavtyan.materialplayer.components.player.PlayerService;
 import com.edavtyan.materialplayer.components.player.PlayerServiceComponent;
+import com.edavtyan.materialplayer.lib.lastfm.LastFmFactory;
 
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class App extends Application {
 	private @Setter SdkFactory sdkFactory;
 
 	private @Setter PlayerServiceComponent playerServiceComponent;
+	private @Setter AppComponent appComponent;
 
 	public PlayerServiceComponent getPlayerServiceComponent(PlayerService service) {
 		if (playerServiceComponent != null) {
@@ -25,6 +27,17 @@ public class App extends Application {
 					.playerFactory(new PlayerFactory(service))
 					.build();
 		}
+	}
+
+	public AppComponent getAppComponent() {
+		if (appComponent == null) {
+			appComponent = DaggerAppComponent
+					.builder()
+					.appFactory(new AppFactory(this))
+					.build();
+		}
+
+		return appComponent;
 	}
 
 	public SdkFactory getSdkFactory() {

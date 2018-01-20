@@ -3,11 +3,10 @@ package com.edavtyan.materialplayer.modular.activity;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.components.ActivityScope;
 import com.edavtyan.materialplayer.components.Navigator;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -35,7 +34,7 @@ public class ActivityModulesFactory {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ActivityToolbarModule provideActivityToolbarModule(AppCompatActivity activity) {
 		if (titleStringId != null && isBackIconEnabled != null) {
 			return new ActivityToolbarModule(activity, titleStringId, isBackIconEnabled);
@@ -47,7 +46,7 @@ public class ActivityModulesFactory {
 	}
 
 	@Provides
-	@Singleton
+	@ActivityScope
 	public ActivityBaseMenuModule provideBaseMenuModule(AppCompatActivity activity, Navigator navigator) {
 		return new ActivityBaseMenuModule(activity, navigator);
 	}

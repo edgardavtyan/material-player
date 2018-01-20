@@ -37,7 +37,6 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 		return DaggerArtistListComponent
 				.builder()
 				.artistListModule(new ArtistListModule(getActivity(), this))
-				.lastFmFactory(new LastFmFactory(getString(R.string.lastfm_api_key)))
 				.build();
 	}
 }
