@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.player.effects.equalizer;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
-import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.screens.audio_effects.presets.CustomPreset;
 import com.edavtyan.materialplayer.screens.audio_effects.presets.PresetNameAlreadyExists;
 import com.google.gson.reflect.TypeToken;
@@ -33,7 +32,7 @@ public class PresetsPrefs {
 	}
 
 	public void addNewCustomPreset(String name, int[] gains) throws PresetNameAlreadyExists {
-		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+		List<CustomPreset> customPresets = getPresetsFromPrefs();
 
 		for (CustomPreset customPreset : customPresets) {
 			if (customPreset.getName().equals(name)) {
@@ -42,17 +41,17 @@ public class PresetsPrefs {
 		}
 
 		customPresets.add(new CustomPreset(name, gains));
-		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
+		savePresetsToPrefs(customPresets);
 	}
 
 	public void deleteCustomPreset(int position) {
-		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+		List<CustomPreset> customPresets = getPresetsFromPrefs();
 		customPresets.remove(position);
-		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
+		savePresetsToPrefs(customPresets);
 	}
 
 	public List<String> getCustomPresets() {
-		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+		List<CustomPreset> customPresets = getPresetsFromPrefs();
 		List<String> presetsNames = new ArrayList<>();
 		for (int i = 0; i < customPresets.size(); i++) {
 			presetsNames.add(customPresets.get(i).getName());
@@ -62,7 +61,7 @@ public class PresetsPrefs {
 	}
 
 	public CustomPreset getCustomPresetAtIndex(int presetIndex) {
-		List<CustomPreset> customPresets = prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
+		List<CustomPreset> customPresets = getPresetsFromPrefs();
 		return customPresets.get(presetIndex);
 	}
 
@@ -72,5 +71,13 @@ public class PresetsPrefs {
 
 	public void saveCurrentPresetType(Equalizer.PresetType type) {
 		prefs.edit().putEnum(PREF_TYPE, type).apply();
+	}
+
+	private void savePresetsToPrefs(List<CustomPreset> customPresets) {
+		prefs.edit().putListAsJson(PREF_CUSTOM, customPresets).apply();
+	}
+
+	private ArrayList<CustomPreset> getPresetsFromPrefs() {
+		return prefs.getJsonAsList(PREF_CUSTOM, type, new ArrayList<>());
 	}
 }
