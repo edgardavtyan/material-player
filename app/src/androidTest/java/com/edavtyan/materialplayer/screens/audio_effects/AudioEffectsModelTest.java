@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.player.effects;
+package com.edavtyan.materialplayer.screens.audio_effects;
 
 import com.edavtyan.materialplayer.player.effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.player.effects.bassboost.BassBoost;

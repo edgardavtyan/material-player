@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.player.effects;
+package com.edavtyan.materialplayer.screens.audio_effects;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -8,9 +8,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.SwitchCompat;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.audio_effects.AudioEffectsActivity;
-import com.edavtyan.materialplayer.screens.audio_effects.AudioEffectsComponent;
-import com.edavtyan.materialplayer.screens.audio_effects.AudioEffectsPresenter;
 import com.edavtyan.materialplayer.screens.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.screens.audio_effects.views.EqualizerView;
 import com.edavtyan.materialplayer.screens.audio_effects.views.TitledSeekbar;
@@ -36,9 +33,9 @@ public class AudioEffectsActivityTest extends ActivityTest {
 	public static class TestAudioEffectsActivity extends AudioEffectsActivity {
 		@Override
 		public void onCreate(@Nullable Bundle savedInstanceState) {
-			toolbarModule = mock(ActivityToolbarModule.class);
-			baseMenuModule = mock(ActivityBaseMenuModule.class);
-			themeModule = mock(ScreenThemeModule.class);
+			this.toolbarModule = mock(ActivityToolbarModule.class);
+			this.baseMenuModule = mock(ActivityBaseMenuModule.class);
+			this.themeModule = mock(ScreenThemeModule.class);
 			this.presenter = AudioEffectsActivityTest.presenter;
 			super.onCreate(savedInstanceState);
 		}

@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.edavtyan.materialplayer.AppComponent;
+import com.edavtyan.materialplayer.AppFactory;
+import com.edavtyan.materialplayer.DaggerAppComponent;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
@@ -58,10 +61,19 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
 		UtilsFactory utilsFactory = mock(UtilsFactory.class, RETURNS_MOCKS);
 		when(utilsFactory.provideNavigator(any())).thenReturn(navigator);
 
+		AppFactory appFactory = mock(AppFactory.class, RETURNS_MOCKS);
+		when(appFactory.provideContext()).thenReturn(context);
+
+		AppComponent appComponent = DaggerAppComponent
+				.builder()
+				.appFactory(appFactory)
+				.utilsFactory(utilsFactory)
+				.build();
+
 		component = DaggerNowPlayingFloatingComponent
 				.builder()
+				.appComponent(appComponent)
 				.nowPlayingFloatingFactory(mainModule)
-				.utilsFactory(utilsFactory)
 				.build();
 
 		fragment = new TestNowPlayingFloatingFragment();
