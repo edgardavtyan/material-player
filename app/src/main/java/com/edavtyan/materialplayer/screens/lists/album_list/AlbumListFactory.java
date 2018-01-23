@@ -13,11 +13,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AlbumListModule {
+public class AlbumListFactory {
 	private final FragmentActivity activity;
 	private final AlbumListView view;
 
-	public AlbumListModule(FragmentActivity activity, AlbumListView view) {
+	public AlbumListFactory(FragmentActivity activity, AlbumListView view) {
 		this.activity = activity;
 		this.view = view;
 	}

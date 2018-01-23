@@ -10,7 +10,7 @@ import dagger.Component;
 @Component(
 		dependencies = AppComponent.class,
 		modules = {
-				ArtistListModule.class,
+				ArtistListFactory.class,
 				ModelModulesFactory.class})
 public interface ArtistListComponent {
 	void inject(ArtistListFragment fragment);

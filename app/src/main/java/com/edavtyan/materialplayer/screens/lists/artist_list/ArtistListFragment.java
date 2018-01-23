@@ -36,7 +36,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 		return DaggerArtistListComponent
 				.builder()
 				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.artistListModule(new ArtistListModule(getActivity(), this))
+				.artistListFactory(new ArtistListFactory(getActivity(), this))
 				.build();
 	}
 }

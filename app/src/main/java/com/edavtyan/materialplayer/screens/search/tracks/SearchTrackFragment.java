@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.lists.track_list.TrackListFactory;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListFragment;
-import com.edavtyan.materialplayer.screens.lists.track_list.TrackListModule;
 import com.edavtyan.materialplayer.screens.search.base.SearchView;
 import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 
@@ -57,7 +57,7 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 				.builder()
 				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.searchTrackModule(new SearchTrackModule(this))
-				.trackListModule(new TrackListModule(getActivity(), this))
+				.trackListFactory(new TrackListFactory(getActivity(), this))
 				.build();
 	}
 }

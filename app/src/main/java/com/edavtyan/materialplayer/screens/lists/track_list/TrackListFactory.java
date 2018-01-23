@@ -12,11 +12,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class TrackListModule {
+public class TrackListFactory {
 	private final FragmentActivity activity;
 	private final TrackListView view;
 
-	public TrackListModule(FragmentActivity activity, TrackListView view) {
+	public TrackListFactory(FragmentActivity activity, TrackListView view) {
 		this.activity = activity;
 		this.view = view;
 	}

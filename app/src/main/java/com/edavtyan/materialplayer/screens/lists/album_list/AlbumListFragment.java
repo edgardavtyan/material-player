@@ -36,7 +36,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 		return DaggerAlbumListComponent
 				.builder()
 				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.albumListModule(new AlbumListModule(getActivity(), this))
+				.albumListFactory(new AlbumListFactory(getActivity(), this))
 				.build();
 	}
 }

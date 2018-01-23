@@ -8,7 +8,7 @@ import dagger.Component;
 
 @FragmentScope
 @Component(dependencies = AppComponent.class,
-		   modules = {AlbumListModule.class,
+		   modules = {AlbumListFactory.class,
 					  ModelModulesFactory.class})
 public interface AlbumListComponent {
 	void inject(AlbumListFragment fragment);

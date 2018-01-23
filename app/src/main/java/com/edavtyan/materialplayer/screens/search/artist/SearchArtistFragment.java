@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListFactory;
 import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListFragment;
-import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListModule;
 import com.edavtyan.materialplayer.screens.search.base.SearchView;
 import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 
@@ -57,7 +57,7 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 				.builder()
 				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.searchArtistModule(new SearchArtistModule(this))
-				.artistListModule(new ArtistListModule(getActivity(), this))
+				.artistListFactory(new ArtistListFactory(getActivity(), this))
 				.build();
 	}
 }

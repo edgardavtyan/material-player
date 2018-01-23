@@ -17,11 +17,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ArtistListModule {
+public class ArtistListFactory {
 	private final FragmentActivity activity;
 	private final ArtistListView view;
 
-	public ArtistListModule(FragmentActivity activity, ArtistListView view) {
+	public ArtistListFactory(FragmentActivity activity, ArtistListView view) {
 		this.activity = activity;
 		this.view = view;
 	}

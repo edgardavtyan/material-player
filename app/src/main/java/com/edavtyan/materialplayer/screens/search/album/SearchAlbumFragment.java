@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListFactory;
 import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListFragment;
-import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListModule;
 import com.edavtyan.materialplayer.screens.search.base.SearchView;
 import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 
@@ -55,7 +55,7 @@ public class SearchAlbumFragment extends AlbumListFragment implements SearchView
 				.builder()
 				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
 				.searchAlbumModule(new SearchAlbumModule(this))
-				.albumListModule(new AlbumListModule(getActivity(), this))
+				.albumListFactory(new AlbumListFactory(getActivity(), this))
 				.build();
 	}
 }
