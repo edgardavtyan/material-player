@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.player.effects.equalizer.EqualizerBase;
 import com.edavtyan.materialplayer.player.effects.equalizer.EqualizerPrefs;
 import com.edavtyan.materialplayer.player.effects.equalizer.StandardEqualizer;
 import com.edavtyan.materialplayer.player.effects.equalizer.StandardEqualizerBase;
-import com.edavtyan.materialplayer.screens.audio_effects.presets.PresetsPrefs;
+import com.edavtyan.materialplayer.player.effects.equalizer.PresetsPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;

@@ -1,9 +1,8 @@
 package com.edavtyan.materialplayer.player.effects.equalizer;
 
-import com.edavtyan.materialplayer.screens.audio_effects.presets.PresetsPrefs;
-import com.edavtyan.materialplayer.service.PlayerServiceScope;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.service.PlayerServiceScope;
 
 import dagger.Module;
 import dagger.Provides;
