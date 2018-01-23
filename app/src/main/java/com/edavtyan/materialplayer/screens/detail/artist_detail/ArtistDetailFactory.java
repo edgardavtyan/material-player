@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -58,8 +59,9 @@ public class ArtistDetailFactory {
 
 	@Provides
 	@ActivityScope
-	public ArtistDetailAdapter provideAdapter(AppCompatActivity activity, ArtistDetailPresenter presenter) {
-		return new ArtistDetailAdapter(activity, presenter);
+	public ArtistDetailAdapter provideAdapter(
+			AppCompatActivity activity, ArtistDetailPresenter presenter, SdkFactory sdkFactory) {
+		return new ArtistDetailAdapter(activity, presenter, sdkFactory);
 	}
 
 	@Provides

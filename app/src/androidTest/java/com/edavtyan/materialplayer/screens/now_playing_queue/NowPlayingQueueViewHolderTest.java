@@ -46,7 +46,7 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		presenter = mock(NowPlayingQueuePresenter.class);
 
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
-		holder = new NowPlayingQueueViewHolder(context, itemView, presenter);
+		holder = new NowPlayingQueueViewHolder(context, itemView, presenter, sdkFactory);
 	}
 
 	@Override

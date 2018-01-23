@@ -4,15 +4,18 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListAdapter;
 
 public class AlbumListAdapter extends ListAdapter<AlbumListViewHolder> {
 
 	private final AlbumListPresenter presenter;
+	private final SdkFactory sdkFactory;
 
-	public AlbumListAdapter(Context context, AlbumListPresenter presenter) {
+	public AlbumListAdapter(Context context, AlbumListPresenter presenter, SdkFactory sdkFactory) {
 		super(context, presenter);
 		this.presenter = presenter;
+		this.sdkFactory = sdkFactory;
 	}
 
 	@Override
@@ -27,6 +30,6 @@ public class AlbumListAdapter extends ListAdapter<AlbumListViewHolder> {
 
 	@Override
 	public AlbumListViewHolder onCreateViewHolder(Context context, View view) {
-		return new AlbumListViewHolder(context, view, presenter);
+		return new AlbumListViewHolder(context, view, presenter, sdkFactory);
 	}
 }

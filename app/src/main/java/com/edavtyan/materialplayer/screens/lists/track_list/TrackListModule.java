@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.lists.track_list;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -49,7 +50,8 @@ public class TrackListModule {
 
 	@Provides
 	@FragmentScope
-	public TrackListAdapter provideAdapter(FragmentActivity activity, TrackListPresenter presenter) {
-		return new TrackListAdapter(activity, presenter);
+	public TrackListAdapter provideAdapter(
+			FragmentActivity activity, TrackListPresenter presenter, SdkFactory sdkFactory) {
+		return new TrackListAdapter(activity, presenter, sdkFactory);
 	}
 }

@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.screens.SdkFactory;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -19,5 +21,10 @@ public class AppFactory {
 	@Singleton
 	public Context provideContext() {
 		return app;
+	}
+
+	@Provides
+	public SdkFactory provideSdkFactory() {
+		return new SdkFactory();
 	}
 }

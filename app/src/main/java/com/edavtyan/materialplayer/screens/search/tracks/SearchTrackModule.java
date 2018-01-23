@@ -2,11 +2,12 @@ package com.edavtyan.materialplayer.screens.search.tracks;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.screens.FragmentScope;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,8 +29,8 @@ public class SearchTrackModule {
 	@Provides
 	@FragmentScope
 	public SearchTrackAdapter provideAdapter(
-			FragmentActivity activity, SearchTrackPresenter presenter) {
-		return new SearchTrackAdapter(activity, presenter);
+			FragmentActivity activity, SearchTrackPresenter presenter, SdkFactory sdkFactory) {
+		return new SearchTrackAdapter(activity, presenter, sdkFactory);
 	}
 
 	@Provides

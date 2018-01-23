@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.search.artist;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListImageLoader;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
@@ -30,8 +31,8 @@ public class SearchArtistModule {
 	@Provides
 	@FragmentScope
 	public SearchArtistAdapter provideAdapter(
-			FragmentActivity activity, SearchArtistPresenter presenter) {
-		return new SearchArtistAdapter(activity, presenter);
+			FragmentActivity activity, SearchArtistPresenter presenter, SdkFactory sdkFactory) {
+		return new SearchArtistAdapter(activity, presenter, sdkFactory);
 	}
 
 	@Provides

@@ -4,15 +4,19 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListAdapter;
 
 public class NowPlayingQueueAdapter extends ListAdapter<NowPlayingQueueViewHolder> {
 
 	private final NowPlayingQueuePresenter presenter;
+	private final SdkFactory sdkFactory;
 
-	public NowPlayingQueueAdapter(Context context, NowPlayingQueuePresenter presenter) {
+	public NowPlayingQueueAdapter(
+			Context context, NowPlayingQueuePresenter presenter, SdkFactory sdkFactory) {
 		super(context, presenter);
 		this.presenter = presenter;
+		this.sdkFactory = sdkFactory;
 	}
 
 	@Override
@@ -32,6 +36,6 @@ public class NowPlayingQueueAdapter extends ListAdapter<NowPlayingQueueViewHolde
 
 	@Override
 	public NowPlayingQueueViewHolder onCreateViewHolder(Context context, View view) {
-		return new NowPlayingQueueViewHolder(context, view, presenter);
+		return new NowPlayingQueueViewHolder(context, view, presenter, sdkFactory);
 	}
 }

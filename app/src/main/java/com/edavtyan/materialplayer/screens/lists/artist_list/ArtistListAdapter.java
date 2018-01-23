@@ -4,15 +4,18 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListAdapter;
 
 public class ArtistListAdapter extends ListAdapter<ArtistListViewHolder> {
 
 	private final ArtistListPresenter presenter;
+	private final SdkFactory sdkFactory;
 
-	public ArtistListAdapter(Context context, ArtistListPresenter presenter) {
+	public ArtistListAdapter(Context context, ArtistListPresenter presenter, SdkFactory sdkFactory) {
 		super(context, presenter);
 		this.presenter = presenter;
+		this.sdkFactory = sdkFactory;
 	}
 
 	@Override
@@ -27,6 +30,6 @@ public class ArtistListAdapter extends ListAdapter<ArtistListViewHolder> {
 
 	@Override
 	public ArtistListViewHolder onCreateViewHolder(Context context, View view) {
-		return new ArtistListViewHolder(context, view, presenter);
+		return new ArtistListViewHolder(context, view, presenter, sdkFactory);
 	}
 }

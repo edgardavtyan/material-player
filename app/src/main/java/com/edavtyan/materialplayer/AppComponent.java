@@ -2,10 +2,6 @@ package com.edavtyan.materialplayer;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.DbFactory;
@@ -18,6 +14,11 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.screens.Navigator;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
+import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
 import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsFactory;
@@ -38,6 +39,7 @@ import dagger.Component;
 		CompactPrefsModule.class})
 public interface AppComponent {
 	Context context();
+	SdkFactory sdkFactory();
 	LastfmApi lastFmApi();
 	AdvancedSharedPrefs advancedPrefs();
 	AdvancedGsonSharedPrefs advancedGsonPrefs();

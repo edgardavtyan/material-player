@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.detail.album_detail;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -46,8 +47,8 @@ public class AlbumDetailFactory {
 
 	@Provides
 	@ActivityScope
-	public AlbumDetailAdapter provideAdapter(AlbumDetailPresenter presenter) {
-		return new AlbumDetailAdapter(activity, presenter);
+	public AlbumDetailAdapter provideAdapter(AlbumDetailPresenter presenter, SdkFactory sdkFactory) {
+		return new AlbumDetailAdapter(activity, presenter, sdkFactory);
 	}
 
 	@Provides

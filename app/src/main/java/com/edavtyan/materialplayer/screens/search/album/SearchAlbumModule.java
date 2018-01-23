@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.search.album;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -29,8 +30,8 @@ public class SearchAlbumModule {
 	@Provides
 	@FragmentScope
 	public SearchAlbumAdapter provideAdapter(
-			FragmentActivity activity, SearchAlbumPresenter presenter) {
-		return new SearchAlbumAdapter(activity, presenter);
+			FragmentActivity activity, SearchAlbumPresenter presenter, SdkFactory sdkFactory) {
+		return new SearchAlbumAdapter(activity, presenter, sdkFactory);
 	}
 
 	@Provides

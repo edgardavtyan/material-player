@@ -4,15 +4,18 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListAdapter;
 
 public class TrackListAdapter extends ListAdapter<TrackListViewHolder> {
 
 	private final TrackListPresenter presenter;
+	private final SdkFactory sdkFactory;
 
-	public TrackListAdapter(Context context, TrackListPresenter presenter) {
+	public TrackListAdapter(Context context, TrackListPresenter presenter, SdkFactory sdkFactory) {
 		super(context, presenter);
 		this.presenter = presenter;
+		this.sdkFactory = sdkFactory;
 	}
 
 	@Override
@@ -27,6 +30,6 @@ public class TrackListAdapter extends ListAdapter<TrackListViewHolder> {
 
 	@Override
 	public TrackListViewHolder onCreateViewHolder(Context context, View view) {
-		return new TrackListViewHolder(context, view, presenter);
+		return new TrackListViewHolder(context, view, presenter, sdkFactory);
 	}
 }

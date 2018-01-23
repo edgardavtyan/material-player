@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.now_playing_queue;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
@@ -49,7 +50,8 @@ public class NowPlayingQueueFactory {
 	@ActivityScope
 	public NowPlayingQueueAdapter provideAdapter(
 			AppCompatActivity activity,
-			NowPlayingQueuePresenter presenter) {
-		return new NowPlayingQueueAdapter(activity, presenter);
+			NowPlayingQueuePresenter presenter,
+			SdkFactory sdkFactory) {
+		return new NowPlayingQueueAdapter(activity, presenter, sdkFactory);
 	}
 }

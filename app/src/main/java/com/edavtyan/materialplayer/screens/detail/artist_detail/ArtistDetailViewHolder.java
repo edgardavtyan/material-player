@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListViewHolder;
 
 import butterknife.BindView;
@@ -15,8 +16,9 @@ public class ArtistDetailViewHolder extends AlbumListViewHolder {
 
 	private final Context context;
 
-	public ArtistDetailViewHolder(Context context, View itemView, ArtistDetailPresenter presenter) {
-		super(context, itemView, presenter);
+	public ArtistDetailViewHolder(
+			Context context, View itemView, ArtistDetailPresenter presenter, SdkFactory sdkFactory) {
+		super(context, itemView, presenter, sdkFactory);
 		this.context = context;
 	}
 

@@ -2,11 +2,12 @@ package com.edavtyan.materialplayer.screens.lists.album_list;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.screens.FragmentScope;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 
 import dagger.Module;
 import dagger.Provides;
@@ -55,7 +56,8 @@ public class AlbumListModule {
 
 	@Provides
 	@FragmentScope
-	public AlbumListAdapter provideAdapter(FragmentActivity activity, AlbumListPresenter presenter) {
-		return new AlbumListAdapter(activity, presenter);
+	public AlbumListAdapter provideAdapter(
+			FragmentActivity activity, AlbumListPresenter presenter, SdkFactory sdkFactory) {
+		return new AlbumListAdapter(activity, presenter, sdkFactory);
 	}
 }

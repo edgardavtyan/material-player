@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -61,8 +62,9 @@ public class ArtistListModule {
 
 	@Provides
 	@FragmentScope
-	public ArtistListAdapter provideAdapter(FragmentActivity activity, ArtistListPresenter presenter) {
-		return new ArtistListAdapter(activity, presenter);
+	public ArtistListAdapter provideAdapter(
+			FragmentActivity activity, ArtistListPresenter presenter, SdkFactory sdkFactory) {
+		return new ArtistListAdapter(activity, presenter, sdkFactory);
 	}
 
 	@Provides

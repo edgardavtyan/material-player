@@ -6,14 +6,22 @@ import android.graphics.Bitmap;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.lists.lib.ListViewHolder;
+import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class ArtistListViewHolder extends ListViewHolder {
+public class ArtistListViewHolder
+		extends TestableViewHolder
+		implements View.OnClickListener,
+				   PopupMenu.OnMenuItemClickListener {
+
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView artView;
@@ -21,10 +29,19 @@ public class ArtistListViewHolder extends ListViewHolder {
 	private final Context context;
 	private final ArtistListPresenter presenter;
 
-	public ArtistListViewHolder(Context context, View itemView, ArtistListPresenter presenter) {
-		super(context, itemView);
+	public ArtistListViewHolder(
+			Context context, View itemView, ArtistListPresenter presenter, SdkFactory sdkFactory) {
+		super(itemView);
 		this.context = context;
 		this.presenter = presenter;
+
+		ButterKnife.bind(this, itemView);
+
+		itemView.setOnClickListener(this);
+
+		ContextMenuModule contextMenu = new ContextMenuModule(context, sdkFactory);
+		contextMenu.init(itemView, R.id.menu, R.menu.menu_track);
+		contextMenu.setOnMenuItemClickListener(this);
 	}
 
 	public void setTitle(String title) {
@@ -58,8 +75,8 @@ public class ArtistListViewHolder extends ListViewHolder {
 		case R.id.menu_add_to_playlist:
 			presenter.onAddToPlaylist(getAdapterPositionNonFinal());
 			return true;
+		default:
+			return false;
 		}
-
-		return super.onMenuItemClick(item);
 	}
 }

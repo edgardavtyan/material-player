@@ -5,16 +5,23 @@ import android.content.res.Resources;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.lists.lib.ListViewHolder;
+import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class AlbumListViewHolder extends ListViewHolder {
+public class AlbumListViewHolder
+		extends TestableViewHolder
+		implements PopupMenu.OnMenuItemClickListener,
+				   View.OnClickListener {
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
@@ -23,10 +30,19 @@ public class AlbumListViewHolder extends ListViewHolder {
 	private final Context context;
 	private final AlbumListPresenter presenter;
 
-	public AlbumListViewHolder(Context context, View itemView, AlbumListPresenter presenter) {
-		super(context, itemView);
+	public AlbumListViewHolder(
+			Context context, View itemView, AlbumListPresenter presenter, SdkFactory sdkFactory) {
+		super(itemView);
 		this.context = context;
 		this.presenter = presenter;
+
+		ButterKnife.bind(this, itemView);
+
+		itemView.setOnClickListener(this);
+
+		ContextMenuModule contextMenuModule = new ContextMenuModule(context, sdkFactory);
+		contextMenuModule.init(itemView, R.id.menu, R.menu.menu_track);
+		contextMenuModule.setOnMenuItemClickListener(this);
 	}
 
 	public void setTitle(String title) {
