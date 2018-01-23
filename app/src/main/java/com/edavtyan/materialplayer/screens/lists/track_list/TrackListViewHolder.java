@@ -27,14 +27,16 @@ public class TrackListViewHolder
 	private final TrackListPresenter presenter;
 
 	public TrackListViewHolder(
-			Context context, View itemView, TrackListPresenter presenter, SdkFactory sdkFactory) {
+			Context context,
+			View itemView,
+			TrackListPresenter presenter,
+			ContextMenuModule contextMenu) {
 		super(itemView);
 		this.context = context;
 		this.presenter = presenter;
 		ButterKnife.bind(this, itemView);
 		itemView.setOnClickListener(this);
 
-		ContextMenuModule contextMenu = new ContextMenuModule(context, sdkFactory);
 		contextMenu.init(itemView, R.id.menu, R.menu.menu_track);
 		contextMenu.setOnMenuItemClickListener(this);
 	}

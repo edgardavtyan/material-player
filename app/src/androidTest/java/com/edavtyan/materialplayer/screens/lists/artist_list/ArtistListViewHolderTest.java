@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -19,14 +20,24 @@ import static org.mockito.Mockito.when;
 public class ArtistListViewHolderTest extends BaseTest {
 	private View itemView;
 	private ArtistListViewHolder holder;
+	private ArtistListViewHolder holderSpy;
 	private ArtistListPresenter presenter;
+	private ContextMenuModule contextMenu;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_album, null);
 		presenter = mock(ArtistListPresenter.class);
-		holder = spy(new ArtistListViewHolder(context, itemView, presenter));
+		contextMenu = mock(ContextMenuModule.class);
+		holder = new ArtistListViewHolder(context, itemView, presenter, contextMenu);
+		holderSpy = spy(holder);
+	}
+
+	@Test
+	public void constructor_initContextMenu() {
+		verify(contextMenu).init(itemView, R.id.menu, R.menu.menu_track);
+		verify(contextMenu).setOnMenuItemClickListener(holder);
 	}
 
 	@Test
@@ -43,8 +54,8 @@ public class ArtistListViewHolderTest extends BaseTest {
 
 	@Test
 	public void onClick_callPresenterWithCorrectPosition() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(1);
-		holder.onClick(null);
+		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
+		holderSpy.onClick(null);
 		verify(presenter).onHolderClick(1);
 	}
 

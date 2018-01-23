@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -19,15 +20,25 @@ import static org.mockito.Mockito.when;
 
 public class AlbumListViewHolderTest extends BaseTest {
 	private AlbumListViewHolder holder;
+	private AlbumListViewHolder holderSpy;
 	private View itemView;
 	private AlbumListPresenter presenter;
+	private ContextMenuModule contextMenu;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 		itemView = View.inflate(context, R.layout.listitem_album, null);
 		presenter = mock(AlbumListPresenter.class);
-		holder = spy(new AlbumListViewHolder(context, itemView, presenter));
+		contextMenu = mock(ContextMenuModule.class);
+		holder = new AlbumListViewHolder(context, itemView, presenter, contextMenu);
+		holderSpy = spy(holder);
+	}
+
+	@Test
+	public void constructor_initContextMenu() {
+		verify(contextMenu).init(itemView, R.id.menu, R.menu.menu_track);
+		verify(contextMenu).setOnMenuItemClickListener(holder);
 	}
 
 	@Test
@@ -50,14 +61,14 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 	@Test
 	public void onClick_callPresenterWithCorrectPosition() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(1);
-		holder.onClick(null);
+		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
+		holderSpy.onClick(null);
 		verify(presenter).onHolderClick(1);
 	}
 
 	@Test
 	public void onMenuItemClick_callPresenterWithCorrectPosition() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(2);
+		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(2);
 		callMenuItemWithId(R.id.menu_add_to_playlist);
 		verify(presenter).onAddToPlaylist(2);
 	}
@@ -65,6 +76,6 @@ public class AlbumListViewHolderTest extends BaseTest {
 	private void callMenuItemWithId(@IdRes int id) {
 		MenuItem menuItem = mock(MenuItem.class);
 		when(menuItem.getItemId()).thenReturn(id);
-		holder.onMenuItemClick(menuItem);
+		holderSpy.onMenuItemClick(menuItem);
 	}
 }

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ed.libsutils.utils.DurationUtils;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListPresenter;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListViewHolder;
-import com.ed.libsutils.utils.DurationUtils;
 
 import butterknife.BindView;
 
@@ -16,8 +16,11 @@ public class AlbumDetailViewHolder extends TrackListViewHolder {
 	@BindView(R.id.info) TextView infoView;
 
 	public AlbumDetailViewHolder(
-			Context context, View itemView, TrackListPresenter presenter, SdkFactory sdkFactory) {
-		super(context, itemView, presenter, sdkFactory);
+			Context context,
+			View itemView,
+			TrackListPresenter presenter,
+			ContextMenuModule contextMenu) {
+		super(context, itemView, presenter, contextMenu);
 	}
 
 	@Override

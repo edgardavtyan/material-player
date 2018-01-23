@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -26,7 +27,7 @@ public class ArtistListAdapterTest extends BaseTest {
 		super.beforeEach();
 		presenter = mock(ArtistListPresenter.class);
 		holder = mock(ArtistListViewHolder.class);
-		adapter = new ArtistListAdapter(context, presenter);
+		adapter = new ArtistListAdapter(context, presenter, new SdkFactory());
 	}
 
 	@Test

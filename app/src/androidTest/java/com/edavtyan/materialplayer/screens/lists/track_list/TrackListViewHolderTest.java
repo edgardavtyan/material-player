@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -20,19 +21,30 @@ import static org.mockito.Mockito.when;
 
 public class TrackListViewHolderTest extends BaseTest {
 	private TrackListViewHolder holder;
+	private TrackListViewHolder holderSpy;
+	private View itemView;
 	private TextView titleView;
 	private TextView infoView;
 	private TrackListPresenter presenter;
+	private ContextMenuModule contextMenu;
 
 	@SuppressLint("InflateParams")
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		View itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
+		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
 		presenter = mock(TrackListPresenter.class);
-		holder = spy(new TrackListViewHolder(context, itemView, presenter));
+		contextMenu = mock(ContextMenuModule.class);
+		holder = new TrackListViewHolder(context, itemView, presenter, contextMenu);
+		holderSpy = spy(holder);
 		titleView = (TextView) itemView.findViewById(R.id.title);
 		infoView = (TextView) itemView.findViewById(R.id.info);
+	}
+
+	@Test
+	public void constructor_initContextMenu() {
+		verify(contextMenu).init(itemView, R.id.menu, R.menu.menu_track);
+		verify(contextMenu).setOnMenuItemClickListener(holder);
 	}
 
 	@Test
@@ -49,14 +61,14 @@ public class TrackListViewHolderTest extends BaseTest {
 
 	@Test
 	public void onClick_callPresenterWithCorrectPosition() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(1);
-		holder.onClick(null);
+		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
+		holderSpy.onClick(null);
 		verify(presenter).onHolderClick(1);
 	}
 
 	@Test
 	public void onMenuItemClick_addToPlaylistItemClicked_callPresenterWithCorrectPosition() {
-		when(holder.getAdapterPositionNonFinal()).thenReturn(2);
+		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(2);
 		callMenuItemWithId(R.id.menu_add_to_playlist);
 		verify(presenter).onAddToPlaylist(2);
 	}
@@ -64,6 +76,6 @@ public class TrackListViewHolderTest extends BaseTest {
 	private void callMenuItemWithId(@IdRes int id) {
 		MenuItem menuItem = mock(MenuItem.class);
 		when(menuItem.getItemId()).thenReturn(id);
-		holder.onMenuItemClick(menuItem);
+		holderSpy.onMenuItemClick(menuItem);
 	}
 }

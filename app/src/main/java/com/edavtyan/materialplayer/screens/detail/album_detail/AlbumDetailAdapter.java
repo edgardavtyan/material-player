@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.detail.album_detail;
 import android.content.Context;
 import android.view.View;
 
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListAdapter;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListPresenter;
@@ -20,6 +21,7 @@ public class AlbumDetailAdapter extends TrackListAdapter {
 
 	@Override
 	public TrackListViewHolder onCreateViewHolder(Context context, View view) {
-		return new AlbumDetailViewHolder(context, view, presenter, sdkFactory);
+		ContextMenuModule contextMenu = new ContextMenuModule(context, sdkFactory);
+		return new AlbumDetailViewHolder(context, view, presenter, contextMenu);
 	}
 }

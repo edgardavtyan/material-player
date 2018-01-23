@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListAdapter;
 
@@ -30,6 +31,7 @@ public class AlbumListAdapter extends ListAdapter<AlbumListViewHolder> {
 
 	@Override
 	public AlbumListViewHolder onCreateViewHolder(Context context, View view) {
-		return new AlbumListViewHolder(context, view, presenter, sdkFactory);
+		ContextMenuModule contextMenu = new ContextMenuModule(context, sdkFactory);
+		return new AlbumListViewHolder(context, view, presenter, contextMenu);
 	}
 }

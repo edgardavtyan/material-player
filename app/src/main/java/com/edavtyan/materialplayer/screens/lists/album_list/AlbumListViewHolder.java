@@ -13,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
-import com.edavtyan.materialplayer.screens.SdkFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +30,10 @@ public class AlbumListViewHolder
 	private final AlbumListPresenter presenter;
 
 	public AlbumListViewHolder(
-			Context context, View itemView, AlbumListPresenter presenter, SdkFactory sdkFactory) {
+			Context context,
+			View itemView,
+			AlbumListPresenter presenter,
+			ContextMenuModule contextMenuModule) {
 		super(itemView);
 		this.context = context;
 		this.presenter = presenter;
@@ -40,7 +42,6 @@ public class AlbumListViewHolder
 
 		itemView.setOnClickListener(this);
 
-		ContextMenuModule contextMenuModule = new ContextMenuModule(context, sdkFactory);
 		contextMenuModule.init(itemView, R.id.menu, R.menu.menu_track);
 		contextMenuModule.setOnMenuItemClickListener(this);
 	}

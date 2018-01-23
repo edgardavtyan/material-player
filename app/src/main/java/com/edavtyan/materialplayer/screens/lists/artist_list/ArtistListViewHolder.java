@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
-import com.edavtyan.materialplayer.screens.SdkFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +29,10 @@ public class ArtistListViewHolder
 	private final ArtistListPresenter presenter;
 
 	public ArtistListViewHolder(
-			Context context, View itemView, ArtistListPresenter presenter, SdkFactory sdkFactory) {
+			Context context,
+			View itemView,
+			ArtistListPresenter presenter,
+			ContextMenuModule contextMenu) {
 		super(itemView);
 		this.context = context;
 		this.presenter = presenter;
@@ -39,7 +41,6 @@ public class ArtistListViewHolder
 
 		itemView.setOnClickListener(this);
 
-		ContextMenuModule contextMenu = new ContextMenuModule(context, sdkFactory);
 		contextMenu.init(itemView, R.id.menu, R.menu.menu_track);
 		contextMenu.setOnMenuItemClickListener(this);
 	}

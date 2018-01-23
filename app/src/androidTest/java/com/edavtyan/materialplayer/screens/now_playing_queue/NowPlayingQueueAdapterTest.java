@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -25,7 +26,7 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 		presenter = mock(NowPlayingQueuePresenter.class);
-		adapter = spy(new NowPlayingQueueAdapter(context, presenter));
+		adapter = spy(new NowPlayingQueueAdapter(context, presenter, new SdkFactory()));
 	}
 
 	@Test

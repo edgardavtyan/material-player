@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -25,7 +26,7 @@ public class TrackListAdapterTest extends BaseTest {
 		super.beforeEach();
 		presenter = mock(TrackListPresenter.class);
 		holder = mock(TrackListViewHolder.class);
-		adapter = new TrackListAdapter(context, presenter);
+		adapter = new TrackListAdapter(context, presenter, new SdkFactory());
 	}
 
 	@Test
