@@ -75,7 +75,7 @@ public class PlayerService extends Service {
 	public void onCreate() {
 		super.onCreate();
 
-		((App) getApplicationContext()).getPlayerServiceComponent(this).inject(this);
+		((App) getApplicationContext()).getPlayerServiceComponent().inject(this);
 
 		registerReceiver(playPauseReceiver, new IntentFilter(ACTION_PLAY_PAUSE));
 		registerReceiver(skipToPreviousReceiver, new IntentFilter(ACTION_REWIND));

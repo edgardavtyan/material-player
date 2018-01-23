@@ -19,7 +19,6 @@ import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
-import com.edavtyan.materialplayer.utils.AppColors;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
@@ -47,7 +46,6 @@ public interface AppComponent {
 	WebClient webClient();
 	TestableBitmapFactory testableBitmapFactory();
 	PendingIntents pendingIntents();
-	AppColors appColors();
 	ArtistDB artistDB();
 	AlbumDB albumDB();
 	TrackDB trackDB();

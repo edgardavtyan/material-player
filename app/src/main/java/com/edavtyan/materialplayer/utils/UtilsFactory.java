@@ -35,10 +35,4 @@ public class UtilsFactory {
 	public PendingIntents providePendingIntents(Context context) {
 		return new PendingIntents(context);
 	}
-
-	@Provides
-	@Singleton
-	public AppColors provideAppColors(Context context) {
-		return new AppColors(context);
-	}
 }

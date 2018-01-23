@@ -10,7 +10,6 @@ import com.ed.libsutils.utils.DurationUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
-import com.edavtyan.materialplayer.screens.SdkFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
