@@ -7,7 +7,7 @@ import com.edavtyan.materialplayer.R;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
+import static com.ed.libsutils.assertj.assertions.Assertions.assertThat;
 
 public class NowPlayingArtTest extends NowPlayingViewTest {
 	private NowPlayingArt art;

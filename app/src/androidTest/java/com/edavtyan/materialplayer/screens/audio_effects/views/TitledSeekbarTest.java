@@ -9,7 +9,7 @@ import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.assertions.NoNpeAssert.assertThatNPENotThrown;
+import static com.ed.libsutils.assertj.assertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;

@@ -13,7 +13,7 @@ import org.mockito.InOrder;
 
 import java.util.List;
 
-import static com.edavtyan.materialplayer.testlib.assertions.NoNpeAssert.assertThatNPENotThrown;
+import static com.ed.libsutils.assertj.assertions.NoNpeAssert.assertThatNPENotThrown;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.inOrder;

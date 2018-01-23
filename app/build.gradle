@@ -70,6 +70,7 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
     annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
 
+    androidTestCompile fileTree(include: ['*.aar'], dir: 'libs-androidTest')
     androidTestCompile "com.android.support:support-annotations:${appcompat_version}"
     androidTestCompile "com.android.support.test:runner:${test_runner_version}"
     androidTestCompile "com.android.support.test:rules:${test_runner_version}"

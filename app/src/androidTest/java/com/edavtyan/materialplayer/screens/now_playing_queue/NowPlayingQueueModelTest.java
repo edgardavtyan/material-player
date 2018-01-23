@@ -3,17 +3,17 @@ package com.edavtyan.materialplayer.screens.now_playing_queue;
 import android.content.Context;
 import android.content.Intent;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
+import static com.ed.libsutils.assertj.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;

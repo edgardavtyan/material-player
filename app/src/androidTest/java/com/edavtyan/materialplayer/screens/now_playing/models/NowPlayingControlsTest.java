@@ -8,7 +8,7 @@ import com.edavtyan.materialplayer.player.ShuffleMode;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
+import static com.ed.libsutils.assertj.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 public class NowPlayingControlsTest extends NowPlayingViewTest {

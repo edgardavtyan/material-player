@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.utils.UtilsFactory;
 
 import org.junit.Test;
 
-import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThat;
+import static com.ed.libsutils.assertj.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.RETURNS_MOCKS;
