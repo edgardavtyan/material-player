@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
+import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
 
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
-public class ArtistListFragmentTest extends FragmentTest2 {
+public class ArtistListFragmentTest extends FragmentTest {
 	private static ArtistListAdapter adapter;
 	private static ArtistListPresenter presenter;
 	private static Navigator navigator;

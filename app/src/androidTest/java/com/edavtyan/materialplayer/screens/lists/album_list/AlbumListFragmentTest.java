@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
+import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
 
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
-public class AlbumListFragmentTest extends FragmentTest2 {
+public class AlbumListFragmentTest extends FragmentTest {
 	private static AlbumListAdapter adapter;
 	private static AlbumListPresenter presenter;
 	private static Navigator navigator;

@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 
 import com.edavtyan.materialplayer.testlib.TestActivity;
 
-public class FragmentTest2 extends BaseTest {
+public class FragmentTest extends BaseTest {
 	public void initFragment(Fragment fragment) {
 		TestActivity testActivity = startActivity(TestActivity.class);
 		testActivity

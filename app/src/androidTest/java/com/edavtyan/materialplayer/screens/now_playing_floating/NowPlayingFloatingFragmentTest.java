@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.AppFactory;
 import com.edavtyan.materialplayer.DaggerAppComponent;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.testlib.tests.FragmentTest2;
+import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
 import com.edavtyan.materialplayer.utils.UtilsFactory;
 
 import org.junit.Test;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
-public class NowPlayingFloatingFragmentTest extends FragmentTest2 {
+public class NowPlayingFloatingFragmentTest extends FragmentTest {
 	private static NowPlayingFloatingComponent component;
 
 	public static class TestNowPlayingFloatingFragment extends NowPlayingFloatingFragment {
