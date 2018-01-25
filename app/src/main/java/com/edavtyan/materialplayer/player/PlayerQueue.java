@@ -59,6 +59,10 @@ public class PlayerQueue {
 		tracks.remove(position);
 	}
 
+	public List<Track> getTracks() {
+		return tracks;
+	}
+
 	public Track getTrackAt(int position) {
 		return tracks.get(position);
 	}

@@ -15,6 +15,7 @@ public interface AudioEngine {
 	int getSessionId();
 	void play();
 	void pause();
+	void prepareTrack(String trackPath);
 	void playTrack(String trackPath);
 	void setVolume(float volume);
 	long getPosition();

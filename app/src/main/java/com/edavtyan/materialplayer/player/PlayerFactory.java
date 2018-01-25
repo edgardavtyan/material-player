@@ -2,12 +2,13 @@ package com.edavtyan.materialplayer.player;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.player.engines.ExtendedAudioEngine;
 import com.edavtyan.materialplayer.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.player.managers.MediaSessionManager;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
+import com.google.gson.Gson;
 
 import net.protyposis.android.mediaplayer.MediaPlayer;
 
@@ -26,8 +27,12 @@ public class PlayerFactory {
 
 	@Provides
 	@PlayerServiceScope
-	public Player providePlayer(AudioEngine audioEngine, PlayerQueue queue, PlayerPrefs prefs) {
-		return new Player(audioEngine, queue, prefs);
+	public Player providePlayer(
+			AudioEngine audioEngine,
+			PlayerQueue queue,
+			PlayerPrefs prefs,
+			PlayerQueueStorage queueStorage) {
+		return new Player(audioEngine, queue, prefs, queueStorage);
 	}
 
 	@Provides
@@ -40,6 +45,12 @@ public class PlayerFactory {
 	@PlayerServiceScope
 	public PlayerQueue providePlayerQueue() {
 		return new PlayerQueue(new ArrayList<>());
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public PlayerQueueStorage providePlayerQueueStorage(Context context, Gson gson) {
+		return new PlayerQueueStorage(context, gson);
 	}
 
 	@Provides

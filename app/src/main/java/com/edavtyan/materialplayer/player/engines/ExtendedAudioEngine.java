@@ -20,6 +20,8 @@ public class ExtendedAudioEngine
 	private @Setter OnPreparedListener onPreparedListener;
 	private @Setter OnCompletedListener onCompletedListener;
 
+	private boolean prepareOnly;
+
 	public ExtendedAudioEngine(MediaPlayer player) {
 		this.player = player;
 		this.player.setOnPreparedListener(this);
@@ -39,6 +41,12 @@ public class ExtendedAudioEngine
 	@Override
 	public void pause() {
 		player.pause();
+	}
+
+	@Override
+	public void prepareTrack(String trackPath) {
+		prepareOnly = true;
+		playTrack(trackPath);
 	}
 
 	@Override
@@ -74,7 +82,12 @@ public class ExtendedAudioEngine
 
 	@Override
 	public void onPrepared(MediaPlayer mp) {
-		player.start();
+		if (prepareOnly) {
+			prepareOnly = false;
+		} else {
+			player.start();
+		}
+
 		if (onPreparedListener != null) onPreparedListener.onPrepared();
 	}
 

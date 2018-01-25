@@ -22,6 +22,7 @@ import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -53,4 +54,5 @@ public interface AppComponent {
 	CompactMainScreenPref compactMainScreenPref();
 	CompactListPref compactListPref();
 	CompactDetailPref compactDetailPref();
+	Gson gson();
 }

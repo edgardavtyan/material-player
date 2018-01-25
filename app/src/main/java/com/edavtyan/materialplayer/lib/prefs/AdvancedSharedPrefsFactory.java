@@ -30,10 +30,4 @@ public class AdvancedSharedPrefsFactory {
 	public AdvancedGsonSharedPrefs provideAdvancedGsonPrefs(SharedPreferences basePrefs, Gson gson) {
 		return new AdvancedGsonSharedPrefs(basePrefs, gson);
 	}
-
-	@Provides
-	@Singleton
-	public Gson provideGson() {
-		return new Gson();
-	}
 }
