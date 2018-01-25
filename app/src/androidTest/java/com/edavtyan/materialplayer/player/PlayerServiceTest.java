@@ -42,7 +42,7 @@ public class PlayerServiceTest extends BaseTest {
 
 		player = mock(Player.class);
 		PlayerFactory playerFactory = mock(PlayerFactory.class, RETURNS_MOCKS);
-		when(playerFactory.providePlayer(any(), any(), any())).thenReturn(player);
+		when(playerFactory.providePlayer(any(), any(), any(), any())).thenReturn(player);
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);
 		PlayerNotificationFactory notificationModule = mock(PlayerNotificationFactory.class, RETURNS_MOCKS);

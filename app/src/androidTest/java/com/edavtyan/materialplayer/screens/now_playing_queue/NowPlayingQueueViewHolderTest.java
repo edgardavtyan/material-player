@@ -41,8 +41,6 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 		sdkFactory = mock(SdkFactory.class);
 		when(sdkFactory.createPopupMenu(any(), any())).thenReturn(popupMenu);
 
-		app.setSdkFactory(sdkFactory);
-
 		presenter = mock(NowPlayingQueuePresenter.class);
 
 		itemView = LayoutInflater.from(context).inflate(R.layout.listitem_track, null, false);
@@ -52,7 +50,6 @@ public class NowPlayingQueueViewHolderTest extends BaseTest {
 	@Override
 	public void afterEach() {
 		super.afterEach();
-		app.setSdkFactory(null);
 	}
 
 	@Test
