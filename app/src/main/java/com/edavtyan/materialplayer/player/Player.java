@@ -13,6 +13,7 @@ public class Player
 	private final AudioEngine audioEngine;
 	private final PlayerPrefs prefs;
 	private final PlayerQueue queue;
+	private final PlayerQueueStorage queueStorage;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
 
@@ -27,15 +28,22 @@ public class Player
 	public Player(
 			AudioEngine audioEngine,
 			PlayerQueue queue,
-			PlayerPrefs prefs) {
+			PlayerPrefs prefs,
+			PlayerQueueStorage queueStorage) {
 		this.prefs = prefs;
 		this.audioEngine = audioEngine;
+		this.queueStorage = queueStorage;
 		this.audioEngine.setOnPreparedListener(this);
 		this.audioEngine.setOnCompletedListener(this);
 
 		this.queue = queue;
 		this.queue.setRepeatMode(prefs.getRepeatMode());
 		this.queue.setShuffleMode(prefs.getShuffleMode());
+		this.queue.addManyTracks(queueStorage.load());
+
+		if (queue.hasData()) {
+			prepareTrackAt(prefs.getCurrentPosition());
+		}
 
 		onNewTrackListeners = new ArrayList<>();
 		onPlayPauseListeners = new ArrayList<>();
@@ -63,23 +71,33 @@ public class Player
 
 	public void addTrack(Track track) {
 		queue.addTrack(track);
+		queueStorage.save(queue.getTracks());
 	}
 
 	public void addManyTracks(List<Track> tracks) {
 		queue.addManyTracks(tracks);
+		queueStorage.save(queue.getTracks());
 	}
 
 	public void removeTrackAt(int position) {
 		queue.removeTrackAt(position);
+		queueStorage.save(queue.getTracks());
+	}
+
+	public void prepareTrackAt(int position) {
+		queue.setPosition(position);
+		audioEngine.prepareTrack(queue.getCurrentTrack().getPath());
 	}
 
 	public void playNewTracks(List<Track> tracks, int position) {
 		queue.replaceTracks(tracks, position);
+		queueStorage.save(queue.getTracks());
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
 	public void playTrackAt(int position) {
 		queue.setPosition(position);
+		prefs.saveCurrentPosition(position);
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
@@ -122,6 +140,7 @@ public class Player
 	public void skipToNext() {
 		if (!hasData()) return;
 		queue.moveToNext();
+		prefs.saveCurrentPosition(queue.getPosition());
 		if (queue.isEnded()) return;
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
@@ -131,6 +150,7 @@ public class Player
 			audioEngine.setPosition(0);
 		} else {
 			queue.moveToPrev();
+			prefs.saveCurrentPosition(queue.getPosition());
 			audioEngine.playTrack(queue.getCurrentTrack().getPath());
 		}
 	}

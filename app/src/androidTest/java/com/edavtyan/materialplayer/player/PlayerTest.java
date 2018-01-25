@@ -3,14 +3,15 @@ package com.edavtyan.materialplayer.player;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.InOrder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.ed.libsutils.assertj.assertions.NoNpeAssert.assertThatNPENotThrown;
@@ -19,6 +20,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -29,6 +31,7 @@ public class PlayerTest extends BaseTest {
 	private AudioEngine audioEngine;
 	private PlayerQueue queue;
 	private Player player;
+	private PlayerQueueStorage queueStorage;
 
 	@Override
 	public void beforeEach() {
@@ -37,7 +40,8 @@ public class PlayerTest extends BaseTest {
 		prefs = new PlayerPrefs(new AdvancedSharedPrefs(basePrefs));
 		audioEngine = mock(AudioEngine.class);
 		queue = mock(PlayerQueue.class);
-		player = new Player(audioEngine, queue, prefs);
+		queueStorage = mock(PlayerQueueStorage.class);
+		player = new Player(audioEngine, queue, prefs, queueStorage);
 	}
 
 	@Override
@@ -59,15 +63,40 @@ public class PlayerTest extends BaseTest {
 	@Test
 	public void constructor_setShuffleModeFromPrefs() {
 		prefs.saveShuffleMode(ShuffleMode.ENABLED);
-		player = new Player(audioEngine, queue, prefs);
+		player = new Player(audioEngine, queue, prefs, queueStorage);
 		verify(queue).setShuffleMode(ShuffleMode.ENABLED);
 	}
 
 	@Test
 	public void constructor_setRepeatModeFromPrefs() {
 		prefs.saveRepeatMode(RepeatMode.REPEAT_ALL);
-		player = new Player(audioEngine, queue, prefs);
+		player = new Player(audioEngine, queue, prefs, queueStorage);
 		verify(queue).setRepeatMode(RepeatMode.REPEAT_ALL);
+	}
+
+	@Test
+	public void constructor_setSavedTracksFromStorage() {
+		List<Track> tracks = new ArrayList<>();
+		when(queueStorage.load()).thenReturn(tracks);
+
+		reset(queue);
+		player = new Player(audioEngine, queue, prefs, queueStorage);
+
+		verify(queue).addManyTracks(tracks);
+	}
+
+	@Test
+	public void constructor_queueHasData_prepareTrackAtPositionFromPrefs() {
+		Track track = new Track();
+		track.setPath("path_600");
+		when(queue.hasData()).thenReturn(true);
+		when(queue.getCurrentTrack()).thenReturn(track);
+		prefs.saveCurrentPosition(600);
+
+		player = new Player(audioEngine, queue, prefs, queueStorage);
+
+		verify(queue).setPosition(600);
+		verify(audioEngine).prepareTrack("path_600");
 	}
 
 	@Test
@@ -130,6 +159,13 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
+	public void playTrackAt_savePositionToPrefs() {
+		when(queue.getCurrentTrack()).thenReturn(new Track());
+		player.playTrackAt(1400);
+		assertThat(prefs.getCurrentPosition()).isEqualTo(1400);
+	}
+
+	@Test
 	public void play_playAudioEngine() {
 		player.play();
 		verify(audioEngine).play();
@@ -153,6 +189,15 @@ public class PlayerTest extends BaseTest {
 		InOrder order = inOrder(queue, audioEngine);
 		order.verify(queue).moveToNext();
 		order.verify(audioEngine).playTrack("path");
+	}
+
+	@Test
+	public void playNext_queueHasData_saveNewPositionToPrefs() {
+		when(queue.hasData()).thenReturn(true);
+		when(queue.getPosition()).thenReturn(1800);
+		when(queue.getCurrentTrack()).thenReturn(new Track());
+		player.skipToNext();
+		assertThat(prefs.getCurrentPosition()).isEqualTo(1800);
 	}
 
 	@Test
@@ -181,6 +226,14 @@ public class PlayerTest extends BaseTest {
 		when(audioEngine.getPosition()).thenReturn(5000L);
 		player.skipToPrevious();
 		verify(audioEngine).setPosition(0);
+	}
+
+	@Test
+	public void rewind_saveNewPositionToPrefs() {
+		when(queue.getCurrentTrack()).thenReturn(new Track());
+		when(queue.getPosition()).thenReturn(2200);
+		player.skipToPrevious();
+		assertThat(prefs.getCurrentPosition()).isEqualTo(2200);
 	}
 
 	@Test

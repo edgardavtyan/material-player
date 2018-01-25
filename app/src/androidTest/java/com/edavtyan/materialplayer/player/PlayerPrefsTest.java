@@ -64,4 +64,21 @@ public class PlayerPrefsTest extends BaseTest {
 		assertThat(advancedPrefs.getEnum("player_repeat", RepeatMode.DISABLED))
 				.isEqualTo(RepeatMode.REPEAT_ALL);
 	}
+
+	@Test
+	public void getCurrentPosition_prefSet_returnSetPrefValue() {
+		advancedPrefs.edit().putInt("player_position", 800).apply();
+		assertThat(playerPrefs.getCurrentPosition()).isEqualTo(800);
+	}
+
+	@Test
+	public void getCurrentPosition_prefNotSet_returnDefaultValue() {
+		assertThat(playerPrefs.getCurrentPosition()).isEqualTo(0);
+	}
+
+	@Test
+	public void saveCurrentPostion_saveGivenValueToPrefs() {
+		playerPrefs.saveCurrentPosition(1000);
+		assertThat(playerPrefs.getCurrentPosition()).isEqualTo(1000);
+	}
 }
