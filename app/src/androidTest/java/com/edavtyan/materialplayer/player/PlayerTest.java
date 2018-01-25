@@ -1,10 +1,6 @@
 package com.edavtyan.materialplayer.player;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -26,7 +22,6 @@ import static org.mockito.Mockito.when;
 
 @SuppressWarnings("unchecked")
 public class PlayerTest extends BaseTest {
-	private SharedPreferences basePrefs;
 	private PlayerPrefs prefs;
 	private AudioEngine audioEngine;
 	private PlayerQueue queue;
@@ -36,40 +31,23 @@ public class PlayerTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		basePrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		prefs = new PlayerPrefs(new AdvancedSharedPrefs(basePrefs));
+		prefs = mock(PlayerPrefs.class);
 		audioEngine = mock(AudioEngine.class);
 		queue = mock(PlayerQueue.class);
 		queueStorage = mock(PlayerQueueStorage.class);
 		player = new Player(audioEngine, queue, prefs, queueStorage);
 	}
 
-	@Override
-	public void afterEach() {
-		super.afterEach();
-		basePrefs.edit().clear().commit();
-	}
-
-	@Test
-	public void constructor_setDefaultShuffleMode() {
-		verify(queue).setShuffleMode(ShuffleMode.DISABLED);
-	}
-
-	@Test
-	public void constructor_setDefaultRepeatMode() {
-		verify(queue).setRepeatMode(RepeatMode.DISABLED);
-	}
-
 	@Test
 	public void constructor_setShuffleModeFromPrefs() {
-		prefs.saveShuffleMode(ShuffleMode.ENABLED);
+		when(prefs.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
 		player = new Player(audioEngine, queue, prefs, queueStorage);
 		verify(queue).setShuffleMode(ShuffleMode.ENABLED);
 	}
 
 	@Test
 	public void constructor_setRepeatModeFromPrefs() {
-		prefs.saveRepeatMode(RepeatMode.REPEAT_ALL);
+		when(prefs.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		player = new Player(audioEngine, queue, prefs, queueStorage);
 		verify(queue).setRepeatMode(RepeatMode.REPEAT_ALL);
 	}
@@ -91,7 +69,7 @@ public class PlayerTest extends BaseTest {
 		track.setPath("path_600");
 		when(queue.hasData()).thenReturn(true);
 		when(queue.getCurrentTrack()).thenReturn(track);
-		prefs.saveCurrentIndex(600);
+		when(prefs.getCurrentIndex()).thenReturn(600);
 
 		player = new Player(audioEngine, queue, prefs, queueStorage);
 
@@ -162,7 +140,7 @@ public class PlayerTest extends BaseTest {
 	public void playTrackAt_savePositionToPrefs() {
 		when(queue.getCurrentTrack()).thenReturn(new Track());
 		player.playTrackAt(1400);
-		assertThat(prefs.getCurrentIndex()).isEqualTo(1400);
+		verify(prefs).saveCurrentIndex(1400);
 	}
 
 	@Test
@@ -197,7 +175,7 @@ public class PlayerTest extends BaseTest {
 		when(queue.getCurrentIndex()).thenReturn(1800);
 		when(queue.getCurrentTrack()).thenReturn(new Track());
 		player.skipToNext();
-		assertThat(prefs.getCurrentIndex()).isEqualTo(1800);
+		verify(prefs).saveCurrentIndex(1800);
 	}
 
 	@Test
@@ -233,7 +211,7 @@ public class PlayerTest extends BaseTest {
 		when(queue.getCurrentTrack()).thenReturn(new Track());
 		when(queue.getCurrentIndex()).thenReturn(2200);
 		player.skipToPrevious();
-		assertThat(prefs.getCurrentIndex()).isEqualTo(2200);
+		verify(prefs).saveCurrentIndex(2200);
 	}
 
 	@Test
@@ -252,7 +230,7 @@ public class PlayerTest extends BaseTest {
 	public void toggleShuffleMode_saveShuffleMode() {
 		when(queue.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
 		player.toggleShuffleMode();
-		assertThat(prefs.getShuffleMode()).isEqualTo(ShuffleMode.ENABLED);
+		verify(prefs).saveShuffleMode(ShuffleMode.ENABLED);
 	}
 
 	@Test
@@ -271,7 +249,7 @@ public class PlayerTest extends BaseTest {
 	public void toggleRepeatMode_saveRepeatMode() {
 		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
 		player.toggleRepeatMode();
-		assertThat(prefs.getRepeatMode()).isEqualTo(RepeatMode.REPEAT_ALL);
+		verify(prefs).saveRepeatMode(RepeatMode.REPEAT_ALL);
 	}
 
 	@Test
