@@ -61,9 +61,9 @@ public class QueueTest extends BaseTest {
 	@Test
 	public void moveToNext_notAtLastTrack_incrementPositionAndSetIsEndedToFalse() {
 		when(innerList.size()).thenReturn(4);
-		queue.setPosition(2);
+		queue.setCurrentIndex(2);
 		queue.moveToNext();
-		assertThat(queue.getPosition()).isEqualTo(3);
+		assertThat(queue.getCurrentIndex()).isEqualTo(3);
 		assertThat(queue.isEnded()).isFalse();
 	}
 
@@ -71,9 +71,9 @@ public class QueueTest extends BaseTest {
 	public void moveToNext_repeatOne_keepPositionAndSetIsEndedToFalse() {
 		when(innerList.size()).thenReturn(4);
 		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ONE);
-		queue.setPosition(3);
+		queue.setCurrentIndex(3);
 		queue.moveToNext();
-		assertThat(queue.getPosition()).isEqualTo(3);
+		assertThat(queue.getCurrentIndex()).isEqualTo(3);
 		assertThat(queue.isEnded()).isFalse();
 	}
 
@@ -81,9 +81,9 @@ public class QueueTest extends BaseTest {
 	public void moveToNext_atLastTrackAndRepeatDisabled_keepPositionAndSetIsEndedToTrue() {
 		when(innerList.size()).thenReturn(4);
 		when(queue.getRepeatMode()).thenReturn(RepeatMode.DISABLED);
-		queue.setPosition(3);
+		queue.setCurrentIndex(3);
 		queue.moveToNext();
-		assertThat(queue.getPosition()).isEqualTo(3);
+		assertThat(queue.getCurrentIndex()).isEqualTo(3);
 		assertThat(queue.isEnded()).isTrue();
 	}
 
@@ -91,18 +91,18 @@ public class QueueTest extends BaseTest {
 	public void moveToNext_atLastTrackAndRepeatAll_setPositionToZero() {
 		when(innerList.size()).thenReturn(4);
 		when(queue.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
-		queue.setPosition(3);
+		queue.setCurrentIndex(3);
 		queue.moveToNext();
-		assertThat(queue.getPosition()).isZero();
+		assertThat(queue.getCurrentIndex()).isZero();
 		assertThat(queue.isEnded()).isFalse();
 	}
 
 	@Test
 	public void moveToPrev_atFirstTrack_setPositionToLastTrack() {
 		when(innerList.size()).thenReturn(5);
-		queue.setPosition(0);
+		queue.setCurrentIndex(0);
 		queue.moveToPrev();
-		assertThat(queue.getPosition()).isEqualTo(4);
+		assertThat(queue.getCurrentIndex()).isEqualTo(4);
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public class QueueTest extends BaseTest {
 	public void getCurrentTrack_returnTrackAtGivenIndex() {
 		Track track = mock(Track.class);
 		when(innerList.get(6)).thenReturn(track);
-		queue.setPosition(6);
+		queue.setCurrentIndex(6);
 		assertThat(queue.getCurrentTrack()).isSameAs(track);
 	}
 
@@ -180,9 +180,9 @@ public class QueueTest extends BaseTest {
 	private void testMoveToPrevWithRepeatMode(RepeatMode repeatMode, int expectedPosition) {
 		when(queue.getRepeatMode()).thenReturn(repeatMode);
 		when(innerList.size()).thenReturn(5);
-		queue.setPosition(3);
+		queue.setCurrentIndex(3);
 		queue.moveToPrev();
-		assertThat(queue.getPosition()).isEqualTo(expectedPosition);
+		assertThat(queue.getCurrentIndex()).isEqualTo(expectedPosition);
 	}
 
 	private void testToggleShuffle(ShuffleMode from, ShuffleMode to) {

@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.player;
 
-import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.player.engines.AudioEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Player
 		this.queue.addManyTracks(queueStorage.load());
 
 		if (queue.hasData()) {
-			prepareTrackAt(prefs.getCurrentPosition());
+			prepareTrackAt(prefs.getCurrentIndex());
 		}
 
 		onNewTrackListeners = new ArrayList<>();
@@ -85,7 +85,7 @@ public class Player
 	}
 
 	public void prepareTrackAt(int position) {
-		queue.setPosition(position);
+		queue.setCurrentIndex(position);
 		audioEngine.prepareTrack(queue.getCurrentTrack().getPath());
 	}
 
@@ -96,8 +96,8 @@ public class Player
 	}
 
 	public void playTrackAt(int position) {
-		queue.setPosition(position);
-		prefs.saveCurrentPosition(position);
+		queue.setCurrentIndex(position);
+		prefs.saveCurrentIndex(position);
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
@@ -115,6 +115,10 @@ public class Player
 
 	public boolean hasData() {
 		return queue.hasData();
+	}
+
+	public boolean isPlaying() {
+		return audioEngine.isPlaying();
 	}
 
 	public void play() {
@@ -140,39 +144,31 @@ public class Player
 	public void skipToNext() {
 		if (!hasData()) return;
 		queue.moveToNext();
-		prefs.saveCurrentPosition(queue.getPosition());
+		prefs.saveCurrentIndex(queue.getCurrentIndex());
 		if (queue.isEnded()) return;
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
 
 	public void skipToPrevious() {
-		if (audioEngine.getPosition() >= 5000) {
-			audioEngine.setPosition(0);
+		if (audioEngine.getSeek() >= 5000) {
+			audioEngine.setSeek(0);
 		} else {
 			queue.moveToPrev();
-			prefs.saveCurrentPosition(queue.getPosition());
+			prefs.saveCurrentIndex(queue.getCurrentIndex());
 			audioEngine.playTrack(queue.getCurrentTrack().getPath());
 		}
 	}
 
-	public long getPosition() {
-		return audioEngine.getPosition();
+	public long getSeek() {
+		return audioEngine.getSeek();
 	}
 
-	public void setPosition(int position) {
-		audioEngine.setPosition(position);
+	public void setSeek(int position) {
+		audioEngine.setSeek(position);
 	}
 
 	public ShuffleMode getShuffleMode() {
 		return queue.getShuffleMode();
-	}
-
-	public RepeatMode getRepeatMode() {
-		return queue.getRepeatMode();
-	}
-
-	public boolean isPlaying() {
-		return audioEngine.isPlaying();
 	}
 
 	public void toggleShuffleMode() {
@@ -180,15 +176,13 @@ public class Player
 		prefs.saveShuffleMode(getShuffleMode());
 	}
 
+	public RepeatMode getRepeatMode() {
+		return queue.getRepeatMode();
+	}
+
 	public void toggleRepeatMode() {
 		queue.toggleRepeatMode();
 		prefs.saveRepeatMode(getRepeatMode());
-	}
-
-	public void onPrepared() {
-		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
-			onNewTrackListener.onNewTrack();
-		}
 	}
 
 	public void lowerVolume() {
@@ -197,6 +191,12 @@ public class Player
 
 	public void restoreVolume() {
 		audioEngine.setVolume(1.0f);
+	}
+
+	public void onPrepared() {
+		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
+			onNewTrackListener.onNewTrack();
+		}
 	}
 
 	public void onCompleted() {

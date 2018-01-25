@@ -91,11 +91,11 @@ public class PlayerTest extends BaseTest {
 		track.setPath("path_600");
 		when(queue.hasData()).thenReturn(true);
 		when(queue.getCurrentTrack()).thenReturn(track);
-		prefs.saveCurrentPosition(600);
+		prefs.saveCurrentIndex(600);
 
 		player = new Player(audioEngine, queue, prefs, queueStorage);
 
-		verify(queue).setPosition(600);
+		verify(queue).setCurrentIndex(600);
 		verify(audioEngine).prepareTrack("path_600");
 	}
 
@@ -154,7 +154,7 @@ public class PlayerTest extends BaseTest {
 		player.playTrackAt(4);
 
 		InOrder order = inOrder(queue, audioEngine);
-		order.verify(queue).setPosition(4);
+		order.verify(queue).setCurrentIndex(4);
 		order.verify(audioEngine).playTrack("path");
 	}
 
@@ -162,7 +162,7 @@ public class PlayerTest extends BaseTest {
 	public void playTrackAt_savePositionToPrefs() {
 		when(queue.getCurrentTrack()).thenReturn(new Track());
 		player.playTrackAt(1400);
-		assertThat(prefs.getCurrentPosition()).isEqualTo(1400);
+		assertThat(prefs.getCurrentIndex()).isEqualTo(1400);
 	}
 
 	@Test
@@ -178,7 +178,7 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
-	public void playNext_moveQueueToNextAndStartEngine() {
+	public void skipToNext_moveQueueToNextAndStartEngine() {
 		Track track = mock(Track.class);
 		when(track.getPath()).thenReturn("path");
 		when(queue.getCurrentTrack()).thenReturn(track);
@@ -192,16 +192,16 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
-	public void playNext_queueHasData_saveNewPositionToPrefs() {
+	public void skipToNext_queueHasData_saveNewPositionToPrefs() {
 		when(queue.hasData()).thenReturn(true);
-		when(queue.getPosition()).thenReturn(1800);
+		when(queue.getCurrentIndex()).thenReturn(1800);
 		when(queue.getCurrentTrack()).thenReturn(new Track());
 		player.skipToNext();
-		assertThat(prefs.getCurrentPosition()).isEqualTo(1800);
+		assertThat(prefs.getCurrentIndex()).isEqualTo(1800);
 	}
 
 	@Test
-	public void playNext_queueEnded_notPlayAnything() {
+	public void skipToNext_queueEnded_notPlayAnything() {
 		when(queue.hasData()).thenReturn(true);
 		when(queue.isEnded()).thenReturn(true);
 		player.skipToNext();
@@ -209,11 +209,11 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
-	public void rewind_playedLessThatFiveSeconds_playPreviousTrack() {
+	public void skipToPrevious_playedLessThatFiveSeconds_playPreviousTrack() {
 		Track track = mock(Track.class);
 		when(track.getPath()).thenReturn("path");
 		when(queue.getCurrentTrack()).thenReturn(track);
-		when(audioEngine.getPosition()).thenReturn(4999L);
+		when(audioEngine.getSeek()).thenReturn(4999L);
 
 		player.skipToPrevious();
 
@@ -222,18 +222,18 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
-	public void rewind_playedFiveSecondsOrMore_playFromBeginning() {
-		when(audioEngine.getPosition()).thenReturn(5000L);
+	public void skipToPrevious_playedFiveSecondsOrMore_playFromBeginning() {
+		when(audioEngine.getSeek()).thenReturn(5000L);
 		player.skipToPrevious();
-		verify(audioEngine).setPosition(0);
+		verify(audioEngine).setSeek(0);
 	}
 
 	@Test
-	public void rewind_saveNewPositionToPrefs() {
+	public void skipToPrevious_saveNewPositionToPrefs() {
 		when(queue.getCurrentTrack()).thenReturn(new Track());
-		when(queue.getPosition()).thenReturn(2200);
+		when(queue.getCurrentIndex()).thenReturn(2200);
 		player.skipToPrevious();
-		assertThat(prefs.getCurrentPosition()).isEqualTo(2200);
+		assertThat(prefs.getCurrentIndex()).isEqualTo(2200);
 	}
 
 	@Test
@@ -302,15 +302,15 @@ public class PlayerTest extends BaseTest {
 	}
 
 	@Test
-	public void getPosition_returnPositionFromEngine() {
-		when(audioEngine.getPosition()).thenReturn(120L);
-		assertThat(player.getPosition()).isEqualTo(120L);
+	public void getSeek_returnSeekFromEngine() {
+		when(audioEngine.getSeek()).thenReturn(120L);
+		assertThat(player.getSeek()).isEqualTo(120L);
 	}
 
 	@Test
-	public void setPosition_callEngine() {
-		player.setPosition(60);
-		verify(audioEngine).setPosition(60);
+	public void setSeek_callEngine() {
+		player.setSeek(60);
+		verify(audioEngine).setSeek(60);
 	}
 
 	@Test

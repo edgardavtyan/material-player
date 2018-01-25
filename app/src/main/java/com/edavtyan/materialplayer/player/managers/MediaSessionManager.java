@@ -23,7 +23,7 @@ public class MediaSessionManager {
 					? PlaybackStateCompat.STATE_PLAYING
 					: PlaybackStateCompat.STATE_PAUSED;
 
-			playbackState.setState(state, player.getPosition(), 1.0f);
+			playbackState.setState(state, player.getSeek(), 1.0f);
 			mediaSession.setPlaybackState(playbackState.build());
 		}
 	};

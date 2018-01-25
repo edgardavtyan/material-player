@@ -153,7 +153,7 @@ public class NowPlayingModelTest extends BaseTest {
 
 	@Test
 	public void getPosition_returnPositionOfNowPlayingTrack() {
-		when(player.getPosition()).thenReturn(5678L);
+		when(player.getSeek()).thenReturn(5678L);
 		assertThat(model.getPosition()).isEqualTo(5678);
 	}
 
@@ -172,7 +172,7 @@ public class NowPlayingModelTest extends BaseTest {
 	@Test
 	public void seek_setPlayerPosition() {
 		model.seek(1357);
-		verify(player).setPosition(1357);
+		verify(player).setSeek(1357);
 	}
 
 	@Test

@@ -90,7 +90,7 @@ public class NowPlayingModel
 	}
 
 	public void seek(int positionMS) {
-		service.getPlayer().setPosition(positionMS);
+		service.getPlayer().setSeek(positionMS);
 	}
 
 	public int getDuration() {
@@ -98,7 +98,7 @@ public class NowPlayingModel
 	}
 
 	public int getPosition() {
-		return (int) service.getPlayer().getPosition();
+		return (int) service.getPlayer().getSeek();
 	}
 
 	public String getTitle() {

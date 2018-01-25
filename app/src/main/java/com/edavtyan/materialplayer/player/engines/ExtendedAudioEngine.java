@@ -66,13 +66,13 @@ public class ExtendedAudioEngine
 	}
 
 	@Override
-	public long getPosition() {
+	public long getSeek() {
 		return player.getCurrentPosition();
 	}
 
 	@Override
-	public void setPosition(int position) {
-		player.seekTo(position);
+	public void setSeek(int seek) {
+		player.seekTo(seek);
 	}
 
 	@Override

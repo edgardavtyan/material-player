@@ -18,7 +18,7 @@ public interface AudioEngine {
 	void prepareTrack(String trackPath);
 	void playTrack(String trackPath);
 	void setVolume(float volume);
-	long getPosition();
-	void setPosition(int position);
+	long getSeek();
+	void setSeek(int seek);
 	boolean isPlaying();
 }

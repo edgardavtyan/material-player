@@ -66,19 +66,19 @@ public class PlayerPrefsTest extends BaseTest {
 	}
 
 	@Test
-	public void getCurrentPosition_prefSet_returnSetPrefValue() {
+	public void getCurrentIndex_prefSet_returnSetPrefValue() {
 		advancedPrefs.edit().putInt("player_position", 800).apply();
-		assertThat(playerPrefs.getCurrentPosition()).isEqualTo(800);
+		assertThat(playerPrefs.getCurrentIndex()).isEqualTo(800);
 	}
 
 	@Test
-	public void getCurrentPosition_prefNotSet_returnDefaultValue() {
-		assertThat(playerPrefs.getCurrentPosition()).isEqualTo(0);
+	public void getCurrentIndex_prefNotSet_returnDefaultValue() {
+		assertThat(playerPrefs.getCurrentIndex()).isEqualTo(0);
 	}
 
 	@Test
-	public void saveCurrentPostion_saveGivenValueToPrefs() {
-		playerPrefs.saveCurrentPosition(1000);
-		assertThat(playerPrefs.getCurrentPosition()).isEqualTo(1000);
+	public void saveCurrentIndex_saveGivenValueToPrefs() {
+		playerPrefs.saveCurrentIndex(1000);
+		assertThat(playerPrefs.getCurrentIndex()).isEqualTo(1000);
 	}
 }
