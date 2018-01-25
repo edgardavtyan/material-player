@@ -4,7 +4,8 @@ import com.edavtyan.materialplayer.db.Track;
 
 public class PlayerNotificationPresenter
 		implements PlayerNotificationModel.OnNewTrackListener,
-				   PlayerNotificationModel.OnPlayPauseListener {
+				   PlayerNotificationModel.OnPlayPauseListener,
+				   PlayerNotificationModel.OnServiceConnectedListener {
 
 	private final PlayerNotificationModel model;
 	private final PlayerNotification view;
@@ -15,6 +16,7 @@ public class PlayerNotificationPresenter
 		this.model = model;
 		this.model.setOnNewTrackListener(this);
 		this.model.setOnPlayPauseListener(this);
+		this.model.setOnServiceConnectedListener(this);
 		this.view = view;
 	}
 
@@ -40,5 +42,12 @@ public class PlayerNotificationPresenter
 	public void onPlayPause() {
 		view.setIsPlaying(model.isPlaying());
 		view.update();
+	}
+
+	@Override
+	public void onServiceConnected() {
+		if (model.getTrack() != null) {
+			onNewTrack();
+		}
 	}
 }

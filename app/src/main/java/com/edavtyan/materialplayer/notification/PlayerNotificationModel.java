@@ -26,6 +26,7 @@ public class PlayerNotificationModel
 
 	private @Setter OnNewTrackListener onNewTrackListener;
 	private @Setter OnPlayPauseListener onPlayPauseListener;
+	private @Setter OnServiceConnectedListener onServiceConnectedListener;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();
@@ -33,6 +34,10 @@ public class PlayerNotificationModel
 
 	public interface OnPlayPauseListener {
 		void onPlayPause();
+	}
+
+	public interface OnServiceConnectedListener {
+		void onServiceConnected();
 	}
 
 	public PlayerNotificationModel(Context context, AlbumArtProvider albumArtProvider) {
@@ -68,6 +73,7 @@ public class PlayerNotificationModel
 		service = ((PlayerService.PlayerBinder) binder).getService();
 		service.getPlayer().setOnNewTrackListener(this);
 		service.getPlayer().setOnPlayPauseListener(this);
+		onServiceConnectedListener.onServiceConnected();
 	}
 
 	@Override
