@@ -46,7 +46,7 @@ public class PlayerNotificationPresenter
 
 	@Override
 	public void onServiceConnected() {
-		if (model.getTrack() != null) {
+		if (model.hasData()) {
 			onNewTrack();
 		}
 	}

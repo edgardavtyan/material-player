@@ -60,6 +60,10 @@ public class PlayerNotificationModel
 		return service.getPlayer().isPlaying();
 	}
 
+	public boolean hasData() {
+		return service.getPlayer().hasData();
+	}
+
 	public Track getTrack() {
 		return service.getPlayer().getCurrentTrack();
 	}
