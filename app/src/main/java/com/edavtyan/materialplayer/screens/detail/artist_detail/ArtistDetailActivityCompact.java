@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.screens.detail.artist_detail;
 
-import android.animation.Animator;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -47,16 +46,14 @@ public class ArtistDetailActivityCompact
 		artView.setVisibility(View.INVISIBLE);
 
 		sharedArtView.post(() -> {
-			int[] artViewLocation = new int[2];
-			artView.getLocationOnScreen(artViewLocation);
+			mainWrapper.setAlpha(0);
+			mainWrapper.animate().alpha(1);
 
-			int[] sharedArtViewLocation = new int[2];
-			sharedArtView.getLocationOnScreen(sharedArtViewLocation);
+			getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
 			int statusBarHeight = getWindow().getDecorView().getHeight() - contentView.getHeight();
-
-			mainWrapper.setAlpha(0);
-			getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+			int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
+			int[] sharedArtViewLocation = ViewUtils.getLocationOnScreen(sharedArtView);
 
 			ArtistDetailIntent intent = new ArtistDetailIntent(getIntent());
 			ViewUtils.setSize(sharedArtView, artView.getWidth(), artView.getHeight());
@@ -72,27 +69,9 @@ public class ArtistDetailActivityCompact
 						 .scaleX(1)
 						 .scaleY(1)
 						 .setDuration(500)
-						 .setListener(new Animator.AnimatorListener() {
-							 @Override
-							 public void onAnimationStart(Animator animation) {
-								 new Handler().postDelayed(ArtistListFragment.sharedViews::hide, 50);
-							 }
-
-							 @Override
-							 public void onAnimationEnd(Animator animation) {
-//								 sharedArtView.setVisibility(View.INVISIBLE);
-//								 artView.setVisibility(View.VISIBLE);
-								 ArtistListFragment.sharedViews.show();
-							 }
-
-							 @Override
-							 public void onAnimationCancel(Animator animation) {}
-
-							 @Override
-							 public void onAnimationRepeat(Animator animation) {}
-						 })
+						 .withStartAction(() -> new Handler().postDelayed(ArtistListFragment.sharedViews::hide, 50))
+						 .withEndAction(ArtistListFragment.sharedViews::show)
 						 .start();
-			mainWrapper.animate().alpha(1);
 		});
 	}
 

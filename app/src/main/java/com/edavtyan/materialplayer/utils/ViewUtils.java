@@ -12,4 +12,10 @@ public class ViewUtils {
 		view.requestLayout();
 		view.invalidate();
 	}
+
+	public static int[] getLocationOnScreen(View view) {
+		int location[] = new int[2];
+		view.getLocationOnScreen(location);
+		return location;
+	}
 }
