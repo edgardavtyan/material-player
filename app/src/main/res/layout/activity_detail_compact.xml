@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
+	android:id="@+id/shared_wrapper"
 	>
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/main_wrapper"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
 
 		<android.support.design.widget.AppBarLayout
 			android:id="@+id/appbar"
@@ -20,46 +28,49 @@
 
 		</android.support.design.widget.AppBarLayout>
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		>
-
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/list"
+		<FrameLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:listitem="@layout/listitem_track"
-			/>
-
-		<include layout="@layout/partial_collapsing_header_compact" />
-
-		<include layout="@layout/shadow_bottom_small" />
-
-		<View
-			android:id="@+id/appbar_shadow"
-			android:layout_width="match_parent"
-			android:layout_height="4dp"
-			android:background="@drawable/shadow_top"
-			android:layout_gravity="top"
-			android:alpha="0"
-			/>
-
-		<ImageView
-			android:id="@+id/shared_art"
-			android:layout_width="0dp"
 			android:layout_height="0dp"
+			android:layout_weight="1"
+			>
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/list"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:listitem="@layout/listitem_track"
+				android:background="@color/white"
+				/>
+
+			<include layout="@layout/partial_collapsing_header_compact" />
+
+			<include layout="@layout/shadow_bottom_small" />
+
+			<View
+				android:id="@+id/appbar_shadow"
+				android:layout_width="match_parent"
+				android:layout_height="4dp"
+				android:layout_gravity="top"
+				android:background="@drawable/shadow_top"
+				android:alpha="0"
+				/>
+
+		</FrameLayout>
+
+		<fragment
+			android:id="@+id/floating_nowplaying"
+			android:name="com.edavtyan.materialplayer.screens.now_playing_floating.NowPlayingFloatingFragment"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:layout="@layout/fragment_nowplaying_floating"
 			/>
 
-	</FrameLayout>
+	</LinearLayout>
 
-	<fragment
-		android:id="@+id/floating_nowplaying"
-		android:name="com.edavtyan.materialplayer.screens.now_playing_floating.NowPlayingFloatingFragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/fragment_nowplaying_floating"
+	<ImageView
+		android:id="@+id/shared_art"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
 		/>
 
-</LinearLayout>
+</FrameLayout>

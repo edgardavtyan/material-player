@@ -39,6 +39,11 @@
 		<item name="android:windowNoTitle">false</item>
 	</style>
 
+	<style name="AppTheme.Transparent">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+
 	<style name="CustomWindowTitleBackground">
 		<item name="android:background">?colorPrimary</item>
 	</style>

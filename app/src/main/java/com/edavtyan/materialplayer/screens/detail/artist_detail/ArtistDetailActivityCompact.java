@@ -5,14 +5,17 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactActivity;
+import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListFragment;
 import com.edavtyan.materialplayer.utils.ViewUtils;
 
 import javax.inject.Inject;
@@ -29,6 +32,8 @@ public class ArtistDetailActivityCompact
 	@BindView(R.id.shared_art) ImageView sharedArtView;
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.art_wrapper) FrameLayout artViewWrapper;
+	@BindView(R.id.main_wrapper) LinearLayout mainWrapper;
+	@BindView(R.id.appbar) AppBarLayout appbar;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +50,9 @@ public class ArtistDetailActivityCompact
 			int[] sharedArtViewLocation = new int[2];
 			sharedArtView.getLocationOnScreen(sharedArtViewLocation);
 
+			mainWrapper.setAlpha(0);
+			getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
 			ArtistDetailIntent intent = new ArtistDetailIntent(getIntent());
 			ViewUtils.setSize(sharedArtView, artView.getWidth(), artView.getHeight());
 			sharedArtView.setX(intent.getSharedArtX() - sharedArtViewLocation[0]);
@@ -55,13 +63,15 @@ public class ArtistDetailActivityCompact
 			sharedArtView.setPivotY(0);
 			sharedArtView.animate()
 						 .x(artView.getX() + artViewWrapper.getPaddingLeft())
-						 .y(artView.getY())
+						 .y(artView.getY() + appbar.getHeight())
 						 .scaleX(1)
 						 .scaleY(1)
 						 .setDuration(500)
 						 .setListener(new Animator.AnimatorListener() {
 							 @Override
-							 public void onAnimationStart(Animator animation) {}
+							 public void onAnimationStart(Animator animation) {
+								 ArtistListFragment.onNextActivityCreatedListener.run();
+							 }
 
 							 @Override
 							 public void onAnimationEnd(Animator animation) {
@@ -76,6 +86,7 @@ public class ArtistDetailActivityCompact
 							 public void onAnimationRepeat(Animator animation) {}
 						 })
 						 .start();
+			mainWrapper.animate().alpha(1);
 		});
 	}
 

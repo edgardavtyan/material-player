@@ -49,7 +49,10 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".screens.detail.artist_detail.ArtistDetailActivityCompact" />
+		<activity
+			android:name=".screens.detail.artist_detail.ArtistDetailActivityCompact"
+			android:theme="@style/AppTheme.Transparent"
+			/>
 
 		<activity
 			android:name=".screens.detail.album_detail.AlbumDetailActivityNormal"

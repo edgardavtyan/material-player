@@ -36,7 +36,7 @@ public class Navigator {
 		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
-		activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+		activity.overridePendingTransition(0, android.R.anim.fade_out);
 	}
 
 	public void gotoAlbumDetailNormal(int albumId) {

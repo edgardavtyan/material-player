@@ -23,7 +23,7 @@ public class ArtistDetailSharedViews {
 	}
 
 	public void hide() {
-		artView.setVisibility(View.INVISIBLE);
+		artView.animate().alpha(0).setDuration(0);
 	}
 
 	public void show() {
