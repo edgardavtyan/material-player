@@ -12,12 +12,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.ed.libsutils.utils.ViewUtils;
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactActivity;
 import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListFragment;
-import com.edavtyan.materialplayer.utils.ViewUtils;
 
 import javax.inject.Inject;
 
@@ -51,7 +52,7 @@ public class ArtistDetailActivityCompact
 
 			getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-			int statusBarHeight = getWindow().getDecorView().getHeight() - contentView.getHeight();
+			int statusBarHeight = WindowUtils.getStatusBarHeight(this);
 			int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
 			int[] sharedArtViewLocation = ViewUtils.getLocationOnScreen(sharedArtView);
 
