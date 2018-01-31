@@ -5,10 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.ContentFrameLayout;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -33,10 +30,7 @@ public class ArtistDetailActivityCompact
 
 	@BindView(R.id.shared_art) ImageView sharedArtView;
 	@BindView(R.id.art) ImageView artView;
-	@BindView(R.id.art_wrapper) FrameLayout artViewWrapper;
 	@BindView(R.id.main_wrapper) LinearLayout mainWrapper;
-	@BindView(R.id.appbar) AppBarLayout appbar;
-	@BindView(android.R.id.content) ContentFrameLayout contentView;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
