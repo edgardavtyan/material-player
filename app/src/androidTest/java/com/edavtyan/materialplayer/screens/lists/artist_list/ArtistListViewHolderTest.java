@@ -56,7 +56,7 @@ public class ArtistListViewHolderTest extends BaseTest {
 	public void onClick_callPresenterWithCorrectPosition() {
 		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
 		holderSpy.onClick(null);
-		verify(presenter).onHolderClick(1);
+		verify(presenter).onHolderClick(1, sharedViews);
 	}
 
 	@Test

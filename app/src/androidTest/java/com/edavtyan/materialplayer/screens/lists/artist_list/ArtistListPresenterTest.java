@@ -75,8 +75,8 @@ public class ArtistListPresenterTest extends BaseTest {
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
 		when(model.isCompactModeEnabled()).thenReturn(true);
 
-		presenter.onHolderClick(3);
-		verify(view).gotoArtistDetailCompact("title");
+		presenter.onHolderClick(3, sharedViews);
+		verify(view).gotoArtistDetailCompact("title", sharedViews);
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class ArtistListPresenterTest extends BaseTest {
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
 		when(model.isCompactModeEnabled()).thenReturn(false);
 
-		presenter.onHolderClick(3);
+		presenter.onHolderClick(3, sharedViews);
 		verify(view).gotoArtistDetailNormal("title");
 	}
 

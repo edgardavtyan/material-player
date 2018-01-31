@@ -46,6 +46,12 @@
 			android:alpha="0"
 			/>
 
+		<ImageView
+			android:id="@+id/shared_art"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			/>
+
 	</FrameLayout>
 
 	<fragment

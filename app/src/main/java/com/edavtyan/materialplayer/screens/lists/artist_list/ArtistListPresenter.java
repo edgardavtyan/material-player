@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.screens.lists.artist_list;
 
 import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailSharedViews;
 import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
 
 public class ArtistListPresenter extends ListPresenter<ArtistListViewHolder> {
@@ -38,11 +39,11 @@ public class ArtistListPresenter extends ListPresenter<ArtistListViewHolder> {
 		model.unbindService();
 	}
 
-	public void onHolderClick(int position) {
+	public void onHolderClick(int position, ArtistDetailSharedViews sharedViews) {
 		Artist artist = model.getArtistAtIndex(position);
 
 		if (model.isCompactModeEnabled()) {
-			view.gotoArtistDetailCompact(artist.getTitle());
+			view.gotoArtistDetailCompact(artist.getTitle(), sharedViews);
 		} else {
 			view.gotoArtistDetailNormal(artist.getTitle());
 		}

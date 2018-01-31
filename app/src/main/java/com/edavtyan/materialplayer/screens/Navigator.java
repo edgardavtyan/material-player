@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.audio_effects.AudioEffectsActivity;
@@ -30,10 +31,12 @@ public class Navigator {
 		context.startActivity(intent);
 	}
 
-	public void gotoArtistDetailCompact(String artistTitle) {
-		Intent intent = new Intent(context, ArtistDetailActivityCompact.class);
+	public void gotoArtistDetailCompact(Activity activity, String artistTitle, Bundle bundle) {
+		Intent intent = new Intent(activity, ArtistDetailActivityCompact.class);
 		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
-		context.startActivity(intent);
+		intent.putExtras(bundle);
+		activity.startActivity(intent);
+		activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 	}
 
 	public void gotoAlbumDetailNormal(int albumId) {
