@@ -23,18 +23,29 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 			this.sharedViews = sharedViews;
 		}
 
-		public void run() {
+		public void hide() {
 			sharedViews.hide();
+		}
+
+		public void show() {
+			sharedViews.show();
 		}
 	}
 
 	public static OnNextActivityCreatedListener onNextActivityCreatedListener;
+	public static ArtistDetailSharedViews sharedViews;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
 		initListView(presenter, adapter);
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		if (sharedViews != null) sharedViews.show();
 	}
 
 	@Override
@@ -45,6 +56,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	@Override
 	public void gotoArtistDetailCompact(String title, ArtistDetailSharedViews sharedViews) {
 		onNextActivityCreatedListener = new OnNextActivityCreatedListener(sharedViews);
+		ArtistListFragment.sharedViews = sharedViews;
 		navigator.gotoArtistDetailCompact(getActivity(), title, sharedViews.build());
 
 	}

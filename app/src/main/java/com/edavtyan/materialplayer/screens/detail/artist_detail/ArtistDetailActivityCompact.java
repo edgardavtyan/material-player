@@ -70,13 +70,14 @@ public class ArtistDetailActivityCompact
 						 .setListener(new Animator.AnimatorListener() {
 							 @Override
 							 public void onAnimationStart(Animator animation) {
-								 ArtistListFragment.onNextActivityCreatedListener.run();
+								 ArtistListFragment.sharedViews.hide();
 							 }
 
 							 @Override
 							 public void onAnimationEnd(Animator animation) {
 //								 sharedArtView.setVisibility(View.INVISIBLE);
 //								 artView.setVisibility(View.VISIBLE);
+								 ArtistListFragment.sharedViews.show();
 							 }
 
 							 @Override
