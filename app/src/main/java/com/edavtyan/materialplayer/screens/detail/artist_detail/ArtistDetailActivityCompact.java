@@ -70,7 +70,7 @@ public class ArtistDetailActivityCompact
 						 .setListener(new Animator.AnimatorListener() {
 							 @Override
 							 public void onAnimationStart(Animator animation) {
-								 ArtistListFragment.sharedViews.hide();
+								 new Handler().postDelayed(ArtistListFragment.sharedViews::hide, 50);
 							 }
 
 							 @Override
