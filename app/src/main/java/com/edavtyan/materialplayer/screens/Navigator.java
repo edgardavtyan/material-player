@@ -46,7 +46,7 @@ public class Navigator {
 	}
 
 	public void gotoAlbumDetailCompact(int albumId) {
-		Intent intent = new Intent(context, AlbumDetailActivityCompact.class );
+		Intent intent = new Intent(context, AlbumDetailActivityCompact.class);
 		intent.putExtra(AlbumDetailView.EXTRA_ALBUM_ID, albumId);
 		context.startActivity(intent);
 	}
