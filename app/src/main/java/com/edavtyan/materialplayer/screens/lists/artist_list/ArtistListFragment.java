@@ -32,7 +32,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 
 	@Override
 	public void gotoArtistDetailCompact(String title, DetailSharedViews sharedViews) {
-		currentSharedViews.set(sharedViews);
+		currentSharedViews.push(sharedViews);
 		navigator.gotoArtistDetailCompact(getActivity(), title, sharedViews.build());
 
 	}

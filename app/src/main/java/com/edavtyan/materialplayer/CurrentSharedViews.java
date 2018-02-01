@@ -1,13 +1,23 @@
 package com.edavtyan.materialplayer;
 
-public class CurrentSharedViews {
-	private SharedViews sharedViews;
+import java.util.Stack;
 
-	public void set(SharedViews sharedViews) {
-		this.sharedViews = sharedViews;
+public class CurrentSharedViews {
+	private final Stack<SharedViews> sharedViewsStack;
+
+	public CurrentSharedViews() {
+		sharedViewsStack = new Stack<>();
 	}
 
-	public SharedViews get() {
-		return sharedViews;
+	public void push(SharedViews sharedViews) {
+		sharedViewsStack.push(sharedViews);
+	}
+
+	public SharedViews pop() {
+		return sharedViewsStack.pop();
+	}
+
+	public SharedViews peek() {
+		return sharedViewsStack.peek();
 	}
 }

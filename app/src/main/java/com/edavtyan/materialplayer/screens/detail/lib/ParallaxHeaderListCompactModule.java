@@ -208,10 +208,10 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 						   .scaleY(1)
 						   .setDuration(500)
 						   .withStartAction(() -> new Handler().postDelayed(() -> {
-							   currentSharedViews.get().hide();
+							   currentSharedViews.peek().hide();
 						   }, 50))
 						   .withEndAction(() -> {
-							   currentSharedViews.get().show();
+							   currentSharedViews.peek().show();
 							   sharedImageView.setVisibility(View.INVISIBLE);
 							   imageView.setVisibility(View.VISIBLE);
 						   })
@@ -234,11 +234,11 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 					   .scaleX(sharedImageViewStartScaleX)
 					   .scaleY(sharedImageViewStartScaleY)
 					   .setDuration(500)
-					   .withStartAction(() -> currentSharedViews.get().hide())
+					   .withStartAction(() -> currentSharedViews.peek().hide())
 					   .withEndAction(() -> {
 						   activity.finish();
 						   activity.overridePendingTransition(0, 0);
-						   currentSharedViews.get().show();
+						   currentSharedViews.pop().show();
 					   });
 	}
 }

@@ -63,7 +63,7 @@ public class ArtistDetailActivityCompact
 
 	@Override
 	public void gotoAlbumDetailCompact(int albumId, DetailSharedViews sharedViews) {
-		currentSharedViews.set(sharedViews);
+		currentSharedViews.push(sharedViews);
 		navigator.gotoAlbumDetailCompact(this, albumId, sharedViews.build());
 	}
 
