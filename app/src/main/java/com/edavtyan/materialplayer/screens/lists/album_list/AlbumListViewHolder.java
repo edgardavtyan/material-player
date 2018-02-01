@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
+import com.edavtyan.materialplayer.screens.detail.lib.DetailSharedViews;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +73,8 @@ public class AlbumListViewHolder
 
 	@Override
 	public void onClick(View v) {
-		presenter.onHolderClick(getAdapterPositionNonFinal());
+		DetailSharedViews sharedViews = new DetailSharedViews(artView);
+		presenter.onHolderClick(getAdapterPositionNonFinal(), sharedViews);
 	}
 
 	@Override

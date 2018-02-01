@@ -34,4 +34,10 @@ public class AppFactory {
 	public SdkFactory provideSdkFactory() {
 		return new SdkFactory();
 	}
+
+	@Provides
+	@Singleton
+	public CurrentSharedViews provideCurrentSharedViews() {
+		return new CurrentSharedViews();
+	}
 }

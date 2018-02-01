@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
-import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailSharedViews;
+import com.edavtyan.materialplayer.screens.detail.lib.DetailSharedViews;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,7 +68,7 @@ public class ArtistListViewHolder
 
 	@Override
 	public void onClick(View v) {
-		ArtistDetailSharedViews sharedViews = new ArtistDetailSharedViews(artView);
+		DetailSharedViews sharedViews = new DetailSharedViews(artView);
 		presenter.onHolderClick(getAdapterPositionNonFinal(), sharedViews);
 	}
 

@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.screens.detail.lib;
 
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,21 +16,31 @@ import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.ed.libsutils.utils.BitmapResizer;
 import com.ed.libsutils.utils.ColorUtils;
 import com.ed.libsutils.utils.DpConverter;
+import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
+import com.edavtyan.materialplayer.CurrentSharedViews;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
+import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailIntent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ParallaxHeaderListCompactModule extends ActivityModule {
 
+	public static final String SHARED_ART_X = "shared_art_x";
+	public static final String SHARED_ART_Y = "shared_art_y";
+	public static final String SHARED_ART_WIDTH = "shared_art_width";
+	public static final String SHARED_ART_HEIGHT = "shared_art_height";
+
 	private static final int SCALED_ART_SIZE_DP = 120;
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView imageView;
+	@BindView(R.id.shared_art) ImageView sharedImageView;
+	@BindView(R.id.main_wrapper) LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoContainer;
 	@BindView(R.id.info_top) @Nullable TextView portraitTopInfoView;
 	@BindView(R.id.info_bottom) @Nullable TextView portraitBottomInfoView;
@@ -41,6 +52,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	private final AppCompatActivity activity;
 	private final TestableRecyclerAdapter adapter;
 	private final ParallaxHeaderListPresenter presenter;
+	private final CurrentSharedViews currentSharedViews;
 
 	private final RecyclerView.OnScrollListener onScrollListener
 			= new RecyclerView.OnScrollListener() {
@@ -63,10 +75,12 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	public ParallaxHeaderListCompactModule(
 			AppCompatActivity activity,
 			TestableRecyclerAdapter adapter,
-			ParallaxHeaderListPresenter presenter) {
+			ParallaxHeaderListPresenter presenter,
+			CurrentSharedViews currentSharedViews) {
 		this.activity = activity;
 		this.adapter = adapter;
 		this.presenter = presenter;
+		this.currentSharedViews = currentSharedViews;
 	}
 
 	@Override
@@ -81,6 +95,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			list.addOnScrollListener(onScrollListener);
 			header.attachTo(list);
 		}
+
+		beginEnterTransition();
 	}
 
 	@Override
@@ -125,15 +141,56 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 				int imageViewSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 				Bitmap scaledImage = BitmapResizer.resize(image, imageViewSize);
 				imageView.setImageBitmap(scaledImage);
+				sharedImageView.setImageBitmap(scaledImage);
 			} else {
 				imageView.setImageBitmap(image);
+				sharedImageView.setImageBitmap(image);
 			}
 		} else {
 			imageView.setImageResource(fallback);
+			sharedImageView.setImageResource(fallback);
 		}
 	}
 
 	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
+	}
+
+	private void beginEnterTransition() {
+		sharedImageView.setVisibility(View.VISIBLE);
+		imageView.setVisibility(View.INVISIBLE);
+
+		sharedImageView.post(() -> {
+			mainWrapper.setAlpha(0);
+			mainWrapper.animate().alpha(1);
+
+			activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+			int statusBarHeight = WindowUtils.getStatusBarHeight(activity);
+			int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
+			int[] sharedImageViewLocation = ViewUtils.getLocationOnScreen(sharedImageView);
+
+			ArtistDetailIntent intent = new ArtistDetailIntent(activity.getIntent());
+			ViewUtils.setSize(sharedImageView, imageView.getWidth(), imageView.getHeight());
+			sharedImageView.setX(intent.getSharedArtX() - sharedImageViewLocation[0]);
+			sharedImageView.setY(intent.getSharedArtY() - sharedImageViewLocation[1]);
+			sharedImageView.setScaleX((float) intent.getSharedArtWidth() / imageView.getWidth());
+			sharedImageView.setScaleY((float) intent.getSharedArtHeight() / imageView.getHeight());
+			sharedImageView.setPivotX(0);
+			sharedImageView.setPivotY(0);
+			sharedImageView.animate()
+						   .x(imageViewLocation[0])
+						   .y(imageViewLocation[1] - statusBarHeight)
+						   .scaleX(1)
+						   .scaleY(1)
+						   .setDuration(500)
+						   .withStartAction(() -> new Handler().postDelayed(() -> {
+							   currentSharedViews.get().hide();
+						   }, 50))
+						   .withEndAction(() -> {
+							   currentSharedViews.get().show();
+						   })
+						   .start();
+		});
 	}
 }

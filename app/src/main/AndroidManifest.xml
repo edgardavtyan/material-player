@@ -64,7 +64,10 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".screens.detail.album_detail.AlbumDetailActivityCompact" />
+		<activity
+			android:name=".screens.detail.album_detail.AlbumDetailActivityCompact"
+			android:theme="@style/AppTheme.Transparent"
+			/>
 
 		<activity
 			android:name=".screens.now_playing.NowPlayingActivity"

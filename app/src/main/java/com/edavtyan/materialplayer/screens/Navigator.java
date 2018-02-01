@@ -45,10 +45,12 @@ public class Navigator {
 		context.startActivity(intent);
 	}
 
-	public void gotoAlbumDetailCompact(int albumId) {
-		Intent intent = new Intent(context, AlbumDetailActivityCompact.class);
+	public void gotoAlbumDetailCompact(Activity activity, int albumId, Bundle bundle) {
+		Intent intent = new Intent(activity, AlbumDetailActivityCompact.class);
 		intent.putExtra(AlbumDetailView.EXTRA_ALBUM_ID, albumId);
-		context.startActivity(intent);
+		intent.putExtras(bundle);
+		activity.startActivity(intent);
+		activity.overridePendingTransition(0, android.R.anim.fade_out);
 	}
 
 	public void gotoNowPlaying() {

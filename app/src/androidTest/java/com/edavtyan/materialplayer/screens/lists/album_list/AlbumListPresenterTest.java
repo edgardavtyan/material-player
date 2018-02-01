@@ -56,8 +56,8 @@ public class AlbumListPresenterTest extends BaseTest {
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
 		when(model.isCompactModeEnabled()).thenReturn(true);
 
-		presenter.onHolderClick(3);
-		verify(view).gotoAlbumDetailCompact(7);
+		presenter.onHolderClick(3, sharedViews);
+		verify(view).gotoAlbumDetailCompact(7, sharedViews);
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
 		when(model.isCompactModeEnabled()).thenReturn(false);
 
-		presenter.onHolderClick(3);
+		presenter.onHolderClick(3, sharedViews);
 		verify(view).gotoAlbumDetailNormal(7);
 	}
 

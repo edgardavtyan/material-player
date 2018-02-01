@@ -55,4 +55,5 @@ public interface AppComponent {
 	CompactListPref compactListPref();
 	CompactDetailPref compactDetailPref();
 	Gson gson();
+	CurrentSharedViews currentSharedViews();
 }

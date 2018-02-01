@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.CurrentSharedViews;
 import com.edavtyan.materialplayer.screens.Navigator;
+import com.edavtyan.materialplayer.screens.detail.lib.DetailSharedViews;
 import com.edavtyan.materialplayer.screens.lists.lib.ListFragment;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	@Inject Navigator navigator;
 	@Inject AlbumListPresenter presenter;
 	@Inject AlbumListAdapter adapter;
+	@Inject CurrentSharedViews currentSharedViews;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,14 +31,15 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	}
 
 	@Override
-	public void gotoAlbumDetailCompact(int albumId) {
-		navigator.gotoAlbumDetailCompact(albumId);
+	public void gotoAlbumDetailCompact(int albumId, DetailSharedViews sharedViews) {
+		currentSharedViews.set(sharedViews);
+		navigator.gotoAlbumDetailCompact(getActivity(), albumId, sharedViews.build());
 	}
 
 	protected AlbumListComponent getComponent() {
 		return DaggerAlbumListComponent
 				.builder()
-				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
+				.appComponent(((App) getContext().getApplicationContext()).getAppComponent())
 				.albumListFactory(new AlbumListFactory(getActivity(), this))
 				.build();
 	}
