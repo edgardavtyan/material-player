@@ -48,6 +48,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@BindView(R.id.list_header) @Nullable RecyclerViewHeader header;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.list) RecyclerView list;
+	@BindView(R.id.click_blocker) View clickBlockerView;
 
 	private final AppCompatActivity activity;
 	private final TestableRecyclerAdapter adapter;
@@ -223,6 +224,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 		mainWrapper.setAlpha(1);
 		mainWrapper.animate().alpha(0);
+
+		clickBlockerView.setVisibility(View.VISIBLE);
 
 		sharedImageView.setX(sharedImageViewEndX);
 		sharedImageView.setY(sharedImageViewEndY);
