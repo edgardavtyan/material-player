@@ -38,6 +38,11 @@ public abstract class ParallaxHeaderListCompactActivity
 		addModule(parallaxListModule);
 	}
 
+	@Override
+	public void onBackPressed() {
+		callModulesOnBackPressed();
+	}
+
 	public void setTitle(String title) {
 		parallaxListModule.setTitle(title);
 	}

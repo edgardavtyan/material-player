@@ -65,10 +65,24 @@ public abstract class ModularActivity extends AppCompatActivity implements Theme
 	}
 
 	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		callModulesOnBackPressed();
+	}
+
+	@Override
 	@CallSuper
 	public void onThemeChanged(ThemeColors colors) {
 		for (UniversalViewModule module : modules) {
 			module.onThemeChanged(colors);
+		}
+	}
+
+	protected void callModulesOnBackPressed() {
+		for (UniversalViewModule module : modules) {
+			if (module instanceof ActivityModule) {
+				((ActivityModule)module).onBackPressed();
+			}
 		}
 	}
 

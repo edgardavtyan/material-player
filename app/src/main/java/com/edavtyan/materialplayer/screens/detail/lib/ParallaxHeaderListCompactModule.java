@@ -72,6 +72,14 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		}
 	};
 
+	private boolean isExitTransitionRunning;
+	private float sharedImageViewStartX;
+	private float sharedImageViewStartY;
+	private float sharedImageViewStartScaleX;
+	private float sharedImageViewStartScaleY;
+	private int sharedImageViewEndX;
+	private int sharedImageViewEndY;
+
 	public ParallaxHeaderListCompactModule(
 			AppCompatActivity activity,
 			TestableRecyclerAdapter adapter,
@@ -107,6 +115,13 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@Override
 	public void onStop() {
 		presenter.onDestroy();
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (isExitTransitionRunning) activity.finish();
+		beginExitTransition();
+		isExitTransitionRunning = true;
 	}
 
 	@Override
@@ -171,16 +186,24 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			int[] sharedImageViewLocation = ViewUtils.getLocationOnScreen(sharedImageView);
 
 			ArtistDetailIntent intent = new ArtistDetailIntent(activity.getIntent());
+
+			sharedImageViewStartX = intent.getSharedArtX() - sharedImageViewLocation[0];
+			sharedImageViewStartY = intent.getSharedArtY() - sharedImageViewLocation[1];
+			sharedImageViewStartScaleX = (float) intent.getSharedArtWidth() / imageView.getWidth();
+			sharedImageViewStartScaleY = (float) intent.getSharedArtHeight() / imageView.getHeight();
+			sharedImageViewEndX = imageViewLocation[0];
+			sharedImageViewEndY = imageViewLocation[1] - statusBarHeight;
+
 			ViewUtils.setSize(sharedImageView, imageView.getWidth(), imageView.getHeight());
-			sharedImageView.setX(intent.getSharedArtX() - sharedImageViewLocation[0]);
-			sharedImageView.setY(intent.getSharedArtY() - sharedImageViewLocation[1]);
-			sharedImageView.setScaleX((float) intent.getSharedArtWidth() / imageView.getWidth());
-			sharedImageView.setScaleY((float) intent.getSharedArtHeight() / imageView.getHeight());
+			sharedImageView.setX(sharedImageViewStartX);
+			sharedImageView.setY(sharedImageViewStartY);
+			sharedImageView.setScaleX(sharedImageViewStartScaleX);
+			sharedImageView.setScaleY(sharedImageViewStartScaleY);
 			sharedImageView.setPivotX(0);
 			sharedImageView.setPivotY(0);
 			sharedImageView.animate()
-						   .x(imageViewLocation[0])
-						   .y(imageViewLocation[1] - statusBarHeight)
+						   .x(sharedImageViewEndX)
+						   .y(sharedImageViewEndY)
 						   .scaleX(1)
 						   .scaleY(1)
 						   .setDuration(500)
@@ -192,5 +215,25 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 						   })
 						   .start();
 		});
+	}
+
+	public void beginExitTransition() {
+		mainWrapper.setAlpha(1);
+		mainWrapper.animate().alpha(0);
+
+		sharedImageView.setX(sharedImageViewEndX);
+		sharedImageView.setY(sharedImageViewEndY);
+		sharedImageView.animate()
+					   .x(sharedImageViewStartX)
+					   .y(sharedImageViewStartY)
+					   .scaleX(sharedImageViewStartScaleX)
+					   .scaleY(sharedImageViewStartScaleY)
+					   .setDuration(500)
+					   .withStartAction(() -> currentSharedViews.get().hide())
+					   .withEndAction(() -> {
+						   activity.finish();
+						   activity.overridePendingTransition(0, 0);
+						   currentSharedViews.get().show();
+					   });
 	}
 }
