@@ -212,12 +212,17 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 						   }, 50))
 						   .withEndAction(() -> {
 							   currentSharedViews.get().show();
+							   sharedImageView.setVisibility(View.INVISIBLE);
+							   imageView.setVisibility(View.VISIBLE);
 						   })
 						   .start();
 		});
 	}
 
 	public void beginExitTransition() {
+		sharedImageView.setVisibility(View.VISIBLE);
+		imageView.setVisibility(View.INVISIBLE);
+
 		mainWrapper.setAlpha(1);
 		mainWrapper.animate().alpha(0);
 
