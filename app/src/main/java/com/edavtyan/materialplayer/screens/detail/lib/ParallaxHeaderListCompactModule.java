@@ -175,12 +175,10 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		sharedImageView.setVisibility(View.VISIBLE);
 		imageView.setVisibility(View.INVISIBLE);
 
+		mainWrapper.setAlpha(0);
+		mainWrapper.animate().alpha(1);
+
 		sharedImageView.post(() -> {
-			mainWrapper.setAlpha(0);
-			mainWrapper.animate().alpha(1);
-
-			activity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
 			int statusBarHeight = WindowUtils.getStatusBarHeight(activity);
 			int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
 			int[] sharedImageViewLocation = ViewUtils.getLocationOnScreen(sharedImageView);
