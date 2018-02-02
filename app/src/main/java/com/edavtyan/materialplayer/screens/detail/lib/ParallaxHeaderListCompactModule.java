@@ -78,8 +78,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	private float sharedImageViewStartY;
 	private float sharedImageViewStartScaleX;
 	private float sharedImageViewStartScaleY;
-	private int sharedImageViewEndX;
-	private int sharedImageViewEndY;
 
 	public ParallaxHeaderListCompactModule(
 			AppCompatActivity activity,
@@ -190,8 +188,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			sharedImageViewStartY = intent.getSharedArtY() - sharedImageViewLocation[1];
 			sharedImageViewStartScaleX = (float) intent.getSharedArtWidth() / imageView.getWidth();
 			sharedImageViewStartScaleY = (float) intent.getSharedArtHeight() / imageView.getHeight();
-			sharedImageViewEndX = imageViewLocation[0];
-			sharedImageViewEndY = imageViewLocation[1] - statusBarHeight;
 
 			ViewUtils.setSize(sharedImageView, imageView.getWidth(), imageView.getHeight());
 			sharedImageView.setX(sharedImageViewStartX);
@@ -201,8 +197,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			sharedImageView.setPivotX(0);
 			sharedImageView.setPivotY(0);
 			sharedImageView.animate()
-						   .x(sharedImageViewEndX)
-						   .y(sharedImageViewEndY)
+						   .x(imageViewLocation[0])
+						   .y(imageViewLocation[1] - statusBarHeight)
 						   .scaleX(1)
 						   .scaleY(1)
 						   .setDuration(500)
@@ -227,8 +223,9 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 		clickBlockerView.setVisibility(View.VISIBLE);
 
-		sharedImageView.setX(sharedImageViewEndX);
-		sharedImageView.setY(sharedImageViewEndY);
+		int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
+		sharedImageView.setX(imageViewLocation[0]);
+		sharedImageView.setY(imageViewLocation[1] - WindowUtils.getStatusBarHeight(activity));
 		sharedImageView.animate()
 					   .x(sharedImageViewStartX)
 					   .y(sharedImageViewStartY)
