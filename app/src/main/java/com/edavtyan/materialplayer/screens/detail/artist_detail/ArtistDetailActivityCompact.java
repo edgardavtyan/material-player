@@ -4,8 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.CurrentSharedViews;
@@ -16,9 +14,6 @@ import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactA
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ArtistDetailActivityCompact
 		extends ParallaxHeaderListCompactActivity
 		implements ArtistDetailView {
@@ -26,15 +21,10 @@ public class ArtistDetailActivityCompact
 	@Inject Navigator navigator;
 	@Inject CurrentSharedViews currentSharedViews;
 
-	@BindView(R.id.shared_art) ImageView sharedArtView;
-	@BindView(R.id.art) ImageView artView;
-	@BindView(R.id.main_wrapper) LinearLayout mainWrapper;
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		getComponent().inject(this);
 		super.onCreate(savedInstanceState);
-		ButterKnife.bind(this);
 	}
 
 	@Override

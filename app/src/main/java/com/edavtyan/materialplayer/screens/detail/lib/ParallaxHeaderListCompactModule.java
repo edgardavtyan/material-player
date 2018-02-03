@@ -40,20 +40,20 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.art) ImageView imageView;
-	@BindView(R.id.shared_art) ImageView sharedImageView;
-	@BindView(R.id.main_wrapper) LinearLayout mainWrapper;
+	@BindView(R.id.main_wrapper) @Nullable LinearLayout mainWrapper;
 	@BindView(R.id.info_container) LinearLayout infoContainer;
 	@BindView(R.id.info_top) @Nullable TextView portraitTopInfoView;
 	@BindView(R.id.info_bottom) @Nullable TextView portraitBottomInfoView;
 	@BindView(R.id.info) @Nullable TextView landscapeInfoView;
 	@BindView(R.id.list_header) @Nullable RecyclerViewHeader header;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
-	@BindView(R.id.list) RecyclerView list;
-	@BindView(R.id.list_background) View listBackground;
-	@BindView(R.id.click_blocker) View clickBlockerView;
-	@BindView(R.id.art_wrapper) View imageViewWrapper;
-	@BindView(R.id.shared_art_exit) ImageView sharedImageExitView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
+	@BindView(R.id.list) RecyclerView list;
+	@BindView(R.id.list_background) @Nullable View listBackground;
+	@BindView(R.id.click_blocker) @Nullable View clickBlockerView;
+	@BindView(R.id.art_wrapper) @Nullable View imageViewWrapper;
+	@BindView(R.id.shared_art) @Nullable ImageView sharedImageView;
+	@BindView(R.id.shared_art_exit) @Nullable ImageView sharedImageExitView;
 
 	private final AppCompatActivity activity;
 	private final TestableRecyclerAdapter adapter;
@@ -107,13 +107,12 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		if (WindowUtils.isPortrait(activity)) {
 			assert header != null; // Removes lint warning
 			list.addOnScrollListener(onScrollListener);
+			header.post(() -> {
+				list.setPadding(0, header.getHeight(), 0, 0);
+				list.scrollBy(-1000, -1000);
+				listBackground.setTranslationY(header.getHeight());
+			});
 		}
-
-		header.post(() -> {
-			list.setPadding(0, header.getHeight(), 0, 0);
-			list.scrollBy(-1000, -1000);
-			listBackground.setTranslationY(header.getHeight());
-		});
 
 		beginEnterTransition();
 	}
@@ -130,9 +129,11 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 	@Override
 	public void onBackPressed() {
-		if (isExitTransitionRunning) activity.finish();
-		beginExitTransition();
-		isExitTransitionRunning = true;
+		if (WindowUtils.isPortrait(activity)) {
+			if (isExitTransitionRunning) activity.finish();
+			beginExitTransition();
+			isExitTransitionRunning = true;
+		}
 	}
 
 	@Override
@@ -170,14 +171,15 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 				sharedImageView.setImageBitmap(scaledImage);
 				sharedImageExitView.setImageBitmap(scaledImage);
 			} else {
-				imageView.setImageBitmap(image);
 				sharedImageView.setImageBitmap(image);
-				sharedImageExitView.setImageBitmap(image);
+				imageView.setImageBitmap(image);
 			}
 		} else {
 			imageView.setImageResource(fallback);
 			sharedImageView.setImageResource(fallback);
-			sharedImageExitView.setImageResource(fallback);
+			if (WindowUtils.isPortrait(activity)) {
+				sharedImageExitView.setImageResource(fallback);
+			}
 		}
 	}
 
@@ -244,16 +246,16 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		sharedImageExitView.setPivotY(0);
 		ViewUtils.setSize(sharedImageExitView, imageView.getWidth(), imageView.getHeight());
 		sharedImageExitView.animate()
-					   .x(sharedImageViewStartX)
-					   .y(sharedImageViewStartY - appbar.getHeight())
-					   .scaleX(sharedImageViewStartScaleX)
-					   .scaleY(sharedImageViewStartScaleY)
-					   .setDuration(500)
-					   .withStartAction(() -> currentSharedViews.peek().hide())
-					   .withEndAction(() -> {
-						   activity.finish();
-						   activity.overridePendingTransition(0, 0);
-						   currentSharedViews.pop().show();
-					   });
+						   .x(sharedImageViewStartX)
+						   .y(sharedImageViewStartY - appbar.getHeight())
+						   .scaleX(sharedImageViewStartScaleX)
+						   .scaleY(sharedImageViewStartScaleY)
+						   .setDuration(500)
+						   .withStartAction(() -> currentSharedViews.peek().hide())
+						   .withEndAction(() -> {
+							   activity.finish();
+							   activity.overridePendingTransition(0, 0);
+							   currentSharedViews.pop().show();
+						   });
 	}
 }
