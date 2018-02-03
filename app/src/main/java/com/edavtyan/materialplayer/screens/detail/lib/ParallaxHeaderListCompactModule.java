@@ -81,8 +81,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	};
 
 	private boolean isExitTransitionRunning;
-	private float sharedImageViewStartX;
-	private float sharedImageViewStartY;
 	private float sharedImageViewStartScaleX;
 	private float sharedImageViewStartScaleY;
 
@@ -194,27 +192,27 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		mainWrapper.animate().alpha(1);
 
 		sharedImageView.post(() -> {
-			int statusBarHeight = WindowUtils.getStatusBarHeight(activity);
-			int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
-			int[] sharedImageViewLocation = ViewUtils.getLocationOnScreen(sharedImageView);
-
 			ArtistDetailIntent intent = new ArtistDetailIntent(activity.getIntent());
-
-			sharedImageViewStartX = intent.getSharedArtX() - sharedImageViewLocation[0];
-			sharedImageViewStartY = intent.getSharedArtY() - sharedImageViewLocation[1];
 			sharedImageViewStartScaleX = (float) intent.getSharedArtWidth() / imageView.getWidth();
 			sharedImageViewStartScaleY = (float) intent.getSharedArtHeight() / imageView.getHeight();
 
+			int[] sharedImageViewLocation = ViewUtils.getLocationOnScreen(sharedImageView);
+			int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
+			float startXDelta = intent.getSharedArtX() - sharedImageViewLocation[0];
+			float startYDelta = intent.getSharedArtY() - sharedImageViewLocation[1];
+			float endXDelta = imageViewLocation[0] - sharedImageViewLocation[0];
+			float endYDelta = imageViewLocation[1] - sharedImageViewLocation[1];
+
 			ViewUtils.setSize(sharedImageView, imageView.getWidth(), imageView.getHeight());
-			sharedImageView.setX(sharedImageViewStartX);
-			sharedImageView.setY(sharedImageViewStartY);
+			sharedImageView.setTranslationX(startXDelta);
+			sharedImageView.setTranslationY(startYDelta);
 			sharedImageView.setScaleX(sharedImageViewStartScaleX);
 			sharedImageView.setScaleY(sharedImageViewStartScaleY);
 			sharedImageView.setPivotX(0);
 			sharedImageView.setPivotY(0);
 			sharedImageView.animate()
-						   .x(imageViewLocation[0])
-						   .y(imageViewLocation[1] - statusBarHeight)
+						   .translationX(endXDelta)
+						   .translationY(endYDelta)
 						   .scaleX(1)
 						   .scaleY(1)
 						   .setDuration(500)
@@ -224,6 +222,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 						   .withEndAction(() -> {
 							   currentSharedViews.peek().show();
 							   sharedImageView.setVisibility(View.INVISIBLE);
+							   sharedImageView.setTranslationX(0);
+							   sharedImageView.setTranslationY(0);
 							   imageView.setVisibility(View.VISIBLE);
 						   })
 						   .start();
@@ -243,17 +243,24 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		imageView.setVisibility(View.INVISIBLE);
 
 		ImageView animatingImageView = WindowUtils.isPortrait(activity) ? sharedImageExitView : sharedImageView;
+		ArtistDetailIntent intent = new ArtistDetailIntent(activity.getIntent());
+
+		int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
+		int[] animatingImageViewLocation = ViewUtils.getLocationOnScreen(animatingImageView);
+		float startXDelta = imageViewLocation[0] - animatingImageViewLocation[0];
+		float startYDelta = imageViewLocation[1] - animatingImageViewLocation[1];
+		float endXDelta = intent.getSharedArtX() - animatingImageViewLocation[0];
+		float endYDelta = intent.getSharedArtY() - animatingImageViewLocation[1];
 
 		animatingImageView.setVisibility(View.VISIBLE);
-		int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
-		animatingImageView.setX(imageViewLocation[0]);
-		animatingImageView.setY(imageViewLocation[1] - WindowUtils.getStatusBarHeight(activity) - appbar.getHeight());
+		animatingImageView.setTranslationX(startXDelta);
+		animatingImageView.setTranslationY(startYDelta);
 		animatingImageView.setPivotX(0);
 		animatingImageView.setPivotY(0);
 		ViewUtils.setSize(animatingImageView, imageView.getWidth(), imageView.getHeight());
 		animatingImageView.animate()
-						  .x(sharedImageViewStartX)
-						  .y(sharedImageViewStartY - appbar.getHeight())
+						  .translationX(endXDelta)
+						  .translationY(endYDelta)
 						  .scaleX(sharedImageViewStartScaleX)
 						  .scaleY(sharedImageViewStartScaleY)
 						  .setDuration(500)
