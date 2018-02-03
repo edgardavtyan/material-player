@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ed.libsutils.utils.ViewUtils;
 import com.edavtyan.materialplayer.SharedViews;
 
 public class DetailSharedViews extends SharedViews {
@@ -14,8 +15,7 @@ public class DetailSharedViews extends SharedViews {
 	}
 
 	public Bundle build() {
-		int[] artViewLocation = new int[2];
-		artView.getLocationOnScreen(artViewLocation);
+		int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
 		Bundle bundle = new Bundle();
 		bundle.putFloat(ParallaxHeaderListCompactModule.SHARED_ART_X, artViewLocation[0]);
 		bundle.putFloat(ParallaxHeaderListCompactModule.SHARED_ART_Y, artViewLocation[1]);

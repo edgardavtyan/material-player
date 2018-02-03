@@ -105,7 +105,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 				list.setPadding(0, header.getHeight(), 0, 0);
 				list.scrollBy(-1000, -1000);
 				listBackground.setTranslationY(header.getHeight());
-				listBackground.getLayoutParams().height = activity.getWindow().getDecorView().getHeight();
+				ViewUtils.setHeight(listBackground, activity);
 			});
 		}
 
@@ -200,7 +200,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			float endXDelta = artViewLocation[0] - sharedArtViewLocation[0];
 			float endYDelta = artViewLocation[1] - sharedArtViewLocation[1];
 
-			ViewUtils.setSize(sharedArtView, artView.getWidth(), artView.getHeight());
+			ViewUtils.setSize(sharedArtView, artView);
 			sharedArtView.setTranslationX(startXDelta);
 			sharedArtView.setTranslationY(startYDelta);
 			sharedArtView.setScaleX(startScaleX);
@@ -249,7 +249,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		float endXDelta = intent.getSharedArtX() - transitionArtViewLocation[0];
 		float endYDelta = intent.getSharedArtY() - transitionArtViewLocation[1];
 
-		ViewUtils.setSize(animatingArtView, artView.getWidth(), artView.getHeight());
+		ViewUtils.setSize(animatingArtView, artView);
 		animatingArtView.setVisibility(View.VISIBLE);
 		animatingArtView.setTranslationX(startXDelta);
 		animatingArtView.setTranslationY(startYDelta);
