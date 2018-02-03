@@ -111,6 +111,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 				list.setPadding(0, header.getHeight(), 0, 0);
 				list.scrollBy(-1000, -1000);
 				listBackground.setTranslationY(header.getHeight());
+				listBackground.getLayoutParams().height = activity.getWindow().getDecorView().getHeight();
 			});
 		}
 
