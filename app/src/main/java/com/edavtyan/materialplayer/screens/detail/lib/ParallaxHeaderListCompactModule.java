@@ -58,8 +58,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-			super.onScrolled(recyclerView, dx, dy);
-
 			assert appbarShadow != null; // Removes lint warning
 
 			totalScrolled += dy;
@@ -190,7 +188,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		mainWrapper.animate().alpha(1);
 
 		sharedArtView.post(() -> {
-
 			int[] sharedArtViewLocation = ViewUtils.getLocationOnScreen(sharedArtView);
 			int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
 			float startXDelta = intent.getSharedArtX() - sharedArtViewLocation[0];
