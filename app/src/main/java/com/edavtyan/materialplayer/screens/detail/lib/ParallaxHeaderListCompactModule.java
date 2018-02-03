@@ -252,16 +252,16 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		animatingImageView.setPivotY(0);
 		ViewUtils.setSize(animatingImageView, imageView.getWidth(), imageView.getHeight());
 		animatingImageView.animate()
-						   .x(sharedImageViewStartX)
-						   .y(sharedImageViewStartY - appbar.getHeight())
-						   .scaleX(sharedImageViewStartScaleX)
-						   .scaleY(sharedImageViewStartScaleY)
-						   .setDuration(500)
-						   .withStartAction(() -> currentSharedViews.peek().hide())
-						   .withEndAction(() -> {
-							   activity.finish();
-							   activity.overridePendingTransition(0, 0);
-							   currentSharedViews.pop().show();
-						   });
+						  .x(sharedImageViewStartX)
+						  .y(sharedImageViewStartY - appbar.getHeight())
+						  .scaleX(sharedImageViewStartScaleX)
+						  .scaleY(sharedImageViewStartScaleY)
+						  .setDuration(500)
+						  .withStartAction(() -> currentSharedViews.peek().hide())
+						  .withEndAction(() -> {
+							  activity.finish();
+							  activity.overridePendingTransition(0, 0);
+							  currentSharedViews.pop().show();
+						  });
 	}
 }
