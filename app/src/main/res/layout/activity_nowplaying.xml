@@ -30,7 +30,7 @@
 		</FrameLayout>
 
 		<LinearLayout
-			android:id="@+id/info_container"
+			android:id="@+id/info_wrapper"
 			style="@style/NowPlaying_TrackInfo_Container"
 			>
 

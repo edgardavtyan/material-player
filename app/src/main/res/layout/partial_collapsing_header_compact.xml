@@ -16,7 +16,7 @@
 		>
 
 		<LinearLayout
-			android:id="@+id/info_container"
+			android:id="@+id/info_wrapper"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"

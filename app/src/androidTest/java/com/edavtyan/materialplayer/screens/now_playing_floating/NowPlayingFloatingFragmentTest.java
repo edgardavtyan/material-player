@@ -83,7 +83,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 		titleView = (TextView) fragment.getView().findViewById(R.id.title);
 		artView = (ImageView) fragment.getView().findViewById(R.id.art);
 		playPauseView = (ImageButton) fragment.getView().findViewById(R.id.play_pause);
-		infoWrapper = (LinearLayout) fragment.getView().findViewById(R.id.info_container);
+		infoWrapper = (LinearLayout) fragment.getView().findViewById(R.id.info_wrapper);
 		mainWrapper = (LinearLayout) fragment.getView().findViewById(R.id.container);
 	}
 

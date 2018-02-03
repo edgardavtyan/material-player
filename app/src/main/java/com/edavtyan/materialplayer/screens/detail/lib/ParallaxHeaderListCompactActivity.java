@@ -52,7 +52,7 @@ public abstract class ParallaxHeaderListCompactActivity
 	}
 
 	public void setImage(Bitmap image, @DrawableRes int fallback) {
-		parallaxListModule.setImage(image, fallback);
+		parallaxListModule.setArt(image, fallback);
 	}
 
 	public void notifyDataSetChanged() {
