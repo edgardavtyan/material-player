@@ -78,8 +78,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 	private ParallaxHeaderListCompactIntent intent;
 	private boolean isExitTransitionRunning;
-	private float sharedArtViewStartScaleX;
-	private float sharedArtViewStartScaleY;
 
 	public ParallaxHeaderListCompactModule(
 			AppCompatActivity activity,
@@ -192,21 +190,21 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		mainWrapper.animate().alpha(1);
 
 		sharedArtView.post(() -> {
-			sharedArtViewStartScaleX = (float) intent.getSharedArtWidth() / artView.getWidth();
-			sharedArtViewStartScaleY = (float) intent.getSharedArtHeight() / artView.getHeight();
 
 			int[] sharedArtViewLocation = ViewUtils.getLocationOnScreen(sharedArtView);
 			int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
 			float startXDelta = intent.getSharedArtX() - sharedArtViewLocation[0];
 			float startYDelta = intent.getSharedArtY() - sharedArtViewLocation[1];
+			float startScaleX = (float) intent.getSharedArtWidth() / artView.getWidth();
+			float startScaleY = (float) intent.getSharedArtHeight() / artView.getHeight();
 			float endXDelta = artViewLocation[0] - sharedArtViewLocation[0];
 			float endYDelta = artViewLocation[1] - sharedArtViewLocation[1];
 
 			ViewUtils.setSize(sharedArtView, artView.getWidth(), artView.getHeight());
 			sharedArtView.setTranslationX(startXDelta);
 			sharedArtView.setTranslationY(startYDelta);
-			sharedArtView.setScaleX(sharedArtViewStartScaleX);
-			sharedArtView.setScaleY(sharedArtViewStartScaleY);
+			sharedArtView.setScaleX(startScaleX);
+			sharedArtView.setScaleY(startScaleY);
 			sharedArtView.setPivotX(0);
 			sharedArtView.setPivotY(0);
 			sharedArtView.animate()
@@ -246,6 +244,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		int[] transitionArtViewLocation = ViewUtils.getLocationOnScreen(animatingArtView);
 		float startXDelta = artViewLocation[0] - transitionArtViewLocation[0];
 		float startYDelta = artViewLocation[1] - transitionArtViewLocation[1];
+		float startScaleX = (float) intent.getSharedArtWidth() / artView.getWidth();
+		float startScaleY = (float) intent.getSharedArtHeight() / artView.getHeight();
 		float endXDelta = intent.getSharedArtX() - transitionArtViewLocation[0];
 		float endYDelta = intent.getSharedArtY() - transitionArtViewLocation[1];
 
@@ -258,8 +258,8 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		animatingArtView.animate()
 						.translationX(endXDelta)
 						.translationY(endYDelta)
-						.scaleX(sharedArtViewStartScaleX)
-						.scaleY(sharedArtViewStartScaleY)
+						.scaleX(startScaleX)
+						.scaleY(startScaleY)
 						.setDuration(500)
 						.withStartAction(() -> currentSharedViews.peek().hide())
 						.withEndAction(() -> {
