@@ -90,9 +90,9 @@ public class MainActivityTest extends ActivityTest {
 	@Test
 	public void onCreate_addModules() {
 		activityRule.launchActivity(null);
-		verify(toolbarModule).onCreate();
-		verify(baseMenuModule).onCreate();
-		verify(themeModule).onCreate();
+		verify(toolbarModule).onCreate(savedInstanceState);
+		verify(baseMenuModule).onCreate(savedInstanceState);
+		verify(themeModule).onCreate(savedInstanceState);
 	}
 
 	@Test

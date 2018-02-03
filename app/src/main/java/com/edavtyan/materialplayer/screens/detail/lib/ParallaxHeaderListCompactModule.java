@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.screens.detail.lib;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -92,7 +93,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	}
 
 	@Override
-	public void onCreate() {
+	public void onCreate(Bundle savedInstanceState) {
 		ButterKnife.bind(this, activity);
 		intent = new ParallaxHeaderListCompactIntent(activity.getIntent());
 
@@ -110,7 +111,9 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		beginEnterTransition();
+		if (savedInstanceState == null) {
+			beginEnterTransition();
+		}
 	}
 
 	@Override

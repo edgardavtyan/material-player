@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -58,8 +59,8 @@ public class ActivityToolbarModule extends ActivityModule {
 	}
 
 	@Override
-	public void onCreate() {
-		super.onCreate();
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
 		ButterKnife.bind(this, activity);
 

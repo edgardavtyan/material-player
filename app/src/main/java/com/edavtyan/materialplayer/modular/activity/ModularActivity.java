@@ -17,11 +17,14 @@ import java.util.ArrayList;
 public abstract class ModularActivity extends AppCompatActivity implements ThemeableScreen {
 	private final ArrayList<UniversalViewModule> modules = new ArrayList<>();
 
+	private @Nullable Bundle savedInstanceState;
+
 	@Override
 	@CallSuper
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+		this.savedInstanceState = savedInstanceState;
 	}
 
 	@Override
@@ -81,13 +84,13 @@ public abstract class ModularActivity extends AppCompatActivity implements Theme
 	protected void callModulesOnBackPressed() {
 		for (UniversalViewModule module : modules) {
 			if (module instanceof ActivityModule) {
-				((ActivityModule)module).onBackPressed();
+				((ActivityModule) module).onBackPressed();
 			}
 		}
 	}
 
 	protected void addModule(UniversalViewModule module) {
 		modules.add(module);
-		module.onCreate();
+		module.onCreate(savedInstanceState);
 	}
 }

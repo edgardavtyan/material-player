@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.detail.lib;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -56,7 +57,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	}
 
 	@Override
-	public void onCreate() {
+	public void onCreate(Bundle savedInstanceState) {
 		ButterKnife.bind(this, activity);
 
 		list.setAdapter(adapter);
