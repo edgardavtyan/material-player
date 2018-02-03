@@ -52,7 +52,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@BindView(R.id.list_background) @Nullable View listBackground;
 	@BindView(R.id.click_blocker) @Nullable View clickBlockerView;
 	@BindView(R.id.art_wrapper) @Nullable View imageViewWrapper;
-	@BindView(R.id.shared_art) @Nullable ImageView sharedImageView;
+	@BindView(R.id.shared_art) ImageView sharedImageView;
 	@BindView(R.id.shared_art_exit) @Nullable ImageView sharedImageExitView;
 
 	private final AppCompatActivity activity;
@@ -129,11 +129,9 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 	@Override
 	public void onBackPressed() {
-		if (WindowUtils.isPortrait(activity)) {
-			if (isExitTransitionRunning) activity.finish();
-			beginExitTransition();
-			isExitTransitionRunning = true;
-		}
+		if (isExitTransitionRunning) activity.finish();
+		beginExitTransition();
+		isExitTransitionRunning = true;
 	}
 
 	@Override
@@ -232,20 +230,27 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	}
 
 	public void beginExitTransition() {
+		if (WindowUtils.isPortrait(activity)) {
+			clickBlockerView.setVisibility(View.VISIBLE);
+			listBackground.animate().alpha(0);
+			header.animate().alpha(0);
+			list.animate().alpha(0);
+		} else {
+			mainWrapper.animate().alpha(0);
+		}
+
 		imageView.setVisibility(View.INVISIBLE);
-		clickBlockerView.setVisibility(View.VISIBLE);
 
-		list.animate().alpha(0);
-		listBackground.animate().alpha(0);
-		header.animate().alpha(0);
+		ImageView animatingImageView = WindowUtils.isPortrait(activity) ? sharedImageExitView : sharedImageView;
 
+		animatingImageView.setVisibility(View.VISIBLE);
 		int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
-		sharedImageExitView.setX(imageViewLocation[0]);
-		sharedImageExitView.setY(imageViewLocation[1] - WindowUtils.getStatusBarHeight(activity) - appbar.getHeight());
-		sharedImageExitView.setPivotX(0);
-		sharedImageExitView.setPivotY(0);
-		ViewUtils.setSize(sharedImageExitView, imageView.getWidth(), imageView.getHeight());
-		sharedImageExitView.animate()
+		animatingImageView.setX(imageViewLocation[0]);
+		animatingImageView.setY(imageViewLocation[1] - WindowUtils.getStatusBarHeight(activity) - appbar.getHeight());
+		animatingImageView.setPivotX(0);
+		animatingImageView.setPivotY(0);
+		ViewUtils.setSize(animatingImageView, imageView.getWidth(), imageView.getHeight());
+		animatingImageView.animate()
 						   .x(sharedImageViewStartX)
 						   .y(sharedImageViewStartY - appbar.getHeight())
 						   .scaleX(sharedImageViewStartScaleX)

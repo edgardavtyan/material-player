@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 
-import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.lists.lib.ListView;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.screens.lists.lib.ListView;
 
 import javax.inject.Inject;
 
@@ -41,11 +40,7 @@ public abstract class ParallaxHeaderListCompactActivity
 
 	@Override
 	public void onBackPressed() {
-		if (WindowUtils.isPortrait(this)) {
-			callModulesOnBackPressed();
-		} else {
-			super.onBackPressed();
-		}
+		callModulesOnBackPressed();
 	}
 
 	public void setTitle(String title) {
