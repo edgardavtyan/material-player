@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +49,11 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@BindView(R.id.list_header) @Nullable RecyclerViewHeader header;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.list) RecyclerView list;
+	@BindView(R.id.list_background) View listBackground;
 	@BindView(R.id.click_blocker) View clickBlockerView;
+	@BindView(R.id.art_wrapper) View imageViewWrapper;
+	@BindView(R.id.shared_art_exit) ImageView sharedImageExitView;
+	@BindView(R.id.appbar) AppBarLayout appbar;
 
 	private final AppCompatActivity activity;
 	private final TestableRecyclerAdapter adapter;
@@ -67,8 +72,10 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 			totalScrolled += dy;
 
-			int parallax = totalScrolled / 2;
-			infoContainer.setTranslationY(parallax);
+			listBackground.setTranslationY(-totalScrolled);
+
+			int parallax = (totalScrolled + header.getHeight()) / 2;
+			infoContainer.setTranslationY(-parallax);
 			appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(parallax));
 		}
 	};
@@ -100,8 +107,13 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 		if (WindowUtils.isPortrait(activity)) {
 			assert header != null; // Removes lint warning
 			list.addOnScrollListener(onScrollListener);
-			header.attachTo(list);
 		}
+
+		header.post(() -> {
+			list.setPadding(0, header.getHeight(), 0, 0);
+			list.scrollBy(-1000, -1000);
+			listBackground.setTranslationY(header.getHeight());
+		});
 
 		beginEnterTransition();
 	}
@@ -156,13 +168,16 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 				Bitmap scaledImage = BitmapResizer.resize(image, imageViewSize);
 				imageView.setImageBitmap(scaledImage);
 				sharedImageView.setImageBitmap(scaledImage);
+				sharedImageExitView.setImageBitmap(scaledImage);
 			} else {
 				imageView.setImageBitmap(image);
 				sharedImageView.setImageBitmap(image);
+				sharedImageExitView.setImageBitmap(image);
 			}
 		} else {
 			imageView.setImageResource(fallback);
 			sharedImageView.setImageResource(fallback);
+			sharedImageExitView.setImageResource(fallback);
 		}
 	}
 
@@ -215,20 +230,22 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	}
 
 	public void beginExitTransition() {
-		sharedImageView.setVisibility(View.VISIBLE);
 		imageView.setVisibility(View.INVISIBLE);
-
-		mainWrapper.setAlpha(1);
-		mainWrapper.animate().alpha(0);
-
 		clickBlockerView.setVisibility(View.VISIBLE);
 
+		list.animate().alpha(0);
+		listBackground.animate().alpha(0);
+		header.animate().alpha(0);
+
 		int[] imageViewLocation = ViewUtils.getLocationOnScreen(imageView);
-		sharedImageView.setX(imageViewLocation[0]);
-		sharedImageView.setY(imageViewLocation[1] - WindowUtils.getStatusBarHeight(activity));
-		sharedImageView.animate()
+		sharedImageExitView.setX(imageViewLocation[0]);
+		sharedImageExitView.setY(imageViewLocation[1] - WindowUtils.getStatusBarHeight(activity) - appbar.getHeight());
+		sharedImageExitView.setPivotX(0);
+		sharedImageExitView.setPivotY(0);
+		ViewUtils.setSize(sharedImageExitView, imageView.getWidth(), imageView.getHeight());
+		sharedImageExitView.animate()
 					   .x(sharedImageViewStartX)
-					   .y(sharedImageViewStartY)
+					   .y(sharedImageViewStartY - appbar.getHeight())
 					   .scaleX(sharedImageViewStartScaleX)
 					   .scaleY(sharedImageViewStartScaleY)
 					   .setDuration(500)
