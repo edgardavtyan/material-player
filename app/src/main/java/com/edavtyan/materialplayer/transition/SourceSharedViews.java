@@ -31,7 +31,7 @@ public class SourceSharedViews {
 			bundle.putInt(transitionName + SharedViewsTransition.PARAM_HEIGHT, view.getHeight());
 		}
 
-		bundle.putStringArrayList(SharedViewsTransition.EXTRA_TRANSITION_NAMES, transitionNames); ;
+		bundle.putStringArrayList(SharedViewsTransition.EXTRA_TRANSITION_NAMES, transitionNames);
 		return bundle;
 	}
 
