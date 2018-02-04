@@ -106,10 +106,10 @@ public class SharedViewsTransition {
 						  .scaleY(1)
 						  .setDuration(500)
 						  .withStartAction(() -> new Handler().postDelayed(() -> {
-							  currentSharedViews.peek().hide();
+							  currentSharedViews.peek().setVisibility(View.INVISIBLE);
 						  }, 50))
 						  .withEndAction(() -> {
-							  currentSharedViews.peek().show();
+							  currentSharedViews.peek().setVisibility(View.VISIBLE);
 							  sharedView.setVisibility(View.INVISIBLE);
 							  sharedView.setTranslationX(0);
 							  sharedView.setTranslationY(0);
@@ -123,7 +123,7 @@ public class SharedViewsTransition {
 	public void beginExitTransition() {
 		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
 			activity.finish();
-			currentSharedViews.pop().show();
+			currentSharedViews.pop().setVisibility(View.VISIBLE);
 			return;
 		}
 
@@ -189,14 +189,14 @@ public class SharedViewsTransition {
 	}
 
 	private Runnable exitTransitionStartAction() {
-		return () -> currentSharedViews.peek().hide();
+		return () -> currentSharedViews.peek().setVisibility(View.INVISIBLE);
 	}
 
 	private Runnable exitTransitionEndAction() {
 		return () -> {
 			activity.finish();
 			activity.overridePendingTransition(0, 0);
-			currentSharedViews.pop().show();
+			currentSharedViews.pop().setVisibility(View.VISIBLE);
 		};
 	}
 }

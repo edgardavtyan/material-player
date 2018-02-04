@@ -46,4 +46,12 @@ public class SourceSharedViews {
 			pair.first.setVisibility(View.VISIBLE);
 		}
 	}
+
+	public View[] getViews() {
+		View[] views = new View[sharedViews.length];
+		for (int i = 0; i < sharedViews.length; i++) {
+			views[i] = sharedViews[i].first;
+		}
+		return views;
+	}
 }
