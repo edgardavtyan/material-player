@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class SharedViewSet {
+	private @Getter final String transitionName;
 	private @Getter final View normalView;
 	private @Getter final TransitionType transitionType;
 	private @Getter @Setter View enterPortraitView;
@@ -13,11 +14,12 @@ public class SharedViewSet {
 	private @Getter @Setter View exitPortraitView;
 	private @Getter @Setter View exitLandscapeView;
 
-	public SharedViewSet(View normalView, View sharedView) {
-		this(normalView, sharedView, TransitionType.TRANSLATE);
+	public SharedViewSet(String transitionName, View normalView, View sharedView) {
+		this(transitionName, normalView, sharedView, TransitionType.TRANSLATE);
 	}
 
-	public SharedViewSet(View normalView, View sharedView, TransitionType transitionType) {
+	public SharedViewSet(String transitionName, View normalView, View sharedView, TransitionType transitionType) {
+		this.transitionName = transitionName;
 		this.normalView = normalView;
 		this.transitionType = transitionType;
 		enterPortraitView = sharedView;

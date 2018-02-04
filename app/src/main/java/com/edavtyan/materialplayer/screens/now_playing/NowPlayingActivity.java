@@ -73,12 +73,12 @@ public class NowPlayingActivity extends ModularActivity {
 		listView.setImageBitmap(listBitmap);
 		barView.setImageBitmap(nowPlayingBarBitmap);
 
-		SharedViewSet sharedViewArtSet = new SharedViewSet(art.getArtView(), art.getSharedArtView());
-		SharedViewSet sharedListSet = new SharedViewSet(listView, listView, TransitionType.FADE_OUT);
-		SharedViewSet sharedListBackgroundSet = new SharedViewSet(listBackground, listBackground, TransitionType.FADE_OUT);
-		SharedViewSet sharedBarSet = new SharedViewSet(barView, barView, TransitionType.FADE_OUT);
+		SharedViewSet sharedArtSet = new SharedViewSet("art", art.getArtView(), art.getSharedArtView());
+		SharedViewSet sharedListSet = new SharedViewSet("list", listView, listView, TransitionType.FADE_OUT);
+		SharedViewSet sharedListBackgroundSet = new SharedViewSet("listBackground", listBackground, listBackground, TransitionType.FADE_OUT);
+		SharedViewSet sharedBarSet = new SharedViewSet("bar", barView, barView, TransitionType.FADE_OUT);
 		transition = new SharedViewsTransition(this, currentSharedViews);
-		transition.setSharedViewSets(sharedViewArtSet, sharedListSet, sharedListBackgroundSet, sharedBarSet);
+		transition.setSharedViewSets(sharedArtSet, sharedListSet, sharedListBackgroundSet, sharedBarSet);
 		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());

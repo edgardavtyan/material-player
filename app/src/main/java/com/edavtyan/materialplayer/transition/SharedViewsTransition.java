@@ -8,6 +8,8 @@ import android.view.View;
 import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
 
+import java.util.ArrayList;
+
 public class SharedViewsTransition {
 	public static final String PARAM_X = ":x";
 	public static final String PARAM_Y = ":y";
@@ -56,12 +58,13 @@ public class SharedViewsTransition {
 			view.animate().alpha(1);
 		}
 
-		for (int i = 0; i < sharedViewSets.length; i++) {
-			SharedViewSet sharedViewSet = sharedViewSets[i];
+		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
+		for (int i = 0; i < transitionNames.size(); i++) {
+			String transitionName = transitionNames.get(i);
+			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
 
 			sharedViewSet.getNormalView().setVisibility(View.INVISIBLE);
 
-			String transitionName = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES).get(i);
 			float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
 			float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
 			float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);
@@ -120,6 +123,16 @@ public class SharedViewsTransition {
 		}
 	}
 
+	private SharedViewSet findSharedViewSetByTransitionName(String transitionName) {
+		for (SharedViewSet sharedViewSet : sharedViewSets) {
+			if (sharedViewSet.getTransitionName().equals(transitionName)) {
+				return sharedViewSet;
+			}
+		}
+
+		return null;
+	}
+
 	public void beginExitTransition() {
 		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
 			activity.finish();
@@ -137,14 +150,15 @@ public class SharedViewsTransition {
 			}
 		}
 
-		for (int i = 0; i < sharedViewSets.length; i++) {
-			SharedViewSet sharedViewSet = sharedViewSets[i];
+		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
+		for (int i = 0; i < transitionNames.size(); i++) {
+			String transitionName = transitionNames.get(i);
+			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
 
 			View sharedViewPortrait = sharedViewSet.getExitPortraitView();
 			View sharedViewLandscape = sharedViewSet.getExitLandscapeView();
 			View normalView = sharedViewSet.getNormalView();
 
-			String transitionName = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES).get(i);
 			float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
 			float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
 			float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);

@@ -104,7 +104,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		SharedViewSet sharedArtViewSet = new SharedViewSet(artView, sharedArtView);
+		SharedViewSet sharedArtViewSet = new SharedViewSet("art", artView, sharedArtView);
 		sharedArtViewSet.setExitPortraitView(sharedArtExitView);
 
 		transition = new SharedViewsTransition(activity, currentSharedViews);
