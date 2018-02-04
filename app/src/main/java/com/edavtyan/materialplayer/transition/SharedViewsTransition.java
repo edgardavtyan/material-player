@@ -163,7 +163,12 @@ public class SharedViewsTransition {
 			float endYDelta = intentY - transitionArtViewLocation[1];
 
 			if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
-				return;
+				sharedView.setVisibility(View.VISIBLE);
+				sharedView.animate()
+						  .alpha(1)
+						  .withStartAction(exitTransitionStartAction())
+						  .withEndAction(exitTransitionEndAction());
+				continue;
 			}
 
 			ViewUtils.setSize(sharedView, normalView);
@@ -178,12 +183,20 @@ public class SharedViewsTransition {
 					  .scaleX(startScaleX)
 					  .scaleY(startScaleY)
 					  .setDuration(500)
-					  .withStartAction(() -> currentSharedViews.peek().hide())
-					  .withEndAction(() -> {
-						  activity.finish();
-						  activity.overridePendingTransition(0, 0);
-						  currentSharedViews.pop().show();
-					  });
+					  .withStartAction(exitTransitionStartAction())
+					  .withEndAction(exitTransitionEndAction());
 		}
+	}
+
+	private Runnable exitTransitionStartAction() {
+		return () -> currentSharedViews.peek().hide();
+	}
+
+	private Runnable exitTransitionEndAction() {
+		return () -> {
+			activity.finish();
+			activity.overridePendingTransition(0, 0);
+			currentSharedViews.pop().show();
+		};
 	}
 }
