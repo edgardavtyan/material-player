@@ -53,9 +53,11 @@ public class Navigator {
 		activity.overridePendingTransition(0, android.R.anim.fade_out);
 	}
 
-	public void gotoNowPlaying() {
-		Intent intent = new Intent(context, NowPlayingActivity.class);
-		context.startActivity(intent);
+	public void gotoNowPlaying(Activity activity, Bundle bundle) {
+		Intent intent = new Intent(activity, NowPlayingActivity.class);
+		intent.putExtras(bundle);
+		activity.startActivity(intent);
+		activity.overridePendingTransition(0, android.R.anim.fade_out);
 	}
 
 	public void gotoNowPlayingQueue(Activity activity) {

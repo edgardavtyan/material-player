@@ -25,4 +25,8 @@ public class NowPlayingFab implements View.OnClickListener {
 	public void onClick(View v) {
 		presenter.onFabClick();
 	}
+
+	public FloatingActionButton getView() {
+		return fab;
+	}
 }

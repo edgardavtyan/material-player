@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,12 @@ import com.ed.libsutils.utils.BitmapResizer;
 import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
+import com.edavtyan.materialplayer.screens.Navigator;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
 
@@ -39,6 +42,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	@Inject ScreenThemeModule themeModule;
 	@Inject NowPlayingFloatingPresenter presenter;
 	@Inject Navigator navigator;
+	@Inject CurrentSharedViews currentSharedViews;
 
 	@Override
 	public void onClick(View view) {
@@ -124,7 +128,9 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	}
 
 	public void gotoNowPlaying() {
-		navigator.gotoNowPlaying();
+		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
+		currentSharedViews.push(sharedViews);
+		navigator.gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 
 	protected NowPlayingFloatingComponent getComponent() {

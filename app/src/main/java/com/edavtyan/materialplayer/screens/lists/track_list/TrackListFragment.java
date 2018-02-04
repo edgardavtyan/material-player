@@ -24,7 +24,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 
 	@Override
 	public void gotoNowPlaying() {
-		navigator.gotoNowPlaying();
+		navigator.gotoNowPlaying(getActivity(), new Bundle());
 	}
 
 	protected TrackListComponent getComponent() {

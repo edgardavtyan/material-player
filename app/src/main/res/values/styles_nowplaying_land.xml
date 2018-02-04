@@ -2,7 +2,7 @@
 <resources>
 
 	<style name="NowPlaying_Land_FAB" parent="NowPlaying_FAB">
-		<item name="layout_anchor">@+id/inner_main_container</item>
+		<item name="layout_anchor">@+id/inner_container</item>
 		<item name="layout_anchorGravity">right|bottom</item>
 	</style>
 

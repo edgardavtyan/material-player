@@ -51,7 +51,7 @@ public class AlbumDetailActivityCompact
 
 	@Override
 	public void gotoNowPlaying() {
-		navigator.gotoNowPlaying();
+		navigator.gotoNowPlaying(this, new Bundle());
 	}
 
 	protected AlbumDetailComponent getComponent() {

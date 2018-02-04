@@ -47,6 +47,10 @@ public class SharedViewsTransition {
 	}
 
 	public void beginEnterTransition() {
+		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
+			return;
+		}
+
 		for (View view : enterFadingViews) {
 			view.setAlpha(0);
 			view.animate().alpha(1);
@@ -105,6 +109,12 @@ public class SharedViewsTransition {
 	}
 
 	public void beginExitTransition() {
+		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
+			activity.finish();
+			currentSharedViews.pop().show();
+			return;
+		}
+
 		if (WindowUtils.isPortrait(activity)) {
 			for (View view : exitPortraitFadingViews) {
 				view.animate().alpha(0);

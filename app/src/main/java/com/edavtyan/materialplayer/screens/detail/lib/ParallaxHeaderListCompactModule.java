@@ -19,11 +19,11 @@ import com.ed.libsutils.utils.ColorUtils;
 import com.ed.libsutils.utils.DpConverter;
 import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
 import com.edavtyan.materialplayer.transition.SharedViewsTransition;
 

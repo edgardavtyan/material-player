@@ -72,6 +72,7 @@
 		<activity
 			android:name=".screens.now_playing.NowPlayingActivity"
 			android:launchMode="singleTop"
+			android:theme="@style/AppTheme.Transparent"
 			>
 			<intent-filter>
 				<action android:name="android.intent.action.SEND" />

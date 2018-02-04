@@ -6,18 +6,21 @@ import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingArt;
-import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingControls;
-import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingFab;
-import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingInfo;
-import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.screens.Navigator;
+import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingArt;
+import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingControls;
+import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingFab;
+import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingInfo;
+import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.SharedViewSet;
+import com.edavtyan.materialplayer.transition.SharedViewsTransition;
 
 import javax.inject.Inject;
 
@@ -32,6 +35,7 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
+	@Inject CurrentSharedViews currentSharedViews;
 
 	@Inject @Getter NowPlayingControls controls;
 	@Inject @Getter NowPlayingInfo info;
@@ -40,6 +44,8 @@ public class NowPlayingActivity extends ModularActivity {
 	@Inject @Getter NowPlayingFab fab;
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
+
+	private SharedViewsTransition transition;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,12 +57,26 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(toolbarModule);
 		addModule(themeModule);
 		presenter.bind();
+
+		SharedViewSet sharedViewArtSet = new SharedViewSet(art.getArtView(), art.getSharedArtView());
+		transition = new SharedViewsTransition(this, currentSharedViews);
+		transition.setSharedViewSets(sharedViewArtSet);
+		transition.setEnterFadingViews(innerContainerView, fab.getView());
+		transition.setExitPortraitFadingViews(innerContainerView, fab.getView());
+		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());
+
+		if (savedInstanceState == null) transition.beginEnterTransition();
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.unbind();
+	}
+
+	@Override
+	public void onBackPressed() {
+		transition.beginExitTransition();
 	}
 
 	@Override
@@ -72,7 +92,7 @@ public class NowPlayingActivity extends ModularActivity {
 	protected NowPlayingComponent getComponent() {
 		return DaggerNowPlayingComponent
 				.builder()
-				.appComponent(((App)getApplication()).getAppComponent())
+				.appComponent(((App) getApplication()).getAppComponent())
 				.nowPlayingModule(new NowPlayingModule(this))
 				.activityModulesFactory(new ActivityModulesFactory(R.string.nowplaying_toolbar_title))
 				.build();
