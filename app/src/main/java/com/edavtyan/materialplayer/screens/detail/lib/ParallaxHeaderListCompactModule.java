@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 	private static final int SCALED_ART_SIZE_DP = 120;
 
+	@BindView(R.id.appbar) AppBarLayout appbar;
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info_top) @Nullable TextView portraitTopInfoView;
 	@BindView(R.id.info_bottom) @Nullable TextView portraitBottomInfoView;
@@ -230,6 +232,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			listBackground.animate().alpha(0);
 			header.animate().alpha(0);
 			list.animate().alpha(0);
+			appbar.animate().alpha(0);
 		} else {
 			mainWrapper.animate().alpha(0);
 		}
