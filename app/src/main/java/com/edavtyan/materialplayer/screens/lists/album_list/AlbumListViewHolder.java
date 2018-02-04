@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.screens.lists.album_list;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v4.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -73,7 +74,7 @@ public class AlbumListViewHolder
 
 	@Override
 	public void onClick(View v) {
-		SourceSharedViews sharedViews = new SourceSharedViews(artView);
+		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
 		presenter.onHolderClick(getAdapterPositionNonFinal(), sharedViews);
 	}
 

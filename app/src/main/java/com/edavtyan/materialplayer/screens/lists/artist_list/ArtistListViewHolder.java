@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.screens.lists.artist_list;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.support.v4.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -68,7 +69,7 @@ public class ArtistListViewHolder
 
 	@Override
 	public void onClick(View v) {
-		SourceSharedViews sharedViews = new SourceSharedViews(artView);
+		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
 		presenter.onHolderClick(getAdapterPositionNonFinal(), sharedViews);
 	}
 

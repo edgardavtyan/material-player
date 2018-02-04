@@ -46,10 +46,12 @@ public class SharedViewsTransition {
 			view.animate().alpha(1);
 		}
 
-		for (SharedViewSet sharedViewSet : sharedViewSets) {
+		for (int i = 0; i < sharedViewSets.length; i++) {
+			SharedViewSet sharedViewSet = sharedViewSets[i];
+
 			sharedViewSet.getNormalView().setVisibility(View.INVISIBLE);
 
-			String transitionName = sharedViewSet.getTransitionName();
+			String transitionName = intent.getStringArrayListExtra("transitionNames").get(i);
 			float intentX = intent.getFloatExtra(transitionName + ":x", 0);
 			float intentY = intent.getFloatExtra(transitionName + ":y", 0);
 			float intentWidth = intent.getIntExtra(transitionName + ":width", 0);
@@ -107,12 +109,14 @@ public class SharedViewsTransition {
 			}
 		}
 
-		for (SharedViewSet sharedViewSet : sharedViewSets) {
+		for (int i = 0; i < sharedViewSets.length; i++) {
+			SharedViewSet sharedViewSet = sharedViewSets[i];
+
 			View sharedViewPortrait = sharedViewSet.getExitPortraitView();
 			View sharedViewLandscape = sharedViewSet.getExitLandscapeView();
 			View normalView = sharedViewSet.getNormalView();
 
-			String transitionName = sharedViewSet.getTransitionName();
+			String transitionName = intent.getStringArrayListExtra("transitionNames").get(i);
 			float intentX = intent.getFloatExtra(transitionName + ":x", 0);
 			float intentY = intent.getFloatExtra(transitionName + ":y", 0);
 			float intentWidth = intent.getIntExtra(transitionName + ":width", 0);
