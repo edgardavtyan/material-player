@@ -77,7 +77,7 @@ public class ActivityToolbarModule extends ActivityModule {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			activity.finish();
+			activity.onBackPressed();
 			break;
 		}
 
