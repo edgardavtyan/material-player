@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.screens.now_playing;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
@@ -44,6 +45,7 @@ public class NowPlayingActivity extends ModularActivity {
 	@Inject @Getter NowPlayingFab fab;
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
+	@BindView(R.id.appbar) AppBarLayout appbar;
 
 	private SharedViewsTransition transition;
 
@@ -61,8 +63,8 @@ public class NowPlayingActivity extends ModularActivity {
 		SharedViewSet sharedViewArtSet = new SharedViewSet(art.getArtView(), art.getSharedArtView());
 		transition = new SharedViewsTransition(this, currentSharedViews);
 		transition.setSharedViewSets(sharedViewArtSet);
-		transition.setEnterFadingViews(innerContainerView, fab.getView());
-		transition.setExitPortraitFadingViews(innerContainerView, fab.getView());
+		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
+		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());
 
 		if (savedInstanceState == null) transition.beginEnterTransition();
