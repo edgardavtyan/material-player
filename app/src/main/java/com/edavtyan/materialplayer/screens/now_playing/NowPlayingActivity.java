@@ -1,8 +1,11 @@
 package com.edavtyan.materialplayer.screens.now_playing;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
@@ -22,6 +25,7 @@ import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
 import com.edavtyan.materialplayer.transition.SharedViewsTransition;
+import com.edavtyan.materialplayer.transition.TransitionType;
 
 import javax.inject.Inject;
 
@@ -30,6 +34,9 @@ import butterknife.ButterKnife;
 import lombok.Getter;
 
 public class NowPlayingActivity extends ModularActivity {
+	public static Bitmap listBitmap;
+	public static Bitmap nowPlayingBarBitmap;
+
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ScreenThemeModule themeModule;
@@ -46,6 +53,9 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
+	@BindView(R.id.shared_list) ImageView listView;
+	@BindView(R.id.shared_list_background) View listBackground;
+	@BindView(R.id.shared_bar) ImageView barView;
 
 	private SharedViewsTransition transition;
 
@@ -60,9 +70,15 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(themeModule);
 		presenter.bind();
 
+		listView.setImageBitmap(listBitmap);
+		barView.setImageBitmap(nowPlayingBarBitmap);
+
 		SharedViewSet sharedViewArtSet = new SharedViewSet(art.getArtView(), art.getSharedArtView());
+		SharedViewSet sharedListSet = new SharedViewSet(listView, listView, TransitionType.FADE_OUT);
+		SharedViewSet sharedListBackgroundSet = new SharedViewSet(listBackground, listBackground, TransitionType.FADE_OUT);
+		SharedViewSet sharedBarSet = new SharedViewSet(barView, barView, TransitionType.FADE_OUT);
 		transition = new SharedViewsTransition(this, currentSharedViews);
-		transition.setSharedViewSets(sharedViewArtSet);
+		transition.setSharedViewSets(sharedViewArtSet, sharedListSet, sharedListBackgroundSet, sharedBarSet);
 		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());

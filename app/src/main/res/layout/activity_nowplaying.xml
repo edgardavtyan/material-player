@@ -129,6 +129,27 @@
 					android:layout_height="0dp"
 					/>
 
+				<View
+					android:id="@+id/shared_list_background"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@color/white"
+					/>
+
+				<ImageView
+					android:id="@+id/shared_list"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:scaleType="fitStart"
+					/>
+
+				<ImageView
+					android:id="@+id/shared_bar"
+					android:layout_width="match_parent"
+					android:layout_height="?listPreferredItemHeightSmall"
+					android:layout_gravity="bottom"
+					/>
+
 			</FrameLayout>
 
 		</LinearLayout>

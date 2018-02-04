@@ -80,6 +80,11 @@ public class SharedViewsTransition {
 				float endXDelta = normalViewLocation[0] - sharedViewLocation[0];
 				float endYDelta = normalViewLocation[1] - sharedViewLocation[1];
 
+				if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
+					startScaleX = 1;
+					startScaleY = 1;
+				}
+
 				ViewUtils.setSize(sharedView, normalView);
 				sharedView.setTranslationX(startXDelta);
 				sharedView.setTranslationY(startYDelta);
@@ -87,6 +92,13 @@ public class SharedViewsTransition {
 				sharedView.setScaleY(startScaleY);
 				sharedView.setPivotX(0);
 				sharedView.setPivotY(0);
+
+				if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
+					sharedView.setAlpha(1);
+					sharedView.animate().alpha(0).setDuration(500);
+					return;
+				}
+
 				sharedView.animate()
 						  .translationX(endXDelta)
 						  .translationY(endYDelta)
@@ -149,6 +161,10 @@ public class SharedViewsTransition {
 			float startScaleY = intentHeight / normalView.getHeight();
 			float endXDelta = intentX - transitionArtViewLocation[0];
 			float endYDelta = intentY - transitionArtViewLocation[1];
+
+			if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
+				return;
+			}
 
 			ViewUtils.setSize(sharedView, normalView);
 			sharedView.setVisibility(View.VISIBLE);
