@@ -1,23 +1,23 @@
-package com.edavtyan.materialplayer;
+package com.edavtyan.materialplayer.transition;
 
 import java.util.Stack;
 
 public class CurrentSharedViews {
-	private final Stack<SharedViews> sharedViewsStack;
+	private final Stack<SourceSharedViews> sharedViewsStack;
 
 	public CurrentSharedViews() {
 		sharedViewsStack = new Stack<>();
 	}
 
-	public void push(SharedViews sharedViews) {
+	public void push(SourceSharedViews sharedViews) {
 		sharedViewsStack.push(sharedViews);
 	}
 
-	public SharedViews pop() {
+	public SourceSharedViews pop() {
 		return sharedViewsStack.pop();
 	}
 
-	public SharedViews peek() {
+	public SourceSharedViews peek() {
 		return sharedViewsStack.peek();
 	}
 }

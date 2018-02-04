@@ -8,8 +8,8 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.screens.detail.lib.DetailSharedViews;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
 
@@ -50,7 +50,7 @@ public class ArtistDetailActivityNormal
 	}
 
 	@Override
-	public void gotoAlbumDetailCompact(int albumId, DetailSharedViews sharedViews) {
+	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
 		navigator.gotoAlbumDetailCompact(this, albumId, sharedViews.build());
 	}
 

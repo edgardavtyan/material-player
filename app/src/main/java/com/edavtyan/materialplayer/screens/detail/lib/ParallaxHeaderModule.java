@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.screens.detail.lib;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.screens.ActivityScope;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 

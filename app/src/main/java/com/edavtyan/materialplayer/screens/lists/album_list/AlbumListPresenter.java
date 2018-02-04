@@ -1,9 +1,9 @@
 package com.edavtyan.materialplayer.screens.lists.album_list;
 
-import com.edavtyan.materialplayer.screens.detail.lib.DetailSharedViews;
 import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.db.Album;
 import com.ed.libsutils.utils.Logger;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 public class AlbumListPresenter extends ListPresenter<AlbumListViewHolder> {
 
@@ -30,7 +30,7 @@ public class AlbumListPresenter extends ListPresenter<AlbumListViewHolder> {
 		return model.getAlbumsCount();
 	}
 
-	public void onHolderClick(int position, DetailSharedViews sharedViews) {
+	public void onHolderClick(int position, SourceSharedViews sharedViews) {
 		int albumId = model.getAlbumAtIndex(position).getId();
 		if (model.isCompactModeEnabled()) {
 			view.gotoAlbumDetailCompact(albumId, sharedViews);

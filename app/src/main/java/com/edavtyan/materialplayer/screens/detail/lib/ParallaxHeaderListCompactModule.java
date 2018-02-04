@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.screens.detail.lib;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -20,21 +19,18 @@ import com.ed.libsutils.utils.ColorUtils;
 import com.ed.libsutils.utils.DpConverter;
 import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
-import com.edavtyan.materialplayer.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
+import com.edavtyan.materialplayer.transition.SharedViewSet;
+import com.edavtyan.materialplayer.transition.SharedViewsTransition;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ParallaxHeaderListCompactModule extends ActivityModule {
-
-	public static final String SHARED_ART_X = "shared_art_x";
-	public static final String SHARED_ART_Y = "shared_art_y";
-	public static final String SHARED_ART_WIDTH = "shared_art_width";
-	public static final String SHARED_ART_HEIGHT = "shared_art_height";
 
 	private static final int SCALED_ART_SIZE_DP = 120;
 
@@ -76,7 +72,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	private final ParallaxHeaderListPresenter presenter;
 	private final CurrentSharedViews currentSharedViews;
 
-	private ParallaxHeaderListCompactIntent intent;
+	private SharedViewsTransition transition;
 	private boolean isExitTransitionRunning;
 
 	public ParallaxHeaderListCompactModule(
@@ -93,7 +89,6 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ButterKnife.bind(this, activity);
-		intent = new ParallaxHeaderListCompactIntent(activity.getIntent());
 
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(activity));
@@ -109,8 +104,17 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
+		SharedViewSet sharedArtViewSet = new SharedViewSet(artView, sharedArtView, "art");
+		sharedArtViewSet.setExitPortraitView(sharedArtExitView);
+
+		transition = new SharedViewsTransition(activity, currentSharedViews);
+		transition.setSharedViewSets(sharedArtViewSet);
+		transition.setEnterFadingViews(mainWrapper);
+		transition.setExitPortraitFadingViews(clickBlockerView, listBackground, list, header, appbar);
+		transition.setExitLandscapeFadingViews(mainWrapper);
+
 		if (savedInstanceState == null) {
-			beginEnterTransition();
+			transition.beginEnterTransition();
 		}
 	}
 
@@ -127,7 +131,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@Override
 	public void onBackPressed() {
 		if (isExitTransitionRunning) activity.finish();
-		beginExitTransition();
+		transition.beginExitTransition();
 		isExitTransitionRunning = true;
 	}
 
@@ -180,92 +184,5 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 
 	public void notifyDataSetChanged() {
 		adapter.notifyDataSetChangedNonFinal();
-	}
-
-	private void beginEnterTransition() {
-		sharedArtView.setVisibility(View.VISIBLE);
-		artView.setVisibility(View.INVISIBLE);
-
-		mainWrapper.setAlpha(0);
-		mainWrapper.animate().alpha(1);
-
-		sharedArtView.post(() -> {
-			int[] sharedArtViewLocation = ViewUtils.getLocationOnScreen(sharedArtView);
-			int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
-			float startXDelta = intent.getSharedArtX() - sharedArtViewLocation[0];
-			float startYDelta = intent.getSharedArtY() - sharedArtViewLocation[1];
-			float startScaleX = (float) intent.getSharedArtWidth() / artView.getWidth();
-			float startScaleY = (float) intent.getSharedArtHeight() / artView.getHeight();
-			float endXDelta = artViewLocation[0] - sharedArtViewLocation[0];
-			float endYDelta = artViewLocation[1] - sharedArtViewLocation[1];
-
-			ViewUtils.setSize(sharedArtView, artView);
-			sharedArtView.setTranslationX(startXDelta);
-			sharedArtView.setTranslationY(startYDelta);
-			sharedArtView.setScaleX(startScaleX);
-			sharedArtView.setScaleY(startScaleY);
-			sharedArtView.setPivotX(0);
-			sharedArtView.setPivotY(0);
-			sharedArtView.animate()
-						 .translationX(endXDelta)
-						 .translationY(endYDelta)
-						 .scaleX(1)
-						 .scaleY(1)
-						 .setDuration(500)
-						 .withStartAction(() -> new Handler().postDelayed(() -> {
-							 currentSharedViews.peek().hide();
-						 }, 50))
-						 .withEndAction(() -> {
-							 currentSharedViews.peek().show();
-							 sharedArtView.setVisibility(View.INVISIBLE);
-							 sharedArtView.setTranslationX(0);
-							 sharedArtView.setTranslationY(0);
-							 artView.setVisibility(View.VISIBLE);
-						 })
-						 .start();
-		});
-	}
-
-	public void beginExitTransition() {
-		if (WindowUtils.isPortrait(activity)) {
-			clickBlockerView.setVisibility(View.VISIBLE);
-			listBackground.animate().alpha(0);
-			header.animate().alpha(0);
-			list.animate().alpha(0);
-			appbar.animate().alpha(0);
-		} else {
-			mainWrapper.animate().alpha(0);
-		}
-
-		artView.setVisibility(View.INVISIBLE);
-
-		ImageView animatingArtView = WindowUtils.isPortrait(activity) ? sharedArtExitView : sharedArtView;
-		int[] artViewLocation = ViewUtils.getLocationOnScreen(artView);
-		int[] transitionArtViewLocation = ViewUtils.getLocationOnScreen(animatingArtView);
-		float startXDelta = artViewLocation[0] - transitionArtViewLocation[0];
-		float startYDelta = artViewLocation[1] - transitionArtViewLocation[1];
-		float startScaleX = (float) intent.getSharedArtWidth() / artView.getWidth();
-		float startScaleY = (float) intent.getSharedArtHeight() / artView.getHeight();
-		float endXDelta = intent.getSharedArtX() - transitionArtViewLocation[0];
-		float endYDelta = intent.getSharedArtY() - transitionArtViewLocation[1];
-
-		ViewUtils.setSize(animatingArtView, artView);
-		animatingArtView.setVisibility(View.VISIBLE);
-		animatingArtView.setTranslationX(startXDelta);
-		animatingArtView.setTranslationY(startYDelta);
-		animatingArtView.setPivotX(0);
-		animatingArtView.setPivotY(0);
-		animatingArtView.animate()
-						.translationX(endXDelta)
-						.translationY(endYDelta)
-						.scaleX(startScaleX)
-						.scaleY(startScaleY)
-						.setDuration(500)
-						.withStartAction(() -> currentSharedViews.peek().hide())
-						.withEndAction(() -> {
-							activity.finish();
-							activity.overridePendingTransition(0, 0);
-							currentSharedViews.pop().show();
-						});
 	}
 }

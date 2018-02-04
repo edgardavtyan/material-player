@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.screens.detail.lib.DetailSharedViews;
 import com.edavtyan.materialplayer.screens.lists.lib.ListFragment;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
 
@@ -31,7 +31,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	}
 
 	@Override
-	public void gotoArtistDetailCompact(String title, DetailSharedViews sharedViews) {
+	public void gotoArtistDetailCompact(String title, SourceSharedViews sharedViews) {
 		currentSharedViews.push(sharedViews);
 		navigator.gotoArtistDetailCompact(getActivity(), title, sharedViews.build());
 

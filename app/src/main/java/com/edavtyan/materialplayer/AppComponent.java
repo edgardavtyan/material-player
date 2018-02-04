@@ -19,6 +19,7 @@ import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
+import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
