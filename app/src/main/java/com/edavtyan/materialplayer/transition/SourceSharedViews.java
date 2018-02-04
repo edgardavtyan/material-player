@@ -25,13 +25,13 @@ public class SourceSharedViews {
 			String transitionName = pair.second;
 			int[] viewLocation = ViewUtils.getLocationOnScreen(pair.first);
 			transitionNames.add(transitionName);
-			bundle.putFloat(transitionName + ":x", viewLocation[0]);
-			bundle.putFloat(transitionName + ":y", viewLocation[1]);
-			bundle.putInt(transitionName + ":width", view.getWidth());
-			bundle.putInt(transitionName + ":height", view.getHeight());
+			bundle.putFloat(transitionName + SharedViewsTransition.PARAM_X, viewLocation[0]);
+			bundle.putFloat(transitionName + SharedViewsTransition.PARAM_Y, viewLocation[1]);
+			bundle.putInt(transitionName + SharedViewsTransition.PARAM_WIDTH, view.getWidth());
+			bundle.putInt(transitionName + SharedViewsTransition.PARAM_HEIGHT, view.getHeight());
 		}
 
-		bundle.putStringArrayList("transitionNames", transitionNames); ;
+		bundle.putStringArrayList(SharedViewsTransition.EXTRA_TRANSITION_NAMES, transitionNames); ;
 		return bundle;
 	}
 

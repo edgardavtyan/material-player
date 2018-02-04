@@ -9,6 +9,12 @@ import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
 
 public class SharedViewsTransition {
+	public static final String PARAM_X = ":x";
+	public static final String PARAM_Y = ":y";
+	public static final String PARAM_WIDTH = ":width";
+	public static final String PARAM_HEIGHT = ":height";
+	public static final String EXTRA_TRANSITION_NAMES = "transitionNames";
+
 	private final Intent intent;
 	private final Activity activity;
 	private final CurrentSharedViews currentSharedViews;
@@ -51,11 +57,11 @@ public class SharedViewsTransition {
 
 			sharedViewSet.getNormalView().setVisibility(View.INVISIBLE);
 
-			String transitionName = intent.getStringArrayListExtra("transitionNames").get(i);
-			float intentX = intent.getFloatExtra(transitionName + ":x", 0);
-			float intentY = intent.getFloatExtra(transitionName + ":y", 0);
-			float intentWidth = intent.getIntExtra(transitionName + ":width", 0);
-			float intentHeight = intent.getIntExtra(transitionName + ":height", 0);
+			String transitionName = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES).get(i);
+			float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
+			float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
+			float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);
+			float intentHeight = intent.getIntExtra(transitionName + PARAM_HEIGHT, 0);
 
 			View sharedView = sharedViewSet.getEnterPortraitView();
 			View normalView = sharedViewSet.getNormalView();
@@ -116,11 +122,11 @@ public class SharedViewsTransition {
 			View sharedViewLandscape = sharedViewSet.getExitLandscapeView();
 			View normalView = sharedViewSet.getNormalView();
 
-			String transitionName = intent.getStringArrayListExtra("transitionNames").get(i);
-			float intentX = intent.getFloatExtra(transitionName + ":x", 0);
-			float intentY = intent.getFloatExtra(transitionName + ":y", 0);
-			float intentWidth = intent.getIntExtra(transitionName + ":width", 0);
-			float intentHeight = intent.getIntExtra(transitionName + ":height", 0);
+			String transitionName = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES).get(i);
+			float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
+			float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
+			float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);
+			float intentHeight = intent.getIntExtra(transitionName + PARAM_HEIGHT, 0);
 
 			normalView.setVisibility(View.INVISIBLE);
 
