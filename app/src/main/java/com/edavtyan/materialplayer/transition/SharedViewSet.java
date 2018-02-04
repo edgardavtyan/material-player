@@ -8,17 +8,23 @@ import lombok.Setter;
 public class SharedViewSet {
 	private @Getter final String transitionName;
 	private @Getter final View normalView;
-	private @Getter final TransitionType transitionType;
+	private @Getter @Setter TransitionType transitionType;
 	private @Getter @Setter View enterPortraitView;
 	private @Getter @Setter View enterLandscapeView;
 	private @Getter @Setter View exitPortraitView;
 	private @Getter @Setter View exitLandscapeView;
 
-	public SharedViewSet(String transitionName, View normalView, View sharedView) {
-		this(transitionName, normalView, sharedView, TransitionType.TRANSLATE);
+	public static SharedViewSet translating(String transitionName, View normalView, View sharedView) {
+		return new SharedViewSet(transitionName, normalView, sharedView);
 	}
 
-	public SharedViewSet(String transitionName, View normalView, View sharedView, TransitionType transitionType) {
+	public static SharedViewSet fading(String transitionName, View view) {
+		SharedViewSet set = new SharedViewSet(transitionName, view, view);
+		set.setTransitionType(TransitionType.FADE_OUT);
+		return set;
+	}
+
+	private SharedViewSet(String transitionName, View normalView, View sharedView) {
 		this.transitionName = transitionName;
 		this.normalView = normalView;
 		this.transitionType = transitionType;

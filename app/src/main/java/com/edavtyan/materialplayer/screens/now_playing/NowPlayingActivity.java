@@ -25,7 +25,6 @@ import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
 import com.edavtyan.materialplayer.transition.SharedViewsTransition;
-import com.edavtyan.materialplayer.transition.TransitionType;
 
 import javax.inject.Inject;
 
@@ -73,12 +72,12 @@ public class NowPlayingActivity extends ModularActivity {
 		listView.setImageBitmap(listBitmap);
 		barView.setImageBitmap(nowPlayingBarBitmap);
 
-		SharedViewSet sharedArtSet = new SharedViewSet("art", art.getArtView(), art.getSharedArtView());
-		SharedViewSet sharedListSet = new SharedViewSet("list", listView, listView, TransitionType.FADE_OUT);
-		SharedViewSet sharedListBackgroundSet = new SharedViewSet("listBackground", listBackground, listBackground, TransitionType.FADE_OUT);
-		SharedViewSet sharedBarSet = new SharedViewSet("bar", barView, barView, TransitionType.FADE_OUT);
 		transition = new SharedViewsTransition(this, currentSharedViews);
-		transition.setSharedViewSets(sharedArtSet, sharedListSet, sharedListBackgroundSet, sharedBarSet);
+		transition.setSharedViewSets(
+				SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
+				SharedViewSet.fading("list", listView),
+				SharedViewSet.fading("listBackground", listBackground),
+				SharedViewSet.fading("bar", barView));
 		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());
