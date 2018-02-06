@@ -30,7 +30,6 @@ public class SharedViewSet {
 	private SharedViewSet(String transitionName, View normalView, View sharedView) {
 		this.transitionName = transitionName;
 		this.normalView = normalView;
-		this.transitionType = transitionType;
 		enterPortraitView = sharedView;
 		enterLandscapeView = sharedView;
 		exitPortraitView = sharedView;
