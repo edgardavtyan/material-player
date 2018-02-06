@@ -75,9 +75,18 @@ public class NowPlayingActivity extends ModularActivity {
 		transition = new SharedViewsTransition(this, currentSharedViews);
 		transition.setSharedViewSets(
 				SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
-				SharedViewSet.fading("list", listView),
-				SharedViewSet.fading("listBackground", listBackground),
-				SharedViewSet.fading("bar", barView));
+				SharedViewSet.fading("list", listView)
+							 .enterDuration(200)
+							 .exitDuration(200)
+							 .exitDelay(300),
+				SharedViewSet.fading("listBackground", listBackground)
+							 .enterDuration(200)
+							 .exitDuration(200)
+							 .exitDelay(300),
+				SharedViewSet.fading("bar", barView)
+							 .enterDuration(200)
+							 .exitDuration(200)
+							 .exitDelay(300));
 		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());

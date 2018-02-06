@@ -98,7 +98,9 @@ public class SharedViewsTransition {
 
 				if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
 					sharedView.setAlpha(1);
-					sharedView.animate().alpha(0).setDuration(500);
+					sharedView.animate()
+							  .alpha(0)
+							  .setDuration(sharedViewSet.getEnterDuration());
 					return;
 				}
 
@@ -179,6 +181,8 @@ public class SharedViewsTransition {
 			if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
 				sharedView.setVisibility(View.VISIBLE);
 				sharedView.animate()
+						  .setStartDelay(sharedViewSet.getExitDelay())
+						  .setDuration(sharedViewSet.getExitDuration())
 						  .alpha(1)
 						  .withStartAction(exitTransitionStartAction())
 						  .withEndAction(exitTransitionEndAction());

@@ -13,6 +13,9 @@ public class SharedViewSet {
 	private @Getter @Setter View enterLandscapeView;
 	private @Getter @Setter View exitPortraitView;
 	private @Getter @Setter View exitLandscapeView;
+	private @Getter int enterDuration;
+	private @Getter int exitDuration;
+	private @Getter int exitDelay;
 
 	public static SharedViewSet translating(String transitionName, View normalView, View sharedView) {
 		return new SharedViewSet(transitionName, normalView, sharedView);
@@ -32,5 +35,22 @@ public class SharedViewSet {
 		enterLandscapeView = sharedView;
 		exitPortraitView = sharedView;
 		exitLandscapeView = sharedView;
+		enterDuration = 500;
+		exitDelay = 0;
+	}
+
+	public SharedViewSet enterDuration(int durationMs) {
+		this.enterDuration = durationMs;
+		return this;
+	}
+
+	public SharedViewSet exitDelay(int startDelayMs) {
+		this.exitDelay = startDelayMs;
+		return this;
+	}
+
+	public SharedViewSet exitDuration(int durationMs) {
+		this.exitDuration = durationMs;
+		return this;
 	}
 }
