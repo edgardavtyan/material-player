@@ -94,6 +94,7 @@ public class AlbumDetailActivityCompact
 	}
 
 	private Bitmap viewToBitmap(View view) {
+		view.requestLayout();
 		Bitmap viewBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_4444);
 		Canvas canvas = new Canvas(viewBitmap);
 		view.draw(canvas);

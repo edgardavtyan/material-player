@@ -2,14 +2,16 @@ package com.edavtyan.materialplayer.screens.detail.album_detail;
 
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
+import com.edavtyan.materialplayer.screens.lists.track_list.TrackListModel;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class AlbumDetailModel extends TrackListModel {
 	private final TrackDB trackDB;
 	private final AlbumArtProvider albumArtProvider;
 	private final int albumId;
+
+	private Player.OnNewTrackListener onNewTrackListener;
 
 	public AlbumDetailModel(
 			ModelServiceModule serviceModule,
@@ -53,5 +57,19 @@ public class AlbumDetailModel extends TrackListModel {
 	@Override
 	protected List<Track> queryTracks() {
 		return trackDB.getTracksWithAlbumId(albumId);
+	}
+
+	@Override
+	public void onServiceConnected(PlayerService service) {
+		super.onServiceConnected(service);
+		service.getPlayer().setOnNewTrackListener(onNewTrackListener);
+	}
+
+	public void addOnNewTrackListener(Player.OnNewTrackListener listener) {
+		onNewTrackListener = listener;
+	}
+
+	public void removeOnNewTrackListener(Player.OnNewTrackListener listener) {
+		service.getPlayer().removeOnNewTrackListener(listener);
 	}
 }

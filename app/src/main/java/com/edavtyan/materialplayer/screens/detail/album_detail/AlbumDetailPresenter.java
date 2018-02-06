@@ -1,20 +1,25 @@
 package com.edavtyan.materialplayer.screens.detail.album_detail;
 
+import com.edavtyan.materialplayer.db.Album;
+import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListPresenter;
-import com.edavtyan.materialplayer.db.Album;
 
 public class AlbumDetailPresenter
 		extends TrackListPresenter
-		implements ParallaxHeaderListPresenter {
+		implements ParallaxHeaderListPresenter, Player.OnNewTrackListener {
 
 	private final AlbumDetailView view;
 	private final AlbumDetailModel model;
+
+	private boolean wasHolderClicked;
 
 	public AlbumDetailPresenter(AlbumDetailModel model, AlbumDetailView view) {
 		super(view, model);
 		this.view = view;
 		this.model = model;
+		this.model.addOnNewTrackListener(this);
+		wasHolderClicked = false;
 	}
 
 	@Override
@@ -28,5 +33,19 @@ public class AlbumDetailPresenter
 				album.getTracksCount(),
 				model.getTotalAlbumDuration());
 		view.setAlbumImage(model.getAlbumArt());
+	}
+
+	@Override
+	public void onHolderClick(int position) {
+		model.playQueue(position);
+		wasHolderClicked = true;
+	}
+
+	@Override
+	public void onNewTrack() {
+		if (wasHolderClicked) {
+			wasHolderClicked = false;
+			view.gotoNowPlaying();
+		}
 	}
 }
