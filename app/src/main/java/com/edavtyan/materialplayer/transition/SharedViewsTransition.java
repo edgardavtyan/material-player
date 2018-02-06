@@ -109,7 +109,7 @@ public class SharedViewsTransition {
 						  .translationY(endYDelta)
 						  .scaleX(1)
 						  .scaleY(1)
-						  .setDuration(500)
+						  .setDuration(sharedViewSet.getEnterDuration())
 						  .withStartAction(() -> new Handler().postDelayed(() -> {
 							  currentSharedViews.peek().setVisibility(View.INVISIBLE);
 						  }, 50))
@@ -200,7 +200,7 @@ public class SharedViewsTransition {
 					  .translationY(endYDelta)
 					  .scaleX(startScaleX)
 					  .scaleY(startScaleY)
-					  .setDuration(500)
+					  .setDuration(sharedViewSet.getExitDuration())
 					  .withStartAction(exitTransitionStartAction())
 					  .withEndAction(exitTransitionEndAction());
 		}
