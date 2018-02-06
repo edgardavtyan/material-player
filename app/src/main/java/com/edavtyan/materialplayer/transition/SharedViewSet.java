@@ -35,6 +35,7 @@ public class SharedViewSet {
 		exitPortraitView = sharedView;
 		exitLandscapeView = sharedView;
 		enterDuration = 500;
+		exitDuration = 500;
 		exitDelay = 0;
 	}
 
