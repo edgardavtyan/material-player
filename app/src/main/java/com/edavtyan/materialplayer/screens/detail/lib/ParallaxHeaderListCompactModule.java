@@ -104,11 +104,9 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		SharedViewSet sharedArtViewSet = SharedViewSet.translating("art", artView, sharedArtView);
-		sharedArtViewSet.setExitPortraitView(sharedArtExitView);
-
 		transition = new SharedViewsTransition(activity, currentSharedViews);
-		transition.setSharedViewSets(sharedArtViewSet);
+		transition.setSharedViewSets(SharedViewSet.translating("art", artView, sharedArtView)
+												  .exitPortraitView(sharedArtExitView));
 		transition.setEnterFadingViews(mainWrapper);
 		transition.setExitPortraitFadingViews(clickBlockerView, listBackground, list, header, appbar);
 		transition.setExitLandscapeFadingViews(mainWrapper);

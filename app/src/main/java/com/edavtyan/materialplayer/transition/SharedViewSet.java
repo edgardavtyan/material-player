@@ -11,7 +11,7 @@ public class SharedViewSet {
 	private @Getter @Setter TransitionType transitionType;
 	private @Getter @Setter View enterPortraitView;
 	private @Getter @Setter View enterLandscapeView;
-	private @Getter @Setter View exitPortraitView;
+	private @Getter View exitPortraitView;
 	private @Getter @Setter View exitLandscapeView;
 	private @Getter int enterDuration;
 	private @Getter int exitDuration;
@@ -50,6 +50,11 @@ public class SharedViewSet {
 
 	public SharedViewSet exitDuration(int durationMs) {
 		this.exitDuration = durationMs;
+		return this;
+	}
+
+	public SharedViewSet exitPortraitView(View view) {
+		exitPortraitView = view;
 		return this;
 	}
 }
