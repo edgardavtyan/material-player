@@ -10,8 +10,6 @@ public class ExitFadeOutTransition extends SharedTransition {
 		View sharedView = data.getSharedView();
 		sharedView.setVisibility(View.VISIBLE);
 
-		data.getNormalView().setVisibility(View.INVISIBLE);
-
 		AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playTogether(ObjectAnimator.ofFloat(sharedView, "alpha", 1f));
 		animatorSet.setStartDelay(data.getDelay());
