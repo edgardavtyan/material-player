@@ -9,7 +9,7 @@ import com.ed.libsutils.utils.WindowUtils;
 
 import java.util.ArrayList;
 
-public class SharedViewsTransition {
+public class SharedTransitionsManager {
 	public static final String PARAM_X = ":x";
 	public static final String PARAM_Y = ":y";
 	public static final String PARAM_WIDTH = ":width";
@@ -25,7 +25,7 @@ public class SharedViewsTransition {
 	private View[] exitPortraitFadingViews;
 	private View[] exitLandscapeFadingViews;
 
-	public SharedViewsTransition(Activity activity, CurrentSharedViews currentSharedViews) {
+	public SharedTransitionsManager(Activity activity, CurrentSharedViews currentSharedViews) {
 		this.activity = activity;
 		this.currentSharedViews = currentSharedViews;
 		this.intent = activity.getIntent();

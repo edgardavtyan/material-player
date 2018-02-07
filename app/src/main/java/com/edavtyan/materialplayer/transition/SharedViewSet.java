@@ -8,10 +8,10 @@ import com.ed.libsutils.utils.ViewUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-import static com.edavtyan.materialplayer.transition.SharedViewsTransition.PARAM_HEIGHT;
-import static com.edavtyan.materialplayer.transition.SharedViewsTransition.PARAM_WIDTH;
-import static com.edavtyan.materialplayer.transition.SharedViewsTransition.PARAM_X;
-import static com.edavtyan.materialplayer.transition.SharedViewsTransition.PARAM_Y;
+import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_HEIGHT;
+import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_WIDTH;
+import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_X;
+import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_Y;
 
 public class SharedViewSet {
 	private @Getter final String transitionName;

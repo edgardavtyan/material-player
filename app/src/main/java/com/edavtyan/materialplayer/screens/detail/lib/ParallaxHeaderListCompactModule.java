@@ -25,7 +25,7 @@ import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
-import com.edavtyan.materialplayer.transition.SharedViewsTransition;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +72,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	private final ParallaxHeaderListPresenter presenter;
 	private final CurrentSharedViews currentSharedViews;
 
-	private SharedViewsTransition transition;
+	private SharedTransitionsManager transition;
 	private boolean isExitTransitionRunning;
 
 	public ParallaxHeaderListCompactModule(
@@ -104,7 +104,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		transition = new SharedViewsTransition(activity, currentSharedViews);
+		transition = new SharedTransitionsManager(activity, currentSharedViews);
 		transition.setSharedViewSets(SharedViewSet.translating("art", artView, sharedArtView)
 												  .exitPortraitView(sharedArtExitView));
 		transition.setEnterFadingViews(mainWrapper);

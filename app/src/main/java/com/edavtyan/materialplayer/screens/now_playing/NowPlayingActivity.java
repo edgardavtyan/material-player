@@ -24,7 +24,7 @@ import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
-import com.edavtyan.materialplayer.transition.SharedViewsTransition;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 
 import javax.inject.Inject;
 
@@ -56,7 +56,7 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.shared_list_background) View listBackground;
 	@BindView(R.id.shared_bar) ImageView barView;
 
-	private SharedViewsTransition transition;
+	private SharedTransitionsManager transition;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class NowPlayingActivity extends ModularActivity {
 		listView.setImageBitmap(listBitmap);
 		barView.setImageBitmap(nowPlayingBarBitmap);
 
-		transition = new SharedViewsTransition(this, currentSharedViews);
+		transition = new SharedTransitionsManager(this, currentSharedViews);
 		transition.setSharedViewSets(
 				SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
 				SharedViewSet.fading("list", listView)
