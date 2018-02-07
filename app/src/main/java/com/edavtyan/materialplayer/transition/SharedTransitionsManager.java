@@ -57,7 +57,9 @@ public class SharedTransitionsManager {
 
 		for (String transitionName : intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
 			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
-			View sharedView = sharedViewSet.getEnterPortraitView();
+			View sharedView = WindowUtils.isPortrait(activity)
+					? sharedViewSet.getEnterPortraitView()
+					: sharedViewSet.getEnterLandscapeView();
 			sharedView.post(() -> {
 				SourceSharedViews sourceSharedViews = currentSharedViews.peek();
 				TransitionData data = WindowUtils.isPortrait(activity)
