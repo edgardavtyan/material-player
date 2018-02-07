@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.ed.libsutils.utils.WindowUtils;
 
+import java.util.ArrayList;
+
 public class SharedTransitionsManager {
 	public static final String PARAM_X = ":x";
 	public static final String PARAM_Y = ":y";
@@ -46,7 +48,9 @@ public class SharedTransitionsManager {
 	}
 
 	public void beginEnterTransition() {
-		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
+		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
+
+		if (transitionNames == null) {
 			return;
 		}
 
@@ -55,8 +59,8 @@ public class SharedTransitionsManager {
 			view.animate().alpha(1);
 		}
 
-		for (String transitionName : intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
-			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
+		for (String transitionName : transitionNames) {
+			SharedViewSet sharedViewSet = findSharedViewSet(transitionName);
 			View sharedView = WindowUtils.isPortrait(activity)
 					? sharedViewSet.getEnterPortraitView()
 					: sharedViewSet.getEnterLandscapeView();
@@ -69,12 +73,13 @@ public class SharedTransitionsManager {
 						.getEnterTransition(sharedViewSet.getTransitionType())
 						.withStartAction(() -> {
 							new Handler().postDelayed(() -> {
-								sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
+								sourceSharedViews.find(transitionName)
+												 .setVisibility(View.INVISIBLE);
 							}, 50);
 						})
 						.withEndAction(() -> {
-							sourceSharedViews
-									.find(transitionName).setVisibility(View.VISIBLE);
+							sourceSharedViews.find(transitionName)
+											 .setVisibility(View.VISIBLE);
 						})
 						.start(data);
 			});
@@ -83,8 +88,9 @@ public class SharedTransitionsManager {
 
 	public void beginExitTransition() {
 		SourceSharedViews sourceSharedViews = currentSharedViews.pop();
+		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
 
-		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
+		if (transitionNames == null) {
 			activity.finish();
 			sourceSharedViews.show();
 			return;
@@ -100,18 +106,20 @@ public class SharedTransitionsManager {
 			}
 		}
 
-		for (String transitionName : intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
-			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
+		for (String transitionName : transitionNames) {
+			SharedViewSet sharedViewSet = findSharedViewSet(transitionName);
 			TransitionData data = WindowUtils.isPortrait(activity)
 					? sharedViewSet.buildExitPortraitData(intent)
 					: sharedViewSet.buildExitLandscapeData(intent);
 			SharedTransitionFactory
 					.getExitTransition(sharedViewSet.getTransitionType())
 					.withStartAction(() -> {
-						sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
+						sourceSharedViews.find(transitionName)
+										 .setVisibility(View.INVISIBLE);
 					})
 					.withEndAction(() -> {
-						sourceSharedViews.remove(transitionName).setVisibility(View.VISIBLE);
+						sourceSharedViews.remove(transitionName)
+										 .setVisibility(View.VISIBLE);
 						activity.finish();
 						activity.overridePendingTransition(0, 0);
 					})
@@ -119,7 +127,7 @@ public class SharedTransitionsManager {
 		}
 	}
 
-	private SharedViewSet findSharedViewSetByTransitionName(String transitionName) {
+	private SharedViewSet findSharedViewSet(String transitionName) {
 		for (SharedViewSet sharedViewSet : sharedViewSets) {
 			if (sharedViewSet.getTransitionName().equals(transitionName)) {
 				return sharedViewSet;
