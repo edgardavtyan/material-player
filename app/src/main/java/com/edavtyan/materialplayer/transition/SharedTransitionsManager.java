@@ -79,16 +79,6 @@ public class SharedTransitionsManager {
 		}
 	}
 
-	private SharedViewSet findSharedViewSetByTransitionName(String transitionName) {
-		for (SharedViewSet sharedViewSet : sharedViewSets) {
-			if (sharedViewSet.getTransitionName().equals(transitionName)) {
-				return sharedViewSet;
-			}
-		}
-
-		return null;
-	}
-
 	public void beginExitTransition() {
 		SourceSharedViews sourceSharedViews = currentSharedViews.pop();
 
@@ -125,5 +115,15 @@ public class SharedTransitionsManager {
 					})
 					.start(data);
 		}
+	}
+
+	private SharedViewSet findSharedViewSetByTransitionName(String transitionName) {
+		for (SharedViewSet sharedViewSet : sharedViewSets) {
+			if (sharedViewSet.getTransitionName().equals(transitionName)) {
+				return sharedViewSet;
+			}
+		}
+
+		return null;
 	}
 }
