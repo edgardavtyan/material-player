@@ -104,6 +104,7 @@ public class SharedViewsTransition {
 					return;
 				}
 
+				SourceSharedViews sourceSharedViews = currentSharedViews.peek();
 				sharedView.animate()
 						  .translationX(endXDelta)
 						  .translationY(endYDelta)
@@ -111,10 +112,10 @@ public class SharedViewsTransition {
 						  .scaleY(1)
 						  .setDuration(sharedViewSet.getEnterDuration())
 						  .withStartAction(() -> new Handler().postDelayed(() -> {
-							  currentSharedViews.peek().setVisibility(View.INVISIBLE);
+							  sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
 						  }, 50))
 						  .withEndAction(() -> {
-							  currentSharedViews.peek().setVisibility(View.VISIBLE);
+							  sourceSharedViews.find(transitionName).setVisibility(View.VISIBLE);
 							  sharedView.setVisibility(View.INVISIBLE);
 							  sharedView.setTranslationX(0);
 							  sharedView.setTranslationY(0);
@@ -136,9 +137,11 @@ public class SharedViewsTransition {
 	}
 
 	public void beginExitTransition() {
+		SourceSharedViews sourceSharedViews = currentSharedViews.pop();
+
 		if (intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES) == null) {
 			activity.finish();
-			currentSharedViews.pop().setVisibility(View.VISIBLE);
+			sourceSharedViews.show();
 			return;
 		}
 
@@ -178,14 +181,23 @@ public class SharedViewsTransition {
 			float endXDelta = intentX - transitionArtViewLocation[0];
 			float endYDelta = intentY - transitionArtViewLocation[1];
 
+			Runnable transitionStartAction = () -> {
+				sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
+			};
+
+			Runnable transitionEndAction = () -> {
+				sourceSharedViews.remove(transitionName).setVisibility(View.VISIBLE);
+				activity.finish();
+				activity.overridePendingTransition(0, 0);
+			};
+
 			if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
 				sharedView.setVisibility(View.VISIBLE);
 				sharedView.animate()
 						  .setStartDelay(sharedViewSet.getExitDelay())
 						  .setDuration(sharedViewSet.getExitDuration())
 						  .alpha(1)
-						  .withStartAction(exitTransitionStartAction())
-						  .withEndAction(exitTransitionEndAction());
+						  .withEndAction(transitionEndAction);
 				continue;
 			}
 
@@ -201,20 +213,8 @@ public class SharedViewsTransition {
 					  .scaleX(startScaleX)
 					  .scaleY(startScaleY)
 					  .setDuration(sharedViewSet.getExitDuration())
-					  .withStartAction(exitTransitionStartAction())
-					  .withEndAction(exitTransitionEndAction());
+					  .withStartAction(transitionStartAction)
+					  .withEndAction(transitionEndAction);
 		}
-	}
-
-	private Runnable exitTransitionStartAction() {
-		return () -> currentSharedViews.peek().setVisibility(View.INVISIBLE);
-	}
-
-	private Runnable exitTransitionEndAction() {
-		return () -> {
-			activity.finish();
-			activity.overridePendingTransition(0, 0);
-			currentSharedViews.pop().setVisibility(View.VISIBLE);
-		};
 	}
 }
