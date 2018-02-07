@@ -65,34 +65,22 @@ public class SharedViewsTransition {
 
 			sharedViewSet.getNormalView().setVisibility(View.INVISIBLE);
 
-			float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
-			float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
-			float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);
-			float intentHeight = intent.getIntExtra(transitionName + PARAM_HEIGHT, 0);
-
 			View sharedView = sharedViewSet.getEnterPortraitView();
 			View normalView = sharedViewSet.getNormalView();
 			sharedView.setVisibility(View.VISIBLE);
 			sharedView.post(() -> {
-				int[] sharedViewLocation = ViewUtils.getLocationOnScreen(sharedView);
-				int[] normalViewLocation = ViewUtils.getLocationOnScreen(normalView);
-				float startXDelta = intentX - sharedViewLocation[0];
-				float startYDelta = intentY - sharedViewLocation[1];
-				float startScaleX = intentWidth / normalView.getWidth();
-				float startScaleY = intentHeight / normalView.getHeight();
-				float endXDelta = normalViewLocation[0] - sharedViewLocation[0];
-				float endYDelta = normalViewLocation[1] - sharedViewLocation[1];
+				TransitionData startData = sharedViewSet.buildStartData(intent);
 
 				if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
-					startScaleX = 1;
-					startScaleY = 1;
+					startData.setStartScaleX(1);
+					startData.setStartScaleY(1);
 				}
 
 				ViewUtils.setSize(sharedView, normalView);
-				sharedView.setTranslationX(startXDelta);
-				sharedView.setTranslationY(startYDelta);
-				sharedView.setScaleX(startScaleX);
-				sharedView.setScaleY(startScaleY);
+				sharedView.setTranslationX(startData.getStartXDelta());
+				sharedView.setTranslationY(startData.getStartYDelta());
+				sharedView.setScaleX(startData.getStartScaleX());
+				sharedView.setScaleY(startData.getStartScaleY());
 				sharedView.setPivotX(0);
 				sharedView.setPivotY(0);
 
@@ -106,8 +94,8 @@ public class SharedViewsTransition {
 
 				SourceSharedViews sourceSharedViews = currentSharedViews.peek();
 				sharedView.animate()
-						  .translationX(endXDelta)
-						  .translationY(endYDelta)
+						  .translationX(startData.getEndXDelta())
+						  .translationY(startData.getEndYDelta())
 						  .scaleX(1)
 						  .scaleY(1)
 						  .setDuration(sharedViewSet.getEnterDuration())
@@ -159,62 +147,20 @@ public class SharedViewsTransition {
 		for (int i = 0; i < transitionNames.size(); i++) {
 			String transitionName = transitionNames.get(i);
 			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
-
-			View sharedViewPortrait = sharedViewSet.getExitPortraitView();
-			View sharedViewLandscape = sharedViewSet.getExitLandscapeView();
-			View normalView = sharedViewSet.getNormalView();
-
-			float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
-			float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
-			float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);
-			float intentHeight = intent.getIntExtra(transitionName + PARAM_HEIGHT, 0);
-
-			normalView.setVisibility(View.INVISIBLE);
-
-			View sharedView = WindowUtils.isPortrait(activity) ? sharedViewPortrait : sharedViewLandscape;
-			int[] artViewLocation = ViewUtils.getLocationOnScreen(normalView);
-			int[] transitionArtViewLocation = ViewUtils.getLocationOnScreen(sharedView);
-			float startXDelta = artViewLocation[0] - transitionArtViewLocation[0];
-			float startYDelta = artViewLocation[1] - transitionArtViewLocation[1];
-			float startScaleX = intentWidth / normalView.getWidth();
-			float startScaleY = intentHeight / normalView.getHeight();
-			float endXDelta = intentX - transitionArtViewLocation[0];
-			float endYDelta = intentY - transitionArtViewLocation[1];
-
-			Runnable transitionStartAction = () -> {
-				sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
-			};
-
-			Runnable transitionEndAction = () -> {
-				sourceSharedViews.remove(transitionName).setVisibility(View.VISIBLE);
-				activity.finish();
-				activity.overridePendingTransition(0, 0);
-			};
-
-			if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
-				sharedView.setVisibility(View.VISIBLE);
-				sharedView.animate()
-						  .setStartDelay(sharedViewSet.getExitDelay())
-						  .setDuration(sharedViewSet.getExitDuration())
-						  .alpha(1)
-						  .withEndAction(transitionEndAction);
-				continue;
-			}
-
-			ViewUtils.setSize(sharedView, normalView);
-			sharedView.setVisibility(View.VISIBLE);
-			sharedView.setTranslationX(startXDelta);
-			sharedView.setTranslationY(startYDelta);
-			sharedView.setPivotX(0);
-			sharedView.setPivotY(0);
-			sharedView.animate()
-					  .translationX(endXDelta)
-					  .translationY(endYDelta)
-					  .scaleX(startScaleX)
-					  .scaleY(startScaleY)
-					  .setDuration(sharedViewSet.getExitDuration())
-					  .withStartAction(transitionStartAction)
-					  .withEndAction(transitionEndAction);
+			TransitionData data = WindowUtils.isPortrait(activity)
+					? sharedViewSet.buildExitPortraitData(intent)
+					: sharedViewSet.buildExitLandscapeData(intent);
+			SharedTransitionFactory
+					.getExitTransition(sharedViewSet.getTransitionType())
+					.withStartAction(() -> {
+						sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
+					})
+					.withEndAction(() -> {
+						sourceSharedViews.remove(transitionName).setVisibility(View.VISIBLE);
+						activity.finish();
+						activity.overridePendingTransition(0, 0);
+					})
+					.start(data);
 		}
 	}
 }
