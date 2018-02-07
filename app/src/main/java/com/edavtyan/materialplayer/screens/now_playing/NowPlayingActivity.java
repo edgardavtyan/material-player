@@ -23,8 +23,8 @@ import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.transition.CurrentSharedViews;
-import com.edavtyan.materialplayer.transition.SharedViewSet;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.transition.SharedViewSet;
 
 import javax.inject.Inject;
 
@@ -34,7 +34,6 @@ import lombok.Getter;
 
 public class NowPlayingActivity extends ModularActivity {
 	public static Bitmap listBitmap;
-	public static Bitmap nowPlayingBarBitmap;
 
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
@@ -54,7 +53,6 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.appbar) AppBarLayout appbar;
 	@BindView(R.id.shared_list) ImageView listView;
 	@BindView(R.id.shared_list_background) View listBackground;
-	@BindView(R.id.shared_bar) ImageView barView;
 
 	private SharedTransitionsManager transition;
 
@@ -70,7 +68,6 @@ public class NowPlayingActivity extends ModularActivity {
 		presenter.bind();
 
 		listView.setImageBitmap(listBitmap);
-		barView.setImageBitmap(nowPlayingBarBitmap);
 
 		transition = new SharedTransitionsManager(this, currentSharedViews);
 		transition.setSharedViewSets(
@@ -80,10 +77,6 @@ public class NowPlayingActivity extends ModularActivity {
 							 .exitDuration(200)
 							 .exitDelay(300),
 				SharedViewSet.fading("listBackground", listBackground)
-							 .enterDuration(200)
-							 .exitDuration(200)
-							 .exitDelay(300),
-				SharedViewSet.fading("bar", barView)
 							 .enterDuration(200)
 							 .exitDuration(200)
 							 .exitDelay(300));

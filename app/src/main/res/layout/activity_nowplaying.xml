@@ -130,29 +130,44 @@
 					android:visibility="invisible"
 					/>
 
-				<View
-					android:id="@+id/shared_list_background"
+				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:background="@color/white"
-					android:visibility="invisible"
-					/>
+					android:orientation="vertical"
+					>
 
-				<ImageView
-					android:id="@+id/shared_list"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:scaleType="fitStart"
-					android:visibility="invisible"
-					/>
+					<FrameLayout
+						android:layout_width="match_parent"
+						android:layout_height="0dp"
+						android:layout_weight="1"
+						>
 
-				<ImageView
-					android:id="@+id/shared_bar"
-					android:layout_width="match_parent"
-					android:layout_height="?listPreferredItemHeightSmall"
-					android:layout_gravity="bottom"
-					android:visibility="invisible"
-					/>
+						<View
+							android:id="@+id/shared_list_background"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:background="@color/white"
+							android:visibility="invisible"
+							/>
+
+						<ImageView
+							android:id="@+id/shared_list"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:scaleType="fitStart"
+							android:visibility="invisible"
+							/>
+
+					</FrameLayout>
+
+					<View
+						android:layout_width="match_parent"
+						android:layout_height="?listPreferredItemHeightSmall"
+						android:layout_gravity="bottom"
+						android:visibility="invisible"
+						/>
+
+				</LinearLayout>
 
 			</FrameLayout>
 

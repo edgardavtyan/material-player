@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -70,16 +69,11 @@ public class AlbumDetailActivityCompact
 
 	@Override
 	public void gotoNowPlaying() {
-		Fragment nowPlayingBarFragment = getSupportFragmentManager().findFragmentById(R.id.floating_nowplaying);
-		View nowPlayingBarRoot = nowPlayingBarFragment.getView();
-
 		NowPlayingActivity.listBitmap = viewToBitmap(list);
-		NowPlayingActivity.nowPlayingBarBitmap = viewToBitmap(nowPlayingBarRoot);
 		SourceSharedViews sharedViews = new SourceSharedViews(
 				Pair.create(artView, "art"),
 				Pair.create(list, "list"),
-				Pair.create(listBackground, "listBackground"),
-				Pair.create(nowPlayingBarRoot, "bar"));
+				Pair.create(listBackground, "listBackground"));
 		currentSharedViews.push(sharedViews);
 		navigator.gotoNowPlaying(this, sharedViews.build());
 	}
