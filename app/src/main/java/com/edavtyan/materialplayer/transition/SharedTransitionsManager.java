@@ -65,7 +65,7 @@ public class SharedTransitionsManager {
 					? sharedViewSet.getEnterPortraitView()
 					: sharedViewSet.getEnterLandscapeView();
 			sharedView.post(() -> {
-				SourceSharedViews sourceSharedViews = currentSharedViews.peek();
+				View sourceSharedView = currentSharedViews.peek().find(transitionName);
 				TransitionData data = WindowUtils.isPortrait(activity)
 						? sharedViewSet.buildEnterPortraitData(intent)
 						: sharedViewSet.buildEnterLandscapeData(intent);
@@ -73,13 +73,11 @@ public class SharedTransitionsManager {
 						.getEnterTransition(sharedViewSet.getTransitionType())
 						.withStartAction(() -> {
 							new Handler().postDelayed(() -> {
-								sourceSharedViews.find(transitionName)
-												 .setVisibility(View.INVISIBLE);
+								sourceSharedView.setVisibility(View.INVISIBLE);
 							}, 50);
 						})
 						.withEndAction(() -> {
-							sourceSharedViews.find(transitionName)
-											 .setVisibility(View.VISIBLE);
+							sourceSharedView.setVisibility(View.VISIBLE);
 						})
 						.start(data);
 			});
@@ -107,6 +105,7 @@ public class SharedTransitionsManager {
 		}
 
 		for (String transitionName : transitionNames) {
+			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(transitionName);
 			TransitionData data = WindowUtils.isPortrait(activity)
 					? sharedViewSet.buildExitPortraitData(intent)
@@ -114,12 +113,10 @@ public class SharedTransitionsManager {
 			SharedTransitionFactory
 					.getExitTransition(sharedViewSet.getTransitionType())
 					.withStartAction(() -> {
-						sourceSharedViews.find(transitionName)
-										 .setVisibility(View.INVISIBLE);
+						sourceSharedView.setVisibility(View.INVISIBLE);
 					})
 					.withEndAction(() -> {
-						sourceSharedViews.remove(transitionName)
-										 .setVisibility(View.VISIBLE);
+						sourceSharedView.setVisibility(View.VISIBLE);
 						activity.finish();
 						activity.overridePendingTransition(0, 0);
 					})
