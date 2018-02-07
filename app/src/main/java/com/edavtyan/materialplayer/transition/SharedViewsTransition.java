@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
 
-import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
 
 import java.util.ArrayList;
@@ -62,54 +61,24 @@ public class SharedViewsTransition {
 		for (int i = 0; i < transitionNames.size(); i++) {
 			String transitionName = transitionNames.get(i);
 			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
-
-			sharedViewSet.getNormalView().setVisibility(View.INVISIBLE);
-
 			View sharedView = sharedViewSet.getEnterPortraitView();
-			View normalView = sharedViewSet.getNormalView();
-			sharedView.setVisibility(View.VISIBLE);
 			sharedView.post(() -> {
-				TransitionData startData = sharedViewSet.buildStartData(intent);
-
-				if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
-					startData.setStartScaleX(1);
-					startData.setStartScaleY(1);
-				}
-
-				ViewUtils.setSize(sharedView, normalView);
-				sharedView.setTranslationX(startData.getStartXDelta());
-				sharedView.setTranslationY(startData.getStartYDelta());
-				sharedView.setScaleX(startData.getStartScaleX());
-				sharedView.setScaleY(startData.getStartScaleY());
-				sharedView.setPivotX(0);
-				sharedView.setPivotY(0);
-
-				if (sharedViewSet.getTransitionType() == TransitionType.FADE_OUT) {
-					sharedView.setAlpha(1);
-					sharedView.animate()
-							  .alpha(0)
-							  .setDuration(sharedViewSet.getEnterDuration());
-					return;
-				}
-
 				SourceSharedViews sourceSharedViews = currentSharedViews.peek();
-				sharedView.animate()
-						  .translationX(startData.getEndXDelta())
-						  .translationY(startData.getEndYDelta())
-						  .scaleX(1)
-						  .scaleY(1)
-						  .setDuration(sharedViewSet.getEnterDuration())
-						  .withStartAction(() -> new Handler().postDelayed(() -> {
-							  sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
-						  }, 50))
-						  .withEndAction(() -> {
-							  sourceSharedViews.find(transitionName).setVisibility(View.VISIBLE);
-							  sharedView.setVisibility(View.INVISIBLE);
-							  sharedView.setTranslationX(0);
-							  sharedView.setTranslationY(0);
-							  normalView.setVisibility(View.VISIBLE);
-						  })
-						  .start();
+				TransitionData data = WindowUtils.isPortrait(activity)
+						? sharedViewSet.buildEnterPortraitData(intent)
+						: sharedViewSet.buildEnterLandscapeData(intent);
+				SharedTransitionFactory
+						.getEnterTransition(sharedViewSet.getTransitionType())
+						.withStartAction(() -> {
+							new Handler().postDelayed(() -> {
+								sourceSharedViews.find(transitionName).setVisibility(View.INVISIBLE);
+							}, 50);
+						})
+						.withEndAction(() -> {
+							sourceSharedViews
+									.find(transitionName).setVisibility(View.VISIBLE);
+						})
+						.start(data);
 			});
 		}
 	}

@@ -12,4 +12,15 @@ public class SharedTransitionFactory {
 
 		return null;
 	}
+
+	public static SharedTransition getEnterTransition(TransitionType transitionType) {
+		switch (transitionType) {
+		case FADE_OUT:
+			return new EnterFadeOutTransition();
+		case TRANSLATE:
+			return new EnterTranslateTransition();
+		}
+
+		return null;
+	}
 }

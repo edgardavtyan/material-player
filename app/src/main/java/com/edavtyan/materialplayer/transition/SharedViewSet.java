@@ -69,12 +69,28 @@ public class SharedViewSet {
 		return this;
 	}
 
-	public TransitionData buildStartData(Intent intent) {
+	public TransitionData buildExitPortraitData(Intent intent) {
+		return buildExitData(intent, exitPortraitView);
+	}
+
+	public TransitionData buildExitLandscapeData(Intent intent) {
+		return buildExitData(intent, exitLandscapeView);
+	}
+
+	public TransitionData buildEnterPortraitData(Intent intent) {
+		return buildEnterData(intent, enterPortraitView);
+	}
+
+	public TransitionData buildEnterLandscapeData(Intent intent) {
+		return buildEnterData(intent, enterLandscapeView);
+	}
+
+	private TransitionData buildEnterData(Intent intent, View sharedView) {
 		float intentX = intent.getFloatExtra(transitionName + PARAM_X, 0);
 		float intentY = intent.getFloatExtra(transitionName + PARAM_Y, 0);
 		float intentWidth = intent.getIntExtra(transitionName + PARAM_WIDTH, 0);
 		float intentHeight = intent.getIntExtra(transitionName + PARAM_HEIGHT, 0);
-		int[] sharedViewLocation = ViewUtils.getLocationOnScreen(enterPortraitView);
+		int[] sharedViewLocation = ViewUtils.getLocationOnScreen(sharedView);
 		int[] normalViewLocation = ViewUtils.getLocationOnScreen(normalView);
 
 		TransitionData data = new TransitionData();
@@ -84,16 +100,11 @@ public class SharedViewSet {
 		data.setStartScaleY(intentHeight / normalView.getHeight());
 		data.setEndXDelta(normalViewLocation[0] - sharedViewLocation[0]);
 		data.setEndYDelta(normalViewLocation[1] - sharedViewLocation[1]);
+		data.setSharedView(sharedView);
+		data.setNormalView(normalView);
+		data.setDuration(enterDuration);
 
 		return data;
-	}
-
-	public TransitionData buildExitPortraitData(Intent intent) {
-		return buildExitData(intent, exitPortraitView);
-	}
-
-	public TransitionData buildExitLandscapeData(Intent intent) {
-		return buildExitData(intent, exitLandscapeView);
 	}
 
 	private TransitionData buildExitData(Intent intent, View sharedView) {
