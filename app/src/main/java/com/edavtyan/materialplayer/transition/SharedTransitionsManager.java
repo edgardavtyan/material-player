@@ -7,8 +7,6 @@ import android.view.View;
 
 import com.ed.libsutils.utils.WindowUtils;
 
-import java.util.ArrayList;
-
 public class SharedTransitionsManager {
 	public static final String PARAM_X = ":x";
 	public static final String PARAM_Y = ":y";
@@ -57,9 +55,7 @@ public class SharedTransitionsManager {
 			view.animate().alpha(1);
 		}
 
-		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
-		for (int i = 0; i < transitionNames.size(); i++) {
-			String transitionName = transitionNames.get(i);
+		for (String transitionName : intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
 			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
 			View sharedView = sharedViewSet.getEnterPortraitView();
 			sharedView.post(() -> {
@@ -112,9 +108,7 @@ public class SharedTransitionsManager {
 			}
 		}
 
-		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
-		for (int i = 0; i < transitionNames.size(); i++) {
-			String transitionName = transitionNames.get(i);
+		for (String transitionName : intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
 			SharedViewSet sharedViewSet = findSharedViewSetByTransitionName(transitionName);
 			TransitionData data = WindowUtils.isPortrait(activity)
 					? sharedViewSet.buildExitPortraitData(intent)
