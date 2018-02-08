@@ -137,6 +137,6 @@ public class SharedTransitionsManager {
 			}
 		}
 
-		return null;
+		throw new ShareViewNotFoundException(transitionName);
 	}
 }
