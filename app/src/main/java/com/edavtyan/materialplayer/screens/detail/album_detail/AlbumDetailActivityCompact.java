@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
@@ -33,8 +34,7 @@ public class AlbumDetailActivityCompact
 
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.list) RecyclerView list;
-	@BindView(R.id.list_background) View listBackground;
-	@BindView(R.id.list_header) View header;
+	@BindView(R.id.list_background) @Nullable View listBackground;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,11 +69,15 @@ public class AlbumDetailActivityCompact
 
 	@Override
 	public void gotoNowPlaying() {
-		NowPlayingActivity.listBitmap = viewToBitmap(list);
 		SourceSharedViews sharedViews = new SourceSharedViews(
 				Pair.create(artView, "art"),
-				Pair.create(list, "list"),
-				Pair.create(listBackground, "listBackground"));
+				Pair.create(list, "list"));
+
+		if (WindowUtils.isPortrait(this)) {
+			NowPlayingActivity.listBitmap = viewToBitmap(list);
+			sharedViews.add(Pair.create(listBackground, "listBackground"));
+		}
+
 		currentSharedViews.push(sharedViews);
 		navigator.gotoNowPlaying(this, sharedViews.build());
 	}

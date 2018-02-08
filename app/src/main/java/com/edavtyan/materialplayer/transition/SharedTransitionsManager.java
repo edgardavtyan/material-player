@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.View;
 
 import com.ed.libsutils.utils.WindowUtils;
-import com.edavtyan.materialplayer.transition.exceptions.ShareViewNotFoundException;
 
 import java.util.ArrayList;
 
@@ -62,6 +61,8 @@ public class SharedTransitionsManager {
 
 		for (String transitionName : transitionNames) {
 			SharedViewSet sharedViewSet = findSharedViewSet(transitionName);
+			if (sharedViewSet == null) continue;
+
 			View sharedView = WindowUtils.isPortrait(activity)
 					? sharedViewSet.getEnterPortraitView()
 					: sharedViewSet.getEnterLandscapeView();
@@ -113,6 +114,9 @@ public class SharedTransitionsManager {
 		for (String transitionName : transitionNames) {
 			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(transitionName);
+
+			if (sharedViewSet == null) continue;
+
 			TransitionData data = WindowUtils.isPortrait(activity)
 					? sharedViewSet.buildExitPortraitData(intent)
 					: sharedViewSet.buildExitLandscapeData(intent);
@@ -137,6 +141,6 @@ public class SharedTransitionsManager {
 			}
 		}
 
-		throw new ShareViewNotFoundException(transitionName);
+		return null;
 	}
 }

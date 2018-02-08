@@ -7,18 +7,20 @@ import android.view.View;
 import com.ed.libsutils.utils.ViewUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SourceSharedViews {
-	private final Pair<View, String>[] sharedViews;
+	private final List<Pair<View, String>> sharedViews;
 
 	@SafeVarargs
 	public SourceSharedViews(Pair<View, String>... sharedViews) {
-		this.sharedViews = sharedViews;
+		this.sharedViews = new ArrayList<>(Arrays.asList(sharedViews));
 	}
 
 	public Bundle build() {
 		Bundle bundle = new Bundle();
-		ArrayList<String> transitionNames = new ArrayList<>(sharedViews.length);
+		ArrayList<String> transitionNames = new ArrayList<>(sharedViews.size());
 
 		for (Pair<View, String> pair : sharedViews) {
 			View view = pair.first;
@@ -55,5 +57,9 @@ public class SourceSharedViews {
 		}
 
 		return null;
+	}
+
+	public void add(Pair<View, String> sharedPair) {
+		sharedViews.add(sharedPair);
 	}
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
@@ -51,8 +52,8 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
-	@BindView(R.id.shared_list) ImageView listView;
-	@BindView(R.id.shared_list_background) View listBackground;
+	@BindView(R.id.shared_list) @Nullable ImageView listView;
+	@BindView(R.id.shared_list_background) @Nullable View listBackground;
 
 	private SharedTransitionsManager transition;
 
@@ -67,19 +68,25 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(themeModule);
 		presenter.bind();
 
-		listView.setImageBitmap(listBitmap);
-
 		transition = new SharedTransitionsManager(this, currentSharedViews);
-		transition.setSharedViewSets(
-				SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
-				SharedViewSet.fading("list", listView)
-							 .enterDuration(200)
-							 .exitDuration(200)
-							 .exitDelay(300),
-				SharedViewSet.fading("listBackground", listBackground)
-							 .enterDuration(200)
-							 .exitDuration(200)
-							 .exitDelay(300));
+
+		if (WindowUtils.isPortrait(this)) {
+			listView.setImageBitmap(listBitmap);
+			transition.setSharedViewSets(
+					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
+					SharedViewSet.fading("list", listView)
+								 .enterDuration(200)
+								 .exitDuration(200)
+								 .exitDelay(300),
+					SharedViewSet.fading("listBackground", listBackground)
+								 .enterDuration(200)
+								 .exitDuration(200)
+								 .exitDelay(300));
+		} else {
+			transition.setSharedViewSets(
+					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
+		}
+
 		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());
