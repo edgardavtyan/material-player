@@ -78,7 +78,7 @@ public class AlbumDetailActivityCompact
 			sharedViews.add(Pair.create(listBackground, "listBackground"));
 		}
 
-		transitionsManager.pushSharedViews(sharedViews);
+		transitionsManager.pushSourceViews(sharedViews);
 		navigator.gotoNowPlaying(this, sharedViews.build());
 	}
 

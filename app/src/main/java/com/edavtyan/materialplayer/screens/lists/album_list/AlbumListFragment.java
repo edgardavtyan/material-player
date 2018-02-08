@@ -32,7 +32,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 
 	@Override
 	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
-		transitionsManager.pushSharedViews(sharedViews);
+		transitionsManager.pushSourceViews(sharedViews);
 		navigator.gotoAlbumDetailCompact(getActivity(), albumId, sharedViews.build());
 	}
 

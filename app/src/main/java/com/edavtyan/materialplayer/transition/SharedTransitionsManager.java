@@ -47,7 +47,7 @@ public class SharedTransitionsManager {
 		exitLandscapeFadingViews.push(views);
 	}
 
-	public void pushSharedViews(SourceSharedViews views) {
+	public void pushSourceViews(SourceSharedViews views) {
 		sourceViews.push(views);
 	}
 

@@ -129,7 +129,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 
 	public void gotoNowPlaying() {
 		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
-		transitionsManager.pushSharedViews(sharedViews);
+		transitionsManager.pushSourceViews(sharedViews);
 		navigator.gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 
