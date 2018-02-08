@@ -8,8 +8,8 @@ public class SharedTransitionFactory {
 		SharedTransition create();
 	}
 
-	private static HashMap<TransitionType, Factory> enterMap;
-	private static HashMap<TransitionType, Factory> exitMap;
+	private static final HashMap<TransitionType, Factory> enterMap;
+	private static final HashMap<TransitionType, Factory> exitMap;
 
 	static {
 		exitMap = new HashMap<>();
