@@ -103,18 +103,17 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		transitionsManager.createSharedTransition(OutputSharedViews
-				.builder()
-				.sharedViewSets(
-						SharedViewSet.translating("art", artView, sharedArtView)
-									 .exitPortraitView(sharedArtExitView))
-				.enterFadingViews(mainWrapper)
-				.exitPortraitFadingViews(
-						clickBlockerView, listBackground, list, header, appbar)
-				.exitLandscapeFadingViews(mainWrapper)
-				.build());
-
 		if (savedInstanceState == null) {
+			transitionsManager.createSharedTransition(OutputSharedViews
+					.builder()
+					.sharedViewSets(
+							SharedViewSet.translating("art", artView, sharedArtView)
+										 .exitPortraitView(sharedArtExitView))
+					.enterFadingViews(mainWrapper)
+					.exitPortraitFadingViews(
+							clickBlockerView, listBackground, list, header, appbar)
+					.exitLandscapeFadingViews(mainWrapper)
+					.build());
 			transitionsManager.beginEnterTransition(activity);
 		}
 	}
