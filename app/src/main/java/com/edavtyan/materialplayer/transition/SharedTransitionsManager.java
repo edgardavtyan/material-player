@@ -93,14 +93,13 @@ public class SharedTransitionsManager {
 	}
 
 	public void beginExitTransition(Activity activity) {
-		Intent intent = activity.getIntent();
-		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
-
 		if (sourceViews.isEmpty()) {
 			activity.finish();
 			return;
 		}
 
+		Intent intent = activity.getIntent();
+		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
 		if (transitionNames == null) {
 			activity.finish();
 			sourceViews.pop().show();

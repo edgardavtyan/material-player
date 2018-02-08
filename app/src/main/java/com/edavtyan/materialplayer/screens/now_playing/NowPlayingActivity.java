@@ -54,7 +54,6 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.shared_list) @Nullable ImageView listView;
 	@BindView(R.id.shared_list_background) @Nullable View listBackground;
 
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
