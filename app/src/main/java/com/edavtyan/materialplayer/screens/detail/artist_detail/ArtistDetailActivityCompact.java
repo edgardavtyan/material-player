@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactActivity;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
@@ -19,7 +19,7 @@ public class ArtistDetailActivityCompact
 		implements ArtistDetailView {
 
 	@Inject Navigator navigator;
-	@Inject CurrentSharedViews currentSharedViews;
+	@Inject SharedTransitionsManager transitionsManager;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class ArtistDetailActivityCompact
 
 	@Override
 	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
-		currentSharedViews.push(sharedViews);
+		transitionsManager.pushSharedViews(sharedViews);
 		navigator.gotoAlbumDetailCompact(this, albumId, sharedViews.build());
 	}
 

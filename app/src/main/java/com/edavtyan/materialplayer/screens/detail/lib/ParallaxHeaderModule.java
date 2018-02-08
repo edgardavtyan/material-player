@@ -2,9 +2,9 @@ package com.edavtyan.materialplayer.screens.detail.lib;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
-import com.edavtyan.materialplayer.screens.ActivityScope;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,7 +26,7 @@ public class ParallaxHeaderModule {
 			AppCompatActivity activity,
 			TestableRecyclerAdapter adapter,
 			ParallaxHeaderListPresenter presenter,
-			CurrentSharedViews currentSharedViews) {
-		return new ParallaxHeaderListCompactModule(activity, adapter, presenter, currentSharedViews);
+			SharedTransitionsManager transitionsManager) {
+		return new ParallaxHeaderListCompactModule(activity, adapter, presenter, transitionsManager);
 	}
 }

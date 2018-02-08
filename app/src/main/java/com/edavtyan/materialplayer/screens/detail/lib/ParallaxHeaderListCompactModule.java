@@ -23,9 +23,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
-import com.edavtyan.materialplayer.transition.SharedViewSet;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.transition.SharedViewSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,20 +69,19 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	private final AppCompatActivity activity;
 	private final TestableRecyclerAdapter adapter;
 	private final ParallaxHeaderListPresenter presenter;
-	private final CurrentSharedViews currentSharedViews;
+	private final SharedTransitionsManager transitionsManager;
 
-	private SharedTransitionsManager transition;
 	private boolean isExitTransitionRunning;
 
 	public ParallaxHeaderListCompactModule(
 			AppCompatActivity activity,
 			TestableRecyclerAdapter adapter,
 			ParallaxHeaderListPresenter presenter,
-			CurrentSharedViews currentSharedViews) {
+			SharedTransitionsManager transitionsManager) {
 		this.activity = activity;
 		this.adapter = adapter;
 		this.presenter = presenter;
-		this.currentSharedViews = currentSharedViews;
+		this.transitionsManager = transitionsManager;
 	}
 
 	@Override
@@ -104,15 +102,15 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		transition = new SharedTransitionsManager(activity, currentSharedViews);
-		transition.setSharedViewSets(SharedViewSet.translating("art", artView, sharedArtView)
-												  .exitPortraitView(sharedArtExitView));
-		transition.setEnterFadingViews(mainWrapper);
-		transition.setExitPortraitFadingViews(clickBlockerView, listBackground, list, header, appbar);
-		transition.setExitLandscapeFadingViews(mainWrapper);
+		transitionsManager.setSharedViewSets(
+				SharedViewSet.translating("art", artView, sharedArtView)
+							 .exitPortraitView(sharedArtExitView));
+		transitionsManager.setEnterFadingViews(mainWrapper);
+		transitionsManager.setExitPortraitFadingViews(clickBlockerView, listBackground, list, header, appbar);
+		transitionsManager.setExitLandscapeFadingViews(mainWrapper);
 
 		if (savedInstanceState == null) {
-			transition.beginEnterTransition();
+			transitionsManager.beginEnterTransition(activity);
 		}
 	}
 
@@ -129,7 +127,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 	@Override
 	public void onBackPressed() {
 		if (isExitTransitionRunning) activity.finish();
-		transition.beginExitTransition();
+		transitionsManager.beginExitTransition(activity);
 		isExitTransitionRunning = true;
 	}
 

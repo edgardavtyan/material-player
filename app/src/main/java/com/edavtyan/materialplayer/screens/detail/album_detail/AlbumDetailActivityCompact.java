@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactActivity;
 import com.edavtyan.materialplayer.screens.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import java.util.concurrent.TimeUnit;
@@ -30,7 +30,7 @@ public class AlbumDetailActivityCompact
 		implements AlbumDetailView {
 
 	@Inject Navigator navigator;
-	@Inject CurrentSharedViews currentSharedViews;
+	@Inject SharedTransitionsManager transitionsManager;
 
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.list) RecyclerView list;
@@ -78,7 +78,7 @@ public class AlbumDetailActivityCompact
 			sharedViews.add(Pair.create(listBackground, "listBackground"));
 		}
 
-		currentSharedViews.push(sharedViews);
+		transitionsManager.pushSharedViews(sharedViews);
 		navigator.gotoNowPlaying(this, sharedViews.build());
 	}
 

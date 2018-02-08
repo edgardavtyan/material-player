@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.lists.lib.ListFragment;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	@Inject Navigator navigator;
 	@Inject AlbumListPresenter presenter;
 	@Inject AlbumListAdapter adapter;
-	@Inject CurrentSharedViews currentSharedViews;
+	@Inject SharedTransitionsManager transitionsManager;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 
 	@Override
 	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
-		currentSharedViews.push(sharedViews);
+		transitionsManager.pushSharedViews(sharedViews);
 		navigator.gotoAlbumDetailCompact(getActivity(), albumId, sharedViews.build());
 	}
 

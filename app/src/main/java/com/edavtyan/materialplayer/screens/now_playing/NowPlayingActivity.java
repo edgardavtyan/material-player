@@ -23,7 +23,6 @@ import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingControls
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
 
@@ -42,7 +41,7 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
-	@Inject CurrentSharedViews currentSharedViews;
+	@Inject SharedTransitionsManager transition;
 
 	@Inject @Getter NowPlayingControls controls;
 	@Inject @Getter NowPlayingInfo info;
@@ -55,7 +54,6 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.shared_list) @Nullable ImageView listView;
 	@BindView(R.id.shared_list_background) @Nullable View listBackground;
 
-	private SharedTransitionsManager transition;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,8 +65,6 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(toolbarModule);
 		addModule(themeModule);
 		presenter.bind();
-
-		transition = new SharedTransitionsManager(this, currentSharedViews);
 
 		if (WindowUtils.isPortrait(this)) {
 			listView.setImageBitmap(listBitmap);
@@ -91,7 +87,7 @@ public class NowPlayingActivity extends ModularActivity {
 		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
 		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());
 
-		if (savedInstanceState == null) transition.beginEnterTransition();
+		if (savedInstanceState == null) transition.beginEnterTransition(this);
 	}
 
 	@Override
@@ -102,7 +98,7 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@Override
 	public void onBackPressed() {
-		transition.beginExitTransition();
+		transition.beginExitTransition(this);
 	}
 
 	@Override

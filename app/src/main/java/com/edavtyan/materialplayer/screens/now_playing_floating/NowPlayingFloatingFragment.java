@@ -21,7 +21,7 @@ import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
@@ -42,7 +42,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	@Inject ScreenThemeModule themeModule;
 	@Inject NowPlayingFloatingPresenter presenter;
 	@Inject Navigator navigator;
-	@Inject CurrentSharedViews currentSharedViews;
+	@Inject SharedTransitionsManager transitionsManager;
 
 	@Override
 	public void onClick(View view) {
@@ -129,7 +129,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 
 	public void gotoNowPlaying() {
 		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
-		currentSharedViews.push(sharedViews);
+		transitionsManager.pushSharedViews(sharedViews);
 		navigator.gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 

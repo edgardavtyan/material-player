@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.transition.CurrentSharedViews;
 import com.google.gson.Gson;
 
 import javax.inject.Singleton;
@@ -34,11 +33,5 @@ public class AppFactory {
 	@Provides
 	public SdkFactory provideSdkFactory() {
 		return new SdkFactory();
-	}
-
-	@Provides
-	@Singleton
-	public CurrentSharedViews provideCurrentSharedViews() {
-		return new CurrentSharedViews();
 	}
 }
