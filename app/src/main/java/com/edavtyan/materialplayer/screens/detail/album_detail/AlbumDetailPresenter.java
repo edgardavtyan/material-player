@@ -48,4 +48,10 @@ public class AlbumDetailPresenter
 			view.gotoNowPlaying();
 		}
 	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		model.removeOnNewTrackListener(this);
+	}
 }
