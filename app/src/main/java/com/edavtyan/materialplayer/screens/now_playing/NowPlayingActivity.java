@@ -23,6 +23,7 @@ import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingControls
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.screens.now_playing.models.NowPlayingSeekbar;
+import com.edavtyan.materialplayer.transition.OutputSharedViews;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
 
@@ -41,7 +42,7 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
-	@Inject SharedTransitionsManager transition;
+	@Inject SharedTransitionsManager transitionManager;
 
 	@Inject @Getter NowPlayingControls controls;
 	@Inject @Getter NowPlayingInfo info;
@@ -65,9 +66,10 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(themeModule);
 		presenter.bind();
 
+		OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
 		if (WindowUtils.isPortrait(this)) {
 			listView.setImageBitmap(listBitmap);
-			transition.setSharedViewSets(
+			outputViewsBuilder.sharedViewSets(
 					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
 					SharedViewSet.fading("list", listView)
 								 .enterDuration(200)
@@ -78,15 +80,17 @@ public class NowPlayingActivity extends ModularActivity {
 								 .exitDuration(200)
 								 .exitDelay(300));
 		} else {
-			transition.setSharedViewSets(
+			outputViewsBuilder.sharedViewSets(
 					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
 		}
 
-		transition.setEnterFadingViews(innerContainerView, appbar, fab.getView());
-		transition.setExitPortraitFadingViews(innerContainerView, appbar, fab.getView());
-		transition.setExitLandscapeFadingViews(innerContainerView, fab.getView());
+		outputViewsBuilder
+				.enterFadingViews(innerContainerView, appbar, fab.getView())
+				.exitPortraitFadingViews(innerContainerView, appbar, fab.getView())
+				.exitLandscapeFadingViews(innerContainerView, fab.getView());
+		transitionManager.createSharedTransition(outputViewsBuilder.build());
 
-		if (savedInstanceState == null) transition.beginEnterTransition(this);
+		if (savedInstanceState == null) transitionManager.beginEnterTransition(this);
 	}
 
 	@Override
@@ -97,7 +101,7 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@Override
 	public void onBackPressed() {
-		transition.beginExitTransition(this);
+		transitionManager.beginExitTransition(this);
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
+import com.edavtyan.materialplayer.transition.OutputSharedViews;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SharedViewSet;
 
@@ -102,12 +103,16 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 			});
 		}
 
-		transitionsManager.setSharedViewSets(
-				SharedViewSet.translating("art", artView, sharedArtView)
-							 .exitPortraitView(sharedArtExitView));
-		transitionsManager.setEnterFadingViews(mainWrapper);
-		transitionsManager.setExitPortraitFadingViews(clickBlockerView, listBackground, list, header, appbar);
-		transitionsManager.setExitLandscapeFadingViews(mainWrapper);
+		transitionsManager.createSharedTransition(OutputSharedViews
+				.builder()
+				.sharedViewSets(
+						SharedViewSet.translating("art", artView, sharedArtView)
+									 .exitPortraitView(sharedArtExitView))
+				.enterFadingViews(mainWrapper)
+				.exitPortraitFadingViews(
+						clickBlockerView, listBackground, list, header, appbar)
+				.exitLandscapeFadingViews(mainWrapper)
+				.build());
 
 		if (savedInstanceState == null) {
 			transitionsManager.beginEnterTransition(activity);

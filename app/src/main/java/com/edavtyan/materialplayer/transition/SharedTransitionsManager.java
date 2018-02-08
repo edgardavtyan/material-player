@@ -31,20 +31,11 @@ public class SharedTransitionsManager {
 		exitLandscapeFadingViews = new Stack<>();
 	}
 
-	public void setSharedViewSets(SharedViewSet... sharedViewSets) {
-		this.sharedViewSets.push(sharedViewSets);
-	}
-
-	public void setEnterFadingViews(View... views) {
-		enterFadingViews.push(views);
-	}
-
-	public void setExitPortraitFadingViews(View... views) {
-		exitPortraitFadingViews.push(views);
-	}
-
-	public void setExitLandscapeFadingViews(View... views) {
-		exitLandscapeFadingViews.push(views);
+	public void createSharedTransition(OutputSharedViews data) {
+		sharedViewSets.push(data.getSharedViewSets());
+		enterFadingViews.push(data.getEnterFadingViews());
+		exitPortraitFadingViews.push(data.getExitPortraitFadingViews());
+		exitLandscapeFadingViews.push(data.getExitLandscapeFadingViews());
 	}
 
 	public void pushSourceViews(SourceSharedViews views) {
