@@ -37,12 +37,6 @@ public class SourceSharedViews {
 		return bundle;
 	}
 
-	public void hide() {
-		for (Pair<View, String> pair : sharedViews) {
-			pair.first.setVisibility(View.INVISIBLE);
-		}
-	}
-
 	public void show() {
 		for (Pair<View, String> pair : sharedViews) {
 			pair.first.setVisibility(View.VISIBLE);
