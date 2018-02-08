@@ -20,4 +20,8 @@ public class CurrentSharedViews {
 	public SourceSharedViews peek() {
 		return sharedViewsStack.peek();
 	}
+
+	public boolean isEmpty() {
+		return sharedViewsStack.isEmpty();
+	}
 }

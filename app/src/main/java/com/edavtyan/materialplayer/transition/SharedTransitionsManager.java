@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 
 import com.ed.libsutils.utils.WindowUtils;
+import com.edavtyan.materialplayer.transition.exceptions.ShareViewNotFoundException;
 
 import java.util.ArrayList;
 
@@ -85,12 +86,16 @@ public class SharedTransitionsManager {
 	}
 
 	public void beginExitTransition() {
-		SourceSharedViews sourceSharedViews = currentSharedViews.pop();
 		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
+
+		if (currentSharedViews.isEmpty()) {
+			activity.finish();
+			return;
+		}
 
 		if (transitionNames == null) {
 			activity.finish();
-			sourceSharedViews.show();
+			currentSharedViews.pop().show();
 			return;
 		}
 
@@ -104,6 +109,7 @@ public class SharedTransitionsManager {
 			}
 		}
 
+		SourceSharedViews sourceSharedViews = currentSharedViews.pop();
 		for (String transitionName : transitionNames) {
 			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(transitionName);
