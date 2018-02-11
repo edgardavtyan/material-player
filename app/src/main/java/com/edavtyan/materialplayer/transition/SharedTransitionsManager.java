@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.transition;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
@@ -31,7 +32,17 @@ public class SharedTransitionsManager {
 		exitLandscapeFadingViews = new Stack<>();
 	}
 
-	public void createSharedTransition(OutputSharedViews data) {
+	public void createSharedTransition(OutputSharedViews data, Bundle savedInstanceState) {
+		if (savedInstanceState != null) {
+			if (enterFadingViews.size() > 0) {
+				enterFadingViews.pop();
+			}
+
+			sharedViewSets.pop();
+			exitPortraitFadingViews.pop();
+			exitLandscapeFadingViews.pop();
+		}
+
 		sharedViewSets.push(data.getSharedViewSets());
 		enterFadingViews.push(data.getEnterFadingViews());
 		exitPortraitFadingViews.push(data.getExitPortraitFadingViews());
@@ -42,7 +53,9 @@ public class SharedTransitionsManager {
 		sourceViews.push(views);
 	}
 
-	public void beginEnterTransition(Activity activity) {
+	public void beginEnterTransition(Activity activity, Bundle savedInstanceState) {
+		if (savedInstanceState != null) return;
+
 		Intent intent = activity.getIntent();
 		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
 

@@ -66,32 +66,30 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(themeModule);
 		presenter.bind();
 
-		if (savedInstanceState == null) {
-			OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
-			if (WindowUtils.isPortrait(this)) {
-				listView.setImageBitmap(listBitmap);
-				outputViewsBuilder.sharedViewSets(
-						SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
-						SharedViewSet.fading("list", listView)
-									 .enterDuration(200)
-									 .exitDuration(200)
-									 .exitDelay(300),
-						SharedViewSet.fading("listBackground", listBackground)
-									 .enterDuration(200)
-									 .exitDuration(200)
-									 .exitDelay(300));
-			} else {
-				outputViewsBuilder.sharedViewSets(
-						SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
-			}
-
-			outputViewsBuilder
-					.enterFadingViews(innerContainerView, appbar, fab.getView())
-					.exitPortraitFadingViews(innerContainerView, appbar, fab.getView())
-					.exitLandscapeFadingViews(innerContainerView, fab.getView());
-			transitionManager.createSharedTransition(outputViewsBuilder.build());
-			transitionManager.beginEnterTransition(this);
+		OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
+		if (WindowUtils.isPortrait(this)) {
+			listView.setImageBitmap(listBitmap);
+			outputViewsBuilder.sharedViewSets(
+					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
+					SharedViewSet.fading("list", listView)
+								 .enterDuration(200)
+								 .exitDuration(200)
+								 .exitDelay(300),
+					SharedViewSet.fading("listBackground", listBackground)
+								 .enterDuration(200)
+								 .exitDuration(200)
+								 .exitDelay(300));
+		} else {
+			outputViewsBuilder.sharedViewSets(
+					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
 		}
+
+		outputViewsBuilder
+				.enterFadingViews(innerContainerView, appbar, fab.getView())
+				.exitPortraitFadingViews(innerContainerView, appbar, fab.getView())
+				.exitLandscapeFadingViews(innerContainerView, fab.getView());
+		transitionManager.createSharedTransition(outputViewsBuilder.build(), savedInstanceState);
+		transitionManager.beginEnterTransition(this, savedInstanceState);
 	}
 
 	@Override
