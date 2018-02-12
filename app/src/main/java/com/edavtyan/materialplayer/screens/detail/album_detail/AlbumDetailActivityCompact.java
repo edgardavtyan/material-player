@@ -36,11 +36,16 @@ public class AlbumDetailActivityCompact
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.list_background) @Nullable View listBackground;
 
+	private SourceSharedViews sharedViews;
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		getComponent().inject(this);
 		super.onCreate(savedInstanceState);
 		ButterKnife.bind(this);
+		if (sharedViews != null) {
+			transitionsManager.updateSourceViews(sharedViews);
+		}
 	}
 
 	@Override
@@ -69,7 +74,7 @@ public class AlbumDetailActivityCompact
 
 	@Override
 	public void gotoNowPlaying() {
-		SourceSharedViews sharedViews = new SourceSharedViews(
+		sharedViews = new SourceSharedViews(
 				Pair.create(artView, "art"),
 				Pair.create(list, "list"));
 

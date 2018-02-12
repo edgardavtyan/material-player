@@ -112,7 +112,7 @@ public class ParallaxHeaderListCompactModule extends ActivityModule {
 				.exitPortraitFadingViews(
 						clickBlockerView, listBackground, list, header, appbar)
 				.exitLandscapeFadingViews(mainWrapper)
-				.build(), savedInstanceState);
+				.build());
 		transitionsManager.beginEnterTransition(activity, savedInstanceState);
 	}
 

@@ -20,11 +20,15 @@ public class ArtistDetailActivityCompact
 
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
+	private SourceSharedViews sharedViews;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		getComponent().inject(this);
 		super.onCreate(savedInstanceState);
+		if (sharedViews != null) {
+			transitionsManager.updateSourceViews(sharedViews);
+		}
 	}
 
 	@Override
@@ -53,6 +57,7 @@ public class ArtistDetailActivityCompact
 
 	@Override
 	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
+		this.sharedViews = sharedViews;
 		transitionsManager.pushSourceViews(sharedViews);
 		navigator.gotoAlbumDetailCompact(this, albumId, sharedViews.build());
 	}
@@ -66,3 +71,4 @@ public class ArtistDetailActivityCompact
 				.build();
 	}
 }
+

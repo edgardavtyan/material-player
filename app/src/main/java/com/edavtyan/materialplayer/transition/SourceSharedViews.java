@@ -56,4 +56,8 @@ public class SourceSharedViews {
 	public void add(Pair<View, String> sharedPair) {
 		sharedViews.add(sharedPair);
 	}
+
+	public Class getActivityClass() {
+		return sharedViews.get(0).first.getContext().getClass();
+	}
 }

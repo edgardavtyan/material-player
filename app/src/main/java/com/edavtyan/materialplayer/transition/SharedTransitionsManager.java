@@ -9,6 +9,7 @@ import android.view.View;
 import com.ed.libsutils.utils.WindowUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 public class SharedTransitionsManager {
@@ -18,39 +19,42 @@ public class SharedTransitionsManager {
 	public static final String PARAM_HEIGHT = ":height";
 	public static final String EXTRA_TRANSITION_NAMES = "transitionNames";
 
-	private final Stack<SourceSharedViews> sourceViews;
-	private final Stack<SharedViewSet[]> sharedViewSets;
-	private final Stack<View[]> enterFadingViews;
-	private final Stack<View[]> exitPortraitFadingViews;
-	private final Stack<View[]> exitLandscapeFadingViews;
+	private final HashMap<Class, SourceSharedViews> sourceViews;
+	private final HashMap<Class, SharedViewSet[]> sharedViewSets;
+	private final HashMap<Class, View[]> enterFadingViews;
+	private final HashMap<Class, View[]> exitPortraitFadingViews;
+	private final HashMap<Class, View[]> exitLandscapeFadingViews;
+	private final Stack<Class> sourceActivityClasses;
 
 	public SharedTransitionsManager() {
-		sourceViews = new Stack<>();
-		sharedViewSets = new Stack<>();
-		enterFadingViews = new Stack<>();
-		exitPortraitFadingViews = new Stack<>();
-		exitLandscapeFadingViews = new Stack<>();
+		sourceViews = new HashMap<>();
+		sharedViewSets = new HashMap<>();
+		enterFadingViews = new HashMap<>();
+		exitPortraitFadingViews = new HashMap<>();
+		exitLandscapeFadingViews = new HashMap<>();
+		sourceActivityClasses = new Stack<>();
 	}
 
-	public void createSharedTransition(OutputSharedViews data, Bundle savedInstanceState) {
-		if (savedInstanceState != null) {
-			if (enterFadingViews.size() > 0) {
-				enterFadingViews.pop();
-			}
+	public void createSharedTransition(OutputSharedViews data) {
+		Class activityClass = data.getEnterFadingViews()[0].getContext().getClass();
+		sharedViewSets.put(activityClass, data.getSharedViewSets());
+		enterFadingViews.put(activityClass, data.getEnterFadingViews());
+		exitPortraitFadingViews.put(activityClass, data.getExitPortraitFadingViews());
+		exitLandscapeFadingViews.put(activityClass, data.getExitLandscapeFadingViews());
+	}
 
-			sharedViewSets.pop();
-			exitPortraitFadingViews.pop();
-			exitLandscapeFadingViews.pop();
+	public void updateSourceViews(SourceSharedViews views) {
+		if (sourceViews.containsKey(views.getActivityClass())) {
+			sourceViews.put(views.getActivityClass(), views);
+			sourceActivityClasses.remove(views.getActivityClass());
+			sourceActivityClasses.push(views.getActivityClass());
 		}
-
-		sharedViewSets.push(data.getSharedViewSets());
-		enterFadingViews.push(data.getEnterFadingViews());
-		exitPortraitFadingViews.push(data.getExitPortraitFadingViews());
-		exitLandscapeFadingViews.push(data.getExitLandscapeFadingViews());
 	}
 
 	public void pushSourceViews(SourceSharedViews views) {
-		sourceViews.push(views);
+		sourceViews.put(views.getActivityClass(), views);
+		sourceActivityClasses.remove(views.getActivityClass());
+		sourceActivityClasses.push(views.getActivityClass());
 	}
 
 	public void beginEnterTransition(Activity activity, Bundle savedInstanceState) {
@@ -63,12 +67,13 @@ public class SharedTransitionsManager {
 			return;
 		}
 
-		for (View view : enterFadingViews.pop()) {
+		Class activityClass = activity.getClass();
+		for (View view : enterFadingViews.remove(activityClass)) {
 			view.setAlpha(0);
 			view.animate().alpha(1);
 		}
 
-		SharedViewSet[] lastSharedViewSets = sharedViewSets.peek();
+		SharedViewSet[] lastSharedViewSets = sharedViewSets.get(activityClass);
 		for (String transitionName : transitionNames) {
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
 			if (sharedViewSet == null) continue;
@@ -77,7 +82,7 @@ public class SharedTransitionsManager {
 					? sharedViewSet.getEnterPortraitView()
 					: sharedViewSet.getEnterLandscapeView();
 			sharedView.post(() -> {
-				View sourceSharedView = sourceViews.peek().find(transitionName);
+				View sourceSharedView = sourceViews.get(sourceActivityClasses.peek()).find(transitionName);
 				TransitionData data = WindowUtils.isPortrait(activity)
 						? sharedViewSet.buildEnterPortraitData(intent)
 						: sharedViewSet.buildEnterLandscapeData(intent);
@@ -102,26 +107,27 @@ public class SharedTransitionsManager {
 			return;
 		}
 
+		Class activityClass = activity.getClass();
 		Intent intent = activity.getIntent();
 		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
 		if (transitionNames == null) {
 			activity.finish();
-			sourceViews.pop().show();
+			sourceViews.remove(activityClass).show();
 			return;
 		}
 
 		if (WindowUtils.isPortrait(activity)) {
-			for (View view : exitPortraitFadingViews.pop()) {
+			for (View view : exitPortraitFadingViews.remove(activityClass)) {
 				view.animate().alpha(0);
 			}
 		} else {
-			for (View view : exitLandscapeFadingViews.pop()) {
+			for (View view : exitLandscapeFadingViews.remove(activityClass)) {
 				view.animate().alpha(0);
 			}
 		}
 
-		SourceSharedViews sourceSharedViews = sourceViews.pop();
-		SharedViewSet[] lastSharedViewSets = sharedViewSets.pop();
+		SourceSharedViews sourceSharedViews = sourceViews.remove(sourceActivityClasses.pop());
+		SharedViewSet[] lastSharedViewSets = sharedViewSets.remove(activityClass);
 		for (String transitionName : transitionNames) {
 			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
