@@ -16,7 +16,6 @@ public abstract class SharedTransition {
 			@Override
 			public void onAnimationStart(Animator animation) {
 				if (!disableStartAction()) {
-					SharedTransition.this.onAnimationStart(data);
 					startAction.run();
 				}
 			}
@@ -53,10 +52,6 @@ public abstract class SharedTransition {
 	}
 
 	protected void setUpData(TransitionData data) {
-	}
-
-	protected void onAnimationStart(TransitionData data) {
-
 	}
 
 	protected void onAnimationEnd(TransitionData data) {
