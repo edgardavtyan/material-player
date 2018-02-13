@@ -34,7 +34,78 @@
 			android:layout_weight="1"
 			>
 
-			<include layout="@layout/partial_collapsing_header_compact" />
+			<FrameLayout
+				android:id="@+id/list_header"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				>
+
+				<LinearLayout
+					android:id="@+id/info_wrapper"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:background="?colorPrimary"
+					>
+
+					<FrameLayout
+						android:id="@+id/art_wrapper"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:layout_marginLeft="@dimen/spacing_tiny"
+						android:layout_marginRight="@dimen/spacing_tiny"
+						android:layout_marginBottom="@dimen/spacing_tiny"
+						style="@style/Detail_Art_Wrapper"
+						>
+
+						<ImageView
+							android:id="@+id/art"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:contentDescription="@string/description_art"
+							tools:src="@drawable/fallback_cover"
+							style="@style/Detail_Art"
+							/>
+
+					</FrameLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/spacing_very_tiny"
+						android:orientation="vertical"
+						>
+
+						<TextView
+							android:id="@+id/title"
+							tools:text="The Nth °"
+							style="@style/Detail_Title"
+							/>
+
+						<TextView
+							android:id="@+id/info_top"
+							tools:text="OVERWERK"
+							style="@style/Detail_Info"
+							/>
+
+						<TextView
+							android:id="@+id/info_bottom"
+							tools:text="3 Tracks"
+							style="@style/Detail_Info"
+							/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<View
+					android:layout_width="match_parent"
+					android:layout_height="4dp"
+					android:layout_gravity="bottom"
+					android:background="@drawable/shadow_bottom_small"
+					/>
+
+			</FrameLayout>
 
 			<ImageView
 				android:id="@+id/shared_art_exit"
