@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/list_header"
@@ -7,78 +7,69 @@
 	android:layout_height="wrap_content"
 	>
 
-	<FrameLayout
+	<LinearLayout
+		android:id="@+id/info_wrapper"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_alignParentTop="true"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"
+		android:orientation="horizontal"
+		android:background="?colorPrimary"
 		>
 
-		<LinearLayout
-			android:id="@+id/info_wrapper"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:background="?colorPrimary"
+		<FrameLayout
+			android:id="@+id/art_wrapper"
+			android:layout_width="120dp"
+			android:layout_height="120dp"
+			android:layout_marginLeft="@dimen/spacing_tiny"
+			android:layout_marginRight="@dimen/spacing_tiny"
+			android:layout_marginBottom="@dimen/spacing_tiny"
+			style="@style/Detail_Art_Wrapper"
 			>
 
-			<FrameLayout
-				android:id="@+id/art_wrapper"
-				android:layout_width="120dp"
-				android:layout_height="120dp"
-				android:layout_marginLeft="@dimen/spacing_tiny"
-				android:layout_marginRight="@dimen/spacing_tiny"
-				android:layout_marginBottom="@dimen/spacing_tiny"
-				style="@style/Detail_Art_Wrapper"
-				>
-
-				<ImageView
-					android:id="@+id/art"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:contentDescription="@string/description_art"
-					tools:src="@drawable/fallback_cover"
-					style="@style/Detail_Art"
-					/>
-
-			</FrameLayout>
-
-			<LinearLayout
+			<ImageView
+				android:id="@+id/art"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/spacing_very_tiny"
-				android:orientation="vertical"
-				>
+				android:layout_height="match_parent"
+				android:contentDescription="@string/description_art"
+				tools:src="@drawable/fallback_cover"
+				style="@style/Detail_Art"
+				/>
 
-				<TextView
-					android:id="@+id/title"
-					tools:text="The Nth °"
-					style="@style/Detail_Title"
-					/>
+		</FrameLayout>
 
-				<TextView
-					android:id="@+id/info_top"
-					tools:text="OVERWERK"
-					style="@style/Detail_Info"
-					/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/spacing_very_tiny"
+			android:orientation="vertical"
+			>
 
-				<TextView
-					android:id="@+id/info_bottom"
-					tools:text="3 Tracks"
-					style="@style/Detail_Info"
-					/>
+			<TextView
+				android:id="@+id/title"
+				tools:text="The Nth °"
+				style="@style/Detail_Title"
+				/>
 
-			</LinearLayout>
+			<TextView
+				android:id="@+id/info_top"
+				tools:text="OVERWERK"
+				style="@style/Detail_Info"
+				/>
+
+			<TextView
+				android:id="@+id/info_bottom"
+				tools:text="3 Tracks"
+				style="@style/Detail_Info"
+				/>
 
 		</LinearLayout>
 
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="4dp"
-			android:layout_gravity="bottom"
-			android:background="@drawable/shadow_bottom_small"
-			/>
+	</LinearLayout>
 
-	</FrameLayout>
-</com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="4dp"
+		android:layout_gravity="bottom"
+		android:background="@drawable/shadow_bottom_small"
+		/>
+
+</FrameLayout>
