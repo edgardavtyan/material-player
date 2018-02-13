@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Notification_Big_MainContainer">
-		<item name="android:orientation">horizontal</item>
-		<item name="android:background">@android:color/transparent</item>
-	</style>
-
 	<style name="Notification_Big_RightContainer">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">match_parent</item>

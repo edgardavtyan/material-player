@@ -3,11 +3,9 @@
 
 	<dimen name="spacing_medium">16dp</dimen>
 	<dimen name="spacing_medium_plus">17dp</dimen>
-	<dimen name="spacing_medium_minus">15dp</dimen>
 	<dimen name="spacing_tiny">8dp</dimen>
 	<dimen name="spacing_very_tiny">4dp</dimen>
 
-	<dimen name="font_big">24sp</dimen>
 	<dimen name="font_medium">18sp</dimen>
 	<dimen name="font_normal">16sp</dimen>
 	<dimen name="font_small">14sp</dimen>
@@ -15,7 +13,6 @@
 	<dimen name="size_medium">48dp</dimen>
 
 	<dimen name="shadow_tiny">3dp</dimen>
-	<dimen name="shadow_small">5dp</dimen>
 
 	<dimen name="placeholder_toolbar_height">56dp</dimen>
 
