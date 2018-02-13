@@ -2,7 +2,7 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/ListItem_MenuContainer"
+	style="@style/ListItem_MenuContainer.Compact"
 	>
 
 	<LinearLayout style="@style/ListItem_InfoContainer">
@@ -16,15 +16,15 @@
 		<TextView
 			android:id="@+id/info"
 			tools:text="Album title - 3:35"
-			style="@style/ListItem_Info"
+			style="@style/ListItem_Info.Compact"
 			/>
 
 	</LinearLayout>
 
 	<ImageView
 		android:id="@+id/now_playing"
-		style="@style/ListItem_NowPlaying"
 		android:contentDescription="@string/description_nowPlaying"
+		style="@style/ListItem_NowPlaying"
 		/>
 
 	<ImageButton

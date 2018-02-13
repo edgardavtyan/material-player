@@ -2,11 +2,10 @@ package com.edavtyan.materialplayer.screens.lists.track_list;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.screens.FragmentScope;
-import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
 
 import dagger.Module;
 import dagger.Provides;
@@ -37,9 +36,8 @@ public class TrackListFactory {
 	@FragmentScope
 	public TrackListModel provideModel(
 			ModelServiceModule serviceModule,
-			TrackDB trackDB,
-			CompactListPref compactListPref) {
-		return new TrackListModel(serviceModule, trackDB, compactListPref);
+			TrackDB trackDB) {
+		return new TrackListModel(serviceModule, trackDB);
 	}
 
 	@Provides

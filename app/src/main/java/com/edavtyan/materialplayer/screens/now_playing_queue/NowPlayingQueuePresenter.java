@@ -28,7 +28,7 @@ public class NowPlayingQueuePresenter extends ListPresenter<NowPlayingQueueViewH
 	};
 
 	public NowPlayingQueuePresenter(NowPlayingQueueModel model, NowPlayingQueueActivity view) {
-		super(model, view);
+		super();
 		this.model = model;
 		this.model.setOnNewTrackListener(onNewTrackListener);
 		this.model.setOnServiceConnectedListener(onServiceConnectedListener);

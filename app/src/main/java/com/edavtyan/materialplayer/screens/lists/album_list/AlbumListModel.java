@@ -1,11 +1,10 @@
 package com.edavtyan.materialplayer.screens.lists.album_list;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
 
 import java.util.List;
 
@@ -19,9 +18,8 @@ public class AlbumListModel extends ListModel {
 	public AlbumListModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
-			TrackDB trackDB,
-			CompactListPref compactListPref) {
-		super(serviceModule, compactListPref);
+			TrackDB trackDB) {
+		super(serviceModule);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
 	}

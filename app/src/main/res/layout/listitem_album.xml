@@ -2,14 +2,14 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/ListItem_MenuContainer"
+	style="@style/ListItem_MenuContainer.Compact"
 	>
 
 	<ImageView
 		android:id="@+id/art"
 		android:contentDescription="@string/description_art"
 		tools:src="@drawable/fallback_cover"
-		style="@style/ListItem_AlbumArt"
+		style="@style/ListItem_AlbumArt.Compact"
 		/>
 
 	<LinearLayout style="@style/ListItem_InfoContainer">
@@ -23,7 +23,7 @@
 		<TextView
 			android:id="@+id/info"
 			tools:text="Album Artist | 399 Tracks"
-			style="@style/ListItem_Info"
+			style="@style/ListItem_Info.Compact"
 			/>
 
 	</LinearLayout>

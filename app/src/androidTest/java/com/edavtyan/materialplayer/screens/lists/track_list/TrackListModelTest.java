@@ -1,11 +1,10 @@
 package com.edavtyan.materialplayer.screens.lists.track_list;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -33,10 +32,9 @@ public class TrackListModelTest extends BaseTest {
 		TrackDB db = mock(TrackDB.class);
 		when(db.getAllTracks()).thenReturn(tracks);
 
-		CompactListPref prefs = mock(CompactListPref.class);
 		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 
-		model = spy(new TrackListModel(serviceModule, db, prefs));
+		model = spy(new TrackListModel(serviceModule, db));
 
 		player = mock(Player.class);
 

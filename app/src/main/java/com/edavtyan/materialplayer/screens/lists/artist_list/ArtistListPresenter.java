@@ -10,7 +10,7 @@ public class ArtistListPresenter extends ListPresenter<ArtistListViewHolder> {
 	private final ArtistListView view;
 
 	public ArtistListPresenter(ArtistListModel model, ArtistListView view) {
-		super(model, view);
+		super();
 		this.model = model;
 		this.view = view;
 	}

@@ -2,12 +2,11 @@ package com.edavtyan.materialplayer.screens.lists.artist_list;
 
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
 
 import java.util.List;
 
@@ -22,9 +21,8 @@ public class ArtistListModel extends ListModel {
 			ModelServiceModule serviceModule,
 			ArtistDB db,
 			TrackDB trackDB,
-			ArtistListImageLoader imageLoader,
-			CompactListPref compactListPref) {
-		super(serviceModule, compactListPref);
+			ArtistListImageLoader imageLoader) {
+		super(serviceModule);
 		this.db = db;
 		this.trackDB = trackDB;
 		this.imageLoader = imageLoader;

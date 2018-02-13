@@ -40,15 +40,8 @@ public class ListAdapterTest extends BaseTest {
 	}
 
 	@Test
-	public void return_normal_layout_if_compact_mode_disabled() {
-		when(presenter.isCompactModeEnabled()).thenReturn(false);
+	public void return_correct_layout() {
 		assertThat(listAdapter.getItemViewType(0)).isEqualTo(R.layout.listitem_track);
-	}
-
-	@Test
-	public void return_compact_layout_if_compact_mode_enabled() {
-		when(presenter.isCompactModeEnabled()).thenReturn(true);
-		assertThat(listAdapter.getItemViewType(0)).isEqualTo(R.layout.listitem_track_compact);
 	}
 
 	@Test

@@ -2,10 +2,9 @@ package com.edavtyan.materialplayer.screens.now_playing_queue;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.screens.ActivityScope;
 import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,10 +31,8 @@ public class NowPlayingQueueFactory {
 
 	@Provides
 	@ActivityScope
-	public NowPlayingQueueModel provideModel(
-			ModelServiceModule serviceModule,
-			CompactListPref compactListPref) {
-		return new NowPlayingQueueModel(serviceModule, compactListPref);
+	public NowPlayingQueueModel provideModel(ModelServiceModule serviceModule) {
+		return new NowPlayingQueueModel(serviceModule);
 	}
 
 	@Provides

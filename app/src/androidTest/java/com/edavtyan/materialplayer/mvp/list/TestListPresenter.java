@@ -6,7 +6,7 @@ import com.edavtyan.materialplayer.screens.lists.lib.ListView;
 
 public class TestListPresenter extends ListPresenter {
 	public TestListPresenter(ListModel model, ListView view) {
-		super(model, view);
+		super();
 	}
 
 	@Override

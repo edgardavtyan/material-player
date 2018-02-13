@@ -1,11 +1,10 @@
 package com.edavtyan.materialplayer.screens.now_playing_queue;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
-import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Setter;
 
@@ -25,8 +24,8 @@ public class NowPlayingQueueModel extends ListModel {
 		void onNewTrack();
 	}
 
-	public NowPlayingQueueModel(ModelServiceModule serviceModule, CompactListPref compactListPref) {
-		super(serviceModule, compactListPref);
+	public NowPlayingQueueModel(ModelServiceModule serviceModule) {
+		super(serviceModule);
 	}
 
 	public void playItemAtPosition(int position) {

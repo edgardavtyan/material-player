@@ -2,14 +2,13 @@ package com.edavtyan.materialplayer.screens.search.artist;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.screens.FragmentScope;
-import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListImageLoader;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListImageLoader;
+import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -41,10 +40,8 @@ public class SearchArtistModule {
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
 			TrackDB trackDB,
-			ArtistListImageLoader imageLoader,
-			CompactListPref compactListPref) {
-		return new SearchArtistModel(
-				serviceModule, artistDB, trackDB, imageLoader, compactListPref);
+			ArtistListImageLoader imageLoader) {
+		return new SearchArtistModel(serviceModule, artistDB, trackDB, imageLoader);
 	}
 
 	@Provides

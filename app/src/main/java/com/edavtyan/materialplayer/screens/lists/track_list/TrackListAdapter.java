@@ -20,13 +20,8 @@ public class TrackListAdapter extends ListAdapter<TrackListViewHolder> {
 	}
 
 	@Override
-	public int getNormalLayoutId() {
+	public int getLayoutId() {
 		return R.layout.listitem_track;
-	}
-
-	@Override
-	public int getCompactLayoutId() {
-		return R.layout.listitem_track_compact;
 	}
 
 	@Override

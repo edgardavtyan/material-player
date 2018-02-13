@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.screens.search.album;
 
-import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListModel;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.search.base.SearchModel;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListModel;
+import com.edavtyan.materialplayer.screens.search.base.SearchModel;
 
 import java.util.List;
 
@@ -20,9 +19,8 @@ public class SearchAlbumModel extends AlbumListModel implements SearchModel {
 	public SearchAlbumModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
-			TrackDB trackDB,
-			CompactListPref compactListPref) {
-		super(serviceModule, albumDB, trackDB, compactListPref);
+			TrackDB trackDB) {
+		super(serviceModule, albumDB, trackDB);
 		this.albumDB = albumDB;
 	}
 

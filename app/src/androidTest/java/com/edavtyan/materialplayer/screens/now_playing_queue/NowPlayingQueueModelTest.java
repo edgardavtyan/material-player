@@ -6,7 +6,6 @@ import android.content.Intent;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -39,11 +38,9 @@ public class NowPlayingQueueModelTest extends BaseTest {
 		binder = mock(PlayerService.PlayerBinder.class);
 		when(binder.getService()).thenReturn(service);
 
-		CompactListPref prefs = mock(CompactListPref.class);
-
 		serviceModule = spy(new ModelServiceModule(context));
 
-		model = new NowPlayingQueueModel(serviceModule, prefs);
+		model = new NowPlayingQueueModel(serviceModule);
 	}
 
 	@Test

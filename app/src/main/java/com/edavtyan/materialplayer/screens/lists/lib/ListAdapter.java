@@ -19,8 +19,7 @@ public abstract class ListAdapter<VH extends RecyclerView.ViewHolder>
 		this.presenter = presenter;
 	}
 
-	public abstract int getNormalLayoutId();
-	public abstract int getCompactLayoutId();
+	public abstract int getLayoutId();
 	public abstract VH onCreateViewHolder(Context context, View view);
 
 	@Override
@@ -42,6 +41,6 @@ public abstract class ListAdapter<VH extends RecyclerView.ViewHolder>
 
 	@Override
 	public int getItemViewType(int position) {
-		return presenter.isCompactModeEnabled() ? getCompactLayoutId() : getNormalLayoutId();
+		return getLayoutId();
 	}
 }

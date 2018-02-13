@@ -1,12 +1,11 @@
 package com.edavtyan.materialplayer.screens.lists.album_list;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
@@ -40,9 +39,8 @@ public class AlbumListModelTest extends BaseTest {
 		when(albumDB.getAllAlbums()).thenReturn(albums);
 
 		TrackDB trackDB = mock(TrackDB.class);
-		CompactListPref prefs = mock(CompactListPref.class);
 
-		model = new AlbumListModel(serviceModule, albumDB, trackDB, prefs);
+		model = new AlbumListModel(serviceModule, albumDB, trackDB);
 		doAnswer(invocationOnMock -> {
 			model.onServiceConnected(service);
 			return null;

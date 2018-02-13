@@ -7,7 +7,6 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.screens.FragmentScope;
 import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,13 +38,8 @@ public class AlbumListFactory {
 	public AlbumListModel provideModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
-			TrackDB trackDB,
-			CompactListPref compactListPref) {
-		return new AlbumListModel(
-				serviceModule,
-				albumDB,
-				trackDB,
-				compactListPref);
+			TrackDB trackDB) {
+		return new AlbumListModel(serviceModule, albumDB, trackDB);
 	}
 
 	@Provides

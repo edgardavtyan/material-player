@@ -30,13 +30,8 @@ public class NowPlayingQueueAdapterTest extends BaseTest {
 	}
 
 	@Test
-	public void return_correct_normal_layout_id() {
-		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_track);
-	}
-
-	@Test
-	public void return_correct_compact_layout_id() {
-		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_track_compact);
+	public void return_correct_layout_id() {
+		assertThat(adapter.getLayoutId()).isEqualTo(R.layout.listitem_track);
 	}
 
 	@Test

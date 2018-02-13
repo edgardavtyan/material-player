@@ -3,10 +3,6 @@ package com.edavtyan.materialplayer.screens.detail.artist_detail;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.screens.ActivityScope;
-import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListPresenter;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -14,6 +10,9 @@ import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.utils.WebClient;
 
 import dagger.Module;
@@ -48,11 +47,9 @@ public class ArtistDetailFactory {
 			ArtistDB artistDB,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			CompactListPref compactListPref,
 			ArtistDetailImageLoader imageLoader) {
 		return new ArtistDetailModel(
-				serviceModule, artistDB, albumDB, trackDB,
-				compactListPref, imageLoader, artistTitle);
+				serviceModule, artistDB, albumDB, trackDB, imageLoader, artistTitle);
 	}
 
 	@Provides

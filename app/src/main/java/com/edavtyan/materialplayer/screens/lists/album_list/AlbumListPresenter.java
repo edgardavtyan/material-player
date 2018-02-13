@@ -11,7 +11,7 @@ public class AlbumListPresenter extends ListPresenter<AlbumListViewHolder> {
 	private final AlbumListView view;
 
 	public AlbumListPresenter(AlbumListModel model, AlbumListView view) {
-		super(model, view);
+		super();
 		this.model = model;
 		this.view = view;
 	}

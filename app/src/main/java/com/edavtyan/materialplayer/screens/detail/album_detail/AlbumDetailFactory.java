@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.edavtyan.materialplayer.screens.ActivityScope;
 import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListPresenter;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
@@ -37,10 +36,9 @@ public class AlbumDetailFactory {
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			AlbumArtProvider artProvider,
-			CompactListPref compactListPrefs) {
+			AlbumArtProvider artProvider) {
 		return new AlbumDetailModel(
-				serviceModule, albumDB, trackDB, artProvider, compactListPrefs, albumId);
+				serviceModule, albumDB, trackDB, artProvider, albumId);
 	}
 
 	@Provides

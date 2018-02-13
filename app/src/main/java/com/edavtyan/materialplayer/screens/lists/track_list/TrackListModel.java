@@ -1,10 +1,9 @@
 package com.edavtyan.materialplayer.screens.lists.track_list;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
 
 import java.util.List;
 
@@ -13,8 +12,8 @@ public class TrackListModel extends ListModel {
 	protected List<Track> tracks;
 	private final TrackDB db;
 
-	public TrackListModel(ModelServiceModule serviceModule, TrackDB db, CompactListPref compactListPref) {
-		super(serviceModule, compactListPref);
+	public TrackListModel(ModelServiceModule serviceModule, TrackDB db) {
+		super(serviceModule);
 		this.db = db;
 	}
 

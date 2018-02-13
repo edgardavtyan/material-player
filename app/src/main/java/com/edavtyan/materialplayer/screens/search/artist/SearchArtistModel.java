@@ -1,13 +1,12 @@
 package com.edavtyan.materialplayer.screens.search.artist;
 
-import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListImageLoader;
-import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListModel;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.search.base.SearchModel;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListImageLoader;
+import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListModel;
+import com.edavtyan.materialplayer.screens.search.base.SearchModel;
 
 import java.util.List;
 
@@ -20,9 +19,8 @@ public class SearchArtistModel extends ArtistListModel implements SearchModel {
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
 			TrackDB trackDB,
-			ArtistListImageLoader imageLoader,
-			CompactListPref compactListPref) {
-		super(serviceModule, artistDB, trackDB, imageLoader, compactListPref);
+			ArtistListImageLoader imageLoader) {
+		super(serviceModule, artistDB, trackDB, imageLoader);
 		this.artistDB = artistDB;
 	}
 

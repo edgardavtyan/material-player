@@ -46,12 +46,6 @@ public class ListFragmentModule extends FragmentModule {
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		presenter.onUpdateCompactMode();
-	}
-
-	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();

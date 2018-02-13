@@ -16,7 +16,6 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.transition.SharedTransitionDaggerModule;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
@@ -36,7 +35,6 @@ import dagger.Component;
 		LastFmFactory.class,
 		DbFactory.class,
 		AlbumArtFactory.class,
-		CompactPrefsModule.class,
 		SharedTransitionDaggerModule.class})
 public interface AppComponent {
 	Context context();
@@ -52,7 +50,6 @@ public interface AppComponent {
 	AlbumDB albumDB();
 	TrackDB trackDB();
 	AlbumArtProvider albumArtProvider();
-	CompactListPref compactListPref();
 	Gson gson();
 	SharedTransitionsManager sharedTransitionsManager();
 }

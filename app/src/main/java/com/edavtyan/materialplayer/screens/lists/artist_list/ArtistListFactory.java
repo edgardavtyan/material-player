@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.screens.FragmentScope;
 import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
@@ -44,14 +43,8 @@ public class ArtistListFactory {
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
 			TrackDB trackDB,
-			ArtistListImageLoader imageLoader,
-			CompactListPref compactListPref) {
-		return new ArtistListModel(
-				serviceModule,
-				artistDB,
-				trackDB,
-				imageLoader,
-				compactListPref);
+			ArtistListImageLoader imageLoader) {
+		return new ArtistListModel(serviceModule, artistDB, trackDB, imageLoader);
 	}
 
 	@Provides

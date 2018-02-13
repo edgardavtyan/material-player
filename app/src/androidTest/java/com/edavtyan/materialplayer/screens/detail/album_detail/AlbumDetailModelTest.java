@@ -7,7 +7,6 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
@@ -34,14 +33,12 @@ public class AlbumDetailModelTest extends BaseTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		CompactListPref prefs = mock(CompactListPref.class);
 		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 		albumDB = mock(AlbumDB.class);
 		trackDB = mock(TrackDB.class);
 		albumArtProvider = mock(AlbumArtProvider.class);
 
-
-		model = new AlbumDetailModel(serviceModule, albumDB, trackDB, albumArtProvider, prefs, ALBUM_ID);
+		model = new AlbumDetailModel(serviceModule, albumDB, trackDB, albumArtProvider, ALBUM_ID);
 	}
 
 	@Test

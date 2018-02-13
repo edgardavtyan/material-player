@@ -2,13 +2,12 @@ package com.edavtyan.materialplayer.screens.search.album;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.screens.FragmentScope;
-import com.edavtyan.materialplayer.screens.SdkFactory;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.screens.FragmentScope;
+import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.screens.search.base.SearchViewImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,9 +38,8 @@ public class SearchAlbumModule {
 	public SearchAlbumModel provideModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
-			TrackDB trackDB,
-			CompactListPref compactListPref) {
-		return new SearchAlbumModel(serviceModule, albumDB, trackDB, compactListPref);
+			TrackDB trackDB) {
+		return new SearchAlbumModel(serviceModule, albumDB, trackDB);
 	}
 
 	@Provides

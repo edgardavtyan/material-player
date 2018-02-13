@@ -9,7 +9,7 @@ public class TrackListPresenter extends ListPresenter<TrackListViewHolder> {
 	private final TrackListModel model;
 
 	public TrackListPresenter(TrackListView view, TrackListModel model) {
-		super(model, view);
+		super();
 		this.view = view;
 		this.model = model;
 	}

@@ -31,13 +31,8 @@ public class ArtistListAdapterTest extends BaseTest {
 	}
 
 	@Test
-	public void getNormalLayoutId_returnCorrectId() {
-		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_album);
-	}
-
-	@Test
-	public void getCompactLayoutId_returnCorrectId() {
-		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_album_compact);
+	public void getLayoutId_returnCorrectId() {
+		assertThat(adapter.getLayoutId()).isEqualTo(R.layout.listitem_album);
 	}
 
 	@Test

@@ -9,7 +9,6 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.service.PlayerService;
 
@@ -28,9 +27,8 @@ public class AlbumDetailModel extends TrackListModel {
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			AlbumArtProvider albumArtProvider,
-			CompactListPref prefs,
 			int albumId) {
-		super(serviceModule, trackDB, prefs);
+		super(serviceModule, trackDB);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
 		this.albumArtProvider = albumArtProvider;

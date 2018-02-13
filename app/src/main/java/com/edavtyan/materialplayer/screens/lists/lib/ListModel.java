@@ -9,7 +9,6 @@ public class ListModel implements ModelServiceModule.OnServiceConnectedListener 
 
 	protected PlayerService service;
 
-	private final CompactListPref compactListPref;
 	private final ModelServiceModule serviceModule;
 
 	private @Setter OnServiceConnectedListener onServiceConnectedListener;
@@ -18,8 +17,7 @@ public class ListModel implements ModelServiceModule.OnServiceConnectedListener 
 		void onServiceConnected();
 	}
 
-	public ListModel(ModelServiceModule serviceModule, CompactListPref compactListPref) {
-		this.compactListPref = compactListPref;
+	public ListModel(ModelServiceModule serviceModule) {
 		this.serviceModule = serviceModule;
 		this.serviceModule.setOnServiceConnectedListener(this);
 	}
@@ -30,10 +28,6 @@ public class ListModel implements ModelServiceModule.OnServiceConnectedListener 
 
 	public void unbindService() {
 		serviceModule.unbind();
-	}
-
-	public boolean isCompactModeEnabled() {
-		return compactListPref.isEnabled();
 	}
 
 	@Override

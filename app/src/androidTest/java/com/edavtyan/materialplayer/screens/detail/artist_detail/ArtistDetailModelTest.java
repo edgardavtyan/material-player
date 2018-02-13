@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.screens.detail.artist_detail;
 
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
@@ -36,7 +35,6 @@ public class ArtistDetailModelTest extends BaseTest {
 				artistDB,
 				mock(AlbumDB.class),
 				mock(TrackDB.class),
-				mock(CompactListPref.class),
 				artistArtLoader,
 				"title");
 	}

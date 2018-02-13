@@ -31,13 +31,8 @@ public class AlbumListAdapterTest extends BaseTest {
 	}
 
 	@Test
-	public void getNormalLayoutId_returnCorrectLayout() {
-		assertThat(adapter.getNormalLayoutId()).isEqualTo(R.layout.listitem_album);
-	}
-
-	@Test
-	public void getCompactLayoutId_returnCorrectLayout() {
-		assertThat(adapter.getCompactLayoutId()).isEqualTo(R.layout.listitem_album_compact);
+	public void getLayoutId_returnCorrectLayout() {
+		assertThat(adapter.getLayoutId()).isEqualTo(R.layout.listitem_album);
 	}
 
 	@Test
