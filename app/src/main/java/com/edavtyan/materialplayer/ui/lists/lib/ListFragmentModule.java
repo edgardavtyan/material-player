@@ -4,11 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.layout_managers.FixedGridLayoutManager;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.fragment.FragmentModule;
-import com.ed.libsutils.utils.WindowUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,9 +37,8 @@ public class ListFragmentModule extends FragmentModule {
 		super.onCreateView(view);
 		ButterKnife.bind(this, view);
 
-		list.setAdapter(adapter);
-
 		int spanCount = WindowUtils.isPortrait(fragment.getContext()) ? 1 : 2;
+		list.setAdapter(adapter);
 		list.setLayoutManager(new FixedGridLayoutManager(fragment.getContext(), spanCount));
 
 		presenter.onCreate();
