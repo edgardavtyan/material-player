@@ -18,6 +18,5 @@ import dagger.Component;
 				   ParallaxHeaderModule.class,
 				   ModelModulesFactory.class})
 public interface ArtistDetailComponent {
-	void inject(ArtistDetailActivityNormal activity);
-	void inject(ArtistDetailActivityCompact activity);
+	void inject(ArtistDetailActivity activity);
 }

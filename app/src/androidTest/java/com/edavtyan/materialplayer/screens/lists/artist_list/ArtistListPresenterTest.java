@@ -76,7 +76,7 @@ public class ArtistListPresenterTest extends BaseTest {
 		when(model.isCompactModeEnabled()).thenReturn(true);
 
 		presenter.onHolderClick(3, sharedViews);
-		verify(view).gotoArtistDetailCompact("title", sharedViews);
+		verify(view).gotoArtistDetail("title", sharedViews);
 	}
 
 	@Test

@@ -9,14 +9,14 @@ public class AlbumDetailPresenter
 		extends TrackListPresenter
 		implements ParallaxHeaderListPresenter, Player.OnNewTrackListener {
 
-	private final AlbumDetailView view;
+	private final AlbumDetailActivity activity;
 	private final AlbumDetailModel model;
 
 	private boolean wasHolderClicked;
 
-	public AlbumDetailPresenter(AlbumDetailModel model, AlbumDetailView view) {
-		super(view, model);
-		this.view = view;
+	public AlbumDetailPresenter(AlbumDetailModel model, AlbumDetailActivity activity) {
+		super(activity, model);
+		this.activity = activity;
 		this.model = model;
 		this.model.addOnNewTrackListener(this);
 		wasHolderClicked = false;
@@ -27,12 +27,12 @@ public class AlbumDetailPresenter
 		super.onCreate();
 
 		Album album = model.getAlbum();
-		view.setAlbumTitle(album.getTitle());
-		view.setAlbumInfo(
+		activity.setAlbumTitle(album.getTitle());
+		activity.setAlbumInfo(
 				album.getArtistTitle(),
 				album.getTracksCount(),
 				model.getTotalAlbumDuration());
-		view.setAlbumImage(model.getAlbumArt());
+		activity.setAlbumImage(model.getAlbumArt());
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class AlbumDetailPresenter
 	public void onNewTrack() {
 		if (wasHolderClicked) {
 			wasHolderClicked = false;
-			view.gotoNowPlaying();
+			activity.gotoNowPlaying();
 		}
 	}
 

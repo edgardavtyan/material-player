@@ -21,13 +21,11 @@ import dagger.Provides;
 
 @Module
 public class ArtistDetailFactory {
-	private final AppCompatActivity activity;
-	private final ArtistDetailView view;
+	private final ArtistDetailActivity activity;
 	private final String artistTitle;
 
-	public ArtistDetailFactory(AppCompatActivity activity, ArtistDetailView view, String artistTitle) {
+	public ArtistDetailFactory(ArtistDetailActivity activity, String artistTitle) {
 		this.activity = activity;
-		this.view = view;
 		this.artistTitle = artistTitle;
 	}
 
@@ -39,8 +37,8 @@ public class ArtistDetailFactory {
 
 	@Provides
 	@ActivityScope
-	public ArtistDetailView provideView() {
-		return view;
+	public ArtistDetailActivity provideArtistDetailActivity() {
+		return activity;
 	}
 
 	@Provides
@@ -72,8 +70,8 @@ public class ArtistDetailFactory {
 
 	@Provides
 	@ActivityScope
-	public ArtistDetailPresenter providePresenter(ArtistDetailModel model, ArtistDetailView view) {
-		return new ArtistDetailPresenter(model, view);
+	public ArtistDetailPresenter providePresenter(ArtistDetailModel model, ArtistDetailActivity activity) {
+		return new ArtistDetailPresenter(model, activity);
 	}
 
 	@Provides

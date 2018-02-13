@@ -13,20 +13,11 @@ import dagger.Provides;
 public class ParallaxHeaderModule {
 	@Provides
 	@ActivityScope
-	public ParallaxHeaderListModule provideParallaxHeaderListModule(
-			AppCompatActivity activity,
-			TestableRecyclerAdapter adapter,
-			ParallaxHeaderListPresenter presenter) {
-		return new ParallaxHeaderListModule(activity, adapter, presenter);
-	}
-
-	@Provides
-	@ActivityScope
-	public ParallaxHeaderListCompactModule provideParallaxHeaderListCompactModule(
+	public ParallaxHeaderListModule provideParallaxHeaderListCompactModule(
 			AppCompatActivity activity,
 			TestableRecyclerAdapter adapter,
 			ParallaxHeaderListPresenter presenter,
 			SharedTransitionsManager transitionsManager) {
-		return new ParallaxHeaderListCompactModule(activity, adapter, presenter, transitionsManager);
+		return new ParallaxHeaderListModule(activity, adapter, presenter, transitionsManager);
 	}
 }

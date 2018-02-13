@@ -13,7 +13,8 @@ import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactActivity;
+import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.screens.lists.track_list.TrackListView;
 import com.edavtyan.materialplayer.screens.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
@@ -25,9 +26,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AlbumDetailActivityCompact
-		extends ParallaxHeaderListCompactActivity
-		implements AlbumDetailView {
+public class AlbumDetailActivity
+		extends ParallaxHeaderListActivity
+		implements TrackListView {
+
+	public static final String EXTRA_ALBUM_ID = "extra_albumId";
 
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
@@ -48,12 +51,10 @@ public class AlbumDetailActivityCompact
 		}
 	}
 
-	@Override
 	public void setAlbumTitle(String albumTitle) {
 		setTitle(albumTitle);
 	}
 
-	@Override
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
 		String tracksCountStr = getResources().getQuantityString(
 				R.plurals.tracks, tracksCount, tracksCount);
@@ -67,12 +68,10 @@ public class AlbumDetailActivityCompact
 		setInfo(artistTitle, portraitBottomInfo, landscapeInfo);
 	}
 
-	@Override
 	public void setAlbumImage(Bitmap image) {
 		setImage(image, R.drawable.fallback_cover);
 	}
 
-	@Override
 	public void gotoNowPlaying() {
 		sharedViews = new SourceSharedViews(
 				Pair.create(artView, "art"),
@@ -92,7 +91,7 @@ public class AlbumDetailActivityCompact
 		return DaggerAlbumDetailComponent
 				.builder()
 				.appComponent(((App) getApplication()).getAppComponent())
-				.albumDetailFactory(new AlbumDetailFactory(this, this, albumId))
+				.albumDetailFactory(new AlbumDetailFactory(this, albumId))
 				.build();
 	}
 

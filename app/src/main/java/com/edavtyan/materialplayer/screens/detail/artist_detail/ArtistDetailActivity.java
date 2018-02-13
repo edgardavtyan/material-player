@@ -8,15 +8,18 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.Navigator;
-import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListCompactActivity;
+import com.edavtyan.materialplayer.screens.detail.lib.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListView;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import javax.inject.Inject;
 
-public class ArtistDetailActivityCompact
-		extends ParallaxHeaderListCompactActivity
-		implements ArtistDetailView {
+public class ArtistDetailActivity
+		extends ParallaxHeaderListActivity
+		implements AlbumListView {
+
+	public static final String EXTRA_ARTIST_TITLE = "extra_artistTitle";
 
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
@@ -31,12 +34,10 @@ public class ArtistDetailActivityCompact
 		}
 	}
 
-	@Override
 	public void setArtistTitle(String title) {
 		setTitle(title);
 	}
 
-	@Override
 	public void setArtistInfo(int albumsCount, int tracksCount) {
 		Resources res = getResources();
 		String portraitTopInfo = res.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
@@ -45,21 +46,14 @@ public class ArtistDetailActivityCompact
 		setInfo(portraitTopInfo, portraitBottomInfo, landscapeInfo);
 	}
 
-	@Override
 	public void setArtistImage(Bitmap image) {
 		setImage(image, R.drawable.fallback_artist);
 	}
 
-	@Override
-	public void gotoAlbumDetailNormal(int albumId) {
-		navigator.gotoAlbumDetailNormal(albumId);
-	}
-
-	@Override
-	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
+	public void gotoAlbumDetail(int albumId, SourceSharedViews sharedViews) {
 		this.sharedViews = sharedViews;
 		transitionsManager.pushSourceViews(sharedViews);
-		navigator.gotoAlbumDetailCompact(this, albumId, sharedViews.build());
+		navigator.gotoAlbumDetail(this, albumId, sharedViews.build());
 	}
 
 	protected ArtistDetailComponent getComponent() {
@@ -67,7 +61,7 @@ public class ArtistDetailActivityCompact
 		return DaggerArtistDetailComponent
 				.builder()
 				.appComponent(((App) getApplication()).getAppComponent())
-				.artistDetailFactory(new ArtistDetailFactory(this, this, artistTitle))
+				.artistDetailFactory(new ArtistDetailFactory(this, artistTitle))
 				.build();
 	}
 }

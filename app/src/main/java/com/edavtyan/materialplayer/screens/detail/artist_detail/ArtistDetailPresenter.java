@@ -9,12 +9,12 @@ public class ArtistDetailPresenter
 		implements ParallaxHeaderListPresenter {
 
 	private final ArtistDetailModel model;
-	private final ArtistDetailView view;
+	private final ArtistDetailActivity view;
 
-	public ArtistDetailPresenter(ArtistDetailModel model, ArtistDetailView view) {
-		super(model, view);
+	public ArtistDetailPresenter(ArtistDetailModel model, ArtistDetailActivity activity) {
+		super(model, activity);
 		this.model = model;
-		this.view = view;
+		this.view = activity;
 	}
 
 	@Override

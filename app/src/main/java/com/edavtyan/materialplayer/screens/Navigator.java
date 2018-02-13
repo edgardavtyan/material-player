@@ -7,12 +7,8 @@ import android.os.Bundle;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.audio_effects.AudioEffectsActivity;
-import com.edavtyan.materialplayer.screens.detail.album_detail.AlbumDetailActivityCompact;
-import com.edavtyan.materialplayer.screens.detail.album_detail.AlbumDetailActivityNormal;
-import com.edavtyan.materialplayer.screens.detail.album_detail.AlbumDetailView;
-import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailActivityCompact;
-import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailActivityNormal;
-import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailView;
+import com.edavtyan.materialplayer.screens.detail.album_detail.AlbumDetailActivity;
+import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.screens.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.screens.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.screens.prefs.PrefActivity;
@@ -25,29 +21,17 @@ public class Navigator {
 		this.context = context;
 	}
 
-	public void gotoArtistDetailNormal(String artistTitle) {
-		Intent intent = new Intent(context, ArtistDetailActivityNormal.class);
-		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
-		context.startActivity(intent);
-	}
-
 	public void gotoArtistDetailCompact(Activity activity, String artistTitle, Bundle bundle) {
-		Intent intent = new Intent(activity, ArtistDetailActivityCompact.class);
-		intent.putExtra(ArtistDetailView.EXTRA_ARTIST_TITLE, artistTitle);
+		Intent intent = new Intent(activity, ArtistDetailActivity.class);
+		intent.putExtra(ArtistDetailActivity.EXTRA_ARTIST_TITLE, artistTitle);
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
 		activity.overridePendingTransition(0, android.R.anim.fade_out);
 	}
 
-	public void gotoAlbumDetailNormal(int albumId) {
-		Intent intent = new Intent(context, AlbumDetailActivityNormal.class);
-		intent.putExtra(AlbumDetailView.EXTRA_ALBUM_ID, albumId);
-		context.startActivity(intent);
-	}
-
-	public void gotoAlbumDetailCompact(Activity activity, int albumId, Bundle bundle) {
-		Intent intent = new Intent(activity, AlbumDetailActivityCompact.class);
-		intent.putExtra(AlbumDetailView.EXTRA_ALBUM_ID, albumId);
+	public void gotoAlbumDetail(Activity activity, int albumId, Bundle bundle) {
+		Intent intent = new Intent(activity, AlbumDetailActivity.class);
+		intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM_ID, albumId);
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
 		activity.overridePendingTransition(0, android.R.anim.fade_out);

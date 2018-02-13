@@ -4,11 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.screens.audio_effects.AudioEffectsActivity;
-import com.edavtyan.materialplayer.screens.detail.album_detail.AlbumDetailActivityNormal;
-import com.edavtyan.materialplayer.screens.detail.album_detail.AlbumDetailView;
-import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailActivityNormal;
-import com.edavtyan.materialplayer.screens.detail.artist_detail.ArtistDetailView;
-import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.screens.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.screens.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.screens.prefs.PrefActivity;
@@ -29,32 +24,9 @@ public class NavigatorTest extends BaseTest {
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
-		CompactDetailPref compactDetailPref = mock(CompactDetailPref.class);
 		activity = mock(AppCompatActivity.class);
 		navigator = new Navigator(activity);
 		intentCaptor = ArgumentCaptor.forClass(Intent.class);
-	}
-
-	@Test
-	public void gotoArtistDetail_startActivityWithCorrectParameters() {
-		navigator.gotoArtistDetailNormal("title");
-
-		verify(activity).startActivity(intentCaptor.capture());
-
-		assertThat(intentCaptor.getValue())
-				.hasClass(ArtistDetailActivityNormal.class)
-				.hasExtraString(ArtistDetailView.EXTRA_ARTIST_TITLE, "title");
-	}
-
-	@Test
-	public void gotoAlbumDetail_startAlbumDetailActivityWithCorrectParameters() {
-		navigator.gotoAlbumDetailNormal(7);
-
-		verify(activity).startActivity(intentCaptor.capture());
-
-		assertThat(intentCaptor.getValue())
-				.hasClass(AlbumDetailActivityNormal.class)
-				.hasExtraInt(AlbumDetailView.EXTRA_ALBUM_ID, 7);
 	}
 
 	@Test

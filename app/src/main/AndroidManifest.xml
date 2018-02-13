@@ -40,32 +40,12 @@
 		</activity>
 
 		<activity
-			android:name=".screens.detail.artist_detail.ArtistDetailActivityNormal"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
-		<activity
-			android:name=".screens.detail.artist_detail.ArtistDetailActivityCompact"
+			android:name=".screens.detail.artist_detail.ArtistDetailActivity"
 			android:theme="@style/AppTheme.Transparent"
 			/>
 
 		<activity
-			android:name=".screens.detail.album_detail.AlbumDetailActivityNormal"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
-		<activity
-			android:name=".screens.detail.album_detail.AlbumDetailActivityCompact"
+			android:name=".screens.detail.album_detail.AlbumDetailActivity"
 			android:theme="@style/AppTheme.Transparent"
 			/>
 

@@ -25,13 +25,9 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 		initListView(presenter, adapter);
 	}
 
-	@Override
-	public void gotoArtistDetailNormal(String title) {
-		navigator.gotoArtistDetailNormal(title);
-	}
 
 	@Override
-	public void gotoArtistDetailCompact(String title, SourceSharedViews sharedViews) {
+	public void gotoArtistDetail(String title, SourceSharedViews sharedViews) {
 		transitionsManager.pushSourceViews(sharedViews);
 		navigator.gotoArtistDetailCompact(getActivity(), title, sharedViews.build());
 

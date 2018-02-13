@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 
 public class ArtistDetailPresenterTest extends BaseTest {
 	private ArtistDetailModel model;
-	private ArtistDetailView view;
+	private ArtistDetailActivity activity;
 	private ArtistDetailPresenter presenter;
 
 	@Override
@@ -20,8 +20,8 @@ public class ArtistDetailPresenterTest extends BaseTest {
 		super.beforeEach();
 
 		model = mock(ArtistDetailModel.class);
-		view = mock(ArtistDetailView.class);
-		presenter = new ArtistDetailPresenter(model, view);
+		activity = mock(ArtistDetailActivity.class);
+		presenter = new ArtistDetailPresenter(model, activity);
 	}
 
 	@Test
@@ -34,8 +34,8 @@ public class ArtistDetailPresenterTest extends BaseTest {
 
 		presenter.onCreate();
 
-		verify(view).setArtistTitle("title");
-		verify(view).setArtistInfo(3, 9);
+		verify(activity).setArtistTitle("title");
+		verify(activity).setArtistInfo(3, 9);
 	}
 
 	@Test

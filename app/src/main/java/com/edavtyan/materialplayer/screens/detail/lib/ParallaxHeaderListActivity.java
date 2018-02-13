@@ -16,7 +16,9 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public abstract class ParallaxHeaderListActivity extends ModularActivity implements ListView {
+public abstract class ParallaxHeaderListActivity
+		extends ModularActivity
+		implements ListView {
 
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
@@ -36,19 +38,23 @@ public abstract class ParallaxHeaderListActivity extends ModularActivity impleme
 		addModule(parallaxListModule);
 	}
 
+	@Override
+	public void onBackPressed() {
+		callModulesOnBackPressed();
+	}
+
 	public void setTitle(String title) {
 		parallaxListModule.setTitle(title);
 	}
 
-	public void setInfo(String info) {
-		parallaxListModule.setInfo(info);
+	public void setInfo(String portraitTopInfo, String portraitBottomInfo, String landscapeInfo) {
+		parallaxListModule.setInfo(portraitTopInfo, portraitBottomInfo, landscapeInfo);
 	}
 
 	public void setImage(Bitmap image, @DrawableRes int fallback) {
-		parallaxListModule.setImage(image, fallback);
+		parallaxListModule.setArt(image, fallback);
 	}
 
-	@Override
 	public void notifyDataSetChanged() {
 		parallaxListModule.notifyDataSetChanged();
 	}

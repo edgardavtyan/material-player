@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/shared_wrapper"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	>
 
 	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/main_wrapper"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
 		>
+
+		<android.support.design.widget.AppBarLayout
+			android:id="@+id/appbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fitsSystemWindows="true"
+			app:elevation="0dp"
+			>
+
+			<include layout="@layout/partial_toolbar" />
+
+		</android.support.design.widget.AppBarLayout>
 
 		<FrameLayout
 			android:layout_width="match_parent"
@@ -19,58 +34,39 @@
 			android:layout_weight="1"
 			>
 
-			<LinearLayout
-				android:id="@+id/appbar_wrapper"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical"
-				>
+			<include layout="@layout/partial_collapsing_header_compact" />
 
-				<android.support.design.widget.AppBarLayout
-					android:id="@+id/appbar"
-					style="@style/CollapsingList_AppBar"
-					>
+			<ImageView
+				android:id="@+id/shared_art_exit"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				/>
 
-					<View
-						android:id="@+id/statusbar_tint"
-						android:layout_width="match_parent"
-						android:layout_height="25dp"
-						style="@style/CollapsingList_StatusBarTint"
-						/>
-
-					<android.support.v7.widget.Toolbar
-						android:id="@+id/toolbar"
-						style="@style/CollapsingList_Toolbar"
-						/>
-
-				</android.support.design.widget.AppBarLayout>
-
-				<View
-					android:id="@+id/appbar_shadow"
-					style="@style/CollapsingList_AppBarShadow"
-					/>
-
-			</LinearLayout>
-
-			<FrameLayout
+			<View
+				android:id="@+id/list_background"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:fitsSystemWindows="false"
-				app:layout_behavior="@string/appbar_scrolling_view_behavior"
-				>
+				android:background="@color/white"
+				/>
 
-				<include layout="@layout/partial_collapsing_header" />
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/list"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:clipToPadding="false"
+				tools:listitem="@layout/listitem_track"
+				/>
 
-				<android.support.v7.widget.RecyclerView
-					android:id="@+id/list"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					app:layout_behavior="@string/appbar_scrolling_view_behavior"
-					/>
+			<include layout="@layout/shadow_bottom_small" />
 
-				<include layout="@layout/shadow_bottom_small" />
-
-			</FrameLayout>
+			<View
+				android:id="@+id/appbar_shadow"
+				android:layout_width="match_parent"
+				android:layout_height="4dp"
+				android:layout_gravity="top"
+				android:background="@drawable/shadow_top"
+				android:alpha="0"
+				/>
 
 		</FrameLayout>
 
@@ -84,4 +80,20 @@
 
 	</LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+	<ImageView
+		android:id="@+id/shared_art"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		/>
+
+	<View
+		android:id="@+id/click_blocker"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/transparent"
+		android:visibility="gone"
+		android:clickable="true"
+		android:focusable="true"
+		/>
+
+</FrameLayout>

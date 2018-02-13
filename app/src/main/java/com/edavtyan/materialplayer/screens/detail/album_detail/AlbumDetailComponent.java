@@ -19,6 +19,5 @@ import dagger.Component;
 				ThemeableActivityFactory.class,
 				ModelModulesFactory.class})
 public interface AlbumDetailComponent {
-	void inject(AlbumDetailActivityNormal activity);
-	void inject(AlbumDetailActivityCompact activity);
+	void inject(AlbumDetailActivity activity);
 }

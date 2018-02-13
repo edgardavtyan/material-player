@@ -26,14 +26,9 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	}
 
 	@Override
-	public void gotoAlbumDetailNormal(int albumId) {
-		navigator.gotoAlbumDetailNormal(albumId);
-	}
-
-	@Override
-	public void gotoAlbumDetailCompact(int albumId, SourceSharedViews sharedViews) {
+	public void gotoAlbumDetail(int albumId, SourceSharedViews sharedViews) {
 		transitionsManager.pushSourceViews(sharedViews);
-		navigator.gotoAlbumDetailCompact(getActivity(), albumId, sharedViews.build());
+		navigator.gotoAlbumDetail(getActivity(), albumId, sharedViews.build());
 	}
 
 	protected AlbumListComponent getComponent() {

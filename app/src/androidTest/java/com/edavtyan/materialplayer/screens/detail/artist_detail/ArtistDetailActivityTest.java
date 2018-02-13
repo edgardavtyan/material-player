@@ -16,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
-public class ArtistDetailActivityCompactTest extends BaseArtistDetailActivityTest {
-	public static class TestArtistDetailActivityCompact extends ArtistDetailActivityCompact {
+public class ArtistDetailActivityTest extends BaseArtistDetailActivityTest {
+	public static class TestArtistDetailActivity extends ArtistDetailActivity {
 		@Override
 		protected ArtistDetailComponent getComponent() {
 			return createMockComponent(this);
@@ -25,10 +25,10 @@ public class ArtistDetailActivityCompactTest extends BaseArtistDetailActivityTes
 	}
 
 	@Rule
-	public final ActivityTestRule<TestArtistDetailActivityCompact> activityRule
-			= new ActivityTestRule<>(TestArtistDetailActivityCompact.class, false, false);
+	public final ActivityTestRule<TestArtistDetailActivity> activityRule
+			= new ActivityTestRule<>(TestArtistDetailActivity.class, false, false);
 
-	private ArtistDetailActivityCompact activity;
+	private ArtistDetailActivity activity;
 
 	@Override
 	public void beforeEach() {
