@@ -3,17 +3,16 @@ package com.edavtyan.materialplayer.screens.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import javax.inject.Inject;
 
@@ -28,12 +27,7 @@ public class MainActivity extends ModularActivity {
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ScreenThemeModule themeModule;
-
-	@Inject CompactMainScreenPref compactMainScreenPref;
-	@Inject IconsTabsAdapter iconsTabsAdapter;
-	@Inject TextTabsAdapter textTabsAdapter;
-
-	private boolean isCompactModeEnabled;
+	@Inject TabsAdapter tabsAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,9 +35,7 @@ public class MainActivity extends ModularActivity {
 
 		getComponent().inject(this);
 
-		isCompactModeEnabled = compactMainScreenPref.isEnabled();
-		setContentView(isCompactModeEnabled
-				? R.layout.activity_main_compact : R.layout.activity_main);
+		setContentView(R.layout.activity_main_compact);
 		ButterKnife.bind(this);
 
 		addModule(toolbarModule);
@@ -53,28 +45,17 @@ public class MainActivity extends ModularActivity {
 		toolbarModule.setTitleString(null);
 		toolbarModule.setBackIconEnabled(false);
 
-		FragmentPagerAdapter adapter = isCompactModeEnabled
-				? iconsTabsAdapter : textTabsAdapter;
-
-		viewPager.setAdapter(adapter);
+		viewPager.setAdapter(tabsAdapter);
 		tabLayout.setupWithViewPager(viewPager);
 
 		Intent intent = new Intent(this, PlayerService.class);
 		startService(intent);
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (isCompactModeEnabled != compactMainScreenPref.isEnabled()) {
-			this.recreate();
-		}
-	}
-
 	protected MainComponent getComponent() {
 		return DaggerMainComponent
 				.builder()
-				.appComponent(((App)getApplication()).getAppComponent())
+				.appComponent(((App) getApplication()).getAppComponent())
 				.mainModule(new MainModule(this))
 				.build();
 	}

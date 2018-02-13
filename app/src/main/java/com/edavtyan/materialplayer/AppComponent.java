@@ -18,7 +18,6 @@ import com.edavtyan.materialplayer.screens.Navigator;
 import com.edavtyan.materialplayer.screens.SdkFactory;
 import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
 import com.edavtyan.materialplayer.transition.SharedTransitionDaggerModule;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
@@ -54,7 +53,6 @@ public interface AppComponent {
 	AlbumDB albumDB();
 	TrackDB trackDB();
 	AlbumArtProvider albumArtProvider();
-	CompactMainScreenPref compactMainScreenPref();
 	CompactListPref compactListPref();
 	CompactDetailPref compactDetailPref();
 	Gson gson();

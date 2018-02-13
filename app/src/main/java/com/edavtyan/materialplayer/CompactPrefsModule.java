@@ -2,10 +2,9 @@ package com.edavtyan.materialplayer;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.screens.detail.lib.CompactDetailPref;
 import com.edavtyan.materialplayer.screens.lists.lib.CompactListPref;
-import com.edavtyan.materialplayer.screens.main.CompactMainScreenPref;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import javax.inject.Singleton;
 
@@ -24,11 +23,5 @@ public class CompactPrefsModule {
 	@Singleton
 	public CompactDetailPref provideCompactDetailPref(Context context, AdvancedSharedPrefs prefs) {
 		return new CompactDetailPref(context, prefs);
-	}
-
-	@Provides
-	@Singleton
-	public CompactMainScreenPref provideCompactMainScreenPref(Context context, AdvancedSharedPrefs prefs) {
-		return new CompactMainScreenPref(context, prefs);
 	}
 }

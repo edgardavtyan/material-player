@@ -25,7 +25,6 @@ public class PrefActivity extends ModularActivity {
 	@BindView(R.id.pref_category_playback) PreferenceCategory playbackCategoryView;
 	@BindView(R.id.pref_compact_lists) CheckboxPreference compactListsPrefView;
 	@BindView(R.id.pref_compact_detail) CheckboxPreference compactDetailPrefView;
-	@BindView(R.id.pref_compact_main) CheckboxPreference compactMainPrefView;
 	@BindView(R.id.pref_resume) CheckboxPreference resumePrefView;
 	@BindView(R.id.pref_primary_color) ColorSelectionPreference primaryColorPrefView;
 
@@ -53,7 +52,6 @@ public class PrefActivity extends ModularActivity {
 		playbackCategoryView.setTextColor(colors.getColorPrimary());
 		compactListsPrefView.setCheckBoxColor(colors.getColorPrimary());
 		compactDetailPrefView.setCheckBoxColor(colors.getColorPrimary());
-		compactMainPrefView.setCheckBoxColor(colors.getColorPrimary());
 		resumePrefView.setCheckBoxColor(colors.getColorPrimary());
 		primaryColorPrefView.setDialogButtonsColor(colors.getColorPrimary());
 	}

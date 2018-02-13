@@ -20,26 +20,21 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class MainActivityTest extends ActivityTest {
-	private static CompactMainScreenPref compactMainScreenPref;
 	private static ActivityToolbarModule toolbarModule;
 	private static ActivityBaseMenuModule baseMenuModule;
 	private static ScreenThemeModule themeModule;
-	private static IconsTabsAdapter iconsTabsAdapter;
-	private static TextTabsAdapter textTabsAdapter;
+	private static TabsAdapter tabsAdapter;
 
 	public static class TestMainActivity extends MainActivity {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
-			compactMainScreenPref = MainActivityTest.compactMainScreenPref;
 			toolbarModule = MainActivityTest.toolbarModule;
 			baseMenuModule = MainActivityTest.baseMenuModule;
 			themeModule = MainActivityTest.themeModule;
-			iconsTabsAdapter = MainActivityTest.iconsTabsAdapter;
-			textTabsAdapter = MainActivityTest.textTabsAdapter;
+			tabsAdapter = MainActivityTest.tabsAdapter;
 			super.onCreate(savedInstanceState);
 		}
 
@@ -66,22 +61,11 @@ public class MainActivityTest extends ActivityTest {
 		toolbarModule = mock(ActivityToolbarModule.class);
 		baseMenuModule = mock(ActivityBaseMenuModule.class);
 		themeModule = mock(ScreenThemeModule.class);
-		compactMainScreenPref = mock(CompactMainScreenPref.class);
-		iconsTabsAdapter = mock(IconsTabsAdapter.class);
-		textTabsAdapter = mock(TextTabsAdapter.class);
+		tabsAdapter = mock(TabsAdapter.class);
 	}
 
 	@Test
-	public void onCreate_compactModeDisabled_setContentViewToNormal() {
-		when(compactMainScreenPref.isEnabled()).thenReturn(false);
-		activity = activityRule.launchActivity(null);
-		View rootView = activity.findViewById(R.id.root_main_normal);
-		assertThat(rootView).isNotNull();
-	}
-
-	@Test
-	public void onCreate_compactModeEnabled_setContentViewToCompact() {
-		when(compactMainScreenPref.isEnabled()).thenReturn(true);
+	public void onCreate_setContentView() {
 		activity = activityRule.launchActivity(null);
 		View rootView = activity.findViewById(R.id.root_main_compact);
 		assertThat(rootView).isNotNull();
@@ -103,18 +87,9 @@ public class MainActivityTest extends ActivityTest {
 	}
 
 	@Test
-	public void onCreate_compactModeDisabled_useTextTabs() {
-		when(compactMainScreenPref.isEnabled()).thenReturn(false);
+	public void onCreate_addTabsAdapter() {
 		activity = activityRule.launchActivity(null);
 		ViewPager viewPager = (ViewPager) activity.findViewById(R.id.view_pager);
-		assertThat(viewPager.getAdapter()).isSameAs(textTabsAdapter);
-	}
-
-	@Test
-	public void onCreate_compactModeEnabled_useIconsTabs() {
-		when(compactMainScreenPref.isEnabled()).thenReturn(true);
-		activity = activityRule.launchActivity(null);
-		ViewPager viewPager = (ViewPager) activity.findViewById(R.id.view_pager);
-		assertThat(viewPager.getAdapter()).isSameAs(iconsTabsAdapter);
+		assertThat(viewPager.getAdapter()).isSameAs(tabsAdapter);
 	}
 }

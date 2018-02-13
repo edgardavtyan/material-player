@@ -24,15 +24,9 @@ public class MainModule {
 
 	@Provides
 	@ActivityScope
-	public TextTabsAdapter provideTextTabsAdapter(FragmentManager fragmentManager) {
-		return new TextTabsAdapter(fragmentManager);
-	}
-
-	@Provides
-	@ActivityScope
-	public IconsTabsAdapter provideIconsTabsAdapter(
-			FragmentManager fragmentManager, AppCompatActivity activity) {
-		return new IconsTabsAdapter(fragmentManager, activity);
+	public TabsAdapter provideTabsAdapter(
+			AppCompatActivity activity, FragmentManager fragmentManager) {
+		return new TabsAdapter(activity, fragmentManager);
 	}
 
 	@Provides

@@ -1,16 +1,29 @@
 package com.edavtyan.materialplayer.screens.main;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 
+import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.screens.lists.album_list.AlbumListFragment;
 import com.edavtyan.materialplayer.screens.lists.artist_list.ArtistListFragment;
 import com.edavtyan.materialplayer.screens.lists.track_list.TrackListFragment;
 
-public abstract class TabsAdapter extends FragmentPagerAdapter {
-	public TabsAdapter(FragmentManager fm) {
+public class TabsAdapter extends FragmentPagerAdapter {
+	private final Activity activity;
+
+	public TabsAdapter(Activity activity, FragmentManager fm) {
 		super(fm);
+		this.activity = activity;
 	}
 
 	@Override
@@ -31,5 +44,24 @@ public abstract class TabsAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		return 3;
+	}
+
+	@Override
+	public CharSequence getPageTitle(int position) {
+		SpannableStringBuilder stringBuilder = new SpannableStringBuilder(" ");
+
+		if (position == 0) setUpTabIcon(stringBuilder, R.drawable.ic_person);
+		if (position == 1) setUpTabIcon(stringBuilder, R.drawable.ic_album);
+		if (position == 2) setUpTabIcon(stringBuilder, R.drawable.ic_note);
+
+		return stringBuilder;
+	}
+
+	private void setUpTabIcon(SpannableStringBuilder stringBuilder, @DrawableRes int drawableId) {
+		Drawable drawable = ContextCompat.getDrawable(activity, drawableId);
+		drawable.setBounds(0, 0, 36, 36);
+		drawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+		ImageSpan imageSpan = new ImageSpan(drawable);
+		stringBuilder.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 	}
 }
