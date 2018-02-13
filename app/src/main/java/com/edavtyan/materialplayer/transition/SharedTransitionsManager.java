@@ -1,11 +1,14 @@
 package com.edavtyan.materialplayer.transition;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.ed.libsutils.listeners.SelectableAnimatorListener;
 import com.ed.libsutils.utils.WindowUtils;
 
 import java.util.ArrayList;
@@ -96,7 +99,8 @@ public class SharedTransitionsManager {
 						.withEndAction(() -> {
 							sourceSharedView.setVisibility(View.VISIBLE);
 						})
-						.start(data);
+						.build(data)
+						.start();
 			});
 		}
 	}
@@ -128,6 +132,7 @@ public class SharedTransitionsManager {
 
 		SourceSharedViews sourceSharedViews = sourceViews.remove(sourceActivityClasses.pop());
 		SharedViewSet[] lastSharedViewSets = sharedViewSets.remove(activityClass);
+		AnimatorSet transitionSet = new AnimatorSet();
 		for (String transitionName : transitionNames) {
 			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
@@ -137,18 +142,26 @@ public class SharedTransitionsManager {
 			TransitionData data = WindowUtils.isPortrait(activity)
 					? sharedViewSet.buildExitPortraitData(intent)
 					: sharedViewSet.buildExitLandscapeData(intent);
-			SharedTransitionFactory
+			AnimatorSet transition = SharedTransitionFactory
 					.getExitTransition(sharedViewSet.getTransitionType())
 					.withStartAction(() -> {
 						sourceSharedView.setVisibility(View.INVISIBLE);
 					})
 					.withEndAction(() -> {
 						sourceSharedView.setVisibility(View.VISIBLE);
-						activity.finish();
-						activity.overridePendingTransition(0, 0);
 					})
-					.start(data);
+					.build(data);
+			transitionSet.playTogether(transition);
 		}
+
+		transitionSet.addListener(new SelectableAnimatorListener() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				activity.finish();
+				activity.overridePendingTransition(0, 0);
+			}
+		});
+		transitionSet.start();
 	}
 
 	private SharedViewSet findSharedViewSet(SharedViewSet[] sharedViewSets, String transitionName) {

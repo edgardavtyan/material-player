@@ -9,7 +9,7 @@ public abstract class SharedTransition {
 	private Runnable startAction;
 	private Runnable endAction;
 
-	public void start(TransitionData data) {
+	public AnimatorSet build(TransitionData data) {
 		setUpData(data);
 		AnimatorSet animatorSet = buildAnimatorSet(data);
 		animatorSet.addListener(new SelectableAnimatorListener() {
@@ -28,7 +28,8 @@ public abstract class SharedTransition {
 				}
 			}
 		});
-		animatorSet.start();
+
+		return animatorSet;
 	}
 
 	public SharedTransition withStartAction(Runnable startAction) {
