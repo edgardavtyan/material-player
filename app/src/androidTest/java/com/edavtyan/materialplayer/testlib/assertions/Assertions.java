@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.testlib.assertions;
 
-import com.edavtyan.materialplayer.screens.audio_effects.views.EqualizerBandView;
-import com.edavtyan.materialplayer.screens.audio_effects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerBandView;
+import com.edavtyan.materialplayer.ui.audio_effects.views.TitledSeekbar;
 
 public final class Assertions {
 	public static TitledSeekbarAssertion assertThat(TitledSeekbar seekbar) {

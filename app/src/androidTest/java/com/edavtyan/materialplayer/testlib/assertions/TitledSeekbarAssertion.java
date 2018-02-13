@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.testlib.assertions;
 
-import com.edavtyan.materialplayer.screens.audio_effects.views.TitledSeekbar;
+import com.edavtyan.materialplayer.ui.audio_effects.views.TitledSeekbar;
 
 import org.assertj.core.api.AbstractAssert;
 

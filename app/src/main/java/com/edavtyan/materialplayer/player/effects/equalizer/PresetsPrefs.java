@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.player.effects.equalizer;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
-import com.edavtyan.materialplayer.screens.audio_effects.presets.CustomPreset;
-import com.edavtyan.materialplayer.screens.audio_effects.presets.PresetNameAlreadyExists;
+import com.edavtyan.materialplayer.ui.audio_effects.presets.CustomPreset;
+import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetNameAlreadyExists;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;

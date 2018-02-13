@@ -6,7 +6,7 @@ import android.support.annotation.MenuRes;
 import android.view.View;
 import android.widget.PopupMenu;
 
-import com.edavtyan.materialplayer.screens.SdkFactory;
+import com.edavtyan.materialplayer.ui.SdkFactory;
 
 public class ContextMenuModule {
 	private final Context context;

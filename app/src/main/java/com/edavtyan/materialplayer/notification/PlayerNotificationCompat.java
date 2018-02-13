@@ -5,7 +5,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.ed.libsutils.utils.BitmapResizer;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.screens.main.MainActivity;
+import com.edavtyan.materialplayer.ui.main.MainActivity;
 import com.edavtyan.materialplayer.lib.views.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
 import com.ed.libsutils.utils.DpConverter;

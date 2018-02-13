@@ -4,8 +4,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
-import com.edavtyan.materialplayer.screens.audio_effects.presets.CustomPreset;
-import com.edavtyan.materialplayer.screens.audio_effects.presets.PresetNameAlreadyExists;
+import com.edavtyan.materialplayer.ui.audio_effects.presets.CustomPreset;
+import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

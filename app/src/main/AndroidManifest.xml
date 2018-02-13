@@ -18,7 +18,7 @@
 		>
 
 		<activity
-			android:name=".screens.main.MainActivity"
+			android:name=".ui.main.MainActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -30,7 +30,7 @@
 		</activity>
 
 		<activity
-			android:name=".screens.prefs.PrefActivity"
+			android:name=".ui.prefs.PrefActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -40,17 +40,17 @@
 		</activity>
 
 		<activity
-			android:name=".screens.detail.artist_detail.ArtistDetailActivity"
+			android:name=".ui.detail.artist_detail.ArtistDetailActivity"
 			android:theme="@style/AppTheme.Transparent"
 			/>
 
 		<activity
-			android:name=".screens.detail.album_detail.AlbumDetailActivity"
+			android:name=".ui.detail.album_detail.AlbumDetailActivity"
 			android:theme="@style/AppTheme.Transparent"
 			/>
 
 		<activity
-			android:name=".screens.now_playing.NowPlayingActivity"
+			android:name=".ui.now_playing.NowPlayingActivity"
 			android:launchMode="singleTop"
 			android:theme="@style/AppTheme.Transparent"
 			>
@@ -61,7 +61,7 @@
 		</activity>
 
 		<activity
-			android:name=".screens.now_playing_queue.NowPlayingQueueActivity"
+			android:name=".ui.now_playing_queue.NowPlayingQueueActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -71,7 +71,7 @@
 		</activity>
 
 		<activity
-			android:name=".screens.audio_effects.AudioEffectsActivity"
+			android:name=".ui.audio_effects.AudioEffectsActivity"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>
@@ -80,7 +80,7 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".screens.search.SearchActivity" />
+		<activity android:name=".ui.search.SearchActivity" />
 
 		<service
 			android:name=".service.PlayerService"

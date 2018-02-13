@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.lib.theme;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.screens.ActivityScope;
+import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 import dagger.Module;

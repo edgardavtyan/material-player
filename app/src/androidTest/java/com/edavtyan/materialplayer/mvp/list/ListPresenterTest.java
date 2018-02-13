@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.mvp.list;
 
-import com.edavtyan.materialplayer.screens.lists.lib.ListModel;
-import com.edavtyan.materialplayer.screens.lists.lib.ListPresenter;
-import com.edavtyan.materialplayer.screens.lists.lib.ListView;
+import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
+import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
+import com.edavtyan.materialplayer.ui.lists.lib.ListView;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
