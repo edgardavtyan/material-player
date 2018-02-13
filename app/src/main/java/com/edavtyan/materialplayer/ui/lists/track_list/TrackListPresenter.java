@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.ui.lists.track_list;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.db.Track;
 
-public class TrackListPresenter extends ListPresenter<TrackListViewHolder> {
+public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 
 	private final TrackListView view;
 	private final TrackListModel model;

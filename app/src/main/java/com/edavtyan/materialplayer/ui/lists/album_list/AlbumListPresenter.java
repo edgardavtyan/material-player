@@ -5,7 +5,7 @@ import com.edavtyan.materialplayer.db.Album;
 import com.ed.libsutils.utils.Logger;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
-public class AlbumListPresenter extends ListPresenter<AlbumListViewHolder> {
+public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 
 	private final AlbumListModel model;
 	private final AlbumListView view;

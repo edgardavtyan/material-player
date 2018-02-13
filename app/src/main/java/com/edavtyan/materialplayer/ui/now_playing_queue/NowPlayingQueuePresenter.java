@@ -4,7 +4,7 @@ import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.db.Track;
 
-public class NowPlayingQueuePresenter extends ListPresenter<NowPlayingQueueViewHolder> {
+public class NowPlayingQueuePresenter implements ListPresenter<NowPlayingQueueViewHolder> {
 
 	private final NowPlayingQueueModel model;
 	private final NowPlayingQueueActivity view;
