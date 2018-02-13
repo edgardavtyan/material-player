@@ -67,7 +67,7 @@ public class MainActivityTest extends ActivityTest {
 	@Test
 	public void onCreate_setContentView() {
 		activity = activityRule.launchActivity(null);
-		View rootView = activity.findViewById(R.id.root_main_compact);
+		View rootView = activity.findViewById(R.id.root_main);
 		assertThat(rootView).isNotNull();
 	}
 

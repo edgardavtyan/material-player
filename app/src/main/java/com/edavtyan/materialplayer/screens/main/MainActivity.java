@@ -35,7 +35,7 @@ public class MainActivity extends ModularActivity {
 
 		getComponent().inject(this);
 
-		setContentView(R.layout.activity_main_compact);
+		setContentView(R.layout.activity_main);
 		ButterKnife.bind(this);
 
 		addModule(toolbarModule);
