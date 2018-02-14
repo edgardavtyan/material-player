@@ -1,9 +1,9 @@
 package com.edavtyan.materialplayer.ui.lists.album_list;
 
-import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
-import com.edavtyan.materialplayer.db.Album;
 import com.ed.libsutils.utils.Logger;
+import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 
@@ -32,6 +32,7 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 
 	public void onHolderClick(int position, SourceSharedViews sharedViews) {
 		int albumId = model.getAlbumAtIndex(position).getId();
+		view.disableTouchEvents();
 		view.gotoAlbumDetail(albumId, sharedViews);
 	}
 
@@ -49,5 +50,9 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 	@Override
 	public void onDestroy() {
 		model.unbindService();
+	}
+
+	public void onEnterAnimationEnded() {
+		view.enableTouchEvents();
 	}
 }
