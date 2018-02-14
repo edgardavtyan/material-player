@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.service.PlayerService;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends ModularActivity {
+public class MainActivity extends BaseActivity {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.view_pager) ViewPager viewPager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;

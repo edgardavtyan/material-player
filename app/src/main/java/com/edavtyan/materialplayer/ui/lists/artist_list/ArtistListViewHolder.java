@@ -70,6 +70,7 @@ public class ArtistListViewHolder
 	@Override
 	public void onClick(View v) {
 		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
+		sharedViews.setOnEnterAnimationEndListener(presenter::onEnterTransitionFinished);
 		presenter.onHolderClick(getAdapterPositionNonFinal(), sharedViews);
 	}
 

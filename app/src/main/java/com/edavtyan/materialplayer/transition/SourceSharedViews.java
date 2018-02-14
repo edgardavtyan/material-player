@@ -10,8 +10,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Setter;
+
 public class SourceSharedViews {
 	private final List<Pair<View, String>> sharedViews;
+
+	private @Setter OnEnterAnimationEndListener onEnterAnimationEndListener;
+
+	public interface OnEnterAnimationEndListener {
+		void onEnterAnimationEnd();
+	}
 
 	@SafeVarargs
 	public SourceSharedViews(Pair<View, String>... sharedViews) {
@@ -55,6 +63,12 @@ public class SourceSharedViews {
 
 	public void add(Pair<View, String> sharedPair) {
 		sharedViews.add(sharedPair);
+	}
+
+	public void raiseOnEnterTransitionEndListener() {
+		if (onEnterAnimationEndListener != null) {
+			onEnterAnimationEndListener.onEnterAnimationEnd();
+		}
 	}
 
 	public Class getActivityClass() {

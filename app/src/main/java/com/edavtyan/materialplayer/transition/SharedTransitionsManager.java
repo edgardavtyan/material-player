@@ -76,10 +76,23 @@ public class SharedTransitionsManager {
 			view.animate().alpha(1);
 		}
 
+		AnimatorSet transitionSet = new AnimatorSet();
+		transitionSet.addListener(new SelectableAnimatorListener() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				sourceViews.get(sourceActivityClasses.peek()).raiseOnEnterTransitionEndListener();
+			}
+		});
+
+		final int[] initTransitionsCount = {0};
+		final int[] totalTransitionsCount = {transitionNames.size()};
 		SharedViewSet[] lastSharedViewSets = sharedViewSets.get(activityClass);
 		for (String transitionName : transitionNames) {
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
-			if (sharedViewSet == null) continue;
+			if (sharedViewSet == null) {
+				totalTransitionsCount[0]--;
+				continue;
+			}
 
 			View sharedView = WindowUtils.isPortrait(activity)
 					? sharedViewSet.getEnterPortraitView()
@@ -89,7 +102,7 @@ public class SharedTransitionsManager {
 				TransitionData data = WindowUtils.isPortrait(activity)
 						? sharedViewSet.buildEnterPortraitData(intent)
 						: sharedViewSet.buildEnterLandscapeData(intent);
-				SharedTransitionFactory
+				AnimatorSet transition = SharedTransitionFactory
 						.getEnterTransition(sharedViewSet.getTransitionType())
 						.withStartAction(() -> {
 							new Handler().postDelayed(() -> {
@@ -99,8 +112,12 @@ public class SharedTransitionsManager {
 						.withEndAction(() -> {
 							sourceSharedView.setVisibility(View.VISIBLE);
 						})
-						.build(data)
-						.start();
+						.build(data);
+				transitionSet.playTogether(transition);
+				initTransitionsCount[0]++;
+				if (initTransitionsCount[0] == totalTransitionsCount[0]) {
+					transitionSet.start();
+				}
 			});
 		}
 	}

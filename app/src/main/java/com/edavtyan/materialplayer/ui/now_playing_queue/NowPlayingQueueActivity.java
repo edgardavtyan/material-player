@@ -6,19 +6,19 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.ui.lists.lib.ListView;
+import com.edavtyan.materialplayer.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.layout_managers.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.ui.lists.lib.ListView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NowPlayingQueueActivity extends ModularActivity implements ListView {
+public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 
 	@BindView(R.id.list) RecyclerView list;
 
