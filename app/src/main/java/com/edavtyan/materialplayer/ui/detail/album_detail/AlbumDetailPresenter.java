@@ -37,6 +37,7 @@ public class AlbumDetailPresenter
 
 	@Override
 	public void onHolderClick(int position) {
+		activity.disableTouchEvents();
 		model.playQueue(position);
 		wasHolderClicked = true;
 	}
@@ -53,5 +54,9 @@ public class AlbumDetailPresenter
 	public void onDestroy() {
 		super.onDestroy();
 		model.removeOnNewTrackListener(this);
+	}
+
+	public void onEnterTransitionEnd() {
+		activity.enableTouchEvents();
 	}
 }

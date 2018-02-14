@@ -34,6 +34,7 @@ public class AlbumDetailActivity
 
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
+	@Inject AlbumDetailPresenter presenter;
 
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.list) RecyclerView list;
@@ -76,6 +77,7 @@ public class AlbumDetailActivity
 		sharedViews = new SourceSharedViews(
 				Pair.create(artView, "art"),
 				Pair.create(list, "list"));
+		sharedViews.setOnEnterAnimationEndListener(presenter::onEnterTransitionEnd);
 
 		if (WindowUtils.isPortrait(this)) {
 			NowPlayingActivity.listBitmap = viewToBitmap(list);
