@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.transition;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.ed.libsutils.utils.WindowUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class SharedTransitionsManager {
 	public static final String PARAM_X = ":x";
@@ -63,23 +63,13 @@ public class SharedTransitionsManager {
 
 	public void beginEnterTransition(Activity activity, Bundle savedInstanceState) {
 		if (savedInstanceState != null) return;
+		if (!activity.getIntent().hasExtra(EXTRA_TRANSITION_NAMES)) return;
 
-		Intent intent = activity.getIntent();
-		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
-
-		if (transitionNames == null) {
-			return;
-		}
-
-		Class activityClass = activity.getClass();
-		for (View view : enterFadingViews.remove(activityClass)) {
+		for (View view : enterFadingViews.remove(activity.getClass())) {
 			view.setAlpha(0);
 			view.animate().alpha(1);
 		}
 
-		final int[] initTransitionsCount = {0};
-		final int[] totalTransitionsCount = {transitionNames.size()};
-		SharedViewSet[] lastSharedViewSets = sharedViewSets.get(activityClass);
 		AnimatorSet transitionSet = new AnimatorSet();
 		transitionSet.addListener(new SelectableAnimatorListener() {
 			@Override
@@ -94,10 +84,16 @@ public class SharedTransitionsManager {
 				activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 			}
 		});
+
+		ArrayList<String> transitionNames = activity
+				.getIntent().getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
+		AtomicInteger createdTransitionsCount = new AtomicInteger(0);
+		AtomicInteger totalTransitionsCount = new AtomicInteger(transitionNames.size());
+		SharedViewSet[] lastSharedViewSets = sharedViewSets.get(activity.getClass());
 		for (String transitionName : transitionNames) {
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
 			if (sharedViewSet == null) {
-				totalTransitionsCount[0]--;
+				totalTransitionsCount.decrementAndGet();
 				continue;
 			}
 
@@ -107,8 +103,8 @@ public class SharedTransitionsManager {
 			sharedView.post(() -> {
 				View sourceSharedView = sourceViews.get(sourceActivityClasses.peek()).find(transitionName);
 				TransitionData data = WindowUtils.isPortrait(activity)
-						? sharedViewSet.buildEnterPortraitData(intent)
-						: sharedViewSet.buildEnterLandscapeData(intent);
+						? sharedViewSet.buildEnterPortraitData(activity.getIntent())
+						: sharedViewSet.buildEnterLandscapeData(activity.getIntent());
 				AnimatorSet transition = SharedTransitionFactory
 						.getEnterTransition(sharedViewSet.getTransitionType())
 						.withStartAction(() -> {
@@ -121,8 +117,9 @@ public class SharedTransitionsManager {
 						})
 						.build(data);
 				transitionSet.playTogether(transition);
-				initTransitionsCount[0]++;
-				if (initTransitionsCount[0] == totalTransitionsCount[0]) {
+
+				createdTransitionsCount.incrementAndGet();
+				if (createdTransitionsCount.get() == totalTransitionsCount.get()) {
 					transitionSet.start();
 				}
 			});
@@ -135,37 +132,31 @@ public class SharedTransitionsManager {
 			return;
 		}
 
-		Class activityClass = activity.getClass();
-		Intent intent = activity.getIntent();
-		ArrayList<String> transitionNames = intent.getStringArrayListExtra(EXTRA_TRANSITION_NAMES);
-		if (transitionNames == null) {
+		if (!activity.getIntent().hasExtra(EXTRA_TRANSITION_NAMES)) {
 			activity.finish();
-			sourceViews.remove(activityClass).show();
+			sourceViews.remove(activity.getClass()).show();
 			return;
 		}
 
-		if (WindowUtils.isPortrait(activity)) {
-			for (View view : exitPortraitFadingViews.remove(activityClass)) {
-				view.animate().alpha(0);
-			}
-		} else {
-			for (View view : exitLandscapeFadingViews.remove(activityClass)) {
-				view.animate().alpha(0);
-			}
+		View[] fadingViews = WindowUtils.isPortrait(activity)
+				? exitPortraitFadingViews.remove(activity.getClass())
+				: exitLandscapeFadingViews.remove(activity.getClass());
+		for (View view : fadingViews) {
+			view.animate().alpha(0);
 		}
 
 		SourceSharedViews sourceSharedViews = sourceViews.remove(sourceActivityClasses.pop());
-		SharedViewSet[] lastSharedViewSets = sharedViewSets.remove(activityClass);
+		SharedViewSet[] lastSharedViewSets = sharedViewSets.remove(activity.getClass());
 		AnimatorSet transitionSet = new AnimatorSet();
-		for (String transitionName : transitionNames) {
+		for (String transitionName : activity.getIntent().getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
 			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
 
 			if (sharedViewSet == null) continue;
 
 			TransitionData data = WindowUtils.isPortrait(activity)
-					? sharedViewSet.buildExitPortraitData(intent)
-					: sharedViewSet.buildExitLandscapeData(intent);
+					? sharedViewSet.buildExitPortraitData(activity.getIntent())
+					: sharedViewSet.buildExitLandscapeData(activity.getIntent());
 			AnimatorSet transition = SharedTransitionFactory
 					.getExitTransition(sharedViewSet.getTransitionType())
 					.withStartAction(() -> {
