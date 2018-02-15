@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.ed.libsutils.listeners.SelectableAnimatorListener;
 import com.ed.libsutils.utils.WindowUtils;
@@ -80,6 +81,19 @@ public class SharedTransitionsManager {
 		final int[] totalTransitionsCount = {transitionNames.size()};
 		SharedViewSet[] lastSharedViewSets = sharedViewSets.get(activityClass);
 		AnimatorSet transitionSet = new AnimatorSet();
+		transitionSet.addListener(new SelectableAnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animation) {
+				activity.getWindow().setFlags(
+						WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+						WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+			}
+		});
 		for (String transitionName : transitionNames) {
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
 			if (sharedViewSet == null) {
