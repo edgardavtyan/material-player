@@ -76,17 +76,10 @@ public class SharedTransitionsManager {
 			view.animate().alpha(1);
 		}
 
-		AnimatorSet transitionSet = new AnimatorSet();
-		transitionSet.addListener(new SelectableAnimatorListener() {
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				sourceViews.get(sourceActivityClasses.peek()).raiseOnEnterTransitionEndListener();
-			}
-		});
-
 		final int[] initTransitionsCount = {0};
 		final int[] totalTransitionsCount = {transitionNames.size()};
 		SharedViewSet[] lastSharedViewSets = sharedViewSets.get(activityClass);
+		AnimatorSet transitionSet = new AnimatorSet();
 		for (String transitionName : transitionNames) {
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
 			if (sharedViewSet == null) {
@@ -176,6 +169,7 @@ public class SharedTransitionsManager {
 			public void onAnimationEnd(Animator animation) {
 				activity.finish();
 				activity.overridePendingTransition(0, 0);
+				sourceSharedViews.raiseOnExitTransitionEndListener();
 			}
 		});
 		transitionSet.start();

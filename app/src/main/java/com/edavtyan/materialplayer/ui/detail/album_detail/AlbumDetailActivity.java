@@ -77,7 +77,7 @@ public class AlbumDetailActivity
 		sharedViews = new SourceSharedViews(
 				Pair.create(artView, "art"),
 				Pair.create(list, "list"));
-		sharedViews.setOnEnterAnimationEndListener(presenter::onEnterTransitionEnd);
+		sharedViews.setOnExitAnimationEndListener(presenter::onEnterTransitionEnd);
 
 		if (WindowUtils.isPortrait(this)) {
 			NowPlayingActivity.listBitmap = viewToBitmap(list);

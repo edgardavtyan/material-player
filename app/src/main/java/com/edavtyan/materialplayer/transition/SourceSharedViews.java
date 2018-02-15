@@ -15,10 +15,10 @@ import lombok.Setter;
 public class SourceSharedViews {
 	private final List<Pair<View, String>> sharedViews;
 
-	private @Setter OnEnterAnimationEndListener onEnterAnimationEndListener;
+	private @Setter OnExitAnimationEndListener onExitAnimationEndListener;
 
-	public interface OnEnterAnimationEndListener {
-		void onEnterAnimationEnd();
+	public interface OnExitAnimationEndListener {
+		void onExitAnimationEnd();
 	}
 
 	@SafeVarargs
@@ -65,9 +65,9 @@ public class SourceSharedViews {
 		sharedViews.add(sharedPair);
 	}
 
-	public void raiseOnEnterTransitionEndListener() {
-		if (onEnterAnimationEndListener != null) {
-			onEnterAnimationEndListener.onEnterAnimationEnd();
+	public void raiseOnExitTransitionEndListener() {
+		if (onExitAnimationEndListener != null) {
+			onExitAnimationEndListener.onExitAnimationEnd();
 		}
 	}
 
