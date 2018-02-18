@@ -8,7 +8,6 @@ import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_HEIGHT;
 import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_WIDTH;
@@ -17,31 +16,32 @@ import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PA
 
 public class SharedViewSet {
 	private @Getter final String transitionName;
-	private @Getter final View normalView;
-	private @Getter @Setter TransitionType transitionType;
-	private @Setter View enterPortraitView;
-	private @Setter View enterLandscapeView;
+	private @Getter final TransitionType transitionType;
+	private final View normalView;
+	private View enterPortraitView;
+	private View enterLandscapeView;
 	private View exitPortraitView;
-	private @Setter View exitLandscapeView;
-	private @Getter int enterDuration;
-	private @Getter int exitDuration;
-	private @Getter int exitDelay;
+	private View exitLandscapeView;
+	private int enterDuration;
+	private int exitDuration;
+	private int exitDelay;
 
 	public static SharedViewSet translating(String transitionName, View normalView, View sharedView) {
-		SharedViewSet set = new SharedViewSet(transitionName, normalView, sharedView);
-		set.setTransitionType(TransitionType.TRANSLATE);
-		return set;
+		return new SharedViewSet(transitionName, normalView, sharedView, TransitionType.TRANSLATE);
 	}
 
 	public static SharedViewSet fading(String transitionName, View view) {
-		SharedViewSet set = new SharedViewSet(transitionName, view, view);
-		set.setTransitionType(TransitionType.FADE_OUT);
-		return set;
+		return new SharedViewSet(transitionName, view, view, TransitionType.FADE_OUT);
 	}
 
-	private SharedViewSet(String transitionName, View normalView, View sharedView) {
+	private SharedViewSet(
+			String transitionName,
+			View normalView,
+			View sharedView,
+			TransitionType transitionType) {
 		this.transitionName = transitionName;
 		this.normalView = normalView;
+		this.transitionType = transitionType;
 		enterPortraitView = sharedView;
 		enterLandscapeView = sharedView;
 		exitPortraitView = sharedView;
