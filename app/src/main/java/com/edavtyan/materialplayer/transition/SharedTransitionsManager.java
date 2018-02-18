@@ -97,14 +97,8 @@ public class SharedTransitionsManager {
 				continue;
 			}
 
-			View sharedView = WindowUtils.isPortrait(activity)
-					? sharedViewSet.getEnterPortraitView()
-					: sharedViewSet.getEnterLandscapeView();
-			sharedView.post(() -> {
+			sharedViewSet.getEnterView(activity).post(() -> {
 				View sourceSharedView = sourceViews.get(sourceActivityClasses.peek()).find(transitionName);
-				TransitionData data = WindowUtils.isPortrait(activity)
-						? sharedViewSet.buildEnterPortraitData(activity.getIntent())
-						: sharedViewSet.buildEnterLandscapeData(activity.getIntent());
 				AnimatorSet transition = SharedTransitionFactory
 						.getEnterTransition(sharedViewSet.getTransitionType())
 						.withStartAction(() -> {
@@ -115,7 +109,7 @@ public class SharedTransitionsManager {
 						.withEndAction(() -> {
 							sourceSharedView.setVisibility(View.VISIBLE);
 						})
-						.build(data);
+						.build(sharedViewSet.buildEnterData(activity));
 				transitionSet.playTogether(transition);
 
 				createdTransitionsCount.incrementAndGet();
@@ -149,14 +143,10 @@ public class SharedTransitionsManager {
 		SharedViewSet[] lastSharedViewSets = sharedViewSets.remove(activity.getClass());
 		AnimatorSet transitionSet = new AnimatorSet();
 		for (String transitionName : activity.getIntent().getStringArrayListExtra(EXTRA_TRANSITION_NAMES)) {
-			View sourceSharedView = sourceSharedViews.find(transitionName);
 			SharedViewSet sharedViewSet = findSharedViewSet(lastSharedViewSets, transitionName);
-
 			if (sharedViewSet == null) continue;
 
-			TransitionData data = WindowUtils.isPortrait(activity)
-					? sharedViewSet.buildExitPortraitData(activity.getIntent())
-					: sharedViewSet.buildExitLandscapeData(activity.getIntent());
+			View sourceSharedView = sourceSharedViews.find(transitionName);
 			AnimatorSet transition = SharedTransitionFactory
 					.getExitTransition(sharedViewSet.getTransitionType())
 					.withStartAction(() -> {
@@ -165,7 +155,7 @@ public class SharedTransitionsManager {
 					.withEndAction(() -> {
 						sourceSharedView.setVisibility(View.VISIBLE);
 					})
-					.build(data);
+					.build(sharedViewSet.buildExitData(activity));
 			transitionSet.playTogether(transition);
 		}
 

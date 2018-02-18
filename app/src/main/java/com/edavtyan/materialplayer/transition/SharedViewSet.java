@@ -1,9 +1,11 @@
 package com.edavtyan.materialplayer.transition;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
 import com.ed.libsutils.utils.ViewUtils;
+import com.ed.libsutils.utils.WindowUtils;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,10 +19,10 @@ public class SharedViewSet {
 	private @Getter final String transitionName;
 	private @Getter final View normalView;
 	private @Getter @Setter TransitionType transitionType;
-	private @Getter @Setter View enterPortraitView;
-	private @Getter @Setter View enterLandscapeView;
-	private @Getter View exitPortraitView;
-	private @Getter @Setter View exitLandscapeView;
+	private @Setter View enterPortraitView;
+	private @Setter View enterLandscapeView;
+	private View exitPortraitView;
+	private @Setter View exitLandscapeView;
 	private @Getter int enterDuration;
 	private @Getter int exitDuration;
 	private @Getter int exitDelay;
@@ -49,6 +51,10 @@ public class SharedViewSet {
 		exitDelay = 0;
 	}
 
+	public View getEnterView(Activity activity) {
+		return WindowUtils.isPortrait(activity) ? enterPortraitView : enterLandscapeView;
+	}
+
 	public SharedViewSet enterDuration(int durationMs) {
 		this.enterDuration = durationMs;
 		return this;
@@ -69,20 +75,16 @@ public class SharedViewSet {
 		return this;
 	}
 
-	public TransitionData buildExitPortraitData(Intent intent) {
-		return buildExitData(intent, exitPortraitView);
+	public TransitionData buildEnterData(Activity activity) {
+		return WindowUtils.isPortrait(activity)
+				? buildEnterData(activity.getIntent(), enterPortraitView)
+				: buildEnterData(activity.getIntent(), enterLandscapeView);
 	}
 
-	public TransitionData buildExitLandscapeData(Intent intent) {
-		return buildExitData(intent, exitLandscapeView);
-	}
-
-	public TransitionData buildEnterPortraitData(Intent intent) {
-		return buildEnterData(intent, enterPortraitView);
-	}
-
-	public TransitionData buildEnterLandscapeData(Intent intent) {
-		return buildEnterData(intent, enterLandscapeView);
+	public TransitionData buildExitData(Activity activity) {
+		return WindowUtils.isPortrait(activity)
+				? buildExitData(activity.getIntent(), exitPortraitView)
+				: buildExitData(activity.getIntent(), exitLandscapeView);
 	}
 
 	private TransitionData buildEnterData(Intent intent, View sharedView) {
