@@ -61,7 +61,12 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			totalScrolled += dy;
 			int parallax = (totalScrolled + header.getHeight()) / 2;
 
-			listBackground.setTranslationY(-totalScrolled);
+			if (totalScrolled < header.getHeight()) {
+				listBackground.setTranslationY(-totalScrolled);
+			} else {
+				listBackground.setTranslationY(-header.getHeight());
+			}
+
 			infoWrapper.setTranslationY(-parallax);
 			appbarShadow.setAlpha(ColorUtils.intToFloatAlpha(parallax));
 		}
