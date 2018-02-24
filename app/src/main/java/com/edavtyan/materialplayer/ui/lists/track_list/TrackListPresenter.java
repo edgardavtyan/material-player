@@ -30,6 +30,7 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 	}
 
 	public void onHolderClick(int position) {
+		view.disableTouchEvents();
 		model.playQueue(position);
 		view.gotoNowPlaying();
 	}
@@ -48,5 +49,9 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 	public void onDestroy() {
 		model.unbindService();
 		model.close();
+	}
+
+	public void onExitAnimationEnd() {
+		view.enableTouchEvents();
 	}
 }

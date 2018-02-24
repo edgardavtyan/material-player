@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.transition;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.view.View;
@@ -10,10 +11,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Getter;
 import lombok.Setter;
 
 public class SourceSharedViews {
 	private final List<Pair<View, String>> sharedViews;
+	private final @Getter Class activityClass;
 
 	private @Setter OnExitAnimationEndListener onExitAnimationEndListener;
 
@@ -24,6 +27,12 @@ public class SourceSharedViews {
 	@SafeVarargs
 	public SourceSharedViews(Pair<View, String>... sharedViews) {
 		this.sharedViews = new ArrayList<>(Arrays.asList(sharedViews));
+		activityClass = sharedViews[0].first.getContext().getClass();
+	}
+
+	public SourceSharedViews(Activity activity) {
+		sharedViews = new ArrayList<>();
+		activityClass = activity.getClass();
 	}
 
 	public Bundle build() {
@@ -69,9 +78,5 @@ public class SourceSharedViews {
 		if (onExitAnimationEndListener != null) {
 			onExitAnimationEndListener.onExitAnimationEnd();
 		}
-	}
-
-	public Class getActivityClass() {
-		return sharedViews.get(0).first.getContext().getClass();
 	}
 }
