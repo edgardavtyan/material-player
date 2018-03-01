@@ -7,6 +7,7 @@ import com.ed.libsutils.utils.IOUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public abstract class BaseFileStorage {
 	private final File dir;
@@ -24,7 +25,7 @@ public abstract class BaseFileStorage {
 			fileOutputStream = new FileOutputStream(file);
 			fileOutputStream.write(data, 0, data.length);
 			fileOutputStream.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
 			IOUtils.closeStream(fileOutputStream);
@@ -40,7 +41,7 @@ public abstract class BaseFileStorage {
 			fileInputStream = new FileInputStream(file);
 			fileInputStream.read(data, 0, data.length);
 			return data;
-		} catch (Exception e) {
+		} catch (IOException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
 			IOUtils.closeStream(fileInputStream);
