@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.service.PlayerServiceScope;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.service.PlayerServiceScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,6 +20,7 @@ public class PlayerNotificationFactory {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
 			return notificationCompat;
 		} else {
+			assert notificationNougat != null;
 			return notificationNougat;
 		}
 	}

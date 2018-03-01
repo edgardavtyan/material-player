@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Setter;
 
@@ -24,9 +25,9 @@ public class PlayerNotificationModel
 
 	private PlayerService service;
 
-	private @Setter OnNewTrackListener onNewTrackListener;
-	private @Setter OnPlayPauseListener onPlayPauseListener;
-	private @Setter OnServiceConnectedListener onServiceConnectedListener;
+	private @Setter @Nullable OnNewTrackListener onNewTrackListener;
+	private @Setter @Nullable OnPlayPauseListener onPlayPauseListener;
+	private @Setter @Nullable OnServiceConnectedListener onServiceConnectedListener;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();
@@ -77,7 +78,10 @@ public class PlayerNotificationModel
 		service = ((PlayerService.PlayerBinder) binder).getService();
 		service.getPlayer().setOnNewTrackListener(this);
 		service.getPlayer().setOnPlayPauseListener(this);
-		onServiceConnectedListener.onServiceConnected();
+
+		if (onServiceConnectedListener != null) {
+			onServiceConnectedListener.onServiceConnected();
+		}
 	}
 
 	@Override

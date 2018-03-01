@@ -2,11 +2,12 @@ package com.edavtyan.materialplayer.notification;
 
 import android.app.Notification;
 import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.service.PlayerService;
-import com.edavtyan.materialplayer.lib.views.AdvancedRemoteViews;
 import com.edavtyan.materialplayer.lib.testable.TestableNotificationManager;
+import com.edavtyan.materialplayer.lib.views.AdvancedRemoteViews;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Getter;
 
@@ -53,7 +54,7 @@ public abstract class PlayerNotification {
 		bigRemoteViews.setTextViewText(R.id.album, album);
 	}
 
-	public void setArt(Bitmap art) {
+	public void setArt(@Nullable Bitmap art) {
 		if (art != null) {
 			normalRemoteViews.setImageViewBitmap(R.id.art, art);
 			bigRemoteViews.setImageViewBitmap(R.id.art, art);

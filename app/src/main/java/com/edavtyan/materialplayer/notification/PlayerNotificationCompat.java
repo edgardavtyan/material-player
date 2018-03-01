@@ -33,7 +33,7 @@ public class PlayerNotificationCompat extends PlayerNotification {
 	@Override
 	public void setArt(Bitmap art) {
 		if (art == null) {
-			super.setArt(art);
+			super.setArt(null);
 		} else {
 			int scaledArtSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 			Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);
