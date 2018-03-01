@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.lib.lastfm;
 import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LastfmApi {
@@ -37,7 +38,7 @@ public class LastfmApi {
 			artistInfo.setExtraLargeImageUrl(artistImages.getJSONObject(3).getString("#text"));
 			artistInfo.setMegaImageUrl(artistImages.getJSONObject(4).getString("#text"));
 			return artistInfo;
-		} catch (Exception e) {
+		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
 	}
