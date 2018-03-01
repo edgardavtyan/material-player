@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 
 import com.ed.libsutils.utils.Strings;
 
@@ -49,7 +50,7 @@ public class TrackDB {
 			KEY_ARTIST_ID,
 			KEY_ARTIST,
 			KEY_DATE_MODIFIED,
-	};
+			};
 
 	private final ContentResolver resolver;
 
@@ -95,10 +96,17 @@ public class TrackDB {
 		return track;
 	}
 
-	private List<Track> getListOfTracks(String selection, String[] args, String sort) {
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+	private List<Track> getListOfTracks(
+			@Nullable String selection,
+			@Nullable String[] args,
+			@Nullable String sort) {
 		List<Track> tracks = new ArrayList<>();
+
+		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+
+		if (cursor == null) {
+			throw new CursorIsNullException();
+		}
 
 		while (cursor.moveToNext()) {
 			tracks.add(getTrackFromCursor(cursor));

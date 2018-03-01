@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 
 import com.ed.libsutils.utils.Strings;
 
@@ -62,10 +63,17 @@ public class ArtistDB {
 		return artist;
 	}
 
-	private List<Artist> getArtistsFromCursor(String selection, String[] args, String sort) {
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+	private List<Artist> getArtistsFromCursor(
+			@Nullable String selection,
+			@Nullable String[] args,
+			@Nullable String sort) {
 		List<Artist> artists = new ArrayList<>();
+
+		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort);
+
+		if (cursor == null) {
+			throw new CursorIsNullException();
+		}
 
 		while (cursor.moveToNext()) {
 			artists.add(getArtistFromCursor(cursor));

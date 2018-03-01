@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 
 import com.ed.libsutils.utils.Strings;
 
@@ -34,7 +35,7 @@ public class AlbumDB {
 			KEY_ARTIST_TITLE,
 			KEY_ART,
 			KEY_TRACKS_COUNT,
-	};
+			};
 
 	private final ContentResolver resolver;
 
@@ -75,10 +76,17 @@ public class AlbumDB {
 		return album;
 	}
 
-	private List<Album> getListOfAlbums(String selection, String[] args, String order) {
-		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order);
+	private List<Album> getListOfAlbums(
+			@Nullable String selection,
+			@Nullable String[] args,
+			@Nullable String order) {
 		List<Album> albums = new ArrayList<>();
+
+		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order);
+
+		if (cursor == null) {
+			throw new CursorIsNullException();
+		}
 
 		while (cursor.moveToNext()) {
 			albums.add(getAlbumFromCursor(cursor));
