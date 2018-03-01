@@ -9,13 +9,13 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.notification.PlayerNotification;
+import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
+import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.player.effects.bassboost.BassBoost;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.player.effects.surround.Surround;
-import com.edavtyan.materialplayer.notification.PlayerNotification;
-import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
-import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.service.receivers.AudioBecomingNoisyReceiver;
@@ -46,7 +46,7 @@ public class PlayerService extends Service {
 	@Inject @Getter Equalizer equalizer;
 	@Inject @Getter Surround surround;
 	@Inject @Getter BassBoost bassBoost;
-	@Inject @Nullable @Getter Amplifier amplifier;
+	@Inject @Getter @Nullable Amplifier amplifier;
 	@Inject AudioFocusManager audioFocusManager;
 	@Inject MediaSessionManager mediaSessionManager;
 	@Inject PlayerNotification notification;
