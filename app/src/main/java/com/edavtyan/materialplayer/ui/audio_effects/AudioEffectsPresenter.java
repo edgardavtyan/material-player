@@ -1,12 +1,10 @@
 package com.edavtyan.materialplayer.ui.audio_effects;
 
-import android.os.Build;
-
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetNameAlreadyExists;
 import com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerBandView;
-import com.edavtyan.materialplayer.service.PlayerService;
-import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnectedListener {
 
@@ -112,11 +110,15 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 	}
 
 	public void onAmplifierStrengthChanged(int gain) {
-		model.getAmplifier().setGain(gain);
+		if (model.getAmplifier() != null) {
+			model.getAmplifier().setGain(gain);
+		}
 	}
 
 	public void onAmplifierStrengthStopChanging() {
-		model.getAmplifier().saveSettings();
+		if (model.getAmplifier() != null) {
+			model.getAmplifier().saveSettings();
+		}
 	}
 
 	public void onServiceConnected(PlayerService service) {
@@ -138,7 +140,7 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
 		view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+		if (model.getAmplifier() != null) {
 			view.initAmplifier(model.getAmplifier().getMaxGain(), model.getAmplifier().getGain());
 		}
 	}

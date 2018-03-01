@@ -8,14 +8,14 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.service.PlayerService;
+import com.edavtyan.materialplayer.ui.lists.lib.ServiceNotConnectedException;
 
-import lombok.Getter;
 import lombok.Setter;
 
 public class ModelServiceModule implements ServiceConnection {
 	private final Context context;
 
-	private @Getter @Nullable PlayerService service;
+	private @Nullable PlayerService service;
 
 	private @Setter @Nullable OnServiceConnectedListener onServiceConnectedListener;
 
@@ -34,6 +34,14 @@ public class ModelServiceModule implements ServiceConnection {
 
 	public void unbind() {
 		context.unbindService(this);
+	}
+
+	public PlayerService getService() {
+		if (service != null) {
+			return service;
+		} else {
+			throw new ServiceNotConnectedException();
+		}
 	}
 
 	@Override

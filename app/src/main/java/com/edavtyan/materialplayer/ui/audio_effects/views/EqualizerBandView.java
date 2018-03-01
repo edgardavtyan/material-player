@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.audio_effects.views;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ public class EqualizerBandView
 		void onBandChanged(EqualizerBandView band);
 	}
 
-	public EqualizerBandView(Context context, AttributeSet attrs) {
+	public EqualizerBandView(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 		inflate(context, R.layout.partial_equalizer_band, this);
 		ButterKnife.bind(this);
