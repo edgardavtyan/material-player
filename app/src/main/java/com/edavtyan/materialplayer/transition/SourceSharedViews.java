@@ -67,7 +67,8 @@ public class SourceSharedViews {
 			}
 		}
 
-		return null;
+		throw new IllegalStateException(
+				"Source shared view with transition name '" + transitionName + "' not found");
 	}
 
 	public void add(Pair<View, String> sharedPair) {

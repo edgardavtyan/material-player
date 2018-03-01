@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -170,6 +171,7 @@ public class SharedTransitionsManager {
 		transitionSet.start();
 	}
 
+	@Nullable
 	private SharedViewSet findSharedViewSet(SharedViewSet[] sharedViewSets, String transitionName) {
 		for (SharedViewSet sharedViewSet : sharedViewSets) {
 			if (sharedViewSet.getTransitionName().equals(transitionName)) {
