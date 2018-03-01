@@ -3,8 +3,9 @@ package com.edavtyan.materialplayer.ui.now_playing_queue;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 import com.edavtyan.materialplayer.service.PlayerService;
+import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
+import com.edavtyan.materialplayer.ui.lists.lib.ServiceNotConnectedException;
 
 import lombok.Setter;
 
@@ -29,29 +30,32 @@ public class NowPlayingQueueModel extends ListModel {
 	}
 
 	public void playItemAtPosition(int position) {
-		service.getPlayer().playTrackAt(position);
+		getService().getPlayer().playTrackAt(position);
 	}
 
 	public void removeItemAtPosition(int position) {
-		service.getPlayer().removeTrackAt(position);
+		getService().getPlayer().removeTrackAt(position);
 	}
 
 	public Track getTrackAtPosition(int position) {
-		return service.getPlayer().getTrackAt(position);
+		return getService().getPlayer().getTrackAt(position);
 	}
 
 	public Track getNowPlayingTrack() {
-		return service.getPlayer().getCurrentTrack();
+		return getService().getPlayer().getCurrentTrack();
 	}
 
 	public int getTrackCount() {
-		if (service == null) return 0;
-		return service.getPlayer().getTracksCount();
+		try {
+			return getService().getPlayer().getTracksCount();
+		} catch (ServiceNotConnectedException e) {
+			return 0;
+		}
 	}
 
 	@Override
 	public void unbindService() {
-		service.getPlayer().removeOnNewTrackListener(playerOnNewTrackListener);
+		getService().getPlayer().removeOnNewTrackListener(playerOnNewTrackListener);
 		super.unbindService();
 	}
 

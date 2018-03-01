@@ -33,7 +33,7 @@ public class ArtistListModel extends ListModel {
 	}
 
 	public void addToPlaylist(int artistId) {
-		service.getPlayer().addManyTracks(trackDB.getTracksWithArtistId(artistId));
+		getService().getPlayer().addManyTracks(trackDB.getTracksWithArtistId(artistId));
 	}
 
 	public int getArtistCount() {

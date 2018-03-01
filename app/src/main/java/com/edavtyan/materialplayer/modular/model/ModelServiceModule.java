@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.service.PlayerService;
 
@@ -14,9 +15,9 @@ import lombok.Setter;
 public class ModelServiceModule implements ServiceConnection {
 	private final Context context;
 
-	private @Getter PlayerService service;
+	private @Getter @Nullable PlayerService service;
 
-	private @Setter OnServiceConnectedListener onServiceConnectedListener;
+	private @Setter @Nullable OnServiceConnectedListener onServiceConnectedListener;
 
 	public interface OnServiceConnectedListener {
 		void onServiceConnected(PlayerService service);

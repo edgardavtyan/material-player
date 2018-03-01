@@ -68,6 +68,6 @@ public class AlbumDetailModel extends TrackListModel {
 	}
 
 	public void removeOnNewTrackListener(Player.OnNewTrackListener listener) {
-		service.getPlayer().removeOnNewTrackListener(listener);
+		getService().getPlayer().removeOnNewTrackListener(listener);
 	}
 }

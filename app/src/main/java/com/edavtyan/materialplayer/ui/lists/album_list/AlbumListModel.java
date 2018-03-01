@@ -35,7 +35,7 @@ public class AlbumListModel extends ListModel {
 	}
 
 	public void addToPlaylist(int albumId) {
-		service.getPlayer().addManyTracks(trackDB.getTracksWithAlbumId(albumId));
+		getService().getPlayer().addManyTracks(trackDB.getTracksWithAlbumId(albumId));
 	}
 
 	public void update() {

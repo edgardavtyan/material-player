@@ -28,11 +28,11 @@ public class TrackListModel extends ListModel {
 	}
 
 	public void playQueue(int position) {
-		service.getPlayer().playNewTracks(tracks, position);
+		getService().getPlayer().playNewTracks(tracks, position);
 	}
 
 	public void addToQueue(int position) {
-		service.getPlayer().addTrack(tracks.get(position));
+		getService().getPlayer().addTrack(tracks.get(position));
 	}
 
 	public void update() {
