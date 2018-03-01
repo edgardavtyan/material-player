@@ -31,11 +31,7 @@ public class AlbumArtProvider {
 
 		if (dataStorage.exists(albumId)) {
 			Bitmap image = dataStorage.load(albumId);
-
-			if (image != null) {
-				memoryCache.put(albumId, image);
-			}
-
+			memoryCache.put(albumId, image);
 			return image;
 		}
 
