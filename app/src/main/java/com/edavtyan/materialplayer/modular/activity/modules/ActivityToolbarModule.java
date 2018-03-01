@@ -55,6 +55,7 @@ public class ActivityToolbarModule extends ActivityModule {
 	}
 
 	public void setBackIconEnabled(boolean enabled) {
+		assert activity.getSupportActionBar() != null;
 		activity.getSupportActionBar().setDisplayHomeAsUpEnabled(enabled);
 	}
 
@@ -66,7 +67,7 @@ public class ActivityToolbarModule extends ActivityModule {
 
 		toolbar.setTitle(activity.getResources().getString(titleStringId));
 		activity.setSupportActionBar(toolbar);
-		if (isBackIconEnabled) activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		setBackIconEnabled(isBackIconEnabled);
 
 		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 			WindowUtils.makeStatusBarSemiTransparent(activity);
