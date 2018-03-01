@@ -44,8 +44,8 @@ public class MainActivityTest extends ActivityTest {
 		}
 
 		@Override
-		protected MainComponent getComponent() {
-			return mock(MainComponent.class);
+		protected MainDIComponent getComponent() {
+			return mock(MainDIComponent.class);
 		}
 	}
 

@@ -31,11 +31,11 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 		navigator.gotoAlbumDetail(getActivity(), albumId, sharedViews.build());
 	}
 
-	protected AlbumListComponent getComponent() {
-		return DaggerAlbumListComponent
+	protected AlbumListDIComponent getComponent() {
+		return DaggerAlbumListDIComponent
 				.builder()
-				.appComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.albumListFactory(new AlbumListFactory(getActivity(), this))
+				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
+				.albumListDIModule(new AlbumListDIModule(getActivity(), this))
 				.build();
 	}
 }

@@ -5,8 +5,8 @@ import android.support.test.rule.ActivityTestRule;
 
 import com.edavtyan.materialplayer.ui.now_playing.DaggerNowPlayingComponent;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.ui.now_playing.NowPlayingComponent;
-import com.edavtyan.materialplayer.ui.now_playing.NowPlayingModule;
+import com.edavtyan.materialplayer.ui.now_playing.NowPlayingDIComponent;
+import com.edavtyan.materialplayer.ui.now_playing.NowPlayingDIModule;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
@@ -19,11 +19,11 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public abstract class NowPlayingViewTest extends ActivityTest {
-	private static NowPlayingComponent component;
+	private static NowPlayingDIComponent component;
 
 	public static class TestNowPlayingActivity extends NowPlayingActivity {
 		@Override
-		protected NowPlayingComponent getComponent() {
+		protected NowPlayingDIComponent getComponent() {
 			return NowPlayingViewTest.component;
 		}
 	}
@@ -41,7 +41,7 @@ public abstract class NowPlayingViewTest extends ActivityTest {
 
 		presenter = mock(NowPlayingPresenter.class);
 
-		NowPlayingModule mockNowPlayingModule = mock(NowPlayingModule.class, RETURNS_MOCKS);
+		NowPlayingDIModule mockNowPlayingModule = mock(NowPlayingDIModule.class, RETURNS_MOCKS);
 		when(mockNowPlayingModule.providePresenter(any(), any())).thenReturn(presenter);
 		component = DaggerNowPlayingComponent
 				.builder()

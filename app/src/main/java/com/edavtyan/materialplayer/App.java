@@ -9,7 +9,7 @@ import lombok.Setter;
 
 public class App extends Application {
 	private @Setter PlayerServiceComponent playerServiceComponent;
-	private @Setter AppComponent appComponent;
+	private @Setter AppDIComponent appComponent;
 
 	public PlayerServiceComponent getPlayerServiceComponent() {
 		if (playerServiceComponent != null) {
@@ -17,16 +17,16 @@ public class App extends Application {
 		} else {
 			return DaggerPlayerServiceComponent
 					.builder()
-					.appComponent(getAppComponent())
+					.appDIComponent(getAppComponent())
 					.build();
 		}
 	}
 
-	public AppComponent getAppComponent() {
+	public AppDIComponent getAppComponent() {
 		if (appComponent == null) {
-			appComponent = DaggerAppComponent
+			appComponent = DaggerAppDIComponent
 					.builder()
-					.appFactory(new AppFactory(this))
+					.appDIModule(new AppDIModule(this))
 					.build();
 		}
 

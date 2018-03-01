@@ -12,8 +12,8 @@ import android.widget.CompoundButton;
 import com.ed.libsutils.views.CustomSwitchCompat;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
+import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -226,7 +226,7 @@ public class AudioEffectsActivity
 	protected AudioEffectsComponent getComponent() {
 		return DaggerAudioEffectsComponent
 				.builder()
-				.appComponent(((App)getApplication()).getAppComponent())
+				.appDIComponent(((App)getApplication()).getAppComponent())
 				.audioEffectsFactory(new AudioEffectsFactory(this))
 				.build();
 	}

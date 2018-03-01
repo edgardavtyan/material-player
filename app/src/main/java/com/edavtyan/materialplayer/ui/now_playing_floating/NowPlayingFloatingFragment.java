@@ -20,9 +20,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
-import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.ui.Navigator;
 
 import javax.inject.Inject;
 
@@ -133,11 +133,11 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 		navigator.gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 
-	protected NowPlayingFloatingComponent getComponent() {
-		return DaggerNowPlayingFloatingComponent
+	protected NowPlayingFloatingDIComponent getComponent() {
+		return DaggerNowPlayingFloatingDIComponent
 				.builder()
-				.appComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.nowPlayingFloatingFactory(new NowPlayingFloatingFactory(getActivity(), this))
+				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
+				.nowPlayingFloatingDIModule(new NowPlayingFloatingDIModule(getActivity(), this))
 				.build();
 	}
 }

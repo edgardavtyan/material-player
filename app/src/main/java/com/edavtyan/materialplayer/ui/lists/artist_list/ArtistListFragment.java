@@ -33,11 +33,11 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 
 	}
 
-	protected ArtistListComponent getComponent() {
-		return DaggerArtistListComponent
+	protected ArtistListDIComponent getComponent() {
+		return DaggerArtistListDIComponent
 				.builder()
-				.appComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.artistListFactory(new ArtistListFactory(getActivity(), this))
+				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
+				.artistListDIModule(new ArtistListDIModule(getActivity(), this))
 				.build();
 	}
 }

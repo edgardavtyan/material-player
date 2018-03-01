@@ -56,12 +56,12 @@ public class ArtistDetailActivity
 		navigator.gotoAlbumDetail(this, albumId, sharedViews.build());
 	}
 
-	protected ArtistDetailComponent getComponent() {
+	protected ArtistDetailDIComponent getComponent() {
 		String artistTitle = getIntent().getStringExtra(EXTRA_ARTIST_TITLE);
-		return DaggerArtistDetailComponent
+		return DaggerArtistDetailDIComponent
 				.builder()
-				.appComponent(((App) getApplication()).getAppComponent())
-				.artistDetailFactory(new ArtistDetailFactory(this, artistTitle))
+				.appDIComponent(((App) getApplication()).getAppComponent())
+				.artistDetailDIModule(new ArtistDetailDIModule(this, artistTitle))
 				.build();
 	}
 }

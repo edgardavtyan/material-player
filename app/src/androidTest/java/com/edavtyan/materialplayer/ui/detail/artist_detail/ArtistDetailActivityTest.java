@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 public class ArtistDetailActivityTest extends BaseArtistDetailActivityTest {
 	public static class TestArtistDetailActivity extends ArtistDetailActivity {
 		@Override
-		protected ArtistDetailComponent getComponent() {
+		protected ArtistDetailDIComponent getComponent() {
 			return createMockComponent(this);
 		}
 	}

@@ -5,8 +5,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.support.test.rule.ServiceTestRule;
 
-import com.edavtyan.materialplayer.AppComponent;
-import com.edavtyan.materialplayer.AppFactory;
+import com.edavtyan.materialplayer.AppDIComponent;
+import com.edavtyan.materialplayer.AppDIModule;
 import com.edavtyan.materialplayer.DaggerAppComponent;
 import com.edavtyan.materialplayer.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
@@ -41,16 +41,16 @@ public class PlayerServiceTest extends BaseTest {
 		super.beforeEach();
 
 		player = mock(Player.class);
-		PlayerFactory playerFactory = mock(PlayerFactory.class, RETURNS_MOCKS);
-		when(playerFactory.providePlayer(any(), any(), any(), any())).thenReturn(player);
+		PlayerDIModule playerModule = mock(PlayerDIModule.class, RETURNS_MOCKS);
+		when(playerModule.providePlayer(any(), any(), any(), any())).thenReturn(player);
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);
 		PlayerNotificationFactory notificationModule = mock(PlayerNotificationFactory.class, RETURNS_MOCKS);
 		when(notificationModule.providePresenter(any(), any())).thenReturn(notificationPresenter);
 
-		AppFactory appFactory = mock(AppFactory.class, RETURNS_MOCKS);
+		AppDIModule appFactory = mock(AppDIModule.class, RETURNS_MOCKS);
 		when(appFactory.provideContext()).thenReturn(context);
-		AppComponent appComponent = DaggerAppComponent
+		AppDIComponent appComponent = DaggerAppComponent
 				.builder()
 				.appFactory(appFactory)
 				.build();
@@ -59,7 +59,7 @@ public class PlayerServiceTest extends BaseTest {
 				.builder()
 				.appComponent(appComponent)
 				.receiversFactory(mock(ReceiversFactory.class, RETURNS_MOCKS))
-				.playerFactory(playerFactory)
+				.playerFactory(playerModule)
 				.playerNotificationFactory(notificationModule)
 				.build();
 

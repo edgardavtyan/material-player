@@ -7,7 +7,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -52,12 +52,12 @@ public class PrefActivity extends ModularActivity {
 		primaryColorPrefView.setDialogButtonsColor(colors.getColorPrimary());
 	}
 
-	protected PrefComponent getComponent() {
-		return DaggerPrefComponent
+	protected PrefDIComponent getComponent() {
+		return DaggerPrefDIComponent
 				.builder()
-				.appComponent(((App)getApplication()).getAppComponent())
-				.prefModule(new PrefModule(this))
-				.activityModulesFactory(new ActivityModulesFactory(R.string.pref_title))
+				.appDIComponent(((App)getApplication()).getAppComponent())
+				.prefDIModule(new PrefDIModule(this))
+				.activityModulesDIModule(new ActivityModulesDIModule(R.string.pref_title))
 				.build();
 	}
 }

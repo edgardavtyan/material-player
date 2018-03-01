@@ -88,12 +88,12 @@ public class AlbumDetailActivity
 		navigator.gotoNowPlaying(this, sharedViews.build());
 	}
 
-	protected AlbumDetailComponent getComponent() {
+	protected AlbumDetailDIComponent getComponent() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
-		return DaggerAlbumDetailComponent
+		return DaggerAlbumDetailDIComponent
 				.builder()
-				.appComponent(((App) getApplication()).getAppComponent())
-				.albumDetailFactory(new AlbumDetailFactory(this, albumId))
+				.appDIComponent(((App) getApplication()).getAppComponent())
+				.albumDetailDIModule(new AlbumDetailDIModule(this, albumId))
 				.build();
 	}
 

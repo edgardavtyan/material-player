@@ -34,11 +34,11 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 		navigator.gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 
-	protected TrackListComponent getComponent() {
-		return DaggerTrackListComponent
+	protected TrackListDIComponent getComponent() {
+		return DaggerTrackListDIComponent
 				.builder()
-				.appComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.trackListFactory(new TrackListFactory(getActivity(), this))
+				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
+				.trackListDIModule(new TrackListDIModule(getActivity(), this))
 				.build();
 	}
 }

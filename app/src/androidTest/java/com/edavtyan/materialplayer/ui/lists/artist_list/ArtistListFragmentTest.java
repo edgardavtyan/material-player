@@ -32,8 +32,8 @@ public class ArtistListFragmentTest extends FragmentTest {
 		}
 
 		@Override
-		protected ArtistListComponent getComponent() {
-			return mock(ArtistListComponent.class);
+		protected ArtistListDIComponent getComponent() {
+			return mock(ArtistListDIComponent.class);
 		}
 	}
 

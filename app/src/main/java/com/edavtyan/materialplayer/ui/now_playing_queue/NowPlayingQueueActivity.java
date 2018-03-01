@@ -63,11 +63,11 @@ public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 		adapter.notifyItemRemoved(position);
 	}
 
-	protected NowPlayingQueueComponent getComponent() {
-		return DaggerNowPlayingQueueComponent
+	protected NowPlayingQueueDIComponent getComponent() {
+		return DaggerNowPlayingQueueDIComponent
 				.builder()
-				.appComponent(((App)getApplication()).getAppComponent())
-				.nowPlayingQueueFactory(new NowPlayingQueueFactory(this))
+				.appDIComponent(((App)getApplication()).getAppComponent())
+				.nowPlayingQueueDIModule(new NowPlayingQueueDIModule(this))
 				.build();
 	}
 }

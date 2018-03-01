@@ -8,13 +8,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.edavtyan.materialplayer.AppComponent;
-import com.edavtyan.materialplayer.AppFactory;
+import com.edavtyan.materialplayer.AppDIComponent;
+import com.edavtyan.materialplayer.AppDIModule;
 import com.edavtyan.materialplayer.DaggerAppComponent;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
-import com.edavtyan.materialplayer.utils.UtilsFactory;
+import com.edavtyan.materialplayer.utils.UtilsDIModule;
 
 import org.junit.Test;
 
@@ -28,11 +28,11 @@ import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class NowPlayingFloatingFragmentTest extends FragmentTest {
-	private static NowPlayingFloatingComponent component;
+	private static NowPlayingFloatingDIComponent component;
 
 	public static class TestNowPlayingFloatingFragment extends NowPlayingFloatingFragment {
 		@Override
-		protected NowPlayingFloatingComponent getComponent() {
+		protected NowPlayingFloatingDIComponent getComponent() {
 			return component;
 		}
 	}
@@ -54,17 +54,17 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 		super.beforeEach();
 
 		presenter = mock(NowPlayingFloatingPresenter.class);
-		NowPlayingFloatingFactory mainModule = mock(NowPlayingFloatingFactory.class, RETURNS_MOCKS);
+		NowPlayingFloatingDIModule mainModule = mock(NowPlayingFloatingDIModule.class, RETURNS_MOCKS);
 		when(mainModule.providePresenter(any(), any())).thenReturn(presenter);
 
 		navigator = mock(Navigator.class);
-		UtilsFactory utilsFactory = mock(UtilsFactory.class, RETURNS_MOCKS);
+		UtilsDIModule utilsFactory = mock(UtilsDIModule.class, RETURNS_MOCKS);
 		when(utilsFactory.provideNavigator(any())).thenReturn(navigator);
 
-		AppFactory appFactory = mock(AppFactory.class, RETURNS_MOCKS);
+		AppDIModule appFactory = mock(AppDIModule.class, RETURNS_MOCKS);
 		when(appFactory.provideContext()).thenReturn(context);
 
-		AppComponent appComponent = DaggerAppComponent
+		AppDIComponent appComponent = DaggerAppComponent
 				.builder()
 				.appFactory(appFactory)
 				.utilsFactory(utilsFactory)

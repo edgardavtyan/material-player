@@ -41,8 +41,8 @@ public class NowPlayingActivityTest extends ActivityTest {
 		}
 
 		@Override
-		protected NowPlayingComponent getComponent() {
-			return mock(NowPlayingComponent.class);
+		protected NowPlayingDIComponent getComponent() {
+			return mock(NowPlayingDIComponent.class);
 		}
 	}
 

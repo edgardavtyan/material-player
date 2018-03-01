@@ -1,20 +1,20 @@
 package com.edavtyan.materialplayer.ui.audio_effects;
 
-import com.edavtyan.materialplayer.AppComponent;
+import com.edavtyan.materialplayer.AppDIComponent;
+import com.edavtyan.materialplayer.lib.theme.ThemeableActivityDIModule;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.ui.ActivityScope;
-import com.edavtyan.materialplayer.lib.theme.ThemeableActivityFactory;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
-import com.edavtyan.materialplayer.modular.model.ModelModulesFactory;
+import com.edavtyan.materialplayer.modular.model.ModelModulesDIModule;
 
 import dagger.Component;
 
 @ActivityScope
-@Component(dependencies = AppComponent.class,
+@Component(dependencies = AppDIComponent.class,
 		   modules = {
 				   AudioEffectsFactory.class,
-				   ModelModulesFactory.class,
-				   ActivityModulesFactory.class,
-				   ThemeableActivityFactory.class})
+				   ModelModulesDIModule.class,
+				   ActivityModulesDIModule.class,
+				   ThemeableActivityDIModule.class})
 public interface AudioEffectsComponent {
 	void inject(AudioEffectsActivity activity);
 }

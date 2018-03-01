@@ -21,7 +21,7 @@ public class AlbumDetailActivityTest extends BaseAlbumDetailActivityTest {
 
 	public static class TestAlbumDetailActivity extends AlbumDetailActivity {
 		@Override
-		protected AlbumDetailComponent getComponent() {
+		protected AlbumDetailDIComponent getComponent() {
 			return createMockComponent(this);
 		}
 	}

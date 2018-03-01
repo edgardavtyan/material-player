@@ -13,7 +13,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.modular.activity.ActivityModulesFactory;
+import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -113,12 +113,12 @@ public class NowPlayingActivity extends ModularActivity {
 		navigator.gotoNowPlayingQueue(this);
 	}
 
-	protected NowPlayingComponent getComponent() {
-		return DaggerNowPlayingComponent
+	protected NowPlayingDIComponent getComponent() {
+		return DaggerNowPlayingDIComponent
 				.builder()
-				.appComponent(((App) getApplication()).getAppComponent())
-				.nowPlayingModule(new NowPlayingModule(this))
-				.activityModulesFactory(new ActivityModulesFactory(R.string.nowplaying_toolbar_title))
+				.appDIComponent(((App) getApplication()).getAppComponent())
+				.nowPlayingDIModule(new NowPlayingDIModule(this))
+				.activityModulesDIModule(new ActivityModulesDIModule(R.string.nowplaying_toolbar_title))
 				.build();
 	}
 }

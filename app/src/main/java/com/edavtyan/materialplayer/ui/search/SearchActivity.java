@@ -112,11 +112,11 @@ public class SearchActivity extends ModularActivity {
 		return searchEditText.getText().toString();
 	}
 
-	protected SearchComponent getComponent() {
-		return DaggerSearchComponent
+	protected SearchDIComponent getComponent() {
+		return DaggerSearchDIComponent
 				.builder()
-				.appComponent(((App) getApplication()).getAppComponent())
-				.searchModule(new SearchModule(this))
+				.appDIComponent(((App) getApplication()).getAppComponent())
+				.searchDIModule(new SearchDIModule(this))
 				.build();
 	}
 }

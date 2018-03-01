@@ -52,11 +52,11 @@ public class MainActivity extends BaseActivity {
 		startService(intent);
 	}
 
-	protected MainComponent getComponent() {
-		return DaggerMainComponent
+	protected MainDIComponent getComponent() {
+		return DaggerMainDIComponent
 				.builder()
-				.appComponent(((App) getApplication()).getAppComponent())
-				.mainModule(new MainModule(this))
+				.appDIComponent(((App) getApplication()).getAppComponent())
+				.mainDIModule(new MainDIModule(this))
 				.build();
 	}
 }

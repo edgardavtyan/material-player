@@ -31,8 +31,8 @@ public class TrackListFragmentTest extends FragmentTest {
 		}
 
 		@Override
-		protected TrackListComponent getComponent() {
-			return mock(TrackListComponent.class);
+		protected TrackListDIComponent getComponent() {
+			return mock(TrackListDIComponent.class);
 		}
 	}
 

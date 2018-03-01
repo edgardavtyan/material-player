@@ -28,8 +28,8 @@ public class AlbumListFragmentTest extends FragmentTest {
 		}
 
 		@Override
-		protected AlbumListComponent getComponent() {
-			return mock(AlbumListComponent.class);
+		protected AlbumListDIComponent getComponent() {
+			return mock(AlbumListDIComponent.class);
 		}
 	}
 
