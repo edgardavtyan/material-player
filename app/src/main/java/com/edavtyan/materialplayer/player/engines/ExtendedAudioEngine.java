@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.player.engines;
 
+import android.support.annotation.Nullable;
+
 import net.protyposis.android.mediaplayer.FileSource;
 import net.protyposis.android.mediaplayer.MediaPlayer;
 
@@ -17,8 +19,8 @@ public class ExtendedAudioEngine
 
 	private final MediaPlayer player;
 
-	private @Setter OnPreparedListener onPreparedListener;
-	private @Setter OnCompletedListener onCompletedListener;
+	private @Setter @Nullable OnPreparedListener onPreparedListener;
+	private @Setter @Nullable OnCompletedListener onCompletedListener;
 
 	private boolean prepareOnly;
 
