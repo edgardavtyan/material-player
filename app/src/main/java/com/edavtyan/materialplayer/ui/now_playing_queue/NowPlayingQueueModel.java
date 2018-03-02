@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.ui.now_playing_queue;
 
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
@@ -11,7 +13,7 @@ import lombok.Setter;
 
 public class NowPlayingQueueModel extends ListModel {
 
-	private @Setter OnNewTrackListener onNewTrackListener;
+	private @Setter @Nullable OnNewTrackListener onNewTrackListener;
 
 	private final Player.OnNewTrackListener playerOnNewTrackListener
 			= new Player.OnNewTrackListener() {
