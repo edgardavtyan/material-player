@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Setter;
 
@@ -23,8 +24,8 @@ public class NowPlayingFloatingModel
 
 	private PlayerService service;
 
-	private @Setter OnNewTrackListener onNewTrackListener;
-	private @Setter OnServiceConnectedListener onServiceConnectedListener;
+	private @Setter @Nullable OnNewTrackListener onNewTrackListener;
+	private @Setter @Nullable OnServiceConnectedListener onServiceConnectedListener;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();
