@@ -17,15 +17,15 @@ import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.transition.OutputSharedViews;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.transition.SharedViewSet;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingControls;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.transition.OutputSharedViews;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SharedViewSet;
 
 import javax.inject.Inject;
 
@@ -68,6 +68,9 @@ public class NowPlayingActivity extends ModularActivity {
 
 		OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
 		if (WindowUtils.isPortrait(this)) {
+			assert listView != null;
+			assert listBackground != null;
+
 			listView.setImageBitmap(listBitmap);
 			outputViewsBuilder.sharedViewSets(
 					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),

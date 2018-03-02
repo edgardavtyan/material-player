@@ -62,7 +62,7 @@ public class SharedTransitionsManager {
 		sourceActivityClasses.push(views.getActivityClass());
 	}
 
-	public void beginEnterTransition(Activity activity, Bundle savedInstanceState) {
+	public void beginEnterTransition(Activity activity, @Nullable Bundle savedInstanceState) {
 		if (savedInstanceState != null) return;
 		if (!activity.getIntent().hasExtra(EXTRA_TRANSITION_NAMES)) return;
 

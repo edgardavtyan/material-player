@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.player.RepeatMode;
 import com.edavtyan.materialplayer.player.ShuffleMode;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Setter;
 
@@ -25,9 +26,9 @@ public class NowPlayingModel
 
 	private PlayerService service;
 
-	private @Setter OnModelBoundListener onModelBoundListener;
-	private @Setter OnNewTrackListener onNewTrackListener;
-	private @Setter OnPlayPauseListener onPlayPauseListener;
+	private @Setter @Nullable OnModelBoundListener onModelBoundListener;
+	private @Setter @Nullable OnNewTrackListener onNewTrackListener;
+	private @Setter @Nullable OnPlayPauseListener onPlayPauseListener;
 
 	public interface OnModelBoundListener {
 		void onModelBound();
