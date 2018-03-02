@@ -23,7 +23,8 @@ public class ArtistDetailActivity
 
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
-	private SourceSharedViews sharedViews;
+
+	private @Nullable SourceSharedViews sharedViews;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {

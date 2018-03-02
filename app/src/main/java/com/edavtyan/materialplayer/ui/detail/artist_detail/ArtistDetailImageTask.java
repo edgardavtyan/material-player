@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.ui.detail.artist_detail;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 
 public class ArtistDetailImageTask extends AsyncTask<String, Void, Bitmap> {
 
@@ -19,6 +20,7 @@ public class ArtistDetailImageTask extends AsyncTask<String, Void, Bitmap> {
 		this.onImageLoadedCallback = onImageLoadedCallback;
 	}
 
+	@Nullable
 	@Override
 	protected Bitmap doInBackground(String... title) {
 		return imageLoader.getImageFromApi(title[0]);

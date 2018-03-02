@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.detail.album_detail;
 
 import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -9,8 +10,8 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
-import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.service.PlayerService;
+import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class AlbumDetailModel extends TrackListModel {
 	private final AlbumArtProvider albumArtProvider;
 	private final int albumId;
 
-	private Player.OnNewTrackListener onNewTrackListener;
+	private @Nullable Player.OnNewTrackListener onNewTrackListener;
 
 	public AlbumDetailModel(
 			ModelServiceModule serviceModule,
@@ -60,7 +61,10 @@ public class AlbumDetailModel extends TrackListModel {
 	@Override
 	public void onServiceConnected(PlayerService service) {
 		super.onServiceConnected(service);
-		service.getPlayer().setOnNewTrackListener(onNewTrackListener);
+
+		if (onNewTrackListener != null) {
+			service.getPlayer().setOnNewTrackListener(onNewTrackListener);
+		}
 	}
 
 	public void addOnNewTrackListener(Player.OnNewTrackListener listener) {

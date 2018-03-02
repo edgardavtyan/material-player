@@ -56,7 +56,9 @@ public class ParallaxHeaderListModule extends ActivityModule {
 
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-			assert appbarShadow != null; // Removes lint warning
+			assert appbarShadow != null;
+			assert header != null;
+			assert listBackground != null;
 
 			totalScrolled += dy;
 			int parallax = (totalScrolled + header.getHeight()) / 2;
@@ -101,6 +103,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			assert header != null; // Removes lint warning
 			list.addOnScrollListener(onScrollListener);
 			header.post(() -> {
+				assert listBackground != null;
 				list.setPadding(0, header.getHeight(), 0, 0);
 				list.scrollBy(-1000, -1000);
 				listBackground.setTranslationY(header.getHeight());
@@ -108,6 +111,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			});
 		}
 
+		assert sharedArtExitView != null;
 		transitionsManager.createSharedTransition(OutputSharedViews
 				.builder()
 				.sharedViewSets(
@@ -167,6 +171,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	public void setArt(Bitmap art, @DrawableRes int fallback) {
 		if (art != null) {
 			if (WindowUtils.isPortrait(activity)) {
+				assert sharedArtExitView != null;
 				int artViewSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 				Bitmap scaledArt = BitmapResizer.resize(art, artViewSize);
 				artView.setImageBitmap(scaledArt);
@@ -180,6 +185,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			artView.setImageResource(fallback);
 			sharedArtView.setImageResource(fallback);
 			if (WindowUtils.isPortrait(activity)) {
+				assert sharedArtExitView != null;
 				sharedArtExitView.setImageResource(fallback);
 			}
 		}

@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.detail.artist_detail;
 
 import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
@@ -26,6 +27,7 @@ public class ArtistDetailImageLoader {
 		this.memoryCache = memoryCache;
 	}
 
+	@Nullable
 	public Bitmap getImageFromApi(String artistTitle) {
 		try {
 			String imageUrl = lastfmApi.getArtistInfo(artistTitle).getMegaImageUrl();
@@ -39,6 +41,7 @@ public class ArtistDetailImageLoader {
 		}
 	}
 
+	@Nullable
 	public Bitmap getImageFromCache(String artistTitle) {
 		if (memoryCache.exists(artistTitle)) {
 			return memoryCache.get(artistTitle);
