@@ -25,7 +25,10 @@ public class AlbumListModel extends ListModel {
 	}
 
 	public Album getAlbumAtIndex(int index) {
-		if (albums == null) return null;
+		if (albums == null) {
+			throw new IllegalStateException("Albums have not been initialized");
+		}
+
 		return albums.get(index);
 	}
 

@@ -25,6 +25,11 @@ public abstract class ListAdapter<VH extends RecyclerView.ViewHolder>
 	@Override
 	public VH onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		if (inflater == null) {
+			throw new IllegalStateException("LayoutInflater service was not found");
+		}
+
 		View view = inflater.inflate(viewType, parent, false);
 		return onCreateViewHolder(context, view);
 	}

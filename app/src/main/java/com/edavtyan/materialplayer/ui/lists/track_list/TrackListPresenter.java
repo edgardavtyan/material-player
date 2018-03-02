@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
-import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 
@@ -17,9 +17,6 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 	@Override
 	public void onBindViewHolder(TrackListViewHolder holder, int position) {
 		Track track = model.getTrackAtIndex(position);
-
-		if (track == null) return;
-
 		holder.setTitle(track.getTitle());
 		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
 	}

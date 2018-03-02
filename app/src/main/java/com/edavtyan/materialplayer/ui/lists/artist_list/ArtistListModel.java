@@ -42,7 +42,10 @@ public class ArtistListModel extends ListModel {
 	}
 
 	public Artist getArtistAtIndex(int position) {
-		if (artists == null) return null;
+		if (artists == null) {
+			throw new IllegalStateException("Artists have not been initialized");
+		}
+
 		return artists.get(position);
 	}
 

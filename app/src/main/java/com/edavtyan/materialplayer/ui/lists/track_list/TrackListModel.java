@@ -18,7 +18,10 @@ public class TrackListModel extends ListModel {
 	}
 
 	public Track getTrackAtIndex(int position) {
-		if (tracks == null) return null;
+		if (tracks == null) {
+			throw new IllegalStateException("Tracks have not been initialized");
+		}
+
 		return tracks.get(position);
 	}
 
