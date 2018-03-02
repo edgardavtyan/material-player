@@ -27,6 +27,11 @@ public class SearchViewImpl implements SearchActivity.OnSearchQueryChangedListen
 	}
 
 	public void init() {
+		if (fragment.getView() == null) {
+			throw new IllegalStateException(
+					"Fragment " + fragment.getClass().getSimpleName() + "has no layout");
+		}
+
 		ButterKnife.bind(this, fragment.getView());
 		activity.addOnSearchQueryChangedListener(this);
 		presenter.onSearchChange(activity.getSearchQuery());
