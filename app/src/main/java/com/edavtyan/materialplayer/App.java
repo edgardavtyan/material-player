@@ -11,6 +11,7 @@ public class App extends Application {
 	private @Setter PlayerServiceComponent playerServiceComponent;
 	private @Setter AppDIComponent appComponent;
 
+	@SuppressWarnings("ConstantConditions")
 	public PlayerServiceComponent getPlayerServiceComponent() {
 		if (playerServiceComponent != null) {
 			return playerServiceComponent;

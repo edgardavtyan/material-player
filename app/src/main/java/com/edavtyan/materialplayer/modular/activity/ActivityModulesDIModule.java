@@ -38,7 +38,7 @@ public class ActivityModulesDIModule {
 	public ActivityToolbarModule provideActivityToolbarModule(AppCompatActivity activity) {
 		if (titleStringId != null && isBackIconEnabled != null) {
 			return new ActivityToolbarModule(activity, titleStringId, isBackIconEnabled);
-		} else if (titleStringId != null && isBackIconEnabled == null) {
+		} else if (titleStringId != null) {
 			return new ActivityToolbarModule(activity, titleStringId);
 		} else {
 			return new ActivityToolbarModule(activity);
