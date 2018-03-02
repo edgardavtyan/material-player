@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -27,6 +28,7 @@ public class TabsAdapter extends FragmentPagerAdapter {
 	}
 
 	@Override
+	@Nullable
 	public Fragment getItem(int position) {
 		switch (position) {
 		case 0:
@@ -37,7 +39,6 @@ public class TabsAdapter extends FragmentPagerAdapter {
 			return new TrackListFragment();
 		default:
 			return null;
-
 		}
 	}
 

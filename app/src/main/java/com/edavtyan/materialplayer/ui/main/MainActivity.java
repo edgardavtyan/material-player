@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
 		addModule(baseMenuModule);
 		addModule(themeModule);
 
-		toolbarModule.setTitleString(null);
+		toolbarModule.setTitleString("");
 		toolbarModule.setBackIconEnabled(false);
 
 		viewPager.setAdapter(tabsAdapter);
