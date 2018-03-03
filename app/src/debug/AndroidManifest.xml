@@ -12,7 +12,7 @@
 		<activity android:name=".testlib.TestActivity" />
 		<activity android:name=".lib.base.BaseActivityTest$TestBaseActivity" />
 		<activity android:name=".lib.base.BaseToolbarActivityTest$TestBaseToolbarActivity" />
-		<activity android:name=".player.effects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
+		<activity android:name=".ui.audio_effects.AudioEffectsActivityTest$TestAudioEffectsActivity" />
 		<activity android:name=".ui.detail.artist_detail.ArtistDetailActivityCompactTest$TestArtistDetailActivityCompact" />
 		<activity android:name=".ui.detail.artist_detail.ArtistDetailActivityNormalTest$TestArtistDetailActivityNormal" />
 		<activity android:name=".ui.detail.album_detail.AlbumDetailActivityCompactTest$TestAlbumDetailActivityCompact" />
