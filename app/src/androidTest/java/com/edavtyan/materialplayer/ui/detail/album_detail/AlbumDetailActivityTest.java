@@ -81,6 +81,6 @@ public class AlbumDetailActivityTest extends BaseAlbumDetailActivityTest {
 	@Test
 	public void go_to_now_playing_screen_via_navigator() {
 		activity.gotoNowPlaying();
-		verify(navigator).gotoNowPlaying();
+		verify(navigator).gotoNowPlaying(activity, null);
 	}
 }

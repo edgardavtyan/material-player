@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.AppDIModule;
-import com.edavtyan.materialplayer.DaggerAppComponent;
+import com.edavtyan.materialplayer.DaggerAppDIComponent;
 import com.edavtyan.materialplayer.ui.detail.BaseDetailActivityTest;
 
 import static org.mockito.Mockito.RETURNS_MOCKS;
@@ -19,16 +19,16 @@ public class BaseAlbumDetailActivityTest extends BaseDetailActivityTest {
 		AppDIModule appFactory = mock(AppDIModule.class, RETURNS_MOCKS);
 		when(appFactory.provideContext()).thenReturn(activity);
 
-		AppDIComponent appComponent = DaggerAppComponent
+		AppDIComponent appComponent = DaggerAppDIComponent
 				.builder()
-				.appFactory(appFactory)
-				.utilsFactory(utilsFactory)
+				.appDIModule(appFactory)
+				.utilsDIModule(utilsFactory)
 				.build();
 
-		return DaggerAlbumDetailComponent
+		return DaggerAlbumDetailDIComponent
 				.builder()
-				.appComponent(appComponent)
-				.albumDetailFactory(albumDetailFactory)
+				.appDIComponent(appComponent)
+				.albumDetailDIModule(albumDetailFactory)
 				.build();
 	}
 }

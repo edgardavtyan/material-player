@@ -2,18 +2,22 @@ package com.edavtyan.materialplayer.ui.detail.artist_detail;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import static com.ed.libsutils.assertj.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class ArtistDetailActivityTest extends BaseArtistDetailActivityTest {
@@ -69,7 +73,10 @@ public class ArtistDetailActivityTest extends BaseArtistDetailActivityTest {
 
 	@Test
 	public void gotoAlbumDetail_callNavigator() {
-		activity.gotoAlbumDetailNormal(3);
-		verify(navigator).gotoAlbumDetailNormal(3);
+		Bundle bundle = new Bundle();
+		SourceSharedViews sharedViews = mock(SourceSharedViews.class);
+		when(sharedViews.build()).thenReturn(bundle);
+		activity.gotoAlbumDetail(3, sharedViews);
+		verify(navigator).gotoAlbumDetail(activity, 3, bundle);
 	}
 }

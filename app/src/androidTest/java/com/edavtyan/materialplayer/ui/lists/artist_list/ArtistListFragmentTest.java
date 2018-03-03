@@ -3,12 +3,15 @@ package com.edavtyan.materialplayer.ui.lists.artist_list;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.ui.Navigator;
 
 import org.junit.Test;
 
@@ -60,7 +63,9 @@ public class ArtistListFragmentTest extends FragmentTest {
 
 	@Test
 	public void gotoArtistDetail_callNavigator() {
-		fragment.gotoArtistDetailNormal("title");
-		verify(navigator).gotoArtistDetailNormal("title");
+		ImageView artView = (ImageView) fragment.getView().findViewById(R.id.art);
+		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
+		fragment.gotoArtistDetail("title", sharedViews);
+		verify(navigator).gotoArtistDetailCompact(getActivity(), "title", sharedViews.build());
 	}
 }

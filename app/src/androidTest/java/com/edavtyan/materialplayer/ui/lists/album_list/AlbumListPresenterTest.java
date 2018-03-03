@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.ui.lists.album_list;
 
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import org.junit.Test;
 
@@ -50,25 +51,15 @@ public class AlbumListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClick_compactModeEnabled_gotoAlbumDetailCompact() {
+	public void onHolderClick_gotoAlbumDetailNormal() {
 		Album album = new Album();
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
-		when(model.isCompactModeEnabled()).thenReturn(true);
+
+		SourceSharedViews sharedViews = mock(SourceSharedViews.class);
 
 		presenter.onHolderClick(3, sharedViews);
 		verify(view).gotoAlbumDetail(7, sharedViews);
-	}
-
-	@Test
-	public void onHolderClick_compactModeDisabled_gotoAlbumDetailNormal() {
-		Album album = new Album();
-		album.setId(7);
-		when(model.getAlbumAtIndex(3)).thenReturn(album);
-		when(model.isCompactModeEnabled()).thenReturn(false);
-
-		presenter.onHolderClick(3, sharedViews);
-		verify(view).gotoAlbumDetailNormal(7);
 	}
 
 	@Test

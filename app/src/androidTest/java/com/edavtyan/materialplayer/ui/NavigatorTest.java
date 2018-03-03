@@ -1,13 +1,14 @@
 package com.edavtyan.materialplayer.ui;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 import com.edavtyan.materialplayer.ui.audio_effects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.ui.prefs.PrefActivity;
-import com.edavtyan.materialplayer.testlib.tests.BaseTest;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -31,7 +32,7 @@ public class NavigatorTest extends BaseTest {
 
 	@Test
 	public void gotoNowPlaying_startNowPlayingActivityWithCorrectParameters() {
-		navigator.gotoNowPlaying();
+		navigator.gotoNowPlaying(activity, new Bundle());
 
 		verify(activity).startActivity(intentCaptor.capture());
 

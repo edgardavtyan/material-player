@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.ui.now_playing_floating;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -10,10 +11,10 @@ import android.widget.TextView;
 
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.AppDIModule;
-import com.edavtyan.materialplayer.DaggerAppComponent;
+import com.edavtyan.materialplayer.DaggerAppDIComponent;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
+import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.utils.UtilsDIModule;
 
 import org.junit.Test;
@@ -64,16 +65,16 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 		AppDIModule appFactory = mock(AppDIModule.class, RETURNS_MOCKS);
 		when(appFactory.provideContext()).thenReturn(context);
 
-		AppDIComponent appComponent = DaggerAppComponent
+		AppDIComponent appComponent = DaggerAppDIComponent
 				.builder()
-				.appFactory(appFactory)
-				.utilsFactory(utilsFactory)
+				.appDIModule(appFactory)
+				.utilsDIModule(utilsFactory)
 				.build();
 
-		component = DaggerNowPlayingFloatingComponent
+		component = DaggerNowPlayingFloatingDIComponent
 				.builder()
-				.appComponent(appComponent)
-				.nowPlayingFloatingFactory(mainModule)
+				.appDIComponent(appComponent)
+				.nowPlayingFloatingDIModule(mainModule)
 				.build();
 
 		fragment = new TestNowPlayingFloatingFragment();
@@ -170,6 +171,6 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 	@Test
 	public void gotoNowPlaying_callNavigator() {
 		fragment.gotoNowPlaying();
-		verify(navigator).gotoNowPlaying();
+		verify(navigator).gotoNowPlaying(getActivity(), new Bundle());
 	}
 }

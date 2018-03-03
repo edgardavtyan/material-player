@@ -3,12 +3,12 @@ package com.edavtyan.materialplayer.ui.now_playing.models;
 import android.annotation.SuppressLint;
 import android.support.test.rule.ActivityTestRule;
 
-import com.edavtyan.materialplayer.ui.now_playing.DaggerNowPlayingComponent;
+import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
+import com.edavtyan.materialplayer.ui.now_playing.DaggerNowPlayingDIComponent;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingDIComponent;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingDIModule;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
-import com.edavtyan.materialplayer.testlib.tests.ActivityTest;
 
 import org.junit.Rule;
 
@@ -43,9 +43,9 @@ public abstract class NowPlayingViewTest extends ActivityTest {
 
 		NowPlayingDIModule mockNowPlayingModule = mock(NowPlayingDIModule.class, RETURNS_MOCKS);
 		when(mockNowPlayingModule.providePresenter(any(), any())).thenReturn(presenter);
-		component = DaggerNowPlayingComponent
+		component = DaggerNowPlayingDIComponent
 				.builder()
-				.nowPlayingModule(mockNowPlayingModule)
+				.nowPlayingDIModule(mockNowPlayingModule)
 				.build();
 
 		activity = activityRule.launchActivity(null);

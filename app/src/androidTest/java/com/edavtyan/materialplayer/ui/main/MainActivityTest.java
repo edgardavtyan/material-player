@@ -74,16 +74,16 @@ public class MainActivityTest extends ActivityTest {
 	@Test
 	public void onCreate_addModules() {
 		activityRule.launchActivity(null);
-		verify(toolbarModule).onCreate(savedInstanceState);
-		verify(baseMenuModule).onCreate(savedInstanceState);
-		verify(themeModule).onCreate(savedInstanceState);
+		verify(toolbarModule).onCreate(null);
+		verify(baseMenuModule).onCreate(null);
+		verify(themeModule).onCreate(null);
 	}
 
 	@Test
 	public void onCreate_setupToolbar() {
 		activityRule.launchActivity(null);
 		verify(toolbarModule).setBackIconEnabled(false);
-		verify(toolbarModule).setTitleString(null);
+		verify(toolbarModule).setTitleString("");
 	}
 
 	@Test

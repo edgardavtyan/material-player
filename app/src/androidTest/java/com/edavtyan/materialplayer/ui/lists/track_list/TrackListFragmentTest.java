@@ -6,8 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.ui.Navigator;
 
 import org.junit.Test;
 
@@ -60,6 +61,7 @@ public class TrackListFragmentTest extends FragmentTest {
 	@Test
 	public void gotoNowPlaying_callNavigator() {
 		fragment.gotoNowPlaying();
-		verify(navigator).gotoNowPlaying();
+		SourceSharedViews sharedViews = new SourceSharedViews(getActivity());
+		verify(navigator).gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 }

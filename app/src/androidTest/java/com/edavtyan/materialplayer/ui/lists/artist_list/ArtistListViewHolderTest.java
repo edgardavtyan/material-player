@@ -1,12 +1,15 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import android.graphics.Bitmap;
+import android.support.v4.util.Pair;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import org.junit.Test;
 
@@ -55,7 +58,12 @@ public class ArtistListViewHolderTest extends BaseTest {
 	@Test
 	public void onClick_callPresenterWithCorrectPosition() {
 		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
+
 		holderSpy.onClick(null);
+
+		ImageView artView = (ImageView) itemView.findViewById(R.id.art);
+		SourceSharedViews sharedViews = new SourceSharedViews(Pair.create(artView, "art"));
+
 		verify(presenter).onHolderClick(1, sharedViews);
 	}
 

@@ -7,7 +7,7 @@ import android.support.test.rule.ServiceTestRule;
 
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.AppDIModule;
-import com.edavtyan.materialplayer.DaggerAppComponent;
+import com.edavtyan.materialplayer.DaggerAppDIComponent;
 import com.edavtyan.materialplayer.notification.PlayerNotificationFactory;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.service.DaggerPlayerServiceComponent;
@@ -16,6 +16,7 @@ import com.edavtyan.materialplayer.service.PlayerService.PlayerBinder;
 import com.edavtyan.materialplayer.service.PlayerServiceComponent;
 import com.edavtyan.materialplayer.service.receivers.ReceiversFactory;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.google.gson.Gson;
 
 import org.junit.Test;
 
@@ -48,18 +49,19 @@ public class PlayerServiceTest extends BaseTest {
 		PlayerNotificationFactory notificationModule = mock(PlayerNotificationFactory.class, RETURNS_MOCKS);
 		when(notificationModule.providePresenter(any(), any())).thenReturn(notificationPresenter);
 
-		AppDIModule appFactory = mock(AppDIModule.class, RETURNS_MOCKS);
-		when(appFactory.provideContext()).thenReturn(context);
-		AppDIComponent appComponent = DaggerAppComponent
+		AppDIModule appModule = mock(AppDIModule.class, RETURNS_MOCKS);
+		when(appModule.provideContext()).thenReturn(context);
+		when(appModule.provideGson()).thenReturn(new Gson());
+		AppDIComponent appComponent = DaggerAppDIComponent
 				.builder()
-				.appFactory(appFactory)
+				.appDIModule(appModule)
 				.build();
 
 		PlayerServiceComponent component = DaggerPlayerServiceComponent
 				.builder()
-				.appComponent(appComponent)
+				.appDIComponent(appComponent)
 				.receiversFactory(mock(ReceiversFactory.class, RETURNS_MOCKS))
-				.playerFactory(playerModule)
+				.playerDIModule(playerModule)
 				.playerNotificationFactory(notificationModule)
 				.build();
 

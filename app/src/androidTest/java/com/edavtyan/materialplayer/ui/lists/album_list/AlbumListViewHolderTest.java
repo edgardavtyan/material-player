@@ -63,7 +63,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 	public void onClick_callPresenterWithCorrectPosition() {
 		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
 		holderSpy.onClick(null);
-		verify(presenter).onHolderClick(1, sharedViews);
+		verify(presenter).onHolderClick(1, null);
 	}
 
 	@Test

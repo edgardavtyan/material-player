@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import org.junit.Test;
 
@@ -69,25 +70,14 @@ public class ArtistListPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onHolderClick_compactModeEnabled_gotoArtistDetailCompact() {
-		Artist artist = new Artist();
-		artist.setTitle("title");
-		when(model.getArtistAtIndex(3)).thenReturn(artist);
-		when(model.isCompactModeEnabled()).thenReturn(true);
-
-		presenter.onHolderClick(3, sharedViews);
-		verify(view).gotoArtistDetail("title", sharedViews);
-	}
-
-	@Test
 	public void onHolderClick_compactModeDisabled_gotoArtistDetailNormal() {
 		Artist artist = new Artist();
 		artist.setTitle("title");
 		when(model.getArtistAtIndex(3)).thenReturn(artist);
-		when(model.isCompactModeEnabled()).thenReturn(false);
 
+		SourceSharedViews sharedViews = mock(SourceSharedViews.class);
 		presenter.onHolderClick(3, sharedViews);
-		verify(view).gotoArtistDetailNormal("title");
+		verify(view).gotoArtistDetail("title", sharedViews);
 	}
 
 	@Test

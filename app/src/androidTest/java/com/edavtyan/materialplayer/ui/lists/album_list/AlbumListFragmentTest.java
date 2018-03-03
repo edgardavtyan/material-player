@@ -4,13 +4,15 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.ui.Navigator;
 
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumListFragmentTest extends FragmentTest {
@@ -49,7 +51,10 @@ public class AlbumListFragmentTest extends FragmentTest {
 
 	@Test
 	public void gotoAlbumDetail_callNavigator() {
-		fragment.gotoAlbumDetailNormal(7);
-		verify(navigator).gotoAlbumDetailNormal(7);
+		Bundle bundle = new Bundle();
+		SourceSharedViews sharedViews = mock(SourceSharedViews.class);
+		when(sharedViews.build()).thenReturn(bundle);
+		fragment.gotoAlbumDetail(7, sharedViews);
+		verify(navigator).gotoAlbumDetail(getActivity(), 7, bundle);
 	}
 }
