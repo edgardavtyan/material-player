@@ -42,7 +42,7 @@ public class SourceSharedViews {
 		for (Pair<View, String> pair : sharedViews) {
 			View view = pair.first;
 			String transitionName = pair.second;
-			int[] viewLocation = ViewUtils.getLocationOnScreen(pair.first);
+			int[] viewLocation = ViewUtils.getLocationOnScreen(view);
 			transitionNames.add(transitionName);
 			bundle.putFloat(transitionName + SharedTransitionsManager.PARAM_X, viewLocation[0]);
 			bundle.putFloat(transitionName + SharedTransitionsManager.PARAM_Y, viewLocation[1]);

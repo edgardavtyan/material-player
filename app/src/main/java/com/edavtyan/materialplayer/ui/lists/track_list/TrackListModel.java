@@ -10,6 +10,7 @@ import java.util.List;
 public class TrackListModel extends ListModel {
 
 	protected List<Track> tracks;
+
 	private final TrackDB db;
 
 	public TrackListModel(ModelServiceModule serviceModule, TrackDB db) {

@@ -77,8 +77,14 @@ public class AlbumDetailModelTest extends BaseTest {
 
 	@Test
 	public void getAlbumArt_getArtFromArtProvider() {
+		ArrayList<Track> tracks = new ArrayList<>();
+		tracks.add(new Track());
+		when(trackDB.getTracksWithAlbumId(ALBUM_ID)).thenReturn(tracks);
+		model.update();
+
 		Bitmap art = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		when(albumArtProvider.load(any())).thenReturn(art);
+
 		assertThat(model.getAlbumArt()).isEqualTo(art);
 	}
 }
