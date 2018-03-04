@@ -1,13 +1,16 @@
 package com.edavtyan.materialplayer.ui.lists.album_list;
 
 import android.support.annotation.IdRes;
+import android.support.v4.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
+import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import org.junit.Test;
 
@@ -61,9 +64,10 @@ public class AlbumListViewHolderTest extends BaseTest {
 
 	@Test
 	public void onClick_callPresenterWithCorrectPosition() {
+		ImageView artView = (ImageView) itemView.findViewById(R.id.art);
 		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(1);
 		holderSpy.onClick(null);
-		verify(presenter).onHolderClick(1, null);
+		verify(presenter).onHolderClick(1, new SourceSharedViews(Pair.create(artView, "art")));
 	}
 
 	@Test

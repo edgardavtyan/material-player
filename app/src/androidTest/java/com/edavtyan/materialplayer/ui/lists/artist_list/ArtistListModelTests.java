@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
@@ -63,8 +64,10 @@ public class ArtistListModelTests extends BaseTest {
 	}
 
 	@Test
-	public void getArtistAtIndex_noArtists_null() {
-		assertThat(model.getArtistAtIndex(0)).isNull();
+	public void getArtistAtIndex_noArtists_throwsException() {
+		assertThatThrownBy(() -> model.getArtistAtIndex(0))
+				.isInstanceOf(IllegalStateException.class)
+				.hasMessage("Artists have not been initialized");
 	}
 
 	@Test

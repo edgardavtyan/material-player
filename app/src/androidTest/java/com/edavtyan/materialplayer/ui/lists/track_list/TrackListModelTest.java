@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -54,15 +55,19 @@ public class TrackListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void getTrackAtIndex_modelNotUpdated_null() {
-		assertThat(model.getTrackAtIndex(0)).isNull();
+	public void getTrackAtIndex_modelNotUpdated_throwException() {
+		assertThatThrownBy(() -> model.getTrackAtIndex(0))
+				.isInstanceOf(IllegalStateException.class)
+				.hasMessage("Tracks have not been initialized");
 	}
 
 	@Test
-	public void getTrackAtIndex_modelClosed_null() {
+	public void getTrackAtIndex_modelClosed_throwException() {
 		model.update();
 		model.close();
-		assertThat(model.getTrackAtIndex(0)).isNull();
+		assertThatThrownBy(() -> model.getTrackAtIndex(0))
+				.isInstanceOf(IllegalStateException.class)
+				.hasMessage("Tracks have not been initialized");
 	}
 
 	@Test

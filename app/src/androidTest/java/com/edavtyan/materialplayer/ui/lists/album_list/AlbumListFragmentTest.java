@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.Navigator;
 
@@ -19,6 +20,7 @@ public class AlbumListFragmentTest extends FragmentTest {
 	private static AlbumListAdapter adapter;
 	private static AlbumListPresenter presenter;
 	private static Navigator navigator;
+	private static SharedTransitionsManager transitionManager;
 
 	public static class TestAlbumListFragment extends AlbumListFragment {
 		@Override
@@ -26,6 +28,7 @@ public class AlbumListFragmentTest extends FragmentTest {
 			this.adapter = AlbumListFragmentTest.adapter;
 			this.presenter = AlbumListFragmentTest.presenter;
 			this.navigator = AlbumListFragmentTest.navigator;
+			this.transitionsManager = AlbumListFragmentTest.transitionManager;
 			super.onCreate(savedInstanceState);
 		}
 
@@ -44,6 +47,7 @@ public class AlbumListFragmentTest extends FragmentTest {
 		adapter = mock(AlbumListAdapter.class);
 		presenter = mock(AlbumListPresenter.class);
 		navigator = mock(Navigator.class);
+		transitionManager = mock(SharedTransitionsManager.class);
 
 		fragment = new TestAlbumListFragment();
 		initFragment(fragment);

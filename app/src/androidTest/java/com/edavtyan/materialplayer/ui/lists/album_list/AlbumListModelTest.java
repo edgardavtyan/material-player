@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
@@ -48,8 +49,10 @@ public class AlbumListModelTest extends BaseTest {
 	}
 
 	@Test
-	public void getAlbumAtIndex_modelNotUpdated_null() {
-		assertThat(model.getAlbumAtIndex(0)).isNull();
+	public void getAlbumAtIndex_modelNotUpdated_throwException() {
+		assertThatThrownBy(() -> model.getAlbumAtIndex(0))
+				.isInstanceOf(IllegalStateException.class)
+				.hasMessage("Albums have not been initialized");
 	}
 
 	@Test

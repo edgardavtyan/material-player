@@ -35,6 +35,37 @@ public class SourceSharedViews {
 		activityClass = activity.getClass();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof SourceSharedViews)) {
+			return false;
+		}
+
+		SourceSharedViews other = (SourceSharedViews) obj;
+
+		if (sharedViews.size() != other.sharedViews.size()) {
+			return false;
+		}
+
+		if (activityClass != other.activityClass) {
+			return false;
+		}
+
+		for (int i = 0; i < sharedViews.size(); i++) {
+			Pair<View, String> thisPair = sharedViews.get(i);
+			Pair<View, String> otherPair = other.sharedViews.get(i);
+			if (thisPair.first.getId() != otherPair.first.getId()) {
+				return false;
+			}
+
+			if (!thisPair.second.equals(otherPair.second)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public Bundle build() {
 		Bundle bundle = new Bundle();
 		ArrayList<String> transitionNames = new ArrayList<>(sharedViews.size());
