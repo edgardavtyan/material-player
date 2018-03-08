@@ -122,26 +122,39 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 	}
 
 	public void onServiceConnected(PlayerService service) {
-		view.setEqualizerEnabled(model.getEqualizer().isEnabled());
-		view.setEqualizerBands(
-				model.getEqualizer().getBandsCount(),
-				model.getEqualizer().getGainLimit(),
-				model.getEqualizer().getFrequencies(),
-				model.getEqualizer().getGains());
-		view.setEqualizerPresets(
-				model.getEqualizer().getBuiltInPresetNames(),
-				model.getEqualizer().getCustomPresetNames());
-		view.setCurrentEqualizerPreset(
-				model.getEqualizer().getCurrentPresetIndex(),
-				model.getEqualizer().getCurrentPresetType());
-		view.initBassBoost(model.getBassBoost().getMaxStrength(), model
-				.getBassBoost()
-				.getStrength());
-		view.initSurround(model.getSurround().getMaxStrength(), model.getSurround().getStrength());
-		view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
+		if (model.getEqualizer().isSupported()) {
+
+			view.setEqualizerEnabled(model.getEqualizer().isEnabled());
+			view.setEqualizerBands(
+					model.getEqualizer().getBandsCount(),
+					model.getEqualizer().getGainLimit(),
+					model.getEqualizer().getFrequencies(),
+					model.getEqualizer().getGains());
+			view.setEqualizerPresets(
+					model.getEqualizer().getBuiltInPresetNames(),
+					model.getEqualizer().getCustomPresetNames());
+			view.setCurrentEqualizerPreset(
+					model.getEqualizer().getCurrentPresetIndex(),
+					model.getEqualizer().getCurrentPresetType());
+			view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
+		}
+
+		if (model.getBassBoost().isSupported()) {
+			view.initBassBoost(
+					model.getBassBoost().getMaxStrength(),
+					model.getBassBoost().getStrength());
+		}
+
+		if (model.getSurround().isSupported()) {
+			view.initSurround(
+					model.getSurround().getMaxStrength(),
+					model.getSurround().getStrength());
+		}
 
 		if (model.getAmplifier() != null) {
-			view.initAmplifier(model.getAmplifier().getMaxGain(), model.getAmplifier().getGain());
+			view.initAmplifier(
+					model.getAmplifier().getMaxGain(),
+					model.getAmplifier().getGain());
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.player.effects.equalizer;
 
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetNameAlreadyExists;
 
 import java.util.ArrayList;
@@ -10,13 +12,23 @@ public class StandardEqualizer implements Equalizer {
 	private final EqualizerPrefs prefs;
 	private final PresetsPrefs presetsPrefs;
 
+	private final boolean isSupported;
+
 	public StandardEqualizer(
-			EqualizerBase equalizer,
+			@Nullable EqualizerBase equalizer,
 			EqualizerPrefs prefs,
 			PresetsPrefs presetsPrefs) {
 		this.equalizer = equalizer;
 		this.prefs = prefs;
 		this.presetsPrefs = presetsPrefs;
+
+		if (equalizer == null) {
+			isSupported = false;
+			return;
+		}
+
+
+		isSupported = true;
 
 		setEnabled(prefs.getEnabled());
 		equalizer.setEnabled(prefs.getEnabled());
@@ -72,6 +84,11 @@ public class StandardEqualizer implements Equalizer {
 		}
 
 		return presetNames;
+	}
+
+	@Override
+	public boolean isSupported() {
+		return isSupported;
 	}
 
 	@Override

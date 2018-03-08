@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.player.effects.bassboost;
 
-import com.edavtyan.materialplayer.service.PlayerServiceScope;
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.service.PlayerServiceScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -11,9 +13,13 @@ public class BassBoostFactory {
 	@Provides
 	@PlayerServiceScope
 	public BassBoost provideBassBoost(BassBoostPrefs prefs, int sessionId) {
-		return new StandardBassBoost(
-				new android.media.audiofx.BassBoost(0, sessionId),
-				prefs);
+		try {
+			return new StandardBassBoost(
+					new android.media.audiofx.BassBoost(0, sessionId),
+					prefs);
+		} catch (RuntimeException e) {
+			return new StandardBassBoost(null, prefs);
+		}
 	}
 
 	@Provides

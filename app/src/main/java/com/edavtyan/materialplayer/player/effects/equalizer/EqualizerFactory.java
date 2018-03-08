@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.player.effects.equalizer;
 
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
@@ -12,14 +14,19 @@ public class EqualizerFactory {
 	@Provides
 	@PlayerServiceScope
 	public Equalizer provideEqualizer(
-			EqualizerBase base, EqualizerPrefs prefs, PresetsPrefs presetsPrefs) {
+			@Nullable EqualizerBase base, EqualizerPrefs prefs, PresetsPrefs presetsPrefs) {
 		return new StandardEqualizer(base, prefs, presetsPrefs);
 	}
 
+	@Nullable
 	@Provides
 	@PlayerServiceScope
 	public EqualizerBase provideEqualizerBase(int sessionId) {
-		return new StandardEqualizerBase(new android.media.audiofx.Equalizer(0, sessionId));
+		try {
+			return new StandardEqualizerBase(new android.media.audiofx.Equalizer(0, sessionId));
+		} catch (RuntimeException e) {
+			return null;
+		}
 	}
 
 	@Provides

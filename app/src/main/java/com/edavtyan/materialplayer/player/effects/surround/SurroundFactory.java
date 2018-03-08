@@ -1,7 +1,10 @@
 package com.edavtyan.materialplayer.player.effects.surround;
 
-import com.edavtyan.materialplayer.service.PlayerServiceScope;
+import android.media.audiofx.Virtualizer;
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.service.PlayerServiceScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -11,9 +14,13 @@ public class SurroundFactory {
 	@Provides
 	@PlayerServiceScope
 	public Surround provideSurround(SurroundPrefs prefs, int sessionId) {
-		return new StandardSurround(
-				new android.media.audiofx.Virtualizer(0, sessionId),
-				prefs);
+		try {
+			return new StandardSurround(
+					new Virtualizer(0, sessionId),
+					prefs);
+		} catch (RuntimeException e) {
+			return new StandardSurround(null, prefs);
+		}
 	}
 
 	@Provides
