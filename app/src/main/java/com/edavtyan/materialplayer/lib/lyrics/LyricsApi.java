@@ -10,7 +10,12 @@ public class LyricsApi {
 	public String getLyrics(String artist, String track) {
 		try {
 			String url = String.format(URL_TEMPLATE, artist, track);
-			String lyrics = Jsoup.connect(url).get().select(".lyricbox").html().replace("<br>", "");
+			String lyrics = Jsoup.connect(url)
+								 .get()
+								 .select(".lyricbox")
+								 .html()
+								 .replace("<br>", "")
+								 .replace("\n<div class=\"lyricsbreak\"></div>", "");
 			return lyrics;
 		} catch (IOException e) {
 			return null;
