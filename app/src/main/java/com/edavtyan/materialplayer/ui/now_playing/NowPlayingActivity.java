@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
@@ -54,6 +55,7 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.appbar) AppBarLayout appbar;
 	@BindView(R.id.shared_list) @Nullable ImageView listView;
 	@BindView(R.id.shared_list_background) @Nullable View listBackground;
+	@BindView(R.id.lyricsbox) TextView lyricsView;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,6 +116,10 @@ public class NowPlayingActivity extends ModularActivity {
 
 	public void gotoPlaylistScreen() {
 		navigator.gotoNowPlayingQueue(this);
+	}
+
+	public void setLyrics(String lyrics) {
+		lyricsView.setText(lyrics);
 	}
 
 	protected NowPlayingDIComponent getComponent() {

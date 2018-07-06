@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsApi;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.RepeatMode;
 import com.edavtyan.materialplayer.player.ShuffleMode;
@@ -23,6 +24,7 @@ public class NowPlayingModel
 
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;
+	private final LyricsApi lyricsApi;
 
 	private PlayerService service;
 
@@ -45,6 +47,7 @@ public class NowPlayingModel
 	public NowPlayingModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
+		this.lyricsApi = new LyricsApi();
 	}
 
 	public void bind() {
@@ -116,6 +119,10 @@ public class NowPlayingModel
 
 	public Bitmap getArt() {
 		return albumArtProvider.load(service.getPlayer().getCurrentTrack());
+	}
+
+	public void getLyrics(LyricsTask.OnLyricsLoadedCallback callback) {
+		new LyricsTask(lyricsApi, callback).execute(getArtist(), getTitle());
 	}
 
 	@Override

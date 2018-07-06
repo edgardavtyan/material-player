@@ -102,5 +102,7 @@ public class NowPlayingPresenter
 		view.getControls().setRepeatMode(model.getRepeatMode());
 		view.getControls().setIsPlaying(model.isPlaying());
 		seekbarTimer.run();
+
+		model.getLyrics(view::setLyrics);
 	}
 }

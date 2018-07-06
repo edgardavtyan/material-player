@@ -32,7 +32,10 @@
 					android:background="?colorPrimary"
 					>
 
-					<FrameLayout style="@style/NowPlaying_ArtWrapper">
+					<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						>
 
 						<com.edavtyan.materialplayer.lib.views.SquareImageView
 							android:id="@+id/art"
@@ -40,9 +43,31 @@
 							style="@style/NowPlaying_Art"
 							/>
 
+						<ScrollView
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							>
+
+							<TextView
+								android:id="@+id/lyricsbox"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:padding="@dimen/spacing_medium"
+								android:background="#aa000000"
+								android:textColor="?textColorContrastPrimary"
+								android:textSize="@dimen/font_medium"
+								android:shadowDx="1"
+								android:shadowDy="1"
+								android:shadowRadius="2"
+								android:shadowColor="#000"
+								tools:text="@tools:sample/lorem/random"
+								/>
+
+						</ScrollView>
+
 						<include layout="@layout/shadow_bottom_small" />
 
-					</FrameLayout>
+					</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
 
 					<LinearLayout
 						android:id="@+id/info_wrapper"
