@@ -46,6 +46,7 @@
 						<ScrollView
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
+							android:background="#aa000000"
 							>
 
 							<TextView
@@ -53,7 +54,6 @@
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:padding="@dimen/spacing_medium"
-								android:background="#aa000000"
 								android:textColor="?textColorContrastPrimary"
 								android:textSize="@dimen/font_medium"
 								android:shadowDx="1"
