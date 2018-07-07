@@ -4,9 +4,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ed.libsutils.utils.WindowUtils;
@@ -56,6 +59,9 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.shared_list) @Nullable ImageView listView;
 	@BindView(R.id.shared_list_background) @Nullable View listBackground;
 	@BindView(R.id.lyricsbox) TextView lyricsView;
+	@BindView(R.id.lyricsScroller) ScrollView lyricsScrollerView;
+
+	private boolean isLyricsEnabled = true;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,12 +101,38 @@ public class NowPlayingActivity extends ModularActivity {
 				.exitLandscapeFadingViews(innerContainerView, fab.getView());
 		transitionManager.createSharedTransition(outputViewsBuilder.build());
 		transitionManager.beginEnterTransition(this, savedInstanceState);
+
+		lyricsScrollerView.setOnTouchListener((v, e) -> !isLyricsEnabled);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.unbind();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.menu_nowplaying, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_toggleLyrics:
+			if (isLyricsEnabled) {
+				lyricsScrollerView.animate().alpha(0f);
+				isLyricsEnabled = false;
+			} else {
+				lyricsScrollerView.animate().alpha(1f);
+				isLyricsEnabled = true;
+			}
+			return true;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
