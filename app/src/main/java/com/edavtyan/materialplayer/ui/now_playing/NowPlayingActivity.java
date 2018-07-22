@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -58,8 +59,11 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.appbar) AppBarLayout appbar;
 	@BindView(R.id.shared_list) @Nullable ImageView listView;
 	@BindView(R.id.shared_list_background) @Nullable View listBackground;
+	@BindView(R.id.lyrics_wrapper) FrameLayout lyricsWrapper;
 	@BindView(R.id.lyricsbox) TextView lyricsView;
 	@BindView(R.id.lyricsScroller) ScrollView lyricsScrollerView;
+	@BindView(R.id.error_lyricsConnection) TextView lyricsConnectionErrorView;
+	@BindView(R.id.error_lyricsNotFound) TextView lyricsNotFoundErrorView;
 
 	private boolean isLyricsEnabled = true;
 
@@ -165,12 +169,24 @@ public class NowPlayingActivity extends ModularActivity {
 	}
 
 	public void hideLyrics() {
-		lyricsScrollerView.animate().alpha(0f);
+		lyricsWrapper.animate().alpha(0f);
 		isLyricsEnabled = false;
 	}
 
 	public void showLyrics() {
-		lyricsScrollerView.animate().alpha(1f);
+		lyricsWrapper.animate().alpha(1f);
 		isLyricsEnabled = true;
+	}
+
+	public void displayLyricsNotFoundError() {
+		lyricsScrollerView.setVisibility(View.INVISIBLE);
+		lyricsConnectionErrorView.setVisibility(View.INVISIBLE);
+		lyricsNotFoundErrorView.setVisibility(View.VISIBLE);
+	}
+
+	public void displayLyricsConnectionError() {
+		lyricsScrollerView.setVisibility(View.INVISIBLE);
+		lyricsNotFoundErrorView.setVisibility(View.INVISIBLE);
+		lyricsConnectionErrorView.setVisibility(View.VISIBLE);
 	}
 }

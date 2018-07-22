@@ -43,28 +43,68 @@
 							style="@style/NowPlaying_Art"
 							/>
 
-						<ScrollView
-							android:id="@+id/lyricsScroller"
+						<FrameLayout
+							android:id="@+id/lyrics_wrapper"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
 							android:background="#aa000000"
 							>
 
-							<TextView
-								android:id="@+id/lyricsbox"
+							<ScrollView
+								android:id="@+id/lyricsScroller"
 								android:layout_width="match_parent"
+								android:layout_height="match_parent"
+								>
+
+								<TextView
+									android:id="@+id/lyricsbox"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:padding="@dimen/spacing_medium"
+									android:textColor="?textColorContrastPrimary"
+									android:textSize="@dimen/font_medium"
+									android:shadowDx="1"
+									android:shadowDy="1"
+									android:shadowRadius="2"
+									android:shadowColor="#000"
+									tools:text="@tools:sample/lorem/random"
+									/>
+
+							</ScrollView>
+
+							<TextView
+								android:id="@+id/error_lyricsNotFound"
+								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
+								android:layout_gravity="center"
 								android:padding="@dimen/spacing_medium"
+								android:text="@string/nowplaying_error_lyricsNotFound"
 								android:textColor="?textColorContrastPrimary"
 								android:textSize="@dimen/font_medium"
 								android:shadowDx="1"
 								android:shadowDy="1"
 								android:shadowRadius="2"
 								android:shadowColor="#000"
-								tools:text="@tools:sample/lorem/random"
+								android:visibility="invisible"
 								/>
 
-						</ScrollView>
+							<TextView
+								android:id="@+id/error_lyricsConnection"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:padding="@dimen/spacing_medium"
+								android:text="@string/nowplaying_error_lyricsConnection"
+								android:textColor="?textColorContrastPrimary"
+								android:textSize="@dimen/font_medium"
+								android:shadowDx="1"
+								android:shadowDy="1"
+								android:shadowRadius="2"
+								android:shadowColor="#000"
+								android:visibility="invisible"
+								/>
+
+						</FrameLayout>
 
 						<include layout="@layout/shadow_bottom_small" />
 

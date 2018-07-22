@@ -3,5 +3,7 @@
 
 	<string name="nowplaying_toolbar_title">Now playing</string>
 	<string name="nowplaying_info_pattern">%1$s \u2022 %2$s</string>
+	<string name="nowplaying_error_lyricsNotFound">Could not find lyrics for this track</string>
+	<string name="nowplaying_error_lyricsConnection">Could not connect to lyrics database</string>
 
 </resources>

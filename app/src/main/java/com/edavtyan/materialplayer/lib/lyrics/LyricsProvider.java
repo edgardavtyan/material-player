@@ -9,13 +9,18 @@ public class LyricsProvider {
 		this.storage = storage;
 	}
 
-	public String getLyrics(String artist, String track) {
+	public String getLyrics(String artist, String track)
+	throws LyricsNotFoundException, LyricsConnectionException {
 		if (storage.exists(artist, track)) {
 			return storage.get(artist, track);
-		} else {
-			String lyrics = api.getLyrics(artist, track);
-			storage.put(artist, track, lyrics);
-			return lyrics;
 		}
+
+		String lyrics = api.getLyrics(artist, track);
+
+		if (lyrics != null) {
+			storage.put(artist, track, lyrics);
+		}
+
+		return lyrics;
 	}
 }
