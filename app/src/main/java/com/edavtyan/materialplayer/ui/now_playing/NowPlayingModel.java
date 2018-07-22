@@ -24,6 +24,7 @@ public class NowPlayingModel
 
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;
+	private final LyricsVisiblePref lyricsVisiblePref;
 	private final LyricsApi lyricsApi;
 
 	private PlayerService service;
@@ -44,9 +45,13 @@ public class NowPlayingModel
 		void onPlayPause();
 	}
 
-	public NowPlayingModel(Context context, AlbumArtProvider albumArtProvider) {
+	public NowPlayingModel(
+			Context context,
+			AlbumArtProvider albumArtProvider,
+			LyricsVisiblePref lyricsVisiblePref) {
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
+		this.lyricsVisiblePref = lyricsVisiblePref;
 		this.lyricsApi = new LyricsApi();
 	}
 
@@ -123,6 +128,14 @@ public class NowPlayingModel
 
 	public void getLyrics(LyricsTask.OnLyricsLoadedCallback callback) {
 		new LyricsTask(lyricsApi, callback).execute(getArtist(), getTitle());
+	}
+
+	public boolean isLyricsVisible() {
+		return lyricsVisiblePref.isVisible();
+	}
+
+	public void toggleLyricsVisible() {
+		lyricsVisiblePref.toggleVisible();
 	}
 
 	@Override

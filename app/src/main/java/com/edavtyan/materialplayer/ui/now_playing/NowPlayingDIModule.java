@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.ui.now_playing;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingControls;
@@ -37,8 +38,9 @@ public class NowPlayingDIModule {
 	@ActivityScope
 	public NowPlayingModel provideModel(
 			NowPlayingActivity activity,
-			AlbumArtProvider albumArtProvider) {
-		return new NowPlayingModel(activity, albumArtProvider);
+			AlbumArtProvider albumArtProvider,
+			LyricsVisiblePref lyricsVisiblePref) {
+		return new NowPlayingModel(activity, albumArtProvider, lyricsVisiblePref);
 	}
 
 	@Provides
@@ -81,5 +83,11 @@ public class NowPlayingDIModule {
 			NowPlayingActivity activity,
 			NowPlayingPresenter presenter) {
 		return new NowPlayingSeekbar(activity, presenter);
+	}
+
+	@Provides
+	@ActivityScope
+	public LyricsVisiblePref provideLyricsVisiblePref(AdvancedSharedPrefs prefs) {
+		return new LyricsVisiblePref(prefs);
 	}
 }

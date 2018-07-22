@@ -122,6 +122,7 @@ public class NowPlayingActivity extends ModularActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_toggleLyrics:
+			presenter.onToggleLyricsClicked();
 			if (isLyricsEnabled) {
 				lyricsScrollerView.animate().alpha(0f);
 				isLyricsEnabled = false;
@@ -161,5 +162,15 @@ public class NowPlayingActivity extends ModularActivity {
 				.nowPlayingDIModule(new NowPlayingDIModule(this))
 				.activityModulesDIModule(new ActivityModulesDIModule(R.string.nowplaying_toolbar_title))
 				.build();
+	}
+
+	public void hideLyrics() {
+		lyricsScrollerView.animate().alpha(0f);
+		isLyricsEnabled = false;
+	}
+
+	public void showLyrics() {
+		lyricsScrollerView.animate().alpha(1f);
+		isLyricsEnabled = true;
 	}
 }

@@ -92,6 +92,15 @@ public class NowPlayingPresenter
 		view.getControls().setIsPlaying(model.isPlaying());
 	}
 
+	public void onToggleLyricsClicked() {
+		model.toggleLyricsVisible();
+		if (model.isLyricsVisible()) {
+			view.hideLyrics();
+		} else {
+			view.showLyrics();
+		}
+	}
+
 	private void updateViewInfo() {
 		view.getInfo().setTitle(model.getTitle());
 		view.getInfo().setInfo(model.getArtist(), model.getAlbum());
@@ -104,5 +113,11 @@ public class NowPlayingPresenter
 		seekbarTimer.run();
 
 		model.getLyrics(view::setLyrics);
+
+		if (model.isLyricsVisible()) {
+			view.showLyrics();
+		} else {
+			view.hideLyrics();
+		}
 	}
 }
