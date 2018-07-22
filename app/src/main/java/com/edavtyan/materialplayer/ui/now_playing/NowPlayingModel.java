@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.lyrics.LyricsApi;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsProvider;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsStorage;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.RepeatMode;
 import com.edavtyan.materialplayer.player.ShuffleMode;
@@ -25,7 +27,7 @@ public class NowPlayingModel
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;
 	private final LyricsVisiblePref lyricsVisiblePref;
-	private final LyricsApi lyricsApi;
+	private final LyricsProvider lyricsProvider;
 
 	private PlayerService service;
 
@@ -52,7 +54,7 @@ public class NowPlayingModel
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
 		this.lyricsVisiblePref = lyricsVisiblePref;
-		this.lyricsApi = new LyricsApi();
+		this.lyricsProvider = new LyricsProvider(new LyricsApi(), new LyricsStorage(context));
 	}
 
 	public void bind() {
@@ -127,7 +129,7 @@ public class NowPlayingModel
 	}
 
 	public void getLyrics(LyricsTask.OnLyricsLoadedCallback callback) {
-		new LyricsTask(lyricsApi, callback).execute(getArtist(), getTitle());
+		new LyricsTask(lyricsProvider, callback).execute(getArtist(), getTitle());
 	}
 
 	public boolean isLyricsVisible() {
