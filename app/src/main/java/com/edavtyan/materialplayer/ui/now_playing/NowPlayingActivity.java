@@ -127,13 +127,6 @@ public class NowPlayingActivity extends ModularActivity {
 		switch (item.getItemId()) {
 		case R.id.menu_toggleLyrics:
 			presenter.onToggleLyricsClicked();
-			if (isLyricsEnabled) {
-				lyricsScrollerView.animate().alpha(0f);
-				isLyricsEnabled = false;
-			} else {
-				lyricsScrollerView.animate().alpha(1f);
-				isLyricsEnabled = true;
-			}
 			return true;
 		}
 
