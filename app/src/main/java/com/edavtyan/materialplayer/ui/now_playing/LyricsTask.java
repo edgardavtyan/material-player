@@ -1,9 +1,10 @@
 package com.edavtyan.materialplayer.ui.now_playing;
 
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.AsyncTaskResult;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsConnectionException;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsNotFoundException;
 import com.edavtyan.materialplayer.lib.lyrics.LyricsProvider;
 
 public class LyricsTask extends AsyncTask<String, Void, AsyncTaskResult<String>> {
@@ -11,7 +12,9 @@ public class LyricsTask extends AsyncTask<String, Void, AsyncTaskResult<String>>
 	private final OnLyricsLoadedCallback callback;
 
 	public interface OnLyricsLoadedCallback {
-		void onLyricsLoaded(@Nullable String  lyrics, @Nullable Exception e);
+		void onLyricsLoaded(String  lyrics);
+		void onLyricsNotFound();
+		void onConnectionError();
 	}
 
 	public LyricsTask(LyricsProvider provider, OnLyricsLoadedCallback callback) {
@@ -37,6 +40,16 @@ public class LyricsTask extends AsyncTask<String, Void, AsyncTaskResult<String>>
 
 	@Override
 	protected void onPostExecute(AsyncTaskResult<String> result) {
-		callback.onLyricsLoaded(result.getResult(), result.getException());
+		if (result.getException() instanceof LyricsNotFoundException) {
+			callback.onLyricsNotFound();
+			return;
+		}
+
+		if (result.getException() instanceof LyricsConnectionException) {
+			callback.onConnectionError();
+			return;
+		}
+
+		callback.onLyricsLoaded(result.getResult());
 	}
 }

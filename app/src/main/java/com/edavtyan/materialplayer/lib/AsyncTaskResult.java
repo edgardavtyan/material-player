@@ -6,8 +6,8 @@ import lombok.Getter;
 
 @Getter
 public class AsyncTaskResult<T> {
-	private @Nullable T result;
-	private @Nullable Exception exception;
+	private T result;
+	private Exception exception;
 
 	public AsyncTaskResult(@Nullable T result, @Nullable Exception exception) {
 		this.result = result;

@@ -1,8 +1,6 @@
 package com.edavtyan.materialplayer.ui.now_playing;
 
 import com.ed.libsutils.utils.Timer;
-import com.edavtyan.materialplayer.lib.lyrics.LyricsConnectionException;
-import com.edavtyan.materialplayer.lib.lyrics.LyricsNotFoundException;
 
 public class NowPlayingPresenter
 		implements NowPlayingModel.OnModelBoundListener,
@@ -114,20 +112,20 @@ public class NowPlayingPresenter
 		view.getControls().setIsPlaying(model.isPlaying());
 		seekbarTimer.run();
 
-		model.getLyrics((lyrics, e) -> {
-			if (e != null) {
-				if (e instanceof LyricsNotFoundException) {
-					view.displayLyricsNotFoundError();
-					return;
-				}
-
-				if (e instanceof LyricsConnectionException) {
-					view.displayLyricsConnectionError();
-					return;
-				}
-			} else {
-				assert lyrics != null;
+		model.getLyrics(new LyricsTask.OnLyricsLoadedCallback() {
+			@Override
+			public void onLyricsLoaded(String lyrics) {
 				view.setLyrics(lyrics);
+			}
+
+			@Override
+			public void onLyricsNotFound() {
+				view.displayLyricsNotFoundError();
+			}
+
+			@Override
+			public void onConnectionError() {
+				view.displayLyricsConnectionError();
 			}
 		});
 
