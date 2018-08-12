@@ -95,9 +95,9 @@ public class NowPlayingPresenter
 	public void onToggleLyricsClicked() {
 		model.toggleLyricsVisible();
 		if (model.isLyricsVisible()) {
-			view.hideLyrics();
-		} else {
 			view.showLyrics();
+		} else {
+			view.hideLyrics();
 		}
 	}
 
