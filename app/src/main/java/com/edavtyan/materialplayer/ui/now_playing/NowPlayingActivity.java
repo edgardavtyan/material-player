@@ -7,11 +7,8 @@ import android.support.design.widget.AppBarLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
@@ -30,6 +27,7 @@ import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingControls;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
+import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingLyrics;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
 
 import javax.inject.Inject;
@@ -54,18 +52,12 @@ public class NowPlayingActivity extends ModularActivity {
 	@Inject @Getter NowPlayingArt art;
 	@Inject @Getter NowPlayingSeekbar seekbar;
 	@Inject @Getter NowPlayingFab fab;
+	@Inject @Getter NowPlayingLyrics lyrics;
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
 	@BindView(R.id.shared_list) @Nullable ImageView listView;
 	@BindView(R.id.shared_list_background) @Nullable View listBackground;
-	@BindView(R.id.lyrics_wrapper) FrameLayout lyricsWrapper;
-	@BindView(R.id.lyricsbox) TextView lyricsView;
-	@BindView(R.id.lyricsScroller) ScrollView lyricsScrollerView;
-	@BindView(R.id.error_lyricsConnection) TextView lyricsConnectionErrorView;
-	@BindView(R.id.error_lyricsNotFound) TextView lyricsNotFoundErrorView;
-
-	private boolean isLyricsEnabled = true;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,8 +97,6 @@ public class NowPlayingActivity extends ModularActivity {
 				.exitLandscapeFadingViews(innerContainerView, fab.getView());
 		transitionManager.createSharedTransition(outputViewsBuilder.build());
 		transitionManager.beginEnterTransition(this, savedInstanceState);
-
-		lyricsScrollerView.setOnTouchListener((v, e) -> !isLyricsEnabled);
 	}
 
 	@Override
@@ -148,10 +138,6 @@ public class NowPlayingActivity extends ModularActivity {
 		navigator.gotoNowPlayingQueue(this);
 	}
 
-	public void setLyrics(String lyrics) {
-		lyricsView.setText(lyrics);
-	}
-
 	protected NowPlayingDIComponent getComponent() {
 		return DaggerNowPlayingDIComponent
 				.builder()
@@ -159,27 +145,5 @@ public class NowPlayingActivity extends ModularActivity {
 				.nowPlayingDIModule(new NowPlayingDIModule(this))
 				.activityModulesDIModule(new ActivityModulesDIModule(R.string.nowplaying_toolbar_title))
 				.build();
-	}
-
-	public void hideLyrics() {
-		lyricsWrapper.animate().alpha(0f);
-		isLyricsEnabled = false;
-	}
-
-	public void showLyrics() {
-		lyricsWrapper.animate().alpha(1f);
-		isLyricsEnabled = true;
-	}
-
-	public void displayLyricsNotFoundError() {
-		lyricsScrollerView.setVisibility(View.INVISIBLE);
-		lyricsConnectionErrorView.setVisibility(View.INVISIBLE);
-		lyricsNotFoundErrorView.setVisibility(View.VISIBLE);
-	}
-
-	public void displayLyricsConnectionError() {
-		lyricsScrollerView.setVisibility(View.INVISIBLE);
-		lyricsNotFoundErrorView.setVisibility(View.INVISIBLE);
-		lyricsConnectionErrorView.setVisibility(View.VISIBLE);
 	}
 }

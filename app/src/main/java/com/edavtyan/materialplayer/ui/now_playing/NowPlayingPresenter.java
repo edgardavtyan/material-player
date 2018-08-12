@@ -95,9 +95,9 @@ public class NowPlayingPresenter
 	public void onToggleLyricsClicked() {
 		model.toggleLyricsVisible();
 		if (model.isLyricsVisible()) {
-			view.showLyrics();
+			view.getLyrics().show();
 		} else {
-			view.hideLyrics();
+			view.getLyrics().hide();
 		}
 	}
 
@@ -115,24 +115,24 @@ public class NowPlayingPresenter
 		model.getLyrics(new LyricsTask.OnLyricsLoadedCallback() {
 			@Override
 			public void onLyricsLoaded(String lyrics) {
-				view.setLyrics(lyrics);
+				view.getLyrics().setLyrics(lyrics);
 			}
 
 			@Override
 			public void onLyricsNotFound() {
-				view.displayLyricsNotFoundError();
+				view.getLyrics().displayNotFoundError();
 			}
 
 			@Override
 			public void onConnectionError() {
-				view.displayLyricsConnectionError();
+				view.getLyrics().displayConnectionError();
 			}
 		});
 
 		if (model.isLyricsVisible()) {
-			view.showLyrics();
+			view.getLyrics().show();
 		} else {
-			view.hideLyrics();
+			view.getLyrics().hide();
 		}
 	}
 }

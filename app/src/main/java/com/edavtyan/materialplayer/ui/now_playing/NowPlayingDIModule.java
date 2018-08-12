@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingControls;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
+import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingLyrics;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
@@ -83,6 +84,12 @@ public class NowPlayingDIModule {
 			NowPlayingActivity activity,
 			NowPlayingPresenter presenter) {
 		return new NowPlayingSeekbar(activity, presenter);
+	}
+
+	@Provides
+	@ActivityScope
+	public NowPlayingLyrics provideLyricsPartial(NowPlayingActivity activity) {
+		return new NowPlayingLyrics(activity);
 	}
 
 	@Provides
