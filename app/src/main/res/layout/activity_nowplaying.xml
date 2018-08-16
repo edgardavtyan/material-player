@@ -62,7 +62,7 @@
 									android:layout_height="wrap_content"
 									android:padding="@dimen/spacing_medium"
 									android:textColor="?textColorContrastPrimary"
-									android:textSize="@dimen/font_medium"
+									android:textSize="@dimen/font_normal"
 									android:shadowDx="1"
 									android:shadowDy="1"
 									android:shadowRadius="2"
