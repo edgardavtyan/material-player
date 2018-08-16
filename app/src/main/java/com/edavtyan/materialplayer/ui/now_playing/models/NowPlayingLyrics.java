@@ -52,4 +52,8 @@ public class NowPlayingLyrics {
 		lyricsNotFoundErrorView.setVisibility(View.INVISIBLE);
 		lyricsConnectionErrorView.setVisibility(View.VISIBLE);
 	}
+
+	public View getWrapper() {
+		return lyricsWrapper;
+	}
 }

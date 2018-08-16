@@ -92,8 +92,8 @@ public class NowPlayingActivity extends ModularActivity {
 		}
 
 		outputViewsBuilder
-				.enterFadingViews(innerContainerView, appbar, fab.getView())
-				.exitPortraitFadingViews(innerContainerView, appbar, fab.getView())
+				.enterFadingViews(innerContainerView, appbar, fab.getView(), lyrics.getWrapper())
+				.exitPortraitFadingViews(innerContainerView, appbar, fab.getView(), lyrics.getWrapper())
 				.exitLandscapeFadingViews(innerContainerView, fab.getView());
 		transitionManager.createSharedTransition(outputViewsBuilder.build());
 		transitionManager.beginEnterTransition(this, savedInstanceState);
