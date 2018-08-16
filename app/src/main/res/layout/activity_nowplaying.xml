@@ -169,13 +169,13 @@
 							>
 
 							<ScrollView
-								android:id="@+id/lyricsScroller"
+								android:id="@+id/lyrics_scroller"
 								android:layout_width="match_parent"
 								android:layout_height="match_parent"
 								>
 
 								<TextView
-									android:id="@+id/lyricsbox"
+									android:id="@+id/lyrics_text"
 									android:layout_width="match_parent"
 									android:layout_height="wrap_content"
 									android:padding="@dimen/spacing_medium"

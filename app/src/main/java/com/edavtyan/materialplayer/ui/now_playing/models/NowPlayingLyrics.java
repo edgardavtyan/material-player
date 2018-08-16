@@ -15,8 +15,8 @@ import lombok.Getter;
 
 public class NowPlayingLyrics {
 	@BindView(R.id.lyrics_wrapper) @Getter FrameLayout wrapperView;
-	@BindView(R.id.lyricsbox) TextView textboxView;
-	@BindView(R.id.lyricsScroller) ScrollView scrollerView;
+	@BindView(R.id.lyrics_text) TextView textboxView;
+	@BindView(R.id.lyrics_scroller) ScrollView scrollerView;
 	@BindView(R.id.error_lyricsConnection) TextView connectionErrorView;
 	@BindView(R.id.error_lyricsNotFound) TextView notFoundErrorView;
 
