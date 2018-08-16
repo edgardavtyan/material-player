@@ -11,49 +11,46 @@ import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Getter;
 
 public class NowPlayingLyrics {
-	@BindView(R.id.lyrics_wrapper) FrameLayout lyricsWrapper;
-	@BindView(R.id.lyricsbox) TextView lyricsView;
-	@BindView(R.id.lyricsScroller) ScrollView lyricsScrollerView;
-	@BindView(R.id.error_lyricsConnection) TextView lyricsConnectionErrorView;
-	@BindView(R.id.error_lyricsNotFound) TextView lyricsNotFoundErrorView;
+	@BindView(R.id.lyrics_wrapper) @Getter FrameLayout wrapperView;
+	@BindView(R.id.lyricsbox) TextView textboxView;
+	@BindView(R.id.lyricsScroller) ScrollView scrollerView;
+	@BindView(R.id.error_lyricsConnection) TextView connectionErrorView;
+	@BindView(R.id.error_lyricsNotFound) TextView notFoundErrorView;
 
-	private boolean isLyricsEnabled = true;
+	private boolean isEnabled = true;
 
 	@SuppressLint("ClickableViewAccessibility")
 	public NowPlayingLyrics(NowPlayingActivity activity) {
 		ButterKnife.bind(this, activity);
-		lyricsScrollerView.setOnTouchListener((v, e) -> !isLyricsEnabled);
+		scrollerView.setOnTouchListener((v, e) -> !isEnabled);
 	}
 
 	public void setLyrics(String lyrics) {
-		lyricsView.setText(lyrics);
+		textboxView.setText(lyrics);
 	}
 
 	public void hide() {
-		lyricsWrapper.animate().alpha(0f);
-		isLyricsEnabled = false;
+		wrapperView.animate().alpha(0f);
+		isEnabled = false;
 	}
 
 	public void show() {
-		lyricsWrapper.animate().alpha(1f);
-		isLyricsEnabled = true;
+		wrapperView.animate().alpha(1f);
+		isEnabled = true;
 	}
 
 	public void displayNotFoundError() {
-		lyricsScrollerView.setVisibility(View.INVISIBLE);
-		lyricsConnectionErrorView.setVisibility(View.INVISIBLE);
-		lyricsNotFoundErrorView.setVisibility(View.VISIBLE);
+		scrollerView.setVisibility(View.INVISIBLE);
+		connectionErrorView.setVisibility(View.INVISIBLE);
+		notFoundErrorView.setVisibility(View.VISIBLE);
 	}
 
 	public void displayConnectionError() {
-		lyricsScrollerView.setVisibility(View.INVISIBLE);
-		lyricsNotFoundErrorView.setVisibility(View.INVISIBLE);
-		lyricsConnectionErrorView.setVisibility(View.VISIBLE);
-	}
-
-	public View getWrapper() {
-		return lyricsWrapper;
+		scrollerView.setVisibility(View.INVISIBLE);
+		notFoundErrorView.setVisibility(View.INVISIBLE);
+		connectionErrorView.setVisibility(View.VISIBLE);
 	}
 }
