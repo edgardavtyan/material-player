@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.lib.album_art;
 
 import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
@@ -22,23 +23,29 @@ public class AlbumArtProvider {
 		this.bitmapFactory = bitmapFactory;
 	}
 
+	@Nullable
 	public Bitmap load(Track track) {
-		int albumId = track.getAlbumId();
+		int trackId = track.getId();
 
-		if (memoryCache.contains(albumId)) {
-			return memoryCache.get(albumId);
+		if (memoryCache.contains(trackId)) {
+			return memoryCache.get(trackId);
 		}
 
-		if (dataStorage.exists(albumId)) {
-			Bitmap image = dataStorage.load(albumId);
-			memoryCache.put(albumId, image);
+		if (dataStorage.exists(trackId)) {
+			Bitmap image = dataStorage.load(trackId);
+			memoryCache.put(trackId, image);
 			return image;
 		}
 
 		byte[] imageBytes = artReader.getAlbumArtBytes(track.getPath());
+
+		if (imageBytes == null) {
+			return null;
+		}
+
 		Bitmap image = bitmapFactory.fromByteArray(imageBytes);
-		dataStorage.saveBytes(albumId, imageBytes);
-		memoryCache.put(albumId, image);
+		dataStorage.saveBytes(trackId, imageBytes);
+		memoryCache.put(trackId, image);
 		return image;
 	}
 }

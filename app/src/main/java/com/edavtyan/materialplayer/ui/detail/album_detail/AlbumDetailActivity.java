@@ -69,7 +69,7 @@ public class AlbumDetailActivity
 		setInfo(artistTitle, portraitBottomInfo, landscapeInfo);
 	}
 
-	public void setAlbumImage(Bitmap image) {
+	public void setAlbumImage(@Nullable Bitmap image) {
 		setImage(image, R.drawable.fallback_cover);
 	}
 

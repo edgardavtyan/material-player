@@ -168,7 +168,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 		}
 	}
 
-	public void setArt(Bitmap art, @DrawableRes int fallback) {
+	public void setArt(@Nullable Bitmap art, @DrawableRes int fallback) {
 		if (art != null) {
 			if (WindowUtils.isPortrait(activity)) {
 				assert sharedArtExitView != null;

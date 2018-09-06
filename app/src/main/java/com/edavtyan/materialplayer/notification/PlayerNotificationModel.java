@@ -69,6 +69,7 @@ public class PlayerNotificationModel
 		return service.getPlayer().getCurrentTrack();
 	}
 
+	@Nullable
 	public Bitmap getArt() {
 		return albumArtProvider.load(getTrack());
 	}

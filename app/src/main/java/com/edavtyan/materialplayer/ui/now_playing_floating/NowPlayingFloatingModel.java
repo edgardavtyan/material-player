@@ -58,6 +58,7 @@ public class NowPlayingFloatingModel
 		return service.getPlayer().getCurrentTrack();
 	}
 
+	@Nullable
 	public Bitmap getNowPlayingTrackArt() {
 		return albumArtProvider.load(getNowPlayingTrack());
 	}

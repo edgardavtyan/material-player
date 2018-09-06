@@ -40,6 +40,7 @@ public class AlbumDetailModel extends TrackListModel {
 		return albumDB.getAlbumWithAlbumId(albumId);
 	}
 
+	@Nullable
 	public Bitmap getAlbumArt() {
 		return albumArtProvider.load(getTrackAtIndex(0));
 	}

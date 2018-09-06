@@ -109,7 +109,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 		infoView.setText(info);
 	}
 
-	public void setArt(Bitmap art) {
+	public void setArt(@Nullable Bitmap art) {
 		if (art != null) {
 			int scaledArtSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 			Bitmap scaledArt = BitmapResizer.resize(art, scaledArtSize);

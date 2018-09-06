@@ -124,6 +124,7 @@ public class NowPlayingModel
 		return service.getPlayer().getCurrentTrack().getAlbumTitle();
 	}
 
+	@Nullable
 	public Bitmap getArt() {
 		return albumArtProvider.load(service.getPlayer().getCurrentTrack());
 	}

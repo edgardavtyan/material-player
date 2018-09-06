@@ -51,7 +51,7 @@ public abstract class ParallaxHeaderListActivity
 		parallaxListModule.setInfo(portraitTopInfo, portraitBottomInfo, landscapeInfo);
 	}
 
-	public void setImage(Bitmap image, @DrawableRes int fallback) {
+	public void setImage(@Nullable Bitmap image, @DrawableRes int fallback) {
 		parallaxListModule.setArt(image, fallback);
 	}
 

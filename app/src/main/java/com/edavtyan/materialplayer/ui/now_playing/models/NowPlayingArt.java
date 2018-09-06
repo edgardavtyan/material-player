@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.now_playing.models;
 
 import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.R;
@@ -18,7 +19,7 @@ public class NowPlayingArt {
 		ButterKnife.bind(this, activity);
 	}
 
-	public void setArt(Bitmap art) {
+	public void setArt(@Nullable Bitmap art) {
 		if (art != null) {
 			artView.setImageBitmap(art);
 			sharedArtView.setImageBitmap(art);
