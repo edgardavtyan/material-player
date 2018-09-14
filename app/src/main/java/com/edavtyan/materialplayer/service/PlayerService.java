@@ -6,15 +6,10 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Binder;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-import com.edavtyan.materialplayer.lib.replaygain.ReplayGainEnabledPref;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainManager;
-import com.edavtyan.materialplayer.lib.replaygain.ReplayGainPreampPref;
-import com.edavtyan.materialplayer.lib.replaygain.ReplayGainReader;
 import com.edavtyan.materialplayer.notification.PlayerNotification;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.player.Player;
@@ -55,10 +50,9 @@ public class PlayerService extends Service {
 	@Inject @Getter @Nullable Amplifier amplifier;
 	@Inject AudioFocusManager audioFocusManager;
 	@Inject MediaSessionManager mediaSessionManager;
+	@Inject ReplayGainManager rgManager;
 	@Inject PlayerNotification notification;
 	@Inject PlayerNotificationPresenter presenter;
-
-	private ReplayGainManager rgManager;
 
 	@Inject AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
 	@Inject CloseReceiver closeReceiver;
@@ -96,9 +90,6 @@ public class PlayerService extends Service {
 		audioFocusManager.requestFocus();
 		mediaSessionManager.init();
 		presenter.onCreate();
-
-		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(this));
-		rgManager = new ReplayGainManager(player, amplifier, new ReplayGainReader(), new ReplayGainEnabledPref(this, prefs), new ReplayGainPreampPref(this, prefs));
 	}
 
 	@Override
