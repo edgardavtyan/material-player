@@ -6,7 +6,7 @@
 	<bool name="pref_replaygain_enabled_default">false</bool>
 
 	<string name="pref_replaygain_gain_key">replaygain_gain</string>
-	<string name="pref_replaygain_gain_title">Gain</string>
+	<string name="pref_replaygain_gain_title">Preamp</string>
 	<string name="pref_replaygain_gain_format">%.1f dB</string>
 	<integer name="pref_replaygain_gain_default">0</integer>
 	<integer name="pref_replaygain_gain_max">200</integer>
