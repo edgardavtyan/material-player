@@ -9,39 +9,45 @@ public class ReplayGainManager {
 	private final ReplayGainReader rgReader;
 	private final ReplayGainPrefs prefs;
 
-	private ReplayGainData rgGain;
+	private ReplayGainData rgData;
 
-	@SuppressWarnings("FieldCanBeLocal")
-	private final Player.OnNewTrackListener onNewTrackListener = this::apply;
-
-	@SuppressWarnings("FieldCanBeLocal")
-	private final ReplayGainPrefs.OnEnabledChanged onEnabledPrefChangedListener = enabled -> {
-		if (enabled) {
+	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda", "Anonymous2MethodRef"})
+	private final Player.OnNewTrackListener onNewTrackListener
+			= new Player.OnNewTrackListener() {
+		@Override
+		public void onNewTrack() {
 			apply();
-		} else {
-			disable();
 		}
 	};
 
-	@SuppressWarnings("FieldCanBeLocal")
-	private final ReplayGainPrefs.OnAlbumUsedChanged onAlbumPrefChangedListener = albumGainUsed -> {
-		if ((this).prefs.getEnabled()) {
-			if ((this).prefs.isAlbumGainUsed()) {
-				(this).amplifier.setGain(rgGain.getAlbumRG() + (this).prefs.getPreamp());
+	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
+	private final ReplayGainPrefs.OnEnabledChanged onEnabledPrefChangedListener
+			= new ReplayGainPrefs.OnEnabledChanged() {
+		@Override
+		public void onEnabledChanged(boolean enabled) {
+			if (enabled) {
+				apply();
 			} else {
-				(this).amplifier.setGain(rgGain.getTrackRG() + (this).prefs.getPreamp());
+				disable();
 			}
 		}
 	};
 
-	@SuppressWarnings("FieldCanBeLocal")
-	private final ReplayGainPrefs.OnPreampChanged onPreampPrefChangedListener = preamp -> {
-		if ((this).prefs.getEnabled()) {
-			if ((this).prefs.isAlbumGainUsed()) {
-				(this).amplifier.setGain(rgGain.getAlbumRG() + preamp);
-			} else {
-				(this).amplifier.setGain(rgGain.getTrackRG() + preamp);
-			}
+	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
+	private final ReplayGainPrefs.OnAlbumUsedChanged onAlbumPrefChangedListener
+			= new ReplayGainPrefs.OnAlbumUsedChanged() {
+		@Override
+		public void onAlbumUsedChanged(boolean albumGainUsed) {
+			reapply();
+		}
+	};
+
+	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
+	private final ReplayGainPrefs.OnPreampChanged onPreampPrefChangedListener
+			= new ReplayGainPrefs.OnPreampChanged() {
+		@Override
+		public void onPreampChanged(double preamp) {
+			reapply();
 		}
 	};
 
@@ -58,19 +64,21 @@ public class ReplayGainManager {
 		this.prefs.setOnEnabledChangedListener(onEnabledPrefChangedListener);
 		this.prefs.setOnPreampChangedListener(onPreampPrefChangedListener);
 		this.prefs.setOnAlbumUsedChangedListener(onAlbumPrefChangedListener);
+		apply();
 	}
 
 	private void apply() {
-		if (!prefs.getEnabled()) {
-			return;
+		if (prefs.getEnabled()) {
+			rgData = rgReader.read(player.getCurrentTrack().getPath());
+			double rgGain = prefs.isAlbumGainUsed() ? rgData.getAlbumRG() : rgData.getTrackRG();
+			amplifier.setGain(rgGain + prefs.getPreamp());
 		}
+	}
 
-		rgGain = rgReader.read(player.getCurrentTrack().getPath());
-
-		if (prefs.isAlbumGainUsed()) {
-			amplifier.setGain(rgGain.getAlbumRG() + prefs.getPreamp());
-		} else {
-			amplifier.setGain(rgGain.getTrackRG() + prefs.getPreamp());
+	private void reapply() {
+		if (prefs.getEnabled()) {
+			double rgGain = prefs.isAlbumGainUsed() ? rgData.getAlbumRG() : rgData.getTrackRG();
+			amplifier.setGain(rgGain + prefs.getPreamp());
 		}
 	}
 

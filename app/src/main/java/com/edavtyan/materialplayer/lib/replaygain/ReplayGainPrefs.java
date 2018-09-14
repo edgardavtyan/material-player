@@ -55,8 +55,8 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 		return prefs.getBoolean(rgAlbumKey, rgAlbumDefault);
 	}
 
-	public int getPreamp() {
-		return prefs.getInt(rgPreampKey, rgPreampDefault);
+	public double getPreamp() {
+		return (double) prefs.getInt(rgPreampKey, rgPreampDefault) / 10;
 	}
 
 	@Override
