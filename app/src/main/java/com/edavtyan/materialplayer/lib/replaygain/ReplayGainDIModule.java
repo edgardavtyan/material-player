@@ -19,9 +19,8 @@ public class ReplayGainDIModule {
 			Player player,
 			@Nullable Amplifier amplifier,
 			ReplayGainReader rgReader,
-			ReplayGainEnabledPref rgEnabledPref,
-			ReplayGainPreampPref rgPreampPref) {
-		return new ReplayGainManager(player, amplifier, rgReader, rgEnabledPref, rgPreampPref);
+			ReplayGainPrefs prefs) {
+		return new ReplayGainManager(player, amplifier, rgReader, prefs);
 	}
 
 	@Provides
@@ -32,13 +31,7 @@ public class ReplayGainDIModule {
 
 	@Provides
 	@PlayerServiceScope
-	public ReplayGainEnabledPref provideReplayGainEnabledPref(Context context, AdvancedSharedPrefs prefs) {
-		return new ReplayGainEnabledPref(context, prefs);
-	}
-
-	@Provides
-	@PlayerServiceScope
-	public ReplayGainPreampPref provideReplayGainPreampPref(Context context, AdvancedSharedPrefs prefs) {
-		return new ReplayGainPreampPref(context, prefs);
+	public ReplayGainPrefs provideReplayGainPrefs(Context context, AdvancedSharedPrefs prefs) {
+		return new ReplayGainPrefs(context, prefs);
 	}
 }
