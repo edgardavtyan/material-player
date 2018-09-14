@@ -22,15 +22,16 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10dp"
-
+		android:minHeight="40dp"
+		android:gravity="center_vertical"
 		>
 
 		<app.minimize.com.seek_bar_compat.SeekBarCompat
 			android:id="@+id/seekbar"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
 			android:layout_marginLeft="5dp"
+			android:layout_weight="1"
 			android:paddingTop="2dp"
 			/>
 
@@ -38,9 +39,9 @@
 			android:id="@+id/value_text"
 			android:layout_width="70dp"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
 			android:paddingRight="?listPreferredItemPaddingLeft"
 			android:gravity="right"
-			android:layout_gravity="center_vertical"
 			android:textColor="#000"
 			tools:text="1234"
 			/>
