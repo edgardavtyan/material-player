@@ -19,11 +19,19 @@ public class ReplayGainReader {
 			while (fields.hasNext()) {
 				TagField field = fields.next();
 				if (field.toString().toLowerCase().contains("replaygain_track_gain")) {
-					trackRG = parseRG(field.toString());
+					trackRG = parseRgMp3(field.toString());
+				}
+
+				if (field.getId().contains("replaygain_track_gain")) {
+					trackRG = parseRgM4a(field.toString());
 				}
 
 				if (field.toString().toLowerCase().contains("replaygain_album_gain")) {
-					albumRG = parseRG(field.toString());
+					albumRG = parseRgMp3(field.toString());
+				}
+
+				if (field.getId().contains("replaygain_album_gain")) {
+					albumRG = parseRgM4a(field.toString());
 				}
 			}
 		} catch (Exception ignored) {}
@@ -31,10 +39,14 @@ public class ReplayGainReader {
 		return new ReplayGainData(trackRG, albumRG);
 	}
 
-	private double parseRG(String rgRaw) {
+	private double parseRgMp3(String rgRaw) {
 		int rgStart = 43;
 		int rgEnd = rgRaw.indexOf(" dB");
 		double rg = Double.parseDouble(rgRaw.substring(rgStart, rgEnd));
 		return rg;
+	}
+
+	private double parseRgM4a(String rgRaw) {
+		return Double.parseDouble(rgRaw.replace(" dB", ""));
 	}
 }
