@@ -20,4 +20,6 @@ public class ReplayGainEnabledPref extends BooleanPref {
 	protected int getDefaultValueId() {
 		return R.bool.pref_replaygain_enabled_default;
 	}
+
+
 }

@@ -78,6 +78,18 @@
 					app:cp_defaultValue="@bool/pref_replaygain_enabled_default"
 					/>
 
+				<com.edavtyan.prefs.seekbar.SeekbarPreference
+					android:id="@+id/pref_rg_gain"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="@string/pref_replaygain_gain_key"
+					app:cp_title="@string/pref_replaygain_gain_title"
+					app:cp_defaultValue="@integer/pref_replaygain_gain_default"
+					app:cp_maxValue="@integer/pref_replaygain_gain_max"
+					app:cp_format="@string/pref_replaygain_gain_format"
+					app:cp_multiplier="@fraction/pref_replaygain_gain_multiplier"
+					/>
+
 			</com.edavtyan.prefs.category.PreferenceCategory>
 
 		</LinearLayout>

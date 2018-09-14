@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainEnabledPref;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainManager;
+import com.edavtyan.materialplayer.lib.replaygain.ReplayGainPreampPref;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainReader;
 import com.edavtyan.materialplayer.notification.PlayerNotification;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
@@ -97,7 +98,7 @@ public class PlayerService extends Service {
 		presenter.onCreate();
 
 		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(this));
-		rgManager = new ReplayGainManager(player, amplifier, new ReplayGainReader(), new ReplayGainEnabledPref(this, prefs));
+		rgManager = new ReplayGainManager(player, amplifier, new ReplayGainReader(), new ReplayGainEnabledPref(this, prefs), new ReplayGainPreampPref(this, prefs));
 	}
 
 	@Override

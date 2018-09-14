@@ -2,7 +2,14 @@
 <resources>
 
 	<string name="pref_replaygain_enabled_key">replaygain_enabled</string>
-	<string name="pref_replaygain_enabled_title">ReplayGain</string>
+	<string name="pref_replaygain_enabled_title">Enabled</string>
 	<bool name="pref_replaygain_enabled_default">false</bool>
+
+	<string name="pref_replaygain_gain_key">replaygain_gain</string>
+	<string name="pref_replaygain_gain_title">Gain</string>
+	<string name="pref_replaygain_gain_format">%.1f dB</string>
+	<integer name="pref_replaygain_gain_default">0</integer>
+	<integer name="pref_replaygain_gain_max">200</integer>
+	<fraction name="pref_replaygain_gain_multiplier">0.1</fraction>
 
 </resources>

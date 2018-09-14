@@ -26,6 +26,7 @@ dependencies {
 
     compile "com.android.support:appcompat-v7:${appcompat_version}"
     compile "com.android.support:recyclerview-v7:${appcompat_version}"
+    compile 'com.minimize.library:seekbar-compat:0.2.4'
 
     compileOnly "org.projectlombok:lombok:${lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
