@@ -9,6 +9,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.lib.replaygain.ReplayGainManager;
+import com.edavtyan.materialplayer.lib.replaygain.ReplayGainReader;
 import com.edavtyan.materialplayer.notification.PlayerNotification;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.player.Player;
@@ -52,6 +54,8 @@ public class PlayerService extends Service {
 	@Inject PlayerNotification notification;
 	@Inject PlayerNotificationPresenter presenter;
 
+	private ReplayGainManager rgManager;
+
 	@Inject AudioBecomingNoisyReceiver audioBecomingNoisyReceiver;
 	@Inject CloseReceiver closeReceiver;
 	@Inject HeadphonesConnectedReceiver headphonesConnectedReceiver;
@@ -59,6 +63,10 @@ public class PlayerService extends Service {
 	@Inject PlayPauseReceiver playPauseReceiver;
 	@Inject SkipToNextReceiver skipToNextReceiver;
 	@Inject SkipToPreviousReceiver skipToPreviousReceiver;
+
+	private Player.OnNewTrackListener onNewTrackListener = () -> {
+		rgManager.apply(player.getCurrentTrack().getPath());
+	};
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -88,6 +96,9 @@ public class PlayerService extends Service {
 		audioFocusManager.requestFocus();
 		mediaSessionManager.init();
 		presenter.onCreate();
+
+		rgManager = new ReplayGainManager(amplifier, new ReplayGainReader());
+		player.setOnNewTrackListener(onNewTrackListener);
 	}
 
 	@Override

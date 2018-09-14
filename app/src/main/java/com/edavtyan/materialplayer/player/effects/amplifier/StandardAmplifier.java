@@ -23,7 +23,7 @@ public class StandardAmplifier implements Amplifier {
 	}
 
 	@Override
-	public void setGain(int gain) {
+	public void setGain(double gain) {
 		amplifier.setTargetGain(deciToMilli(gain));
 	}
 
@@ -41,7 +41,7 @@ public class StandardAmplifier implements Amplifier {
 		return value / 100;
 	}
 
-	private int deciToMilli(int value) {
-		return value * 100;
+	private int deciToMilli(double value) {
+		return (int) (value * 100);
 	}
 }

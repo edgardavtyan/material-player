@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.player.effects.amplifier;
 
 public interface Amplifier {
 	int getGain();
-	void setGain(int gain);
+	void setGain(double gain);
 	int getMaxGain();
 	void saveSettings();
 }
