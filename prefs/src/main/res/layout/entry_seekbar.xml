@@ -22,6 +22,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10dp"
+
 		>
 
 		<app.minimize.com.seek_bar_compat.SeekBarCompat
@@ -30,14 +31,16 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:layout_marginLeft="5dp"
+			android:paddingTop="2dp"
 			/>
 
 		<TextView
 			android:id="@+id/value_text"
 			android:layout_width="70dp"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:paddingRight="?listPreferredItemPaddingLeft"
 			android:gravity="right"
+			android:layout_gravity="center_vertical"
 			android:textColor="#000"
 			tools:text="1234"
 			/>
