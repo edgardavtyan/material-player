@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
 
@@ -16,11 +15,10 @@ public class ReplayGainDIModule {
 	@Provides
 	@PlayerServiceScope
 	public ReplayGainManager provideReplayGainManager(
-			Player player,
 			@Nullable Amplifier amplifier,
 			ReplayGainReader rgReader,
 			ReplayGainPrefs prefs) {
-		return new ReplayGainManager(player, amplifier, rgReader, prefs);
+		return new ReplayGainManager(amplifier, rgReader, prefs);
 	}
 
 	@Provides

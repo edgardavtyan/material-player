@@ -17,6 +17,8 @@ public class Player
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
 
+	private ArrayList<PlayerPlugin> plugins;
+
 	public interface OnNewTrackListener {
 		void onNewTrack();
 	}
@@ -47,6 +49,12 @@ public class Player
 
 		onNewTrackListeners = new ArrayList<>();
 		onPlayPauseListeners = new ArrayList<>();
+		plugins = new ArrayList<>();
+	}
+
+	public void addPlugin(PlayerPlugin plugin) {
+		plugins.add(plugin);
+		plugin.onPlayerPluginConnected(this);
 	}
 
 	public void setOnNewTrackListener(OnNewTrackListener listener) {
@@ -196,6 +204,10 @@ public class Player
 	public void onPrepared() {
 		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
 			onNewTrackListener.onNewTrack();
+		}
+
+		for (PlayerPlugin plugin : plugins) {
+			plugin.onNewTrack(getCurrentTrack());
 		}
 	}
 

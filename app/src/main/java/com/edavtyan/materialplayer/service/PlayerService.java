@@ -90,6 +90,8 @@ public class PlayerService extends Service {
 		audioFocusManager.requestFocus();
 		mediaSessionManager.init();
 		presenter.onCreate();
+
+		player.addPlugin(rgManager);
 	}
 
 	@Override
