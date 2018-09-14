@@ -31,7 +31,7 @@ public abstract class BasePreference extends LinearLayout {
 		setBackground(attrs.getDrawable(R.attr.selectableItemBackground));
 		setGravity(Gravity.CENTER_VERTICAL);
 
-		int height = attrs.getDimen(R.attr.listPreferredItemHeight);
+		int height = attrs.getDimen(R.attr.listPreferredItemHeightSmall);
 		setMinimumHeight(height);
 
 		int paddingLeft = attrs.getDimen(R.attr.listPreferredItemPaddingLeft);
