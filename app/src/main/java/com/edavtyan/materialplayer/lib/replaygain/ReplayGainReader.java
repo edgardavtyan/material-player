@@ -8,30 +8,33 @@ import java.io.File;
 import java.util.Iterator;
 
 public class ReplayGainReader {
-	public double read(String path) throws ReplayGainNotFoundException {
+	public ReplayGainData read(String path) {
+		double trackRG = 0;
+		double albumRG = 0;
+
 		try {
 			AudioFile f = AudioFileIO.read(new File(path));
 			Iterator<TagField> fields = f.getTag().getFields();
 
-			String rgRaw = "";
 			while (fields.hasNext()) {
 				TagField field = fields.next();
 				if (field.toString().toLowerCase().contains("replaygain_track_gain")) {
-					rgRaw = field.toString();
-					break;
+					trackRG = parseRG(field.toString());
+				}
+
+				if (field.toString().toLowerCase().contains("replaygain_album_gain")) {
+					albumRG = parseRG(field.toString());
 				}
 			}
-
-			if (rgRaw.isEmpty()) {
-				throw new ReplayGainNotFoundException();
-			}
-
-			int rgStart = 43;
-			int rgEnd = rgRaw.indexOf(" dB");
-			double rg = Double.parseDouble(rgRaw.substring(rgStart, rgEnd));
-			return rg;
 		} catch (Exception ignored) {}
 
-		return 0;
+		return new ReplayGainData(trackRG, albumRG);
+	}
+
+	private double parseRG(String rgRaw) {
+		int rgStart = 43;
+		int rgEnd = rgRaw.indexOf(" dB");
+		double rg = Double.parseDouble(rgRaw.substring(rgStart, rgEnd));
+		return rg;
 	}
 }

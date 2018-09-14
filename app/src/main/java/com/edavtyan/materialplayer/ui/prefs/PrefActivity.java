@@ -28,6 +28,7 @@ public class PrefActivity extends ModularActivity {
 	@BindView(R.id.pref_resume) CheckboxPreference resumePrefView;
 	@BindView(R.id.pref_primary_color) ColorSelectionPreference primaryColorPrefView;
 	@BindView(R.id.pref_rg_enabled) CheckboxPreference rgEnabledPrefView;
+	@BindView(R.id.pref_rg_album) CheckboxPreference rgAlbumPrefView;
 	@BindView(R.id.pref_rg_gain) SeekbarPreference rgGainPrefView;
 
 	@Inject ActivityToolbarModule toolbarModule;
@@ -56,6 +57,7 @@ public class PrefActivity extends ModularActivity {
 		resumePrefView.setCheckBoxColor(colors.getColorPrimary());
 		primaryColorPrefView.setDialogButtonsColor(colors.getColorPrimary());
 		rgEnabledPrefView.setCheckBoxColor(colors.getColorPrimary());
+		rgAlbumPrefView.setCheckBoxColor(colors.getColorPrimary());
 		rgGainPrefView.setColor(colors.getColorPrimary());
 	}
 

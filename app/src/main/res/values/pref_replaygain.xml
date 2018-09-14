@@ -5,6 +5,10 @@
 	<string name="pref_replaygain_enabled_title">Enabled</string>
 	<bool name="pref_replaygain_enabled_default">false</bool>
 
+	<string name="pref_replaygain_album_key">replaygain_album</string>
+	<string name="pref_replaygain_album_title">Use album gain</string>
+	<bool name="pref_replaygain_album_default">false</bool>
+
 	<string name="pref_replaygain_gain_key">replaygain_gain</string>
 	<string name="pref_replaygain_gain_title">Preamp</string>
 	<string name="pref_replaygain_gain_format">%.1f dB</string>
