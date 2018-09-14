@@ -23,8 +23,10 @@ import butterknife.ButterKnife;
 public class PrefActivity extends ModularActivity {
 	@BindView(R.id.pref_category_appearance) PreferenceCategory appearanceCategoryView;
 	@BindView(R.id.pref_category_playback) PreferenceCategory playbackCategoryView;
+	@BindView(R.id.pref_category_rg) PreferenceCategory rgCategoryView;
 	@BindView(R.id.pref_resume) CheckboxPreference resumePrefView;
 	@BindView(R.id.pref_primary_color) ColorSelectionPreference primaryColorPrefView;
+	@BindView(R.id.pref_rg_enabled) CheckboxPreference rgEnabledPrefView;
 
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
@@ -48,8 +50,10 @@ public class PrefActivity extends ModularActivity {
 		super.onThemeChanged(colors);
 		appearanceCategoryView.setTextColor(colors.getColorPrimary());
 		playbackCategoryView.setTextColor(colors.getColorPrimary());
+		rgCategoryView.setTextColor(colors.getColorPrimary());
 		resumePrefView.setCheckBoxColor(colors.getColorPrimary());
 		primaryColorPrefView.setDialogButtonsColor(colors.getColorPrimary());
+		rgEnabledPrefView.setCheckBoxColor(colors.getColorPrimary());
 	}
 
 	protected PrefDIComponent getComponent() {

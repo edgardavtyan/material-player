@@ -61,6 +61,25 @@
 
 			</com.edavtyan.prefs.category.PreferenceCategory>
 
+			<com.edavtyan.prefs.category.PreferenceCategory
+				android:id="@+id/pref_category_rg"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:cp_title="ReplayGain"
+				app:cp_color="?prefCategoryTitleColor"
+				>
+
+				<com.edavtyan.prefs.checkbox.CheckboxPreference
+					android:id="@+id/pref_rg_enabled"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="@string/pref_replaygain_enabled_key"
+					app:cp_title="@string/pref_replaygain_enabled_title"
+					app:cp_defaultValue="@bool/pref_replaygain_enabled_default"
+					/>
+
+			</com.edavtyan.prefs.category.PreferenceCategory>
+
 		</LinearLayout>
 
 	</ScrollView>

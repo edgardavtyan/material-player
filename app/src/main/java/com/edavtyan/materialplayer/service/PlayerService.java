@@ -6,9 +6,12 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Binder;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.lib.replaygain.ReplayGainEnabledPref;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainManager;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainReader;
 import com.edavtyan.materialplayer.notification.PlayerNotification;
@@ -64,10 +67,6 @@ public class PlayerService extends Service {
 	@Inject SkipToNextReceiver skipToNextReceiver;
 	@Inject SkipToPreviousReceiver skipToPreviousReceiver;
 
-	private Player.OnNewTrackListener onNewTrackListener = () -> {
-		rgManager.apply(player.getCurrentTrack().getPath());
-	};
-
 	@Override
 	public IBinder onBind(Intent intent) {
 		return new PlayerBinder();
@@ -97,8 +96,8 @@ public class PlayerService extends Service {
 		mediaSessionManager.init();
 		presenter.onCreate();
 
-		rgManager = new ReplayGainManager(amplifier, new ReplayGainReader());
-		player.setOnNewTrackListener(onNewTrackListener);
+		AdvancedSharedPrefs prefs = new AdvancedSharedPrefs(PreferenceManager.getDefaultSharedPreferences(this));
+		rgManager = new ReplayGainManager(player, amplifier, new ReplayGainReader(), new ReplayGainEnabledPref(this, prefs));
 	}
 
 	@Override
