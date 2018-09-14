@@ -109,18 +109,6 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 		model.getSurround().saveSettings();
 	}
 
-	public void onAmplifierStrengthChanged(int gain) {
-		if (model.getAmplifier() != null) {
-			model.getAmplifier().setGain(gain);
-		}
-	}
-
-	public void onAmplifierStrengthStopChanging() {
-		if (model.getAmplifier() != null) {
-			model.getAmplifier().saveSettings();
-		}
-	}
-
 	public void onServiceConnected(PlayerService service) {
 		if (model.getEqualizer().isSupported()) {
 
@@ -149,12 +137,6 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 			view.initSurround(
 					model.getSurround().getMaxStrength(),
 					model.getSurround().getStrength());
-		}
-
-		if (model.getAmplifier() != null) {
-			view.initAmplifier(
-					model.getAmplifier().getMaxGain(),
-					model.getAmplifier().getGain());
 		}
 	}
 }

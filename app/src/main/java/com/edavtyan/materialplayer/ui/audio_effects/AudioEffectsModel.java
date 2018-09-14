@@ -1,9 +1,6 @@
 package com.edavtyan.materialplayer.ui.audio_effects;
 
-import android.support.annotation.Nullable;
-
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-import com.edavtyan.materialplayer.player.effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.player.effects.bassboost.BassBoost;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.player.effects.surround.Surround;
@@ -41,10 +38,5 @@ public class AudioEffectsModel {
 
 	public Surround getSurround() {
 		return serviceModule.getService().getSurround();
-	}
-
-	@Nullable
-	public Amplifier getAmplifier() {
-		return serviceModule.getService().getAmplifier();
 	}
 }

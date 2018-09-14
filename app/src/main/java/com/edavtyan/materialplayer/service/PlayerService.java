@@ -47,7 +47,7 @@ public class PlayerService extends Service {
 	@Inject @Getter Equalizer equalizer;
 	@Inject @Getter Surround surround;
 	@Inject @Getter BassBoost bassBoost;
-	@Inject @Getter @Nullable Amplifier amplifier;
+	@Inject @Nullable Amplifier amplifier;
 	@Inject AudioFocusManager audioFocusManager;
 	@Inject MediaSessionManager mediaSessionManager;
 	@Inject ReplayGainManager rgManager;

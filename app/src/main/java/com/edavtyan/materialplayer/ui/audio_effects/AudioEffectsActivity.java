@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.ui.audio_effects;
 
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
@@ -13,11 +12,11 @@ import com.ed.libsutils.views.CustomSwitchCompat;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.NewPresetDialog;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetsSpinnerView;
 import com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerBandView;
@@ -43,7 +42,6 @@ public class AudioEffectsActivity
 	@BindView(R.id.preset_remove) Button deletePresetButton;
 	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
 	@BindView(R.id.surround) TitledSeekbar surroundView;
-	@BindView(R.id.amplifier) TitledSeekbar amplifierView;
 
 	@Inject ScreenThemeModule themeModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
@@ -80,12 +78,6 @@ public class AudioEffectsActivity
 		newPresetButton.setOnClickListener(onNewPresetClicked);
 		deletePresetButton.setOnClickListener(onDeletePresetClicked);
 
-		if (isAmplifierAvailable()) {
-			amplifierView.setOnProgressChangedListener(this);
-		} else {
-			amplifierView.setVisibility(View.GONE);
-		}
-
 		getComponent().inject(this);
 		addModule(baseMenuModule);
 		addModule(toolbarModule);
@@ -110,7 +102,6 @@ public class AudioEffectsActivity
 		equalizerView.setTint(colors.getColorPrimary());
 		bassBoostView.setTint(colors.getColorPrimary());
 		surroundView.setTint(colors.getColorPrimary());
-		amplifierView.setTint(colors.getColorPrimary());
 		newPresetDialog.setTint(colors.getColorPrimary());
 		presetsSpinner.setTint(colors.getColorPrimary());
 	}
@@ -168,12 +159,6 @@ public class AudioEffectsActivity
 		surroundView.setProgress(strength);
 	}
 
-	public void initAmplifier(int max, int gain) {
-		if (!isAmplifierAvailable()) return;
-		amplifierView.setMax(max);
-		amplifierView.setProgress(gain);
-	}
-
 	public void setCurrentEqualizerPreset(int presetIndex, Equalizer.PresetType presetType) {
 		presetsSpinner.selectPresetAt(presetIndex, presetType);
 	}
@@ -202,9 +187,6 @@ public class AudioEffectsActivity
 		case R.id.surround:
 			presenter.onSurroundStrengthChanged(progress);
 			break;
-		case R.id.amplifier:
-			presenter.onAmplifierStrengthChanged(progress);
-			break;
 		}
 	}
 
@@ -217,21 +199,14 @@ public class AudioEffectsActivity
 		case R.id.surround:
 			presenter.onSurroundStrengthStopChanging();
 			break;
-		case R.id.amplifier:
-			presenter.onAmplifierStrengthStopChanging();
-			break;
 		}
 	}
 
 	protected AudioEffectsComponent getComponent() {
 		return DaggerAudioEffectsComponent
 				.builder()
-				.appDIComponent(((App)getApplication()).getAppComponent())
+				.appDIComponent(((App) getApplication()).getAppComponent())
 				.audioEffectsFactory(new AudioEffectsFactory(this))
 				.build();
-	}
-
-	private boolean isAmplifierAvailable() {
-		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 	}
 }
