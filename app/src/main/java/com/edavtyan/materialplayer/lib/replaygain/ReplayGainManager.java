@@ -58,8 +58,10 @@ public class ReplayGainManager implements PlayerPlugin {
 
 	@Override
 	public void onPlayerPluginConnected(Player player) {
-		currentTrack = player.getCurrentTrack();
-		apply();
+		if (player.hasData()) {
+			currentTrack = player.getCurrentTrack();
+			apply();
+		}
 	}
 
 	@Override
