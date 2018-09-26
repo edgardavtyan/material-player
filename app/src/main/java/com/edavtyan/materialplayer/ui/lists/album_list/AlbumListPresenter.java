@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.ui.lists.album_list;
 
-import com.ed.libsutils.utils.Logger;
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
@@ -26,7 +25,6 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 
 	@Override
 	public int getItemCount() {
-		Logger.d(this, "Albums count: %d", model.getAlbumsCount());
 		return model.getAlbumsCount();
 	}
 
