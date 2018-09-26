@@ -3,26 +3,17 @@ package com.edavtyan.materialplayer.ui.detail.album_detail;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.support.test.rule.ActivityTestRule;
-import android.support.v4.util.Pair;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
 import static com.ed.libsutils.assertj.assertions.Assertions.assertThat;
-import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThatBundle;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
 
 @SuppressLint("StaticFieldLeak")
 public class AlbumDetailActivityTest extends BaseAlbumDetailActivityTest {
@@ -84,22 +75,5 @@ public class AlbumDetailActivityTest extends BaseAlbumDetailActivityTest {
 		Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
 		runOnUiThread(() -> activity.setAlbumImage(bitmap));
 		assertThat(artView).hasScaledImageBitmap(bitmap, 120);
-	}
-
-	@Test
-	public void go_to_now_playing_screen_via_navigator_in_portrait() {
-		ImageView artView = (ImageView) activity.findViewById(R.id.art);
-		RecyclerView list = (RecyclerView) activity.findViewById(R.id.list);
-		View listBackground = activity.findViewById(R.id.list_background);
-		SourceSharedViews sourceViews = new SourceSharedViews(
-				Pair.create(artView, "art"),
-				Pair.create(list, "list"),
-				Pair.create(listBackground, "listBackground"));
-
-		runOnUiThread(activity::gotoNowPlaying);
-
-		ArgumentCaptor<Bundle> bundleCaptor = ArgumentCaptor.forClass(Bundle.class);
-		verify(navigator).gotoNowPlaying(eq(activity), bundleCaptor.capture());
-		assertThatBundle(bundleCaptor.getValue()).isEqualTo(sourceViews.build());
 	}
 }

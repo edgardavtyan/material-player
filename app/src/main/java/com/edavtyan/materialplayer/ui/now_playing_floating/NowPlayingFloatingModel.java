@@ -46,6 +46,7 @@ public class NowPlayingFloatingModel
 	}
 
 	public void unbind() {
+		if (service == null) return;
 		service.getPlayer().removeOnNewTrackListener(this);
 		context.unbindService(this);
 	}

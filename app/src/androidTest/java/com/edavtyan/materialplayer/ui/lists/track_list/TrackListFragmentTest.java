@@ -8,17 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.Navigator;
 
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
-import static com.edavtyan.materialplayer.testlib.assertions.Assertions.assertThatBundle;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @SuppressWarnings("StaticFieldLeak")
 public class TrackListFragmentTest extends FragmentTest {
@@ -63,15 +58,5 @@ public class TrackListFragmentTest extends FragmentTest {
 		RecyclerView list = (RecyclerView) fragment.getView().findViewById(R.id.list);
 		assertThat(list.getAdapter()).isEqualTo(adapter);
 		assertThat(list.getLayoutManager()).isInstanceOf(LinearLayoutManager.class);
-	}
-
-	@Test
-	public void gotoNowPlaying_callNavigator() {
-		fragment.gotoNowPlaying();
-		SourceSharedViews sharedViews = new SourceSharedViews(getActivity());
-
-		ArgumentCaptor<Bundle> bundleCaptor = ArgumentCaptor.forClass(Bundle.class);
-		verify(navigator).gotoNowPlaying(eq(getActivity()), bundleCaptor.capture());
-		assertThatBundle(bundleCaptor.getValue()).isEqualTo(sharedViews.build());
 	}
 }

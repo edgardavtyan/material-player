@@ -1,16 +1,12 @@
 package com.edavtyan.materialplayer.ui.now_playing;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
@@ -37,8 +33,6 @@ import butterknife.ButterKnife;
 import lombok.Getter;
 
 public class NowPlayingActivity extends ModularActivity {
-	public static Bitmap listBitmap;
-
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ScreenThemeModule themeModule;
@@ -56,8 +50,6 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
-	@BindView(R.id.shared_list) @Nullable ImageView listView;
-	@BindView(R.id.shared_list_background) @Nullable View listBackground;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,26 +63,8 @@ public class NowPlayingActivity extends ModularActivity {
 		presenter.bind();
 
 		OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
-		if (WindowUtils.isPortrait(this)) {
-			assert listView != null;
-			assert listBackground != null;
-
-			listView.setImageBitmap(listBitmap);
-			outputViewsBuilder.sharedViewSets(
-					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()),
-					SharedViewSet.fading("list", listView)
-								 .enterDuration(200)
-								 .exitDuration(200)
-								 .exitDelay(300),
-					SharedViewSet.fading("listBackground", listBackground)
-								 .enterDuration(200)
-								 .exitDuration(200)
-								 .exitDelay(300));
-		} else {
-			outputViewsBuilder.sharedViewSets(
-					SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
-		}
-
+		outputViewsBuilder.sharedViewSets(
+				SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
 		outputViewsBuilder
 				.enterFadingViews(innerContainerView, appbar, fab.getView(), lyrics.getWrapperView())
 				.exitPortraitFadingViews(innerContainerView, appbar, fab.getView(), lyrics.getWrapperView())

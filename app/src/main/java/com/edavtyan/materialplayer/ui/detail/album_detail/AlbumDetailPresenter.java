@@ -12,14 +12,11 @@ public class AlbumDetailPresenter
 	private final AlbumDetailActivity activity;
 	private final AlbumDetailModel model;
 
-	private boolean wasHolderClicked;
-
 	public AlbumDetailPresenter(AlbumDetailModel model, AlbumDetailActivity activity) {
 		super(activity, model);
 		this.activity = activity;
 		this.model = model;
 		this.model.addOnNewTrackListener(this);
-		wasHolderClicked = false;
 	}
 
 	@Override
@@ -37,26 +34,16 @@ public class AlbumDetailPresenter
 
 	@Override
 	public void onHolderClick(int position) {
-		activity.disableTouchEvents();
 		model.playQueue(position);
-		wasHolderClicked = true;
 	}
 
 	@Override
 	public void onNewTrack() {
-		if (wasHolderClicked) {
-			wasHolderClicked = false;
-			activity.gotoNowPlaying();
-		}
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		model.removeOnNewTrackListener(this);
-	}
-
-	public void onEnterTransitionEnd() {
-		activity.enableTouchEvents();
 	}
 }

@@ -1,23 +1,18 @@
 package com.edavtyan.materialplayer.ui.detail.album_detail;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListActivity;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListView;
-import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,16 +35,11 @@ public class AlbumDetailActivity
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.list_background) @Nullable View listBackground;
 
-	private SourceSharedViews sharedViews;
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		getComponent().inject(this);
 		super.onCreate(savedInstanceState);
 		ButterKnife.bind(this);
-		if (sharedViews != null) {
-			transitionsManager.updateSourceViews(sharedViews);
-		}
 	}
 
 	public void setAlbumTitle(String albumTitle) {
@@ -73,21 +63,6 @@ public class AlbumDetailActivity
 		setImage(image, R.drawable.fallback_cover);
 	}
 
-	public void gotoNowPlaying() {
-		sharedViews = new SourceSharedViews(
-				Pair.create(artView, "art"),
-				Pair.create(list, "list"));
-		sharedViews.setOnExitAnimationEndListener(presenter::onEnterTransitionEnd);
-
-		if (WindowUtils.isPortrait(this)) {
-			NowPlayingActivity.listBitmap = viewToBitmap(list);
-			sharedViews.add(Pair.create(listBackground, "listBackground"));
-		}
-
-		transitionsManager.pushSourceViews(sharedViews);
-		navigator.gotoNowPlaying(this, sharedViews.build());
-	}
-
 	protected AlbumDetailDIComponent getComponent() {
 		int albumId = getIntent().getIntExtra(EXTRA_ALBUM_ID, -1);
 		return DaggerAlbumDetailDIComponent
@@ -95,13 +70,5 @@ public class AlbumDetailActivity
 				.appDIComponent(((App) getApplication()).getAppComponent())
 				.albumDetailDIModule(new AlbumDetailDIModule(this, albumId))
 				.build();
-	}
-
-	private Bitmap viewToBitmap(View view) {
-		view.requestLayout();
-		Bitmap viewBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_4444);
-		Canvas canvas = new Canvas(viewBitmap);
-		view.draw(canvas);
-		return viewBitmap;
 	}
 }

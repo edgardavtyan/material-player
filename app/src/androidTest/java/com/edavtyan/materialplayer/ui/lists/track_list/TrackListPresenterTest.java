@@ -47,12 +47,6 @@ public class TrackListPresenterTest extends BaseTest {
 		assertThat(presenter.getItemCount()).isEqualTo(9);
 	}
 
-	@Test
-	public void onHolderClick_callViewAndModel() {
-		presenter.onHolderClick(0);
-		verify(view).gotoNowPlaying();
-		verify(model).playQueue(0);
-	}
 
 	@Test
 	public void onAddToPlaylist_callModel() {

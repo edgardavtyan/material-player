@@ -27,9 +27,7 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 	}
 
 	public void onHolderClick(int position) {
-		view.disableTouchEvents();
 		model.playQueue(position);
-		view.gotoNowPlaying();
 	}
 
 	public void onAddToPlaylist(int position) {
