@@ -21,9 +21,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AlbumDetailActivity
-		extends ParallaxHeaderListActivity
-		implements TrackListView {
+public class AlbumDetailActivity extends ParallaxHeaderListActivity implements TrackListView {
 
 	public static final String EXTRA_ALBUM_ID = "extra_albumId";
 
@@ -47,15 +45,10 @@ public class AlbumDetailActivity
 	}
 
 	public void setAlbumInfo(String artistTitle, int tracksCount, long duration) {
-		String tracksCountStr = getResources().getQuantityString(
-				R.plurals.tracks, tracksCount, tracksCount);
 		long durationStr = TimeUnit.MILLISECONDS.toMinutes(duration);
-
-		String portraitBottomInfo = getString(
-				R.string.pattern_track_time_count, tracksCountStr, durationStr);
-		String landscapeInfo = getString(
-				R.string.pattern_album_info, artistTitle, tracksCountStr);
-
+		String tracksCountStr = getResources().getQuantityString(R.plurals.tracks, tracksCount, tracksCount);
+		String portraitBottomInfo = getString(R.string.pattern_track_time_count, tracksCountStr, durationStr);
+		String landscapeInfo = getString(R.string.pattern_album_info, artistTitle, tracksCountStr);
 		setInfo(artistTitle, portraitBottomInfo, landscapeInfo);
 	}
 
