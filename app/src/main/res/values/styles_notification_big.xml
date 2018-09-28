@@ -87,7 +87,6 @@
 	</style>
 
 	<style name="Notification_Big_ControlsContainer.Nougat">
-		<item name="android:layout_marginTop">@dimen/spacing_tiny</item>
 		<item name="android:paddingBottom">0dp</item>
 		<item name="android:paddingLeft">0dp</item>
 		<item name="android:paddingRight">0dp</item>
@@ -95,9 +94,9 @@
 
 	<style name="Notification_Big_Control">
 		<item name="android:layout_width">0dp</item>
-		<item name="android:layout_height">32dp</item>
+		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_weight">1</item>
-		<item name="android:layout_gravity">bottom</item>
+		<item name="android:layout_gravity">center</item>
 		<item name="android:background">@drawable/ripple_notification</item>
 		<item name="android:scaleType">fitCenter</item>
 		<item name="android:drawSelectorOnTop">true</item>
@@ -106,6 +105,7 @@
 	<style name="Notification_Big_Control.Nougat">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:background">@android:color/transparent</item>
+		<item name="android:padding">4dp</item>
 	</style>
 
 	<style name="Notification_Big_Control.Play_Pause">
@@ -113,7 +113,7 @@
 	</style>
 
 	<style name="Notification_Big_Control.Nougat.Play_Pause">
-		<item name="android:padding">2dp</item>
+		<item name="android:padding">6dp</item>
 	</style>
 
 </resources>
