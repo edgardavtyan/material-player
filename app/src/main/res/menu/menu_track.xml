@@ -2,8 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<item
+		android:id="@+id/menu_add_to_queue"
+		android:title="@string/menu_tracks_queue"
+		/>
+
+	<item
 		android:id="@+id/menu_add_to_playlist"
-		android:title="@string/menu_tracks_addToPlaylist"
+		android:title="@string/menu_tracks_playlist"
 		/>
 
 </menu>

@@ -2,7 +2,8 @@
 <resources>
 
 	<string name="menu_queue_remove">Remove from queue</string>
-	<string name="menu_tracks_addToPlaylist">Add to playlist</string>
+	<string name="menu_tracks_queue">Add to Queue</string>
+	<string name="menu_tracks_playlist">Add to Playlist</string>
 	<string name="menu_base_effects">Audio effects</string>
 	<string name="menu_base_settings">Settings</string>
 	<string name="menu_base_search">Search</string>

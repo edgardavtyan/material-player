@@ -40,6 +40,16 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 		ButterKnife.bind(this);
 	}
 
+	@Override
+	public void showAddToPlaylistDialog() {
+
+	}
+
+	@Override
+	public void showNewPlaylistDialog() {
+
+	}
+
 	public void setAlbumTitle(String albumTitle) {
 		setTitle(albumTitle);
 	}

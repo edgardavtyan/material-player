@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.search.tracks;
 
 import com.edavtyan.materialplayer.AppDIComponent;
+import com.edavtyan.materialplayer.lib.theme.ThemeableFragmentDIModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListDIModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesDIModule;
@@ -12,7 +13,8 @@ import dagger.Component;
 		   modules = {
 				   SearchTrackModule.class,
 				   TrackListDIModule.class,
-				   ModelModulesDIModule.class})
+				   ModelModulesDIModule.class,
+				   ThemeableFragmentDIModule.class})
 public interface SearchTrackComponent {
 	void inject(SearchTrackFragment fragment);
 }

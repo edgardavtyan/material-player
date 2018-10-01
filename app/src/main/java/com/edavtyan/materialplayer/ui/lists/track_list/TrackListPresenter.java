@@ -30,8 +30,16 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 		model.playQueue(position);
 	}
 
-	public void onAddToPlaylist(int position) {
+	public void onAddToQueue(int position) {
 		model.addToQueue(position);
+	}
+
+	public void onAddToPlaylist(int position) {
+		view.showAddToPlaylistDialog();
+	}
+
+	public void onCreateNewPlaylist() {
+		view.showNewPlaylistDialog();
 	}
 
 	@Override

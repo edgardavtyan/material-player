@@ -50,7 +50,7 @@ public class TrackListPresenterTest extends BaseTest {
 
 	@Test
 	public void onAddToPlaylist_callModel() {
-		presenter.onAddToPlaylist(0);
+		presenter.onAddToQueue(0);
 		verify(model).addToQueue(0);
 	}
 

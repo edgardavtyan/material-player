@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="playlist_add_track_dialog_title">Add track to playlist</string>
+	<string name="playlist_add_dialog_positive">Add</string>
+	<string name="playlist_new_button">New Playlist</string>
+	<string name="playlist_new_title">Create new playlist</string>
+	<string name="playlist_new_action">Create</string>
+
+</resources>

@@ -58,6 +58,9 @@ public class TrackListViewHolder
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.menu_add_to_queue:
+			presenter.onAddToQueue(getAdapterPositionNonFinal());
+			return true;
 		case R.id.menu_add_to_playlist:
 			presenter.onAddToPlaylist(getAdapterPositionNonFinal());
 			return true;

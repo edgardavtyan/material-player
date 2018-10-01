@@ -60,4 +60,9 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 				.trackListDIModule(new TrackListDIModule(getActivity(), this))
 				.build();
 	}
+
+	@Override
+	public void showNewPlaylistDialog() {
+
+	}
 }

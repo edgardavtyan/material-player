@@ -69,8 +69,8 @@ public class TrackListViewHolderTest extends BaseTest {
 	@Test
 	public void onMenuItemClick_addToPlaylistItemClicked_callPresenterWithCorrectPosition() {
 		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(2);
-		callMenuItemWithId(R.id.menu_add_to_playlist);
-		verify(presenter).onAddToPlaylist(2);
+		callMenuItemWithId(R.id.menu_add_to_queue);
+		verify(presenter).onAddToQueue(2);
 	}
 
 	private void callMenuItemWithId(@IdRes int id) {
