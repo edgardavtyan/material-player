@@ -17,6 +17,7 @@ import android.text.style.ImageSpan;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.ui.lists.album_list.AlbumListFragment;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListFragment;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistFragment;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListFragment;
 
 public class TabsAdapter extends FragmentPagerAdapter {
@@ -37,6 +38,8 @@ public class TabsAdapter extends FragmentPagerAdapter {
 			return new AlbumListFragment();
 		case 2:
 			return new TrackListFragment();
+		case 3:
+			return new PlaylistFragment();
 		default:
 			return null;
 		}
@@ -44,17 +47,16 @@ public class TabsAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return 3;
+		return 4;
 	}
 
 	@Override
 	public CharSequence getPageTitle(int position) {
 		SpannableStringBuilder stringBuilder = new SpannableStringBuilder(" ");
-
 		if (position == 0) setUpTabIcon(stringBuilder, R.drawable.ic_person);
 		if (position == 1) setUpTabIcon(stringBuilder, R.drawable.ic_album);
 		if (position == 2) setUpTabIcon(stringBuilder, R.drawable.ic_note);
-
+		if (position == 3) setUpTabIcon(stringBuilder, R.drawable.ic_play);
 		return stringBuilder;
 	}
 
