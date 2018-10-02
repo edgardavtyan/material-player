@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 
 import com.edavtyan.materialplayer.R;
@@ -18,24 +19,18 @@ public class PlaylistAddDialog extends BaseDialog {
 
 	private final PlaylistAddDialogListAdapter adapter;
 
-	public interface OnNewPlaylistClickListener {
-		void onNewPlaylistClick();
-	}
-
-	private @Setter OnNewPlaylistClickListener onNewPlaylistClickListener;
+	private @Setter PlaylistAddDialogViewHolder.OnClickListener onPlaylistClickListener;
+	private @Setter View.OnClickListener onNewPlaylistClickListener;
 
 	public PlaylistAddDialog(Context context) {
 		super(context);
 
 		adapter = new PlaylistAddDialogListAdapter(context);
+		adapter.setOnClickListener(p -> onPlaylistClickListener.onClick(p));
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(context));
 
-		newButton.setOnClickListener(v -> {
-			if (onNewPlaylistClickListener != null) {
-				onNewPlaylistClickListener.onNewPlaylistClick();
-			}
-		});
+		newButton.setOnClickListener(v -> onNewPlaylistClickListener.onClick(v));
 	}
 
 	public void show(String[] playlistNames) {

@@ -31,4 +31,8 @@ public abstract class GsonFileStorage {
 			return Collections.emptyList();
 		}
 	}
+
+	public String[] list() {
+		return stringStorage.list();
+	}
 }

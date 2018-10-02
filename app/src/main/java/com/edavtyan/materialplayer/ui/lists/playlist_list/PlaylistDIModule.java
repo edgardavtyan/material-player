@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -11,8 +13,8 @@ import dagger.Provides;
 public class PlaylistDIModule {
 	@Provides
 	@Singleton
-	public PlaylistStorage providePlaylistStorage(Context context) {
-		return new PlaylistStorage(context);
+	public PlaylistStorage providePlaylistStorage(Context context, Gson gson) {
+		return new PlaylistStorage(context, gson);
 	}
 
 	@Provides

@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
+import com.edavtyan.materialplayer.db.Track;
+
 public class PlaylistDialogPresenter {
 	private final PlaylistAddDialog addDialog;
 	private final PlaylistNewDialog newDialog;
@@ -10,28 +12,35 @@ public class PlaylistDialogPresenter {
 			PlaylistNewDialog newDialog,
 			PlaylistManager manager) {
 		this.addDialog = addDialog;
-		this.addDialog.setOnNewPlaylistClickListener(this::onNewPlaylistClick);
+		this.addDialog.setOnNewPlaylistClickListener(v -> this.onNewPlaylistClick());
+		this.addDialog.setOnPlaylistClickListener(this::onPlaylistSelected);
 		this.newDialog = newDialog;
 		this.newDialog.setOnConfirmListener(this::onNewPlaylistConfirm);
 		this.newDialog.setOnDismissListener(this::onNewPlaylistDismiss);
 		this.manager = manager;
 	}
 
-	public void onAddToPlaylistClick() {
+	public void onAddToPlaylistClick(Track track) {
+		manager.addPendingTracks(track);
 		addDialog.show(manager.list());
 	}
 
-	private void onNewPlaylistClick() {
+	public void onPlaylistSelected(int position) {
+		manager.confirmPendingTracks(position);
+		addDialog.close();
+	}
+
+	public void onNewPlaylistClick() {
 		addDialog.close();
 		newDialog.show();
 	}
 
-	private void onNewPlaylistConfirm(String playlistName) {
+	public void onNewPlaylistConfirm(String playlistName) {
 		manager.create(playlistName);
 		addDialog.show(manager.list());
 	}
 
-	private void onNewPlaylistDismiss() {
+	public void onNewPlaylistDismiss() {
 		addDialog.show(manager.list());
 	}
 }

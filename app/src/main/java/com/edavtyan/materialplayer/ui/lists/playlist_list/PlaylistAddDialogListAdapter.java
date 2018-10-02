@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 
 import com.edavtyan.materialplayer.R;
 
+import lombok.Setter;
+
 public class PlaylistAddDialogListAdapter
 		extends RecyclerView.Adapter<PlaylistAddDialogViewHolder> {
 
 	private final Context context;
+
+	private @Setter PlaylistAddDialogViewHolder.OnClickListener onClickListener;
 
 	private String[] items;
 
@@ -33,6 +37,7 @@ public class PlaylistAddDialogListAdapter
 	@Override
 	public void onBindViewHolder(PlaylistAddDialogViewHolder holder, int position) {
 		holder.setText(items[position]);
+		holder.setOnClickListener(p -> onClickListener.onClick(p));
 	}
 
 	@Override
