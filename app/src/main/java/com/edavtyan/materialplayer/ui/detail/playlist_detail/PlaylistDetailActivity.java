@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
@@ -27,6 +28,8 @@ public class PlaylistDetailActivity extends BaseActivity {
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ScreenThemeModule themeModule;
 
+	private ItemTouchHelper touchHelper;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,12 +40,24 @@ public class PlaylistDetailActivity extends BaseActivity {
 		addModule(themeModule);
 		ButterKnife.bind(this);
 
+		ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(adapter);
+		touchHelper = new ItemTouchHelper(callback);
+		touchHelper.attachToRecyclerView(list);
+
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 	}
 
 	public void notifyItemRemoved(int position) {
 		adapter.notifyItemRemoved(position);
+	}
+
+	public void notifyItemMoved(int fromPosition, int toPosition) {
+		adapter.notifyItemMoved(fromPosition, toPosition);
+	}
+
+	public void onHandleDrag(PlaylistDetailViewHolder holder) {
+		touchHelper.startDrag(holder);
 	}
 
 	private PlaylistDetailFactoryComponent getComponent() {

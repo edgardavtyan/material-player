@@ -42,4 +42,18 @@ public class PlaylistManager {
 		playlist.remove(position);
 		storage.save(playlistName, playlist);
 	}
+
+	public void moveTrack(String playlistName, int fromPosition, int toPosition) {
+		List<Track> playlist = storage.load(playlistName);
+		if (fromPosition < toPosition) {
+			for (int i = fromPosition; i < toPosition; i++) {
+				Collections.swap(playlist, i, i + 1);
+			}
+		} else {
+			for (int i = fromPosition; i > toPosition; i--) {
+				Collections.swap(playlist, i, i - 1);
+			}
+		}
+		storage.save(playlistName, playlist);
+	}
 }

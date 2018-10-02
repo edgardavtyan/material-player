@@ -10,7 +10,8 @@ public class PlaylistDetailPresenter implements ListPresenter<PlaylistDetailView
 	private final PlaylistDetailActivity view;
 	private final PlaylistManager manager;
 	private final String playlistName;
-	private final List<Track> playlistItems;
+
+	private List<Track> playlistItems;
 
 	public PlaylistDetailPresenter(
 			PlaylistManager manager,
@@ -46,5 +47,19 @@ public class PlaylistDetailPresenter implements ListPresenter<PlaylistDetailView
 		manager.removeTrack(playlistName, position);
 		playlistItems.remove(position);
 		view.notifyItemRemoved(position);
+	}
+
+	public void onItemDragDropMove(int fromPosition, int toPosition) {
+		manager.moveTrack(playlistName, fromPosition, toPosition);
+		playlistItems = manager.load(playlistName);
+		view.notifyItemMoved(fromPosition, toPosition);
+	}
+
+	public void onItemSwipeRemove(int position) {
+		onRemoveFromPlaylistMenuClick(position);
+	}
+
+	public void onHandleDrag(PlaylistDetailViewHolder holder) {
+		view.onHandleDrag(holder);
 	}
 }

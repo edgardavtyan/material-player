@@ -5,6 +5,14 @@
 	style="@style/ListItem2_Container"
 	>
 
+	<ImageView
+		android:id="@+id/handle"
+		android:layout_width="?listPreferredItemHeightSmall"
+		android:layout_height="?listPreferredItemHeightSmall"
+		android:padding="13dp"
+		android:src="@drawable/ic_reorder"
+		/>
+
 	<TextView
 		android:id="@+id/title"
 		tools:text="Track title"
