@@ -15,10 +15,14 @@ import com.edavtyan.materialplayer.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PlaylistDetailViewHolder extends RecyclerView.ViewHolder {
+public class PlaylistDetailViewHolder
+		extends RecyclerView.ViewHolder
+		implements ItemTouchHelperViewHolder {
+
 	@BindView(R.id.title) TextView textView;
 	@BindView(R.id.menu) ImageButton menuButton;
 	@BindView(R.id.handle) ImageView handle;
+	@BindView(R.id.background) View backgroundView;
 
 	private final PlaylistDetailPresenter presenter;
 
@@ -52,5 +56,15 @@ public class PlaylistDetailViewHolder extends RecyclerView.ViewHolder {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void onItemSelected() {
+		backgroundView.animate().alpha(1);
+	}
+
+	@Override
+	public void onItemClear() {
+		backgroundView.animate().alpha(0);
 	}
 }

@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/ListItem2_Container"
+	android:layout_width="match_parent"
+	android:layout_height="?listPreferredItemHeightSmall"
 	>
 
-	<ImageView
-		android:id="@+id/handle"
-		android:layout_width="?listPreferredItemHeightSmall"
-		android:layout_height="?listPreferredItemHeightSmall"
-		android:padding="13dp"
-		android:src="@drawable/ic_reorder"
+	<View
+		android:id="@+id/background"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#2000"
+		android:alpha="0"
 		/>
 
-	<TextView
-		android:id="@+id/title"
-		tools:text="Track title"
-		style="@style/ListItem2_Title"
-		/>
+	<LinearLayout style="@style/ListItem2_Container">
 
-	<ImageButton
-		android:id="@+id/menu"
-		android:contentDescription="@string/description_button_menu"
-		style="@style/ListItem2_Menu"
-		/>
+		<ImageView
+			android:id="@+id/handle"
+			android:layout_width="?listPreferredItemHeightSmall"
+			android:layout_height="?listPreferredItemHeightSmall"
+			android:padding="13dp"
+			android:src="@drawable/ic_reorder"
+			/>
 
-</LinearLayout>
+		<TextView
+			android:id="@+id/title"
+			tools:text="Track title"
+			style="@style/ListItem2_Title"
+			/>
+
+		<ImageButton
+			android:id="@+id/menu"
+			android:contentDescription="@string/description_button_menu"
+			style="@style/ListItem2_Menu"
+			/>
+
+	</LinearLayout>
+
+</FrameLayout>
