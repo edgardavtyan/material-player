@@ -22,7 +22,7 @@ public class SimpleListAdapter
 
 	@Override
 	public SimpleListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		View view = LayoutInflater.from(context).inflate(R.layout.listitem_simple, parent, false);
+		View view = LayoutInflater.from(context).inflate(R.layout.listitem_radio, parent, false);
 		return new SimpleListViewHolder(view);
 	}
 

@@ -6,5 +6,6 @@
 	<string name="playlist_new_button">New Playlist</string>
 	<string name="playlist_new_title">Create new playlist</string>
 	<string name="playlist_new_action">Create</string>
+	<string name="playlist_menu_delete">Delete</string>
 
 </resources>

@@ -81,6 +81,7 @@
 		</activity>
 
 		<activity android:name=".ui.search.SearchActivity" />
+		<activity android:name=".ui.detail.playlist_detail.PlaylistDetailActivity" />
 
 		<service
 			android:name=".service.PlayerService"

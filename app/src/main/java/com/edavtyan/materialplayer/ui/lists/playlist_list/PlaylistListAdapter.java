@@ -5,11 +5,13 @@ import android.view.View;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.ui.lists.lib.ListAdapter;
-import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class PlaylistListAdapter extends ListAdapter<PlaylistListViewHolder> {
-	public PlaylistListAdapter(Context context, ListPresenter<PlaylistListViewHolder> presenter) {
+	private final PlaylistListPresenter presenter;
+
+	public PlaylistListAdapter(Context context, PlaylistListPresenter presenter) {
 		super(context, presenter);
+		this.presenter = presenter;
 	}
 
 	@Override
@@ -19,6 +21,6 @@ public class PlaylistListAdapter extends ListAdapter<PlaylistListViewHolder> {
 
 	@Override
 	public PlaylistListViewHolder onCreateViewHolder(Context context, View view) {
-		return new PlaylistListViewHolder(view);
+		return new PlaylistListViewHolder(view, presenter);
 	}
 }

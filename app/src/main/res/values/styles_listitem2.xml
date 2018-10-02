@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="ListItem2_Container">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?listPreferredItemHeightSmall</item>
+		<item name="android:background">?selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+	<style name="ListItem2_Title">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:paddingLeft">@dimen/spacing_medium</item>
+		<item name="android:textColor">?textColorPrimary</item>
+		<item name="android:textSize">@dimen/font_normal</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
+
+	<style name="ListItem2_Menu">
+		<item name="android:layout_width">46dp</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:src">@drawable/ic_more_vert</item>
+		<item name="android:background">@drawable/ripple_base</item>
+		<item name="android:contentDescription">@string/description_moreActions</item>
+		<item name="android:tint">?textColorPrimary</item>
+	</style>
+
+</resources>

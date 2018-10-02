@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/ListItem2_Container"
+	>
+
+	<TextView
+		android:id="@+id/title"
+		tools:text="Track title"
+		style="@style/ListItem2_Title"
+		/>
+
+	<ImageButton
+		android:id="@+id/menu"
+		android:contentDescription="@string/description_button_menu"
+		style="@style/ListItem2_Menu"
+		/>
+
+</LinearLayout>

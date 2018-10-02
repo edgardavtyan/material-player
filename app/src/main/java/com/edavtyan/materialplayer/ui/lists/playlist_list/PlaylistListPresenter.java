@@ -30,4 +30,8 @@ public class PlaylistListPresenter implements ListPresenter<PlaylistListViewHold
 	public void onCreate() {
 
 	}
+
+	public void onPlaylistClick(int position) {
+		view.gotoPlaylistDetail(manager.list()[position]);
+	}
 }

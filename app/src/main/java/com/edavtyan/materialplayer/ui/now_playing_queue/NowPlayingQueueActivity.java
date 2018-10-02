@@ -32,7 +32,7 @@ public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_playlist);
+		setContentView(R.layout.activity_queue);
 		ButterKnife.bind(this);
 
 		getComponent().inject(this);

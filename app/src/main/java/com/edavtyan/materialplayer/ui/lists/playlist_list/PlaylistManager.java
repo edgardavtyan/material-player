@@ -32,4 +32,8 @@ public class PlaylistManager {
 		storage.addTracks(position, pendingTracks);
 		pendingTracks.clear();
 	}
+
+	public List<Track> load(String playlistName) {
+		return storage.load(playlistName);
+	}
 }
