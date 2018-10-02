@@ -41,6 +41,10 @@ public class PlaylistDetailActivity extends BaseActivity {
 		list.setAdapter(adapter);
 	}
 
+	public void notifyItemRemoved(int position) {
+		adapter.notifyItemRemoved(position);
+	}
+
 	private PlaylistDetailFactoryComponent getComponent() {
 		String playlistName = getIntent().getStringExtra(EXTRA_PLAYLIST_NAME);
 		return DaggerPlaylistDetailFactoryComponent

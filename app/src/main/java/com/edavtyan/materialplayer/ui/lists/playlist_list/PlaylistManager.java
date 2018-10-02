@@ -36,4 +36,10 @@ public class PlaylistManager {
 	public List<Track> load(String playlistName) {
 		return storage.load(playlistName);
 	}
+
+	public void removeTrack(String playlistName, int position) {
+		List<Track> playlist = storage.load(playlistName);
+		playlist.remove(position);
+		storage.save(playlistName, playlist);
+	}
 }
