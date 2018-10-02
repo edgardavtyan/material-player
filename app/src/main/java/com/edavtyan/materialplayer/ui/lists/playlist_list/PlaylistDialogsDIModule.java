@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistDialogsFragmentDIModule {
+public class PlaylistDialogsDIModule {
 	@Provides
 	@FragmentScope
 	public PlaylistAddDialog providePlaylistAddDialog(FragmentActivity activity) {

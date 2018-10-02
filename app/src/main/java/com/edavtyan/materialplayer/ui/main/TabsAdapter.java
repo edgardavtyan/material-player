@@ -17,7 +17,7 @@ import android.text.style.ImageSpan;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.ui.lists.album_list.AlbumListFragment;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListFragment;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistFragment;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistListFragment;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListFragment;
 
 public class TabsAdapter extends FragmentPagerAdapter {
@@ -39,7 +39,7 @@ public class TabsAdapter extends FragmentPagerAdapter {
 		case 2:
 			return new TrackListFragment();
 		case 3:
-			return new PlaylistFragment();
+			return new PlaylistListFragment();
 		default:
 			return null;
 		}
