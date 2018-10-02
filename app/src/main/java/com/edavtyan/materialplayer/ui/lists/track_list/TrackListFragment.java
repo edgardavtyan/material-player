@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
 import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistAddDialog;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogPresenter;
 import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistNewDialog;
 
 import javax.inject.Inject;
@@ -23,6 +25,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	@Inject PlaylistAddDialog playlistAddDialog;
 	@Inject PlaylistNewDialog playlistNewDialog;
 	@Inject ScreenThemeModule screenThemeModule;
+	@Inject PlaylistDialogPresenter playlistPresenter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,9 +33,6 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 		getComponent().inject(this);
 		initListView(presenter, adapter);
 		addModule(screenThemeModule);
-		playlistAddDialog.setOnNewPlaylistClickListener(() -> presenter.onCreateNewPlaylistClick());
-		playlistNewDialog.setOnConfirmListener(presenter::onCreateNewPlaylistConfirm);
-		playlistNewDialog.setOnDismissListener(presenter::onCreateNewPlaylistDismiss);
 	}
 
 	protected TrackListDIComponent getComponent() {
@@ -51,17 +51,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	}
 
 	@Override
-	public void showAddToPlaylistDialog(String[] playlistNames) {
-		playlistAddDialog.show(playlistNames);
-	}
-
-	@Override
-	public void closeAddToPlaylistDialog() {
-		playlistAddDialog.close();
-	}
-
-	@Override
-	public void showNewPlaylistDialog() {
-		playlistNewDialog.show();
+	public void showAddToPlaylistDialog(Track track) {
+		playlistPresenter.onAddToPlaylistClick();
 	}
 }

@@ -61,13 +61,4 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 				.build();
 	}
 
-	@Override
-	public void closeAddToPlaylistDialog() {
-
-	}
-
-	@Override
-	public void showNewPlaylistDialog() {
-
-	}
 }

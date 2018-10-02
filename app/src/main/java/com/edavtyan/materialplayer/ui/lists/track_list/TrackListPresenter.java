@@ -35,21 +35,7 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 	}
 
 	public void onAddToPlaylistClick(int position) {
-		view.showAddToPlaylistDialog(model.listPlaylists());
-	}
-
-	public void onCreateNewPlaylistClick() {
-		view.closeAddToPlaylistDialog();
-		view.showNewPlaylistDialog();
-	}
-
-	public void onCreateNewPlaylistConfirm(String playlistName) {
-		model.createNewPlaylist(playlistName);
-		view.showAddToPlaylistDialog(model.listPlaylists());
-	}
-
-	public void onCreateNewPlaylistDismiss() {
-		view.showAddToPlaylistDialog(model.listPlaylists());
+		view.showAddToPlaylistDialog(model.getTrackAtIndex(position));
 	}
 
 	@Override

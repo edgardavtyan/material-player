@@ -35,7 +35,7 @@ public class TrackListModelTest extends BaseTest {
 
 		ModelServiceModule serviceModule = mock(ModelServiceModule.class);
 
-		model = spy(new TrackListModel(serviceModule, db, playlistManager));
+		model = spy(new TrackListModel(serviceModule, db));
 
 		player = mock(Player.class);
 

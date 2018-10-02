@@ -20,7 +20,7 @@ public class SearchTrackModel extends TrackListModel implements SearchModel {
 			ModelServiceModule serviceModule,
 			TrackDB trackDB,
 			PlaylistManager playlistManager) {
-		super(serviceModule, trackDB, playlistManager);
+		super(serviceModule, trackDB);
 		this.trackDB = trackDB;
 	}
 

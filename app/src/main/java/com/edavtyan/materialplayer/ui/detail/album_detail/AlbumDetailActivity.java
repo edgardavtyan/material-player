@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListActivity;
@@ -41,17 +42,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 	}
 
 	@Override
-	public void showAddToPlaylistDialog(String[] strings) {
-
-	}
-
-	@Override
-	public void closeAddToPlaylistDialog() {
-
-	}
-
-	@Override
-	public void showNewPlaylistDialog() {
+	public void showAddToPlaylistDialog(Track track) {
 
 	}
 

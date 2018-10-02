@@ -31,7 +31,7 @@ public class AlbumDetailModel extends TrackListModel {
 			AlbumArtProvider albumArtProvider,
 			PlaylistManager playlistManager,
 			int albumId) {
-		super(serviceModule, trackDB, playlistManager);
+		super(serviceModule, trackDB);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
 		this.albumArtProvider = albumArtProvider;
