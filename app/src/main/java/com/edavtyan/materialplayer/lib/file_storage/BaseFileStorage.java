@@ -51,4 +51,8 @@ public abstract class BaseFileStorage {
 	public boolean exists(String filename) {
 		return new File(dir, filename).exists();
 	}
+
+	public String[] list() {
+		return dir.list();
+	}
 }

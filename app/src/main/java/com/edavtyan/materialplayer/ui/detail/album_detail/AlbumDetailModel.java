@@ -11,6 +11,7 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.service.PlayerService;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 
 import java.util.List;
@@ -28,8 +29,9 @@ public class AlbumDetailModel extends TrackListModel {
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			AlbumArtProvider albumArtProvider,
+			PlaylistManager playlistManager,
 			int albumId) {
-		super(serviceModule, trackDB);
+		super(serviceModule, trackDB, playlistManager);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
 		this.albumArtProvider = albumArtProvider;

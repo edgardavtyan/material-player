@@ -15,9 +15,11 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsDIModule;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.transition.SharedTransitionDIModule;
+import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.SdkFactory;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDIModule;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsDIModule;
 import com.edavtyan.materialplayer.utils.WebClient;
@@ -35,7 +37,8 @@ import dagger.Component;
 		LastFmDIModule.class,
 		DbDIModule.class,
 		AlbumArtDIModule.class,
-		SharedTransitionDIModule.class})
+		SharedTransitionDIModule.class,
+		PlaylistDIModule.class})
 public interface AppDIComponent {
 	Context context();
 	SdkFactory sdkFactory();
@@ -52,4 +55,5 @@ public interface AppDIComponent {
 	AlbumArtProvider albumArtProvider();
 	Gson gson();
 	SharedTransitionsManager sharedTransitionsManager();
+	PlaylistManager playlistManager();
 }

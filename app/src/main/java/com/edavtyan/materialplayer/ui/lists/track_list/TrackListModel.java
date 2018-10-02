@@ -4,6 +4,7 @@ import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 
 import java.util.List;
 
@@ -12,10 +13,12 @@ public class TrackListModel extends ListModel {
 	protected List<Track> tracks;
 
 	private final TrackDB db;
+	private final PlaylistManager playlistManager;
 
-	public TrackListModel(ModelServiceModule serviceModule, TrackDB db) {
+	public TrackListModel(ModelServiceModule serviceModule, TrackDB db, PlaylistManager playlistManager) {
 		super(serviceModule);
 		this.db = db;
+		this.playlistManager = playlistManager;
 	}
 
 	public Track getTrackAtIndex(int position) {
@@ -49,5 +52,13 @@ public class TrackListModel extends ListModel {
 
 	protected List<Track> queryTracks() {
 		return db.getAllTracks();
+	}
+
+	public void createNewPlaylist(String playlistName) {
+		playlistManager.create(playlistName);
+	}
+
+	public String[] listPlaylists() {
+		return playlistManager.list();
 	}
 }

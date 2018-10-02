@@ -10,6 +10,7 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,9 +37,10 @@ public class AlbumDetailDIModule {
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			AlbumArtProvider artProvider) {
+			AlbumArtProvider artProvider,
+			PlaylistManager playlistManager) {
 		return new AlbumDetailModel(
-				serviceModule, albumDB, trackDB, artProvider, albumId);
+				serviceModule, albumDB, trackDB, artProvider, playlistManager, albumId);
 	}
 
 	@Provides

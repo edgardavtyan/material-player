@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
 import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistAddDialog;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistNewDialog;
 
 import dagger.Module;
@@ -45,8 +46,9 @@ public class TrackListDIModule {
 	@FragmentScope
 	public TrackListModel provideModel(
 			ModelServiceModule serviceModule,
-			TrackDB trackDB) {
-		return new TrackListModel(serviceModule, trackDB);
+			TrackDB trackDB,
+			PlaylistManager playlistManager) {
+		return new TrackListModel(serviceModule, trackDB, playlistManager);
 	}
 
 	@Provides

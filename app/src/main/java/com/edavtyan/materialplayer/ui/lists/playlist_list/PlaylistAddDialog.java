@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 
 import com.edavtyan.materialplayer.R;
@@ -12,6 +14,9 @@ import lombok.Setter;
 
 public class PlaylistAddDialog extends BaseDialog {
 	@BindView(R.id.playlist_button_new) Button newButton;
+	@BindView(R.id.list) RecyclerView list;
+
+	private final PlaylistAddDialogListAdapter adapter;
 
 	public interface OnNewPlaylistClickListener {
 		void onNewPlaylistClick();
@@ -21,11 +26,21 @@ public class PlaylistAddDialog extends BaseDialog {
 
 	public PlaylistAddDialog(Context context) {
 		super(context);
+
+		adapter = new PlaylistAddDialogListAdapter(context);
+		list.setAdapter(adapter);
+		list.setLayoutManager(new LinearLayoutManager(context));
+
 		newButton.setOnClickListener(v -> {
 			if (onNewPlaylistClickListener != null) {
 				onNewPlaylistClickListener.onNewPlaylistClick();
 			}
 		});
+	}
+
+	public void show(String[] playlistNames) {
+		adapter.update(playlistNames);
+		show();
 	}
 
 	@Override

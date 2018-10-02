@@ -6,6 +6,7 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 import com.edavtyan.materialplayer.ui.search.base.SearchViewImpl;
 
 import dagger.Module;
@@ -36,8 +37,9 @@ public class SearchTrackModule {
 	@FragmentScope
 	public SearchTrackModel provideModel(
 			ModelServiceModule serviceModule,
-			TrackDB trackDB) {
-		return new SearchTrackModel(serviceModule, trackDB);
+			TrackDB trackDB,
+			PlaylistManager playlistManager) {
+		return new SearchTrackModel(serviceModule, trackDB, playlistManager);
 	}
 
 	@Provides

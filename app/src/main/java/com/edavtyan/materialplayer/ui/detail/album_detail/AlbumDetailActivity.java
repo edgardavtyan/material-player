@@ -41,7 +41,12 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 	}
 
 	@Override
-	public void showAddToPlaylistDialog() {
+	public void showAddToPlaylistDialog(String[] strings) {
+
+	}
+
+	@Override
+	public void closeAddToPlaylistDialog() {
 
 	}
 

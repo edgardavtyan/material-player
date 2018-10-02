@@ -62,7 +62,7 @@ public class TrackListViewHolder
 			presenter.onAddToQueue(getAdapterPositionNonFinal());
 			return true;
 		case R.id.menu_add_to_playlist:
-			presenter.onAddToPlaylist(getAdapterPositionNonFinal());
+			presenter.onAddToPlaylistClick(getAdapterPositionNonFinal());
 			return true;
 		default:
 			return false;

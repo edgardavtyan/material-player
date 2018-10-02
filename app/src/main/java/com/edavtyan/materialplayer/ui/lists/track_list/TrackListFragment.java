@@ -30,7 +30,9 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 		getComponent().inject(this);
 		initListView(presenter, adapter);
 		addModule(screenThemeModule);
-		playlistAddDialog.setOnNewPlaylistClickListener(() -> presenter.onCreateNewPlaylist());
+		playlistAddDialog.setOnNewPlaylistClickListener(() -> presenter.onCreateNewPlaylistClick());
+		playlistNewDialog.setOnConfirmListener(presenter::onCreateNewPlaylistConfirm);
+		playlistNewDialog.setOnDismissListener(presenter::onCreateNewPlaylistDismiss);
 	}
 
 	protected TrackListDIComponent getComponent() {
@@ -49,8 +51,13 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	}
 
 	@Override
-	public void showAddToPlaylistDialog() {
-		playlistAddDialog.show();
+	public void showAddToPlaylistDialog(String[] playlistNames) {
+		playlistAddDialog.show(playlistNames);
+	}
+
+	@Override
+	public void closeAddToPlaylistDialog() {
+		playlistAddDialog.close();
 	}
 
 	@Override
