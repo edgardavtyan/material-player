@@ -3,6 +3,7 @@
 
 	<string name="playlist_add_title">Add track to playlist</string>
 	<string name="playlist_add_action">Add</string>
+	<string name="playlist_add_createNew">Create New</string>
 	<string name="playlist_new_button">New Playlist</string>
 	<string name="playlist_new_title">Create new playlist</string>
 	<string name="playlist_new_action">Create</string>

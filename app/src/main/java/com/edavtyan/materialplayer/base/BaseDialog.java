@@ -24,6 +24,7 @@ public abstract class BaseDialog {
 		public void onShow(DialogInterface dialogInterface) {
 			dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(tint);
 			dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(tint);
+			dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(tint);
 			BaseDialog.this.onShow();
 		}
 	};
@@ -52,21 +53,31 @@ public abstract class BaseDialog {
 		View view = inflater.inflate(getLayoutRes(), null, false);
 		ButterKnife.bind(this, view);
 
-		dialog = new AlertDialog.Builder(context)
+		AlertDialog.Builder builder = new AlertDialog.Builder(context)
 				.setTitle(getDialogTitleRes())
-				.setPositiveButton(getPositiveButtonTextRes(), (dialog, which) -> {
-					onConfirm();
-				})
+				.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm())
 				.setNegativeButton(android.R.string.cancel, null)
-				.setView(view)
-				.create();
+				.setView(view);
+
+		if (getNeutralButtonTextRes() != -1) {
+			builder.setNeutralButton(getNeutralButtonTextRes(), (d, w) -> onNeutral());
+		}
+
+		dialog = builder.create();
 		dialog.setOnShowListener(onShowListener);
 		dialog.setOnDismissListener(d -> onDismiss());
+	}
+
+	@StringRes
+	public int getNeutralButtonTextRes() {
+		return -1;
 	}
 
 	public void onShow() {}
 
 	public void onConfirm() {}
+
+	public void onNeutral() {}
 
 	public void onDismiss() {
 		if (onDismissListener != null) onDismissListener.onDismiss();

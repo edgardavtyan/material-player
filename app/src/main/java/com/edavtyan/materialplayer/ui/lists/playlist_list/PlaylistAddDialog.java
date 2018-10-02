@@ -1,11 +1,9 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseDialog;
@@ -14,7 +12,6 @@ import butterknife.BindView;
 import lombok.Setter;
 
 public class PlaylistAddDialog extends BaseDialog {
-	@BindView(R.id.playlist_button_new) Button newButton;
 	@BindView(R.id.list) RecyclerView list;
 
 	private final PlaylistAddDialogListAdapter adapter;
@@ -29,8 +26,6 @@ public class PlaylistAddDialog extends BaseDialog {
 		adapter.setOnClickListener(p -> onPlaylistClickListener.onClick(p));
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(context));
-
-		newButton.setOnClickListener(v -> onNewPlaylistClickListener.onClick(v));
 	}
 
 	public void show(String[] playlistNames) {
@@ -49,12 +44,17 @@ public class PlaylistAddDialog extends BaseDialog {
 	}
 
 	@Override
+	public int getNeutralButtonTextRes() {
+		return R.string.playlist_add_createNew;
+	}
+
+	@Override
 	public int getLayoutRes() {
 		return R.layout.dialog_playlist_add;
 	}
 
 	@Override
-	public void onShow() {
-		newButton.getBackground().setColorFilter(getTint(), PorterDuff.Mode.SRC_ATOP);
+	public void onNeutral() {
+		onNewPlaylistClickListener.onClick(null);
 	}
 }
