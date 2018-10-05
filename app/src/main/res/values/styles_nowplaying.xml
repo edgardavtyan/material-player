@@ -10,7 +10,7 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_margin">@dimen/spacing_medium</item>
-		<item name="android:src">@drawable/ic_list</item>
+		<item name="android:src">@drawable/ic_playlist</item>
 		<item name="layout_anchor">@+id/info_wrapper</item>
 		<item name="layout_anchorGravity">right</item>
 		<item name="backgroundTint">?textColorContrastPrimary</item>

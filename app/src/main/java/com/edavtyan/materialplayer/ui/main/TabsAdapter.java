@@ -56,7 +56,7 @@ public class TabsAdapter extends FragmentPagerAdapter {
 		if (position == 0) setUpTabIcon(stringBuilder, R.drawable.ic_person);
 		if (position == 1) setUpTabIcon(stringBuilder, R.drawable.ic_album);
 		if (position == 2) setUpTabIcon(stringBuilder, R.drawable.ic_note);
-		if (position == 3) setUpTabIcon(stringBuilder, R.drawable.ic_play);
+		if (position == 3) setUpTabIcon(stringBuilder, R.drawable.ic_list);
 		return stringBuilder;
 	}
 
