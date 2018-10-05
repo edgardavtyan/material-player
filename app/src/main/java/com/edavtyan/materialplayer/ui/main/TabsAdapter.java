@@ -32,23 +32,16 @@ public class TabsAdapter extends FragmentPagerAdapter {
 	@Nullable
 	public Fragment getItem(int position) {
 		switch (position) {
-		case 0:
-			return new ArtistListFragment();
-		case 1:
-			return new AlbumListFragment();
-		case 2:
-			return new TrackListFragment();
-		case 3:
-			return new PlaylistListFragment();
-		default:
-			return null;
+		case 0: return new ArtistListFragment();
+		case 1: return new AlbumListFragment();
+		case 2: return new TrackListFragment();
+		case 3: return new PlaylistListFragment();
+		default: return null;
 		}
 	}
 
 	@Override
-	public int getCount() {
-		return 4;
-	}
+	public int getCount() { return 4; }
 
 	@Override
 	public CharSequence getPageTitle(int position) {

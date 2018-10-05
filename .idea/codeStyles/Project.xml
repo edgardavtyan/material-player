@@ -86,6 +86,7 @@
       <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
       <option name="BLANK_LINES_AROUND_METHOD_IN_INTERFACE" value="0" />
       <option name="INDENT_CASE_FROM_SWITCH" value="false" />
+      <option name="CASE_STATEMENT_ON_NEW_LINE" value="false" />
       <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
       <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true" />
