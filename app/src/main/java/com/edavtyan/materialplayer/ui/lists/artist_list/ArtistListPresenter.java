@@ -44,12 +44,16 @@ public class ArtistListPresenter implements ListPresenter<ArtistListViewHolder> 
 		view.gotoArtistDetail(model.getArtistAtIndex(position).getTitle(), sharedViews);
 	}
 
-	public void onAddToPlaylist(int position) {
+	public void onAddToQueue(int position) {
 		int artistId = model.getArtistAtIndex(position).getId();
 		model.addToPlaylist(artistId);
 	}
 
 	public void onEnterTransitionFinished() {
 		view.enableTouchEvents();
+	}
+
+	public void onAddToPlaylist(int position) {
+		view.showAddToPlaylistDialog(model.getArtistTracks(position));
 	}
 }

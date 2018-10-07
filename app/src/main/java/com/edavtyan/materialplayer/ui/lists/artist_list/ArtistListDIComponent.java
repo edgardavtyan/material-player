@@ -1,8 +1,10 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import com.edavtyan.materialplayer.AppDIComponent;
-import com.edavtyan.materialplayer.ui.FragmentScope;
+import com.edavtyan.materialplayer.lib.theme.ThemeableFragmentDIModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesDIModule;
+import com.edavtyan.materialplayer.ui.FragmentScope;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogsDIModule;
 
 import dagger.Component;
 
@@ -11,7 +13,9 @@ import dagger.Component;
 		dependencies = AppDIComponent.class,
 		modules = {
 				ArtistListDIModule.class,
-				ModelModulesDIModule.class})
+				ModelModulesDIModule.class,
+				PlaylistDialogsDIModule.class,
+				ThemeableFragmentDIModule.class})
 public interface ArtistListDIComponent {
 	void inject(ArtistListFragment fragment);
 }

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
@@ -47,6 +48,10 @@ public class ArtistListModel extends ListModel {
 		}
 
 		return artists.get(position);
+	}
+
+	public List<Track> getArtistTracks(int position) {
+		return trackDB.getTracksWithArtistId(getArtistAtIndex(position).getId());
 	}
 
 	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {

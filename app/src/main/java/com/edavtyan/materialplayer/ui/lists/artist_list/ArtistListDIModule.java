@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.ui.FragmentScope;
@@ -18,9 +19,9 @@ import dagger.Provides;
 @Module
 public class ArtistListDIModule {
 	private final FragmentActivity activity;
-	private final ArtistListView view;
+	private final ArtistListFragment view;
 
-	public ArtistListDIModule(FragmentActivity activity, ArtistListView view) {
+	public ArtistListDIModule(FragmentActivity activity, ArtistListFragment view) {
 		this.activity = activity;
 		this.view = view;
 	}
@@ -34,6 +35,12 @@ public class ArtistListDIModule {
 	@Provides
 	@FragmentScope
 	public ArtistListView provideView() {
+		return view;
+	}
+
+	@Provides
+	@FragmentScope
+	public Fragment provideFragment() {
 		return view;
 	}
 
