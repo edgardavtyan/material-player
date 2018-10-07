@@ -6,7 +6,7 @@ import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesDIModule;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderDIModule;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogsActivityDIModule;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogsFactoryActivity;
 
 import dagger.Component;
 
@@ -19,7 +19,7 @@ import dagger.Component;
 				ActivityModulesDIModule.class,
 				ThemeableActivityDIModule.class,
 				ModelModulesDIModule.class,
-				PlaylistDialogsActivityDIModule.class})
+				PlaylistDialogsFactoryActivity.class})
 public interface AlbumDetailDIComponent {
 	void inject(AlbumDetailActivity activity);
 }

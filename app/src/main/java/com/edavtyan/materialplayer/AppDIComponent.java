@@ -18,7 +18,7 @@ import com.edavtyan.materialplayer.transition.SharedTransitionDIModule;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.SdkFactory;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDIModule;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistFactory;
 import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
 import com.edavtyan.materialplayer.utils.PendingIntents;
 import com.edavtyan.materialplayer.utils.UtilsDIModule;
@@ -38,7 +38,7 @@ import dagger.Component;
 		DbDIModule.class,
 		AlbumArtDIModule.class,
 		SharedTransitionDIModule.class,
-		PlaylistDIModule.class})
+		PlaylistFactory.class})
 public interface AppDIComponent {
 	Context context();
 	SdkFactory sdkFactory();

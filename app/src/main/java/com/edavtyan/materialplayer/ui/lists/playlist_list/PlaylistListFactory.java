@@ -8,10 +8,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistListDIModule {
+public class PlaylistListFactory {
 	private final PlaylistListFragment view;
 
-	public PlaylistListDIModule(PlaylistListFragment view) {
+	public PlaylistListFactory(PlaylistListFragment view) {
 		this.view = view;
 	}
 

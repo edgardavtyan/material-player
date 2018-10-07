@@ -4,7 +4,7 @@ import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.lib.theme.ThemeableFragmentDIModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesDIModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogsDIModule;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogsFactoryFragment;
 
 import dagger.Component;
 
@@ -15,7 +15,7 @@ import dagger.Component;
 				TrackListDIModule.class,
 				ModelModulesDIModule.class,
 				ThemeableFragmentDIModule.class,
-				PlaylistDialogsDIModule.class})
+				PlaylistDialogsFactoryFragment.class})
 public interface TrackListDIComponent {
 	void inject(TrackListFragment fragment);
 }

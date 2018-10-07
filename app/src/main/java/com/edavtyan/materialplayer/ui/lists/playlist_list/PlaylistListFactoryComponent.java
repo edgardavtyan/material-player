@@ -10,9 +10,9 @@ import dagger.Component;
 @Component(
 		dependencies = AppDIComponent.class,
 		modules = {
-				PlaylistListDIModule.class,
-				PlaylistDialogsDIModule.class,
+				PlaylistListFactory.class,
+				PlaylistDialogsFactoryFragment.class,
 				ModelModulesDIModule.class})
-public interface PlaylistListDIComponent {
+public interface PlaylistListFactoryComponent {
 	void inject(PlaylistListFragment fragment);
 }

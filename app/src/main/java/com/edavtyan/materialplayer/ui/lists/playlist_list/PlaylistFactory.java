@@ -10,7 +10,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistDIModule {
+public class PlaylistFactory {
 	@Provides
 	@Singleton
 	public PlaylistStorage providePlaylistStorage(Context context, Gson gson) {

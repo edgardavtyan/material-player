@@ -1,28 +1,28 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.ui.FragmentScope;
+import com.edavtyan.materialplayer.ui.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistDialogsDIModule {
+public class PlaylistDialogsFactoryActivity {
 	@Provides
-	@FragmentScope
-	public PlaylistAddDialog providePlaylistAddDialog(FragmentActivity activity) {
+	@ActivityScope
+	public PlaylistAddDialog providePlaylistAddDialog(AppCompatActivity activity) {
 		return new PlaylistAddDialog(activity);
 	}
 
 	@Provides
-	@FragmentScope
-	public PlaylistNewDialog providePlaylistNewDialog(FragmentActivity activity) {
+	@ActivityScope
+	public PlaylistNewDialog providePlaylistNewDialog(AppCompatActivity activity) {
 		return new PlaylistNewDialog(activity);
 	}
 
 	@Provides
-	@FragmentScope
+	@ActivityScope
 	public PlaylistDialogPresenter providePlaylistDialogPresenter(
 			PlaylistAddDialog addDialog,
 			PlaylistNewDialog newDialog,
