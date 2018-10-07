@@ -28,6 +28,11 @@ public class PlaylistManager {
 		pendingTracks.add(track);
 	}
 
+	public void addPendingTracks(List<Track> tracks) {
+		pendingTracks = new ArrayList<>();
+		pendingTracks.addAll(tracks);
+	}
+
 	public void confirmPendingTracks(int position) {
 		storage.addTracks(position, pendingTracks);
 		pendingTracks.clear();

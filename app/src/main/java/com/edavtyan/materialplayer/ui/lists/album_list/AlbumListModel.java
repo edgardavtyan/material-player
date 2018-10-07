@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.ui.lists.album_list;
 
 import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
@@ -30,6 +31,14 @@ public class AlbumListModel extends ListModel {
 		}
 
 		return albums.get(index);
+	}
+
+	public List<Track> getAlbumTracks(int position) {
+		if (albums == null) {
+			throw new IllegalStateException("Albums have not been initialized");
+		}
+
+		return trackDB.getTracksWithAlbumId(albums.get(position).getId());
 	}
 
 	public int getAlbumsCount() {

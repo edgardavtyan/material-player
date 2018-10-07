@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListActivity;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogPresenter;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListView;
 
 import java.util.concurrent.TimeUnit;
@@ -29,6 +31,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject AlbumDetailPresenter presenter;
+	@Inject PlaylistDialogPresenter playlistPresenter;
 
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.list) RecyclerView list;
@@ -42,8 +45,14 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 	}
 
 	@Override
-	public void showAddToPlaylistDialog(Track track) {
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
+		playlistPresenter.onThemeChanged(colors);
+	}
 
+	@Override
+	public void showAddToPlaylistDialog(Track track) {
+		playlistPresenter.onAddToPlaylistClick(track);
 	}
 
 	public void setAlbumTitle(String albumTitle) {

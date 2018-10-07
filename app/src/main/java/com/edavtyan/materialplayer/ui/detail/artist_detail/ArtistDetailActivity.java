@@ -7,11 +7,14 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListActivity;
 import com.edavtyan.materialplayer.ui.lists.album_list.AlbumListView;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,6 +36,11 @@ public class ArtistDetailActivity
 		if (sharedViews != null) {
 			transitionsManager.updateSourceViews(sharedViews);
 		}
+	}
+
+	@Override
+	public void showAddToPlaylistDialog(List<Track> tracks) {
+
 	}
 
 	public void setArtistTitle(String title) {

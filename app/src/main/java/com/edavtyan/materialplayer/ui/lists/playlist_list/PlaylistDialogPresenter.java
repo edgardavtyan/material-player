@@ -1,6 +1,10 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+
+import java.util.Collections;
+import java.util.List;
 
 public class PlaylistDialogPresenter {
 	private final PlaylistAddDialog addDialog;
@@ -21,7 +25,11 @@ public class PlaylistDialogPresenter {
 	}
 
 	public void onAddToPlaylistClick(Track track) {
-		manager.addPendingTracks(track);
+		onAddToPlaylistClick(Collections.singletonList(track));
+	}
+
+	public void onAddToPlaylistClick(List<Track> tracks) {
+		manager.addPendingTracks(tracks);
 		addDialog.show(manager.list());
 	}
 
@@ -42,5 +50,10 @@ public class PlaylistDialogPresenter {
 
 	public void onNewPlaylistDismiss() {
 		addDialog.show(manager.list());
+	}
+
+	public void onThemeChanged(ThemeColors colors) {
+		addDialog.setTint(colors.getColorPrimary());
+		newDialog.setTint(colors.getColorPrimary());
 	}
 }

@@ -68,7 +68,7 @@ public class AlbumListPresenterTest extends BaseTest {
 		album.setId(7);
 		when(model.getAlbumAtIndex(3)).thenReturn(album);
 
-		presenter.onAddToPlaylist(3);
+		presenter.onAddToQueue(3);
 		verify(model).addToPlaylist(7);
 	}
 

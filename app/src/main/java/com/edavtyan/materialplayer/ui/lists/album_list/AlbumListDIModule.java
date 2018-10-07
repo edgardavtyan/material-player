@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.ui.lists.album_list;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
@@ -14,9 +15,9 @@ import dagger.Provides;
 @Module
 public class AlbumListDIModule {
 	private final FragmentActivity activity;
-	private final AlbumListView view;
+	private final AlbumListFragment view;
 
-	public AlbumListDIModule(FragmentActivity activity, AlbumListView view) {
+	public AlbumListDIModule(FragmentActivity activity, AlbumListFragment view) {
 		this.activity = activity;
 		this.view = view;
 	}
@@ -30,6 +31,12 @@ public class AlbumListDIModule {
 	@Provides
 	@FragmentScope
 	public AlbumListView provideView() {
+		return view;
+	}
+
+	@Provides
+	@FragmentScope
+	public Fragment provideFragment() {
 		return view;
 	}
 

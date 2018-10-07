@@ -74,7 +74,7 @@ public class AlbumListViewHolderTest extends BaseTest {
 	public void onMenuItemClick_callPresenterWithCorrectPosition() {
 		when(holderSpy.getAdapterPositionNonFinal()).thenReturn(2);
 		callMenuItemWithId(R.id.menu_add_to_queue);
-		verify(presenter).onAddToPlaylist(2);
+		verify(presenter).onAddToQueue(2);
 	}
 
 	private void callMenuItemWithId(@IdRes int id) {

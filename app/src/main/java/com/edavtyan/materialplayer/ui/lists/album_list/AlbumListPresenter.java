@@ -34,9 +34,13 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 		view.gotoAlbumDetail(albumId, sharedViews);
 	}
 
-	public void onAddToPlaylist(int position) {
+	public void onAddToQueue(int position) {
 		int albumId = model.getAlbumAtIndex(position).getId();
 		model.addToPlaylist(albumId);
+	}
+
+	public void onAddToPlaylist(int position) {
+		view.showAddToPlaylistDialog(model.getAlbumTracks(position));
 	}
 
 	@Override

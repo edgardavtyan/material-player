@@ -10,9 +10,7 @@ import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistAddDialog;
 import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogPresenter;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistNewDialog;
 
 import javax.inject.Inject;
 
@@ -22,8 +20,6 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	@Inject TrackListPresenter presenter;
 	@Inject TrackListAdapter adapter;
 	@Inject SharedTransitionsManager transitionsManager;
-	@Inject PlaylistAddDialog playlistAddDialog;
-	@Inject PlaylistNewDialog playlistNewDialog;
 	@Inject ScreenThemeModule screenThemeModule;
 	@Inject PlaylistDialogPresenter playlistPresenter;
 
@@ -46,8 +42,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	@Override
 	public void onThemeChanged(ThemeColors colors) {
 		super.onThemeChanged(colors);
-		playlistAddDialog.setTint(colors.getColorPrimary());
-		playlistNewDialog.setTint(colors.getColorPrimary());
+		playlistPresenter.onThemeChanged(colors);
 	}
 
 	@Override
