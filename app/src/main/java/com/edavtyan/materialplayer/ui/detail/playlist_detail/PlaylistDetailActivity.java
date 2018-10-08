@@ -24,6 +24,7 @@ public class PlaylistDetailActivity extends BaseActivity {
 	@BindView(R.id.list) RecyclerView list;
 
 	@Inject PlaylistDetailAdapter adapter;
+	@Inject PlaylistDetailPresenter presenter;
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ScreenThemeModule themeModule;
@@ -46,6 +47,14 @@ public class PlaylistDetailActivity extends BaseActivity {
 
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
+
+		presenter.onCreate();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		presenter.onDestroy();
 	}
 
 	public void notifyItemRemoved(int position) {

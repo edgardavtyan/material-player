@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,11 +9,21 @@ import java.util.List;
 
 public class PlaylistManager {
 	private final PlaylistStorage storage;
+	private final ModelServiceModule serviceModule;
 
 	private List<Track> pendingTracks;
 
-	public PlaylistManager(PlaylistStorage storage) {
+	public PlaylistManager(PlaylistStorage storage, ModelServiceModule serviceModule) {
 		this.storage = storage;
+		this.serviceModule = serviceModule;
+	}
+
+	public void bind() {
+		serviceModule.bind();
+	}
+
+	public void unbind() {
+		serviceModule.unbind();
 	}
 
 	public void create(String name) {
@@ -64,5 +75,9 @@ public class PlaylistManager {
 			}
 		}
 		storage.save(playlistName, playlist);
+	}
+
+	public void playPlaylist(String playlistName, int position) {
+		serviceModule.getService().getPlayer().playNewTracks(load(playlistName), position);
 	}
 }

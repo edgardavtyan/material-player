@@ -34,13 +34,17 @@ public class PlaylistDetailPresenter implements ListPresenter<PlaylistDetailView
 	}
 
 	@Override
-	public void onDestroy() {
-
+	public void onCreate() {
+		manager.bind();
 	}
 
 	@Override
-	public void onCreate() {
+	public void onDestroy() {
+		manager.unbind();
+	}
 
+	public void onItemClick(int position) {
+		manager.playPlaylist(playlistName, position);
 	}
 
 	public void onRemoveFromPlaylistMenuClick(int position) {

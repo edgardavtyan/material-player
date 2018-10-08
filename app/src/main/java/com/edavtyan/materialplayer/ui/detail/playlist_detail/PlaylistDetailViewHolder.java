@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class PlaylistDetailViewHolder
 		extends RecyclerView.ViewHolder
-		implements ItemTouchHelperViewHolder {
+		implements ItemTouchHelperViewHolder, View.OnClickListener {
 
 	@BindView(R.id.title) TextView textView;
 	@BindView(R.id.menu) ImageButton menuButton;
@@ -30,7 +30,7 @@ public class PlaylistDetailViewHolder
 		super(itemView);
 		this.presenter = presenter;
 		ButterKnife.bind(this, itemView);
-		itemView.setOnClickListener(null);
+		itemView.setOnClickListener(this);
 
 		PopupMenu menu = new PopupMenu(itemView.getContext(), menuButton);
 		menu.inflate(R.menu.menu_playlist);
@@ -66,5 +66,10 @@ public class PlaylistDetailViewHolder
 	@Override
 	public void onItemClear() {
 		backgroundView.animate().alpha(0);
+	}
+
+	@Override
+	public void onClick(View v) {
+		presenter.onItemClick(getAdapterPosition());
 	}
 }
