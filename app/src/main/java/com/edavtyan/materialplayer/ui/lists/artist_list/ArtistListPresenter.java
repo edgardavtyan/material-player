@@ -54,6 +54,6 @@ public class ArtistListPresenter implements ListPresenter<ArtistListViewHolder> 
 	}
 
 	public void onAddToPlaylist(int position) {
-		view.showAddToPlaylistDialog(model.getArtistTracks(position));
+		view.showPlaylistSelectionDialog(model.getArtistTracks(position));
 	}
 }

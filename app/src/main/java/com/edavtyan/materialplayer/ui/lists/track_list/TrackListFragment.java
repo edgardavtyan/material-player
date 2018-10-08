@@ -46,7 +46,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	}
 
 	@Override
-	public void showAddToPlaylistDialog(Track track) {
+	public void showPlaylistSelectionDialog(Track track) {
 		playlistPresenter.onAddToPlaylistClick(track);
 	}
 }

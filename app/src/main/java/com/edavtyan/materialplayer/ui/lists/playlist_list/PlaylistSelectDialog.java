@@ -11,18 +11,18 @@ import com.edavtyan.materialplayer.base.BaseDialog;
 import butterknife.BindView;
 import lombok.Setter;
 
-public class PlaylistAddDialog extends BaseDialog {
+public class PlaylistSelectDialog extends BaseDialog {
 	@BindView(R.id.list) RecyclerView list;
 
-	private final PlaylistAddDialogListAdapter adapter;
+	private final PlaylistSelectDialogListAdapter adapter;
 
-	private @Setter PlaylistAddDialogViewHolder.OnClickListener onPlaylistClickListener;
+	private @Setter PlaylistSelectDialogViewHolder.OnClickListener onPlaylistClickListener;
 	private @Setter View.OnClickListener onNewPlaylistClickListener;
 
-	public PlaylistAddDialog(Context context) {
+	public PlaylistSelectDialog(Context context) {
 		super(context);
 
-		adapter = new PlaylistAddDialogListAdapter(context);
+		adapter = new PlaylistSelectDialogListAdapter(context);
 		adapter.setOnClickListener(p -> onPlaylistClickListener.onClick(p));
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(context));

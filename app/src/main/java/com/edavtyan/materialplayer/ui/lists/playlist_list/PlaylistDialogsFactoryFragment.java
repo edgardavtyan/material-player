@@ -11,8 +11,8 @@ import dagger.Provides;
 public class PlaylistDialogsFactoryFragment {
 	@Provides
 	@FragmentScope
-	public PlaylistAddDialog providePlaylistAddDialog(FragmentActivity activity) {
-		return new PlaylistAddDialog(activity);
+	public PlaylistSelectDialog providePlaylistSelectDialog(FragmentActivity activity) {
+		return new PlaylistSelectDialog(activity);
 	}
 
 	@Provides
@@ -24,7 +24,7 @@ public class PlaylistDialogsFactoryFragment {
 	@Provides
 	@FragmentScope
 	public PlaylistDialogPresenter providePlaylistDialogPresenter(
-			PlaylistAddDialog addDialog,
+			PlaylistSelectDialog addDialog,
 			PlaylistNewDialog newDialog,
 			PlaylistManager manager) {
 		return new PlaylistDialogPresenter(addDialog, newDialog, manager);

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ArtistListView extends ListView {
 	void gotoArtistDetail(String title, SourceSharedViews sharedViews);
-	void showAddToPlaylistDialog(List<Track> tracks);
+	void showPlaylistSelectionDialog(List<Track> tracks);
 }

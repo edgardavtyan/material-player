@@ -47,7 +47,7 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 	}
 
 	@Override
-	public void showAddToPlaylistDialog(List<Track> tracks) {
+	public void showPlaylistSelectionDialog(List<Track> tracks) {
 		playlistPresenter.onAddToPlaylistClick(tracks);
 	}
 

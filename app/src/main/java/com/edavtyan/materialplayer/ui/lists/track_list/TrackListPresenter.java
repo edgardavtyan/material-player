@@ -35,7 +35,7 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 	}
 
 	public void onAddToPlaylistClick(int position) {
-		view.showAddToPlaylistDialog(model.getTrackAtIndex(position));
+		view.showPlaylistSelectionDialog(model.getTrackAtIndex(position));
 	}
 
 	@Override

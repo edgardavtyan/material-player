@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface AlbumListView extends ListView {
 	void gotoAlbumDetail(int albumId, SourceSharedViews sharedViews);
-	void showAddToPlaylistDialog(List<Track> tracks);
+	void showPlaylistSelectionDialog(List<Track> tracks);
 }

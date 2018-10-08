@@ -40,7 +40,7 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 	}
 
 	public void onAddToPlaylist(int position) {
-		view.showAddToPlaylistDialog(model.getAlbumTracks(position));
+		view.showPlaylistSelectionDialog(model.getAlbumTracks(position));
 	}
 
 	@Override

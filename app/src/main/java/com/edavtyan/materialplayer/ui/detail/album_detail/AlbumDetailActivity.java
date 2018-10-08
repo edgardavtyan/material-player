@@ -51,7 +51,7 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 	}
 
 	@Override
-	public void showAddToPlaylistDialog(Track track) {
+	public void showPlaylistSelectionDialog(Track track) {
 		playlistPresenter.onAddToPlaylistClick(track);
 	}
 

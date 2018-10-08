@@ -10,16 +10,16 @@ import com.edavtyan.materialplayer.R;
 
 import lombok.Setter;
 
-public class PlaylistAddDialogListAdapter
-		extends RecyclerView.Adapter<PlaylistAddDialogViewHolder> {
+public class PlaylistSelectDialogListAdapter
+		extends RecyclerView.Adapter<PlaylistSelectDialogViewHolder> {
 
 	private final Context context;
 
-	private @Setter PlaylistAddDialogViewHolder.OnClickListener onClickListener;
+	private @Setter PlaylistSelectDialogViewHolder.OnClickListener onClickListener;
 
 	private String[] items;
 
-	public PlaylistAddDialogListAdapter(Context context) {
+	public PlaylistSelectDialogListAdapter(Context context) {
 		this.context = context;
 	}
 
@@ -29,13 +29,13 @@ public class PlaylistAddDialogListAdapter
 	}
 
 	@Override
-	public PlaylistAddDialogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public PlaylistSelectDialogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(context).inflate(R.layout.listitem_text, parent, false);
-		return new PlaylistAddDialogViewHolder(view);
+		return new PlaylistSelectDialogViewHolder(view);
 	}
 
 	@Override
-	public void onBindViewHolder(PlaylistAddDialogViewHolder holder, int position) {
+	public void onBindViewHolder(PlaylistSelectDialogViewHolder holder, int position) {
 		holder.setText(items[position]);
 		holder.setOnClickListener(p -> onClickListener.onClick(p));
 	}

@@ -11,8 +11,8 @@ import dagger.Provides;
 public class PlaylistDialogsFactoryActivity {
 	@Provides
 	@ActivityScope
-	public PlaylistAddDialog providePlaylistAddDialog(AppCompatActivity activity) {
-		return new PlaylistAddDialog(activity);
+	public PlaylistSelectDialog providePlaylistSelectDialog(AppCompatActivity activity) {
+		return new PlaylistSelectDialog(activity);
 	}
 
 	@Provides
@@ -24,7 +24,7 @@ public class PlaylistDialogsFactoryActivity {
 	@Provides
 	@ActivityScope
 	public PlaylistDialogPresenter providePlaylistDialogPresenter(
-			PlaylistAddDialog addDialog,
+			PlaylistSelectDialog addDialog,
 			PlaylistNewDialog newDialog,
 			PlaylistManager manager) {
 		return new PlaylistDialogPresenter(addDialog, newDialog, manager);

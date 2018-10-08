@@ -7,12 +7,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class PlaylistDialogPresenter {
-	private final PlaylistAddDialog addDialog;
+	private final PlaylistSelectDialog addDialog;
 	private final PlaylistNewDialog newDialog;
 	private final PlaylistManager manager;
 
 	public PlaylistDialogPresenter(
-			PlaylistAddDialog addDialog,
+			PlaylistSelectDialog addDialog,
 			PlaylistNewDialog newDialog,
 			PlaylistManager manager) {
 		this.addDialog = addDialog;
