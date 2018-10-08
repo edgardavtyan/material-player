@@ -12,8 +12,17 @@
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
 		tools:listitem="@layout/listitem_track"
+		/>
+
+	<fragment
+		android:id="@+id/floating_nowplaying"
+		android:name="com.edavtyan.materialplayer.ui.now_playing_floating.NowPlayingFloatingFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/fragment_nowplaying_floating"
 		/>
 
 </LinearLayout>
