@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class PlaylistListPresenter implements ListPresenter<PlaylistListViewHolder> {

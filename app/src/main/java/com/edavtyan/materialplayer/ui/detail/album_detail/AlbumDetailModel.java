@@ -11,7 +11,7 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.service.PlayerService;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 
 import java.util.List;

@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 
 import dagger.Module;
 import dagger.Provides;

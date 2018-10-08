@@ -1,17 +1,20 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist;
 
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
+import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import java.util.Collections;
 import java.util.List;
 
-public class PlaylistDialogPresenter {
+public class PlaylistPresenter {
 	private final PlaylistSelectDialog addDialog;
 	private final PlaylistNewDialog newDialog;
 	private final PlaylistManager manager;
 
-	public PlaylistDialogPresenter(
+	public PlaylistPresenter(
 			PlaylistSelectDialog addDialog,
 			PlaylistNewDialog newDialog,
 			PlaylistManager manager) {

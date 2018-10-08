@@ -5,12 +5,12 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.lib.playlist.PlaylistPresenter;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogPresenter;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	@Inject TrackListAdapter adapter;
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject ScreenThemeModule screenThemeModule;
-	@Inject PlaylistDialogPresenter playlistPresenter;
+	@Inject PlaylistPresenter playlistPresenter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {

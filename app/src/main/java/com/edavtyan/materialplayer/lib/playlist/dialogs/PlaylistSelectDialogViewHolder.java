@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist.dialogs;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist.models;
 
 import android.content.Context;
 
@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistFactory {
+public class PlaylistModelsFactory {
 	@Provides
 	@Singleton
 	public PlaylistStorage providePlaylistStorage(Context context, Gson gson) {

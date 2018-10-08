@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.ui.detail.playlist_detail;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 
 import java.util.List;
 

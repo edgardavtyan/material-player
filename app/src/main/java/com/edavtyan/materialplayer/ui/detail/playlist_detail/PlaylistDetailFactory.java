@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.ui.detail.playlist_detail;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.ui.ActivityScope;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 
 import dagger.Module;
 import dagger.Provides;

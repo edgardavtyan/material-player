@@ -11,7 +11,7 @@ import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistDialogPresenter;
+import com.edavtyan.materialplayer.lib.playlist.PlaylistPresenter;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	@Inject ArtistListPresenter presenter;
 	@Inject ArtistListAdapter adapter;
 	@Inject SharedTransitionsManager transitionsManager;
-	@Inject PlaylistDialogPresenter playlistPresenter;
+	@Inject PlaylistPresenter playlistPresenter;
 	@Inject ScreenThemeModule screenThemeModule;
 
 	@Override

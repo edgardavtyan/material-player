@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist.dialogs;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.R;
 
 import lombok.Setter;
 
-public class PlaylistSelectDialogListAdapter
+public class PlaylistSelectDialogAdapter
 		extends RecyclerView.Adapter<PlaylistSelectDialogViewHolder> {
 
 	private final Context context;
@@ -19,7 +19,7 @@ public class PlaylistSelectDialogListAdapter
 
 	private String[] items;
 
-	public PlaylistSelectDialogListAdapter(Context context) {
+	public PlaylistSelectDialogAdapter(Context context) {
 		this.context = context;
 	}
 

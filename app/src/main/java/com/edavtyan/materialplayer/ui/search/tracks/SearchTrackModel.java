@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.ui.search.tracks;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.ui.search.base.SearchModel;
 

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist.dialogs;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +14,7 @@ import lombok.Setter;
 public class PlaylistSelectDialog extends BaseDialog {
 	@BindView(R.id.list) RecyclerView list;
 
-	private final PlaylistSelectDialogListAdapter adapter;
+	private final PlaylistSelectDialogAdapter adapter;
 
 	private @Setter PlaylistSelectDialogViewHolder.OnClickListener onPlaylistClickListener;
 	private @Setter View.OnClickListener onNewPlaylistClickListener;
@@ -22,7 +22,7 @@ public class PlaylistSelectDialog extends BaseDialog {
 	public PlaylistSelectDialog(Context context) {
 		super(context);
 
-		adapter = new PlaylistSelectDialogListAdapter(context);
+		adapter = new PlaylistSelectDialogAdapter(context);
 		adapter.setOnClickListener(p -> onPlaylistClickListener.onClick(p));
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(context));

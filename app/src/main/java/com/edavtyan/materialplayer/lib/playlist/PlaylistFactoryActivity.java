@@ -1,14 +1,17 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
+import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistDialogsFactoryActivity {
+public class PlaylistFactoryActivity {
 	@Provides
 	@ActivityScope
 	public PlaylistSelectDialog providePlaylistSelectDialog(AppCompatActivity activity) {
@@ -23,10 +26,10 @@ public class PlaylistDialogsFactoryActivity {
 
 	@Provides
 	@ActivityScope
-	public PlaylistDialogPresenter providePlaylistDialogPresenter(
+	public PlaylistPresenter providePlaylistDialogPresenter(
 			PlaylistSelectDialog addDialog,
 			PlaylistNewDialog newDialog,
 			PlaylistManager manager) {
-		return new PlaylistDialogPresenter(addDialog, newDialog, manager);
+		return new PlaylistPresenter(addDialog, newDialog, manager);
 	}
 }

@@ -1,9 +1,10 @@
-package com.edavtyan.materialplayer.ui.lists.playlist_list;
+package com.edavtyan.materialplayer.lib.playlist.dialogs;
 
 import android.content.Context;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseDialog;
+import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistListPresenter;
 
 public class PlaylistDeleteDialog extends BaseDialog {
 	private final PlaylistListPresenter presenter;

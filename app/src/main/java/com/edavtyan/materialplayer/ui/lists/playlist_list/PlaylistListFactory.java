@@ -3,6 +3,8 @@ package com.edavtyan.materialplayer.ui.lists.playlist_list;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistDeleteDialog;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 
 import dagger.Module;
