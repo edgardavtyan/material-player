@@ -45,22 +45,25 @@ public abstract class BaseDialog {
 	@StringRes
 	public abstract int getPositiveButtonTextRes();
 
-	@LayoutRes
-	public abstract int getLayoutRes();
-
 	public BaseDialog(Context context) {
-		LayoutInflater inflater = LayoutInflater.from(context);
-		View view = inflater.inflate(getLayoutRes(), null, false);
-		ButterKnife.bind(this, view);
-
 		AlertDialog.Builder builder = new AlertDialog.Builder(context)
 				.setTitle(getDialogTitleRes())
 				.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm())
-				.setNegativeButton(android.R.string.cancel, null)
-				.setView(view);
+				.setNegativeButton(android.R.string.cancel, null);
+
+		if (getLayoutRes() != -1) {
+			LayoutInflater inflater = LayoutInflater.from(context);
+			View view = inflater.inflate(getLayoutRes(), null, false);
+			ButterKnife.bind(this, view);
+			builder.setView(view);
+		}
 
 		if (getNeutralButtonTextRes() != -1) {
 			builder.setNeutralButton(getNeutralButtonTextRes(), (d, w) -> onNeutral());
+		}
+
+		if (getMessageRes() != -1) {
+			builder.setMessage(getMessageRes());
 		}
 
 		dialog = builder.create();
@@ -68,8 +71,18 @@ public abstract class BaseDialog {
 		dialog.setOnDismissListener(d -> onDismiss());
 	}
 
+	@LayoutRes
+	public int getLayoutRes() {
+		return -1;
+	}
+
 	@StringRes
 	public int getNeutralButtonTextRes() {
+		return -1;
+	}
+
+	@StringRes
+	public int getMessageRes() {
 		return -1;
 	}
 

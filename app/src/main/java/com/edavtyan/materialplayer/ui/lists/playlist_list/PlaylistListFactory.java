@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.ui.FragmentScope;
@@ -23,6 +24,12 @@ public class PlaylistListFactory {
 
 	@Provides
 	@FragmentScope
+	public Fragment provideFragment() {
+		return view;
+	}
+
+	@Provides
+	@FragmentScope
 	public PlaylistListPresenter providePlaylistListPresenter(PlaylistManager manager) {
 		return new PlaylistListPresenter(view, manager);
 	}
@@ -33,5 +40,11 @@ public class PlaylistListFactory {
 			FragmentActivity activity,
 			PlaylistListPresenter presenter) {
 		return new PlaylistListAdapter(activity, presenter);
+	}
+
+	@Provides
+	@FragmentScope
+	public PlaylistDeleteDialog providePlaylistDeleteDialog(PlaylistListPresenter presenter) {
+		return new PlaylistDeleteDialog(view.getActivity(), presenter);
 	}
 }

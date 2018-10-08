@@ -6,6 +6,8 @@ public class PlaylistListPresenter implements ListPresenter<PlaylistListViewHold
 	private final PlaylistListFragment view;
 	private final PlaylistManager manager;
 
+	private int pendingPlaylistPosition;
+
 	public PlaylistListPresenter(PlaylistListFragment view, PlaylistManager manager) {
 		this.view = view;
 		this.manager = manager;
@@ -33,5 +35,16 @@ public class PlaylistListPresenter implements ListPresenter<PlaylistListViewHold
 
 	public void onPlaylistClick(int position) {
 		view.gotoPlaylistDetail(manager.list()[position]);
+	}
+
+	public void onDeletePlaylistMenuItemClicked(int position) {
+		view.showDeletePlaylistDialog();
+		pendingPlaylistPosition = position;
+	}
+
+	public void onDeletePlaylistConfirm() {
+		manager.delete(pendingPlaylistPosition);
+		view.notifyItemRemoved(pendingPlaylistPosition);
+		pendingPlaylistPosition = -1;
 	}
 }

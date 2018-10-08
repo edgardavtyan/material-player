@@ -23,6 +23,10 @@ public class PlaylistManager {
 		return storage.list();
 	}
 
+	public void delete(int position) {
+		storage.delete(position);
+	}
+
 	public void addPendingTracks(Track track) {
 		pendingTracks = new ArrayList<>();
 		pendingTracks.add(track);

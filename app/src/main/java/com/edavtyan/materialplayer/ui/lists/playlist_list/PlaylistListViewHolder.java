@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.ui.lists.playlist_list;
 
+import android.view.MenuItem;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
@@ -22,5 +23,16 @@ public class PlaylistListViewHolder extends SimpleTextListViewHolder {
 	protected void onItemClick() {
 		super.onItemClick();
 		presenter.onPlaylistClick(getAdapterPositionNonFinal());
+	}
+
+	@Override
+	protected boolean onMenuItemClick(MenuItem menuItem) {
+		switch (menuItem.getItemId()) {
+		case R.id.menu_playlist_delete:
+			presenter.onDeletePlaylistMenuItemClicked(getAdapterPositionNonFinal());
+			return true;
+		}
+
+		return super.onMenuItemClick(menuItem);
 	}
 }

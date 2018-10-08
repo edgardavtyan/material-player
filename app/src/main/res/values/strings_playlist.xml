@@ -7,6 +7,9 @@
 	<string name="playlist_new_button">New Playlist</string>
 	<string name="playlist_new_title">Create new playlist</string>
 	<string name="playlist_new_action">Create</string>
-	<string name="playlist_menu_remove">Remove from playlist</string>
+	<string name="playlist_menu_delete">Delete playlist</string>
+	<string name="playlist_menu_item_remove">Remove from playlist</string>
+	<string name="playlist_delete_title">Delete playlist</string>
+	<string name="playlist_delete_message">Delete playlist? This action cannot be undone</string>
 
 </resources>

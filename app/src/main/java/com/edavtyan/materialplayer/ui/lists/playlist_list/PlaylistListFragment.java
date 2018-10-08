@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
+import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.detail.playlist_detail.PlaylistDetailActivity;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
 
@@ -13,12 +15,21 @@ import javax.inject.Inject;
 public class PlaylistListFragment extends ListFragment {
 	@Inject PlaylistListPresenter presenter;
 	@Inject PlaylistListAdapter adapter;
+	@Inject PlaylistDeleteDialog deleteDialog;
+	@Inject ScreenThemeModule screenThemeModule;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
 		initListView(presenter, adapter);
+		addModule(screenThemeModule);
+	}
+
+	@Override
+	public void onThemeChanged(ThemeColors colors) {
+		super.onThemeChanged(colors);
+		deleteDialog.setTint(colors.getColorPrimary());
 	}
 
 	public void gotoPlaylistDetail(String playlistName) {
@@ -27,11 +38,19 @@ public class PlaylistListFragment extends ListFragment {
 		startActivity(intent);
 	}
 
-	private PlaylistListDIComponent getComponent() {
-		return DaggerPlaylistListDIComponent
+	public void showDeletePlaylistDialog() {
+		deleteDialog.show();
+	}
+
+	public void notifyItemRemoved(int position) {
+		adapter.notifyItemRemoved(position);
+	}
+
+	private PlaylistListFactoryComponent getComponent() {
+		return DaggerPlaylistListFactoryComponent
 				.builder()
-				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.playlistListDIModule(new PlaylistListDIModule(this))
+				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
+				.playlistListFactory(new PlaylistListFactory(this))
 				.build();
 	}
 }

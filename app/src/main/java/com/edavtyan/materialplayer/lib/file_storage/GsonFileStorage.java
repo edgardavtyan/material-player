@@ -35,4 +35,8 @@ public abstract class GsonFileStorage {
 	public String[] list() {
 		return stringStorage.list();
 	}
+
+	public boolean delete(int position) {
+		return stringStorage.delete(position);
+	}
 }
