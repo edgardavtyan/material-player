@@ -11,5 +11,6 @@
 	<string name="playlist_menu_item_remove">Remove from playlist</string>
 	<string name="playlist_delete_title">Delete playlist</string>
 	<string name="playlist_delete_message">Delete playlist? This action cannot be undone</string>
+	<string name="playlist_delete_action">Delete</string>
 
 </resources>

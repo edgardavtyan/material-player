@@ -21,7 +21,7 @@ public class PlaylistDeleteDialog extends BaseDialog {
 
 	@Override
 	public int getPositiveButtonTextRes() {
-		return android.R.string.ok;
+		return R.string.playlist_delete_action;
 	}
 
 	@Override
