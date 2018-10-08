@@ -42,14 +42,14 @@ public abstract class BaseDialog {
 	@StringRes
 	public abstract int getDialogTitleRes();
 
-	@StringRes
-	public abstract int getPositiveButtonTextRes();
-
 	public BaseDialog(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context)
 				.setTitle(getDialogTitleRes())
-				.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm())
 				.setNegativeButton(android.R.string.cancel, null);
+
+		if (getPositiveButtonTextRes() != -1) {
+			builder.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm());
+		}
 
 		if (getLayoutRes() != -1) {
 			LayoutInflater inflater = LayoutInflater.from(context);
@@ -73,6 +73,11 @@ public abstract class BaseDialog {
 
 	@LayoutRes
 	public int getLayoutRes() {
+		return -1;
+	}
+
+	@StringRes
+	public int getPositiveButtonTextRes() {
 		return -1;
 	}
 

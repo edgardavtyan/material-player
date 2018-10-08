@@ -39,11 +39,6 @@ public class PlaylistAddDialog extends BaseDialog {
 	}
 
 	@Override
-	public int getPositiveButtonTextRes() {
-		return R.string.playlist_add_action;
-	}
-
-	@Override
 	public int getNeutralButtonTextRes() {
 		return R.string.playlist_add_createNew;
 	}
