@@ -14,7 +14,7 @@ import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListActivity;
 import com.edavtyan.materialplayer.ui.lists.album_list.AlbumListView;
 import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
-import com.edavtyan.materialplayer.lib.playlist.PlaylistPresenter;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistPresenter;
 
 import java.util.List;
 

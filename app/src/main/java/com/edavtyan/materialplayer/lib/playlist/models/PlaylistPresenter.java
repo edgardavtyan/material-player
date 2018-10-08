@@ -1,9 +1,8 @@
-package com.edavtyan.materialplayer.lib.playlist;
+package com.edavtyan.materialplayer.lib.playlist.models;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
-import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import java.util.Collections;

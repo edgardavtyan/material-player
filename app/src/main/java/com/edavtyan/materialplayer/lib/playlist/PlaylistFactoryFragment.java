@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
 import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistPresenter;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 
 import dagger.Module;

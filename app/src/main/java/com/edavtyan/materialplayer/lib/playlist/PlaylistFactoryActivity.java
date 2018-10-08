@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
 import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistPresenter;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 
 import dagger.Module;

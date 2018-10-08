@@ -11,7 +11,7 @@ import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.lib.playlist.PlaylistPresenter;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistPresenter;
 
 import java.util.List;
 
