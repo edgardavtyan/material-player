@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="playlist_add_title">Select playlist</string>
-	<string name="playlist_add_action">Add</string>
-	<string name="playlist_add_createNew">Create New</string>
+	<string name="playlist_select_title">Select playlist</string>
+	<string name="playlist_select_createNew">Create New</string>
 	<string name="playlist_new_button">New Playlist</string>
 	<string name="playlist_new_title">Create new playlist</string>
 	<string name="playlist_new_action">Create</string>
 	<string name="playlist_new_exists">Playlist with same name already exists</string>
-	<string name="playlist_menu_delete">Delete playlist</string>
-	<string name="playlist_menu_item_remove">Remove from playlist</string>
 	<string name="playlist_delete_title">Delete playlist</string>
 	<string name="playlist_delete_message">Delete playlist? This action cannot be undone</string>
 	<string name="playlist_delete_action">Delete</string>
+	<string name="playlist_menu_delete">Delete playlist</string>
+	<string name="playlist_menu_item_remove">Remove from playlist</string>
 
 </resources>

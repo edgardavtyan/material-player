@@ -35,12 +35,12 @@ public class PlaylistSelectDialog extends BaseDialog {
 
 	@Override
 	public int getDialogTitleRes() {
-		return R.string.playlist_add_title;
+		return R.string.playlist_select_title;
 	}
 
 	@Override
 	public int getNeutralButtonTextRes() {
-		return R.string.playlist_add_createNew;
+		return R.string.playlist_select_createNew;
 	}
 
 	@Override
