@@ -26,8 +26,13 @@ public class PlaylistManager {
 		serviceModule.unbind();
 	}
 
-	public void create(String name) {
-		storage.save(name, Collections.emptyList());
+	public boolean create(String name) {
+		if (storage.exists(name)) {
+			return false;
+		} else {
+			storage.save(name, Collections.emptyList());
+			return true;
+		}
 	}
 
 	public String[] list() {

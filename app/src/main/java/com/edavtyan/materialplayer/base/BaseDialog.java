@@ -48,7 +48,11 @@ public abstract class BaseDialog {
 				.setNegativeButton(android.R.string.cancel, null);
 
 		if (getPositiveButtonTextRes() != -1) {
-			builder.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm());
+			if (closeWhenPositiveButtonClicked()) {
+				builder.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm());
+			} else {
+				builder.setPositiveButton(getPositiveButtonTextRes(), null);
+			}
 		}
 
 		if (getLayoutRes() != -1) {
@@ -91,6 +95,10 @@ public abstract class BaseDialog {
 		return -1;
 	}
 
+	public boolean closeWhenPositiveButtonClicked() {
+		return true;
+	}
+
 	public void onShow() {}
 
 	public void onConfirm() {}
@@ -107,6 +115,10 @@ public abstract class BaseDialog {
 		}
 
 		dialog.show();
+
+		if (!closeWhenPositiveButtonClicked()) {
+			dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> onConfirm());
+		}
 	}
 
 	public void close() {

@@ -39,4 +39,8 @@ public abstract class GsonFileStorage {
 	public boolean delete(int position) {
 		return stringStorage.delete(position);
 	}
+
+	public boolean exists(String name) {
+		return stringStorage.exists(name);
+	}
 }

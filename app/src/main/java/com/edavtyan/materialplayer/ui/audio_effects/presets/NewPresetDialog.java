@@ -17,8 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NewPresetDialog {
-	@BindView(R.id.preset_edit_text) EditText presetNameEditText;
-	@BindView(R.id.preset_error_exists) TextView presetErrorExistsView;
+	@BindView(R.id.edittext) EditText presetNameEditText;
+	@BindView(R.id.error_exists) TextView presetErrorExistsView;
 
 	private final AlertDialog dialog;
 	private final Context context;

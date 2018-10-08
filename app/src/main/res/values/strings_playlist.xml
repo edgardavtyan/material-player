@@ -7,6 +7,7 @@
 	<string name="playlist_new_button">New Playlist</string>
 	<string name="playlist_new_title">Create new playlist</string>
 	<string name="playlist_new_action">Create</string>
+	<string name="playlist_new_exists">Playlist with same name already exists</string>
 	<string name="playlist_menu_delete">Delete playlist</string>
 	<string name="playlist_menu_item_remove">Remove from playlist</string>
 	<string name="playlist_delete_title">Delete playlist</string>

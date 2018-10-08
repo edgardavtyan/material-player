@@ -46,8 +46,12 @@ public class PlaylistPresenter {
 	}
 
 	public void onNewPlaylistConfirm(String playlistName) {
-		manager.create(playlistName);
-		addDialog.show(manager.list());
+		if (manager.create(playlistName)) {
+			newDialog.close();
+			addDialog.show(manager.list());
+		} else {
+			newDialog.showAlreadyExistsError();
+		}
 	}
 
 	public void onNewPlaylistDismiss() {
