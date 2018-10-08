@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="playlist_add_title">Add track to playlist</string>
+	<string name="playlist_add_title">Select playlist</string>
 	<string name="playlist_add_action">Add</string>
 	<string name="playlist_add_createNew">Create New</string>
 	<string name="playlist_new_button">New Playlist</string>
