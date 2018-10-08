@@ -38,11 +38,6 @@ public class PlaylistManager {
 		storage.delete(position);
 	}
 
-	public void addPendingTracks(Track track) {
-		pendingTracks = new ArrayList<>();
-		pendingTracks.add(track);
-	}
-
 	public void addPendingTracks(List<Track> tracks) {
 		pendingTracks = new ArrayList<>();
 		pendingTracks.addAll(tracks);
