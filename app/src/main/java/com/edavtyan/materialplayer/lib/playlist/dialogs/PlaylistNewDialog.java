@@ -44,4 +44,10 @@ public class PlaylistNewDialog extends BaseDialog {
 			onConfirmListener.onConfirm(editTextView.getText().toString());
 		}
 	}
+
+	@Override
+	public void show() {
+		super.show();
+		editTextView.setText("");
+	}
 }
