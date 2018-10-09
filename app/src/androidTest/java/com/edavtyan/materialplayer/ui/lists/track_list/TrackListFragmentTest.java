@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 
 import org.junit.Test;

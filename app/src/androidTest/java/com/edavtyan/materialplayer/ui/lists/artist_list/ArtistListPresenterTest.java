@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 
 import org.junit.Test;
 

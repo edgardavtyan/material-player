@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.transition;
+package com.edavtyan.materialplayer.lib.transition;
 
 import android.view.View;
 

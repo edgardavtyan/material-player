@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.transition;
+package com.edavtyan.materialplayer.lib.transition;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,10 +9,10 @@ import com.ed.libsutils.utils.WindowUtils;
 
 import lombok.Getter;
 
-import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_HEIGHT;
-import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_WIDTH;
-import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_X;
-import static com.edavtyan.materialplayer.transition.SharedTransitionsManager.PARAM_Y;
+import static com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager.PARAM_HEIGHT;
+import static com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager.PARAM_WIDTH;
+import static com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager.PARAM_X;
+import static com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager.PARAM_Y;
 
 public class SharedViewSet {
 	private @Getter final String transitionName;

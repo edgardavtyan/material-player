@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import com.edavtyan.materialplayer.db.Artist;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class ArtistListPresenter implements ListPresenter<ArtistListViewHolder> {

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 
 import org.junit.Rule;
 import org.junit.Test;

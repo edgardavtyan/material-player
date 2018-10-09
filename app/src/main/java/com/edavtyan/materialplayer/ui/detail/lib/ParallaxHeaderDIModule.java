@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.ui.ActivityScope;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 
 import dagger.Module;
 import dagger.Provides;

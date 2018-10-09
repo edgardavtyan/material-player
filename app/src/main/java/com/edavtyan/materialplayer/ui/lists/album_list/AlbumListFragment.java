@@ -10,8 +10,8 @@ import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 
 import java.util.List;
 

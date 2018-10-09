@@ -20,8 +20,8 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.Navigator;
 
 import javax.inject.Inject;

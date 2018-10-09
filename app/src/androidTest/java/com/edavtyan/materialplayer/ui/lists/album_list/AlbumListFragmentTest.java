@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.testlib.tests.FragmentTest;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.Navigator;
 
 import org.junit.Test;

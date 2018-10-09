@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
-import com.edavtyan.materialplayer.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

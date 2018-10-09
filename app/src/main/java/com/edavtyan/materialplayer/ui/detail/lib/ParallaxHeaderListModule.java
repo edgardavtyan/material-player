@@ -23,9 +23,9 @@ import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
-import com.edavtyan.materialplayer.transition.OutputSharedViews;
-import com.edavtyan.materialplayer.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.transition.SharedViewSet;
+import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
