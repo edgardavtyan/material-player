@@ -17,21 +17,18 @@ import static com.edavtyan.materialplayer.lib.transition.SharedTransitionsManage
 public class SharedViewSet {
 	private @Getter final String transitionName;
 	private @Getter final TransitionType transitionType;
+
 	private final View normalView;
-	private View enterPortraitView;
-	private View enterLandscapeView;
+	private final View enterPortraitView;
+	private final View enterLandscapeView;
+	private final View exitLandscapeView;
 	private View exitPortraitView;
-	private View exitLandscapeView;
-	private int enterDuration;
-	private int exitDuration;
-	private int exitDelay;
+	private final int enterDuration;
+	private final int exitDuration;
+	private final int exitDelay;
 
 	public static SharedViewSet translating(String transitionName, View normalView, View sharedView) {
 		return new SharedViewSet(transitionName, normalView, sharedView, TransitionType.TRANSLATE);
-	}
-
-	public static SharedViewSet fading(String transitionName, View view) {
-		return new SharedViewSet(transitionName, view, view, TransitionType.FADE_OUT);
 	}
 
 	private SharedViewSet(
@@ -53,21 +50,6 @@ public class SharedViewSet {
 
 	public View getEnterView(Activity activity) {
 		return WindowUtils.isPortrait(activity) ? enterPortraitView : enterLandscapeView;
-	}
-
-	public SharedViewSet enterDuration(int durationMs) {
-		this.enterDuration = durationMs;
-		return this;
-	}
-
-	public SharedViewSet exitDelay(int startDelayMs) {
-		this.exitDelay = startDelayMs;
-		return this;
-	}
-
-	public SharedViewSet exitDuration(int durationMs) {
-		this.exitDuration = durationMs;
-		return this;
 	}
 
 	public SharedViewSet exitPortraitView(View view) {

@@ -12,7 +12,7 @@ public class LyricsTask extends AsyncTask<String, Void, AsyncTaskResult<String>>
 	private final OnLyricsLoadedCallback callback;
 
 	public interface OnLyricsLoadedCallback {
-		void onLyricsLoaded(String  lyrics);
+		void onLyricsLoaded(String lyrics);
 		void onLyricsNotFound();
 		void onConnectionError();
 	}

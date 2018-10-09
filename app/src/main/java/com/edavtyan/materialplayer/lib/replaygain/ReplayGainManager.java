@@ -13,36 +13,20 @@ public class ReplayGainManager implements PlayerPlugin {
 	private ReplayGainData rgData;
 	private Track currentTrack;
 
-	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
-	private final ReplayGainPrefs.OnEnabledChanged onEnabledPrefChangedListener
-			= new ReplayGainPrefs.OnEnabledChanged() {
-		@Override
-		public void onEnabledChanged(boolean enabled) {
-			if (enabled) {
-				apply();
-			} else {
-				disable();
-			}
+	@SuppressWarnings("FieldCanBeLocal")
+	private final ReplayGainPrefs.OnEnabledChanged onEnabledPrefChangedListener = enabled -> {
+		if (enabled) {
+			apply();
+		} else {
+			disable();
 		}
 	};
 
-	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
-	private final ReplayGainPrefs.OnAlbumUsedChanged onAlbumPrefChangedListener
-			= new ReplayGainPrefs.OnAlbumUsedChanged() {
-		@Override
-		public void onAlbumUsedChanged(boolean albumGainUsed) {
-			reapply();
-		}
-	};
+	@SuppressWarnings("FieldCanBeLocal")
+	private final ReplayGainPrefs.OnAlbumUsedChanged onAlbumPrefChangedListener = this::reapply;
 
-	@SuppressWarnings({"FieldCanBeLocal", "Convert2Lambda"})
-	private final ReplayGainPrefs.OnPreampChanged onPreampPrefChangedListener
-			= new ReplayGainPrefs.OnPreampChanged() {
-		@Override
-		public void onPreampChanged(double preamp) {
-			reapply();
-		}
-	};
+	@SuppressWarnings("FieldCanBeLocal")
+	private final ReplayGainPrefs.OnPreampChanged onPreampPrefChangedListener = this::reapply;
 
 	public ReplayGainManager(
 			Amplifier amplifier,

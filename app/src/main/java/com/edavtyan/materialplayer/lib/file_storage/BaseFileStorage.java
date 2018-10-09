@@ -56,7 +56,7 @@ public abstract class BaseFileStorage {
 		return dir.list();
 	}
 
-	public boolean delete(int position) {
-		return dir.listFiles()[position].delete();
+	public void delete(int position) {
+		dir.listFiles()[position].delete();
 	}
 }

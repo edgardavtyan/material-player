@@ -41,7 +41,6 @@ public class ListFragment extends ModularFragment implements ListView {
 		return R.layout.fragment_list;
 	}
 
-	@Override
 	public void notifyDataSetChanged() {
 		listFragmentModule.notifyDataSetChanged();
 	}

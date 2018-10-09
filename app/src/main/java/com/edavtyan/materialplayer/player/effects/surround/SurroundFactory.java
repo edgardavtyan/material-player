@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.player.effects.surround;
 
 import android.media.audiofx.Virtualizer;
-import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;

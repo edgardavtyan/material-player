@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.ui.search.tracks;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 import com.edavtyan.materialplayer.ui.search.base.SearchModel;
 
@@ -16,10 +15,7 @@ public class SearchTrackModel extends TrackListModel implements SearchModel {
 
 	private @Setter String query;
 
-	public SearchTrackModel(
-			ModelServiceModule serviceModule,
-			TrackDB trackDB,
-			PlaylistManager playlistManager) {
+	public SearchTrackModel(ModelServiceModule serviceModule, TrackDB trackDB) {
 		super(serviceModule, trackDB);
 		this.trackDB = trackDB;
 	}

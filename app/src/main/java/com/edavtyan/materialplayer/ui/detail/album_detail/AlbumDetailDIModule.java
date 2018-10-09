@@ -2,15 +2,14 @@ package com.edavtyan.materialplayer.ui.detail.album_detail;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.ui.ActivityScope;
-import com.edavtyan.materialplayer.ui.SdkFactory;
-import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
+import com.edavtyan.materialplayer.ui.ActivityScope;
+import com.edavtyan.materialplayer.ui.SdkFactory;
+import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -37,10 +36,8 @@ public class AlbumDetailDIModule {
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			AlbumArtProvider artProvider,
-			PlaylistManager playlistManager) {
-		return new AlbumDetailModel(
-				serviceModule, albumDB, trackDB, artProvider, playlistManager, albumId);
+			AlbumArtProvider artProvider) {
+		return new AlbumDetailModel(serviceModule, albumDB, trackDB, artProvider, albumId);
 	}
 
 	@Provides

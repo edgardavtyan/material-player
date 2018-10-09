@@ -62,10 +62,6 @@ public abstract class BaseDialog {
 			builder.setView(view);
 		}
 
-		if (getNeutralButtonTextRes() != -1) {
-			builder.setNeutralButton(getNeutralButtonTextRes(), (d, w) -> onNeutralButtonClick());
-		}
-
 		if (getMessageRes() != -1) {
 			builder.setMessage(getMessageRes());
 		}
@@ -86,11 +82,6 @@ public abstract class BaseDialog {
 	}
 
 	@StringRes
-	public int getNeutralButtonTextRes() {
-		return -1;
-	}
-
-	@StringRes
 	public int getMessageRes() {
 		return -1;
 	}
@@ -103,14 +94,12 @@ public abstract class BaseDialog {
 
 	public void onPositiveButtonClick() {}
 
-	public void onNeutralButtonClick() {}
-
 	public void onDismiss() {
 		if (onDismissListener != null) onDismissListener.onDismiss();
 	}
 
 	public void show() {
-		if (showKeyboardEnabled) {
+		if (showKeyboardEnabled && dialog.getWindow() != null) {
 			dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		}
 

@@ -54,8 +54,4 @@ public abstract class ParallaxHeaderListActivity
 	public void setImage(@Nullable Bitmap image, @DrawableRes int fallback) {
 		parallaxListModule.setArt(image, fallback);
 	}
-
-	public void notifyDataSetChanged() {
-		parallaxListModule.notifyDataSetChanged();
-	}
 }

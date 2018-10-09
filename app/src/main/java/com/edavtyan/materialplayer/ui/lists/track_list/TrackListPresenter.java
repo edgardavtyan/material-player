@@ -49,8 +49,4 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 		model.unbindService();
 		model.close();
 	}
-
-	public void onExitAnimationEnd() {
-		view.enableTouchEvents();
-	}
 }

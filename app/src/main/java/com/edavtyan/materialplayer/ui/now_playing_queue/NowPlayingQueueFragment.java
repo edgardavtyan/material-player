@@ -59,11 +59,6 @@ public class NowPlayingQueueFragment extends ListFragment implements ListView {
 		presenter.onDestroy();
 	}
 
-	@Override
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
-
 	public void removeItem(int position) {
 		adapter.notifyItemRemoved(position);
 	}

@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.lib.transition;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.view.View;
@@ -28,11 +27,6 @@ public class SourceSharedViews {
 	public SourceSharedViews(Pair<View, String>... sharedViews) {
 		this.sharedViews = new ArrayList<>(Arrays.asList(sharedViews));
 		activityClass = sharedViews[0].first.getContext().getClass();
-	}
-
-	public SourceSharedViews(Activity activity) {
-		sharedViews = new ArrayList<>();
-		activityClass = activity.getClass();
 	}
 
 	@Override
@@ -100,10 +94,6 @@ public class SourceSharedViews {
 
 		throw new IllegalStateException(
 				"Source shared view with transition name '" + transitionName + "' not found");
-	}
-
-	public void add(Pair<View, String> sharedPair) {
-		sharedViews.add(sharedPair);
 	}
 
 	public void raiseOnExitTransitionEndListener() {

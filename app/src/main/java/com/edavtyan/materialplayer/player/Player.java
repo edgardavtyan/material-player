@@ -16,8 +16,7 @@ public class Player
 	private final PlayerQueueStorage queueStorage;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
-
-	private ArrayList<PlayerPlugin> plugins;
+	private final ArrayList<PlayerPlugin> plugins;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();

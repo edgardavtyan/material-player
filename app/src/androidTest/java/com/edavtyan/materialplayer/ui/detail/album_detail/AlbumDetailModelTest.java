@@ -38,7 +38,7 @@ public class AlbumDetailModelTest extends BaseTest {
 		trackDB = mock(TrackDB.class);
 		albumArtProvider = mock(AlbumArtProvider.class);
 
-		model = new AlbumDetailModel(serviceModule, albumDB, trackDB, albumArtProvider, ALBUM_ID);
+		model = new AlbumDetailModel(serviceModule, albumDB, trackDB, albumArtProvider);
 	}
 
 	@Test

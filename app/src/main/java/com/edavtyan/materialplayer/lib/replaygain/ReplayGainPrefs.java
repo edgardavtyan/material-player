@@ -23,7 +23,7 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 	private @Setter OnAlbumUsedChanged onAlbumUsedChangedListener;
 
 	public interface OnPreampChanged {
-		void onPreampChanged(double preamp);
+		void onPreampChanged();
 	}
 
 	public interface OnEnabledChanged {
@@ -31,7 +31,7 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 	}
 
 	public interface OnAlbumUsedChanged {
-		void onAlbumUsedChanged(boolean albumGainUsed);
+		void onAlbumUsedChanged();
 	}
 
 	public ReplayGainPrefs(Context context, AdvancedSharedPrefs prefs) {
@@ -67,12 +67,12 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 		}
 
 		if (key.equals(rgAlbumKey)) {
-			onAlbumUsedChangedListener.onAlbumUsedChanged(isAlbumGainUsed());
+			onAlbumUsedChangedListener.onAlbumUsedChanged();
 			return;
 		}
 
 		if (key.equals(rgPreampKey)) {
-			onPreampChangedListener.onPreampChanged(getPreamp());
+			onPreampChangedListener.onPreampChanged();
 			return;
 		}
 	}

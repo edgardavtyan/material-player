@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.player.effects.bassboost;
 
-import android.support.annotation.Nullable;
-
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
 

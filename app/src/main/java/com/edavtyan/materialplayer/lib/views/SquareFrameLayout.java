@@ -9,7 +9,6 @@ import android.support.annotation.RequiresApi;
 import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import static java.lang.Math.abs;
@@ -24,26 +23,30 @@ public class SquareFrameLayout extends FrameLayout {
 		super(context, attrs);
 	}
 
-	public SquareFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+	public SquareFrameLayout(
+			@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public SquareFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
+	public SquareFrameLayout(
+			@NonNull Context context,
+			@Nullable AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	/**
 	 * Measure the view and its content to determine the measured width and the measured height.
-	 * @param widthMeasureSpec :  horizontal space requirements as imposed by the parent
+	 *
+	 * @param widthMeasureSpec  :  horizontal space requirements as imposed by the parent
 	 * @param heightMeasureSpec :  vertical space requirements as imposed by the parent
 	 */
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
 		//provide a square Preview in xml (not possible in certain cases)
-		if(isInEditMode()){
+		if (isInEditMode()) {
 			// if height < width : call super method with heightSpec for all sides
 			if (abs(heightMeasureSpec) < abs(widthMeasureSpec)) {
 				super.onMeasure(heightMeasureSpec, heightMeasureSpec);
@@ -64,24 +67,20 @@ public class SquareFrameLayout extends FrameLayout {
 	 * So calculate the bounds before rendering the layout.
 	 */
 	private void init() {
-		this.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-			@Override
-			public boolean onPreDraw() {
+		this.getViewTreeObserver().addOnPreDrawListener(() -> {
+			if (getWidth() != getHeight()) {
+				//Get the smaller dimension of height and width
+				int squareSize = Math.min(getWidth(), getHeight());
 
-				if (getWidth() != getHeight()) {
-					//Get the smaller dimension of height and width
-					int squareSize = Math.min(getWidth(), getHeight());
-
-					//Set the dimensions to a Square
-					ViewGroup.LayoutParams lp = getLayoutParams();
-					lp.width = squareSize;
-					lp.height = squareSize;
-					requestLayout();
-					return false;
-				}
-				return true;
-
+				//Set the dimensions to a Square
+				ViewGroup.LayoutParams lp = getLayoutParams();
+				lp.width = squareSize;
+				lp.height = squareSize;
+				requestLayout();
+				return false;
 			}
+			return true;
+
 		});
 	}
 

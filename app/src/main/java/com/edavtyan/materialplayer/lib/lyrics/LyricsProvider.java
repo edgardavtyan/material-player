@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.lib.lyrics;
 
+import android.support.annotation.Nullable;
+
 public class LyricsProvider {
 	private final LyricsApi api;
 	private final LyricsStorage storage;
@@ -9,6 +11,7 @@ public class LyricsProvider {
 		this.storage = storage;
 	}
 
+	@Nullable
 	public String getLyrics(String artist, String track)
 	throws LyricsNotFoundException, LyricsConnectionException {
 		if (storage.exists(artist, track)) {

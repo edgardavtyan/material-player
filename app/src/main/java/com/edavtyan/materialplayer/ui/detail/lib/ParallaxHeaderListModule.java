@@ -190,8 +190,4 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			}
 		}
 	}
-
-	public void notifyDataSetChanged() {
-		adapter.notifyDataSetChangedNonFinal();
-	}
 }
