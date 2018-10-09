@@ -25,7 +25,7 @@ import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingLyrics;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.ui.now_playing_queue2.NowPlayingQueueFragment;
+import com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment;
 
 import javax.inject.Inject;
 

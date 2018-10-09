@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_queue2;
+package com.edavtyan.materialplayer.ui.now_playing_queue;
 
 import android.content.Context;
 import android.view.View;

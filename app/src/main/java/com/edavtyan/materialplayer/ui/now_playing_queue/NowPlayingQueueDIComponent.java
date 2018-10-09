@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_queue2;
+package com.edavtyan.materialplayer.ui.now_playing_queue;
 
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.lib.theme.ThemeableFragmentDIModule;
