@@ -49,6 +49,7 @@ gen-external-apklibs
 .idea/tasks.xml
 .idea/dictionaries
 .idea/caches
+.idea/workspace.xml___jb_tmp___
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
