@@ -37,7 +37,7 @@ public class CircularRevealAnimation {
 	public void hide() {
 		Animator anim = ViewAnimationUtils.createCircularReveal(view, x, y, startRadius, endRadius);
 		anim.setDuration(duration);
-		anim.setInterpolator(input -> Math.abs(input - 1f));
+		anim.setInterpolator(new DecelerateReverseInterpolator(2));
 		anim.addListener((AnimatorEndListener) () -> view.setVisibility(View.INVISIBLE));
 		anim.start();
 	}

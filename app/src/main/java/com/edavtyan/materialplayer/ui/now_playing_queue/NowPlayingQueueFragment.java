@@ -71,6 +71,7 @@ public class NowPlayingQueueFragment extends ListFragment implements ListView {
 				circularRevealAnimation.setDuration(500);
 			}
 
+			list.animate().alpha(1);
 			circularRevealAnimation.show();
 		} else {
 			rootView.setAlpha(0);
@@ -82,6 +83,7 @@ public class NowPlayingQueueFragment extends ListFragment implements ListView {
 	public void hide() {
 		if (CircularRevealAnimation.isSupported()) {
 			circularRevealAnimation.hide();
+			list.animate().alpha(0);
 		} else {
 			rootView.animate().alpha(0).withEndAction(() -> rootView.setVisibility(View.INVISIBLE));
 		}

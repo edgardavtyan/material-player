@@ -32,12 +32,12 @@ public class NowPlayingFab implements View.OnClickListener {
 	}
 
 	public void show() {
+		fab.setVisibility(View.VISIBLE);
 		if (CircularRevealAnimation.isSupported()) {
-			fab.animate().alpha(1).setStartDelay(400).setDuration(100)
+			fab.animate().alpha(1).setStartDelay(300).setDuration(200)
 			   .withEndAction(() -> fab.setVisibility(View.VISIBLE));;
 		} else {
-			fab.animate().scaleX(1).scaleY(1)
-			   .withEndAction(() -> fab.setVisibility(View.VISIBLE));;
+			fab.animate().scaleX(1).scaleY(1);
 		}
 	}
 
