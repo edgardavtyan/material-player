@@ -33,17 +33,21 @@ public class NowPlayingFab implements View.OnClickListener {
 
 	public void show() {
 		if (CircularRevealAnimation.isSupported()) {
-			fab.animate().alpha(1).setStartDelay(400).setDuration(100);
+			fab.animate().alpha(1).setStartDelay(400).setDuration(100)
+			   .withEndAction(() -> fab.setVisibility(View.VISIBLE));;
 		} else {
-			fab.animate().scaleX(1).scaleY(1);
+			fab.animate().scaleX(1).scaleY(1)
+			   .withEndAction(() -> fab.setVisibility(View.VISIBLE));;
 		}
 	}
 
 	public void hide() {
 		if (CircularRevealAnimation.isSupported()) {
-			fab.animate().alpha(0).setStartDelay(0).setDuration(200);
+			fab.animate().alpha(0).setStartDelay(0).setDuration(200)
+			   .withEndAction(() -> fab.setVisibility(View.INVISIBLE));
 		} else {
-			fab.animate().scaleX(0).scaleY(0);
+			fab.animate().scaleX(0).scaleY(0)
+			   .withEndAction(() -> fab.setVisibility(View.INVISIBLE)); ;
 		}
 	}
 
