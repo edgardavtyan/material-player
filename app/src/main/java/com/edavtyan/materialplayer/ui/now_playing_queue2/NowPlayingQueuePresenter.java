@@ -1,13 +1,13 @@
-package com.edavtyan.materialplayer.ui.now_playing_queue;
+package com.edavtyan.materialplayer.ui.now_playing_queue2;
 
+import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
-import com.edavtyan.materialplayer.db.Track;
 
 public class NowPlayingQueuePresenter implements ListPresenter<NowPlayingQueueViewHolder> {
 
 	private final NowPlayingQueueModel model;
-	private final NowPlayingQueueActivity view;
+	private final NowPlayingQueueFragment view;
 
 	@SuppressWarnings("FieldCanBeLocal")
 	private final NowPlayingQueueModel.OnNewTrackListener onNewTrackListener
@@ -27,7 +27,7 @@ public class NowPlayingQueuePresenter implements ListPresenter<NowPlayingQueueVi
 		}
 	};
 
-	public NowPlayingQueuePresenter(NowPlayingQueueModel model, NowPlayingQueueActivity view) {
+	public NowPlayingQueuePresenter(NowPlayingQueueModel model, NowPlayingQueueFragment view) {
 		super();
 		this.model = model;
 		this.model.setOnNewTrackListener(onNewTrackListener);

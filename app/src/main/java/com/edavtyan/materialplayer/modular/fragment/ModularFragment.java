@@ -26,6 +26,8 @@ public abstract class ModularFragment extends Fragment implements ThemeableScree
 	@LayoutRes
 	protected abstract int getLayoutId();
 
+	public void onCreateView(View view) {}
+
 	@Nullable
 	@Override
 	public View onCreateView(
@@ -42,6 +44,8 @@ public abstract class ModularFragment extends Fragment implements ThemeableScree
 				((FragmentModule) module).onCreateView(view);
 			}
 		}
+
+		onCreateView(view);
 
 		return view;
 	}

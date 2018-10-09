@@ -37,7 +37,7 @@ public class NowPlayingPresenter
 	}
 
 	public void onFabClick() {
-		view.gotoPlaylistScreen();
+		view.showQueue();
 	}
 
 	public void onShuffleClick() {

@@ -1,9 +1,10 @@
-package com.edavtyan.materialplayer.ui.now_playing_queue;
+package com.edavtyan.materialplayer.ui.now_playing_queue2;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
-import com.edavtyan.materialplayer.ui.ActivityScope;
+import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
 
 import dagger.Module;
@@ -11,40 +12,46 @@ import dagger.Provides;
 
 @Module
 public class NowPlayingQueueDIModule {
-	private final NowPlayingQueueActivity activity;
+	private final NowPlayingQueueFragment fragment;
 
-	public NowPlayingQueueDIModule(NowPlayingQueueActivity activity) {
-		this.activity = activity;
+	public NowPlayingQueueDIModule(NowPlayingQueueFragment fragment) {
+		this.fragment = fragment;
 	}
 
 	@Provides
-	@ActivityScope
-	public NowPlayingQueueActivity provideView() {
-		return activity;
+	@FragmentScope
+	public NowPlayingQueueFragment provideView() {
+		return fragment;
 	}
 
 	@Provides
-	@ActivityScope
+	@FragmentScope
+	public Fragment provideFragment() {
+		return fragment;
+	}
+
+	@Provides
+	@FragmentScope
 	public AppCompatActivity provideAppCompatActivity() {
-		return activity;
+		return (AppCompatActivity) fragment.getActivity();
 	}
 
 	@Provides
-	@ActivityScope
+	@FragmentScope
 	public NowPlayingQueueModel provideModel(ModelServiceModule serviceModule) {
 		return new NowPlayingQueueModel(serviceModule);
 	}
 
 	@Provides
-	@ActivityScope
+	@FragmentScope
 	public NowPlayingQueuePresenter providePresenter(
 			NowPlayingQueueModel model,
-			NowPlayingQueueActivity view) {
+			NowPlayingQueueFragment view) {
 		return new NowPlayingQueuePresenter(model, view);
 	}
 
 	@Provides
-	@ActivityScope
+	@FragmentScope
 	public NowPlayingQueueAdapter provideAdapter(
 			AppCompatActivity activity,
 			NowPlayingQueuePresenter presenter,

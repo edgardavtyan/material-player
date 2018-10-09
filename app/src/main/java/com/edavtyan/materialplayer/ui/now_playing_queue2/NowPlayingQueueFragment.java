@@ -1,51 +1,52 @@
-package com.edavtyan.materialplayer.ui.now_playing_queue;
+package com.edavtyan.materialplayer.ui.now_playing_queue2;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.base.BaseActivity;
-import com.edavtyan.materialplayer.lib.layout_managers.AnimatingLinearLayoutManager;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
-import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
+import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
 import com.edavtyan.materialplayer.ui.lists.lib.ListView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class NowPlayingQueueActivity extends BaseActivity implements ListView {
+public class NowPlayingQueueFragment extends ListFragment implements ListView {
 
 	@BindView(R.id.list) RecyclerView list;
+	@BindView(R.id.root) FrameLayout rootView;
 
-	@Inject ActivityBaseMenuModule baseMenuModule;
-	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ScreenThemeModule themeModule;
-
 	@Inject NowPlayingQueuePresenter presenter;
 	@Inject NowPlayingQueueAdapter adapter;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_queue);
-		ButterKnife.bind(this);
 
 		getComponent().inject(this);
-		addModule(baseMenuModule);
-		addModule(toolbarModule);
 		addModule(themeModule);
 
+		initListView(presenter, adapter);
+
 		adapter.setHasStableIds(true);
-
-		list.setLayoutManager(new AnimatingLinearLayoutManager(this));
-		list.setAdapter(adapter);
-
 		presenter.onCreate();
+	}
+
+	@Override
+	public boolean isBackgroundEnabled() {
+		return true;
+	}
+
+	@Override
+	public void onCreateView(View view) {
+		super.onCreateView(view);
+		rootView.setAlpha(0);
 	}
 
 	@Override
@@ -63,10 +64,19 @@ public class NowPlayingQueueActivity extends BaseActivity implements ListView {
 		adapter.notifyItemRemoved(position);
 	}
 
+	public void show() {
+		rootView.setVisibility(View.VISIBLE);
+		rootView.animate().alpha(1);
+	}
+
+	public void hide() {
+		rootView.animate().alpha(0).withEndAction(() -> rootView.setVisibility(View.GONE));
+	}
+
 	protected NowPlayingQueueDIComponent getComponent() {
 		return DaggerNowPlayingQueueDIComponent
 				.builder()
-				.appDIComponent(((App)getApplication()).getAppComponent())
+				.appDIComponent(((App) getActivity().getApplication()).getAppComponent())
 				.nowPlayingQueueDIModule(new NowPlayingQueueDIModule(this))
 				.build();
 	}

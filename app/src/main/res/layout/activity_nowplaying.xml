@@ -235,6 +235,14 @@
 
 				</LinearLayout>
 
+				<fragment
+					android:id="@+id/fragment_queue"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:name="com.edavtyan.materialplayer.ui.now_playing_queue2.NowPlayingQueueFragment"
+					tools:layout="@layout/fragment_list"
+					/>
+
 			</FrameLayout>
 
 		</LinearLayout>

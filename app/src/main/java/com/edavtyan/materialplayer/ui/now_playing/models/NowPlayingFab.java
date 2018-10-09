@@ -29,4 +29,12 @@ public class NowPlayingFab implements View.OnClickListener {
 	public FloatingActionButton getView() {
 		return fab;
 	}
+
+	public void show() {
+		fab.animate().scaleX(1).scaleY(1);
+	}
+
+	public void hide() {
+		fab.animate().scaleX(0).scaleY(0);
+	}
 }

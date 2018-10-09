@@ -33,7 +33,9 @@ public class ModelServiceModule implements ServiceConnection {
 	}
 
 	public void unbind() {
-		context.unbindService(this);
+		try {
+			context.unbindService(this);
+		} catch (IllegalArgumentException ignored) {}
 	}
 
 	public PlayerService getService() {

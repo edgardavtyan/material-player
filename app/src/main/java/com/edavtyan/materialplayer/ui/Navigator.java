@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.ui.audio_effects.AudioEffectsActivity;
 import com.edavtyan.materialplayer.ui.detail.album_detail.AlbumDetailActivity;
 import com.edavtyan.materialplayer.ui.detail.artist_detail.ArtistDetailActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
-import com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueActivity;
 import com.edavtyan.materialplayer.ui.prefs.PrefActivity;
 import com.edavtyan.materialplayer.ui.search.SearchActivity;
 
@@ -42,12 +40,6 @@ public class Navigator {
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
 		activity.overridePendingTransition(0, android.R.anim.fade_out);
-	}
-
-	public void gotoNowPlayingQueue(Activity activity) {
-		Intent intent = new Intent(context, NowPlayingQueueActivity.class);
-		context.startActivity(intent);
-		activity.overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
 	}
 
 	public void gotoAudioEffects() {

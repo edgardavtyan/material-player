@@ -25,6 +25,7 @@ import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingLyrics;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
+import com.edavtyan.materialplayer.ui.now_playing_queue2.NowPlayingQueueFragment;
 
 import javax.inject.Inject;
 
@@ -51,6 +52,10 @@ public class NowPlayingActivity extends ModularActivity {
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
 
+	private NowPlayingQueueFragment queueFragment;
+
+	private boolean isQueueShown;
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,6 +66,8 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(toolbarModule);
 		addModule(themeModule);
 		presenter.bind();
+
+		queueFragment = (NowPlayingQueueFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_queue);
 
 		OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
 		outputViewsBuilder.sharedViewSets(
@@ -99,7 +106,13 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@Override
 	public void onBackPressed() {
-		transitionManager.beginExitTransition(this);
+		if (isQueueShown) {
+			queueFragment.hide();
+			fab.show();
+			isQueueShown = false;
+		} else {
+			transitionManager.beginExitTransition(this);
+		}
 	}
 
 	@Override
@@ -109,7 +122,13 @@ public class NowPlayingActivity extends ModularActivity {
 	}
 
 	public void gotoPlaylistScreen() {
-		navigator.gotoNowPlayingQueue(this);
+
+	}
+
+	public void showQueue() {
+		queueFragment.show();
+		fab.hide();
+		isQueueShown = true;
 	}
 
 	protected NowPlayingDIComponent getComponent() {
