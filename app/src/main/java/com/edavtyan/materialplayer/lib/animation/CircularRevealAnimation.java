@@ -1,0 +1,40 @@
+package com.edavtyan.materialplayer.lib.animation;
+
+import android.animation.Animator;
+import android.view.View;
+import android.view.ViewAnimationUtils;
+
+import lombok.Setter;
+
+public class CircularRevealAnimation {
+	private final View view;
+	private final int x;
+	private final int y;
+	private final int startRadius;
+	private final int endRadius;
+
+	private @Setter int duration;
+
+	public CircularRevealAnimation(View view, int x, int y, int startRadius, int endRadius) {
+		this.view = view;
+		this.x = x;
+		this.y = y;
+		this.startRadius = startRadius;
+		this.endRadius = endRadius;
+	}
+
+	public void show() {
+		view.setVisibility(View.VISIBLE);
+		Animator anim = ViewAnimationUtils.createCircularReveal(view, x, y, startRadius, endRadius);
+		anim.setDuration(duration);
+		anim.start();
+	}
+
+	public void hide() {
+		Animator anim = ViewAnimationUtils.createCircularReveal(view, x, y, startRadius, endRadius);
+		anim.setDuration(duration);
+		anim.setInterpolator(input -> Math.abs(input - 1f));
+		anim.addListener((AnimatorEndListener) () -> view.setVisibility(View.INVISIBLE));
+		anim.start();
+	}
+}

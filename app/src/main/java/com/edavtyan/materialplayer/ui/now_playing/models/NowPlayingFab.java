@@ -31,10 +31,22 @@ public class NowPlayingFab implements View.OnClickListener {
 	}
 
 	public void show() {
-		fab.animate().scaleX(1).scaleY(1);
+		fab.animate().alpha(1).setStartDelay(300).setDuration(200);
 	}
 
 	public void hide() {
-		fab.animate().scaleX(0).scaleY(0);
+		fab.animate().alpha(0).setStartDelay(0).setDuration(200);
+	}
+
+	public int getCenterX() {
+		return (int) fab.getX() + getRadius();
+	}
+
+	public int getCenterY() {
+		return (int) fab.getY() - getRadius();
+	}
+
+	public int getRadius() {
+		return fab.getWidth() / 2;
 	}
 }

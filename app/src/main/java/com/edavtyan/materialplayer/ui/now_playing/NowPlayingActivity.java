@@ -126,7 +126,7 @@ public class NowPlayingActivity extends ModularActivity {
 	}
 
 	public void showQueue() {
-		queueFragment.show();
+		queueFragment.show(fab.getCenterX(), fab.getCenterY(), fab.getRadius());
 		fab.hide();
 		isQueueShown = true;
 	}
