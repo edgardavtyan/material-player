@@ -69,17 +69,27 @@ public class NowPlayingQueueFragment extends ListFragment implements ListView {
 	}
 
 	public void show(int x, int y, int radius) {
-		if (circularRevealAnimation == null) {
-			int endRadius = WindowUtils.getScreenHeight(getActivity());
-			circularRevealAnimation = new CircularRevealAnimation(rootView, x, y, radius, endRadius);
-			circularRevealAnimation.setDuration(500);
-		}
+		if (CircularRevealAnimation.isSupported()) {
+			if (circularRevealAnimation == null) {
+				int endRadius = WindowUtils.getScreenHeight(getActivity());
+				circularRevealAnimation = new CircularRevealAnimation(rootView, x, y, radius, endRadius);
+				circularRevealAnimation.setDuration(500);
+			}
 
-		circularRevealAnimation.show();
+			circularRevealAnimation.show();
+		} else {
+			rootView.setAlpha(0);
+			rootView.setVisibility(View.VISIBLE);
+			rootView.animate().alpha(1);
+		}
 	}
 
 	public void hide() {
-		circularRevealAnimation.hide();
+		if (CircularRevealAnimation.isSupported()) {
+			circularRevealAnimation.hide();
+		} else {
+			rootView.animate().alpha(0).withEndAction(() -> rootView.setVisibility(View.INVISIBLE));
+		}
 	}
 
 	protected NowPlayingQueueDIComponent getComponent() {

@@ -1,6 +1,8 @@
 package com.edavtyan.materialplayer.lib.animation;
 
 import android.animation.Animator;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
@@ -23,6 +25,7 @@ public class CircularRevealAnimation {
 		this.endRadius = endRadius;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public void show() {
 		view.setVisibility(View.VISIBLE);
 		Animator anim = ViewAnimationUtils.createCircularReveal(view, x, y, startRadius, endRadius);
@@ -30,11 +33,16 @@ public class CircularRevealAnimation {
 		anim.start();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public void hide() {
 		Animator anim = ViewAnimationUtils.createCircularReveal(view, x, y, startRadius, endRadius);
 		anim.setDuration(duration);
 		anim.setInterpolator(input -> Math.abs(input - 1f));
 		anim.addListener((AnimatorEndListener) () -> view.setVisibility(View.INVISIBLE));
 		anim.start();
+	}
+
+	public static boolean isSupported() {
+		return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP;
 	}
 }
