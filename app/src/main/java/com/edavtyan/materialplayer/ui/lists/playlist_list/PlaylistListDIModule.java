@@ -11,10 +11,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistListFactory {
+public class PlaylistListDIModule {
 	private final PlaylistListFragment view;
 
-	public PlaylistListFactory(PlaylistListFragment view) {
+	public PlaylistListDIModule(PlaylistListFragment view) {
 		this.view = view;
 	}
 

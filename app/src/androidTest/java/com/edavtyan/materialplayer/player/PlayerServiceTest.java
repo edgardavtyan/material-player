@@ -8,7 +8,7 @@ import android.support.test.rule.ServiceTestRule;
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.AppDIModule;
 import com.edavtyan.materialplayer.DaggerAppDIComponent;
-import com.edavtyan.materialplayer.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.notification.PlayerNotificationDIModule;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.service.DaggerPlayerServiceComponent;
 import com.edavtyan.materialplayer.service.PlayerService;
@@ -46,7 +46,7 @@ public class PlayerServiceTest extends BaseTest {
 		when(playerModule.providePlayer(any(), any(), any(), any())).thenReturn(player);
 
 		notificationPresenter = mock(PlayerNotificationPresenter.class);
-		PlayerNotificationFactory notificationModule = mock(PlayerNotificationFactory.class, RETURNS_MOCKS);
+		PlayerNotificationDIModule notificationModule = mock(PlayerNotificationDIModule.class, RETURNS_MOCKS);
 		when(notificationModule.providePresenter(any(), any())).thenReturn(notificationPresenter);
 
 		AppDIModule appModule = mock(AppDIModule.class, RETURNS_MOCKS);

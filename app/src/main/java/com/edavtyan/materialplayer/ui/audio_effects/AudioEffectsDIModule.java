@@ -11,10 +11,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AudioEffectsFactory {
+public class AudioEffectsDIModule {
 	private final AudioEffectsActivity activity;
 
-	public AudioEffectsFactory(AudioEffectsActivity activity) {
+	public AudioEffectsDIModule(AudioEffectsActivity activity) {
 		this.activity = activity;
 	}
 

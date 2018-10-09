@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlayerNotificationFactory {
+public class PlayerNotificationDIModule {
 	@Provides
 	@PlayerServiceScope
 	public PlayerNotification providePlayerNotification(

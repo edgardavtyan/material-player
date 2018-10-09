@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.detail.album_detail;
 
 import com.edavtyan.materialplayer.AppDIComponent;
-import com.edavtyan.materialplayer.lib.playlist.PlaylistFactoryActivity;
+import com.edavtyan.materialplayer.lib.playlist.PlaylistDIModuleActivity;
 import com.edavtyan.materialplayer.lib.theme.ThemeableActivityDIModule;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.model.ModelModulesDIModule;
@@ -19,7 +19,7 @@ import dagger.Component;
 				ActivityModulesDIModule.class,
 				ThemeableActivityDIModule.class,
 				ModelModulesDIModule.class,
-				PlaylistFactoryActivity.class})
+				PlaylistDIModuleActivity.class})
 public interface AlbumDetailDIComponent {
 	void inject(AlbumDetailActivity activity);
 }

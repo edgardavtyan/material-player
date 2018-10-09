@@ -52,11 +52,11 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 		searchViewImpl.showEmptyResult();
 	}
 
-	protected SearchTrackComponent getComponent2() {
-		return DaggerSearchTrackComponent
+	protected SearchTrackDIComponent getComponent2() {
+		return DaggerSearchTrackDIComponent
 				.builder()
 				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.searchTrackModule(new SearchTrackModule(this))
+				.searchTrackModule(new SearchTrackDIModule(this))
 				.trackListDIModule(new TrackListDIModule(getActivity(), this))
 				.build();
 	}

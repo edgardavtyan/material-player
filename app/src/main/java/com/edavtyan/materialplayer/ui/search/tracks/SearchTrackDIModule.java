@@ -13,10 +13,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class SearchTrackModule {
+public class SearchTrackDIModule {
 	private final SearchTrackFragment view;
 
-	public SearchTrackModule(SearchTrackFragment view) {
+	public SearchTrackDIModule(SearchTrackFragment view) {
 		this.view = view;
 	}
 

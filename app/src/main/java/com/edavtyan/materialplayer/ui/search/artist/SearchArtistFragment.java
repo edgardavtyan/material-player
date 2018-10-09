@@ -52,11 +52,11 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 		searchViewImpl.showEmptyResult();
 	}
 
-	protected SearchArtistComponent getComponent2() {
-		return DaggerSearchArtistComponent
+	protected SearchArtistDIComponent getComponent2() {
+		return DaggerSearchArtistDIComponent
 				.builder()
 				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.searchArtistModule(new SearchArtistModule(this))
+				.searchArtistModule(new SearchArtistDIModule(this))
 				.artistListDIModule(new ArtistListDIModule(getActivity(), this))
 				.build();
 	}

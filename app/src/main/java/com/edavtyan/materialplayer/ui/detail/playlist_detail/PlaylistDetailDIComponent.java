@@ -11,10 +11,10 @@ import dagger.Component;
 @ActivityScope
 @Component(
 		dependencies = AppDIComponent.class,
-		modules = {PlaylistDetailFactory.class,
+		modules = {PlaylistDetailDIModule.class,
 				   ActivityModulesDIModule.class,
 				   ThemeableActivityDIModule.class,
 				   ModelModulesDIModule.class})
-public interface PlaylistDetailFactoryComponent {
+public interface PlaylistDetailDIComponent {
 	void inject(PlaylistDetailActivity activity);
 }

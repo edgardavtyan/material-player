@@ -14,10 +14,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class SearchArtistModule {
+public class SearchArtistDIModule {
 	private final SearchArtistFragment view;
 
-	public SearchArtistModule(SearchArtistFragment view) {
+	public SearchArtistDIModule(SearchArtistFragment view) {
 		this.view = view;
 	}
 

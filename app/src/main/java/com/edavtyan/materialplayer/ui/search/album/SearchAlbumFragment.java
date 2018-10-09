@@ -50,11 +50,11 @@ public class SearchAlbumFragment extends AlbumListFragment implements SearchView
 		searchViewImpl.showEmptyResult();
 	}
 
-	protected SearchAlbumComponent getComponent2() {
-		return DaggerSearchAlbumComponent
+	protected SearchAlbumDIComponent getComponent2() {
+		return DaggerSearchAlbumDIComponent
 				.builder()
 				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.searchAlbumModule(new SearchAlbumModule(this))
+				.searchAlbumModule(new SearchAlbumDIModule(this))
 				.albumListDIModule(new AlbumListDIModule(getActivity(), this))
 				.build();
 	}

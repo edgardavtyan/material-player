@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistModelsFactory {
+public class PlaylistModelsDIModule {
 	@Provides
 	@Singleton
 	public PlaylistStorage providePlaylistStorage(Context context, Gson gson) {

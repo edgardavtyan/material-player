@@ -47,11 +47,11 @@ public class PlaylistListFragment extends ListFragment {
 		adapter.notifyItemRemoved(position);
 	}
 
-	private PlaylistListFactoryComponent getComponent() {
-		return DaggerPlaylistListFactoryComponent
+	private PlaylistListDIComponent getComponent() {
+		return DaggerPlaylistListDIComponent
 				.builder()
 				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.playlistListFactory(new PlaylistListFactory(this))
+				.playlistListFactory(new PlaylistListDIModule(this))
 				.build();
 	}
 }

@@ -11,10 +11,10 @@ import dagger.Component;
 @ActivityScope
 @Component(dependencies = AppDIComponent.class,
 		   modules = {
-				   AudioEffectsFactory.class,
+				   AudioEffectsDIModule.class,
 				   ModelModulesDIModule.class,
 				   ActivityModulesDIModule.class,
 				   ThemeableActivityDIModule.class})
-public interface AudioEffectsComponent {
+public interface AudioEffectsDIComponent {
 	void inject(AudioEffectsActivity activity);
 }

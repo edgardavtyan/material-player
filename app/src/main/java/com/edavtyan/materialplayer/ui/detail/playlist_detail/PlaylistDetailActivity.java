@@ -69,12 +69,12 @@ public class PlaylistDetailActivity extends BaseActivity {
 		touchHelper.startDrag(holder);
 	}
 
-	private PlaylistDetailFactoryComponent getComponent() {
+	private PlaylistDetailDIComponent getComponent() {
 		String playlistName = getIntent().getStringExtra(EXTRA_PLAYLIST_NAME);
-		return DaggerPlaylistDetailFactoryComponent
+		return DaggerPlaylistDetailDIComponent
 				.builder()
 				.appDIComponent(((App) getApplication()).getAppComponent())
-				.playlistDetailFactory(new PlaylistDetailFactory(this, playlistName))
+				.playlistDetailFactory(new PlaylistDetailDIModule(this, playlistName))
 				.build();
 	}
 

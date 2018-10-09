@@ -41,8 +41,8 @@ public class AudioEffectsActivityTest extends ActivityTest {
 		}
 
 		@Override
-		protected AudioEffectsComponent getComponent() {
-			return mock(AudioEffectsComponent.class);
+		protected AudioEffectsDIComponent getComponent() {
+			return mock(AudioEffectsDIComponent.class);
 		}
 	}
 

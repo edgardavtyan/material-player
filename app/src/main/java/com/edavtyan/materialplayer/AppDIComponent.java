@@ -10,7 +10,7 @@ import com.edavtyan.materialplayer.lib.album_art.AlbumArtDIModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.lastfm.LastFmDIModule;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
-import com.edavtyan.materialplayer.lib.playlist.models.PlaylistModelsFactory;
+import com.edavtyan.materialplayer.lib.playlist.models.PlaylistModelsDIModule;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsDIModule;
@@ -38,7 +38,7 @@ import dagger.Component;
 		DbDIModule.class,
 		AlbumArtDIModule.class,
 		SharedTransitionDIModule.class,
-		PlaylistModelsFactory.class})
+		PlaylistModelsDIModule.class})
 public interface AppDIComponent {
 	Context context();
 	SdkFactory sdkFactory();

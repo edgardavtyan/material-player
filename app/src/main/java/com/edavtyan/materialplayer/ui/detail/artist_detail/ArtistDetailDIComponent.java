@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.detail.artist_detail;
 
 import com.edavtyan.materialplayer.AppDIComponent;
-import com.edavtyan.materialplayer.lib.playlist.PlaylistFactoryActivity;
+import com.edavtyan.materialplayer.lib.playlist.PlaylistDIModuleActivity;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderDIModule;
@@ -18,7 +18,7 @@ import dagger.Component;
 				   ThemeableActivityDIModule.class,
 				   ParallaxHeaderDIModule.class,
 				   ModelModulesDIModule.class,
-				   PlaylistFactoryActivity.class})
+				   PlaylistDIModuleActivity.class})
 public interface ArtistDetailDIComponent {
 	void inject(ArtistDetailActivity activity);
 }

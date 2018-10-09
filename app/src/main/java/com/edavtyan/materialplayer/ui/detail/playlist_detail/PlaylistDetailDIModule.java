@@ -9,11 +9,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PlaylistDetailFactory {
+public class PlaylistDetailDIModule {
 	private final PlaylistDetailActivity activity;
 	private final String playlistName;
 
-	public PlaylistDetailFactory(PlaylistDetailActivity activity, String playlistName) {
+	public PlaylistDetailDIModule(PlaylistDetailActivity activity, String playlistName) {
 		this.activity = activity;
 		this.playlistName = playlistName;
 	}

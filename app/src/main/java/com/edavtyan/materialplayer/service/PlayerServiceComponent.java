@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.service;
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.lib.replaygain.ReplayGainDIModule;
 import com.edavtyan.materialplayer.notification.PlayerNotificationCompatDIModule;
-import com.edavtyan.materialplayer.notification.PlayerNotificationFactory;
+import com.edavtyan.materialplayer.notification.PlayerNotificationDIModule;
 import com.edavtyan.materialplayer.notification.PlayerNotificationNougatDIModule;
 import com.edavtyan.materialplayer.player.PlayerDIModule;
 import com.edavtyan.materialplayer.player.effects.amplifier.AmplifierFactory;
@@ -27,7 +27,7 @@ import dagger.Component;
 		ReplayGainDIModule.class,
 		PlayerNotificationCompatDIModule.class,
 		PlayerNotificationNougatDIModule.class,
-		PlayerNotificationFactory.class})
+		PlayerNotificationDIModule.class})
 public interface PlayerServiceComponent {
 	void inject(PlayerService service);
 }

@@ -202,11 +202,11 @@ public class AudioEffectsActivity
 		}
 	}
 
-	protected AudioEffectsComponent getComponent() {
-		return DaggerAudioEffectsComponent
+	protected AudioEffectsDIComponent getComponent() {
+		return DaggerAudioEffectsDIComponent
 				.builder()
 				.appDIComponent(((App) getApplication()).getAppComponent())
-				.audioEffectsFactory(new AudioEffectsFactory(this))
+				.audioEffectsFactory(new AudioEffectsDIModule(this))
 				.build();
 	}
 }
