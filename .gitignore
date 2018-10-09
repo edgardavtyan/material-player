@@ -50,6 +50,7 @@ gen-external-apklibs
 .idea/dictionaries
 .idea/caches
 .idea/workspace.xml___jb_tmp___
+.idea/caches/build_file_checksums.ser
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
