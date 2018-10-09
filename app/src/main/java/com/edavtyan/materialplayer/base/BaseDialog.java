@@ -49,7 +49,7 @@ public abstract class BaseDialog {
 
 		if (getPositiveButtonTextRes() != -1) {
 			if (closeWhenPositiveButtonClicked()) {
-				builder.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onConfirm());
+				builder.setPositiveButton(getPositiveButtonTextRes(), (d, w) -> onPositiveButtonClick());
 			} else {
 				builder.setPositiveButton(getPositiveButtonTextRes(), null);
 			}
@@ -63,7 +63,7 @@ public abstract class BaseDialog {
 		}
 
 		if (getNeutralButtonTextRes() != -1) {
-			builder.setNeutralButton(getNeutralButtonTextRes(), (d, w) -> onNeutral());
+			builder.setNeutralButton(getNeutralButtonTextRes(), (d, w) -> onNeutralButtonClick());
 		}
 
 		if (getMessageRes() != -1) {
@@ -101,9 +101,9 @@ public abstract class BaseDialog {
 
 	public void onShow() {}
 
-	public void onConfirm() {}
+	public void onPositiveButtonClick() {}
 
-	public void onNeutral() {}
+	public void onNeutralButtonClick() {}
 
 	public void onDismiss() {
 		if (onDismissListener != null) onDismissListener.onDismiss();
@@ -117,7 +117,7 @@ public abstract class BaseDialog {
 		dialog.show();
 
 		if (!closeWhenPositiveButtonClicked()) {
-			dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> onConfirm());
+			dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> onPositiveButtonClick());
 		}
 	}
 

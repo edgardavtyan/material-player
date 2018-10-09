@@ -55,7 +55,7 @@ public class PlaylistNewDialog extends BaseDialog {
 	}
 
 	@Override
-	public void onConfirm() {
+	public void onPositiveButtonClick() {
 		if (onConfirmListener != null) {
 			onConfirmListener.onConfirm(editTextView.getText().toString());
 		}

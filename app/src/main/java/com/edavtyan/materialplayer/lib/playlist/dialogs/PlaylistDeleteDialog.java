@@ -30,8 +30,8 @@ public class PlaylistDeleteDialog extends BaseDialog {
 	}
 
 	@Override
-	public void onConfirm() {
-		super.onConfirm();
+	public void onPositiveButtonClick() {
+		super.onPositiveButtonClick();
 		presenter.onDeletePlaylistConfirm();
 	}
 }

@@ -39,7 +39,7 @@ public class PlaylistSelectDialog extends BaseDialog {
 	}
 
 	@Override
-	public int getNeutralButtonTextRes() {
+	public int getPositiveButtonTextRes() {
 		return R.string.playlist_select_createNew;
 	}
 
@@ -49,7 +49,7 @@ public class PlaylistSelectDialog extends BaseDialog {
 	}
 
 	@Override
-	public void onNeutral() {
+	public void onPositiveButtonClick() {
 		onNewPlaylistClickListener.onClick(null);
 	}
 }
