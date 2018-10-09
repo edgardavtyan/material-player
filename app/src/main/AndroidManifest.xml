@@ -23,19 +23,7 @@
 			>
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
-				<action android:name="com.edavtyan.materialplayer.app.close" />
-
 				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-
-		<activity
-			android:name=".ui.prefs.PrefActivity"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
 
@@ -51,26 +39,12 @@
 
 		<activity
 			android:name=".ui.now_playing.NowPlayingActivity"
-			android:launchMode="singleTop"
 			android:theme="@style/AppTheme.Transparent"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
+			/>
 
-		<activity
-			android:name=".ui.audio_effects.AudioEffectsActivity"
-			android:launchMode="singleTop"
-			>
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
+		<activity android:name=".ui.audio_effects.AudioEffectsActivity" />
 		<activity android:name=".ui.search.SearchActivity" />
+		<activity android:name=".ui.prefs.PrefActivity" />
 		<activity android:name=".ui.detail.playlist_detail.PlaylistDetailActivity" />
 
 		<service
