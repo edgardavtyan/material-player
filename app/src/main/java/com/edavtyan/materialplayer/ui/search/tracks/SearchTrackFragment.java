@@ -56,7 +56,7 @@ public class SearchTrackFragment extends TrackListFragment implements SearchView
 		return DaggerSearchTrackDIComponent
 				.builder()
 				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.searchTrackModule(new SearchTrackDIModule(this))
+				.searchTrackDIModule(new SearchTrackDIModule(this))
 				.trackListDIModule(new TrackListDIModule(getActivity(), this))
 				.build();
 	}

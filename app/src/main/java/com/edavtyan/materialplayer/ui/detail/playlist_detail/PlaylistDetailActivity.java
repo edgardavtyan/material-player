@@ -74,7 +74,7 @@ public class PlaylistDetailActivity extends BaseActivity {
 		return DaggerPlaylistDetailDIComponent
 				.builder()
 				.appDIComponent(((App) getApplication()).getAppComponent())
-				.playlistDetailFactory(new PlaylistDetailDIModule(this, playlistName))
+				.playlistDetailDIModule(new PlaylistDetailDIModule(this, playlistName))
 				.build();
 	}
 

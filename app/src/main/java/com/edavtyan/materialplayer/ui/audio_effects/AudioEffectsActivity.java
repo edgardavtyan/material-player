@@ -206,7 +206,7 @@ public class AudioEffectsActivity
 		return DaggerAudioEffectsDIComponent
 				.builder()
 				.appDIComponent(((App) getApplication()).getAppComponent())
-				.audioEffectsFactory(new AudioEffectsDIModule(this))
+				.audioEffectsDIModule(new AudioEffectsDIModule(this))
 				.build();
 	}
 }

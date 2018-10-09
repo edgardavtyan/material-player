@@ -51,7 +51,7 @@ public class PlaylistListFragment extends ListFragment {
 		return DaggerPlaylistListDIComponent
 				.builder()
 				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.playlistListFactory(new PlaylistListDIModule(this))
+				.playlistListDIModule(new PlaylistListDIModule(this))
 				.build();
 	}
 }

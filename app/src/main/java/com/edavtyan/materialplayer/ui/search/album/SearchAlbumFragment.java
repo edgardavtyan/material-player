@@ -54,7 +54,7 @@ public class SearchAlbumFragment extends AlbumListFragment implements SearchView
 		return DaggerSearchAlbumDIComponent
 				.builder()
 				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.searchAlbumModule(new SearchAlbumDIModule(this))
+				.searchAlbumDIModule(new SearchAlbumDIModule(this))
 				.albumListDIModule(new AlbumListDIModule(getActivity(), this))
 				.build();
 	}

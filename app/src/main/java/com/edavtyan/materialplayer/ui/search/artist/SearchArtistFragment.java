@@ -55,8 +55,8 @@ public class SearchArtistFragment extends ArtistListFragment implements SearchVi
 	protected SearchArtistDIComponent getComponent2() {
 		return DaggerSearchArtistDIComponent
 				.builder()
-				.appDIComponent(((App)getContext().getApplicationContext()).getAppComponent())
-				.searchArtistModule(new SearchArtistDIModule(this))
+				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
+				.searchArtistDIModule(new SearchArtistDIModule(this))
 				.artistListDIModule(new ArtistListDIModule(getActivity(), this))
 				.build();
 	}
