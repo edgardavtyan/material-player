@@ -103,12 +103,6 @@ public class NowPlayingPresenterTest extends BaseTest {
 	}
 
 	@Test
-	public void onFabClick_gotoPlaylistScreen() {
-		presenter.onFabClick();
-		verify(view).gotoPlaylistScreen();
-	}
-
-	@Test
 	public void onTrackSeekChanged_setTrackPositionText() {
 		presenter.onSeekChanged(9000);
 		verify(seekbar).setPositionText(9000);

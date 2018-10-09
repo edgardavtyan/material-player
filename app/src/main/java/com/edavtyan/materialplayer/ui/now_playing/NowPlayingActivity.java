@@ -121,10 +121,6 @@ public class NowPlayingActivity extends ModularActivity {
 		innerContainerView.setBackgroundColor(colors.getColorPrimary());
 	}
 
-	public void gotoPlaylistScreen() {
-
-	}
-
 	public void showQueue() {
 		queueFragment.show(fab.getCenterX(), fab.getCenterY(), fab.getRadius());
 		fab.hide();

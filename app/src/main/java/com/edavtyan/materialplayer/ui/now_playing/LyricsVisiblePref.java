@@ -16,10 +16,6 @@ public class LyricsVisiblePref {
 		return prefs.getBoolean(PREF_KEY, PREF_DEFAULT);
 	}
 
-	public void setVisible(boolean isVisible) {
-		prefs.edit().putBoolean(PREF_KEY, isVisible).apply();
-	}
-
 	public void toggleVisible() {
 		prefs.edit().putBoolean(PREF_KEY, !isVisible()).apply();
 	}

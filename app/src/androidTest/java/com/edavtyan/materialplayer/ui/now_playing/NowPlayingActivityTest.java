@@ -85,10 +85,4 @@ public class NowPlayingActivityTest extends ActivityTest {
 	public void getSeekbar_returnSeekbarFromFactory() {
 		assertThat(activity.getSeekbar()).isSameAs(seekbar);
 	}
-
-	@Test
-	public void gotoPlaylistScreen_callNavigator() {
-		activity.gotoPlaylistScreen();
-		verify(navigator).gotoNowPlayingQueue(activity);
-	}
 }

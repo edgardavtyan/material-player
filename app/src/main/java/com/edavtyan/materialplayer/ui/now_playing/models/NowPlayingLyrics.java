@@ -15,7 +15,7 @@ import lombok.Getter;
 
 public class NowPlayingLyrics {
 	@BindView(R.id.lyrics_wrapper) @Getter FrameLayout wrapperView;
-	@BindView(R.id.lyrics_text) TextView textboxView;
+	@BindView(R.id.lyrics_text) TextView textView;
 	@BindView(R.id.lyrics_scroller) ScrollView scrollerView;
 	@BindView(R.id.error_lyricsConnection) TextView connectionErrorView;
 	@BindView(R.id.error_lyricsNotFound) TextView notFoundErrorView;
@@ -29,7 +29,7 @@ public class NowPlayingLyrics {
 	}
 
 	public void setLyrics(String lyrics) {
-		textboxView.setText(lyrics);
+		textView.setText(lyrics);
 	}
 
 	public void hide() {
