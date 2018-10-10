@@ -2,6 +2,8 @@ package com.edavtyan.materialplayer.ui.now_playing;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
@@ -10,7 +12,7 @@ import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingLyrics;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,6 +35,13 @@ public class NowPlayingDIModule {
 	@ActivityScope
 	public AppCompatActivity provideAppCompatActivity() {
 		return activity;
+	}
+
+	@Provides
+	@ActivityScope
+	public NowPlayingQueueFragment provideNowPlayingQueueFragment() {
+		return (NowPlayingQueueFragment) activity.getSupportFragmentManager()
+												 .findFragmentById(R.id.fragment_queue);
 	}
 
 	@Provides
@@ -96,5 +105,11 @@ public class NowPlayingDIModule {
 	@ActivityScope
 	public LyricsVisiblePref provideLyricsVisiblePref(AdvancedSharedPrefs prefs) {
 		return new LyricsVisiblePref(prefs);
+	}
+
+	@Provides
+	@ActivityScope
+	public QueueRevealAnimation provideQueueRevealAnimation(NowPlayingQueueFragment queueFragment) {
+		return new QueueRevealAnimation(activity, queueFragment);
 	}
 }

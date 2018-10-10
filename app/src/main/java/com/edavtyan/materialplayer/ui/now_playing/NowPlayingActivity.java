@@ -11,13 +11,13 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
+import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
+import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
+import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
-import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
-import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
-import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingControls;
@@ -25,7 +25,6 @@ import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingFab;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingInfo;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingLyrics;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingSeekbar;
-import com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment;
 
 import javax.inject.Inject;
 
@@ -41,6 +40,7 @@ public class NowPlayingActivity extends ModularActivity {
 	@Inject NowPlayingPresenter presenter;
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionManager;
+	@Inject QueueRevealAnimation queueRevealAnimation;
 
 	@Inject @Getter NowPlayingControls controls;
 	@Inject @Getter NowPlayingInfo info;
@@ -51,8 +51,6 @@ public class NowPlayingActivity extends ModularActivity {
 
 	@BindView(R.id.inner_container) LinearLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
-
-	private NowPlayingQueueFragment queueFragment;
 
 	private boolean isQueueShown;
 
@@ -66,8 +64,6 @@ public class NowPlayingActivity extends ModularActivity {
 		addModule(toolbarModule);
 		addModule(themeModule);
 		presenter.bind();
-
-		queueFragment = (NowPlayingQueueFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_queue);
 
 		OutputSharedViews.Builder outputViewsBuilder = OutputSharedViews.builder();
 		outputViewsBuilder.sharedViewSets(
@@ -107,8 +103,7 @@ public class NowPlayingActivity extends ModularActivity {
 	@Override
 	public void onBackPressed() {
 		if (isQueueShown) {
-			queueFragment.hide();
-			fab.show();
+			queueRevealAnimation.hide();
 			isQueueShown = false;
 		} else {
 			transitionManager.beginExitTransition(this);
@@ -122,8 +117,7 @@ public class NowPlayingActivity extends ModularActivity {
 	}
 
 	public void showQueue() {
-		queueFragment.show(fab.getCenterX(), fab.getCenterY(), fab.getRadius());
-		fab.hide();
+		queueRevealAnimation.show();
 		isQueueShown = true;
 	}
 

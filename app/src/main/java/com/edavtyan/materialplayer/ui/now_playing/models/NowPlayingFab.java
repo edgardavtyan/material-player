@@ -4,7 +4,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.animation.CircularRevealAnimation;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 
@@ -29,37 +28,5 @@ public class NowPlayingFab implements View.OnClickListener {
 
 	public FloatingActionButton getView() {
 		return fab;
-	}
-
-	public void show() {
-		fab.setVisibility(View.VISIBLE);
-		if (CircularRevealAnimation.isSupported()) {
-			fab.animate().alpha(1).setStartDelay(300).setDuration(200)
-			   .withEndAction(() -> fab.setVisibility(View.VISIBLE));;
-		} else {
-			fab.animate().scaleX(1).scaleY(1);
-		}
-	}
-
-	public void hide() {
-		if (CircularRevealAnimation.isSupported()) {
-			fab.animate().alpha(0).setStartDelay(0).setDuration(200)
-			   .withEndAction(() -> fab.setVisibility(View.INVISIBLE));
-		} else {
-			fab.animate().scaleX(0).scaleY(0)
-			   .withEndAction(() -> fab.setVisibility(View.INVISIBLE)); ;
-		}
-	}
-
-	public int getCenterX() {
-		return (int) fab.getX() + getRadius();
-	}
-
-	public int getCenterY() {
-		return (int) fab.getY() - getRadius();
-	}
-
-	public int getRadius() {
-		return fab.getWidth() / 2;
 	}
 }
