@@ -37,12 +37,12 @@ public class QueueRevealAnimation {
 				int startRadius = fab.getWidth() / 2;
 				int endRadius = WindowUtils.getScreenHeight(activity);
 				circularRevealAnimation = new CircularRevealAnimation(queueRoot, x, y, startRadius, endRadius);
-				circularRevealAnimation.setDuration(500);
 			}
 
 			fab.animate().alpha(0).setStartDelay(0).setDuration(200)
 			   .withEndAction(() -> fab.setVisibility(View.INVISIBLE));
 			queueList.animate().alpha(1);
+			circularRevealAnimation.setDuration(300);
 			circularRevealAnimation.show();
 		} else {
 			fab.animate().scaleX(0).scaleY(0)
@@ -56,8 +56,9 @@ public class QueueRevealAnimation {
 	public void hide() {
 		fab.setVisibility(View.VISIBLE);
 		if (CircularRevealAnimation.isSupported()) {
-			fab.animate().alpha(1).setStartDelay(300).setDuration(200);
+			fab.animate().alpha(1).setStartDelay(100).setDuration(200);
 			queueList.animate().alpha(0);
+			circularRevealAnimation.setDuration(300);
 			circularRevealAnimation.hide();
 		} else {
 			fab.animate().scaleX(1).scaleY(1);
