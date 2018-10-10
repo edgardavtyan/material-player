@@ -10,243 +10,220 @@
 		style="@style/NowPlaying_FAB"
 		/>
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+	<LinearLayout style="@style/NowPlaying_InnerContainer">
 
-		<LinearLayout style="@style/NowPlaying_InnerContainer">
+		<include layout="@layout/partial_appbar" />
 
-			<include layout="@layout/partial_appbar" />
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			>
+
+			<LinearLayout
+				android:id="@+id/inner_container"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:background="?colorPrimary"
+				>
+
+				<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					>
+
+					<com.edavtyan.materialplayer.lib.views.SquareImageView
+						android:id="@+id/art"
+						tools:src="@drawable/fallback_cover"
+						style="@style/NowPlaying_Art"
+						/>
+
+					<include layout="@layout/shadow_bottom_small" />
+
+				</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
+
+				<LinearLayout
+					android:id="@+id/info_wrapper"
+					style="@style/NowPlaying_TrackInfo_Container"
+					>
+
+					<TextView
+						android:id="@+id/title"
+						tools:text="Now Playing Track Title"
+						style="@style/NowPlaying_TrackInfo_Title"
+						/>
+
+					<TextView
+						android:id="@+id/info"
+						tools:text="Now Playing Track Info"
+						style="@style/NowPlaying_TrackInfo_Info"
+						/>
+
+				</LinearLayout>
+
+				<LinearLayout style="@style/NowPlaying_Time_Container">
+
+					<TextView
+						android:id="@+id/time_current"
+						tools:text="1:14"
+						style="@style/NowPlaying_Time_Current"
+						/>
+
+					<TextView
+						android:id="@+id/time_total"
+						tools:text="6:44"
+						style="@style/NowPlaying_Time_Total"
+						/>
+
+				</LinearLayout>
+
+				<app.minimize.com.seek_bar_compat.SeekBarCompat
+					android:id="@+id/seekbar"
+					tools:progress="30"
+					style="@style/NowPlaying_Seekbar"
+					/>
+
+				<LinearLayout style="@style/NowPlaying_ControlsContainer">
+
+					<ImageButton
+						android:id="@+id/shuffle"
+						android:layout_marginLeft="-12dp"
+						android:src="@drawable/ic_shuffle"
+						style="@style/NowPlaying_Control"
+						/>
+
+					<ImageButton
+						android:id="@+id/rewind"
+						android:src="@drawable/ic_skip_prev"
+						style="@style/NowPlaying_Control"
+						/>
+
+					<ImageButton
+						android:id="@+id/play_pause"
+						android:src="@drawable/ic_play"
+						style="@style/NowPlaying_Control"
+						/>
+
+					<ImageButton
+						android:id="@+id/fast_forward"
+						android:src="@drawable/ic_skip_next"
+						style="@style/NowPlaying_Control"
+						/>
+
+					<ImageButton
+						android:id="@+id/repeat"
+						android:layout_marginRight="-12dp"
+						android:src="@drawable/ic_repeat"
+						style="@style/NowPlaying_Control"
+						/>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+			<ImageView
+				android:id="@+id/shared_art"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:visibility="invisible"
+				/>
 
 			<FrameLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				>
 
-				<LinearLayout
-					android:id="@+id/inner_container"
+				<View
+					android:id="@+id/shared_list_background"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:orientation="vertical"
-					android:background="?colorPrimary"
+					android:background="@color/white"
+					android:visibility="invisible"
+					/>
+
+				<ImageView
+					android:id="@+id/shared_list"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:scaleType="fitStart"
+					android:visibility="invisible"
+					/>
+
+				<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
+					android:id="@+id/lyrics_wrapper"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="#aa000000"
 					>
 
-					<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
+					<ScrollView
+						android:id="@+id/lyrics_scroller"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						>
 
-						<com.edavtyan.materialplayer.lib.views.SquareImageView
-							android:id="@+id/art"
-							tools:src="@drawable/fallback_cover"
-							style="@style/NowPlaying_Art"
-							/>
-
-						<include layout="@layout/shadow_bottom_small" />
-
-					</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
-
-					<LinearLayout
-						android:id="@+id/info_wrapper"
-						style="@style/NowPlaying_TrackInfo_Container"
-						>
-
 						<TextView
-							android:id="@+id/title"
-							tools:text="Now Playing Track Title"
-							style="@style/NowPlaying_TrackInfo_Title"
-							/>
-
-						<TextView
-							android:id="@+id/info"
-							tools:text="Now Playing Track Info"
-							style="@style/NowPlaying_TrackInfo_Info"
-							/>
-
-					</LinearLayout>
-
-					<LinearLayout style="@style/NowPlaying_Time_Container">
-
-						<TextView
-							android:id="@+id/time_current"
-							tools:text="1:14"
-							style="@style/NowPlaying_Time_Current"
-							/>
-
-						<TextView
-							android:id="@+id/time_total"
-							tools:text="6:44"
-							style="@style/NowPlaying_Time_Total"
-							/>
-
-					</LinearLayout>
-
-					<app.minimize.com.seek_bar_compat.SeekBarCompat
-						android:id="@+id/seekbar"
-						tools:progress="30"
-						style="@style/NowPlaying_Seekbar"
-						/>
-
-					<LinearLayout style="@style/NowPlaying_ControlsContainer">
-
-						<ImageButton
-							android:id="@+id/shuffle"
-							android:layout_marginLeft="-12dp"
-							android:src="@drawable/ic_shuffle"
-							style="@style/NowPlaying_Control"
-							/>
-
-						<ImageButton
-							android:id="@+id/rewind"
-							android:src="@drawable/ic_skip_prev"
-							style="@style/NowPlaying_Control"
-							/>
-
-						<ImageButton
-							android:id="@+id/play_pause"
-							android:src="@drawable/ic_play"
-							style="@style/NowPlaying_Control"
-							/>
-
-						<ImageButton
-							android:id="@+id/fast_forward"
-							android:src="@drawable/ic_skip_next"
-							style="@style/NowPlaying_Control"
-							/>
-
-						<ImageButton
-							android:id="@+id/repeat"
-							android:layout_marginRight="-12dp"
-							android:src="@drawable/ic_repeat"
-							style="@style/NowPlaying_Control"
-							/>
-
-					</LinearLayout>
-
-				</LinearLayout>
-
-				<ImageView
-					android:id="@+id/shared_art"
-					android:layout_width="0dp"
-					android:layout_height="0dp"
-					android:visibility="invisible"
-					/>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:orientation="vertical"
-					>
-
-					<FrameLayout
-						android:layout_width="match_parent"
-						android:layout_height="0dp"
-						android:layout_weight="1"
-						>
-
-						<View
-							android:id="@+id/shared_list_background"
+							android:id="@+id/lyrics_text"
 							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:background="@color/white"
-							android:visibility="invisible"
+							android:layout_height="wrap_content"
+							android:padding="@dimen/spacing_medium"
+							android:textColor="?textColorContrastPrimary"
+							android:textSize="@dimen/font_normal"
+							android:shadowDx="1"
+							android:shadowDy="1"
+							android:shadowRadius="2"
+							android:shadowColor="#000"
+							tools:text="@tools:sample/lorem/random"
 							/>
 
-						<ImageView
-							android:id="@+id/shared_list"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:scaleType="fitStart"
-							android:visibility="invisible"
-							/>
+					</ScrollView>
 
-						<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
-							android:id="@+id/lyrics_wrapper"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:background="#aa000000"
-							>
-
-							<ScrollView
-								android:id="@+id/lyrics_scroller"
-								android:layout_width="match_parent"
-								android:layout_height="match_parent"
-								>
-
-								<TextView
-									android:id="@+id/lyrics_text"
-									android:layout_width="match_parent"
-									android:layout_height="wrap_content"
-									android:padding="@dimen/spacing_medium"
-									android:textColor="?textColorContrastPrimary"
-									android:textSize="@dimen/font_normal"
-									android:shadowDx="1"
-									android:shadowDy="1"
-									android:shadowRadius="2"
-									android:shadowColor="#000"
-									tools:text="@tools:sample/lorem/random"
-									/>
-
-							</ScrollView>
-
-							<TextView
-								android:id="@+id/error_lyricsNotFound"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_gravity="center"
-								android:padding="@dimen/spacing_medium"
-								android:text="@string/nowplaying_error_lyricsNotFound"
-								android:textColor="?textColorContrastPrimary"
-								android:textSize="@dimen/font_medium"
-								android:shadowDx="1"
-								android:shadowDy="1"
-								android:shadowRadius="2"
-								android:shadowColor="#000"
-								android:visibility="invisible"
-								/>
-
-							<TextView
-								android:id="@+id/error_lyricsConnection"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_gravity="center"
-								android:padding="@dimen/spacing_medium"
-								android:text="@string/nowplaying_error_lyricsConnection"
-								android:textColor="?textColorContrastPrimary"
-								android:textSize="@dimen/font_medium"
-								android:shadowDx="1"
-								android:shadowDy="1"
-								android:shadowRadius="2"
-								android:shadowColor="#000"
-								android:visibility="invisible"
-								/>
-
-						</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
-
-					</FrameLayout>
-
-					<View
-						android:layout_width="match_parent"
-						android:layout_height="?listPreferredItemHeightSmall"
-						android:layout_gravity="bottom"
+					<TextView
+						android:id="@+id/error_lyricsNotFound"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="@dimen/spacing_medium"
+						android:text="@string/nowplaying_error_lyricsNotFound"
+						android:textColor="?textColorContrastPrimary"
+						android:textSize="@dimen/font_medium"
+						android:shadowDx="1"
+						android:shadowDy="1"
+						android:shadowRadius="2"
+						android:shadowColor="#000"
 						android:visibility="invisible"
 						/>
 
-				</LinearLayout>
+					<TextView
+						android:id="@+id/error_lyricsConnection"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="@dimen/spacing_medium"
+						android:text="@string/nowplaying_error_lyricsConnection"
+						android:textColor="?textColorContrastPrimary"
+						android:textSize="@dimen/font_medium"
+						android:shadowDx="1"
+						android:shadowDy="1"
+						android:shadowRadius="2"
+						android:shadowColor="#000"
+						android:visibility="invisible"
+						/>
 
-				<fragment
-					android:id="@+id/fragment_queue"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:name="com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment"
-					tools:layout="@layout/fragment_list"
-					/>
+				</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
 
 			</FrameLayout>
 
-		</LinearLayout>
+			<fragment
+				android:id="@+id/fragment_queue"
+				android:name="com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:layout="@layout/fragment_list"
+				/>
 
-	</FrameLayout>
+		</FrameLayout>
+
+	</LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
