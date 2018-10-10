@@ -57,19 +57,27 @@ public class ReplayGainManager implements PlayerPlugin {
 	private void apply() {
 		if (prefs.getEnabled()) {
 			rgData = rgReader.read(currentTrack.getPath());
-			double rgGain = prefs.isAlbumGainUsed() ? rgData.getAlbumRG() : rgData.getTrackRG();
-			amplifier.setGain(rgGain + prefs.getPreamp());
+			amplifier.setGain(getRgGain() + prefs.getPreamp());
 		}
 	}
 
 	private void reapply() {
 		if (prefs.getEnabled()) {
-			double rgGain = prefs.isAlbumGainUsed() ? rgData.getAlbumRG() : rgData.getTrackRG();
-			amplifier.setGain(rgGain + prefs.getPreamp());
+			amplifier.setGain(getRgGain() + prefs.getPreamp());
 		}
 	}
 
 	private void disable() {
 		amplifier.setGain(0);
+	}
+
+	private double getRgGain() {
+		if (prefs.isAlbumGainUsed() && rgData.getAlbumRG() != null) {
+			return rgData.getAlbumRG();
+		} else if (rgData.getTrackRG() != null) {
+			return rgData.getTrackRG();
+		} else {
+			return 0;
+		}
 	}
 }

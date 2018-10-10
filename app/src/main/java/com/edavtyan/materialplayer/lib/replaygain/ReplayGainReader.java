@@ -9,8 +9,8 @@ import java.util.Iterator;
 
 public class ReplayGainReader {
 	public ReplayGainData read(String path) {
-		double trackRG = 0;
-		double albumRG = 0;
+		Double trackRG = null;
+		Double albumRG = null;
 
 		try {
 			AudioFile f = AudioFileIO.read(new File(path));
