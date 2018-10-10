@@ -22,7 +22,7 @@ public class ReplayGainReader {
 					trackRG = parseRgMp3(field.toString());
 				}
 
-				if (field.getId().contains("replaygain_track_gain")) {
+				if (field.getId().toLowerCase().contains("replaygain_track_gain")) {
 					trackRG = parseRgM4a(field.toString());
 				}
 
@@ -30,7 +30,7 @@ public class ReplayGainReader {
 					albumRG = parseRgMp3(field.toString());
 				}
 
-				if (field.getId().contains("replaygain_album_gain")) {
+				if (field.getId().toLowerCase().contains("replaygain_album_gain")) {
 					albumRG = parseRgM4a(field.toString());
 				}
 			}
