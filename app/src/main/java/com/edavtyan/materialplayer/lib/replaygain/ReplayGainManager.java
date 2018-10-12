@@ -1,5 +1,7 @@
 package com.edavtyan.materialplayer.lib.replaygain;
 
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.PlayerPlugin;
@@ -57,12 +59,15 @@ public class ReplayGainManager implements PlayerPlugin {
 	private void apply() {
 		if (prefs.getEnabled()) {
 			rgData = rgReader.read(currentTrack.getPath());
-			amplifier.setGain(getRgGain() + prefs.getPreamp());
+
+			if (getRgGain() != null) {
+				amplifier.setGain(getRgGain() + prefs.getPreamp());
+			}
 		}
 	}
 
 	private void reapply() {
-		if (prefs.getEnabled()) {
+		if (prefs.getEnabled() && getRgGain() != null) {
 			amplifier.setGain(getRgGain() + prefs.getPreamp());
 		}
 	}
@@ -71,13 +76,14 @@ public class ReplayGainManager implements PlayerPlugin {
 		amplifier.setGain(0);
 	}
 
-	private double getRgGain() {
+	@Nullable
+	private Double getRgGain() {
 		if (prefs.isAlbumGainUsed() && rgData.getAlbumRG() != null) {
 			return rgData.getAlbumRG();
 		} else if (rgData.getTrackRG() != null) {
 			return rgData.getTrackRG();
 		} else {
-			return 0;
+			return null;
 		}
 	}
 }
