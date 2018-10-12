@@ -26,6 +26,7 @@ public class Player
 	private AudioEngine audioEngine;
 
 	private @Nullable Integer seek;
+	private boolean wasPlaying;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();
@@ -71,6 +72,7 @@ public class Player
 	private void onUseAdvancedEngineChanged(boolean isAdvanced) {
 		seek = (int) audioEngine.getSeek();
 		int position = queue.getCurrentIndex();
+		wasPlaying = isPlaying();
 
 		audioEngine.reset();
 		audioEngine = isAdvanced ? openSLAudioEngine : extendedAudioEngine;
@@ -244,8 +246,11 @@ public class Player
 		if (seek != null) {
 			setSeek(seek);
 			restoreVolume();
-			play();
 			seek = null;
+
+			if (wasPlaying) {
+				play();
+			}
 		}
 	}
 
