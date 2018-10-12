@@ -59,6 +59,15 @@
 					app:cp_defaultValue="@bool/pref_play_on_headset_plug_default"
 					/>
 
+				<com.edavtyan.prefs.checkbox.CheckboxPreference
+					android:id="@+id/pref_engine"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="player_engine"
+					app:cp_title="Use OpenSL audio engine"
+					app:cp_defaultValue="false"
+					/>
+
 			</com.edavtyan.prefs.category.PreferenceCategory>
 
 			<com.edavtyan.prefs.category.PreferenceCategory

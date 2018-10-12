@@ -21,4 +21,5 @@ public interface AudioEngine {
 	long getSeek();
 	void setSeek(int seek);
 	boolean isPlaying();
+	void reset();
 }

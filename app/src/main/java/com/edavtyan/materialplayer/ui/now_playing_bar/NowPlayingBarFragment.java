@@ -137,7 +137,7 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 		return DaggerNowPlayingBarDIComponent
 				.builder()
 				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.nowPlayingFloatingDIModule(new NowPlayingBarDIModule(getActivity(), this))
+				.nowPlayingBarDIModule(new NowPlayingBarDIModule(getActivity(), this))
 				.build();
 	}
 }

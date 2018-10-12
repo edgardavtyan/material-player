@@ -1,7 +1,11 @@
 package com.edavtyan.materialplayer.player;
 
+import android.support.annotation.Nullable;
+
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.player.engines.AudioEngine;
+import com.edavtyan.materialplayer.player.engines.ExtendedAudioEngine;
+import com.edavtyan.materialplayer.player.engines.OpenSLAudioEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +14,18 @@ public class Player
 		implements AudioEngine.OnPreparedListener,
 				   AudioEngine.OnCompletedListener {
 
-	private final AudioEngine audioEngine;
+	private final ExtendedAudioEngine extendedAudioEngine;
+	private final OpenSLAudioEngine openSLAudioEngine;
 	private final PlayerPrefs prefs;
 	private final PlayerQueue queue;
 	private final PlayerQueueStorage queueStorage;
 	private final List<OnNewTrackListener> onNewTrackListeners;
 	private final List<OnPlayPauseListener> onPlayPauseListeners;
 	private final ArrayList<PlayerPlugin> plugins;
+
+	private AudioEngine audioEngine;
+
+	private @Nullable Integer seek;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();
@@ -27,20 +36,28 @@ public class Player
 	}
 
 	public Player(
-			AudioEngine audioEngine,
+			ExtendedAudioEngine extendedAudioEngine,
+			OpenSLAudioEngine openSLAudioEngine,
 			PlayerQueue queue,
 			PlayerPrefs prefs,
 			PlayerQueueStorage queueStorage) {
 		this.prefs = prefs;
-		this.audioEngine = audioEngine;
+		this.prefs.setOnUseAdvancedEngineChangedListener(this::onUseAdvancedEngineChanged);
 		this.queueStorage = queueStorage;
-		this.audioEngine.setOnPreparedListener(this);
-		this.audioEngine.setOnCompletedListener(this);
+
+		this.extendedAudioEngine = extendedAudioEngine;
+		this.extendedAudioEngine.setOnPreparedListener(this);
+		this.extendedAudioEngine.setOnCompletedListener(this);
+		this.openSLAudioEngine = openSLAudioEngine;
+		this.openSLAudioEngine.setOnPreparedListener(this);
+		this.openSLAudioEngine.setOnCompletedListener(this);
 
 		this.queue = queue;
 		this.queue.setRepeatMode(prefs.getRepeatMode());
 		this.queue.setShuffleMode(prefs.getShuffleMode());
 		this.queue.addManyTracks(queueStorage.load());
+
+		audioEngine = prefs.getUseAdvancedEngine() ? openSLAudioEngine : extendedAudioEngine;
 
 		if (queue.hasData()) {
 			prepareTrackAt(prefs.getCurrentIndex());
@@ -49,6 +66,17 @@ public class Player
 		onNewTrackListeners = new ArrayList<>();
 		onPlayPauseListeners = new ArrayList<>();
 		plugins = new ArrayList<>();
+	}
+
+	private void onUseAdvancedEngineChanged(boolean isAdvanced) {
+		seek = (int) audioEngine.getSeek();
+		int position = queue.getCurrentIndex();
+
+		audioEngine.reset();
+		audioEngine = isAdvanced ? openSLAudioEngine : extendedAudioEngine;
+
+		mute();
+		playTrackAt(position);
 	}
 
 	public void addPlugin(PlayerPlugin plugin) {
@@ -192,6 +220,10 @@ public class Player
 		prefs.saveRepeatMode(getRepeatMode());
 	}
 
+	public void mute() {
+		audioEngine.setVolume(0f);
+	}
+
 	public void lowerVolume() {
 		audioEngine.setVolume(0.3f);
 	}
@@ -207,6 +239,12 @@ public class Player
 
 		for (PlayerPlugin plugin : plugins) {
 			plugin.onNewTrack(getCurrentTrack());
+		}
+
+		if (seek != null) {
+			setSeek(seek);
+			restoreVolume();
+			seek = null;
 		}
 	}
 

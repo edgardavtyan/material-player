@@ -35,20 +35,20 @@ public class PlayerTest extends BaseTest {
 		audioEngine = mock(AudioEngine.class);
 		queue = mock(PlayerQueue.class);
 		queueStorage = mock(PlayerQueueStorage.class);
-		player = new Player(audioEngine, queue, prefs, queueStorage);
+		player = new Player(audioEngine, openSLAudioEngine, queue, prefs, queueStorage);
 	}
 
 	@Test
 	public void constructor_setShuffleModeFromPrefs() {
 		when(prefs.getShuffleMode()).thenReturn(ShuffleMode.ENABLED);
-		player = new Player(audioEngine, queue, prefs, queueStorage);
+		player = new Player(audioEngine, openSLAudioEngine, queue, prefs, queueStorage);
 		verify(queue).setShuffleMode(ShuffleMode.ENABLED);
 	}
 
 	@Test
 	public void constructor_setRepeatModeFromPrefs() {
 		when(prefs.getRepeatMode()).thenReturn(RepeatMode.REPEAT_ALL);
-		player = new Player(audioEngine, queue, prefs, queueStorage);
+		player = new Player(audioEngine, openSLAudioEngine, queue, prefs, queueStorage);
 		verify(queue).setRepeatMode(RepeatMode.REPEAT_ALL);
 	}
 
@@ -58,7 +58,7 @@ public class PlayerTest extends BaseTest {
 		when(queueStorage.load()).thenReturn(tracks);
 
 		reset(queue);
-		player = new Player(audioEngine, queue, prefs, queueStorage);
+		player = new Player(audioEngine, openSLAudioEngine, queue, prefs, queueStorage);
 
 		verify(queue).addManyTracks(tracks);
 	}
@@ -71,7 +71,7 @@ public class PlayerTest extends BaseTest {
 		when(queue.getCurrentTrack()).thenReturn(track);
 		when(prefs.getCurrentIndex()).thenReturn(600);
 
-		player = new Player(audioEngine, queue, prefs, queueStorage);
+		player = new Player(audioEngine, openSLAudioEngine, queue, prefs, queueStorage);
 
 		verify(queue).setCurrentIndex(600);
 		verify(audioEngine).prepareTrack("path_600");

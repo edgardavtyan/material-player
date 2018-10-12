@@ -1,33 +1,29 @@
 package com.edavtyan.materialplayer.player.engines;
 
-import android.support.annotation.Nullable;
+import com.h6ah4i.android.media.IBasicMediaPlayer;
 
-import net.protyposis.android.mediaplayer.FileSource;
-import net.protyposis.android.mediaplayer.MediaPlayer;
-
-import java.io.File;
 import java.io.IOException;
 
 import lombok.Setter;
 
-// Uses MediaPlayer-Extended library by protyposis
-// https://github.com/protyposis/MediaPlayer-Extended
-public class ExtendedAudioEngine
+public class OpenSLAudioEngine
 		implements AudioEngine,
-				   MediaPlayer.OnPreparedListener,
-				   MediaPlayer.OnCompletionListener {
+				   IBasicMediaPlayer.OnPreparedListener,
+				   IBasicMediaPlayer.OnCompletionListener {
 
-	private final MediaPlayer player;
+	private final IBasicMediaPlayer player;
 
-	private @Setter @Nullable OnPreparedListener onPreparedListener;
-	private @Setter @Nullable OnCompletedListener onCompletedListener;
+	private @Setter OnPreparedListener onPreparedListener;
+	private @Setter OnCompletedListener onCompletedListener;
 
+	private boolean isPrepared;
 	private boolean prepareOnly;
 
-	public ExtendedAudioEngine(MediaPlayer player) {
+	public OpenSLAudioEngine(IBasicMediaPlayer player) {
 		this.player = player;
 		this.player.setOnPreparedListener(this);
 		this.player.setOnCompletionListener(this);
+		isPrepared = false;
 	}
 
 	@Override
@@ -55,7 +51,8 @@ public class ExtendedAudioEngine
 	public void playTrack(String trackPath) {
 		try {
 			player.reset();
-			player.setDataSource(new FileSource(new File(trackPath)));
+			player.setDataSource(trackPath);
+			isPrepared = false;
 			player.prepareAsync();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -69,6 +66,10 @@ public class ExtendedAudioEngine
 
 	@Override
 	public long getSeek() {
+		if (!isPrepared) {
+			return 0;
+		}
+
 		return player.getCurrentPosition();
 	}
 
@@ -88,18 +89,22 @@ public class ExtendedAudioEngine
 	}
 
 	@Override
-	public void onPrepared(MediaPlayer mp) {
+	public void onPrepared(IBasicMediaPlayer mp) {
+		isPrepared = true;
+
 		if (prepareOnly) {
 			prepareOnly = false;
 		} else {
 			player.start();
 		}
 
-		if (onPreparedListener != null) onPreparedListener.onPrepared();
+		if (onPreparedListener != null) {
+			onPreparedListener.onPrepared();
+		}
 	}
 
 	@Override
-	public void onCompletion(MediaPlayer mp) {
+	public void onCompletion(IBasicMediaPlayer mp) {
 		if (onCompletedListener != null) onCompletedListener.onCompleted();
 	}
 }

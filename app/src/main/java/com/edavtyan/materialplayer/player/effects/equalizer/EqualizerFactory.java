@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,7 +15,7 @@ public class EqualizerFactory {
 	@Provides
 	@PlayerServiceScope
 	public Equalizer provideEqualizer(
-			@Nullable EqualizerBase base, EqualizerPrefs prefs, PresetsPrefs presetsPrefs) {
+			@Nullable OpenSLEqualizerBase base, EqualizerPrefs prefs, PresetsPrefs presetsPrefs) {
 		return new StandardEqualizer(base, prefs, presetsPrefs);
 	}
 
@@ -27,6 +28,12 @@ public class EqualizerFactory {
 		} catch (RuntimeException e) {
 			return null;
 		}
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public OpenSLEqualizerBase provideOpenSLEqualizerBase(OpenSLMediaPlayerFactory factory) {
+		return new OpenSLEqualizerBase(factory.createHQEqualizer());
 	}
 
 	@Provides

@@ -3,12 +3,13 @@ package com.edavtyan.materialplayer.player;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
-import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.player.engines.ExtendedAudioEngine;
+import com.edavtyan.materialplayer.player.engines.OpenSLAudioEngine;
 import com.edavtyan.materialplayer.player.managers.AudioFocusManager;
 import com.edavtyan.materialplayer.player.managers.MediaSessionManager;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
 import com.google.gson.Gson;
+import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
 import net.protyposis.android.mediaplayer.MediaPlayer;
 
@@ -28,16 +29,17 @@ public class PlayerDIModule {
 	@Provides
 	@PlayerServiceScope
 	public Player providePlayer(
-			AudioEngine audioEngine,
+			ExtendedAudioEngine extendedAudioEngine,
+			OpenSLAudioEngine openSLAudioEngine,
 			PlayerQueue queue,
 			PlayerPrefs prefs,
 			PlayerQueueStorage queueStorage) {
-		return new Player(audioEngine, queue, prefs, queueStorage);
+		return new Player(extendedAudioEngine, openSLAudioEngine, queue, prefs, queueStorage);
 	}
 
 	@Provides
 	@PlayerServiceScope
-	public AudioEngine provideAudioEngine() {
+	public ExtendedAudioEngine provideExtendedAudioEngine() {
 		return new ExtendedAudioEngine(new MediaPlayer());
 	}
 
@@ -69,5 +71,22 @@ public class PlayerDIModule {
 	@PlayerServiceScope
 	public MediaSessionManager provideMediaSessionManager(Context context, Player player) {
 		return new MediaSessionManager(context, player);
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public OpenSLMediaPlayerFactory provideOpenSLMediaPlayerFactory(Context context) {
+		return new OpenSLMediaPlayerFactory(context) {
+			@Override
+			protected int getMediaPlayerOptions() {
+				return 0;
+			}
+		};
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public OpenSLAudioEngine provideOpenSLAudioEngine(OpenSLMediaPlayerFactory factory) {
+		return new OpenSLAudioEngine(factory.createMediaPlayer());
 	}
 }
