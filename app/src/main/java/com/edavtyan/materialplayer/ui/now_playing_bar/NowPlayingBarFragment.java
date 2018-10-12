@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class NowPlayingFloatingFragment extends ModularFragment implements View.OnClickListener {
+public class NowPlayingBarFragment extends ModularFragment implements View.OnClickListener {
 
 	public static final int SCALED_ART_SIZE_DP = 44;
 
@@ -40,7 +40,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 	@BindView(R.id.info_wrapper) LinearLayout infoWrapper;
 
 	@Inject ScreenThemeModule themeModule;
-	@Inject NowPlayingFloatingPresenter presenter;
+	@Inject NowPlayingBarPresenter presenter;
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
 
@@ -59,7 +59,7 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 
 	@Override
 	protected int getLayoutId() {
-		return R.layout.fragment_nowplaying_floating;
+		return R.layout.fragment_nowplaying_bar;
 	}
 
 	@Override
@@ -133,11 +133,11 @@ public class NowPlayingFloatingFragment extends ModularFragment implements View.
 		navigator.gotoNowPlaying(getActivity(), sharedViews.build());
 	}
 
-	protected NowPlayingFloatingDIComponent getComponent() {
-		return DaggerNowPlayingFloatingDIComponent
+	protected NowPlayingBarDIComponent getComponent() {
+		return DaggerNowPlayingBarDIComponent
 				.builder()
 				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
-				.nowPlayingFloatingDIModule(new NowPlayingFloatingDIModule(getActivity(), this))
+				.nowPlayingFloatingDIModule(new NowPlayingBarDIModule(getActivity(), this))
 				.build();
 	}
 }

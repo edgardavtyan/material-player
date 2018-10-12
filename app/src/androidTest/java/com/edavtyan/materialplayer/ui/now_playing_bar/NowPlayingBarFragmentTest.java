@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -28,19 +28,19 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SuppressLint("StaticFieldLeak")
-public class NowPlayingFloatingFragmentTest extends FragmentTest {
-	private static NowPlayingFloatingDIComponent component;
+public class NowPlayingBarFragmentTest extends FragmentTest {
+	private static NowPlayingBarDIComponent component;
 
-	public static class TestNowPlayingFloatingFragment extends NowPlayingFloatingFragment {
+	public static class TestNowPlayingBarFragment extends NowPlayingBarFragment {
 		@Override
-		protected NowPlayingFloatingDIComponent getComponent() {
+		protected NowPlayingBarDIComponent getComponent() {
 			return component;
 		}
 	}
 
-	private NowPlayingFloatingPresenter presenter;
+	private NowPlayingBarPresenter presenter;
 	private Navigator navigator;
-	private TestNowPlayingFloatingFragment fragment;
+	private TestNowPlayingBarFragment fragment;
 
 	private TextView infoView;
 	private TextView titleView;
@@ -54,8 +54,8 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 	public void beforeEach() {
 		super.beforeEach();
 
-		presenter = mock(NowPlayingFloatingPresenter.class);
-		NowPlayingFloatingDIModule mainModule = mock(NowPlayingFloatingDIModule.class, RETURNS_MOCKS);
+		presenter = mock(NowPlayingBarPresenter.class);
+		NowPlayingBarDIModule mainModule = mock(NowPlayingBarDIModule.class, RETURNS_MOCKS);
 		when(mainModule.providePresenter(any(), any())).thenReturn(presenter);
 
 		navigator = mock(Navigator.class);
@@ -71,13 +71,13 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 				.utilsDIModule(utilsFactory)
 				.build();
 
-		component = DaggerNowPlayingFloatingDIComponent
+		component = DaggerNowPlayingBarDIComponent
 				.builder()
 				.appDIComponent(appComponent)
 				.nowPlayingFloatingDIModule(mainModule)
 				.build();
 
-		fragment = new TestNowPlayingFloatingFragment();
+		fragment = new TestNowPlayingBarFragment();
 		initFragment(fragment);
 
 		infoView = (TextView) fragment.getView().findViewById(R.id.info);
@@ -102,7 +102,7 @@ public class NowPlayingFloatingFragmentTest extends FragmentTest {
 
 	@Test
 	public void getLayoutId_returnCorrectId() {
-		assertThat(fragment.getLayoutId()).isEqualTo(R.layout.fragment_nowplaying_floating);
+		assertThat(fragment.getLayoutId()).isEqualTo(R.layout.fragment_nowplaying_bar);
 	}
 
 	@Test

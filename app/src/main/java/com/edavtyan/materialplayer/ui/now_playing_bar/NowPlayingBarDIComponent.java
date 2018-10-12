@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import com.edavtyan.materialplayer.AppDIComponent;
 import com.edavtyan.materialplayer.ui.FragmentScope;
@@ -9,8 +9,8 @@ import dagger.Component;
 @FragmentScope
 @Component(dependencies = AppDIComponent.class,
 		   modules = {
-				   NowPlayingFloatingDIModule.class,
+				   NowPlayingBarDIModule.class,
 				   ThemeableFragmentDIModule.class})
-public interface NowPlayingFloatingDIComponent {
-	void inject(NowPlayingFloatingFragment fragment);
+public interface NowPlayingBarDIComponent {
+	void inject(NowPlayingBarFragment fragment);
 }

@@ -1,11 +1,11 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
-import com.edavtyan.materialplayer.ui.now_playing_floating.NowPlayingFloatingModel.OnNewTrackListener;
-import com.edavtyan.materialplayer.ui.now_playing_floating.NowPlayingFloatingModel.OnServiceConnectedListener;
+import com.edavtyan.materialplayer.ui.now_playing_bar.NowPlayingBarModel.OnNewTrackListener;
+import com.edavtyan.materialplayer.ui.now_playing_bar.NowPlayingBarModel.OnServiceConnectedListener;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.service.PlayerService;
 import com.edavtyan.materialplayer.db.Track;
@@ -23,11 +23,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class NowPlayingFloatingModelTest extends BaseTest {
+public class NowPlayingBarModelTest extends BaseTest {
 	private Context context;
 	private AlbumArtProvider albumArtProvider;
 	private PlayerService.PlayerBinder binder;
-	private NowPlayingFloatingModel model;
+	private NowPlayingBarModel model;
 	private Player player;
 
 	@Override
@@ -36,7 +36,7 @@ public class NowPlayingFloatingModelTest extends BaseTest {
 
 		context = mock(Context.class);
 		albumArtProvider = mock(AlbumArtProvider.class);
-		model = new NowPlayingFloatingModel(context, albumArtProvider);
+		model = new NowPlayingBarModel(context, albumArtProvider);
 
 		player = mock(Player.class);
 

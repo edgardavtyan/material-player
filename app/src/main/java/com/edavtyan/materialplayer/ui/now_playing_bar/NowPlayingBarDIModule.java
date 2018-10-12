@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,11 +10,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class NowPlayingFloatingDIModule {
-	private final NowPlayingFloatingFragment view;
+public class NowPlayingBarDIModule {
+	private final NowPlayingBarFragment view;
 	private final FragmentActivity activity;
 
-	public NowPlayingFloatingDIModule(FragmentActivity activity, NowPlayingFloatingFragment view) {
+	public NowPlayingBarDIModule(FragmentActivity activity, NowPlayingBarFragment view) {
 		this.activity = activity;
 		this.view = view;
 	}
@@ -33,22 +33,22 @@ public class NowPlayingFloatingDIModule {
 
 	@Provides
 	@FragmentScope
-	public NowPlayingFloatingFragment provideView() {
+	public NowPlayingBarFragment provideView() {
 		return view;
 	}
 
 	@Provides
 	@FragmentScope
-	public NowPlayingFloatingModel provideModel(
+	public NowPlayingBarModel provideModel(
 			FragmentActivity activity, AlbumArtProvider albumArtProvider) {
-		return new NowPlayingFloatingModel(activity, albumArtProvider);
+		return new NowPlayingBarModel(activity, albumArtProvider);
 	}
 
 	@Provides
 	@FragmentScope
-	public NowPlayingFloatingPresenter providePresenter(
-			NowPlayingFloatingModel model,
-			NowPlayingFloatingFragment view) {
-		return new NowPlayingFloatingPresenter(model, view);
+	public NowPlayingBarPresenter providePresenter(
+			NowPlayingBarModel model,
+			NowPlayingBarFragment view) {
+		return new NowPlayingBarPresenter(model, view);
 	}
 }

@@ -1,17 +1,17 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import com.edavtyan.materialplayer.db.Track;
 
-public class NowPlayingFloatingPresenter
-		implements NowPlayingFloatingModel.OnNewTrackListener,
-				   NowPlayingFloatingModel.OnServiceConnectedListener {
+public class NowPlayingBarPresenter
+		implements NowPlayingBarModel.OnNewTrackListener,
+				   NowPlayingBarModel.OnServiceConnectedListener {
 
-	private final NowPlayingFloatingModel model;
-	private final NowPlayingFloatingFragment view;
+	private final NowPlayingBarModel model;
+	private final NowPlayingBarFragment view;
 
-	public NowPlayingFloatingPresenter(
-			NowPlayingFloatingModel model,
-			NowPlayingFloatingFragment view) {
+	public NowPlayingBarPresenter(
+			NowPlayingBarModel model,
+			NowPlayingBarFragment view) {
 		this.model = model;
 		this.view = view;
 	}

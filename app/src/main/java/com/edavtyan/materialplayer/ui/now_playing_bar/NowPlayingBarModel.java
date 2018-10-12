@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,7 +15,7 @@ import com.edavtyan.materialplayer.service.PlayerService;
 
 import lombok.Setter;
 
-public class NowPlayingFloatingModel
+public class NowPlayingBarModel
 		implements ServiceConnection,
 				   Player.OnNewTrackListener {
 
@@ -35,7 +35,7 @@ public class NowPlayingFloatingModel
 		void onServiceConnected();
 	}
 
-	public NowPlayingFloatingModel(Context context, AlbumArtProvider albumArtProvider) {
+	public NowPlayingBarModel(Context context, AlbumArtProvider albumArtProvider) {
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
 	}

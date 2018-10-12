@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.ui.now_playing_floating;
+package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.testlib.tests.BaseTest;
@@ -10,18 +10,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class NowPlayingFloatingPresenterTest extends BaseTest {
-	private NowPlayingFloatingPresenter presenter;
-	private NowPlayingFloatingModel model;
-	private NowPlayingFloatingFragment view;
+public class NowPlayingBarPresenterTest extends BaseTest {
+	private NowPlayingBarPresenter presenter;
+	private NowPlayingBarModel model;
+	private NowPlayingBarFragment view;
 
 	@Override
 	public void beforeEach() {
 		super.beforeEach();
 
-		model = mock(NowPlayingFloatingModel.class);
-		view = mock(NowPlayingFloatingFragment.class);
-		presenter = new NowPlayingFloatingPresenter(model, view);
+		model = mock(NowPlayingBarModel.class);
+		view = mock(NowPlayingBarFragment.class);
+		presenter = new NowPlayingBarPresenter(model, view);
 	}
 
 	@Test

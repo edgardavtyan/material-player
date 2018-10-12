@@ -86,10 +86,10 @@
 
 					<fragment
 						android:id="@+id/floating_nowplaying"
-						android:name="com.edavtyan.materialplayer.ui.now_playing_floating.NowPlayingFloatingFragment"
+						android:name="com.edavtyan.materialplayer.ui.now_playing_bar.NowPlayingBarFragment"
 						android:layout_width="match_parent"
 						android:layout_height="?listPreferredItemHeightSmall"
-						tools:layout="@layout/fragment_nowplaying_floating"
+						tools:layout="@layout/fragment_nowplaying_bar"
 						/>
 
 				</LinearLayout>
