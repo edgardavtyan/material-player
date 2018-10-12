@@ -18,6 +18,7 @@ public class OpenSLAudioEngine
 
 	private boolean isPrepared;
 	private boolean prepareOnly;
+	private boolean explicitPlayTrackCall;
 
 	public OpenSLAudioEngine(IBasicMediaPlayer player) {
 		this.player = player;
@@ -50,6 +51,7 @@ public class OpenSLAudioEngine
 	@Override
 	public void playTrack(String trackPath) {
 		try {
+			explicitPlayTrackCall = true;
 			player.reset();
 			player.setDataSource(trackPath);
 			isPrepared = false;
@@ -105,6 +107,12 @@ public class OpenSLAudioEngine
 
 	@Override
 	public void onCompletion(IBasicMediaPlayer mp) {
-		if (onCompletedListener != null) onCompletedListener.onCompleted();
+		if (!explicitPlayTrackCall) {
+			return;
+		}
+
+		if (onCompletedListener != null) {
+			onCompletedListener.onCompleted();
+		}
 	}
 }
