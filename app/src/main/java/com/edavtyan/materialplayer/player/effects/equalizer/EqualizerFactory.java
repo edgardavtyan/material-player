@@ -7,22 +7,37 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.service.PlayerServiceScope;
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class EqualizerFactory {
 	@Provides
+	@Named("opensl")
 	@PlayerServiceScope
-	public Equalizer provideEqualizer(
-			@Nullable OpenSLEqualizerBase base, EqualizerPrefs prefs, PresetsPrefs presetsPrefs) {
+	public Equalizer provideStandardEqualizer(
+			@Nullable OpenSLEqualizerBase base,
+			EqualizerPrefs prefs,
+			PresetsPrefs presetsPrefs) {
+		return new StandardEqualizer(base, prefs, presetsPrefs);
+	}
+
+	@Provides
+	@Named("standard")
+	@PlayerServiceScope
+	public Equalizer provideOpenSLEqualizer(
+			@Nullable StandardEqualizerBase base,
+			EqualizerPrefs prefs,
+			PresetsPrefs presetsPrefs) {
 		return new StandardEqualizer(base, prefs, presetsPrefs);
 	}
 
 	@Nullable
 	@Provides
 	@PlayerServiceScope
-	public EqualizerBase provideEqualizerBase(int sessionId) {
+	public StandardEqualizerBase provideEqualizerBase(int sessionId) {
 		try {
 			return new StandardEqualizerBase(new android.media.audiofx.Equalizer(0, sessionId));
 		} catch (RuntimeException e) {

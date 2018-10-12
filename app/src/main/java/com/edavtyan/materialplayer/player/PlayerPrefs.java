@@ -4,21 +4,21 @@ import android.content.SharedPreferences;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
-import lombok.Setter;
+import java.util.HashMap;
 
 public class PlayerPrefs implements SharedPreferences.OnSharedPreferenceChangeListener {
-	private static final String PREF_SHUFFLE = "player_shuffle";
-	private static final String PREF_REPEAT = "player_repeat";
-	private static final String PREF_INDEX = "player_position";
-	private static final String PREF_ENGINE = "player_engine";
-	private static final ShuffleMode DEFAULT_SHUFFLE = ShuffleMode.DISABLED;
-	private static final RepeatMode DEFAULT_REPEAT = RepeatMode.DISABLED;
-	private static final int DEFAULT_INDEX = 0;
-	private static final boolean DEFAULT_ENGINE = false;
+	public static final String PREF_SHUFFLE = "player_shuffle";
+	public static final String PREF_REPEAT = "player_repeat";
+	public static final String PREF_INDEX = "player_position";
+	public static final String PREF_ENGINE = "player_engine";
+	public static final ShuffleMode DEFAULT_SHUFFLE = ShuffleMode.DISABLED;
+	public static final RepeatMode DEFAULT_REPEAT = RepeatMode.DISABLED;
+	public static final int DEFAULT_INDEX = 0;
+	public static final boolean DEFAULT_ENGINE = false;
 
 	private final AdvancedSharedPrefs prefs;
 
-	private @Setter OnUseAdvancedEngineChangedListener onUseAdvancedEngineChangedListener;
+	private final HashMap<Object, OnUseAdvancedEngineChangedListener> onUseAdvancedEngineChangedListeners;
 
 	public interface OnUseAdvancedEngineChangedListener {
 		void onUseAdvancedEngineChanged(boolean isAdvanced);
@@ -27,6 +27,8 @@ public class PlayerPrefs implements SharedPreferences.OnSharedPreferenceChangeLi
 	public PlayerPrefs(AdvancedSharedPrefs prefs) {
 		this.prefs = prefs;
 		this.prefs.registerOnSharedPreferenceChangeListener(this);
+
+		onUseAdvancedEngineChangedListeners = new HashMap<>();
 	}
 
 	public ShuffleMode getShuffleMode() {
@@ -61,12 +63,20 @@ public class PlayerPrefs implements SharedPreferences.OnSharedPreferenceChangeLi
 		prefs.edit().putBoolean(PREF_ENGINE, use).apply();
 	}
 
+	public void addOnUseAdvancedEngineListener(Object owner, OnUseAdvancedEngineChangedListener listener) {
+		onUseAdvancedEngineChangedListeners.put(owner, listener);
+	}
+
+	public void removeOnUseAdvancedEngineListener(Object owner) {
+		onUseAdvancedEngineChangedListeners.remove(owner);
+	}
+
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		switch (key) {
 		case PREF_ENGINE:
-			if (onUseAdvancedEngineChangedListener != null) {
-				onUseAdvancedEngineChangedListener.onUseAdvancedEngineChanged(getUseAdvancedEngine());
+			for (OnUseAdvancedEngineChangedListener listener : onUseAdvancedEngineChangedListeners.values()) {
+				listener.onUseAdvancedEngineChanged(getUseAdvancedEngine());
 			}
 			return;
 		}

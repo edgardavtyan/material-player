@@ -13,6 +13,7 @@ import com.edavtyan.materialplayer.lib.replaygain.ReplayGainManager;
 import com.edavtyan.materialplayer.notification.PlayerNotification;
 import com.edavtyan.materialplayer.notification.PlayerNotificationPresenter;
 import com.edavtyan.materialplayer.player.Player;
+import com.edavtyan.materialplayer.player.PlayerPrefs;
 import com.edavtyan.materialplayer.player.effects.amplifier.Amplifier;
 import com.edavtyan.materialplayer.player.effects.bassboost.BassBoost;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
@@ -28,6 +29,7 @@ import com.edavtyan.materialplayer.service.receivers.SkipToNextReceiver;
 import com.edavtyan.materialplayer.service.receivers.SkipToPreviousReceiver;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import lombok.Getter;
 
@@ -43,8 +45,11 @@ public class PlayerService extends Service {
 		}
 	}
 
+	@Inject @Named("standard") Equalizer standardEqualizer;
+	@Inject @Named("opensl") Equalizer openslEqualizer;
+
+	@Inject PlayerPrefs playerPrefs;
 	@Inject @Getter Player player;
-	@Inject @Getter Equalizer equalizer;
 	@Inject @Getter Surround surround;
 	@Inject @Getter BassBoost bassBoost;
 	@Inject @Nullable Amplifier amplifier;
@@ -61,6 +66,8 @@ public class PlayerService extends Service {
 	@Inject PlayPauseReceiver playPauseReceiver;
 	@Inject SkipToNextReceiver skipToNextReceiver;
 	@Inject SkipToPreviousReceiver skipToPreviousReceiver;
+
+	private @Getter Equalizer equalizer;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -92,6 +99,14 @@ public class PlayerService extends Service {
 		presenter.onCreate();
 
 		player.addPlugin(rgManager);
+
+		playerPrefs.addOnUseAdvancedEngineListener(this, this::onUseAdvancedEngineChanged);
+
+		equalizer = playerPrefs.getUseAdvancedEngine() ? openslEqualizer : standardEqualizer;
+	}
+
+	private void onUseAdvancedEngineChanged(boolean isAdvanced) {
+		equalizer = isAdvanced ? openslEqualizer : standardEqualizer;
 	}
 
 	@Override
@@ -100,5 +115,6 @@ public class PlayerService extends Service {
 		presenter.onDestroy();
 		audioFocusManager.dropFocus();
 		mediaSessionManager.close();
+		playerPrefs.removeOnUseAdvancedEngineListener(this);
 	}
 }

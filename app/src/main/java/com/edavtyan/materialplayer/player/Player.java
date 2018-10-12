@@ -42,7 +42,7 @@ public class Player
 			PlayerPrefs prefs,
 			PlayerQueueStorage queueStorage) {
 		this.prefs = prefs;
-		this.prefs.setOnUseAdvancedEngineChangedListener(this::onUseAdvancedEngineChanged);
+		this.prefs.addOnUseAdvancedEngineListener(this, this::onUseAdvancedEngineChanged);
 		this.queueStorage = queueStorage;
 
 		this.extendedAudioEngine = extendedAudioEngine;
@@ -76,7 +76,7 @@ public class Player
 		audioEngine = isAdvanced ? openSLAudioEngine : extendedAudioEngine;
 
 		mute();
-		playTrackAt(position);
+		prepareTrackAt(position);
 	}
 
 	public void addPlugin(PlayerPlugin plugin) {
@@ -244,6 +244,7 @@ public class Player
 		if (seek != null) {
 			setSeek(seek);
 			restoreVolume();
+			play();
 			seek = null;
 		}
 	}
