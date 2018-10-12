@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.lib.transition;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.View;
 
 import com.ed.libsutils.utils.ViewUtils;
@@ -21,6 +22,7 @@ public class ExitTranslateTransition extends SharedTransition {
 		sharedView.setPivotY(0);
 
 		AnimatorSet animatorSet = new AnimatorSet();
+		animatorSet.setInterpolator(new FastOutSlowInInterpolator());
 		animatorSet.playTogether(
 				ObjectAnimator.ofFloat(sharedView, "translationX", data.getEndXDelta()),
 				ObjectAnimator.ofFloat(sharedView, "translationY", data.getEndYDelta()),

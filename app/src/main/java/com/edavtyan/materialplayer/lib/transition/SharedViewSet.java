@@ -43,8 +43,8 @@ public class SharedViewSet {
 		enterLandscapeView = sharedView;
 		exitPortraitView = sharedView;
 		exitLandscapeView = sharedView;
-		enterDuration = 500;
-		exitDuration = 500;
+		enterDuration = 400;
+		exitDuration = 400;
 		exitDelay = 0;
 	}
 
