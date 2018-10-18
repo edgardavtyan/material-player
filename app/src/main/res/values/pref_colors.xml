@@ -26,6 +26,6 @@
 		<item>@color/blueGrey</item>
 	</array>
 
-	<color name="pref_colors_default">#f44336</color>
+	<color name="pref_colors_default">@color/red</color>
 
 </resources>
