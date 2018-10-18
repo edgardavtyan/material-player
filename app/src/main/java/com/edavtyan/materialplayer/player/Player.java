@@ -150,6 +150,7 @@ public class Player {
 
 	public void playNewTracks(List<Track> tracks, int position) {
 		queue.replaceTracks(tracks, position);
+		prefs.saveCurrentIndex(position);
 		queueStorage.save(queue.getTracks());
 		audioEngine.playTrack(queue.getCurrentTrack().getPath());
 	}
