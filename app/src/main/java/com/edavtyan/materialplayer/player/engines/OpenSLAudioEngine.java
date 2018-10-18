@@ -6,10 +6,7 @@ import java.io.IOException;
 
 import lombok.Setter;
 
-public class OpenSLAudioEngine
-		implements AudioEngine,
-				   IBasicMediaPlayer.OnPreparedListener,
-				   IBasicMediaPlayer.OnCompletionListener {
+public class OpenSLAudioEngine implements AudioEngine {
 
 	private final IBasicMediaPlayer player;
 
@@ -17,14 +14,37 @@ public class OpenSLAudioEngine
 	private @Setter OnCompletedListener onCompletedListener;
 
 	private boolean isPrepared;
-	private boolean prepareOnly;
-	private boolean explicitPlayTrackCall;
+	private boolean isPrepareOnly;
+	private boolean isExplicitPlayTrackCall;
 
 	public OpenSLAudioEngine(IBasicMediaPlayer player) {
 		this.player = player;
-		this.player.setOnPreparedListener(this);
-		this.player.setOnCompletionListener(this);
-		isPrepared = false;
+		this.player.setOnPreparedListener(mp -> onPrepared());
+		this.player.setOnCompletionListener(mp -> onCompletion());
+	}
+
+	private void onPrepared() {
+		isPrepared = true;
+
+		if (isPrepareOnly) {
+			isPrepareOnly = false;
+		} else {
+			player.start();
+		}
+
+		if (onPreparedListener != null) {
+			onPreparedListener.onPrepared();
+		}
+	}
+
+	private void onCompletion() {
+		if (!isExplicitPlayTrackCall) {
+			return;
+		}
+
+		if (onCompletedListener != null) {
+			onCompletedListener.onCompleted();
+		}
 	}
 
 	@Override
@@ -44,14 +64,14 @@ public class OpenSLAudioEngine
 
 	@Override
 	public void prepareTrack(String trackPath) {
-		prepareOnly = true;
+		isPrepareOnly = true;
 		playTrack(trackPath);
 	}
 
 	@Override
 	public void playTrack(String trackPath) {
 		try {
-			explicitPlayTrackCall = true;
+			isExplicitPlayTrackCall = true;
 			player.reset();
 			player.setDataSource(trackPath);
 			isPrepared = false;
@@ -88,31 +108,5 @@ public class OpenSLAudioEngine
 	@Override
 	public void reset() {
 		player.reset();
-	}
-
-	@Override
-	public void onPrepared(IBasicMediaPlayer mp) {
-		isPrepared = true;
-
-		if (prepareOnly) {
-			prepareOnly = false;
-		} else {
-			player.start();
-		}
-
-		if (onPreparedListener != null) {
-			onPreparedListener.onPrepared();
-		}
-	}
-
-	@Override
-	public void onCompletion(IBasicMediaPlayer mp) {
-		if (!explicitPlayTrackCall) {
-			return;
-		}
-
-		if (onCompletedListener != null) {
-			onCompletedListener.onCompleted();
-		}
 	}
 }

@@ -10,9 +10,7 @@ import com.edavtyan.materialplayer.player.engines.OpenSLAudioEngine;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player
-		implements AudioEngine.OnPreparedListener,
-				   AudioEngine.OnCompletedListener {
+public class Player {
 
 	private final ExtendedAudioEngine extendedAudioEngine;
 	private final OpenSLAudioEngine openSLAudioEngine;
@@ -47,11 +45,11 @@ public class Player
 		this.queueStorage = queueStorage;
 
 		this.extendedAudioEngine = extendedAudioEngine;
-		this.extendedAudioEngine.setOnPreparedListener(this);
-		this.extendedAudioEngine.setOnCompletedListener(this);
+		this.extendedAudioEngine.setOnPreparedListener(this::onPrepared);
+		this.extendedAudioEngine.setOnCompletedListener(this::onCompleted);
 		this.openSLAudioEngine = openSLAudioEngine;
-		this.openSLAudioEngine.setOnPreparedListener(this);
-		this.openSLAudioEngine.setOnCompletedListener(this);
+		this.openSLAudioEngine.setOnPreparedListener(this::onPrepared);
+		this.openSLAudioEngine.setOnCompletedListener(this::onCompleted);
 
 		this.queue = queue;
 		this.queue.setRepeatMode(prefs.getRepeatMode());
@@ -79,6 +77,30 @@ public class Player
 
 		mute();
 		prepareTrackAt(position);
+	}
+
+	private void onPrepared() {
+		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
+			onNewTrackListener.onNewTrack();
+		}
+
+		for (PlayerPlugin plugin : plugins) {
+			plugin.onNewTrack(getCurrentTrack());
+		}
+
+		if (seek != null) {
+			setSeek(seek);
+			restoreVolume();
+			seek = null;
+
+			if (wasPlaying) {
+				play();
+			}
+		}
+	}
+
+	private void onCompleted() {
+		skipToNext();
 	}
 
 	public void addPlugin(PlayerPlugin plugin) {
@@ -232,30 +254,6 @@ public class Player
 
 	public void restoreVolume() {
 		audioEngine.setVolume(1.0f);
-	}
-
-	public void onPrepared() {
-		for (OnNewTrackListener onNewTrackListener : onNewTrackListeners) {
-			onNewTrackListener.onNewTrack();
-		}
-
-		for (PlayerPlugin plugin : plugins) {
-			plugin.onNewTrack(getCurrentTrack());
-		}
-
-		if (seek != null) {
-			setSeek(seek);
-			restoreVolume();
-			seek = null;
-
-			if (wasPlaying) {
-				play();
-			}
-		}
-	}
-
-	public void onCompleted() {
-		skipToNext();
 	}
 
 	private void raisePlayPauseListener() {
