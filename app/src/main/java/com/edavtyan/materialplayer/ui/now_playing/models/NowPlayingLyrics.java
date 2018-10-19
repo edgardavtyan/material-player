@@ -7,6 +7,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsApi;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 
 import butterknife.BindView;
@@ -16,6 +17,7 @@ import lombok.Getter;
 public class NowPlayingLyrics {
 	@BindView(R.id.lyrics_wrapper) @Getter FrameLayout wrapperView;
 	@BindView(R.id.lyrics_text) TextView textView;
+	@BindView(R.id.lyrics_instrumental) TextView instrumentalView;
 	@BindView(R.id.lyrics_scroller) ScrollView scrollerView;
 	@BindView(R.id.error_lyricsConnection) TextView connectionErrorView;
 	@BindView(R.id.error_lyricsNotFound) TextView notFoundErrorView;
@@ -29,7 +31,14 @@ public class NowPlayingLyrics {
 	}
 
 	public void setLyrics(String lyrics) {
-		textView.setText(lyrics);
+		if (lyrics.equals(LyricsApi.LYRICS_INSTRUMENTAL)) {
+			instrumentalView.setVisibility(View.VISIBLE);
+			textView.setVisibility(View.INVISIBLE);
+		} else {
+			instrumentalView.setVisibility(View.INVISIBLE);
+			textView.setText(lyrics);
+			textView.setVisibility(View.VISIBLE);
+		}
 	}
 
 	public void hide() {
@@ -45,12 +54,14 @@ public class NowPlayingLyrics {
 	public void displayNotFoundError() {
 		scrollerView.setVisibility(View.INVISIBLE);
 		connectionErrorView.setVisibility(View.INVISIBLE);
+		instrumentalView.setVisibility(View.INVISIBLE);
 		notFoundErrorView.setVisibility(View.VISIBLE);
 	}
 
 	public void displayConnectionError() {
 		scrollerView.setVisibility(View.INVISIBLE);
 		notFoundErrorView.setVisibility(View.INVISIBLE);
+		instrumentalView.setVisibility(View.INVISIBLE);
 		connectionErrorView.setVisibility(View.VISIBLE);
 	}
 }

@@ -179,6 +179,22 @@
 					</ScrollView>
 
 					<TextView
+						android:id="@+id/lyrics_instrumental"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:gravity="center"
+						android:padding="@dimen/spacing_medium"
+						android:textColor="?textColorContrastPrimary"
+						android:textSize="@dimen/font_medium"
+						android:text="@string/nowplaying_lyrics_instrumental"
+						android:shadowDx="1"
+						android:shadowDy="1"
+						android:shadowRadius="2"
+						android:shadowColor="#000"
+						android:visibility="invisible"
+						/>
+
+					<TextView
 						android:id="@+id/error_lyricsNotFound"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"

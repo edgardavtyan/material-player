@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.lib.lyrics;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -9,6 +10,8 @@ import java.net.URLEncoder;
 
 public class LyricsApi {
 	private static final String URL_TEMPLATE = "http://lyrics.wikia.com/wiki/%s:%s";
+
+	public static final String LYRICS_INSTRUMENTAL = "Instrumental";
 
 	public String getLyrics(String artist, String track)
 	throws LyricsNotFoundException, LyricsConnectionException {
@@ -18,11 +21,17 @@ public class LyricsApi {
 												.ignoreHttpErrors(true)
 												.method(Connection.Method.GET)
 												.execute();
-			String lyrics = response.parse()
-									.select(".lyricbox")
-									.html()
-									.replace("<br>", "")
-									.replace("\n<div class=\"lyricsbreak\"></div>", "");
+
+			Elements lyricsDoc = response.parse().select(".lyricbox");
+
+			Elements lyricsInstrumental = lyricsDoc.select("span a[title='Instrumental']");
+			if (!lyricsInstrumental.isEmpty()) {
+				return LYRICS_INSTRUMENTAL;
+			}
+
+			String lyrics = lyricsDoc.html()
+									 .replace("<br>", "")
+									 .replace("\n<div class=\"lyricsbreak\"></div>", "");
 
 			if (response.statusCode() == 404 && lyrics.isEmpty()) {
 				throw new LyricsNotFoundException(artist, track);
