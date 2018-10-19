@@ -43,18 +43,19 @@ public class Player {
 		this.prefs = prefs;
 		this.prefs.addOnUseAdvancedEngineListener(this, this::onUseAdvancedEngineChanged);
 		this.queueStorage = queueStorage;
-
 		this.extendedAudioEngine = extendedAudioEngine;
 		this.extendedAudioEngine.setOnPreparedListener(this::onPrepared);
 		this.extendedAudioEngine.setOnCompletedListener(this::onCompleted);
 		this.openSLAudioEngine = openSLAudioEngine;
 		this.openSLAudioEngine.setOnPreparedListener(this::onPrepared);
 		this.openSLAudioEngine.setOnCompletedListener(this::onCompleted);
-
 		this.queue = queue;
 		this.queue.setRepeatMode(prefs.getRepeatMode());
 		this.queue.setShuffleMode(prefs.getShuffleMode());
 		this.queue.addManyTracks(queueStorage.load());
+		this.onNewTrackListeners = new ArrayList<>();
+		this.onPlayPauseListeners = new ArrayList<>();
+		this.plugins = new ArrayList<>();
 
 		audioEngine = prefs.getUseAdvancedEngine() ? openSLAudioEngine : extendedAudioEngine;
 
@@ -62,9 +63,6 @@ public class Player {
 			prepareTrackAt(prefs.getCurrentIndex());
 		}
 
-		onNewTrackListeners = new ArrayList<>();
-		onPlayPauseListeners = new ArrayList<>();
-		plugins = new ArrayList<>();
 	}
 
 	private void onUseAdvancedEngineChanged(boolean isAdvanced) {
