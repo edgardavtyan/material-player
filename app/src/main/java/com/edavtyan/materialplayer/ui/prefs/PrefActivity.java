@@ -3,6 +3,10 @@ package com.edavtyan.materialplayer.ui.prefs;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.ed.androidprefs.category.PreferenceCategory;
+import com.ed.androidprefs.checkbox.CheckboxPreference;
+import com.ed.androidprefs.color.ColorSelectionPreference;
+import com.ed.androidprefs.seekbar.SeekbarPreference;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
@@ -11,10 +15,6 @@ import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
-import com.edavtyan.prefs.category.PreferenceCategory;
-import com.edavtyan.prefs.checkbox.CheckboxPreference;
-import com.edavtyan.prefs.color.ColorSelectionPreference;
-import com.edavtyan.prefs.seekbar.SeekbarPreference;
 
 import javax.inject.Inject;
 
@@ -66,7 +66,7 @@ public class PrefActivity extends ModularActivity {
 	protected PrefDIComponent getComponent() {
 		return DaggerPrefDIComponent
 				.builder()
-				.appDIComponent(((App)getApplication()).getAppComponent())
+				.appDIComponent(((App) getApplication()).getAppComponent())
 				.prefDIModule(new PrefDIModule(this))
 				.activityModulesDIModule(new ActivityModulesDIModule(R.string.pref_title))
 				.build();

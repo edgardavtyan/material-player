@@ -20,7 +20,7 @@
 			android:orientation="vertical"
 			>
 
-			<com.edavtyan.prefs.category.PreferenceCategory
+			<com.ed.androidprefs.category.PreferenceCategory
 				android:id="@+id/pref_category_appearance"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
 				app:cp_color="?prefCategoryTitleColor"
 				>
 
-				<com.edavtyan.prefs.color.ColorSelectionPreference
+				<com.ed.androidprefs.color.ColorSelectionPreference
 					android:id="@+id/pref_primary_color"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -40,9 +40,9 @@
 					app:cp_summary="%d"
 					/>
 
-			</com.edavtyan.prefs.category.PreferenceCategory>
+			</com.ed.androidprefs.category.PreferenceCategory>
 
-			<com.edavtyan.prefs.category.PreferenceCategory
+			<com.ed.androidprefs.category.PreferenceCategory
 				android:id="@+id/pref_category_playback"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
 				app:cp_color="?prefCategoryTitleColor"
 				>
 
-				<com.edavtyan.prefs.checkbox.CheckboxPreference
+				<com.ed.androidprefs.checkbox.CheckboxPreference
 					android:id="@+id/pref_resume"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
 					app:cp_defaultValue="@bool/pref_play_on_headset_plug_default"
 					/>
 
-				<com.edavtyan.prefs.checkbox.CheckboxPreference
+				<com.ed.androidprefs.checkbox.CheckboxPreference
 					android:id="@+id/pref_engine"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -68,9 +68,9 @@
 					app:cp_defaultValue="false"
 					/>
 
-			</com.edavtyan.prefs.category.PreferenceCategory>
+			</com.ed.androidprefs.category.PreferenceCategory>
 
-			<com.edavtyan.prefs.category.PreferenceCategory
+			<com.ed.androidprefs.category.PreferenceCategory
 				android:id="@+id/pref_category_rg"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
 				app:cp_color="?prefCategoryTitleColor"
 				>
 
-				<com.edavtyan.prefs.checkbox.CheckboxPreference
+				<com.ed.androidprefs.checkbox.CheckboxPreference
 					android:id="@+id/pref_rg_enabled"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
 					app:cp_defaultValue="@bool/pref_replaygain_enabled_default"
 					/>
 
-				<com.edavtyan.prefs.checkbox.CheckboxPreference
+				<com.ed.androidprefs.checkbox.CheckboxPreference
 					android:id="@+id/pref_rg_album"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
 					app:cp_defaultValue="@bool/pref_replaygain_album_default"
 					/>
 
-				<com.edavtyan.prefs.seekbar.SeekbarPreference
+				<com.ed.androidprefs.seekbar.SeekbarPreference
 					android:id="@+id/pref_rg_gain"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
 					app:cp_multiplier="@fraction/pref_replaygain_gain_multiplier"
 					/>
 
-			</com.edavtyan.prefs.category.PreferenceCategory>
+			</com.ed.androidprefs.category.PreferenceCategory>
 
 		</LinearLayout>
 
