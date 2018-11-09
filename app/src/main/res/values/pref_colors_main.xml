@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="pref_colorsMain_key">pref_colorsMain</string>
+	<string name="pref_colorsMain_title">Color Theme</string>
+	<string name="pref_colorsMain_summary">%s</string>
+	<string name="pref_colorsMain_defaultValue">Colored</string>
+
+	<string-array name="pref_colorsMain_entries">
+		<item>Colored</item>
+		<item>White</item>
+		<item>Black</item>
+	</string-array>
+
+	<string-array name="pref_colorsMain_entryValues">
+		<item>Colored</item>
+		<item>White</item>
+		<item>Black</item>
+	</string-array>
+
+</resources>

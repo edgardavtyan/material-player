@@ -40,6 +40,18 @@
 					app:cp_summary="%d"
 					/>
 
+				<com.ed.androidprefs.simple_list.SimpleListPreference
+					android:id="@+id/pref_theme"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="@string/pref_colorsMain_key"
+					app:cp_title="@string/pref_colorsMain_title"
+					app:cp_summary="@string/pref_colorsMain_summary"
+					app:cp_defaultValue="@string/pref_colorsMain_defaultValue"
+					app:cp_entries="@array/pref_colorsMain_entries"
+					app:cp_entryValues="@array/pref_colorsMain_entryValues"
+					/>
+
 			</com.ed.androidprefs.category.PreferenceCategory>
 
 			<com.ed.androidprefs.category.PreferenceCategory

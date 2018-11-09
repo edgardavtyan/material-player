@@ -33,6 +33,7 @@
 		<item name="iconMenuSearch">@drawable/ic_search_white</item>
 		<item name="iconBackArrow">@drawable/ic_arrow_back_white</item>
 
+		<item name="android:windowBackground">@color/white</item>
 		<item name="android:windowTitleSize">@dimen/placeholder_toolbar_height</item>
 		<item name="android:windowTitleStyle">@style/CustomWindowTitle</item>
 		<item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>

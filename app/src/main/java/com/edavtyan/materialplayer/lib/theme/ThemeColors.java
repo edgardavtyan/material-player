@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.lib.theme;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.util.SparseIntArray;
 
@@ -11,10 +12,15 @@ import lombok.Getter;
 public class ThemeColors {
 	private static SparseIntArray COLORS;
 
+	private final @Getter Theme theme;
 	private final @Getter int colorPrimary;
 	private final @Getter int colorPrimaryDark;
+	private final @Getter int textPrimary;
+	private final @Getter int textSecondary;
+	private final @Getter int textContrastPrimary;
+	private final @Getter int textContrastSecondary;
 
-	public ThemeColors(Context context, int color) {
+	public ThemeColors(Context context, int color, String theme) {
 		if (COLORS == null) {
 			COLORS = new SparseIntArray();
 			COLORS.append(ContextCompat.getColor(context, R.color.red), R.array.color_red);
@@ -38,9 +44,36 @@ public class ThemeColors {
 			COLORS.append(ContextCompat.getColor(context, R.color.blueGrey), R.array.color_blueGrey);
 		}
 
-		int colorsId = COLORS.get(color);
-		int[] colorsArray = context.getResources().getIntArray(colorsId);
-		colorPrimary = colorsArray[0];
-		colorPrimaryDark = colorsArray[1];
+		int white = Color.WHITE;
+		int black = Color.BLACK;
+
+		if ("Colored".equals(theme)) {
+			int colorsId = COLORS.get(color);
+			int[] colorsArray = context.getResources().getIntArray(colorsId);
+
+			this.theme = Theme.COLORED;
+			this.colorPrimary = colorsArray[0];
+			this.colorPrimaryDark = colorsArray[1];
+			this.textPrimary = black;
+			this.textSecondary = black;
+			this.textContrastPrimary = white;
+			this.textContrastSecondary = white;
+		} else if ("White".equals(theme)) {
+			this.theme = Theme.WHITE;
+			this.colorPrimary = white;
+			this.colorPrimaryDark = white;
+			this.textPrimary = black;
+			this.textSecondary = black;
+			this.textContrastPrimary = black;
+			this.textContrastSecondary = black;
+		} else { // BLACK
+			this.theme = Theme.BLACK;
+			this.colorPrimary = black;
+			this.colorPrimaryDark = black;
+			this.textPrimary = white;
+			this.textSecondary = white;
+			this.textContrastPrimary = white;
+			this.textContrastSecondary = white;
+		}
 	}
 }

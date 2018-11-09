@@ -10,9 +10,9 @@ import dagger.Provides;
 
 @Module
 public class MainDIModule {
-	private final AppCompatActivity activity;
+	private final MainActivity activity;
 
-	public MainDIModule(AppCompatActivity activity) {
+	public MainDIModule(MainActivity activity) {
 		this.activity = activity;
 	}
 
@@ -33,5 +33,11 @@ public class MainDIModule {
 	@ActivityScope
 	public FragmentManager provideFragmentManager(AppCompatActivity activity) {
 		return activity.getSupportFragmentManager();
+	}
+
+	@Provides
+	@ActivityScope
+	public TabsPartial provideTabsPartial() {
+		return new TabsPartial(activity);
 	}
 }

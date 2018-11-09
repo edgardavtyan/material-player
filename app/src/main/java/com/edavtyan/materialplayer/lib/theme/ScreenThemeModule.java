@@ -15,22 +15,26 @@ public class ScreenThemeModule
 	private final AdvancedSharedPrefs prefs;
 	private final ThemeableScreen themeableScreen;
 	private final Context context;
-	private final String themePrefKey;
+	private final String colorsPrefKey;
 	private final int defaultColor;
+	private final String themePrefKey;
+	private final String defaultTheme;
 
 	public ScreenThemeModule(
 			ThemeableScreen themeableScreen, Context context, AdvancedSharedPrefs prefs) {
 		this.themeableScreen = themeableScreen;
 		this.context = context;
 		this.prefs = prefs;
-		themePrefKey = context.getString(R.string.pref_colors_key);
+		colorsPrefKey = context.getString(R.string.pref_colors_key);
 		defaultColor = ContextCompat.getColor(context, R.color.pref_colors_default);
+		themePrefKey = context.getString(R.string.pref_colorsMain_key);
+		defaultTheme = context.getString(R.string.pref_colorsMain_defaultValue);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if (key.equals(themePrefKey)) {
+		if (key.equals(colorsPrefKey) || key.equals(themePrefKey)) {
 			callOnThemeChanged();
 		}
 	}
@@ -41,7 +45,10 @@ public class ScreenThemeModule
 	}
 
 	private void callOnThemeChanged() {
-		ThemeColors colors = new ThemeColors(context, prefs.getInt(themePrefKey, defaultColor));
+		ThemeColors colors = new ThemeColors(
+				context,
+				prefs.getInt(colorsPrefKey, defaultColor),
+				prefs.getString(themePrefKey, defaultTheme));
 		themeableScreen.onThemeChanged(colors);
 	}
 }
