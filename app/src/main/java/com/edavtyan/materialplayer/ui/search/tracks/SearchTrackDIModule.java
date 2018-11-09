@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.ui.search.tracks;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -41,8 +42,8 @@ public class SearchTrackDIModule {
 	@Provides
 	@FragmentScope
 	public SearchTrackPresenter providePresenter(
-			SearchTrackModel model, SearchTrackFragment view) {
-		return new SearchTrackPresenter(model, view);
+			SearchTrackModel model, SearchTrackFragment view, ThemeColors theme) {
+		return new SearchTrackPresenter(model, view, theme);
 	}
 
 	@Provides

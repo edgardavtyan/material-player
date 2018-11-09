@@ -4,13 +4,14 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.ui.FragmentScope;
-import com.edavtyan.materialplayer.ui.SdkFactory;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.ui.FragmentScope;
+import com.edavtyan.materialplayer.ui.SdkFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
 
 import dagger.Module;
@@ -56,8 +57,9 @@ public class ArtistListDIModule {
 
 	@Provides
 	@FragmentScope
-	public ArtistListPresenter providePresenter(ArtistListModel model, ArtistListView view) {
-		return new ArtistListPresenter(model, view);
+	public ArtistListPresenter providePresenter(
+			ArtistListModel model, ArtistListView view, ThemeColors theme) {
+		return new ArtistListPresenter(model, view, theme);
 	}
 
 	@Provides

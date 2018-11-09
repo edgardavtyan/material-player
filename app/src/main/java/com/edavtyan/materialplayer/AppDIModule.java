@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.SdkFactory;
 import com.google.gson.Gson;
 
@@ -28,6 +29,12 @@ public class AppDIModule {
 	@Singleton
 	public Gson provideGson() {
 		return new Gson();
+	}
+
+	@Provides
+	@Singleton
+	public ThemeColors provideThemeColors() {
+		return new ThemeColors(app);
 	}
 
 	@Provides

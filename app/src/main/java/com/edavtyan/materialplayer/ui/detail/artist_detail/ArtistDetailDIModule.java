@@ -9,6 +9,7 @@ import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -67,8 +68,9 @@ public class ArtistDetailDIModule {
 
 	@Provides
 	@ActivityScope
-	public ArtistDetailPresenter providePresenter(ArtistDetailModel model, ArtistDetailActivity activity) {
-		return new ArtistDetailPresenter(model, activity);
+	public ArtistDetailPresenter providePresenter(
+			ArtistDetailModel model, ArtistDetailActivity activity, ThemeColors theme) {
+		return new ArtistDetailPresenter(model, activity, theme);
 	}
 
 	@Provides

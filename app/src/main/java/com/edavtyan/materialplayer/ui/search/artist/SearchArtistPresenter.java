@@ -1,5 +1,6 @@
 package com.edavtyan.materialplayer.ui.search.artist;
 
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListPresenter;
 import com.edavtyan.materialplayer.ui.search.base.SearchPresenter;
 import com.edavtyan.materialplayer.ui.search.base.SearchPresenterImpl;
@@ -7,8 +8,8 @@ import com.edavtyan.materialplayer.ui.search.base.SearchPresenterImpl;
 public class SearchArtistPresenter extends ArtistListPresenter implements SearchPresenter {
 	private final SearchPresenterImpl searchPresenterImpl;
 
-	public SearchArtistPresenter(SearchArtistModel model, SearchArtistFragment view) {
-		super(model, view);
+	public SearchArtistPresenter(SearchArtistModel model, SearchArtistFragment view, ThemeColors theme) {
+		super(model, view, theme);
 		this.searchPresenterImpl = new SearchPresenterImpl(model, view);
 	}
 

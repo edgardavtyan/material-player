@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.album_list;
 
 import com.edavtyan.materialplayer.db.Album;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
@@ -8,11 +9,13 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 
 	private final AlbumListModel model;
 	private final AlbumListView view;
+	private final ThemeColors theme;
 
-	public AlbumListPresenter(AlbumListModel model, AlbumListView view) {
+	public AlbumListPresenter(AlbumListModel model, AlbumListView view, ThemeColors theme) {
 		super();
 		this.model = model;
 		this.view = view;
+		this.theme = theme;
 	}
 
 	@Override
@@ -21,6 +24,7 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 		holder.setTitle(album.getTitle());
 		holder.setInfo(album.getTracksCount(), album.getArtistTitle());
 		holder.setArt(album.getArt());
+		holder.setTheme(theme);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.support.v4.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -13,8 +14,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
-import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
+import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +29,7 @@ public class AlbumListViewHolder
 	@BindView(R.id.title) TextView titleView;
 	@BindView(R.id.info) TextView infoView;
 	@BindView(R.id.art) ImageView artView;
+	@BindView(R.id.menu) ImageButton menuButton;
 
 	private final Context context;
 	private final AlbumListPresenter presenter;
@@ -70,6 +73,11 @@ public class AlbumListViewHolder
 			 .load(artPath)
 			 .apply(options)
 			 .into(artView);
+	}
+
+	public void setTheme(ThemeColors theme) {
+		titleView.setTextColor(theme.getTextPrimary());
+		menuButton.setColorFilter(theme.getTextPrimary());
 	}
 
 	@Override

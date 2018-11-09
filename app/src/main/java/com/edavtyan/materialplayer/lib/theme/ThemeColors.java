@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer.lib.theme;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.SparseIntArray;
@@ -22,9 +24,20 @@ public class ThemeColors {
 	private final @Getter int textSecondary;
 	private final @Getter int textContrastPrimary;
 	private final @Getter int textContrastSecondary;
+	private final @Getter int background;
 
-	public ThemeColors(Context context, int color, String theme) {
+	public ThemeColors(Context context) {
 		this.context = context;
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		int primaryColor = prefs.getInt(
+				context.getString(R.string.pref_colors_key),
+				getColor(R.color.pref_colors_default));
+
+		String theme = prefs.getString(
+				context.getString(R.string.pref_colorsMain_key),
+				context.getString(R.string.pref_colorsMain_defaultValue));
 
 		if (COLORS == null) {
 			COLORS = new SparseIntArray();
@@ -53,7 +66,7 @@ public class ThemeColors {
 		int black = Color.BLACK;
 
 		if (theme.equals("Colored")) {
-			int[] colorsArray = context.getResources().getIntArray(COLORS.get(color));
+			int[] colorsArray = context.getResources().getIntArray(COLORS.get(primaryColor));
 
 			this.theme = Theme.COLORED;
 			this.colorPrimary = colorsArray[0];
@@ -62,6 +75,7 @@ public class ThemeColors {
 			this.textSecondary = getColor(R.color.coloredTextSecondary);
 			this.textContrastPrimary = getColor(R.color.coloredTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.coloredTextContrastSecondary);
+			this.background = getColor(R.color.white);
 		} else if (theme.equals("White")) {
 			this.theme = Theme.WHITE;
 			this.colorPrimary = white;
@@ -70,6 +84,7 @@ public class ThemeColors {
 			this.textSecondary = getColor(R.color.whiteTextSecondary);
 			this.textContrastPrimary = getColor(R.color.whiteTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.whiteTextContrastSecondary);
+			this.background = getColor(R.color.white);
 		} else { // BLACK
 			this.theme = Theme.BLACK;
 			this.colorPrimary = black;
@@ -78,6 +93,7 @@ public class ThemeColors {
 			this.textSecondary = getColor(R.color.blackTextSecondary);
 			this.textContrastPrimary = getColor(R.color.blackTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.blackTextContrastSecondary);
+			this.background = getColor(R.color.black);
 		}
 	}
 

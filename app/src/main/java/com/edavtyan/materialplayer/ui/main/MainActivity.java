@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.ui.main;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
@@ -32,6 +33,7 @@ public class MainActivity extends BaseActivity {
 	@Inject ScreenThemeModule themeModule;
 	@Inject TabsAdapter tabsAdapter;
 	@Inject TabsPartial tabsPartial;
+	@Inject ThemeColors theme;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,13 +55,10 @@ public class MainActivity extends BaseActivity {
 
 		Intent intent = new Intent(this, PlayerService.class);
 		startService(intent);
-	}
 
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		toolbarModule.setTheme(colors);
-		tabsPartial.setTheme(colors);
+		toolbarModule.setTheme(theme);
+		tabsPartial.setTheme(theme);
+		getWindow().setBackgroundDrawable(new ColorDrawable(theme.getBackground()));
 	}
 
 	protected MainDIComponent getComponent() {

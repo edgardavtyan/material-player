@@ -6,6 +6,7 @@ import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -54,8 +55,8 @@ public class AlbumDetailDIModule {
 
 	@Provides
 	@ActivityScope
-	public AlbumDetailPresenter providePresenter(AlbumDetailModel model) {
-		return new AlbumDetailPresenter(model, activity);
+	public AlbumDetailPresenter providePresenter(AlbumDetailModel model, ThemeColors theme) {
+		return new AlbumDetailPresenter(model, activity, theme);
 	}
 
 	@Provides

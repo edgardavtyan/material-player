@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -51,8 +52,9 @@ public class AlbumListDIModule {
 
 	@Provides
 	@FragmentScope
-	public AlbumListPresenter providePresenter(AlbumListModel model, AlbumListView view) {
-		return new AlbumListPresenter(model, view);
+	public AlbumListPresenter providePresenter(
+			AlbumListModel model, AlbumListView view, ThemeColors theme) {
+		return new AlbumListPresenter(model, view, theme);
 	}
 
 	@Provides
