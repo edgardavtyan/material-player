@@ -7,7 +7,7 @@ public class ArtistListImageMemoryCache {
 	private static final LruCache<String, Bitmap> cache;
 
 	static {
-		cache = new LruCache<>(1000 * 1000 * 4); // 4MB
+		cache = new LruCache<>(5); // 4MB
 	}
 
 	public boolean exists(String key) {

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
 public class AlbumArtMemoryCache {
-	public static final LruCache<Integer, Bitmap> cache = new LruCache<>(1000 * 1000 * 4); // 4MB
+	public static final LruCache<Integer, Bitmap> cache = new LruCache<>(5);
 
 	public void put(int key, Bitmap image) {
 		cache.put(key, image);
