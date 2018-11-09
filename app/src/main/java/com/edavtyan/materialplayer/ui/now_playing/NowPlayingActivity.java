@@ -101,6 +101,12 @@ public class NowPlayingActivity extends ModularActivity {
 	}
 
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		themeModule.onStart();
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public void onBackPressed() {
 		if (isQueueShown) {
 			queueRevealAnimation.hide();

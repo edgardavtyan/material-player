@@ -68,7 +68,13 @@ public class ActivityToolbarModule extends ActivityModule {
 	}
 
 	public void setToolbarIconsColor(int color) {
-		toolbar.getOverflowIcon().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+		if (toolbar.getOverflowIcon() != null) {
+			toolbar.getOverflowIcon().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+		}
+
+		if (toolbar.getNavigationIcon() != null) {
+			toolbar.getNavigationIcon().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+		}
 	}
 
 	public void setStatusBarColor(int color) {
@@ -79,6 +85,7 @@ public class ActivityToolbarModule extends ActivityModule {
 		setStatusBarColor(colors.getColorPrimaryDark());
 		setToolbarBackgroundColor(colors.getColorPrimary());
 		setToolbarIconsColor(colors.getTextContrastPrimary());
+		toolbar.setTitleTextColor(colors.getTextContrastPrimary());
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (colors.getTheme() == Theme.WHITE) {

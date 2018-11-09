@@ -58,6 +58,15 @@ public abstract class ModularActivity extends AppCompatActivity implements Theme
 	}
 
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		for (UniversalViewModule module : modules) {
+			module.onPrepareOptionsMenu(menu);
+		}
+
+		return true;
+	}
+
+	@Override
 	@CallSuper
 	public boolean onOptionsItemSelected(MenuItem item) {
 		for (UniversalViewModule module : modules) {

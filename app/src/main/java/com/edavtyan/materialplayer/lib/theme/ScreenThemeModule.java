@@ -1,8 +1,13 @@
 package com.edavtyan.materialplayer.lib.theme;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -36,11 +41,28 @@ public class ScreenThemeModule
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		if (key.equals(colorsPrefKey) || key.equals(themePrefKey)) {
 			callOnThemeChanged();
+
+			if (themeableScreen instanceof Activity) {
+				((Activity) themeableScreen).invalidateOptionsMenu();
+			}
 		}
 	}
 
 	@Override
-	public void onStart() {
+	public void onPrepareOptionsMenu(Menu menu) {
+		ThemeColors colors = new ThemeColors(
+				context,
+				prefs.getInt(colorsPrefKey, defaultColor),
+				prefs.getString(themePrefKey, defaultTheme));
+
+		for (int i = 0; i < menu.size(); i++) {
+			MenuItem item = menu.getItem(i);
+			Drawable icon = item.getIcon();
+			if (icon != null) {
+				icon.setColorFilter(colors.getTextContrastPrimary(), PorterDuff.Mode.SRC_IN);
+			}
+		}
+
 		callOnThemeChanged();
 	}
 

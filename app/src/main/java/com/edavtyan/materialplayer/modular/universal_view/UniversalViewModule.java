@@ -24,6 +24,9 @@ public class UniversalViewModule {
 		return false;
 	}
 
+	public void onPrepareOptionsMenu(Menu menu) {
+	}
+
 	public void onThemeChanged(ThemeColors colors) {
 	}
 }
