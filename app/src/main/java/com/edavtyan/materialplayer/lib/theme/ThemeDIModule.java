@@ -26,7 +26,7 @@ public class ThemeDIModule {
 	@Provides
 	@Singleton
 	public ScreenThemeModule provideScreenThemeModule(
-			ThemeableScreen themeableScreen, Context context, AdvancedSharedPrefs prefs) {
-		return new ScreenThemeModule(themeableScreen, context, prefs);
+			Context context, AdvancedSharedPrefs prefs) {
+		return new ScreenThemeModule(context, prefs);
 	}
 }
