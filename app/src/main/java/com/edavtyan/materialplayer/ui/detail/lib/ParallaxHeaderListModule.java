@@ -22,10 +22,10 @@ import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
+import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +49,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	@BindView(R.id.list_background) @Nullable View listBackground;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.click_blocker) @Nullable View clickBlockerView;
+	@BindView(R.id.land_list_wrapper) @Nullable FrameLayout landListWrapper;
 
 	private final RecyclerView.OnScrollListener onScrollListener
 			= new RecyclerView.OnScrollListener() {
@@ -188,6 +189,19 @@ public class ParallaxHeaderListModule extends ActivityModule {
 				assert sharedArtExitView != null;
 				sharedArtExitView.setImageResource(fallback);
 			}
+		}
+	}
+
+	public void setTheme(ThemeColors theme) {
+		infoWrapper.setBackgroundColor(theme.getColorPrimary());
+
+		if (WindowUtils.isPortrait(activity)) {
+			portraitTopInfoView.setTextColor(theme.getTextContrastPrimary());
+			portraitBottomInfoView.setTextColor(theme.getTextContrastPrimary());
+			listBackground.setBackgroundColor(theme.getBackground());
+		} else {
+			landscapeInfoView.setTextColor(theme.getTextContrastPrimary());
+			landListWrapper.setBackgroundColor(theme.getBackground());
 		}
 	}
 }
