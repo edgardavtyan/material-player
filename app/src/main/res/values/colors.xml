@@ -16,4 +16,17 @@
 	<color name="white_dim_medium">#b3ffffff</color>
 	<color name="white_dim_strong">#7fffffff</color>
 
+	<color name="coloredTextContrastPrimary">#ffff</color>
+	<color name="coloredTextContrastSecondary">#afff</color>
+	<color name="coloredTextPrimary">#f000</color>
+	<color name="coloredTextSecondary">#a000</color>
+	<color name="whiteTextContrastPrimary">#f000</color>
+	<color name="whiteTextContrastSecondary">#a000</color>
+	<color name="whiteTextPrimary">#f000</color>
+	<color name="whiteTextSecondary">#a000</color>
+	<color name="blackTextContrastPrimary">#ffff</color>
+	<color name="blackTextContrastSecondary">#afff</color>
+	<color name="blackTextPrimary">#ffff</color>
+	<color name="blackTextSecondary">#afff</color>
+
 </resources>
