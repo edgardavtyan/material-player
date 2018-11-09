@@ -4,17 +4,19 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 import com.ed.libsutils.utils.DurationUtils;
 
+import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NowPlayingSeekbar
 		implements SeekBar.OnSeekBarChangeListener {
 
-	@BindView(R.id.seekbar) SeekBar seekbar;
+	@BindView(R.id.seekbar) SeekBarCompat seekbar;
 	@BindView(R.id.time_current) TextView currentTimeView;
 	@BindView(R.id.time_total) TextView totalTimeView;
 
@@ -24,6 +26,14 @@ public class NowPlayingSeekbar
 		ButterKnife.bind(this, activity);
 		this.presenter = presenter;
 		seekbar.setOnSeekBarChangeListener(this);
+	}
+
+	public void setTheme(ThemeColors colors) {
+		seekbar.setThumbColor(colors.getTextContrastPrimary());
+		seekbar.setProgressBackgroundColor(colors.getTextContrastPrimary());
+		seekbar.setProgressColor(colors.getTextContrastPrimary());
+		currentTimeView.setTextColor(colors.getTextContrastPrimary());
+		totalTimeView.setTextColor(colors.getTextContrastPrimary());
 	}
 
 	public void setPosition(int timeMS) {

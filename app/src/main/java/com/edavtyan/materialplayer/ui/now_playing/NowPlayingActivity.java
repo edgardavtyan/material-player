@@ -114,6 +114,10 @@ public class NowPlayingActivity extends ModularActivity {
 	public void onThemeChanged(ThemeColors colors) {
 		super.onThemeChanged(colors);
 		innerContainerView.setBackgroundColor(colors.getColorPrimary());
+		toolbarModule.setTheme(colors);
+		info.setTheme(colors);
+		controls.setTheme(colors);
+		seekbar.setTheme(colors);
 	}
 
 	public void showQueue() {

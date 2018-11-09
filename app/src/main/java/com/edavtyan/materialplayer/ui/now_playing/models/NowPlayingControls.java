@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 import com.edavtyan.materialplayer.player.RepeatMode;
@@ -35,6 +36,14 @@ public class NowPlayingControls implements View.OnClickListener {
 		playPauseButton.setOnClickListener(this);
 		fastForwardButton.setOnClickListener(this);
 		repeatButton.setOnClickListener(this);
+	}
+
+	public void setTheme(ThemeColors colors) {
+		shuffleButton.setColorFilter(colors.getTextContrastPrimary());
+		rewindButton.setColorFilter(colors.getTextContrastPrimary());
+		playPauseButton.setColorFilter(colors.getTextContrastPrimary());
+		fastForwardButton.setColorFilter(colors.getTextContrastPrimary());
+		repeatButton.setColorFilter(colors.getTextContrastPrimary());
 	}
 
 	public void setShuffleMode(ShuffleMode shuffleMode) {
