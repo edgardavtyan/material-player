@@ -20,7 +20,7 @@ public class EqualizerFactory {
 	public Equalizer provideStandardEqualizer(
 			@Nullable OpenSLEqualizerBase base,
 			EqualizerPrefs prefs,
-			PresetsPrefs presetsPrefs) {
+			StandardPresetsPrefs presetsPrefs) {
 		return new StandardEqualizer(base, prefs, presetsPrefs);
 	}
 
@@ -30,7 +30,7 @@ public class EqualizerFactory {
 	public Equalizer provideOpenSLEqualizer(
 			@Nullable StandardEqualizerBase base,
 			EqualizerPrefs prefs,
-			PresetsPrefs presetsPrefs) {
+			OpenSLPresetsPrefs presetsPrefs) {
 		return new StandardEqualizer(base, prefs, presetsPrefs);
 	}
 
@@ -59,7 +59,13 @@ public class EqualizerFactory {
 
 	@Provides
 	@PlayerServiceScope
-	public PresetsPrefs providePresetsPrefs(AdvancedGsonSharedPrefs prefs) {
-		return new PresetsPrefs(prefs);
+	public StandardPresetsPrefs provideStandardPresetsPrefs(AdvancedGsonSharedPrefs prefs) {
+		return new StandardPresetsPrefs(prefs);
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public OpenSLPresetsPrefs provideOpenSLPresetsPrefs(AdvancedGsonSharedPrefs prefs) {
+		return new OpenSLPresetsPrefs(prefs);
 	}
 }
