@@ -2,29 +2,30 @@
 
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="custom_background">@color/white</item>
+		<item name="custom_textColorPrimary">@color/black_dim_slight</item>
+		<item name="custom_textColorSecondary">@color/black_dim_medium</item>
+		<item name="custom_textColorContrastPrimary">@color/black</item>
+		<item name="custom_textColorContrastSecondary">@color/black</item>
+		<item name="custom_fabBackgroundColor">@color/white</item>
+		<item name="custom_fabIconColor">@color/black</item>
+		<item name="custom_controlColor">@color/black</item>
+		<item name="custom_raisedButtonBackground">@color/black</item>
+		<item name="custom_dialogButtonColor">@color/black</item>
 
-		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="android:windowLightStatusBar">true</item>
+
+		<item name="colorPrimary">@color/white</item>
+		<item name="colorPrimaryDark">@color/white</item>
 		<item name="colorAccent">@color/black</item>
 		<item name="colorControlNormal">@color/black</item>
-		<item name="colorControlActivated">@color/black</item>
-		<item name="prefCategoryTitleColor">@color/primary</item>
-		<item name="fabIconColor">@color/black</item>
+		<item name="colorControlActivated">?custom_controlColor</item>
 
-		<item name="textColorPrimary">@color/black_dim_slight</item>
-		<item name="textColorSecondary">@color/black_dim_medium</item>
-		<item name="textColorContrastPrimary">@color/white</item>
-		<item name="textColorContrastSecondary">@color/white_dim_medium</item>
-		<item name="android:textColor">?attr/textColorPrimary</item>
-		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
-		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
+		<item name="prefCategoryTitleColor">@color/primary</item>
 
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
 		<item name="popupTheme">@style/PopupMenuStyle</item>
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 
-		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="android:alertDialogTheme">@style/Dialog</item>
@@ -51,12 +52,12 @@
 	</style>
 
 	<style name="Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-		<item name="colorAccent">@color/primary</item>
-		<item name="buttonBarButtonStyle">@style/BarButton</item>
+		<item name="colorAccent">?custom_dialogButtonColor</item>
 	</style>
 
-	<style name="BarButton" parent="Base.Widget.AppCompat.Button.Borderless">
-		<item name="android:textColor">@color/primary</item>
+	<style name="Toolbar">
+		<item name="android:textColorSecondary">?custom_textColorContrastPrimary</item>
+		<item name="colorControlNormal">?custom_textColorContrastPrimary</item>
 	</style>
 
 </resources>

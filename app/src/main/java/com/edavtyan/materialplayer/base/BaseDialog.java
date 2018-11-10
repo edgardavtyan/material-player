@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.WindowManager;
 
 import butterknife.ButterKnife;
-import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.Setter;
 
 public abstract class BaseDialog {
@@ -22,9 +20,6 @@ public abstract class BaseDialog {
 			= new DialogInterface.OnShowListener() {
 		@Override
 		public void onShow(DialogInterface dialogInterface) {
-			dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(tint);
-			dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(tint);
-			dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(tint);
 			BaseDialog.this.onShow();
 		}
 	};
@@ -34,8 +29,6 @@ public abstract class BaseDialog {
 	}
 
 	private @Setter OnDismissListener onDismissListener;
-
-	private @Setter @Getter(AccessLevel.PROTECTED) int tint;
 
 	private @Setter boolean showKeyboardEnabled;
 

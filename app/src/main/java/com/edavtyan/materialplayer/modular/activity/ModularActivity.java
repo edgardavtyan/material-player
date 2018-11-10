@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 
 import com.edavtyan.materialplayer.lib.theme.ThemeableScreen;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
@@ -21,7 +20,6 @@ public abstract class ModularActivity extends AppCompatActivity implements Theme
 	@Override
 	@CallSuper
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		this.savedInstanceState = savedInstanceState;
 	}

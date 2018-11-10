@@ -9,7 +9,7 @@
 	android:background="?selectableItemBackground"
 	android:gravity="center_vertical"
 	android:textSize="@dimen/font_normal"
-	android:textColor="?textColorPrimary"
+	android:textColor="?attr/custom_textColorPrimary"
 	android:maxLines="2"
 	android:clickable="true"
 	android:focusable="true"

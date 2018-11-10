@@ -13,20 +13,22 @@
 		<item name="android:layout_width">@dimen/size_medium</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:gravity">end|center_vertical</item>
+		<item name="android:textColor">?custom_textColorPrimary</item>
 	</style>
 
 	<style name="EqualizerBand_Seekbar">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_weight">1</item>
-		<item name="thumbColor">?colorControlActivated</item>
-		<item name="progressColor">?colorControlActivated</item>
+		<item name="thumbColor">?custom_controlColor</item>
+		<item name="progressColor">?custom_controlColor</item>
 	</style>
 
 	<style name="EqualizerBand_Gain">
 		<item name="android:layout_width">@dimen/size_medium</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:gravity">center_vertical|right</item>
+		<item name="android:textColor">?custom_textColorPrimary</item>
 	</style>
 
 </resources>

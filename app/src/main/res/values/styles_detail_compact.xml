@@ -17,12 +17,12 @@
 	</style>
 
 	<style name="Detail_Title" parent="Detail_TextView">
-		<item name="android:textColor">?textColorContrastPrimary</item>
+		<item name="android:textColor">?attr/custom_textColorContrastPrimary</item>
 		<item name="android:maxLines">3</item>
 	</style>
 
 	<style name="Detail_Info" parent="Detail_TextView">
-		<item name="android:textColor">?textColorContrastSecondary</item>
+		<item name="android:textColor">?attr/custom_textColorContrastSecondary</item>
 	</style>
 
 </resources>

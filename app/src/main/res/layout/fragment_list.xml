@@ -10,8 +10,7 @@
 		android:id="@+id/background"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@color/white"
-		android:visibility="invisible"
+		android:background="?custom_background"
 		/>
 
 	<android.support.v7.widget.RecyclerView

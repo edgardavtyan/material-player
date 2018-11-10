@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AppTheme.Colored">
+		<item name="custom_textColorPrimary">@color/black</item>
+		<item name="custom_textColorSecondary">@color/black_dim_medium</item>
+		<item name="custom_textColorContrastPrimary">@color/white</item>
+		<item name="custom_textColorContrastSecondary">@color/white_dim_medium</item>
+		<item name="custom_fabBackgroundColor">@color/white</item>
+		<item name="custom_fabIconColor">@color/black</item>
+		<item name="custom_controlColor">?colorPrimary</item>
+		<item name="custom_raisedButtonBackground">?colorPrimary</item>
+
+		<item name="android:windowLightStatusBar">false</item>
+	</style>
+
+</resources>

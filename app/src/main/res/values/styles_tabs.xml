@@ -3,9 +3,9 @@
 
 	<style name="Tabs">
 		<item name="tabIndicatorHeight">2dp</item>
-		<item name="tabSelectedTextColor">?textColorContrastPrimary</item>
-		<item name="tabTextColor">?textColorContrastSecondary</item>
-		<item name="tabIndicatorColor">?textColorContrastPrimary</item>
+		<item name="tabSelectedTextColor">?attr/custom_textColorContrastPrimary</item>
+		<item name="tabTextColor">?attr/custom_textColorContrastSecondary</item>
+		<item name="tabIndicatorColor">?attr/custom_textColorContrastPrimary</item>
 	</style>
 
 	<style name="Tabs.Normal">

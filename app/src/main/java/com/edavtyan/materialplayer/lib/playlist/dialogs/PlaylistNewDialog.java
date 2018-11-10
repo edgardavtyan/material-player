@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.lib.playlist.dialogs;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -46,12 +45,6 @@ public class PlaylistNewDialog extends BaseDialog {
 	@Override
 	public boolean closeWhenPositiveButtonClicked() {
 		return false;
-	}
-
-	@Override
-	public void onShow() {
-		super.onShow();
-		editTextView.getBackground().setColorFilter(getTint(), PorterDuff.Mode.SRC_ATOP);
 	}
 
 	@Override

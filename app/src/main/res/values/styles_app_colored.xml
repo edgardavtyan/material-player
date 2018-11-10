@@ -1,99 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="AppTheme.Red">
+	<style name="AppTheme.Colored.Red">
 		<item name="colorPrimary">@color/red</item>
 		<item name="colorPrimaryDark">@color/red_dark</item>
+		<item name="custom_dialogButtonColor">@color/red</item>
 	</style>
 
-	<style name="AppTheme.Pink">
+	<style name="AppTheme.Colored.Pink">
 		<item name="colorPrimary">@color/pink</item>
 		<item name="colorPrimaryDark">@color/pink_dark</item>
+		<item name="custom_dialogButtonColor">@color/pink</item>
 	</style>
 
-	<style name="AppTheme.Purple">
+	<style name="AppTheme.Colored.Purple">
 		<item name="colorPrimary">@color/purple</item>
 		<item name="colorPrimaryDark">@color/purple_dark</item>
+		<item name="custom_dialogButtonColor">@color/purple</item>
 	</style>
 
-	<style name="AppTheme.DeepPurple">
+	<style name="AppTheme.Colored.DeepPurple">
 		<item name="colorPrimary">@color/deepPurple</item>
 		<item name="colorPrimaryDark">@color/deepPurple_dark</item>
+		<item name="custom_dialogButtonColor">@color/deepPurple</item>
 	</style>
 
-	<style name="AppTheme.Indigo">
+	<style name="AppTheme.Colored.Indigo">
 		<item name="colorPrimary">@color/indigo</item>
 		<item name="colorPrimaryDark">@color/indigo_dark</item>
+		<item name="custom_dialogButtonColor">@color/indigo</item>
 	</style>
 
-	<style name="AppTheme.Blue">
+	<style name="AppTheme.Colored.Blue">
 		<item name="colorPrimary">@color/blue</item>
 		<item name="colorPrimaryDark">@color/blue_dark</item>
+		<item name="custom_dialogButtonColor">@color/blue</item>
 	</style>
 
-	<style name="AppTheme.LightBlue">
+	<style name="AppTheme.Colored.LightBlue">
 		<item name="colorPrimary">@color/lightBlue</item>
 		<item name="colorPrimaryDark">@color/lightBlue_dark</item>
+		<item name="custom_dialogButtonColor">@color/lightBlue</item>
 	</style>
 
-	<style name="AppTheme.Cyan">
+	<style name="AppTheme.Colored.Cyan">
 		<item name="colorPrimary">@color/cyan</item>
 		<item name="colorPrimaryDark">@color/cyan_dark</item>
+		<item name="custom_dialogButtonColor">@color/cyan</item>
 	</style>
 
-	<style name="AppTheme.Teal">
+	<style name="AppTheme.Colored.Teal">
 		<item name="colorPrimary">@color/teal</item>
 		<item name="colorPrimaryDark">@color/teal_dark</item>
+		<item name="custom_dialogButtonColor">@color/teal</item>
 	</style>
 
-	<style name="AppTheme.Green">
+	<style name="AppTheme.Colored.Green">
 		<item name="colorPrimary">@color/green</item>
 		<item name="colorPrimaryDark">@color/green_dark</item>
+		<item name="custom_dialogButtonColor">@color/green</item>
 	</style>
 
-	<style name="AppTheme.LightGreen">
+	<style name="AppTheme.Colored.LightGreen">
 		<item name="colorPrimary">@color/lightGreen</item>
 		<item name="colorPrimaryDark">@color/lightGreen_dark</item>
+		<item name="custom_dialogButtonColor">@color/lightGreen</item>
 	</style>
 
-	<style name="AppTheme.Lime">
+	<style name="AppTheme.Colored.Lime">
 		<item name="colorPrimary">@color/lime</item>
 		<item name="colorPrimaryDark">@color/lime_dark</item>
+		<item name="custom_dialogButtonColor">@color/lime</item>
 	</style>
 
-	<style name="AppTheme.Yellow">
+	<style name="AppTheme.Colored.Yellow">
 		<item name="colorPrimary">@color/yellow</item>
 		<item name="colorPrimaryDark">@color/yellow_dark</item>
+		<item name="custom_dialogButtonColor">@color/yellow</item>
 	</style>
 
-	<style name="AppTheme.Amber">
+	<style name="AppTheme.Colored.Amber">
 		<item name="colorPrimary">@color/amber</item>
 		<item name="colorPrimaryDark">@color/amber_dark</item>
+		<item name="custom_dialogButtonColor">@color/amber</item>
 	</style>
 
-	<style name="AppTheme.Orange">
+	<style name="AppTheme.Colored.Orange">
 		<item name="colorPrimary">@color/orange</item>
 		<item name="colorPrimaryDark">@color/orange_dark</item>
+		<item name="custom_dialogButtonColor">@color/orange</item>
 	</style>
 
-	<style name="AppTheme.DeepOrange">
+	<style name="AppTheme.Colored.DeepOrange">
 		<item name="colorPrimary">@color/deepOrange</item>
 		<item name="colorPrimaryDark">@color/deepOrange_dark</item>
+		<item name="custom_dialogButtonColor">@color/deepOrange</item>
 	</style>
 
-	<style name="AppTheme.Brown">
+	<style name="AppTheme.Colored.Brown">
 		<item name="colorPrimary">@color/brown</item>
 		<item name="colorPrimaryDark">@color/brown_dark</item>
+		<item name="custom_dialogButtonColor">@color/brown</item>
 	</style>
 
-	<style name="AppTheme.Grey">
+	<style name="AppTheme.Colored.Grey">
 		<item name="colorPrimary">@color/grey</item>
 		<item name="colorPrimaryDark">@color/grey_dark</item>
+		<item name="custom_dialogButtonColor">@color/grey</item>
 	</style>
 
-	<style name="AppTheme.BlueGrey">
+	<style name="AppTheme.Colored.BlueGrey">
 		<item name="colorPrimary">@color/blueGrey</item>
 		<item name="colorPrimaryDark">@color/blueGrey_dark</item>
+		<item name="custom_dialogButtonColor">@color/blueGrey</item>
 	</style>
 
 </resources>

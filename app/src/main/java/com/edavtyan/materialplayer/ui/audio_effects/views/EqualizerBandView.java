@@ -83,10 +83,6 @@ public class EqualizerBandView
 		frequencyView.setText(getResources().getString(frequencyFormat, frequencyConverted));
 	}
 
-	public void setTint(int color) {
-		bandView.setTint(color);
-	}
-
 	@Override
 	public void onStopTrackingTouch() {
 		if (onBandChangedListener != null) {

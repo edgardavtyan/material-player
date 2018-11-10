@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.ui.audio_effects.AudioEffectsPresenter;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
+import com.edavtyan.materialplayer.ui.audio_effects.AudioEffectsPresenter;
 
 import java.util.List;
 

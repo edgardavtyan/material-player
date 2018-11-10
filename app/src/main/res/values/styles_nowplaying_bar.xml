@@ -24,20 +24,20 @@
 	<style name="NowPlayingBar_PlayPause">
 		<item name="android:padding">8dp</item>
 		<item name="android:background">@drawable/ripple_primary</item>
-		<item name="android:tint">?textColorContrastPrimary</item>
+		<item name="android:tint">?attr/custom_textColorContrastPrimary</item>
 	</style>
 
 	<style name="NowPlayingBar_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textSize">@dimen/font_small</item>
-		<item name="android:textColor">?textColorContrastPrimary</item>
+		<item name="android:textColor">?attr/custom_textColorContrastPrimary</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 
 	<style name="NowPlayingBar_Info" parent="NowPlayingBar_Title">
-		<item name="android:textColor">?textColorContrastSecondary</item>
+		<item name="android:textColor">?attr/custom_textColorContrastSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
 		<item name="android:layout_marginTop">-4dp</item>
 	</style>

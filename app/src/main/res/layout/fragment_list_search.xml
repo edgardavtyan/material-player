@@ -14,7 +14,7 @@
 		android:gravity="center_horizontal"
 		android:visibility="gone"
 		android:textSize="@dimen/font_medium"
-		android:textColor="?textColorSecondary"
+		android:textColor="?attr/custom_textColorSecondary"
 		android:text="@string/search_message_emptyQuery"
 		/>
 
@@ -27,7 +27,7 @@
 		android:gravity="center_horizontal"
 		android:visibility="gone"
 		android:textSize="@dimen/font_medium"
-		android:textColor="?textColorSecondary"
+		android:textColor="?attr/custom_textColorSecondary"
 		android:text="@string/search_message_noResults"
 		/>
 

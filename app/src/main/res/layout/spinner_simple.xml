@@ -11,5 +11,6 @@
 	android:orientation="vertical"
 	android:lines="1"
 	android:ellipsize="end"
+	android:textColor="?custom_textColorPrimary"
 	tools:text="Sample text"
 	/>

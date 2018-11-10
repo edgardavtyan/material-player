@@ -1,20 +1,19 @@
 package com.edavtyan.materialplayer.ui.audio_effects.views;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 
 import com.edavtyan.materialplayer.R;
 
+import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Setter;
 
 public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChangeListener {
-	@BindView(R.id.seekbar) AppCompatSeekBar seekbar;
+	@BindView(R.id.seekbar) SeekBarCompat seekbar;
 
 	private @Setter OnStopTrackingTouchListener onStopTrackingTouchListener;
 	private @Setter OnProgressChangedListener onProgressChangedListener;
@@ -49,11 +48,6 @@ public class DoubleSeekbar extends FrameLayout implements SeekBar.OnSeekBarChang
 
 	public void setProgress(int progress) {
 		seekbar.setProgress(progress + getMax());
-	}
-
-	public void setTint(int color) {
-		seekbar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-		seekbar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
 	}
 
 	@Override

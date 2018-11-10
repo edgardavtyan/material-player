@@ -11,12 +11,12 @@
 		<item name="android:layout_marginLeft">@dimen/spacing_tiny</item>
 		<item name="android:layout_marginRight">@dimen/spacing_tiny</item>
 		<item name="android:textSize">@dimen/font_normal</item>
-		<item name="android:textColor">?textColorContrastPrimary</item>
+		<item name="android:textColor">?attr/custom_textColorContrastPrimary</item>
 	</style>
 
 	<style name="CollapsingList_Land_Info" parent="CollapsingList_Land_Title">
 		<item name="android:textSize">@dimen/font_small</item>
-		<item name="android:textColor">?textColorContrastSecondary</item>
+		<item name="android:textColor">?attr/custom_textColorContrastSecondary</item>
 	</style>
 
 </resources>

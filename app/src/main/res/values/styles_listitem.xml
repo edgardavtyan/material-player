@@ -31,14 +31,14 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:maxLines">2</item>
 		<item name="android:ellipsize">end</item>
-		<item name="android:textColor">?textColorPrimary</item>
+		<item name="android:textColor">?attr/custom_textColorPrimary</item>
 		<item name="android:textSize">@dimen/font_normal</item>
 	</style>
 
 	<style name="ListItem_Info" parent="ListItem_Title">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textColor">?textColorSecondary</item>
+		<item name="android:textColor">?attr/custom_textColorSecondary</item>
 		<item name="android:textSize">@dimen/font_small</item>
 	</style>
 
@@ -48,14 +48,14 @@
 		<item name="android:src">@drawable/ic_more_vert</item>
 		<item name="android:background">@drawable/ripple_base</item>
 		<item name="android:contentDescription">@string/description_moreActions</item>
-		<item name="android:tint">?textColorPrimary</item>
+		<item name="android:tint">?attr/custom_textColorPrimary</item>
 	</style>
 
 	<style name="ListItem_NowPlaying">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:src">@drawable/ic_note</item>
-		<item name="android:tint">?textColorPrimary</item>
+		<item name="android:tint">?attr/custom_textColorPrimary</item>
 		<item name="android:visibility">gone</item>
 	</style>
 

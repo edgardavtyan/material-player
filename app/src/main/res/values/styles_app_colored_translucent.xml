@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="AppTheme.Red.Translucent">
+	<style name="AppTheme.Colored.Red.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Pink.Translucent">
+	<style name="AppTheme.Colored.Pink.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Purple.Translucent">
+	<style name="AppTheme.Colored.Purple.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.DeepPurple.Translucent">
+	<style name="AppTheme.Colored.DeepPurple.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Indigo.Translucent">
+	<style name="AppTheme.Colored.Indigo.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Blue.Translucent">
+	<style name="AppTheme.Colored.Blue.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.LightBlue.Translucent">
+	<style name="AppTheme.Colored.LightBlue.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Cyan.Translucent">
+	<style name="AppTheme.Colored.Cyan.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Teal.Translucent">
+	<style name="AppTheme.Colored.Teal.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Green.Translucent">
+	<style name="AppTheme.Colored.Green.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.LightGreen.Translucent">
+	<style name="AppTheme.Colored.LightGreen.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Lime.Translucent">
+	<style name="AppTheme.Colored.Lime.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Yellow.Translucent">
+	<style name="AppTheme.Colored.Yellow.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Amber.Translucent">
+	<style name="AppTheme.Colored.Amber.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Orange.Translucent">
+	<style name="AppTheme.Colored.Orange.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.DeepOrange.Translucent">
+	<style name="AppTheme.Colored.DeepOrange.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Brown.Translucent">
+	<style name="AppTheme.Colored.Brown.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.Grey.Translucent">
+	<style name="AppTheme.Colored.Grey.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
-	<style name="AppTheme.BlueGrey.Translucent">
+	<style name="AppTheme.Colored.BlueGrey.Translucent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>

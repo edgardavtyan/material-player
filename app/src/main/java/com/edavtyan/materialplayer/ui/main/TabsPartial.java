@@ -19,9 +19,13 @@ public class TabsPartial {
 
 	public void setViewPager(ViewPager viewPager) {
 		tabLayout.setupWithViewPager(viewPager);
+		tabLayout.getTabAt(0).setCustomView(R.layout.tab_icon);
 		tabLayout.getTabAt(0).setIcon(R.drawable.ic_person);
+		tabLayout.getTabAt(1).setCustomView(R.layout.tab_icon);
 		tabLayout.getTabAt(1).setIcon(R.drawable.ic_album);
+		tabLayout.getTabAt(2).setCustomView(R.layout.tab_icon);
 		tabLayout.getTabAt(2).setIcon(R.drawable.ic_note);
+		tabLayout.getTabAt(3).setCustomView(R.layout.tab_icon);
 		tabLayout.getTabAt(3).setIcon(R.drawable.ic_playlist2);
 	}
 }

@@ -2,16 +2,15 @@ package com.edavtyan.materialplayer.ui.audio_effects.presets;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.PorterDuff;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.ui.audio_effects.AudioEffectsPresenter;
-import com.ed.libsutils.utils.WindowUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,19 +41,6 @@ public class NewPresetDialog {
 		}
 	};
 
-	@SuppressWarnings("FieldCanBeLocal")
-	private final DialogInterface.OnShowListener onShowListener
-			= new DialogInterface.OnShowListener() {
-		@Override
-		public void onShow(DialogInterface dialogInterface) {
-			dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(tint);
-			dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(tint);
-			presetNameEditText.getBackground().setColorFilter(tint, PorterDuff.Mode.SRC_ATOP);
-		}
-	};
-
-	private int tint;
-
 	public NewPresetDialog(Context context, AudioEffectsPresenter presenter) {
 		this.context = context;
 		this.presenter = presenter;
@@ -69,7 +55,6 @@ public class NewPresetDialog {
 				.setPositiveButton(android.R.string.ok, null)
 				.setNegativeButton(android.R.string.cancel, negativeButtonListener)
 				.create();
-		this.dialog.setOnShowListener(onShowListener);
 	}
 
 	public void show() {
@@ -88,9 +73,5 @@ public class NewPresetDialog {
 
 	public void showPresetAlreadyExists() {
 		presetErrorExistsView.setVisibility(View.VISIBLE);
-	}
-
-	public void setTint(int tint) {
-		this.tint = tint;
 	}
 }
