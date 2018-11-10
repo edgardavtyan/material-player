@@ -19,6 +19,7 @@
 
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
 		<item name="popupTheme">@style/PopupMenuStyle</item>
+		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
 
 		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
 		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
@@ -26,9 +27,6 @@
 
 		<item name="android:alertDialogTheme">@style/Dialog</item>
 		<item name="alertDialogTheme">@style/Dialog</item>
-
-		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
-		<item name="actionBarPopupTheme">@style/LightHardwareMenuTheme</item>
 
 		<item name="rippleContrast">@drawable/ripple_primary</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
@@ -79,10 +77,6 @@
 
 	<style name="ItemTextAppearance.Dark">
 		<item name="android:textColor">@color/white</item>
-	</style>
-
-	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
-		<item name="android:textColorSecondary">?textColorPrimary</item>
 	</style>
 
 	<style name="Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
