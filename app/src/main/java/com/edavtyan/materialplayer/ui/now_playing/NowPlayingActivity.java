@@ -82,6 +82,7 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 		info.setTheme(theme);
 		controls.setTheme(theme);
 		seekbar.setTheme(theme);
+		fab.setTheme(theme);
 	}
 
 	@Override

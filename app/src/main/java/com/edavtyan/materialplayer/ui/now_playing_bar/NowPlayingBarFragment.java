@@ -82,7 +82,7 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 		artView.setOnClickListener(this);
 		infoWrapper.setOnClickListener(this);
 
-		mainWrapper.setBackgroundColor(theme.getColorPrimary());
+		mainWrapper.setBackgroundColor(theme.getNowplayingBarBackground());
 		titleView.setTextColor(theme.getTextContrastPrimary());
 		infoView.setTextColor(theme.getTextContrastSecondary());
 		playPauseButton.setColorFilter(theme.getTextContrastPrimary());

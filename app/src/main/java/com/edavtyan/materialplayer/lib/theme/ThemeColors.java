@@ -29,6 +29,8 @@ public class ThemeColors {
 	private final @Getter int textContrastPrimary;
 	private final @Getter int textContrastSecondary;
 	private final @Getter int background;
+	private final @Getter int nowplayingBarBackground;
+	private final @Getter int fab;
 
 	public ThemeColors(Context context) {
 		this.context = context;
@@ -80,6 +82,8 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.coloredTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.coloredTextContrastSecondary);
 			this.background = getColor(R.color.white);
+			this.nowplayingBarBackground = colorPrimary;
+			this.fab = colorPrimary;
 			break;
 		case "White":
 			this.theme = Theme.WHITE;
@@ -90,6 +94,8 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.whiteTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.whiteTextContrastSecondary);
 			this.background = getColor(R.color.white);
+			this.nowplayingBarBackground = colorPrimary;
+			this.fab = white;
 			break;
 		default:  // BLACK
 			this.theme = Theme.BLACK;
@@ -100,6 +106,8 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.blackTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.blackTextContrastSecondary);
 			this.background = getColor(R.color.black);
+			this.nowplayingBarBackground = getColor(R.color.gray_dark);
+			this.fab = textPrimary;
 			break;
 		}
 	}

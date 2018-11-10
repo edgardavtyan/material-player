@@ -12,7 +12,7 @@
 	<color name="black_dim_medium">#8000</color>
 	<color name="black_dim_strong">#3000</color>
 
-	<color name="gray_dark">#555</color>
+	<color name="gray_dark">#222</color>
 
 	<color name="white">#fff</color>
 	<color name="white_dim_medium">#b3ffffff</color>
@@ -26,9 +26,9 @@
 	<color name="whiteTextContrastSecondary">#a000</color>
 	<color name="whiteTextPrimary">#f000</color>
 	<color name="whiteTextSecondary">#a000</color>
-	<color name="blackTextContrastPrimary">#ffff</color>
+	<color name="blackTextContrastPrimary">#dfff</color>
 	<color name="blackTextContrastSecondary">#afff</color>
-	<color name="blackTextPrimary">#ffff</color>
+	<color name="blackTextPrimary">#dfff</color>
 	<color name="blackTextSecondary">#afff</color>
 
 </resources>
