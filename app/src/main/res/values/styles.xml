@@ -59,6 +59,11 @@
 		<item name="alertDialogTheme">@style/Dialog.Dark</item>
 	</style>
 
+	<style name="AppTheme.Dark.Transparent">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+
 	<style name="AppTheme.Transparent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>

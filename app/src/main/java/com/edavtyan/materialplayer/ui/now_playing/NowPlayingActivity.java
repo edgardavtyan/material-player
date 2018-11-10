@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.base.BaseActivity;
+import com.edavtyan.materialplayer.base.BaseActivityTransparent;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
 
-public class NowPlayingActivity extends BaseActivity {
+public class NowPlayingActivity extends BaseActivityTransparent {
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ScreenThemeModule themeModule;

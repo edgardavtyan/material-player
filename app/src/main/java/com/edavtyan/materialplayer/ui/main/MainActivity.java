@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.base.BaseActivity;
+import com.edavtyan.materialplayer.base.BaseActivityTransparent;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -22,7 +22,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivityTransparent {
 	@BindView(R.id.toolbar) Toolbar toolbar;
 	@BindView(R.id.view_pager) ViewPager viewPager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;

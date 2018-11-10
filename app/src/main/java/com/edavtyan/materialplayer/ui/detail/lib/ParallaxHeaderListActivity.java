@@ -1,13 +1,12 @@
 package com.edavtyan.materialplayer.ui.detail.lib;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.base.BaseActivity;
+import com.edavtyan.materialplayer.base.BaseActivityTransparent;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
@@ -19,7 +18,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 
 public abstract class ParallaxHeaderListActivity
-		extends BaseActivity
+		extends BaseActivityTransparent
 		implements ListView {
 
 	@Inject ActivityToolbarModule toolbarModule;

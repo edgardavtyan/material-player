@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.base;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -23,17 +24,27 @@ public abstract class BaseActivity extends ModularActivity {
 
 		switch (((App) getApplication()).getAppTheme()) {
 		case COLORED:
-			theme.applyStyle(R.style.AppTheme, true);
+			theme.applyStyle(getThemeNormal(), true);
 			break;
 		case WHITE:
-			theme.applyStyle(R.style.AppTheme, true);
+			theme.applyStyle(getThemeNormal(), true);
 			break;
 		case BLACK:
-			theme.applyStyle(R.style.AppTheme_Dark, true);
+			theme.applyStyle(getThemeDark(), true);
 			break;
 		}
 
 		return theme;
+	}
+
+	@StyleRes
+	protected int getThemeNormal() {
+		return R.style.AppTheme;
+	}
+
+	@StyleRes
+	protected int getThemeDark() {
+		return R.style.AppTheme_Transparent;
 	}
 
 	public void disableTouchEvents() {
