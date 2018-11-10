@@ -41,7 +41,7 @@ public class ThemeColors {
 				context.getString(R.string.pref_colors_key),
 				getColor(R.color.pref_colors_default));
 
-		String theme = prefs.getString(
+		String themeStr = prefs.getString(
 				context.getString(R.string.pref_colorsMain_key),
 				context.getString(R.string.pref_colorsMain_defaultValue));
 
@@ -71,43 +71,43 @@ public class ThemeColors {
 		int white = Color.WHITE;
 		int black = Color.BLACK;
 
-		switch (theme) {
+		switch (themeStr) {
 		case "Colored":
 			int[] colorsArray = context.getResources().getIntArray(COLORS.get(primaryColor));
-			this.theme = Theme.COLORED;
-			this.colorPrimary = colorsArray[0];
-			this.colorPrimaryDark = colorsArray[1];
-			this.textPrimary = getColor(R.color.coloredTextPrimary);
-			this.textSecondary = getColor(R.color.coloredTextSecondary);
-			this.textContrastPrimary = getColor(R.color.coloredTextContrastPrimary);
-			this.textContrastSecondary = getColor(R.color.coloredTextContrastSecondary);
-			this.background = getColor(R.color.white);
-			this.nowplayingBarBackground = colorPrimary;
-			this.fab = colorPrimary;
+			theme = Theme.COLORED;
+			colorPrimary = colorsArray[0];
+			colorPrimaryDark = colorsArray[1];
+			textPrimary = getColor(R.color.coloredTextPrimary);
+			textSecondary = getColor(R.color.coloredTextSecondary);
+			textContrastPrimary = getColor(R.color.coloredTextContrastPrimary);
+			textContrastSecondary = getColor(R.color.coloredTextContrastSecondary);
+			background = getColor(R.color.white);
+			nowplayingBarBackground = colorPrimary;
+			fab = colorPrimary;
 			break;
 		case "White":
-			this.theme = Theme.WHITE;
-			this.colorPrimary = white;
-			this.colorPrimaryDark = white;
-			this.textPrimary = getColor(R.color.whiteTextPrimary);
-			this.textSecondary = getColor(R.color.whiteTextSecondary);
-			this.textContrastPrimary = getColor(R.color.whiteTextContrastPrimary);
-			this.textContrastSecondary = getColor(R.color.whiteTextContrastSecondary);
-			this.background = getColor(R.color.white);
-			this.nowplayingBarBackground = colorPrimary;
-			this.fab = white;
+			theme = Theme.WHITE;
+			colorPrimary = white;
+			colorPrimaryDark = white;
+			textPrimary = getColor(R.color.whiteTextPrimary);
+			textSecondary = getColor(R.color.whiteTextSecondary);
+			textContrastPrimary = getColor(R.color.whiteTextContrastPrimary);
+			textContrastSecondary = getColor(R.color.whiteTextContrastSecondary);
+			background = getColor(R.color.white);
+			nowplayingBarBackground = colorPrimary;
+			fab = white;
 			break;
 		default:  // BLACK
-			this.theme = Theme.BLACK;
-			this.colorPrimary = black;
-			this.colorPrimaryDark = black;
-			this.textPrimary = getColor(R.color.blackTextPrimary);
-			this.textSecondary = getColor(R.color.blackTextSecondary);
-			this.textContrastPrimary = getColor(R.color.blackTextContrastPrimary);
-			this.textContrastSecondary = getColor(R.color.blackTextContrastSecondary);
-			this.background = getColor(R.color.black);
-			this.nowplayingBarBackground = getColor(R.color.gray_dark);
-			this.fab = textPrimary;
+			theme = Theme.BLACK;
+			colorPrimary = black;
+			colorPrimaryDark = black;
+			textPrimary = getColor(R.color.blackTextPrimary);
+			textSecondary = getColor(R.color.blackTextSecondary);
+			textContrastPrimary = getColor(R.color.blackTextContrastPrimary);
+			textContrastSecondary = getColor(R.color.blackTextContrastSecondary);
+			background = getColor(R.color.black);
+			nowplayingBarBackground = getColor(R.color.gray_dark);
+			fab = textPrimary;
 			break;
 		}
 	}
