@@ -42,6 +42,8 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 	@Inject SharedTransitionsManager transitionManager;
 	@Inject QueueRevealAnimation queueRevealAnimation;
 
+	@Inject ThemeColors theme;
+
 	@Inject @Getter NowPlayingControls controls;
 	@Inject @Getter NowPlayingInfo info;
 	@Inject @Getter NowPlayingArt art;
@@ -74,6 +76,12 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 				.exitLandscapeFadingViews(innerContainerView, fab.getView());
 		transitionManager.createSharedTransition(outputViewsBuilder.build());
 		transitionManager.beginEnterTransition(this, savedInstanceState);
+
+		innerContainerView.setBackgroundColor(theme.getColorPrimary());
+		toolbarModule.setTheme(theme);
+		info.setTheme(theme);
+		controls.setTheme(theme);
+		seekbar.setTheme(theme);
 	}
 
 	@Override
@@ -114,16 +122,6 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 		} else {
 			transitionManager.beginExitTransition(this);
 		}
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		innerContainerView.setBackgroundColor(colors.getColorPrimary());
-		toolbarModule.setTheme(colors);
-		info.setTheme(colors);
-		controls.setTheme(colors);
-		seekbar.setTheme(colors);
 	}
 
 	public void showQueue() {
