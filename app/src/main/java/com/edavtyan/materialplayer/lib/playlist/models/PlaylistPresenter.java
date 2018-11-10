@@ -58,7 +58,7 @@ public class PlaylistPresenter {
 		addDialog.show(manager.list());
 	}
 
-	public void onThemeChanged(ThemeColors colors) {
+	public void setTheme(ThemeColors colors) {
 		addDialog.setTint(colors.getColorPrimary());
 		newDialog.setTint(colors.getColorPrimary());
 	}

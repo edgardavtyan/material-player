@@ -25,6 +25,7 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject PlaylistPresenter playlistPresenter;
 	@Inject ScreenThemeModule screenThemeModule;
+	@Inject ThemeColors theme;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,12 +33,12 @@ public class ArtistListFragment extends ListFragment implements ArtistListView {
 		getComponent().inject(this);
 		initListView(presenter, adapter);
 		addModule(screenThemeModule);
+		playlistPresenter.setTheme(theme);
 	}
 
 	@Override
 	public void onThemeChanged(ThemeColors colors) {
 		super.onThemeChanged(colors);
-		playlistPresenter.onThemeChanged(colors);
 	}
 
 	@Override

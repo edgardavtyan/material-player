@@ -22,6 +22,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject ScreenThemeModule screenThemeModule;
 	@Inject PlaylistPresenter playlistPresenter;
+	@Inject ThemeColors theme;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 		getComponent().inject(this);
 		initListView(presenter, adapter);
 		addModule(screenThemeModule);
+		playlistPresenter.setTheme(theme);
 	}
 
 	protected TrackListDIComponent getComponent() {
@@ -37,12 +39,6 @@ public class TrackListFragment extends ListFragment implements TrackListView {
 				.appDIComponent(((App) getContext().getApplicationContext()).getAppComponent())
 				.trackListDIModule(new TrackListDIModule(getActivity(), this))
 				.build();
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		playlistPresenter.onThemeChanged(colors);
 	}
 
 	@Override
