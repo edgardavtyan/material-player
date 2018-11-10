@@ -44,7 +44,7 @@ public abstract class BaseActivity extends ModularActivity {
 
 	@StyleRes
 	protected int getThemeDark() {
-		return R.style.AppTheme_Transparent;
+		return R.style.AppTheme_Dark;
 	}
 
 	public void disableTouchEvents() {
