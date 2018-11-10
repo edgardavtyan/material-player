@@ -9,12 +9,9 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.theme.Theme;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ActivityModule;
 
 import butterknife.BindView;
@@ -81,21 +78,6 @@ public class ActivityToolbarModule extends ActivityModule {
 		WindowUtils.setStatusBarColor(activity, color);
 	}
 
-	public void setTheme(ThemeColors colors) {
-		setStatusBarColor(colors.getColorPrimaryDark());
-		setToolbarBackgroundColor(colors.getColorPrimary());
-		setToolbarIconsColor(colors.getTextContrastPrimary());
-		toolbar.setTitleTextColor(colors.getTextContrastPrimary());
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			if (colors.getTheme() == Theme.WHITE) {
-				WindowUtils.addSystemUiFlag(activity, View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-			} else {
-				WindowUtils.removeSystemUiFlag(activity, View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-			}
-		}
-	}
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -120,11 +102,5 @@ public class ActivityToolbarModule extends ActivityModule {
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		appBarLayout.setBackgroundColor(colors.getColorPrimary());
-		WindowUtils.setStatusBarColor(activity, colors.getColorPrimaryDark());
 	}
 }

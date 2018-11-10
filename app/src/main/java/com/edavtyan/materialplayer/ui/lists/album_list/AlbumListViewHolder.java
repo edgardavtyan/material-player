@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 
@@ -73,11 +72,6 @@ public class AlbumListViewHolder
 			 .load(artPath)
 			 .apply(options)
 			 .into(artView);
-	}
-
-	public void setTheme(ThemeColors theme) {
-		titleView.setTextColor(theme.getTextPrimary());
-		menuButton.setColorFilter(theme.getTextPrimary());
 	}
 
 	@Override

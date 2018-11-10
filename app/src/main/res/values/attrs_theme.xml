@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<attr name="custom_background" format="color" />
+
+
 	<attr name="fabIconColor" format="color" />
 	<attr name="prefCategoryTitleColor" format="color" />
 	<attr name="prefShadowBackground" format="color" />
@@ -16,6 +19,6 @@
 	<attr name="rippleContrast" format="reference" />
 	<attr name="collapsingHeaderGradient" format="reference" />
 
-	<attr name="iconMenuSearch" format="reference"/>
+	<attr name="iconMenuSearch" format="reference" />
 	<attr name="iconBackArrow" format="reference" />
 </resources>

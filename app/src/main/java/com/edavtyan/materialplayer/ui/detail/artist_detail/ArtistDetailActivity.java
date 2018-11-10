@@ -29,7 +29,6 @@ public class ArtistDetailActivity
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject PlaylistPresenter playlistPresenter;
-	@Inject ThemeColors theme;
 
 	private @Nullable SourceSharedViews sharedViews;
 
@@ -40,8 +39,6 @@ public class ArtistDetailActivity
 		if (sharedViews != null) {
 			transitionsManager.updateSourceViews(sharedViews);
 		}
-
-		playlistPresenter.setTheme(theme);
 	}
 
 	@Override

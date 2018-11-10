@@ -2,118 +2,137 @@
 <resources>
 
 	<color name="red">#f44336</color>
+	<color name="red_dark">#c62828</color>
 	<color name="pink">#e91e63</color>
+	<color name="pink_dark">#ad1457</color>
 	<color name="purple">#9c27b0</color>
+	<color name="purple_dark">#6a1b9a</color>
 	<color name="deepPurple">#673ab7</color>
+	<color name="deepPurple_dark">#4527a0</color>
 	<color name="indigo">#3f51b5</color>
+	<color name="indigo_dark">#283593</color>
 	<color name="blue">#2196f3</color>
+	<color name="blue_dark">#1565c0</color>
 	<color name="lightBlue">#03a9f4</color>
+	<color name="lightBlue_dark">#0277bd</color>
 	<color name="cyan">#00bcd4</color>
+	<color name="cyan_dark">#00838f</color>
 	<color name="teal">#00796b</color>
+	<color name="teal_dark">#005d51</color>
 	<color name="green">#4caf50</color>
+	<color name="green_dark">#2e7d32</color>
 	<color name="lightGreen">#8bc34a</color>
+	<color name="lightGreen_dark">#558b2f</color>
 	<color name="lime">#cddc39</color>
+	<color name="lime_dark">#9e9d24</color>
 	<color name="yellow">#ffeb3b</color>
+	<color name="yellow_dark">#f9a825</color>
 	<color name="amber">#ffc107</color>
+	<color name="amber_dark">#ff8f00</color>
 	<color name="orange">#ff9800</color>
+	<color name="orange_dark">#ef6c00</color>
 	<color name="deepOrange">#ff5722</color>
+	<color name="deepOrange_dark">#d84315</color>
 	<color name="brown">#795548</color>
+	<color name="brown_dark">#4e342e</color>
 	<color name="grey">#9e9e9e</color>
+	<color name="grey_dark">#424242</color>
 	<color name="blueGrey">#607d8b</color>
+	<color name="blueGrey_dark">#37474f</color>
 
 	<array name="color_red">
 		<item>@color/red</item>
-		<item>#c62828</item>
+		<item>@color/red_dark</item>
 	</array>
 
 	<array name="color_pink">
 		<item>@color/pink</item>
-		<item>#ad1457</item>
+		<item>@color/pink_dark</item>
 	</array>
 
 	<array name="color_purple">
 		<item>@color/purple</item>
-		<item>#6a1b9a</item>
+		<item>@color/purple_dark</item>
 	</array>
 
 	<array name="color_deepPurple">
 		<item>@color/deepPurple</item>
-		<item>#4527a0</item>
+		<item>@color/deepPurple_dark</item>
 	</array>
 
 	<array name="color_indigo">
 		<item>@color/indigo</item>
-		<item>#283593</item>
+		<item>@color/indigo_dark</item>
 	</array>
 
 	<array name="color_blue">
 		<item>@color/blue</item>
-		<item>#1565c0</item>
+		<item>@color/blue_dark</item>
 	</array>
 
 	<array name="color_lightBlue">
 		<item>@color/lightBlue</item>
-		<item>#0277bd</item>
+		<item>@color/lightBlue_dark</item>
 	</array>
 
 	<array name="color_cyan">
 		<item>@color/cyan</item>
-		<item>#00838f</item>
+		<item>@color/cyan_dark</item>
 	</array>
 
 	<array name="color_teal">
 		<item>@color/teal</item>
-		<item>#005d51</item>
+		<item>@color/teal_dark</item>
 	</array>
 
 	<array name="color_green">
 		<item>@color/green</item>
-		<item>#2e7d32</item>
+		<item>@color/green_dark</item>
 	</array>
 
 	<array name="color_lightGreen">
 		<item>@color/lightGreen</item>
-		<item>#558b2f</item>
+		<item>@color/lightGreen_dark</item>
 	</array>
 
 	<array name="color_lime">
 		<item>@color/lime</item>
-		<item>#9e9d24</item>
+		<item>@color/lime_dark</item>
 	</array>
 
 	<array name="color_yellow">
 		<item>@color/yellow</item>
-		<item>#f9a825</item>
+		<item>@color/yellow_dark</item>
 	</array>
 
 	<array name="color_amber">
 		<item>@color/amber</item>
-		<item>#ff8f00</item>
+		<item>@color/amber_dark</item>
 	</array>
 
 	<array name="color_orange">
 		<item>@color/orange</item>
-		<item>#ef6c00</item>
+		<item>@color/orange_dark</item>
 	</array>
 
 	<array name="color_deepOrange">
 		<item>@color/deepOrange</item>
-		<item>#d84315</item>
+		<item>@color/deepOrange_dark</item>
 	</array>
 
 	<array name="color_brown">
 		<item>@color/brown</item>
-		<item>#4e342e</item>
+		<item>@color/brown_dark</item>
 	</array>
 
 	<array name="color_grey">
 		<item>@color/grey</item>
-		<item>#424242</item>
+		<item>@color/grey_dark</item>
 	</array>
 
 	<array name="color_blueGrey">
 		<item>@color/blueGrey</item>
-		<item>#37474f</item>
+		<item>@color/blueGrey_dark</item>
 	</array>
 
 

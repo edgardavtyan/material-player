@@ -18,7 +18,6 @@ import com.ed.libsutils.utils.DpConverter;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.modular.fragment.ModularFragment;
@@ -43,7 +42,6 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 	@Inject NowPlayingBarPresenter presenter;
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
-	@Inject ThemeColors theme;
 
 	@Override
 	public void onClick(View view) {
@@ -82,11 +80,6 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 		artView.setOnClickListener(this);
 		infoWrapper.setOnClickListener(this);
 
-		mainWrapper.setBackgroundColor(theme.getNowplayingBarBackground());
-		titleView.setTextColor(theme.getTextContrastPrimary());
-		infoView.setTextColor(theme.getTextContrastSecondary());
-		playPauseButton.setColorFilter(theme.getTextContrastPrimary());
-
 		return view;
 	}
 
@@ -100,14 +93,6 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 	public void onStop() {
 		super.onStop();
 		presenter.onDestroy();
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		mainWrapper.setBackgroundColor(colors.getColorPrimary());
-		titleView.setTextColor(colors.getTextContrastPrimary());
-		infoView.setTextColor(colors.getTextContrastSecondary());
-		playPauseButton.setColorFilter(colors.getTextContrastPrimary());
 	}
 
 	public void setTrackTitle(String title) {

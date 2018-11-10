@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistDeleteDialog;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.detail.playlist_detail.PlaylistDetailActivity;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
 
@@ -25,12 +24,6 @@ public class PlaylistListFragment extends ListFragment {
 		getComponent().inject(this);
 		initListView(presenter, adapter);
 		addModule(screenThemeModule);
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		deleteDialog.setTint(colors.getColorPrimary());
 	}
 
 	public void gotoPlaylistDetail(String playlistName) {

@@ -41,6 +41,8 @@ import dagger.Component;
 		SharedTransitionDIModule.class,
 		PlaylistModelsDIModule.class})
 public interface AppDIComponent {
+	void inject(App app);
+
 	Context context();
 	SdkFactory sdkFactory();
 	LastfmApi lastFmApi();

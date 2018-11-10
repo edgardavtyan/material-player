@@ -21,7 +21,6 @@ import com.ed.libsutils.utils.ViewUtils;
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
@@ -143,12 +142,6 @@ public class ParallaxHeaderListModule extends ActivityModule {
 		isExitTransitionRunning = true;
 	}
 
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		infoWrapper.setBackgroundColor(colors.getColorPrimary());
-	}
-
 	public void setTitle(String title) {
 		titleView.setText(title);
 	}
@@ -189,19 +182,6 @@ public class ParallaxHeaderListModule extends ActivityModule {
 				assert sharedArtExitView != null;
 				sharedArtExitView.setImageResource(fallback);
 			}
-		}
-	}
-
-	public void setTheme(ThemeColors theme) {
-		infoWrapper.setBackgroundColor(theme.getColorPrimary());
-
-		if (WindowUtils.isPortrait(activity)) {
-			portraitTopInfoView.setTextColor(theme.getTextContrastPrimary());
-			portraitBottomInfoView.setTextColor(theme.getTextContrastPrimary());
-			listBackground.setBackgroundColor(theme.getBackground());
-		} else {
-			landscapeInfoView.setTextColor(theme.getTextContrastPrimary());
-			landListWrapper.setBackgroundColor(theme.getBackground());
 		}
 	}
 }

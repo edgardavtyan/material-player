@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -50,9 +49,8 @@ public class TrackListDIModule {
 
 	@Provides
 	@FragmentScope
-	public TrackListPresenter providePresenter(
-			TrackListView view, TrackListModel model, ThemeColors theme) {
-		return new TrackListPresenter(view, model, theme);
+	public TrackListPresenter providePresenter(TrackListView view, TrackListModel model) {
+		return new TrackListPresenter(view, model);
 	}
 
 	@Provides

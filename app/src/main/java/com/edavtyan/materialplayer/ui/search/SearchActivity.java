@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.ui.search;
 
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +17,6 @@ import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
@@ -88,16 +86,6 @@ public class SearchActivity extends ModularActivity {
 		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
 			WindowUtils.makeStatusBarSemiTransparent(this);
 		}
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		appbar.setBackgroundColor(colors.getColorPrimary());
-		searchEditText
-				.getBackground()
-				.setColorFilter(colors.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
-		WindowUtils.setStatusBarColor(this, colors.getColorPrimaryDark());
 	}
 
 	public void addOnSearchQueryChangedListener(OnSearchQueryChangedListener listener) {

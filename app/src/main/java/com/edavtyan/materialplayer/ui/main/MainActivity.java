@@ -1,19 +1,16 @@
 package com.edavtyan.materialplayer.ui.main;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseActivityTransparent;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.service.PlayerService;
@@ -34,7 +31,6 @@ public class MainActivity extends BaseActivityTransparent {
 	@Inject ScreenThemeModule themeModule;
 	@Inject TabsAdapter tabsAdapter;
 	@Inject TabsPartial tabsPartial;
-	@Inject ThemeColors theme;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,21 +52,6 @@ public class MainActivity extends BaseActivityTransparent {
 
 		Intent intent = new Intent(this, PlayerService.class);
 		startService(intent);
-
-		toolbarModule.setTheme(theme);
-		tabsPartial.setTheme(theme);
-		getWindow().setBackgroundDrawable(new ColorDrawable(theme.getBackground()));
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		theme.colorizeMenu(menu);
-		return super.onPrepareOptionsMenu(menu);
 	}
 
 	protected MainDIComponent getComponent() {

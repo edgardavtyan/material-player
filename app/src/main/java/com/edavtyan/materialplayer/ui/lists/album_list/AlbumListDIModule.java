@@ -52,9 +52,8 @@ public class AlbumListDIModule {
 
 	@Provides
 	@FragmentScope
-	public AlbumListPresenter providePresenter(
-			AlbumListModel model, AlbumListView view, ThemeColors theme) {
-		return new AlbumListPresenter(model, view, theme);
+	public AlbumListPresenter providePresenter(AlbumListModel model, AlbumListView view) {
+		return new AlbumListPresenter(model, view);
 	}
 
 	@Provides

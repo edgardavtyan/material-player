@@ -32,7 +32,6 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject AlbumDetailPresenter presenter;
 	@Inject PlaylistPresenter playlistPresenter;
-	@Inject ThemeColors theme;
 
 	@BindView(R.id.art) ImageView artView;
 	@BindView(R.id.list) RecyclerView list;
@@ -43,7 +42,6 @@ public class AlbumDetailActivity extends ParallaxHeaderListActivity implements T
 		getComponent().inject(this);
 		super.onCreate(savedInstanceState);
 		ButterKnife.bind(this);
-		playlistPresenter.setTheme(theme);
 	}
 
 	@Override

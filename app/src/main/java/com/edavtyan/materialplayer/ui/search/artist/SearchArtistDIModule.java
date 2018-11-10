@@ -4,7 +4,6 @@ import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -47,9 +46,8 @@ public class SearchArtistDIModule {
 
 	@Provides
 	@FragmentScope
-	public SearchArtistPresenter providePresenter(
-			SearchArtistModel model, SearchArtistFragment view, ThemeColors theme) {
-		return new SearchArtistPresenter(model, view, theme);
+	public SearchArtistPresenter providePresenter(SearchArtistModel model, SearchArtistFragment view) {
+		return new SearchArtistPresenter(model, view);
 	}
 
 	@Provides

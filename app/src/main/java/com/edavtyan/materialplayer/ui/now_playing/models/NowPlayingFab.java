@@ -1,11 +1,9 @@
 package com.edavtyan.materialplayer.ui.now_playing.models;
 
-import android.content.res.ColorStateList;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 
@@ -30,9 +28,5 @@ public class NowPlayingFab implements View.OnClickListener {
 
 	public FloatingActionButton getView() {
 		return fab;
-	}
-
-	public void setTheme(ThemeColors theme) {
-		fab.setBackgroundTintList(ColorStateList.valueOf(theme.getFab()));
 	}
 }

@@ -1,20 +1,17 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 
 	private final TrackListView view;
 	private final TrackListModel model;
-	private final ThemeColors theme;
 
-	public TrackListPresenter(TrackListView view, TrackListModel model, ThemeColors theme) {
+	public TrackListPresenter(TrackListView view, TrackListModel model) {
 		super();
 		this.view = view;
 		this.model = model;
-		this.theme = theme;
 	}
 
 	@Override
@@ -22,7 +19,6 @@ public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {
 		Track track = model.getTrackAtIndex(position);
 		holder.setTitle(track.getTitle());
 		holder.setInfo(track.getDuration(), track.getArtistTitle(), track.getAlbumTitle());
-		holder.setTheme(theme);
 	}
 
 	@Override

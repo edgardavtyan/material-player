@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.theme.ThemeableScreen;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 
@@ -58,15 +57,6 @@ public abstract class ModularActivity extends AppCompatActivity implements Theme
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		for (UniversalViewModule module : modules) {
-			module.onPrepareOptionsMenu(menu);
-		}
-
-		return true;
-	}
-
-	@Override
 	@CallSuper
 	public boolean onOptionsItemSelected(MenuItem item) {
 		for (UniversalViewModule module : modules) {
@@ -80,14 +70,6 @@ public abstract class ModularActivity extends AppCompatActivity implements Theme
 	public void onBackPressed() {
 		super.onBackPressed();
 		callModulesOnBackPressed();
-	}
-
-	@Override
-	@CallSuper
-	public void onThemeChanged(ThemeColors colors) {
-		for (UniversalViewModule module : modules) {
-			module.onThemeChanged(colors);
-		}
 	}
 
 	protected void callModulesOnBackPressed() {

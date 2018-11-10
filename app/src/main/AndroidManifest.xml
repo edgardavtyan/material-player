@@ -30,17 +30,17 @@
 
 		<activity
 			android:name=".ui.detail.artist_detail.ArtistDetailActivity"
-			android:theme="@style/AppTheme.Transparent"
+			android:theme="@style/AppTheme.Translucent"
 			/>
 
 		<activity
 			android:name=".ui.detail.album_detail.AlbumDetailActivity"
-			android:theme="@style/AppTheme.Transparent"
+			android:theme="@style/AppTheme.Translucent"
 			/>
 
 		<activity
 			android:name=".ui.now_playing.NowPlayingActivity"
-			android:theme="@style/AppTheme.Transparent"
+			android:theme="@style/AppTheme.Translucent"
 			/>
 
 		<activity android:name=".ui.audio_effects.AudioEffectsActivity" />

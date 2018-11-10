@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.lists.lib.ListFragment;
 import com.edavtyan.materialplayer.ui.lists.lib.ListView;
 
@@ -26,7 +25,6 @@ public class NowPlayingQueueFragment extends ListFragment implements ListView {
 	@Inject NowPlayingQueuePresenter presenter;
 	@Inject NowPlayingQueueAdapter adapter;
 	@Inject ScreenThemeModule themeModule;
-	@Inject ThemeColors theme;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +48,6 @@ public class NowPlayingQueueFragment extends ListFragment implements ListView {
 	public void onCreateView(View view) {
 		super.onCreateView(view);
 		rootView.setVisibility(View.INVISIBLE);
-		backgroundView.setBackgroundColor(theme.getBackground());
 	}
 
 	@Override

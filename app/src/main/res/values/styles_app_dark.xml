@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+		<item name="custom_background">@color/black</item>
+
+		<item name="colorPrimary">@color/black</item>
+		<item name="colorPrimaryDark">@color/black</item>
+		<item name="colorControlNormal">@color/white</item>
+		<item name="colorControlActivated">@color/white</item>
+		<item name="textColorPrimary">@color/white</item>
+		<item name="textColorSecondary">@color/white_dim_medium</item>
+
+		<item name="android:itemTextAppearance">@style/ItemTextAppearance.Dark</item>
+		<item name="popupTheme">@style/PopupMenuStyle.Dark</item>
+		<item name="toolbarPopupTheme">@style/PopupMenuStyle.Dark</item>
+		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.PopupMenu.Overflow</item>
+
+		<item name="alertDialogTheme">@style/Dialog.Dark</item>
+	</style>
+
+	<style name="AppTheme.Dark.Translucent">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+
+	<style name="PopupMenuStyle.Dark" parent="ThemeOverlay.AppCompat.ActionBar">
+		<item name="android:popupBackground">@color/gray_dark</item>
+	</style>
+
+	<style name="ItemTextAppearance.Dark">
+		<item name="android:textColor">@color/white</item>
+	</style>
+
+	<style name="Dialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
+		<item name="colorAccent">@color/white</item>
+		<item name="textColorPrimary">@color/white</item>
+		<item name="android:background">@color/gray_dark</item>
+	</style>
+
+</resources>

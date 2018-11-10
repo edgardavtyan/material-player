@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.ed.libsutils.utils.DurationUtils;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.viewholder.ContextMenuModule;
 
 import butterknife.BindView;
@@ -51,11 +50,6 @@ public class TrackListViewHolder
 		String durationStr = DurationUtils.toStringUntilHours(duration);
 		String info = context.getString(R.string.pattern_track_info, durationStr, artist, album);
 		infoView.setText(info);
-	}
-
-	public void setTheme(ThemeColors theme) {
-		titleView.setTextColor(theme.getTextPrimary());
-		menuButton.setColorFilter(theme.getTextPrimary());
 	}
 
 	@Override

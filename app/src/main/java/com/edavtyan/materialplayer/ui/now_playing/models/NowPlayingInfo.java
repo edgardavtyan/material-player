@@ -3,7 +3,6 @@ package com.edavtyan.materialplayer.ui.now_playing.models;
 import android.widget.TextView;
 
 import com.edavtyan.materialplayer.R;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 
 import butterknife.BindView;
@@ -28,10 +27,5 @@ public class NowPlayingInfo {
 	public void setInfo(String artist, String album) {
 		String info = activity.getString(R.string.nowplaying_info_pattern, artist, album);
 		infoView.setText(info);
-	}
-
-	public void setTheme(ThemeColors colors) {
-		titleView.setTextColor(colors.getTextContrastPrimary());
-		infoView.setTextColor(colors.getTextContrastSecondary());
 	}
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AppTheme.Red">
+		<item name="colorPrimary">@color/red</item>
+		<item name="colorPrimaryDark">@color/red_dark</item>
+	</style>
+
+	<style name="AppTheme.Pink">
+		<item name="colorPrimary">@color/pink</item>
+		<item name="colorPrimaryDark">@color/pink_dark</item>
+	</style>
+
+	<style name="AppTheme.Purple">
+		<item name="colorPrimary">@color/purple</item>
+		<item name="colorPrimaryDark">@color/purple_dark</item>
+	</style>
+
+	<style name="AppTheme.DeepPurple">
+		<item name="colorPrimary">@color/deepPurple</item>
+		<item name="colorPrimaryDark">@color/deepPurple_dark</item>
+	</style>
+
+	<style name="AppTheme.Indigo">
+		<item name="colorPrimary">@color/indigo</item>
+		<item name="colorPrimaryDark">@color/indigo_dark</item>
+	</style>
+
+	<style name="AppTheme.Blue">
+		<item name="colorPrimary">@color/blue</item>
+		<item name="colorPrimaryDark">@color/blue_dark</item>
+	</style>
+
+	<style name="AppTheme.LightBlue">
+		<item name="colorPrimary">@color/lightBlue</item>
+		<item name="colorPrimaryDark">@color/lightBlue_dark</item>
+	</style>
+
+	<style name="AppTheme.Cyan">
+		<item name="colorPrimary">@color/cyan</item>
+		<item name="colorPrimaryDark">@color/cyan_dark</item>
+	</style>
+
+	<style name="AppTheme.Teal">
+		<item name="colorPrimary">@color/teal</item>
+		<item name="colorPrimaryDark">@color/teal_dark</item>
+	</style>
+
+	<style name="AppTheme.Green">
+		<item name="colorPrimary">@color/green</item>
+		<item name="colorPrimaryDark">@color/green_dark</item>
+	</style>
+
+	<style name="AppTheme.LightGreen">
+		<item name="colorPrimary">@color/lightGreen</item>
+		<item name="colorPrimaryDark">@color/lightGreen_dark</item>
+	</style>
+
+	<style name="AppTheme.Lime">
+		<item name="colorPrimary">@color/lime</item>
+		<item name="colorPrimaryDark">@color/lime_dark</item>
+	</style>
+
+	<style name="AppTheme.Yellow">
+		<item name="colorPrimary">@color/yellow</item>
+		<item name="colorPrimaryDark">@color/yellow_dark</item>
+	</style>
+
+	<style name="AppTheme.Amber">
+		<item name="colorPrimary">@color/amber</item>
+		<item name="colorPrimaryDark">@color/amber_dark</item>
+	</style>
+
+	<style name="AppTheme.Orange">
+		<item name="colorPrimary">@color/orange</item>
+		<item name="colorPrimaryDark">@color/orange_dark</item>
+	</style>
+
+	<style name="AppTheme.DeepOrange">
+		<item name="colorPrimary">@color/deepOrange</item>
+		<item name="colorPrimaryDark">@color/deepOrange_dark</item>
+	</style>
+
+	<style name="AppTheme.Brown">
+		<item name="colorPrimary">@color/brown</item>
+		<item name="colorPrimaryDark">@color/brown_dark</item>
+	</style>
+
+	<style name="AppTheme.Grey">
+		<item name="colorPrimary">@color/grey</item>
+		<item name="colorPrimaryDark">@color/grey_dark</item>
+	</style>
+
+	<style name="AppTheme.BlueGrey">
+		<item name="colorPrimary">@color/blueGrey</item>
+		<item name="colorPrimaryDark">@color/blueGrey_dark</item>
+	</style>
+
+</resources>

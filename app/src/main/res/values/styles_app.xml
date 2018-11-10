@@ -1,6 +1,8 @@
 <resources>
 
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="custom_background">@color/white</item>
+
 		<item name="colorPrimary">@color/primary</item>
 		<item name="colorPrimaryDark">@color/primaryDark</item>
 		<item name="colorAccent">@color/black</item>
@@ -35,41 +37,18 @@
 		<item name="iconBackArrow">@drawable/ic_arrow_back_white</item>
 	</style>
 
-	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
-		<item name="colorPrimary">@color/black</item>
-		<item name="colorPrimaryDark">@color/black</item>
-		<item name="colorControlNormal">@color/white</item>
-		<item name="colorControlActivated">@color/white</item>
-		<item name="textColorPrimary">@color/white</item>
-		<item name="textColorSecondary">@color/white_dim_medium</item>
-
-		<item name="android:itemTextAppearance">@style/ItemTextAppearance.Dark</item>
-		<item name="popupTheme">@style/PopupMenuStyle.Dark</item>
-		<item name="toolbarPopupTheme">@style/PopupMenuStyle.Dark</item>
-		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.PopupMenu.Overflow</item>
-
-		<item name="alertDialogTheme">@style/Dialog.Dark</item>
+	<style name="AppTheme.Translucent">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
-
-	<!-- Popup Menu -->
 
 	<style name="PopupMenuStyle" parent="ThemeOverlay.AppCompat.ActionBar">
 		<item name="android:popupBackground">@color/white</item>
 	</style>
 
-	<style name="PopupMenuStyle.Dark" parent="ThemeOverlay.AppCompat.ActionBar">
-		<item name="android:popupBackground">@color/gray_dark</item>
-	</style>
-
 	<style name="ItemTextAppearance">
 		<item name="android:textColor">@color/black</item>
 	</style>
-
-	<style name="ItemTextAppearance.Dark">
-		<item name="android:textColor">@color/white</item>
-	</style>
-
-	<!-- Dialog -->
 
 	<style name="Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
 		<item name="colorAccent">@color/primary</item>
@@ -78,12 +57,6 @@
 
 	<style name="BarButton" parent="Base.Widget.AppCompat.Button.Borderless">
 		<item name="android:textColor">@color/primary</item>
-	</style>
-
-	<style name="Dialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
-		<item name="colorAccent">@color/white</item>
-		<item name="textColorPrimary">@color/white</item>
-		<item name="android:background">@color/gray_dark</item>
 	</style>
 
 </resources>

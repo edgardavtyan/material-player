@@ -57,9 +57,8 @@ public class ArtistListDIModule {
 
 	@Provides
 	@FragmentScope
-	public ArtistListPresenter providePresenter(
-			ArtistListModel model, ArtistListView view, ThemeColors theme) {
-		return new ArtistListPresenter(model, view, theme);
+	public ArtistListPresenter providePresenter(ArtistListModel model, ArtistListView view) {
+		return new ArtistListPresenter(model, view);
 	}
 
 	@Provides

@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.theme.ThemeableScreen;
 import com.edavtyan.materialplayer.modular.universal_view.UniversalViewModule;
 
@@ -104,13 +103,6 @@ public abstract class ModularFragment extends Fragment implements ThemeableScree
 		}
 
 		return false;
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		for (UniversalViewModule module : modules) {
-			module.onThemeChanged(colors);
-		}
 	}
 
 	protected void addModule(UniversalViewModule module) {

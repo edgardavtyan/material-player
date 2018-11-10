@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseActivityTransparent;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListView;
@@ -25,7 +24,6 @@ public abstract class ParallaxHeaderListActivity
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ScreenThemeModule themeModule;
 	@Inject ParallaxHeaderListModule parallaxListModule;
-	@Inject ThemeColors theme;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,9 +36,6 @@ public abstract class ParallaxHeaderListActivity
 		addModule(toolbarModule);
 		addModule(themeModule);
 		addModule(parallaxListModule);
-
-		parallaxListModule.setTheme(theme);
-		toolbarModule.setTheme(theme);
 	}
 
 	@Override

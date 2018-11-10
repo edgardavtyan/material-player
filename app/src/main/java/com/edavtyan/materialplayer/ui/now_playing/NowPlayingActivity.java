@@ -11,7 +11,6 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseActivityTransparent;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
@@ -41,8 +40,6 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionManager;
 	@Inject QueueRevealAnimation queueRevealAnimation;
-
-	@Inject ThemeColors theme;
 
 	@Inject @Getter NowPlayingControls controls;
 	@Inject @Getter NowPlayingInfo info;
@@ -76,13 +73,6 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 				.exitLandscapeFadingViews(innerContainerView, fab.getView());
 		transitionManager.createSharedTransition(outputViewsBuilder.build());
 		transitionManager.beginEnterTransition(this, savedInstanceState);
-
-		innerContainerView.setBackgroundColor(theme.getColorPrimary());
-		toolbarModule.setTheme(theme);
-		info.setTheme(theme);
-		controls.setTheme(theme);
-		seekbar.setTheme(theme);
-		fab.setTheme(theme);
 	}
 
 	@Override
@@ -96,12 +86,6 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.menu_nowplaying, menu);
 		return true;
-	}
-
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		theme.colorizeMenu(menu);
-		return super.onPrepareOptionsMenu(menu);
 	}
 
 	@Override

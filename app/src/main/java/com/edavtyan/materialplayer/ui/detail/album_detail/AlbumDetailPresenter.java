@@ -1,7 +1,6 @@
 package com.edavtyan.materialplayer.ui.detail.album_detail;
 
 import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListPresenter;
@@ -13,8 +12,8 @@ public class AlbumDetailPresenter
 	private final AlbumDetailActivity activity;
 	private final AlbumDetailModel model;
 
-	public AlbumDetailPresenter(AlbumDetailModel model, AlbumDetailActivity activity, ThemeColors theme) {
-		super(activity, model, theme);
+	public AlbumDetailPresenter(AlbumDetailModel model, AlbumDetailActivity activity) {
+		super(activity, model);
 		this.activity = activity;
 		this.model = model;
 		this.model.addOnNewTrackListener(this);

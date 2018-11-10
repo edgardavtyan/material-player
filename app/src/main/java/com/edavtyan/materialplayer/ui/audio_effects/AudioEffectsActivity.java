@@ -1,9 +1,7 @@
 package com.edavtyan.materialplayer.ui.audio_effects;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -13,7 +11,6 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
@@ -90,20 +87,6 @@ public class AudioEffectsActivity
 	public void onDestroy() {
 		super.onDestroy();
 		presenter.onDestroy();
-	}
-
-	@Override
-	public void onThemeChanged(ThemeColors colors) {
-		super.onThemeChanged(colors);
-		ViewCompat.setBackgroundTintList(
-				newPresetButton,
-				ColorStateList.valueOf(colors.getColorPrimary()));
-		equalizerSwitch.setTint(colors.getColorPrimary());
-		equalizerView.setTint(colors.getColorPrimary());
-		bassBoostView.setTint(colors.getColorPrimary());
-		surroundView.setTint(colors.getColorPrimary());
-		newPresetDialog.setTint(colors.getColorPrimary());
-		presetsSpinner.setTint(colors.getColorPrimary());
 	}
 
 	public void setEqualizerEnabled(boolean enabled) {

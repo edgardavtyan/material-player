@@ -3,8 +3,6 @@ package com.edavtyan.materialplayer.lib.playlist.models;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
-import com.edavtyan.materialplayer.lib.theme.Theme;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 
 import java.util.Collections;
 import java.util.List;
@@ -57,13 +55,5 @@ public class PlaylistPresenter {
 
 	public void onNewPlaylistDismiss() {
 		addDialog.show(manager.list());
-	}
-
-	public void setTheme(ThemeColors theme) {
-		int tint = theme.getTheme() == Theme.COLORED
-				? theme.getColorPrimary()
-				: theme.getTextPrimary();
-		addDialog.setTint(tint);
-		newDialog.setTint(tint);
 	}
 }
