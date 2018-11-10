@@ -3,10 +3,14 @@ package com.edavtyan.materialplayer.lib.theme;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.SparseIntArray;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.R;
 
@@ -94,6 +98,17 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.blackTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.blackTextContrastSecondary);
 			this.background = getColor(R.color.black);
+		}
+	}
+
+	public void colorizeMenu(Menu menu) {
+		for (int i = 0; i < menu.size(); i++) {
+			MenuItem item = menu.getItem(i);
+			Drawable icon = item.getIcon();
+
+			if (icon != null) {
+				icon.setColorFilter(getTextContrastPrimary(), PorterDuff.Mode.SRC_IN);
+			}
 		}
 	}
 

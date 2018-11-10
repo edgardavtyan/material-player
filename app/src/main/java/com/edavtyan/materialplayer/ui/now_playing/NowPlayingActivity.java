@@ -98,6 +98,12 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 	}
 
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		theme.colorizeMenu(menu);
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_toggleLyrics:
@@ -106,12 +112,6 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		themeModule.onStart();
-		return super.onPrepareOptionsMenu(menu);
 	}
 
 	@Override

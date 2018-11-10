@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
@@ -59,6 +60,17 @@ public class MainActivity extends BaseActivityTransparent {
 		toolbarModule.setTheme(theme);
 		tabsPartial.setTheme(theme);
 		getWindow().setBackgroundDrawable(new ColorDrawable(theme.getBackground()));
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		theme.colorizeMenu(menu);
+		return super.onPrepareOptionsMenu(menu);
 	}
 
 	protected MainDIComponent getComponent() {
