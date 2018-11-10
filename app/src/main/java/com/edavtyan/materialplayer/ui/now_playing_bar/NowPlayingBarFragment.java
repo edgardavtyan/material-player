@@ -43,6 +43,7 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 	@Inject NowPlayingBarPresenter presenter;
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
+	@Inject ThemeColors theme;
 
 	@Override
 	public void onClick(View view) {
@@ -76,9 +77,16 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 			@Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
 		View view = super.onCreateView(inflater, container, savedInstanceState);
+
 		playPauseButton.setOnClickListener(this);
 		artView.setOnClickListener(this);
 		infoWrapper.setOnClickListener(this);
+
+		mainWrapper.setBackgroundColor(theme.getColorPrimary());
+		titleView.setTextColor(theme.getTextContrastPrimary());
+		infoView.setTextColor(theme.getTextContrastSecondary());
+		playPauseButton.setColorFilter(theme.getTextContrastPrimary());
+
 		return view;
 	}
 
