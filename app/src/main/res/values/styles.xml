@@ -93,6 +93,7 @@
 	<style name="Dialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
 		<item name="colorAccent">@color/white</item>
 		<item name="textColorPrimary">@color/white</item>
+		<item name="android:background">@color/gray_dark</item>
 	</style>
 
 </resources>
