@@ -1,7 +1,9 @@
 package com.edavtyan.materialplayer;
 
 import android.app.Application;
+import android.preference.PreferenceManager;
 
+import com.edavtyan.materialplayer.lib.theme.Theme;
 import com.edavtyan.materialplayer.service.DaggerPlayerServiceComponent;
 import com.edavtyan.materialplayer.service.PlayerServiceComponent;
 
@@ -32,5 +34,15 @@ public class App extends Application {
 		}
 
 		return appComponent;
+	}
+
+	public Theme getAppTheme() {
+		String themeStr = PreferenceManager.getDefaultSharedPreferences(this)
+										   .getString(getString(R.string.pref_colorsMain_key), "Colored");
+
+		if (themeStr.equals("Colored")) return Theme.COLORED;
+		if (themeStr.equals("White")) return Theme.WHITE;
+		if (themeStr.equals("Black")) return Theme.BLACK;
+		return Theme.COLORED;
 	}
 }

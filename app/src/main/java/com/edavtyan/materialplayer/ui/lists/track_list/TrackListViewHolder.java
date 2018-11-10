@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
 import android.content.Context;
+import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.ed.libsutils.utils.DurationUtils;

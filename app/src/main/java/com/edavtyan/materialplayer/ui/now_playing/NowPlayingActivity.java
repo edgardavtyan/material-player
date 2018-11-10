@@ -9,13 +9,13 @@ import android.widget.LinearLayout;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.OutputSharedViews;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.lib.transition.SharedViewSet;
 import com.edavtyan.materialplayer.modular.activity.ActivityModulesDIModule;
-import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.ui.Navigator;
@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
 
-public class NowPlayingActivity extends ModularActivity {
+public class NowPlayingActivity extends BaseActivity {
 	@Inject ActivityBaseMenuModule baseMenuModule;
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject ScreenThemeModule themeModule;

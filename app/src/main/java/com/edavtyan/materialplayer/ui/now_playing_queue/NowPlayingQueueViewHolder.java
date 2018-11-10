@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.ui.now_playing_queue;
 
 import android.content.Context;
+import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.ed.libsutils.utils.DurationUtils;

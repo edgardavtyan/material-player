@@ -17,6 +17,9 @@
 		<item name="android:textColorPrimary">?attr/textColorContrastPrimary</item>
 		<item name="android:textColorSecondary">?attr/textColorSecondary</item>
 
+		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
+		<item name="popupTheme">@style/PopupMenuStyle</item>
+
 		<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
 		<item name="toolbarPopupTheme">@style/Theme.AppCompat.Light</item>
 		<item name="nowPlayingBarBackground">?colorPrimary</item>
@@ -40,10 +43,46 @@
 		<item name="android:windowNoTitle">false</item>
 	</style>
 
+	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+		<item name="colorPrimary">@color/black</item>
+		<item name="colorPrimaryDark">@color/black</item>
+		<item name="colorControlNormal">@color/white</item>
+		<item name="colorControlActivated">@color/white</item>
+		<item name="android:textColorPrimary">@color/white</item>
+		<item name="android:textColorSecondary">@color/white_dim_medium</item>
+
+		<item name="android:itemTextAppearance">@style/ItemTextAppearance.Dark</item>
+		<item name="popupTheme">@style/PopupMenuStyle.Dark</item>
+		<item name="toolbarPopupTheme">@style/PopupMenuStyle.Dark</item>
+		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.PopupMenu.Overflow</item>
+
+		<item name="alertDialogTheme">@style/Dialog.Dark</item>
+	</style>
+
 	<style name="AppTheme.Transparent">
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
+
+	<!-- Popup Menu -->
+
+	<style name="PopupMenuStyle" parent="ThemeOverlay.AppCompat.ActionBar">
+		<item name="android:popupBackground">@color/white</item>
+	</style>
+
+	<style name="PopupMenuStyle.Dark" parent="ThemeOverlay.AppCompat.ActionBar">
+		<item name="android:popupBackground">@color/gray_dark</item>
+	</style>
+
+	<style name="ItemTextAppearance">
+		<item name="android:textColor">@color/black</item>
+	</style>
+
+	<style name="ItemTextAppearance.Dark">
+		<item name="android:textColor">@color/white</item>
+	</style>
+
+	<!-- Splash Screen -->
 
 	<style name="CustomWindowTitleBackground">
 		<item name="android:background">?colorPrimary</item>
@@ -70,6 +109,11 @@
 
 	<style name="BarButton" parent="Base.Widget.AppCompat.Button.Borderless">
 		<item name="android:textColor">@color/primary</item>
+	</style>
+
+	<style name="Dialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
+		<item name="colorAccent">@color/white</item>
+		<item name="textColorPrimary">@color/white</item>
 	</style>
 
 </resources>

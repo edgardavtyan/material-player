@@ -11,9 +11,9 @@ import android.widget.CompoundButton;
 import com.ed.libsutils.views.CustomSwitchCompat;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.theme.ThemeColors;
-import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AudioEffectsActivity
-		extends ModularActivity
+		extends BaseActivity
 		implements CompoundButton.OnCheckedChangeListener,
 				   TitledSeekbar.OnProgressChangedListener,
 				   EqualizerView.OnBandChangedListener {

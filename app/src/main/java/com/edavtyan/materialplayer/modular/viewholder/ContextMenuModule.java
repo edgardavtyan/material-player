@@ -3,8 +3,8 @@ package com.edavtyan.materialplayer.modular.viewholder;
 import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.MenuRes;
+import android.support.v7.widget.PopupMenu;
 import android.view.View;
-import android.widget.PopupMenu;
 
 import com.edavtyan.materialplayer.ui.SdkFactory;
 

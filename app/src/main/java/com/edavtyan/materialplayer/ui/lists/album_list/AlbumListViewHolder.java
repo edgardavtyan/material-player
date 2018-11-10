@@ -3,11 +3,11 @@ package com.edavtyan.materialplayer.ui.lists.album_list;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
