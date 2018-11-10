@@ -8,6 +8,7 @@ import com.ed.androidprefs.category.PreferenceCategory;
 import com.ed.androidprefs.checkbox.CheckboxPreference;
 import com.ed.androidprefs.color.ColorSelectionPreference;
 import com.ed.androidprefs.seekbar.SeekbarPreference;
+import com.ed.androidprefs.simple_list.SimpleListPreference;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.base.BaseActivity;
@@ -29,7 +30,8 @@ public class PrefActivity extends BaseActivity {
 	@BindView(R.id.pref_engine) CheckboxPreference enginePrefView;
 	@BindView(R.id.pref_category_rg) PreferenceCategory rgCategoryView;
 	@BindView(R.id.pref_resume) CheckboxPreference resumePrefView;
-	@BindView(R.id.pref_primary_color) ColorSelectionPreference primaryColorPrefView;
+	@BindView(R.id.pref_primary_color) ColorSelectionPreference colorPrefView;
+	@BindView(R.id.pref_theme) SimpleListPreference themePrefView;
 	@BindView(R.id.pref_rg_enabled) CheckboxPreference rgEnabledPrefView;
 	@BindView(R.id.pref_rg_album) CheckboxPreference rgAlbumPrefView;
 	@BindView(R.id.pref_rg_gain) SeekbarPreference rgGainPrefView;
@@ -54,12 +56,13 @@ public class PrefActivity extends BaseActivity {
 		int color = theme.getTheme() == Theme.COLORED
 				? theme.getColorPrimary() : theme.getTextPrimary();
 
-		appearanceCategoryView.setTextColor(color);
 		playbackCategoryView.setTextColor(color);
 		enginePrefView.setCheckBoxColor(color);
-		rgCategoryView.setTextColor(color);
 		resumePrefView.setCheckBoxColor(color);
-		primaryColorPrefView.setDialogButtonsColor(color);
+		appearanceCategoryView.setTextColor(color);
+		colorPrefView.setDialogButtonsColor(color);
+		themePrefView.setDialogButtonsColor(color);
+		rgCategoryView.setTextColor(color);
 		rgEnabledPrefView.setCheckBoxColor(color);
 		rgAlbumPrefView.setCheckBoxColor(color);
 		rgGainPrefView.setColor(color);
