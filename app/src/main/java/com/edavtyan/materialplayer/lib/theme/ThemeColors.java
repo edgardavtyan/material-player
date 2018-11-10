@@ -69,9 +69,9 @@ public class ThemeColors {
 		int white = Color.WHITE;
 		int black = Color.BLACK;
 
-		if (theme.equals("Colored")) {
+		switch (theme) {
+		case "Colored":
 			int[] colorsArray = context.getResources().getIntArray(COLORS.get(primaryColor));
-
 			this.theme = Theme.COLORED;
 			this.colorPrimary = colorsArray[0];
 			this.colorPrimaryDark = colorsArray[1];
@@ -80,7 +80,8 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.coloredTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.coloredTextContrastSecondary);
 			this.background = getColor(R.color.white);
-		} else if (theme.equals("White")) {
+			break;
+		case "White":
 			this.theme = Theme.WHITE;
 			this.colorPrimary = white;
 			this.colorPrimaryDark = white;
@@ -89,7 +90,8 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.whiteTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.whiteTextContrastSecondary);
 			this.background = getColor(R.color.white);
-		} else { // BLACK
+			break;
+		default:  // BLACK
 			this.theme = Theme.BLACK;
 			this.colorPrimary = black;
 			this.colorPrimaryDark = black;
@@ -98,6 +100,7 @@ public class ThemeColors {
 			this.textContrastPrimary = getColor(R.color.blackTextContrastPrimary);
 			this.textContrastSecondary = getColor(R.color.blackTextContrastSecondary);
 			this.background = getColor(R.color.black);
+			break;
 		}
 	}
 
