@@ -35,12 +35,6 @@
 
 		<item name="iconMenuSearch">@drawable/ic_search_white</item>
 		<item name="iconBackArrow">@drawable/ic_arrow_back_white</item>
-
-		<item name="android:windowBackground">@color/white</item>
-		<item name="android:windowTitleSize">@dimen/placeholder_toolbar_height</item>
-		<item name="android:windowTitleStyle">@style/CustomWindowTitle</item>
-		<item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-		<item name="android:windowNoTitle">false</item>
 	</style>
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
@@ -85,22 +79,6 @@
 
 	<style name="ItemTextAppearance.Dark">
 		<item name="android:textColor">@color/white</item>
-	</style>
-
-	<!-- Splash Screen -->
-
-	<style name="CustomWindowTitleBackground">
-		<item name="android:background">?colorPrimary</item>
-	</style>
-
-	<style name="CustomWindowTitle">
-		<item name="android:singleLine">true</item>
-		<item name="android:alpha">0</item>
-		<item name="android:textAppearance">@style/CustomWindowTitleText</item>
-	</style>
-
-	<style name="CustomWindowTitleText">
-		<item name="android:textColor">@android:color/transparent</item>
 	</style>
 
 	<style name="LightHardwareMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
