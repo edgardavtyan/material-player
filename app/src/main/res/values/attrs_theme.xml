@@ -11,6 +11,7 @@
 	<attr name="custom_controlColor" format="color" />
 	<attr name="custom_raisedButtonBackground" format="color" />
 	<attr name="custom_dialogButtonColor" format="color" />
+	<attr name="custom_nowplayingBarBackground" format="color" />
 
 	<attr name="prefCategoryTitleColor" format="color" />
 	<attr name="prefShadowBackground" format="color" />

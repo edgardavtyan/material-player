@@ -11,6 +11,7 @@
 		<item name="custom_controlColor">@color/black</item>
 		<item name="custom_raisedButtonBackground">@color/black</item>
 		<item name="custom_dialogButtonColor">@color/black</item>
+		<item name="custom_nowplayingBarBackground">@color/white</item>
 
 		<item name="android:windowLightStatusBar">true</item>
 
