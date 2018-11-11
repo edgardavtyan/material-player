@@ -47,7 +47,6 @@
 					app:theme="@style/Toolbar"
 					/>
 
-
 			</LinearLayout>
 
 		</android.support.design.widget.AppBarLayout>
