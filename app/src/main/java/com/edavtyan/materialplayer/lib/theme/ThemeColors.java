@@ -15,8 +15,8 @@ public class ThemeColors {
 	private final Context context;
 
 	private final @Getter String themeStr;
-	private final @Getter int theme2;
-	private final @Getter int theme2translucent;
+	private final @Getter int theme;
+	private final @Getter int themeTranslucent;
 
 	public ThemeColors(Context context) {
 		this.context = context;
@@ -51,7 +51,7 @@ public class ThemeColors {
 		themesColored.append(getColor(R.color.brown), R.style.AppTheme_Colored_Brown);
 		themesColored.append(getColor(R.color.grey), R.style.AppTheme_Colored_Grey);
 		themesColored.append(getColor(R.color.blueGrey), R.style.AppTheme_Colored_BlueGrey);
-		theme2 = themesColored.get(primaryColor);
+		theme = themesColored.get(primaryColor);
 
 		SparseIntArray themesColoredTranslucent = new SparseIntArray();
 		themesColoredTranslucent.append(getColor(R.color.red), R.style.AppTheme_Colored_Red_Translucent);
@@ -73,7 +73,39 @@ public class ThemeColors {
 		themesColoredTranslucent.append(getColor(R.color.brown), R.style.AppTheme_Colored_Brown_Translucent);
 		themesColoredTranslucent.append(getColor(R.color.grey), R.style.AppTheme_Colored_Grey_Translucent);
 		themesColoredTranslucent.append(getColor(R.color.blueGrey), R.style.AppTheme_Colored_BlueGrey_Translucent);
-		theme2translucent = themesColoredTranslucent.get(primaryColor);
+		themeTranslucent = themesColoredTranslucent.get(primaryColor);
+	}
+
+	public int getThemeRes() {
+		if (themeStr.equals("Colored")) {
+			return theme;
+		}
+
+		if (themeStr.equals("White")) {
+			return R.style.AppTheme;
+		}
+
+		if (themeStr.equals("Black")) {
+			return R.style.AppTheme_Dark;
+		}
+
+		return theme;
+	}
+
+	public int getThemeTranslucentRes() {
+		if (themeStr.equals("Colored")) {
+			return themeTranslucent;
+		}
+
+		if (themeStr.equals("White")) {
+			return R.style.AppTheme_Translucent;
+		}
+
+		if (themeStr.equals("Black")) {
+			return R.style.AppTheme_Dark_Translucent;
+		}
+
+		return themeTranslucent;
 	}
 
 	private int getColor(@ColorRes int resId) {

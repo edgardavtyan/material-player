@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.search.artist;
 
-import android.support.v4.app.FragmentActivity;
+import android.app.Activity;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -30,7 +30,7 @@ public class SearchArtistDIModule {
 	@Provides
 	@FragmentScope
 	public SearchArtistAdapter provideAdapter(
-			FragmentActivity activity, SearchArtistPresenter presenter, SdkFactory sdkFactory) {
+			Activity activity, SearchArtistPresenter presenter, SdkFactory sdkFactory) {
 		return new SearchArtistAdapter(activity, presenter, sdkFactory);
 	}
 

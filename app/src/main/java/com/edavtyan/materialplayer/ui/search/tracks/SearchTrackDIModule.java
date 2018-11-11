@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.search.tracks;
 
-import android.support.v4.app.FragmentActivity;
+import android.app.Activity;
 
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -28,7 +28,7 @@ public class SearchTrackDIModule {
 	@Provides
 	@FragmentScope
 	public SearchTrackAdapter provideAdapter(
-			FragmentActivity activity, SearchTrackPresenter presenter, SdkFactory sdkFactory) {
+			Activity activity, SearchTrackPresenter presenter, SdkFactory sdkFactory) {
 		return new SearchTrackAdapter(activity, presenter, sdkFactory);
 	}
 

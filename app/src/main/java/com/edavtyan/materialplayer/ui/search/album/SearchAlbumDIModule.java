@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.search.album;
 
-import android.support.v4.app.FragmentActivity;
+import android.app.Activity;
 
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.TrackDB;
@@ -29,7 +29,7 @@ public class SearchAlbumDIModule {
 	@Provides
 	@FragmentScope
 	public SearchAlbumAdapter provideAdapter(
-			FragmentActivity activity, SearchAlbumPresenter presenter, SdkFactory sdkFactory) {
+			Activity activity, SearchAlbumPresenter presenter, SdkFactory sdkFactory) {
 		return new SearchAlbumAdapter(activity, presenter, sdkFactory);
 	}
 

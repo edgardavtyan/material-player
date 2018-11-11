@@ -19,7 +19,6 @@ public class App extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		getAppComponent().inject(this);
 	}
 
 	@SuppressWarnings("ConstantConditions")
@@ -43,37 +42,5 @@ public class App extends Application {
 		}
 
 		return appComponent;
-	}
-
-	public int getThemeRes() {
-		if (colors.getThemeStr().equals("Colored")) {
-			return colors.getTheme2();
-		}
-
-		if (colors.getThemeStr().equals("White")) {
-			return R.style.AppTheme;
-		}
-
-		if (colors.getThemeStr().equals("Black")) {
-			return R.style.AppTheme_Dark;
-		}
-
-		return colors.getTheme2();
-	}
-
-	public int getThemeTranslucentRes() {
-		if (colors.getThemeStr().equals("Colored")) {
-			return colors.getTheme2translucent();
-		}
-
-		if (colors.getThemeStr().equals("White")) {
-			return R.style.AppTheme_Translucent;
-		}
-
-		if (colors.getThemeStr().equals("Black")) {
-			return R.style.AppTheme_Dark_Translucent;
-		}
-
-		return colors.getTheme2();
 	}
 }

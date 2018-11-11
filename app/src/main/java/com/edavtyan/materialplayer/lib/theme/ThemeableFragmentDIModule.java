@@ -1,9 +1,9 @@
 package com.edavtyan.materialplayer.lib.theme;
 
-import android.content.Context;
+import android.app.Activity;
 
-import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
+import com.edavtyan.materialplayer.ui.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,7 +13,13 @@ public class ThemeableFragmentDIModule {
 	@Provides
 	@FragmentScope
 	public ScreenThemeModule provideScreenThemeModule(
-			Context context, AdvancedSharedPrefs prefs) {
-		return new ScreenThemeModule(context, prefs);
+			Activity activity, AdvancedSharedPrefs prefs) {
+		return new ScreenThemeModule(activity, prefs);
+	}
+
+	@Provides
+	@FragmentScope
+	public ThemeColors provideThemeColors(Activity activity) {
+		return new ThemeColors(activity);
 	}
 }

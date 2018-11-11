@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.lib.playlist;
 
-import android.support.v4.app.FragmentActivity;
+import android.app.Activity;
 
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistNewDialog;
 import com.edavtyan.materialplayer.lib.playlist.dialogs.PlaylistSelectDialog;
@@ -15,13 +15,13 @@ import dagger.Provides;
 public class PlaylistDIModuleFragment {
 	@Provides
 	@FragmentScope
-	public PlaylistSelectDialog providePlaylistSelectDialog(FragmentActivity activity) {
+	public PlaylistSelectDialog providePlaylistSelectDialog(Activity activity) {
 		return new PlaylistSelectDialog(activity);
 	}
 
 	@Provides
 	@FragmentScope
-	public PlaylistNewDialog providePlaylistNewDialog(FragmentActivity activity) {
+	public PlaylistNewDialog providePlaylistNewDialog(Activity activity) {
 		return new PlaylistNewDialog(activity);
 	}
 

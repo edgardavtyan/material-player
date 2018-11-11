@@ -1,10 +1,10 @@
 package com.edavtyan.materialplayer.ui.now_playing_bar;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 
-import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.ui.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,16 +12,16 @@ import dagger.Provides;
 @Module
 public class NowPlayingBarDIModule {
 	private final NowPlayingBarFragment view;
-	private final FragmentActivity activity;
+	private final Activity activity;
 
-	public NowPlayingBarDIModule(FragmentActivity activity, NowPlayingBarFragment view) {
+	public NowPlayingBarDIModule(Activity activity, NowPlayingBarFragment view) {
 		this.activity = activity;
 		this.view = view;
 	}
 
 	@Provides
 	@FragmentScope
-	public FragmentActivity provideActivity() {
+	public Activity provideActivity() {
 		return activity;
 	}
 
@@ -40,7 +40,7 @@ public class NowPlayingBarDIModule {
 	@Provides
 	@FragmentScope
 	public NowPlayingBarModel provideModel(
-			FragmentActivity activity, AlbumArtProvider albumArtProvider) {
+			Activity activity, AlbumArtProvider albumArtProvider) {
 		return new NowPlayingBarModel(activity, albumArtProvider);
 	}
 

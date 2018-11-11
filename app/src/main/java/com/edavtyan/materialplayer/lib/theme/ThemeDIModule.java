@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.lib.theme;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
@@ -26,7 +26,7 @@ public class ThemeDIModule {
 	@Provides
 	@Singleton
 	public ScreenThemeModule provideScreenThemeModule(
-			Context context, AdvancedSharedPrefs prefs) {
-		return new ScreenThemeModule(context, prefs);
+			Activity activity, AdvancedSharedPrefs prefs) {
+		return new ScreenThemeModule(activity, prefs);
 	}
 }

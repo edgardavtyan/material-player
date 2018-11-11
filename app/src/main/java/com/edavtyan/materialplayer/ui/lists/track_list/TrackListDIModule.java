@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -13,17 +13,17 @@ import dagger.Provides;
 
 @Module
 public class TrackListDIModule {
-	private final FragmentActivity activity;
+	private final Activity activity;
 	private final TrackListFragment view;
 
-	public TrackListDIModule(FragmentActivity activity, TrackListFragment view) {
+	public TrackListDIModule(Activity activity, TrackListFragment view) {
 		this.activity = activity;
 		this.view = view;
 	}
 
 	@Provides
 	@FragmentScope
-	public FragmentActivity provideActivity() {
+	public Activity provideActivity() {
 		return activity;
 	}
 
@@ -56,7 +56,7 @@ public class TrackListDIModule {
 	@Provides
 	@FragmentScope
 	public TrackListAdapter provideAdapter(
-			FragmentActivity activity, TrackListPresenter presenter, SdkFactory sdkFactory) {
+			Activity activity, TrackListPresenter presenter, SdkFactory sdkFactory) {
 		return new TrackListAdapter(activity, presenter, sdkFactory);
 	}
 }

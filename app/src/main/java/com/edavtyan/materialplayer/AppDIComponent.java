@@ -16,7 +16,6 @@ import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefsDIModule;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionDIModule;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
@@ -41,8 +40,6 @@ import dagger.Component;
 		SharedTransitionDIModule.class,
 		PlaylistModelsDIModule.class})
 public interface AppDIComponent {
-	void inject(App app);
-
 	Context context();
 	SdkFactory sdkFactory();
 	LastfmApi lastFmApi();
@@ -59,5 +56,4 @@ public interface AppDIComponent {
 	Gson gson();
 	SharedTransitionsManager sharedTransitionsManager();
 	PlaylistManager playlistManager();
-	ThemeColors theme();
 }

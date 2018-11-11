@@ -1,14 +1,13 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -19,17 +18,17 @@ import dagger.Provides;
 
 @Module
 public class ArtistListDIModule {
-	private final FragmentActivity activity;
+	private final Activity activity;
 	private final ArtistListFragment view;
 
-	public ArtistListDIModule(FragmentActivity activity, ArtistListFragment view) {
+	public ArtistListDIModule(Activity activity, ArtistListFragment view) {
 		this.activity = activity;
 		this.view = view;
 	}
 
 	@Provides
 	@FragmentScope
-	public FragmentActivity provideActivity() {
+	public Activity provideActivity() {
 		return activity;
 	}
 
@@ -64,7 +63,7 @@ public class ArtistListDIModule {
 	@Provides
 	@FragmentScope
 	public ArtistListAdapter provideAdapter(
-			FragmentActivity activity, ArtistListPresenter presenter, SdkFactory sdkFactory) {
+			Activity activity, ArtistListPresenter presenter, SdkFactory sdkFactory) {
 		return new ArtistListAdapter(activity, presenter, sdkFactory);
 	}
 
