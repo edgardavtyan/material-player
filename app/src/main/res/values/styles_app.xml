@@ -56,7 +56,7 @@
 	</style>
 
 	<style name="Toolbar">
-		<item name="android:textColorSecondary">?custom_textColorContrastPrimary</item>
+		<item name="android:textColorSecondary">?custom_textColorPrimary</item>
 		<item name="colorControlNormal">?custom_textColorContrastPrimary</item>
 	</style>
 
