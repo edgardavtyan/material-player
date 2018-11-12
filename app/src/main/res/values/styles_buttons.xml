@@ -5,7 +5,7 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="backgroundTint">?custom_raisedButtonBackground</item>
-		<item name="android:textColor">?custom_textColorContrastPrimary</item>
+		<item name="android:textColor">?custom_raisedButtonTextColor</item>
 	</style>
 
 	<style name="Button_Raised.Dangerous">

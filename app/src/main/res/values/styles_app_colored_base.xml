@@ -10,6 +10,7 @@
 		<item name="custom_fabIconColor">@color/black</item>
 		<item name="custom_controlColor">?colorPrimary</item>
 		<item name="custom_raisedButtonBackground">?colorPrimary</item>
+		<item name="custom_raisedButtonTextColor">@color/white</item>
 		<item name="custom_nowplayingBarBackground">?colorPrimary</item>
 
 		<item name="android:windowLightStatusBar">false</item>

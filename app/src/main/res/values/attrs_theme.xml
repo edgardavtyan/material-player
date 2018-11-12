@@ -10,6 +10,7 @@
 	<attr name="custom_fabBackgroundColor" format="color" />
 	<attr name="custom_controlColor" format="color" />
 	<attr name="custom_raisedButtonBackground" format="color" />
+	<attr name="custom_raisedButtonTextColor" format="color" />
 	<attr name="custom_dialogButtonColor" format="color" />
 	<attr name="custom_nowplayingBarBackground" format="color" />
 
