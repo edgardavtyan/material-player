@@ -58,7 +58,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.jsoup:jsoup:1.11.3'
 
-
     compileOnly "org.projectlombok:lombok:${lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
 
@@ -74,7 +73,7 @@ dependencies {
     androidTestCompile "com.android.support.test:rules:${test_runner_version}"
     androidTestCompile 'junit:junit:4.12'
     androidTestCompile "org.mockito:mockito-core:2.9.0"
-    androidTestCompile ("com.linkedin.dexmaker:dexmaker-mockito:2.2.0") {
+    androidTestCompile("com.linkedin.dexmaker:dexmaker-mockito:2.2.0") {
         exclude group: 'net.bytebuddy'
     }
     androidTestCompile 'org.assertj:assertj-core:2.5.0'
