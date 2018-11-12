@@ -9,9 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-import com.edavtyan.materialplayer.lib.lyrics.LyricsApi;
 import com.edavtyan.materialplayer.lib.lyrics.LyricsProvider;
-import com.edavtyan.materialplayer.lib.lyrics.LyricsStorage;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.RepeatMode;
 import com.edavtyan.materialplayer.player.ShuffleMode;
@@ -50,11 +48,12 @@ public class NowPlayingModel
 	public NowPlayingModel(
 			Context context,
 			AlbumArtProvider albumArtProvider,
+			LyricsProvider lyricsProvider,
 			LyricsVisiblePref lyricsVisiblePref) {
 		this.context = context;
 		this.albumArtProvider = albumArtProvider;
 		this.lyricsVisiblePref = lyricsVisiblePref;
-		this.lyricsProvider = new LyricsProvider(new LyricsApi(), new LyricsStorage(context));
+		this.lyricsProvider = lyricsProvider;
 	}
 
 	public void bind() {

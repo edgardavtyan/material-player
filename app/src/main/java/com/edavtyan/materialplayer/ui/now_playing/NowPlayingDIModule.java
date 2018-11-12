@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
+import com.edavtyan.materialplayer.lib.lyrics.LyricsProvider;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.now_playing.models.NowPlayingArt;
@@ -49,8 +50,9 @@ public class NowPlayingDIModule {
 	public NowPlayingModel provideModel(
 			NowPlayingActivity activity,
 			AlbumArtProvider albumArtProvider,
+			LyricsProvider lyricsProvider,
 			LyricsVisiblePref lyricsVisiblePref) {
-		return new NowPlayingModel(activity, albumArtProvider, lyricsVisiblePref);
+		return new NowPlayingModel(activity, albumArtProvider, lyricsProvider, lyricsVisiblePref);
 	}
 
 	@Provides
