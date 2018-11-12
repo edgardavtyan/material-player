@@ -3,16 +3,17 @@
 
 	<style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
 		<item name="custom_background">@color/black</item>
-		<item name="custom_textColorPrimary">@color/white</item>
-		<item name="custom_textColorSecondary">@color/white_dim_medium</item>
-		<item name="custom_textColorContrastPrimary">@color/white</item>
-		<item name="custom_textColorContrastSecondary">@color/white_dim_medium</item>
-		<item name="custom_fabBackgroundColor">@color/white</item>
-		<item name="custom_fabIconColor">@color/black</item>
-		<item name="custom_controlColor">@color/white</item>
+		<item name="custom_textColorPrimary">@color/white_transparent_slight</item>
+		<item name="custom_textColorSecondary">@color/white_transparent_medium</item>
+		<item name="custom_textColorContrastPrimary">@color/white_transparent_slight</item>
+		<item name="custom_textColorContrastSecondary">@color/white_transparent_medium</item>
+		<item name="custom_fabBackgroundColor">@color/white_dim_slight</item>
+		<item name="custom_fabIconColor">@color/black_dim_slight</item>
+		<item name="custom_controlColor">@color/white_dim_slight</item>
+		<item name="custom_controlColorContrast">@color/white_dim_slight</item>
 		<item name="custom_raisedButtonBackground">@color/gray_dark</item>
-		<item name="custom_raisedButtonTextColor">@color/white</item>
-		<item name="custom_dialogButtonColor">@color/white</item>
+		<item name="custom_raisedButtonTextColor">@color/white_transparent_slight</item>
+		<item name="custom_dialogButtonColor">@color/white_transparent_slight</item>
 		<item name="custom_nowplayingBarBackground">@color/gray_dark</item>
 
 		<item name="android:windowLightStatusBar">false</item>

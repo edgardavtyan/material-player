@@ -2,16 +2,17 @@
 
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="custom_background">@color/white</item>
-		<item name="custom_textColorPrimary">@color/black_dim_slight</item>
-		<item name="custom_textColorSecondary">@color/black_dim_medium</item>
-		<item name="custom_textColorContrastPrimary">@color/black</item>
-		<item name="custom_textColorContrastSecondary">@color/black</item>
+		<item name="custom_textColorPrimary">@color/black_transparent_slight</item>
+		<item name="custom_textColorSecondary">@color/black_transparent_medium</item>
+		<item name="custom_textColorContrastPrimary">@color/black_transparent_slight</item>
+		<item name="custom_textColorContrastSecondary">@color/black_transparent_medium</item>
 		<item name="custom_fabBackgroundColor">@color/white</item>
-		<item name="custom_fabIconColor">@color/black</item>
-		<item name="custom_controlColor">@color/black</item>
-		<item name="custom_raisedButtonBackground">@color/black</item>
-		<item name="custom_raisedButtonTextColor">@color/white</item>
-		<item name="custom_dialogButtonColor">@color/black</item>
+		<item name="custom_fabIconColor">@color/black_dim_slight</item>
+		<item name="custom_controlColor">@color/black_dim_slight</item>
+		<item name="custom_controlColorContrast">@color/black_dim_slight</item>
+		<item name="custom_raisedButtonBackground">@color/black_dim_slight</item>
+		<item name="custom_raisedButtonTextColor">@color/white_transparent_slight</item>
+		<item name="custom_dialogButtonColor">@color/black_transparent_slight</item>
 		<item name="custom_nowplayingBarBackground">@color/white</item>
 
 		<item name="android:windowLightStatusBar">true</item>
@@ -19,7 +20,7 @@
 		<item name="colorPrimary">@color/white</item>
 		<item name="colorPrimaryDark">@color/white</item>
 		<item name="colorAccent">@color/black</item>
-		<item name="colorControlNormal">@color/black</item>
+		<item name="colorControlNormal">?custom_controlColor</item>
 		<item name="colorControlActivated">?custom_controlColor</item>
 
 		<item name="prefCategoryTitleColor">@color/primary</item>

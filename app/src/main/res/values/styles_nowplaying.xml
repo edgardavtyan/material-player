@@ -64,9 +64,9 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingLeft">@dimen/spacing_medium_plus</item>
 		<item name="android:paddingRight">@dimen/spacing_medium_plus</item>
-		<item name="thumbColor">?attr/custom_textColorContrastPrimary</item>
-		<item name="progressBackgroundColor">?attr/custom_textColorContrastPrimary</item>
-		<item name="progressColor">?attr/custom_textColorContrastPrimary</item>
+		<item name="thumbColor">?attr/custom_controlColorContrast</item>
+		<item name="progressBackgroundColor">?attr/custom_controlColorContrast</item>
+		<item name="progressColor">?attr/custom_controlColorContrast</item>
 	</style>
 
 	<style name="NowPlaying_Time_Container">
@@ -104,7 +104,7 @@
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_weight">1</item>
-		<item name="android:tint">?attr/custom_textColorContrastPrimary</item>
+		<item name="android:tint">?attr/custom_controlColorContrast</item>
 	</style>
 
 </resources>

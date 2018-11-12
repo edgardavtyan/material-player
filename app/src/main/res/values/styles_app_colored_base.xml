@@ -2,15 +2,16 @@
 <resources>
 
 	<style name="AppTheme.Colored">
-		<item name="custom_textColorPrimary">@color/black</item>
-		<item name="custom_textColorSecondary">@color/black_dim_medium</item>
-		<item name="custom_textColorContrastPrimary">@color/white</item>
-		<item name="custom_textColorContrastSecondary">@color/white_dim_medium</item>
-		<item name="custom_fabBackgroundColor">@color/white</item>
-		<item name="custom_fabIconColor">@color/black</item>
+		<item name="custom_textColorPrimary">@color/black_transparent_slight</item>
+		<item name="custom_textColorSecondary">@color/black_transparent_medium</item>
+		<item name="custom_textColorContrastPrimary">@color/white_transparent_slight</item>
+		<item name="custom_textColorContrastSecondary">@color/white_transparent_medium</item>
+		<item name="custom_fabBackgroundColor">@color/white_dim_slight</item>
+		<item name="custom_fabIconColor">@color/black_dim_slight</item>
 		<item name="custom_controlColor">?colorPrimary</item>
+		<item name="custom_controlColorContrast">@color/white_dim_slight</item>
 		<item name="custom_raisedButtonBackground">?colorPrimary</item>
-		<item name="custom_raisedButtonTextColor">@color/white</item>
+		<item name="custom_raisedButtonTextColor">@color/white_transparent_slight</item>
 		<item name="custom_nowplayingBarBackground">?colorPrimary</item>
 
 		<item name="android:windowLightStatusBar">false</item>

@@ -24,7 +24,7 @@
 	<style name="NowPlayingBar_PlayPause">
 		<item name="android:padding">8dp</item>
 		<item name="android:background">@drawable/ripple_primary</item>
-		<item name="android:tint">?attr/custom_textColorContrastPrimary</item>
+		<item name="android:tint">?attr/custom_controlColorContrast</item>
 	</style>
 
 	<style name="NowPlayingBar_Title">

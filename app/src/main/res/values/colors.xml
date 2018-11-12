@@ -8,15 +8,22 @@
 	<color name="transparent_gray_dark">#7000</color>
 
 	<color name="black">#000</color>
-	<color name="black_dim_slight">#d000</color>
-	<color name="black_dim_medium">#8000</color>
-	<color name="black_dim_strong">#3000</color>
+	<color name="black_dim_slight">#222</color>
+	<color name="black_dim_medium">#444</color>
+	<color name="black_dim_strong">#777</color>
+	<color name="black_transparent_slight">#e000</color>
+	<color name="black_transparent_medium">#a000</color>
+	<color name="black_transparent_strong">#8000</color>
 
 	<color name="gray_dark">#222</color>
 
 	<color name="white">#fff</color>
-	<color name="white_dim_medium">#b3ffffff</color>
-	<color name="white_dim_strong">#7fffffff</color>
+	<color name="white_dim_slight">#eee</color>
+	<color name="white_dim_medium">#ccc</color>
+	<color name="white_dim_strong">#aaa</color>
+	<color name="white_transparent_slight">#efff</color>
+	<color name="white_transparent_medium">#afff</color>
+	<color name="white_transparent_strong">#8fff</color>
 
 	<color name="coloredTextContrastPrimary">#ffff</color>
 	<color name="coloredTextContrastSecondary">#afff</color>
