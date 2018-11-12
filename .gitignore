@@ -123,3 +123,4 @@ app/psd/generator-assets
 
 # LastFM api
 app/src/main/res/values/api_lastfm.xml
+.idea/caches/build_file_checksums.ser
