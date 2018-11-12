@@ -14,6 +14,9 @@
 		<item name="custom_raisedButtonTextColor">@color/white_transparent_slight</item>
 		<item name="custom_dialogButtonColor">@color/black_transparent_slight</item>
 		<item name="custom_nowplayingBarBackground">@color/white</item>
+		<item name="custom_iconMenuSearch">@drawable/ic_search_black</item>
+		<item name="custom_iconMenuLyrics">@drawable/ic_lyrics_black</item>
+		<item name="custom_iconBackArrow">@drawable/ic_arrow_back_black</item>
 
 		<item name="android:windowLightStatusBar">true</item>
 
@@ -37,8 +40,6 @@
 		<item name="rippleContrast">@drawable/ripple_primary</item>
 		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
 
-		<item name="iconMenuSearch">@drawable/ic_search_white</item>
-		<item name="iconBackArrow">@drawable/ic_arrow_back_white</item>
 	</style>
 
 	<style name="AppTheme.Translucent">

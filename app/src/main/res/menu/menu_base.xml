@@ -7,7 +7,7 @@
 	<item
 		android:id="@+id/menu_search"
 		android:title="@string/menu_base_search"
-		android:icon="?iconMenuSearch"
+		android:icon="?attr/custom_iconMenuSearch"
 		app:showAsAction="always"
 		/>
 

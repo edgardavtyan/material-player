@@ -13,6 +13,9 @@
 		<item name="custom_raisedButtonBackground">?colorPrimary</item>
 		<item name="custom_raisedButtonTextColor">@color/white_transparent_slight</item>
 		<item name="custom_nowplayingBarBackground">?colorPrimary</item>
+		<item name="custom_iconMenuSearch">@drawable/ic_search_white</item>
+		<item name="custom_iconMenuLyrics">@drawable/ic_lyrics_white</item>
+		<item name="custom_iconBackArrow">@drawable/ic_arrow_back_white</item>
 
 		<item name="android:windowLightStatusBar">false</item>
 	</style>

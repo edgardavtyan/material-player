@@ -23,7 +23,7 @@
 				android:layout_width="32dp"
 				android:layout_height="32dp"
 				android:layout_margin="12dp"
-				android:src="?iconBackArrow"
+				android:src="?attr/custom_iconBackArrow"
 				android:background="@drawable/ripple_primary"
 				/>
 
