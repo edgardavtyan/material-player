@@ -18,6 +18,8 @@
 		<item name="custom_iconMenuLyrics">@drawable/ic_lyrics_black</item>
 		<item name="custom_iconBackArrow">@drawable/ic_arrow_back_black</item>
 		<item name="custom_prefCategoryTitleColor">@color/black_transparent_slight</item>
+		<item name="custom_rippleContrast">@drawable/ripple_primary</item>
+		<item name="custom_toolbarPopupTheme">@style/PopupMenuStyle</item>
 
 		<item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
 
@@ -28,17 +30,10 @@
 		<item name="colorControlActivated">?custom_controlColor</item>
 
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
-		<item name="popupTheme">@style/PopupMenuStyle</item>
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.Light.PopupMenu.Overflow</item>
-
-		<item name="nowPlayingBarBackground">?colorPrimary</item>
 
 		<item name="android:alertDialogTheme">@style/Dialog</item>
 		<item name="alertDialogTheme">@style/Dialog</item>
-
-		<item name="rippleContrast">@drawable/ripple_primary</item>
-		<item name="collapsingHeaderGradient">@drawable/collapsing_toolbar_gradient_black</item>
-
 	</style>
 
 	<style name="AppTheme.Translucent">

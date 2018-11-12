@@ -18,14 +18,7 @@
 	<attr name="custom_iconMenuSearch" format="reference" />
 	<attr name="custom_iconMenuLyrics" format="reference" />
 	<attr name="custom_iconBackArrow" format="reference" />
-
-	<attr name="prefShadowBackground" format="color" />
-	<attr name="prefShadowTopColor" format="color" />
-	<attr name="dividerColor" format="color" />
-	<attr name="toolbarTheme" format="reference" />
-	<attr name="toolbarPopupTheme" format="reference" />
-	<attr name="nowPlayingBarBackground" format="color" />
-	<attr name="rippleContrast" format="reference" />
-	<attr name="collapsingHeaderGradient" format="reference" />
+	<attr name="custom_toolbarPopupTheme" format="reference" />
+	<attr name="custom_rippleContrast" format="reference" />
 
 </resources>

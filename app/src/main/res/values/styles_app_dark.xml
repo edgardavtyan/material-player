@@ -16,6 +16,7 @@
 		<item name="custom_dialogButtonColor">@color/white_transparent_slight</item>
 		<item name="custom_nowplayingBarBackground">@color/gray_dark</item>
 		<item name="custom_prefCategoryTitleColor">@color/white_transparent_slight</item>
+		<item name="custom_toolbarPopupTheme">@style/PopupMenuStyle.Dark</item>
 		<item name="custom_iconMenuSearch">@drawable/ic_search_white</item>
 		<item name="custom_iconMenuLyrics">@drawable/ic_lyrics_white</item>
 		<item name="custom_iconBackArrow">@drawable/ic_arrow_back_white</item>
@@ -30,9 +31,7 @@
 
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance.Dark</item>
 		<item name="popupTheme">@style/PopupMenuStyle.Dark</item>
-		<item name="toolbarPopupTheme">@style/PopupMenuStyle.Dark</item>
 		<item name="actionOverflowMenuStyle">@style/Widget.AppCompat.PopupMenu.Overflow</item>
-
 		<item name="alertDialogTheme">@style/Dialog.Dark</item>
 	</style>
 
