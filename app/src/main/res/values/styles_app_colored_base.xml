@@ -17,7 +17,7 @@
 		<item name="custom_iconMenuLyrics">@drawable/ic_lyrics_white</item>
 		<item name="custom_iconBackArrow">@drawable/ic_arrow_back_white</item>
 
-		<item name="android:windowLightStatusBar">false</item>
+		<item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
 	</style>
 
 </resources>
