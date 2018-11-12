@@ -167,7 +167,7 @@
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:padding="@dimen/spacing_medium"
-							android:textColor="?attr/custom_textColorContrastPrimary"
+							android:textColor="@color/white"
 							android:textSize="@dimen/font_normal"
 							android:shadowDx="1"
 							android:shadowDy="1"
