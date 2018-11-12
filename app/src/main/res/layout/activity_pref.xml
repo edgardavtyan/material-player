@@ -25,7 +25,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:cp_title="@string/pref_category_appearance"
-				app:cp_color="?prefCategoryTitleColor"
+				app:cp_color="?custom_prefCategoryTitleColor"
 				>
 
 				<com.ed.androidprefs.color.ColorSelectionPreference
@@ -59,7 +59,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:cp_title="@string/pref_category_playback"
-				app:cp_color="?prefCategoryTitleColor"
+				app:cp_color="?custom_prefCategoryTitleColor"
 				>
 
 				<com.ed.androidprefs.checkbox.CheckboxPreference
@@ -87,7 +87,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:cp_title="ReplayGain"
-				app:cp_color="?prefCategoryTitleColor"
+				app:cp_color="?custom_prefCategoryTitleColor"
 				>
 
 				<com.ed.androidprefs.checkbox.CheckboxPreference

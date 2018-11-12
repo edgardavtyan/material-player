@@ -14,11 +14,11 @@
 	<attr name="custom_raisedButtonTextColor" format="color" />
 	<attr name="custom_dialogButtonColor" format="color" />
 	<attr name="custom_nowplayingBarBackground" format="color" />
+	<attr name="custom_prefCategoryTitleColor" format="color" />
 	<attr name="custom_iconMenuSearch" format="reference" />
 	<attr name="custom_iconMenuLyrics" format="reference" />
 	<attr name="custom_iconBackArrow" format="reference" />
 
-	<attr name="prefCategoryTitleColor" format="color" />
 	<attr name="prefShadowBackground" format="color" />
 	<attr name="prefShadowTopColor" format="color" />
 	<attr name="dividerColor" format="color" />

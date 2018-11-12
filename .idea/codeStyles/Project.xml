@@ -383,6 +383,16 @@
             <rule>
               <match>
                 <AND>
+                  <NAME>name</NAME>
+                  <XML_ATTRIBUTE />
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
                 </AND>
