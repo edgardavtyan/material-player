@@ -107,4 +107,27 @@
 		<item name="android:tint">?attr/custom_controlColorContrast</item>
 	</style>
 
+	<style name="NowPlaying_Lyrics_Text">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">@dimen/spacing_medium</item>
+		<item name="android:textColor">#fff</item>
+		<item name="android:textSize">@dimen/font_medium</item>
+		<item name="android:shadowDx">1</item>
+		<item name="android:shadowDy">1</item>
+		<item name="android:shadowRadius">2</item>
+		<item name="android:shadowColor">#000</item>
+	</style>
+
+	<style name="NowPlaying_Lyrics_Text.Info">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:visibility">invisible</item>
+	</style>
+
+	<style name="NowPlaying_Lyrics_Text.Info.Instrumental">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:gravity">center</item>
+	</style>
+
 </resources>

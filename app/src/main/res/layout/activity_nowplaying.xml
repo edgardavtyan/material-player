@@ -164,66 +164,28 @@
 
 						<TextView
 							android:id="@+id/lyrics_text"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:padding="@dimen/spacing_medium"
-							android:textColor="@color/white"
-							android:textSize="@dimen/font_normal"
-							android:shadowDx="1"
-							android:shadowDy="1"
-							android:shadowRadius="2"
-							android:shadowColor="#000"
 							tools:text="@tools:sample/lorem/random"
+							style="@style/NowPlaying_Lyrics_Text"
 							/>
 
 					</ScrollView>
 
 					<TextView
 						android:id="@+id/lyrics_instrumental"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:gravity="center"
-						android:padding="@dimen/spacing_medium"
-						android:textColor="?attr/custom_textColorContrastPrimary"
-						android:textSize="@dimen/font_medium"
 						android:text="@string/nowplaying_lyrics_instrumental"
-						android:shadowDx="1"
-						android:shadowDy="1"
-						android:shadowRadius="2"
-						android:shadowColor="#000"
-						android:visibility="invisible"
+						style="@style/NowPlaying_Lyrics_Text.Info.Instrumental"
 						/>
 
 					<TextView
 						android:id="@+id/error_lyricsNotFound"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:padding="@dimen/spacing_medium"
 						android:text="@string/nowplaying_error_lyricsNotFound"
-						android:textColor="?attr/custom_textColorContrastPrimary"
-						android:textSize="@dimen/font_medium"
-						android:shadowDx="1"
-						android:shadowDy="1"
-						android:shadowRadius="2"
-						android:shadowColor="#000"
-						android:visibility="invisible"
+						style="@style/NowPlaying_Lyrics_Text.Info"
 						/>
 
 					<TextView
 						android:id="@+id/error_lyricsConnection"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:padding="@dimen/spacing_medium"
 						android:text="@string/nowplaying_error_lyricsConnection"
-						android:textColor="?attr/custom_textColorContrastPrimary"
-						android:textSize="@dimen/font_medium"
-						android:shadowDx="1"
-						android:shadowDy="1"
-						android:shadowRadius="2"
-						android:shadowColor="#000"
-						android:visibility="invisible"
+						style="@style/NowPlaying_Lyrics_Text.Info"
 						/>
 
 				</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
