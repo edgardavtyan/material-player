@@ -69,7 +69,8 @@ public class ArtistDB {
 			@Nullable String sort) {
 		List<Artist> artists = new ArrayList<>();
 
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort + " COLLATE NOCASE");
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, sort + " COLLATE LOCALIZED");
 
 		if (cursor == null) {
 			throw new CursorIsNullException();

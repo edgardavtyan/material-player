@@ -82,7 +82,8 @@ public class AlbumDB {
 			@Nullable String order) {
 		List<Album> albums = new ArrayList<>();
 
-		@Cleanup Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order);
+		@Cleanup
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order + " COLLATE LOCALIZED");
 
 		if (cursor == null) {
 			throw new CursorIsNullException();
