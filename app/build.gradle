@@ -3,21 +3,26 @@ buildscript {
         jcenter()
         mavenCentral()
         google()
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        classpath 'io.fabric.tools:gradle:1.+'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
 apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 repositories {
     jcenter()
     mavenCentral()
     google()
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 android {
@@ -66,6 +71,10 @@ dependencies {
 
     compile "com.google.dagger:dagger-android:${dagger_version}"
     annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.7@aar') {
+        transitive = true;
+    }
 
     androidTestCompile fileTree(include: ['*.aar'], dir: 'libs-androidTest')
     androidTestCompile "com.android.support:support-annotations:${appcompat_version}"
