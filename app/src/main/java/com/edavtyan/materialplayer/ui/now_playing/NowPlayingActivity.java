@@ -2,10 +2,11 @@ package com.edavtyan.materialplayer.ui.now_playing;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
@@ -48,8 +49,9 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 	@Inject @Getter NowPlayingFab fab;
 	@Inject @Getter NowPlayingLyrics lyrics;
 
-	@BindView(R.id.inner_container) LinearLayout innerContainerView;
+	@BindView(R.id.inner_container) ConstraintLayout innerContainerView;
 	@BindView(R.id.appbar) AppBarLayout appbar;
+	@BindView(R.id.background) View background;
 
 	private boolean isQueueShown;
 
@@ -68,8 +70,40 @@ public class NowPlayingActivity extends BaseActivityTransparent {
 		outputViewsBuilder.sharedViewSets(
 				SharedViewSet.translating("art", art.getArtView(), art.getSharedArtView()));
 		outputViewsBuilder
-				.enterFadingViews(innerContainerView, appbar, fab.getView(), lyrics.getWrapperView())
-				.exitPortraitFadingViews(innerContainerView, appbar, fab.getView(), lyrics.getWrapperView())
+				.enterFadingViews(
+						controls.getFastForwardButton(),
+						controls.getPlayPauseButton(),
+						controls.getRepeatButton(),
+						controls.getRewindButton(),
+						controls.getShuffleButton(),
+						art.getArtView(),
+						art.getShadowView(),
+						lyrics.getWrapperView(),
+						seekbar.getCurrentTimeView(),
+						seekbar.getTotalTimeView(),
+						seekbar.getSeekbar(),
+						info.getInfoView(),
+						info.getTitleView(),
+						fab.getView(),
+						appbar,
+						background)
+				.exitPortraitFadingViews(
+						controls.getFastForwardButton(),
+						controls.getPlayPauseButton(),
+						controls.getRepeatButton(),
+						controls.getRewindButton(),
+						controls.getShuffleButton(),
+						art.getArtView(),
+						art.getShadowView(),
+						lyrics.getWrapperView(),
+						seekbar.getCurrentTimeView(),
+						seekbar.getTotalTimeView(),
+						seekbar.getSeekbar(),
+						info.getInfoView(),
+						info.getTitleView(),
+						fab.getView(),
+						appbar,
+						background)
 				.exitLandscapeFadingViews(innerContainerView, fab.getView());
 		transitionManager.createSharedTransition(outputViewsBuilder.build());
 		transitionManager.beginEnterTransition(this, savedInstanceState);

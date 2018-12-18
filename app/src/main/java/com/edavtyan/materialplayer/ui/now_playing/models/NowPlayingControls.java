@@ -11,16 +11,17 @@ import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Getter;
 
 public class NowPlayingControls implements View.OnClickListener {
 	public static final int CONTROL_ENABLED_ALPHA = 255;
 	public static final int CONTROL_DISABLED_ALPHA = 60;
 
-	@BindView(R.id.shuffle) ImageButton shuffleButton;
-	@BindView(R.id.rewind) ImageButton rewindButton;
-	@BindView(R.id.play_pause) ImageButton playPauseButton;
-	@BindView(R.id.fast_forward) ImageButton fastForwardButton;
-	@BindView(R.id.repeat) ImageButton repeatButton;
+	@Getter @BindView(R.id.shuffle) ImageButton shuffleButton;
+	@Getter @BindView(R.id.rewind) ImageButton rewindButton;
+	@Getter @BindView(R.id.play_pause) ImageButton playPauseButton;
+	@Getter @BindView(R.id.fast_forward) ImageButton fastForwardButton;
+	@Getter @BindView(R.id.repeat) ImageButton repeatButton;
 
 	private final NowPlayingPresenter presenter;
 

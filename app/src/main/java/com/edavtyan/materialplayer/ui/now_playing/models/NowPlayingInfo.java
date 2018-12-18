@@ -7,11 +7,12 @@ import com.edavtyan.materialplayer.ui.now_playing.NowPlayingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Getter;
 
 public class NowPlayingInfo {
 
-	@BindView(R.id.title) TextView titleView;
-	@BindView(R.id.info) TextView infoView;
+	@Getter @BindView(R.id.title) TextView titleView;
+	@Getter @BindView(R.id.info) TextView infoView;
 
 	private final NowPlayingActivity activity;
 

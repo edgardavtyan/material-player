@@ -4,6 +4,7 @@
 	<style name="NowPlaying_MainContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
+		<item name="android:background">?colorPrimary</item>
 	</style>
 
 	<style name="NowPlaying_FAB">
@@ -11,7 +12,6 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_margin">@dimen/spacing_medium</item>
 		<item name="android:src">@drawable/ic_playlist</item>
-		<item name="layout_anchor">@+id/info_wrapper</item>
 		<item name="layout_anchorGravity">right</item>
 		<item name="backgroundTint">?attr/custom_fabBackgroundColor</item>
 		<item name="android:tint">?attr/custom_fabIconColor</item>
@@ -20,7 +20,6 @@
 	<style name="NowPlaying_InnerContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="android:orientation">vertical</item>
 	</style>
 
 	<style name="NowPlaying_ArtWrapper">
@@ -44,10 +43,6 @@
 	</style>
 
 	<style name="NowPlaying_TrackInfo_Title">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
-		<item name="android:layout_marginRight">@dimen/spacing_medium</item>
 		<item name="android:textSize">@dimen/font_medium</item>
 		<item name="android:textColor">?attr/custom_textColorContrastPrimary</item>
 		<item name="android:singleLine">true</item>
@@ -78,9 +73,6 @@
 	</style>
 
 	<style name="NowPlaying_Time_Current">
-		<item name="android:layout_width">0dp</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_weight">1</item>
 		<item name="android:layout_marginLeft">@dimen/spacing_medium</item>
 		<item name="android:textColor">?attr/custom_textColorContrastPrimary</item>
 	</style>
@@ -102,9 +94,11 @@
 	<style name="NowPlaying_Control">
 		<item name="android:background">?attr/custom_rippleContrast</item>
 		<item name="android:layout_width">0dp</item>
-		<item name="android:layout_height">match_parent</item>
-		<item name="android:layout_weight">1</item>
+		<item name="android:layout_height">48dp</item>
 		<item name="android:tint">?attr/custom_controlColorContrast</item>
+		<item name="layout_constraintTop_toBottomOf">@id/seekbar</item>
+		<item name="layout_constraintBottom_toBottomOf">parent</item>
+		<item name="layout_constraintWidth_percent">.2</item>
 	</style>
 
 	<style name="NowPlaying_Lyrics_Text">

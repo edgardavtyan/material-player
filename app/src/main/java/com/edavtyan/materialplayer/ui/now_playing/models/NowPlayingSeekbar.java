@@ -11,13 +11,14 @@ import com.edavtyan.materialplayer.ui.now_playing.NowPlayingPresenter;
 import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Getter;
 
 public class NowPlayingSeekbar
 		implements SeekBar.OnSeekBarChangeListener {
 
-	@BindView(R.id.seekbar) SeekBarCompat seekbar;
-	@BindView(R.id.time_current) TextView currentTimeView;
-	@BindView(R.id.time_total) TextView totalTimeView;
+	@Getter @BindView(R.id.seekbar) SeekBarCompat seekbar;
+	@Getter @BindView(R.id.time_current) TextView currentTimeView;
+	@Getter @BindView(R.id.time_total) TextView totalTimeView;
 
 	private final NowPlayingPresenter presenter;
 

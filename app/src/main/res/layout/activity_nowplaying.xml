@@ -1,207 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/NowPlaying_MainContainer"
+	android:id="@+id/inner_container"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
 	>
+
+	<View
+		android:id="@+id/background"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="?colorPrimary"
+		/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab"
+		app:layout_constraintTop_toBottomOf="@+id/art_shadow"
+		app:layout_constraintBottom_toBottomOf="@+id/art_shadow"
+		app:layout_constraintEnd_toEndOf="@+id/art_shadow"
 		style="@style/NowPlaying_FAB"
 		/>
 
-	<LinearLayout style="@style/NowPlaying_InnerContainer">
+	<android.support.design.widget.AppBarLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/appbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fitsSystemWindows="true"
+		>
 
-		<include layout="@layout/partial_appbar" />
+		<include layout="@layout/partial_toolbar" />
 
-		<FrameLayout
+	</android.support.design.widget.AppBarLayout>
+
+	<ImageView
+		android:id="@+id/art"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:scaleType="centerCrop"
+		app:layout_constraintDimensionRatio="1:1"
+		app:layout_constraintTop_toBottomOf="@id/appbar"
+		tools:src="@drawable/fallback_cover"
+		/>
+
+	<View
+		android:id="@+id/art_shadow"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/shadow_tiny"
+		android:layout_gravity="bottom"
+		android:background="@drawable/shadow_bottom_small"
+		app:layout_constraintBottom_toBottomOf="@+id/art"
+		/>
+
+	<TextView
+		android:id="@+id/title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/spacing_medium"
+		android:layout_marginLeft="@dimen/spacing_medium"
+		android:layout_marginRight="@dimen/spacing_medium"
+		app:layout_constraintTop_toBottomOf="@id/art"
+		tools:text="Now Playing Track Title"
+		style="@style/NowPlaying_TrackInfo_Title"
+		/>
+
+	<TextView
+		android:id="@+id/info"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="@dimen/spacing_medium"
+		android:layout_marginLeft="@dimen/spacing_medium"
+		app:layout_constraintTop_toBottomOf="@id/title"
+		tools:text="Now Playing Track Info"
+		style="@style/NowPlaying_TrackInfo_Info"
+		/>
+
+	<TextView
+		android:id="@+id/time_current"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/spacing_tiny"
+		android:paddingLeft="@dimen/spacing_medium"
+		app:layout_constraintTop_toBottomOf="@id/info"
+		app:layout_constraintWidth_percent=".5"
+		tools:text="1:14"
+		style="@style/NowPlaying_Time_Current"
+		/>
+
+	<TextView
+		android:id="@+id/time_total"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/spacing_tiny"
+		android:paddingRight="@dimen/spacing_medium"
+		app:layout_constraintTop_toBottomOf="@id/info"
+		app:layout_constraintLeft_toRightOf="@id/time_current"
+		app:layout_constraintWidth_default="percent"
+		app:layout_constraintWidth_percent=".5"
+		tools:text="6:44"
+		style="@style/NowPlaying_Time_Total"
+		/>
+
+	<app.minimize.com.seek_bar_compat.SeekBarCompat
+		android:id="@+id/seekbar"
+		app:layout_constraintTop_toBottomOf="@id/time_current"
+		tools:progress="30"
+		style="@style/NowPlaying_Seekbar"
+		/>
+
+	<ImageButton
+		android:id="@+id/shuffle"
+		android:src="@drawable/ic_shuffle"
+		style="@style/NowPlaying_Control"
+		/>
+
+	<ImageButton
+		android:id="@+id/rewind"
+		android:src="@drawable/ic_skip_prev"
+		app:layout_constraintLeft_toRightOf="@id/shuffle"
+		style="@style/NowPlaying_Control"
+		/>
+
+	<ImageButton
+		android:id="@+id/play_pause"
+		android:src="@drawable/ic_play"
+		app:layout_constraintLeft_toRightOf="@+id/rewind"
+		style="@style/NowPlaying_Control"
+		/>
+
+	<ImageButton
+		android:id="@+id/fast_forward"
+		android:src="@drawable/ic_skip_next"
+		app:layout_constraintLeft_toRightOf="@+id/play_pause"
+		style="@style/NowPlaying_Control"
+		/>
+
+	<ImageButton
+		android:id="@+id/repeat"
+		android:src="@drawable/ic_repeat"
+		app:layout_constraintLeft_toRightOf="@+id/fast_forward"
+		style="@style/NowPlaying_Control"
+		/>
+
+	<ImageView
+		android:id="@+id/shared_art"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		/>
+
+	<FrameLayout
+		android:id="@+id/lyrics_wrapper"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:background="#aa000000"
+		app:layout_constraintDimensionRatio="1:1"
+		app:layout_constraintTop_toTopOf="@id/art"
+		app:layout_constraintBottom_toBottomOf="@id/art"
+		>
+
+		<ScrollView
+			android:id="@+id/lyrics_scroller"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			>
 
-			<LinearLayout
-				android:id="@+id/inner_container"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:orientation="vertical"
-				android:background="?colorPrimary"
-				>
-
-				<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					>
-
-					<com.edavtyan.materialplayer.lib.views.SquareImageView
-						android:id="@+id/art"
-						tools:src="@drawable/fallback_cover"
-						style="@style/NowPlaying_Art"
-						/>
-
-					<include layout="@layout/shadow_bottom_small" />
-
-				</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
-
-				<LinearLayout
-					android:id="@+id/info_wrapper"
-					style="@style/NowPlaying_TrackInfo_Container"
-					>
-
-					<TextView
-						android:id="@+id/title"
-						tools:text="Now Playing Track Title"
-						style="@style/NowPlaying_TrackInfo_Title"
-						/>
-
-					<TextView
-						android:id="@+id/info"
-						tools:text="Now Playing Track Info"
-						style="@style/NowPlaying_TrackInfo_Info"
-						/>
-
-				</LinearLayout>
-
-				<LinearLayout style="@style/NowPlaying_Time_Container">
-
-					<TextView
-						android:id="@+id/time_current"
-						tools:text="1:14"
-						style="@style/NowPlaying_Time_Current"
-						/>
-
-					<TextView
-						android:id="@+id/time_total"
-						tools:text="6:44"
-						style="@style/NowPlaying_Time_Total"
-						/>
-
-				</LinearLayout>
-
-				<app.minimize.com.seek_bar_compat.SeekBarCompat
-					android:id="@+id/seekbar"
-					tools:progress="30"
-					style="@style/NowPlaying_Seekbar"
-					/>
-
-				<LinearLayout style="@style/NowPlaying_ControlsContainer">
-
-					<ImageButton
-						android:id="@+id/shuffle"
-						android:layout_marginLeft="-12dp"
-						android:src="@drawable/ic_shuffle"
-						style="@style/NowPlaying_Control"
-						/>
-
-					<ImageButton
-						android:id="@+id/rewind"
-						android:src="@drawable/ic_skip_prev"
-						style="@style/NowPlaying_Control"
-						/>
-
-					<ImageButton
-						android:id="@+id/play_pause"
-						android:src="@drawable/ic_play"
-						style="@style/NowPlaying_Control"
-						/>
-
-					<ImageButton
-						android:id="@+id/fast_forward"
-						android:src="@drawable/ic_skip_next"
-						style="@style/NowPlaying_Control"
-						/>
-
-					<ImageButton
-						android:id="@+id/repeat"
-						android:layout_marginRight="-12dp"
-						android:src="@drawable/ic_repeat"
-						style="@style/NowPlaying_Control"
-						/>
-
-				</LinearLayout>
-
-			</LinearLayout>
-
-			<ImageView
-				android:id="@+id/shared_art"
-				android:layout_width="0dp"
-				android:layout_height="0dp"
-				android:visibility="invisible"
+			<TextView
+				android:id="@+id/lyrics_text"
+				tools:text="@tools:sample/lorem/random"
+				style="@style/NowPlaying_Lyrics_Text"
 				/>
 
-			<FrameLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				>
+		</ScrollView>
 
-				<View
-					android:id="@+id/shared_list_background"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:background="@color/white"
-					android:visibility="invisible"
-					/>
+		<TextView
+			android:id="@+id/lyrics_instrumental"
+			android:text="@string/nowplaying_lyrics_instrumental"
+			style="@style/NowPlaying_Lyrics_Text.Info.Instrumental"
+			/>
 
-				<ImageView
-					android:id="@+id/shared_list"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:scaleType="fitStart"
-					android:visibility="invisible"
-					/>
+		<TextView
+			android:id="@+id/error_lyricsNotFound"
+			android:text="@string/nowplaying_error_lyricsNotFound"
+			style="@style/NowPlaying_Lyrics_Text.Info"
+			/>
 
-				<com.edavtyan.materialplayer.lib.views.SquareFrameLayout
-					android:id="@+id/lyrics_wrapper"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:background="#aa000000"
-					>
+		<TextView
+			android:id="@+id/error_lyricsConnection"
+			android:text="@string/nowplaying_error_lyricsConnection"
+			style="@style/NowPlaying_Lyrics_Text.Info"
+			/>
 
-					<ScrollView
-						android:id="@+id/lyrics_scroller"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						>
+	</FrameLayout>
 
-						<TextView
-							android:id="@+id/lyrics_text"
-							tools:text="@tools:sample/lorem/random"
-							style="@style/NowPlaying_Lyrics_Text"
-							/>
+	<fragment
+		android:id="@+id/fragment_queue"
+		android:name="com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:layout="@layout/fragment_list"
+		tools:visibility="gone"
+		/>
 
-					</ScrollView>
-
-					<TextView
-						android:id="@+id/lyrics_instrumental"
-						android:text="@string/nowplaying_lyrics_instrumental"
-						style="@style/NowPlaying_Lyrics_Text.Info.Instrumental"
-						/>
-
-					<TextView
-						android:id="@+id/error_lyricsNotFound"
-						android:text="@string/nowplaying_error_lyricsNotFound"
-						style="@style/NowPlaying_Lyrics_Text.Info"
-						/>
-
-					<TextView
-						android:id="@+id/error_lyricsConnection"
-						android:text="@string/nowplaying_error_lyricsConnection"
-						style="@style/NowPlaying_Lyrics_Text.Info"
-						/>
-
-				</com.edavtyan.materialplayer.lib.views.SquareFrameLayout>
-
-			</FrameLayout>
-
-			<fragment
-				android:id="@+id/fragment_queue"
-				android:name="com.edavtyan.materialplayer.ui.now_playing_queue.NowPlayingQueueFragment"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				tools:layout="@layout/fragment_list"
-				/>
-
-		</FrameLayout>
-
-	</LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>
