@@ -105,6 +105,8 @@
 
 	<app.minimize.com.seek_bar_compat.SeekBarCompat
 		android:id="@+id/seekbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		app:layout_constraintTop_toBottomOf="@id/time_current"
 		tools:progress="30"
 		style="@style/NowPlaying_Seekbar"
@@ -113,35 +115,35 @@
 	<ImageButton
 		android:id="@+id/shuffle"
 		android:src="@drawable/ic_shuffle"
-		style="@style/NowPlaying_Control"
+		style="@style/NowPlaying_Control.Portrait"
 		/>
 
 	<ImageButton
 		android:id="@+id/rewind"
 		android:src="@drawable/ic_skip_prev"
 		app:layout_constraintLeft_toRightOf="@id/shuffle"
-		style="@style/NowPlaying_Control"
+		style="@style/NowPlaying_Control.Portrait"
 		/>
 
 	<ImageButton
 		android:id="@+id/play_pause"
 		android:src="@drawable/ic_play"
 		app:layout_constraintLeft_toRightOf="@+id/rewind"
-		style="@style/NowPlaying_Control"
+		style="@style/NowPlaying_Control.Portrait"
 		/>
 
 	<ImageButton
 		android:id="@+id/fast_forward"
 		android:src="@drawable/ic_skip_next"
 		app:layout_constraintLeft_toRightOf="@+id/play_pause"
-		style="@style/NowPlaying_Control"
+		style="@style/NowPlaying_Control.Portrait"
 		/>
 
 	<ImageButton
 		android:id="@+id/repeat"
 		android:src="@drawable/ic_repeat"
 		app:layout_constraintLeft_toRightOf="@+id/fast_forward"
-		style="@style/NowPlaying_Control"
+		style="@style/NowPlaying_Control.Portrait"
 		/>
 
 	<ImageView

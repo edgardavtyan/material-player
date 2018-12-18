@@ -35,7 +35,7 @@ public class QueueRevealAnimation {
 				int x = (int) fab.getX() + fab.getWidth() / 2;
 				int y = (int) fab.getY() + fab.getWidth() / 2;
 				int startRadius = fab.getWidth() / 2;
-				int endRadius = WindowUtils.getScreenHeight(activity);
+				int endRadius = Math.max(WindowUtils.getScreenHeight(activity), WindowUtils.getScreenWidth(activity));
 				circularRevealAnimation = new CircularRevealAnimation(queueRoot, x, y, startRadius, endRadius);
 			}
 
