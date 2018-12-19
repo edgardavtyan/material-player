@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +44,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	@BindView(R.id.shared_art_exit) @Nullable ImageView sharedArtExitView;
 	@BindView(R.id.info_wrapper) LinearLayout infoWrapper;
 	@BindView(R.id.main_wrapper) @Nullable LinearLayout mainWrapper;
-	@BindView(R.id.list_header) @Nullable FrameLayout header;
+	@BindView(R.id.list_header) @Nullable ConstraintLayout header;
 	@BindView(R.id.list) RecyclerView list;
 	@BindView(R.id.list_background) @Nullable View listBackground;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;

@@ -2,7 +2,7 @@
 <resources>
 
 	<style name="Detail_Art_Wrapper">
-		<item name="android:background">@android:drawable/dialog_holo_light_frame</item>
+
 	</style>
 
 	<style name="Detail_Art">

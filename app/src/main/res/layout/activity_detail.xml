@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/shared_wrapper"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	>
 
 	<LinearLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools"
 		android:id="@+id/main_wrapper"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -34,78 +33,74 @@
 			android:layout_weight="1"
 			>
 
-			<FrameLayout
+			<android.support.constraint.ConstraintLayout
 				android:id="@+id/list_header"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:background="?colorPrimary"
 				>
 
-				<LinearLayout
-					android:id="@+id/info_wrapper"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:background="?colorPrimary"
-					>
+				<View
+					android:id="@+id/art_wrapper"
+					android:layout_width="120dp"
+					android:layout_height="120dp"
+					android:background="@android:drawable/dialog_holo_light_frame"
+					app:layout_constraintLeft_toLeftOf="@id/art"
+					app:layout_constraintRight_toRightOf="@id/art"
+					app:layout_constraintBottom_toBottomOf="@id/art"
+					app:layout_constraintTop_toTopOf="@id/art"
+					style="@style/Detail_Art_Wrapper"
+					/>
 
-					<FrameLayout
-						android:id="@+id/art_wrapper"
-						android:layout_width="120dp"
-						android:layout_height="120dp"
-						android:layout_marginLeft="@dimen/spacing_tiny"
-						android:layout_marginRight="@dimen/spacing_tiny"
-						android:layout_marginBottom="@dimen/spacing_tiny"
-						style="@style/Detail_Art_Wrapper"
-						>
+				<ImageView
+					android:id="@+id/art"
+					android:layout_width="104dp"
+					android:layout_height="104dp"
+					android:layout_marginLeft="@dimen/spacing_medium"
+					android:layout_marginBottom="@dimen/spacing_medium"
+					android:contentDescription="@string/description_art"
+					android:scaleType="centerCrop"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintBottom_toBottomOf="parent"
+					tools:src="@drawable/fallback_cover"
+					/>
 
-						<ImageView
-							android:id="@+id/art"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:contentDescription="@string/description_art"
-							tools:src="@drawable/fallback_cover"
-							style="@style/Detail_Art"
-							/>
+				<TextView
+					android:id="@+id/title"
+					android:layout_marginLeft="@dimen/spacing_tiny"
+					android:layout_marginTop="@dimen/spacing_very_tiny"
+					app:layout_constraintLeft_toRightOf="@+id/art_wrapper"
+					app:layout_constraintTop_toTopOf="@id/art_wrapper"
+					tools:text="The Nth °"
+					style="@style/Detail_Title"
+					/>
 
-					</FrameLayout>
+				<TextView
+					android:id="@+id/info_top"
+					android:layout_marginLeft="@dimen/spacing_tiny"
+					app:layout_constraintTop_toBottomOf="@+id/title"
+					app:layout_constraintLeft_toRightOf="@+id/art_wrapper"
+					tools:text="OVERWERK"
+					style="@style/Detail_Info"
+					/>
 
-					<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/spacing_very_tiny"
-						android:orientation="vertical"
-						>
-
-						<TextView
-							android:id="@+id/title"
-							tools:text="The Nth °"
-							style="@style/Detail_Title"
-							/>
-
-						<TextView
-							android:id="@+id/info_top"
-							tools:text="OVERWERK"
-							style="@style/Detail_Info"
-							/>
-
-						<TextView
-							android:id="@+id/info_bottom"
-							tools:text="3 Tracks"
-							style="@style/Detail_Info"
-							/>
-
-					</LinearLayout>
-
-				</LinearLayout>
+				<TextView
+					android:id="@+id/info_bottom"
+					android:layout_marginLeft="@dimen/spacing_tiny"
+					app:layout_constraintTop_toBottomOf="@+id/info_top"
+					app:layout_constraintLeft_toRightOf="@+id/art_wrapper"
+					tools:text="3 Tracks"
+					style="@style/Detail_Info"
+					/>
 
 				<View
 					android:layout_width="match_parent"
 					android:layout_height="4dp"
-					android:layout_gravity="bottom"
 					android:background="@drawable/shadow_bottom_small"
+					app:layout_constraintBottom_toBottomOf="parent"
 					/>
 
-			</FrameLayout>
+			</android.support.constraint.ConstraintLayout>
 
 			<ImageView
 				android:id="@+id/shared_art_exit"
@@ -118,6 +113,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="?custom_background"
+				tools:layout_marginTop="120dp"
 				/>
 
 			<android.support.v7.widget.RecyclerView
@@ -126,6 +122,7 @@
 				android:layout_height="match_parent"
 				android:clipToPadding="false"
 				tools:listitem="@layout/listitem_track"
+				tools:layout_marginTop="120dp"
 				/>
 
 			<include layout="@layout/shadow_bottom_small" />
