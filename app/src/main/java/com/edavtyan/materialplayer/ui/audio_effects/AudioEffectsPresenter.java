@@ -102,7 +102,7 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 	}
 
 	public void onCreateNewPresetButtonClicked() {
-		view.showNewPresetCreationDialog();
+		view.showNewPresetCreationDialog(model.getEqualizer().getCurrentPresetName());
 	}
 
 	public void onBassBoostStrengthChanged(int strength) {

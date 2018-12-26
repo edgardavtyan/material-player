@@ -55,4 +55,10 @@ public class NewPresetDialog extends BaseDialog {
 	public void onNegativeButtonClick() {
 		presenter.onNewPresetDialogCancelButtonClicked();
 	}
+
+	public void show(String presetName) {
+		presetNameEditText.setText(presetName);
+		presetNameEditText.selectAll();
+		show();
+	}
 }

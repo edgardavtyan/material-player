@@ -22,6 +22,7 @@ public interface Equalizer {
 	List<String> getCustomPresetNames();
 	PresetType getCurrentPresetType();
 	int getCurrentPresetIndex();
+	String getCurrentPresetName();
 	boolean isUsingSavedCustomPreset();
 	void useBuiltInPreset(int presetIndex);
 	void useCustomPreset(int presetIndex);

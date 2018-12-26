@@ -106,6 +106,11 @@ public class StandardEqualizer implements Equalizer {
 	}
 
 	@Override
+	public String getCurrentPresetName() {
+		return presetsPrefs.getCustomPresetAtIndex(getCurrentPresetIndex()).getName();
+	}
+
+	@Override
 	public boolean isUsingSavedCustomPreset() {
 		return presetsPrefs.getCurrentPresetType() == PresetType.CUSTOM;
 	}

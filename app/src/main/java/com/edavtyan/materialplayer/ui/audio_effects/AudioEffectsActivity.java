@@ -112,8 +112,8 @@ public class AudioEffectsActivity
 		presetsSpinner.selectLastCustomPreset();
 	}
 
-	public void showNewPresetCreationDialog() {
-		newPresetDialog.show();
+	public void showNewPresetCreationDialog(String presetName) {
+		newPresetDialog.show(presetName);
 	}
 
 	public void closeNewPresetCreationDialog() {
