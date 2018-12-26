@@ -34,11 +34,15 @@ public class MainActivity extends BaseActivityTransparent {
 	@Inject TabsAdapter tabsAdapter;
 	@Inject TabsPartial tabsPartial;
 
+	private boolean developing = true;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Fabric.with(this, new Crashlytics());
+		if (developing) {
+			Fabric.with(this, new Crashlytics());
+		}
 
 		setContentView(R.layout.activity_main);
 		ButterKnife.bind(this);
