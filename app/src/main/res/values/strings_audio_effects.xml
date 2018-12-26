@@ -17,7 +17,7 @@
 
 	<string name="equalizer_presets_dialog_new_title">Add new EQ preset</string>
 
-	<string name="equalizer_presets_dialog_overwrite_title">Presets exists</string>
+	<string name="equalizer_presets_dialog_overwrite_title">Preset exists</string>
 	<string name="equalizer_presets_dialog_overwrite_action">Overwrite</string>
 	<string name="equalizer_presets_dialog_overwrite_message">Preset with the same name already exists</string>
 
