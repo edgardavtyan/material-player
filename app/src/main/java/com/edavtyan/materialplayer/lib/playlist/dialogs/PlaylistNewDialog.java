@@ -23,7 +23,6 @@ public class PlaylistNewDialog extends BaseDialog {
 
 	public PlaylistNewDialog(Context context) {
 		super(context);
-		setShowKeyboardEnabled(true);
 		errorExistsView.setText(R.string.playlist_new_exists);
 	}
 
@@ -40,6 +39,11 @@ public class PlaylistNewDialog extends BaseDialog {
 	@Override
 	public int getLayoutRes() {
 		return R.layout.dialog_preset_new;
+	}
+
+	@Override
+	public boolean getShowKeyboard() {
+		return true;
 	}
 
 	@Override

@@ -17,7 +17,6 @@ public class NewPresetDialog extends BaseDialog {
 	public NewPresetDialog(Context context, AudioEffectsPresenter presenter) {
 		super(context);
 		this.presenter = presenter;
-		setShowKeyboardEnabled(true);
 
 	}
 
@@ -34,6 +33,11 @@ public class NewPresetDialog extends BaseDialog {
 	@Override
 	public int getLayoutRes() {
 		return R.layout.dialog_preset_new;
+	}
+
+	@Override
+	public boolean getShowKeyboard() {
+		return true;
 	}
 
 	@Override

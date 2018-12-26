@@ -30,8 +30,6 @@ public abstract class BaseDialog {
 
 	private @Setter OnDismissListener onDismissListener;
 
-	private @Setter boolean showKeyboardEnabled;
-
 	@StringRes
 	public abstract int getDialogTitleRes();
 
@@ -79,6 +77,10 @@ public abstract class BaseDialog {
 		return -1;
 	}
 
+	public boolean getShowKeyboard() {
+		return false;
+	}
+
 	public boolean closeWhenPositiveButtonClicked() {
 		return true;
 	}
@@ -94,7 +96,7 @@ public abstract class BaseDialog {
 	}
 
 	public void show() {
-		if (showKeyboardEnabled && dialog.getWindow() != null) {
+		if (getShowKeyboard() && dialog.getWindow() != null) {
 			dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		}
 
