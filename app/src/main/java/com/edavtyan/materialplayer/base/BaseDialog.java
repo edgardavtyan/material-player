@@ -38,7 +38,7 @@ public abstract class BaseDialog {
 	public BaseDialog(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context)
 				.setTitle(getDialogTitleRes())
-				.setNegativeButton(android.R.string.cancel, null);
+				.setNegativeButton(android.R.string.cancel, (d, w) -> onNegativeButtonClick());
 
 		if (getPositiveButtonTextRes() != -1) {
 			if (closeWhenPositiveButtonClicked()) {
@@ -86,6 +86,8 @@ public abstract class BaseDialog {
 	public void onShow() {}
 
 	public void onPositiveButtonClick() {}
+
+	public void onNegativeButtonClick() {}
 
 	public void onDismiss() {
 		if (onDismissListener != null) onDismissListener.onDismiss();

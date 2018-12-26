@@ -117,7 +117,7 @@ public class AudioEffectsActivity
 	}
 
 	public void closeNewPresetCreationDialog() {
-		newPresetDialog.dismiss();
+		newPresetDialog.close();
 	}
 
 	public void showPresetAlreadyExists() {
