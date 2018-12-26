@@ -2,11 +2,12 @@
 .idea/caches/
 .idea/libraries/
 .idea/workspace.xml
+.idea/workspace.xml___jb_old___
+.idea/caches/build_file_checksums.ser
 app/bin/
 app/src/main/res/values/api_lastfm.xml
 build/
 *.apk
 *.iml
-local.properties
-.idea/caches/build_file_checksums.ser
 *.li
+local.properties
