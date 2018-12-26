@@ -1,112 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true"
 	>
 
-	<LinearLayout
+	<android.support.constraint.ConstraintLayout
 		android:id="@+id/main_wrapper"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
+		android:background="?colorPrimary"
 		>
 
 		<include layout="@layout/partial_appbar" />
 
+		<ImageView
+			android:id="@+id/art"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:scaleType="centerCrop"
+			app:layout_constraintTop_toBottomOf="@id/appbar"
+			app:layout_constraintBottom_toTopOf="@id/info_wrapper"
+			app:layout_constraintDimensionRatio="1:1"
+			tools:src="@drawable/fallback_cover"
+			/>
+
 		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
-			android:baselineAligned="false"
+			android:id="@+id/info_wrapper"
+			android:layout_width="wrap_content"
+			android:layout_height="?listPreferredItemHeightSmall"
+			android:orientation="vertical"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/art"
+			android:gravity="center_vertical"
 			>
 
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:orientation="vertical"
-				>
+			<TextView
+				android:id="@+id/title"
+				android:layout_marginLeft="@dimen/spacing_tiny"
+				tools:text="Title Text"
+				style="@style/CollapsingList_Land_Title"
+				/>
 
-				<com.edavtyan.materialplayer.lib.views.SquareImageViewByHeight
-					android:id="@+id/art"
-					android:layout_width="wrap_content"
-					android:layout_height="0dp"
-					android:layout_weight="1"
-					tools:src="@drawable/fallback_cover"
-					style="@style/CollapsingList_Land_Art"
-					/>
-
-				<LinearLayout
-					android:id="@+id/info_wrapper"
-					android:layout_width="match_parent"
-					android:layout_height="?listPreferredItemHeightSmall"
-					android:orientation="vertical"
-					android:gravity="center_vertical"
-					android:background="?colorPrimary"
-					>
-
-					<TextView
-						android:id="@+id/title"
-						tools:text="Title Text"
-						style="@style/CollapsingList_Land_Title"
-						/>
-
-					<TextView
-						android:id="@+id/info"
-						tools:text="6 Albums \u2022 64 Tracks"
-						style="@style/CollapsingList_Land_Info"
-						/>
-
-				</LinearLayout>
-
-			</LinearLayout>
-
-			<FrameLayout
-				android:id="@+id/land_list_wrapper"
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1"
-				android:background="@color/white"
-				>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:orientation="vertical"
-					>
-
-					<android.support.v7.widget.RecyclerView
-						android:id="@+id/list"
-						android:layout_width="match_parent"
-						android:layout_height="0dp"
-						android:layout_weight="1"
-						tools:listitem="@layout/listitem_track"
-						/>
-
-					<fragment
-						android:id="@+id/floating_nowplaying"
-						android:name="com.edavtyan.materialplayer.ui.now_playing_bar.NowPlayingBarFragment"
-						android:layout_width="match_parent"
-						android:layout_height="?listPreferredItemHeightSmall"
-						tools:layout="@layout/fragment_nowplaying_bar"
-						/>
-
-				</LinearLayout>
-
-				<View
-					android:layout_width="6dp"
-					android:layout_height="match_parent"
-					android:background="@drawable/shadow_left_dark"
-					/>
-
-			</FrameLayout>
-
+			<TextView
+				android:id="@+id/info"
+				android:layout_marginLeft="@dimen/spacing_tiny"
+				tools:text="6 Albums \u2022 64 Tracks"
+				style="@style/CollapsingList_Land_Info"
+				/>
 
 		</LinearLayout>
 
-	</LinearLayout>
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/list"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:background="?custom_background"
+			app:layout_constraintLeft_toRightOf="@id/art"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/appbar"
+			app:layout_constraintBottom_toBottomOf="@id/floating_nowplaying"
+			tools:listitem="@layout/listitem_track"
+			/>
+
+		<fragment
+			android:id="@+id/floating_nowplaying"
+			android:name="com.edavtyan.materialplayer.ui.now_playing_bar.NowPlayingBarFragment"
+			android:layout_width="0dp"
+			android:layout_height="?listPreferredItemHeightSmall"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintLeft_toRightOf="@id/art"
+			tools:layout="@layout/fragment_nowplaying_bar"
+			/>
+
+		<View
+			android:layout_width="6dp"
+			android:layout_height="0dp"
+			android:background="@drawable/shadow_left_dark"
+			app:layout_constraintTop_toBottomOf="@id/appbar"
+			app:layout_constraintLeft_toLeftOf="@id/list"
+			app:layout_constraintBottom_toBottomOf="parent"
+			/>
+
+		<View
+			android:layout_width="0dp"
+			android:layout_height="6dp"
+			android:background="@drawable/shadow_bottom_small"
+			app:layout_constraintBottom_toTopOf="@id/floating_nowplaying"
+			app:layout_constraintLeft_toRightOf="@id/art"
+			app:layout_constraintRight_toRightOf="parent"
+			/>
+
+	</android.support.constraint.ConstraintLayout>
 
 	<ImageView
 		android:id="@+id/shared_art"
@@ -114,4 +104,4 @@
 		android:layout_height="0dp"
 		/>
 
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>
