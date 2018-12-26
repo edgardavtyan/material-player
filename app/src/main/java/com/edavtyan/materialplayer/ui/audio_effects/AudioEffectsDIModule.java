@@ -2,10 +2,11 @@ package com.edavtyan.materialplayer.ui.audio_effects;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.ActivityScope;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.NewPresetDialog;
+import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetOverwriteDialog;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetsSpinnerView;
-import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import dagger.Module;
 import dagger.Provides;
@@ -40,6 +41,12 @@ public class AudioEffectsDIModule {
 	@ActivityScope
 	public NewPresetDialog provideNewPresetDialog(AudioEffectsPresenter presenter) {
 		return new NewPresetDialog(activity, presenter);
+	}
+
+	@Provides
+	@ActivityScope
+	public PresetOverwriteDialog providePresetOverwriteDialog(AudioEffectsPresenter presenter) {
+		return new PresetOverwriteDialog(activity, presenter);
 	}
 
 	@Provides

@@ -11,6 +11,8 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 	private final AudioEffectsModel model;
 	private final AudioEffectsActivity view;
 
+	private String overwritingPresetName;
+
 	public AudioEffectsPresenter(AudioEffectsModel model, AudioEffectsActivity view) {
 		this.model = model;
 		this.view = view;
@@ -74,11 +76,21 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 			view.selectLastCustomPreset();
 			view.closeNewPresetCreationDialog();
 		} catch (PresetNameAlreadyExists presetNameAlreadyExists) {
+			overwritingPresetName = name;
 			view.showPresetAlreadyExists();
 		}
 	}
 
 	public void onNewPresetDialogCancelButtonClicked() {
+		view.closeNewPresetCreationDialog();
+	}
+
+	public void onOverwriteDialogConfirmed() {
+		model.getEqualizer().saveAndOverwritePreset(overwritingPresetName);
+		view.setEqualizerPresets(
+				model.getEqualizer().getBuiltInPresetNames(),
+				model.getEqualizer().getCustomPresetNames());
+		view.selectLastCustomPreset();
 		view.closeNewPresetCreationDialog();
 	}
 

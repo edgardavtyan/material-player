@@ -27,7 +27,6 @@ public class StandardEqualizer implements Equalizer {
 			return;
 		}
 
-
 		isSupported = true;
 
 		setEnabled(prefs.getEnabled());
@@ -128,6 +127,11 @@ public class StandardEqualizer implements Equalizer {
 	@Override
 	public void savePreset(String name) throws PresetNameAlreadyExists {
 		presetsPrefs.addNewCustomPreset(name, equalizer.getGains());
+	}
+
+	@Override
+	public void saveAndOverwritePreset(String name) {
+		presetsPrefs.addAndOverwriteCustomPreset(name, equalizer.getGains());
 	}
 
 	@Override

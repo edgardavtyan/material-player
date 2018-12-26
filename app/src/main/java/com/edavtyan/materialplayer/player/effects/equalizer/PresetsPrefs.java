@@ -36,16 +36,14 @@ public abstract class PresetsPrefs {
 	}
 
 	public void addNewCustomPreset(String name, int[] gains) throws PresetNameAlreadyExists {
-		List<CustomPreset> customPresets = getPresetsFromPrefs();
+		addOrOverwriteCustomPreset(name, gains, false);
+	}
 
-		for (CustomPreset customPreset : customPresets) {
-			if (customPreset.getName().equals(name)) {
-				throw new PresetNameAlreadyExists(name);
-			}
+	public void addAndOverwriteCustomPreset(String name, int[] gains) {
+		try {
+			addOrOverwriteCustomPreset(name, gains, true);
+		} catch (PresetNameAlreadyExists ignore) {
 		}
-
-		customPresets.add(new CustomPreset(name, gains));
-		savePresetsToPrefs(customPresets);
 	}
 
 	public void deleteCustomPreset(int position) {
@@ -83,5 +81,26 @@ public abstract class PresetsPrefs {
 
 	private ArrayList<CustomPreset> getPresetsFromPrefs() {
 		return prefs.getJsonAsList(customKey, type, new ArrayList<>());
+	}
+
+	public void addOrOverwriteCustomPreset(String name, int[] gains, boolean overwrite)
+	throws PresetNameAlreadyExists {
+		List<CustomPreset> customPresets = getPresetsFromPrefs();
+
+		for (CustomPreset customPreset : customPresets) {
+			if (customPreset.getName().equals(name)) {
+				if (overwrite) {
+					customPresets.remove(customPreset);
+					customPresets.add(new CustomPreset(name, gains));
+					savePresetsToPrefs(customPresets);
+					return;
+				} else {
+					throw new PresetNameAlreadyExists(name);
+				}
+			}
+		}
+
+		customPresets.add(new CustomPreset(name, gains));
+		savePresetsToPrefs(customPresets);
 	}
 }

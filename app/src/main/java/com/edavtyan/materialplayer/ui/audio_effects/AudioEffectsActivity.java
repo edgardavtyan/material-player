@@ -15,6 +15,7 @@ import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModu
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 import com.edavtyan.materialplayer.player.effects.equalizer.Equalizer;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.NewPresetDialog;
+import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetOverwriteDialog;
 import com.edavtyan.materialplayer.ui.audio_effects.presets.PresetsSpinnerView;
 import com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerBandView;
 import com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerView;
@@ -45,6 +46,7 @@ public class AudioEffectsActivity
 	@Inject ActivityToolbarModule toolbarModule;
 	@Inject AudioEffectsPresenter presenter;
 	@Inject NewPresetDialog newPresetDialog;
+	@Inject PresetOverwriteDialog presetOverwriteDialog;
 	@Inject PresetsSpinnerView presetsSpinner;
 
 	private final View.OnClickListener onNewPresetClicked = new View.OnClickListener() {
@@ -119,7 +121,7 @@ public class AudioEffectsActivity
 	}
 
 	public void showPresetAlreadyExists() {
-		newPresetDialog.showPresetAlreadyExists();
+		presetOverwriteDialog.show();
 	}
 
 	public void setDeletePresetButtonEnabled(boolean enabled) {
