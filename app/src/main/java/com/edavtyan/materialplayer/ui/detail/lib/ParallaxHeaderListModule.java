@@ -53,11 +53,6 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	@BindView(R.id.preview_image) ImageView previewImageView;
 	@BindView(R.id.preview_background) View previewBackgroundView;
 
-	private int previewDX;
-	private int previewDY;
-	private float previewDSize;
-	private boolean isPreviewDataSet;
-
 	private final RecyclerView.OnScrollListener onScrollListener
 			= new RecyclerView.OnScrollListener() {
 		private int totalScrolled = 0;
@@ -86,6 +81,12 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	private final TestableRecyclerAdapter adapter;
 	private final ParallaxHeaderListPresenter presenter;
 	private final SharedTransitionsManager transitionsManager;
+
+	private int previewDX;
+	private int previewDY;
+	private float previewDSize;
+	private boolean isPreviewDataSet;
+	private boolean isPreviewOpen;
 
 	private boolean isExitTransitionRunning;
 
@@ -133,6 +134,8 @@ public class ParallaxHeaderListModule extends ActivityModule {
 						.scaleX(1).scaleY(1)
 						.translationX(0).translationY(0);
 		previewBackgroundView.animate().alpha(1);
+
+		isPreviewOpen = true;
 	}
 
 	private void onPreviewClick() {
@@ -144,6 +147,8 @@ public class ParallaxHeaderListModule extends ActivityModule {
 						.scaleX(previewDSize).scaleY(previewDSize)
 						.translationX(previewDX).translationY(previewDY);
 		previewBackgroundView.animate().alpha(0);
+
+		isPreviewOpen = false;
 
 	}
 
@@ -194,7 +199,15 @@ public class ParallaxHeaderListModule extends ActivityModule {
 
 	@Override
 	public void onBackPressed() {
-		if (isExitTransitionRunning) activity.finish();
+		if (isExitTransitionRunning) {
+			activity.finish();
+		}
+
+		if (isPreviewOpen) {
+			onPreviewClick();
+			return;
+		}
+
 		transitionsManager.beginExitTransition(activity);
 		isExitTransitionRunning = true;
 	}
