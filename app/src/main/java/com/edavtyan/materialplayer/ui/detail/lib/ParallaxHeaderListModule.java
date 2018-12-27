@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,6 +48,15 @@ public class ParallaxHeaderListModule extends ActivityModule {
 	@BindView(R.id.list_background) @Nullable View listBackground;
 	@BindView(R.id.appbar_shadow) @Nullable View appbarShadow;
 	@BindView(R.id.click_blocker) @Nullable View clickBlockerView;
+
+	@BindView(R.id.preview_wrapper) FrameLayout previewWrapperView;
+	@BindView(R.id.preview_image) ImageView previewImageView;
+	@BindView(R.id.preview_background) View previewBackgroundView;
+
+	private int previewDX;
+	private int previewDY;
+	private float previewDSize;
+	private boolean isPreviewDataSet;
 
 	private final RecyclerView.OnScrollListener onScrollListener
 			= new RecyclerView.OnScrollListener() {
@@ -90,6 +100,53 @@ public class ParallaxHeaderListModule extends ActivityModule {
 		this.transitionsManager = transitionsManager;
 	}
 
+	private void onArtClick() {
+		if (!isPreviewDataSet) {
+			int[] artViewLocation = new int[2];
+			int[] previewImageViewLocation = new int[2];
+			artView.getLocationOnScreen(artViewLocation);
+			previewImageView.getLocationOnScreen(previewImageViewLocation);
+
+			int screenHeight = WindowUtils.getScreenHeight(activity);
+			int screenWidth = WindowUtils.getScreenWidth(activity);
+			int statusBarHeight = WindowUtils.getStatusBarHeight(activity);
+			int previewImageTop = (screenHeight - screenWidth - statusBarHeight) / 2 + statusBarHeight;
+
+			previewDX = artViewLocation[0] - previewImageViewLocation[0];
+			previewDY = artViewLocation[1] - previewImageTop;
+			previewDSize = (float) artView.getWidth() / screenWidth;
+			isPreviewDataSet = true;
+		}
+
+		previewImageView.setPivotX(0);
+		previewImageView.setPivotY(0);
+		previewImageView.setTranslationX(previewDX);
+		previewImageView.setTranslationY(previewDY);
+		previewImageView.setScaleX(previewDSize);
+		previewImageView.setScaleY(previewDSize);
+
+		previewImageView.animate()
+						.withStartAction(() -> {
+							artView.setVisibility(View.INVISIBLE);
+							previewWrapperView.setVisibility(View.VISIBLE);
+						})
+						.scaleX(1).scaleY(1)
+						.translationX(0).translationY(0);
+		previewBackgroundView.animate().alpha(1);
+	}
+
+	private void onPreviewClick() {
+		previewImageView.animate()
+						.withEndAction(() -> {
+							artView.setVisibility(View.VISIBLE);
+							previewWrapperView.setVisibility(View.GONE);
+						})
+						.scaleX(previewDSize).scaleY(previewDSize)
+						.translationX(previewDX).translationY(previewDY);
+		previewBackgroundView.animate().alpha(0);
+
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		ButterKnife.bind(this, activity);
@@ -107,6 +164,9 @@ public class ParallaxHeaderListModule extends ActivityModule {
 				listBackground.setTranslationY(header.getHeight());
 				ViewUtils.setHeight(listBackground, activity);
 			});
+
+			artView.setOnClickListener(v -> onArtClick());
+			previewWrapperView.setOnClickListener(v -> onPreviewClick());
 		}
 
 		assert sharedArtExitView != null;
@@ -168,6 +228,7 @@ public class ParallaxHeaderListModule extends ActivityModule {
 				artView.setImageBitmap(scaledArt);
 				sharedArtView.setImageBitmap(scaledArt);
 				sharedArtExitView.setImageBitmap(scaledArt);
+				previewImageView.setImageBitmap(art);
 			} else {
 				sharedArtView.setImageBitmap(art);
 				artView.setImageBitmap(art);

@@ -60,6 +60,8 @@
 					android:layout_marginBottom="@dimen/spacing_medium"
 					android:contentDescription="@string/description_art"
 					android:scaleType="centerCrop"
+					android:clickable="true"
+					android:focusable="true"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintBottom_toBottomOf="parent"
 					tools:src="@drawable/fallback_cover"
@@ -116,7 +118,7 @@
 				tools:layout_marginTop="120dp"
 				/>
 
-			<android.support.v7.widget.RecyclerView
+			<com.edavtyan.materialplayer.lib.views.RV
 				android:id="@+id/list"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -147,6 +149,31 @@
 			/>
 
 	</LinearLayout>
+
+	<FrameLayout
+		android:id="@+id/preview_wrapper"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:visibility="gone"
+		>
+
+		<View
+			android:id="@+id/preview_background"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/black"
+			android:alpha="0"
+			/>
+
+		<com.edavtyan.materialplayer.lib.views.SquareImageView
+			android:id="@+id/preview_image"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_gravity="center_vertical"
+			tools:src="@drawable/fallback_cover"
+			/>
+
+	</FrameLayout>
 
 	<ImageView
 		android:id="@+id/shared_art"
