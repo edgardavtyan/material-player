@@ -40,18 +40,6 @@
 				android:background="?colorPrimary"
 				>
 
-				<View
-					android:id="@+id/art_wrapper"
-					android:layout_width="120dp"
-					android:layout_height="120dp"
-					android:background="@android:drawable/dialog_holo_light_frame"
-					app:layout_constraintLeft_toLeftOf="@id/art"
-					app:layout_constraintRight_toRightOf="@id/art"
-					app:layout_constraintBottom_toBottomOf="@id/art"
-					app:layout_constraintTop_toTopOf="@id/art"
-					style="@style/Detail_Art_Wrapper"
-					/>
-
 				<ImageView
 					android:id="@+id/art"
 					android:layout_width="104dp"
@@ -69,28 +57,27 @@
 
 				<TextView
 					android:id="@+id/title"
-					android:layout_marginLeft="@dimen/spacing_tiny"
-					android:layout_marginTop="@dimen/spacing_very_tiny"
-					app:layout_constraintLeft_toRightOf="@+id/art_wrapper"
-					app:layout_constraintTop_toTopOf="@id/art_wrapper"
+					android:layout_marginLeft="@dimen/spacing_small"
+					app:layout_constraintLeft_toRightOf="@+id/art"
+					app:layout_constraintTop_toTopOf="@id/art"
 					tools:text="The Nth °"
 					style="@style/Detail_Title"
 					/>
 
 				<TextView
 					android:id="@+id/info_top"
-					android:layout_marginLeft="@dimen/spacing_tiny"
+					android:layout_marginLeft="@dimen/spacing_small"
 					app:layout_constraintTop_toBottomOf="@+id/title"
-					app:layout_constraintLeft_toRightOf="@+id/art_wrapper"
+					app:layout_constraintLeft_toRightOf="@+id/art"
 					tools:text="OVERWERK"
 					style="@style/Detail_Info"
 					/>
 
 				<TextView
 					android:id="@+id/info_bottom"
-					android:layout_marginLeft="@dimen/spacing_tiny"
+					android:layout_marginLeft="@dimen/spacing_small"
 					app:layout_constraintTop_toBottomOf="@+id/info_top"
-					app:layout_constraintLeft_toRightOf="@+id/art_wrapper"
+					app:layout_constraintLeft_toRightOf="@+id/art"
 					tools:text="3 Tracks"
 					style="@style/Detail_Info"
 					/>
