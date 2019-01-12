@@ -58,9 +58,11 @@
 				<TextView
 					android:id="@+id/title"
 					android:layout_marginLeft="@dimen/spacing_small"
+					android:layout_marginRight="@dimen/spacing_medium"
 					app:layout_constraintLeft_toRightOf="@+id/art"
 					app:layout_constraintTop_toTopOf="@id/art"
-					tools:text="The Nth °"
+					app:layout_constraintRight_toRightOf="parent"
+					tools:text="Lorem ipsum dolor sit amet, eum et alia invidunt facilisi"
 					style="@style/Detail_Title"
 					/>
 
