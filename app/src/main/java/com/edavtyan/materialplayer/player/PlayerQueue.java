@@ -2,6 +2,7 @@ package com.edavtyan.materialplayer.player;
 
 import com.edavtyan.materialplayer.db.Track;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -124,7 +125,7 @@ public class PlayerQueue {
 	}
 
 	public boolean hasData() {
-		return tracks.size() > 0;
+		return tracks.size() > 0 && new File(getCurrentTrack().getPath()).exists();
 	}
 
 	private void shuffleTracks(List<Track> tracks) {
