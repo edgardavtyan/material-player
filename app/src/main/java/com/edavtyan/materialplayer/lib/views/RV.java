@@ -22,6 +22,7 @@ public class RV extends RecyclerView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
+		super.onTouchEvent(e);
 		return false;
 	}
 }
