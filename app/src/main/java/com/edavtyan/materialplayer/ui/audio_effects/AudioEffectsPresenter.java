@@ -122,33 +122,31 @@ public class AudioEffectsPresenter implements ModelServiceModule.OnServiceConnec
 	}
 
 	public void onServiceConnected(PlayerService service) {
-		if (model.getEqualizer().isSupported()) {
-
-			view.setEqualizerEnabled(model.getEqualizer().isEnabled());
-			view.setEqualizerBands(
-					model.getEqualizer().getBandsCount(),
-					model.getEqualizer().getGainLimit(),
-					model.getEqualizer().getFrequencies(),
-					model.getEqualizer().getGains());
-			view.setEqualizerPresets(
-					model.getEqualizer().getBuiltInPresetNames(),
-					model.getEqualizer().getCustomPresetNames());
-			view.setCurrentEqualizerPreset(
-					model.getEqualizer().getCurrentPresetIndex(),
-					model.getEqualizer().getCurrentPresetType());
-			view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
+		if (!model.isSupported()) {
+			view.setEqualizerNotSupported();
+			return;
 		}
 
-		if (model.getBassBoost().isSupported()) {
-			view.initBassBoost(
-					model.getBassBoost().getMaxStrength(),
-					model.getBassBoost().getStrength());
-		}
+		view.setEqualizerEnabled(model.getEqualizer().isEnabled());
+		view.setEqualizerBands(
+				model.getEqualizer().getBandsCount(),
+				model.getEqualizer().getGainLimit(),
+				model.getEqualizer().getFrequencies(),
+				model.getEqualizer().getGains());
+		view.setEqualizerPresets(
+				model.getEqualizer().getBuiltInPresetNames(),
+				model.getEqualizer().getCustomPresetNames());
+		view.setCurrentEqualizerPreset(
+				model.getEqualizer().getCurrentPresetIndex(),
+				model.getEqualizer().getCurrentPresetType());
+		view.setDeletePresetButtonEnabled(model.getEqualizer().isUsingSavedCustomPreset());
 
-		if (model.getSurround().isSupported()) {
-			view.initSurround(
-					model.getSurround().getMaxStrength(),
-					model.getSurround().getStrength());
-		}
+		view.initBassBoost(
+				model.getBassBoost().getMaxStrength(),
+				model.getBassBoost().getStrength());
+
+		view.initSurround(
+				model.getSurround().getMaxStrength(),
+				model.getSurround().getStrength());
 	}
 }

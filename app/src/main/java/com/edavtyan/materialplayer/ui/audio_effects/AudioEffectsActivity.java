@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.ed.libsutils.views.CustomSwitchCompat;
 import com.edavtyan.materialplayer.App;
@@ -40,6 +41,8 @@ public class AudioEffectsActivity
 	@BindView(R.id.preset_remove) Button deletePresetButton;
 	@BindView(R.id.bass_boost) TitledSeekbar bassBoostView;
 	@BindView(R.id.surround) TitledSeekbar surroundView;
+
+	@BindView(R.id.error_notSupported) TextView errorNotSupportedView;
 
 	@Inject ScreenThemeModule themeModule;
 	@Inject ActivityBaseMenuModule baseMenuModule;
@@ -146,6 +149,10 @@ public class AudioEffectsActivity
 
 	public void setCurrentEqualizerPreset(int presetIndex, Equalizer.PresetType presetType) {
 		presetsSpinner.selectPresetAt(presetIndex, presetType);
+	}
+
+	public void setEqualizerNotSupported() {
+		errorNotSupportedView.setVisibility(View.VISIBLE);
 	}
 
 	@Override

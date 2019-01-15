@@ -87,7 +87,7 @@ public class StandardEqualizer implements Equalizer {
 
 	@Override
 	public boolean isSupported() {
-		return isSupported;
+		return isSupported && equalizer.hasControl();
 	}
 
 	@Override

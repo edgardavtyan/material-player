@@ -1,87 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:orientation="vertical"
 	>
 
-	<LinearLayout
+	<include layout="@layout/partial_appbar" />
+
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
+		android:layout_height="match_parent"
 		>
 
-		<include layout="@layout/partial_appbar" />
-
-		<LinearLayout style="@style/AudioEffects_Equalizer_Header">
-
-			<TextView
-				android:text="@string/equalizer_title"
-				style="@style/AudioEffects_Equalizer_Title"
-				/>
-
-			<com.ed.libsutils.views.CustomSwitchCompat
-				android:id="@+id/equalizer_switch"
-				style="@style/AudioEffects_Equalizer_Switch"
-				/>
-
-		</LinearLayout>
-
-		<LinearLayout style="@style/AudioEffects_Equalizer_Header.Adjacent">
-
-			<TextView
-				android:text="@string/equalizer_presets_title"
-				style="@style/AudioEffects_Equalizer_Title"
-				/>
-
-			<Spinner
-				android:id="@+id/presets_spinner"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginRight="-12dp"
-				/>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_marginTop="-18dp"
-			android:layout_marginRight="2dp"
-			android:gravity="right"
-			style="@style/AudioEffects_Equalizer_Header.Adjacent"
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
 			>
 
-			<Button
-				android:id="@+id/preset_remove"
-				android:text="@string/equalizer_presets_button_remove"
-				style="@style/Button_Raised.Dangerous"
-				/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
 
-			<Button
-				android:id="@+id/preset_new"
-				android:text="@string/equalizer_presets_button_save"
-				style="@style/Button_Raised"
-				/>
+				<LinearLayout style="@style/AudioEffects_Equalizer_Header">
 
-		</LinearLayout>
+					<TextView
+						android:text="@string/equalizer_title"
+						style="@style/AudioEffects_Equalizer_Title"
+						/>
 
-		<com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerView
-			android:id="@+id/equalizer"
-			style="@style/AudioEffects_Equalizer"
+					<com.ed.libsutils.views.CustomSwitchCompat
+						android:id="@+id/equalizer_switch"
+						style="@style/AudioEffects_Equalizer_Switch"
+						/>
+
+				</LinearLayout>
+
+				<LinearLayout style="@style/AudioEffects_Equalizer_Header.Adjacent">
+
+					<TextView
+						android:text="@string/equalizer_presets_title"
+						style="@style/AudioEffects_Equalizer_Title"
+						/>
+
+					<Spinner
+						android:id="@+id/presets_spinner"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginRight="-12dp"
+						/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_marginTop="-18dp"
+					android:layout_marginRight="2dp"
+					android:gravity="right"
+					style="@style/AudioEffects_Equalizer_Header.Adjacent"
+					>
+
+					<Button
+						android:id="@+id/preset_remove"
+						android:text="@string/equalizer_presets_button_remove"
+						style="@style/Button_Raised.Dangerous"
+						/>
+
+					<Button
+						android:id="@+id/preset_new"
+						android:text="@string/equalizer_presets_button_save"
+						style="@style/Button_Raised"
+						/>
+
+				</LinearLayout>
+
+				<com.edavtyan.materialplayer.ui.audio_effects.views.EqualizerView
+					android:id="@+id/equalizer"
+					style="@style/AudioEffects_Equalizer"
+					/>
+
+				<com.edavtyan.materialplayer.ui.audio_effects.views.TitledSeekbar
+					android:id="@+id/bass_boost"
+					app:ts_text="@string/bass_boost_title"
+					style="@style/AudioEffects_Effect"
+					/>
+
+				<com.edavtyan.materialplayer.ui.audio_effects.views.TitledSeekbar
+					android:id="@+id/surround"
+					app:ts_text="@string/surround_title"
+					style="@style/AudioEffects_Effect"
+					/>
+
+			</LinearLayout>
+
+		</ScrollView>
+
+		<TextView
+			android:id="@+id/error_notSupported"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/white"
+			android:gravity="center"
+			android:text="Another application has control over equalizer"
+			android:textSize="@dimen/font_medium"
+			android:textColor="@color/black"
+			android:visibility="invisible"
 			/>
 
-		<com.edavtyan.materialplayer.ui.audio_effects.views.TitledSeekbar
-			android:id="@+id/bass_boost"
-			app:ts_text="@string/bass_boost_title"
-			style="@style/AudioEffects_Effect"
-			/>
+	</FrameLayout>
 
-		<com.edavtyan.materialplayer.ui.audio_effects.views.TitledSeekbar
-			android:id="@+id/surround"
-			app:ts_text="@string/surround_title"
-			style="@style/AudioEffects_Effect"
-			/>
-
-	</LinearLayout>
-
-</ScrollView>
+</LinearLayout>

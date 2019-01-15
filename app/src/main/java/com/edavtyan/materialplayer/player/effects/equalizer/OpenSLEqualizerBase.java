@@ -24,6 +24,11 @@ public class OpenSLEqualizerBase implements EqualizerBase {
 	}
 
 	@Override
+	public boolean hasControl() {
+		return equalizer.hasControl();
+	}
+
+	@Override
 	public int getGainLimit() {
 		return Math.abs(milliToDeci(equalizer.getBandLevelRange()[0]));
 	}

@@ -24,12 +24,21 @@ public class StandardEqualizerBase implements EqualizerBase {
 	}
 
 	@Override
+	public boolean hasControl() {
+		return equalizer.hasControl();
+	}
+
+	@Override
 	public int getGainLimit() {
 		return Math.abs(milliToDeci(equalizer.getBandLevelRange()[0]));
 	}
 
 	@Override
 	public void setGains(int[] gains) {
+		if (!equalizer.hasControl()) {
+			return;
+		}
+
 		this.gains = gains;
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseIndex = bandsCount - i - 1;

@@ -1,6 +1,7 @@
 package com.edavtyan.materialplayer.player.effects.equalizer;
 
 public interface EqualizerBase {
+	boolean hasControl();
 	int getBandsCount();
 	int getGainLimit();
 	int[] getFrequencies();

@@ -39,4 +39,10 @@ public class AudioEffectsModel {
 	public Surround getSurround() {
 		return serviceModule.getService().getSurround();
 	}
+
+	public boolean isSupported() {
+		return getEqualizer().isSupported() &&
+			   getBassBoost().isSupported() &&
+			   getSurround().isSupported();
+	}
 }
