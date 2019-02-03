@@ -20,7 +20,7 @@ public class ArtistListPresenter implements ListPresenter<ArtistListViewHolder> 
 		Artist artist = model.getArtistAtIndex(position);
 		holder.setTitle(artist.getTitle());
 		holder.setInfo(artist.getAlbumsCount(), artist.getTracksCount());
-		model.getArtistImage(position, holder::setImage);
+		holder.setImageUrl(model.getArtistImageUrl(position));
 	}
 
 	@Override
