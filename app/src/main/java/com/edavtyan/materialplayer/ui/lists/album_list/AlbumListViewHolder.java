@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
@@ -72,7 +71,6 @@ public class AlbumListViewHolder
 		Glide.with(context)
 			 .load(artPath)
 			 .apply(options)
-			 .transition(DrawableTransitionOptions.withCrossFade())
 			 .into(artView);
 	}
 

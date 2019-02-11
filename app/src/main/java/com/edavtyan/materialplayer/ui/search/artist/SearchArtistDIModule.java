@@ -4,10 +4,10 @@ import android.app.Activity;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
+import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListImageLoader;
 import com.edavtyan.materialplayer.ui.search.base.SearchViewImpl;
 
 import dagger.Module;
@@ -40,8 +40,8 @@ public class SearchArtistDIModule {
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
 			TrackDB trackDB,
-			LastfmApi lastfmApi) {
-		return new SearchArtistModel(serviceModule, artistDB, trackDB, lastfmApi);
+			ArtistListImageLoader imageLoader) {
+		return new SearchArtistModel(serviceModule, artistDB, trackDB, imageLoader);
 	}
 
 	@Provides

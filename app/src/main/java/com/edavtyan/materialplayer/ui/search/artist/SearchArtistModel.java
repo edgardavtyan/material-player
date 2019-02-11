@@ -3,8 +3,8 @@ package com.edavtyan.materialplayer.ui.search.artist;
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
+import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListImageLoader;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListModel;
 import com.edavtyan.materialplayer.ui.search.base.SearchModel;
 
@@ -19,8 +19,8 @@ public class SearchArtistModel extends ArtistListModel implements SearchModel {
 			ModelServiceModule serviceModule,
 			ArtistDB artistDB,
 			TrackDB trackDB,
-			LastfmApi lastfmApi) {
-		super(serviceModule, artistDB, trackDB, lastfmApi);
+			ArtistListImageLoader imageLoader) {
+		super(serviceModule, artistDB, trackDB, imageLoader);
 		this.artistDB = artistDB;
 	}
 
