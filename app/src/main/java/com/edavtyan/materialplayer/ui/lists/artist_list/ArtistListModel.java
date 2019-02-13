@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import android.graphics.Bitmap;
-
 import com.edavtyan.materialplayer.db.Artist;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.Track;
@@ -54,14 +52,13 @@ public class ArtistListModel extends ListModel {
 		return trackDB.getTracksWithArtistId(getArtistAtIndex(position).getId());
 	}
 
-	public void getArtistImage(int position, ArtistListImageTask.Callback callback) {
+	public void getArtistImageLink(int position, ArtistListImageTask.Callback callback) {
 		String artistTitle = artists.get(position).getTitle();
-		Bitmap imageFromCache = imageLoader.getImageFromMemoryCache(artistTitle);
-		if (imageFromCache != null) {
-			callback.onArtLoaded(imageFromCache);
-		} else {
-			new ArtistListImageTask(imageLoader, callback).execute(artistTitle);
+		if (imageLoader.isCached(artistTitle)) {
+			callback.onArtLoaded(imageLoader.getLinkFromCache(artistTitle));
 		}
+
+		new ArtistListImageTask(imageLoader, callback).execute(artistTitle);
 	}
 
 	protected List<Artist> queryArtists() {

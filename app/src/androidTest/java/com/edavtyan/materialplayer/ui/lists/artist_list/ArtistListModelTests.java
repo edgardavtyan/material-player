@@ -82,7 +82,7 @@ public class ArtistListModelTests extends BaseTest {
 		when(artists.get(0)).thenReturn(artist);
 
 		model.update();
-		model.getArtistImage(0, callback);
+		model.getArtistImageLink(0, callback);
 
 		verify(callback).onArtLoaded(art);
 	}
@@ -100,7 +100,7 @@ public class ArtistListModelTests extends BaseTest {
 		when(artists.get(0)).thenReturn(artist);
 
 		model.update();
-		model.getArtistImage(0, callback);
+		model.getArtistImageLink(0, callback);
 
 		verify(callback, timeout(1000)).onArtLoaded(art);
 	}

@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
@@ -11,6 +10,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.lib.testable.TestableViewHolder;
 import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
@@ -61,13 +63,17 @@ public class ArtistListViewHolder
 		infoView.setText(info);
 	}
 
-	public void setImage(Bitmap art) {
-		if (art == null) {
-			artView.setImageResource(R.drawable.fallback_artist);
-		} else {
-			artView.setImageBitmap(art);
+	public void setImage(String artLink) {
+		RequestOptions options = new RequestOptions()
+				.error(R.drawable.fallback_artist)
+				.placeholder(R.drawable.fallback_artist);
+
+		Glide.with(context)
+			 .load(artLink)
+			 .apply(options)
+			 .transition(DrawableTransitionOptions.withCrossFade())
+			 .into(artView);
 		}
-	}
 
 	@Override
 	public void onClick(View v) {

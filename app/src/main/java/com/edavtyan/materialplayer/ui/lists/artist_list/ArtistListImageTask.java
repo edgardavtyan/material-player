@@ -1,15 +1,14 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 
-public class ArtistListImageTask extends AsyncTask<String, Void, Bitmap> {
+public class ArtistListImageTask extends AsyncTask<String, Void, String> {
 	private final ArtistListImageLoader imageLoader;
 	private final Callback callback;
 
 	interface Callback {
-		void onArtLoaded(@Nullable Bitmap art);
+		void onArtLoaded(@Nullable String artLink);
 	}
 
 	public ArtistListImageTask(ArtistListImageLoader imageLoader, Callback callback) {
@@ -19,12 +18,12 @@ public class ArtistListImageTask extends AsyncTask<String, Void, Bitmap> {
 
 	@Override
 	@Nullable
-	protected Bitmap doInBackground(String... title) {
-		return imageLoader.getImageFromFileSystemOrApi(title[0]);
+	protected String doInBackground(String... title) {
+		return imageLoader.getImageLink(title[0]);
 	}
 
 	@Override
-	protected void onPostExecute(@Nullable Bitmap art) {
-		callback.onArtLoaded(art);
+	protected void onPostExecute(@Nullable String artLink) {
+		callback.onArtLoaded(artLink);
 	}
 }

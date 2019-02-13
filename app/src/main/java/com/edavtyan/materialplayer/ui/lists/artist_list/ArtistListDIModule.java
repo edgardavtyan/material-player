@@ -1,17 +1,15 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
-import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
-import com.edavtyan.materialplayer.utils.WebClient;
 
 import dagger.Module;
 import dagger.Provides;
@@ -70,23 +68,14 @@ public class ArtistListDIModule {
 	@Provides
 	@FragmentScope
 	public ArtistListImageLoader provideImageLoader(
-			WebClient webClient,
-			TestableBitmapFactory bitmapFactory,
 			LastfmApi lastfmApi,
-			ArtistListImageFileStorage fileStorage,
-			ArtistListImageMemoryCache memoryCache) {
-		return new ArtistListImageLoader(webClient, bitmapFactory, lastfmApi, fileStorage, memoryCache);
+			ArtistListImageLinkCache linkCache) {
+		return new ArtistListImageLoader(lastfmApi, linkCache);
 	}
 
 	@Provides
 	@FragmentScope
-	public ArtistListImageFileStorage provideImageFileStorage(Context context) {
-		return new ArtistListImageFileStorage(context);
-	}
-
-	@Provides
-	@FragmentScope
-	public ArtistListImageMemoryCache provideImageMemoryCache() {
-		return new ArtistListImageMemoryCache();
+	public ArtistListImageLinkCache provideArtistListImageLinkCache(AdvancedGsonSharedPrefs prefs) {
+		return new ArtistListImageLinkCache(prefs);
 	}
 }

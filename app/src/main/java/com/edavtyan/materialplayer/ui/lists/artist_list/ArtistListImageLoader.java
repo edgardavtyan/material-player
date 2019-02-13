@@ -1,64 +1,34 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
-import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
-import com.edavtyan.materialplayer.utils.WebClient;
 
 public class ArtistListImageLoader {
-	private final TestableBitmapFactory bitmapFactory;
 	private final LastfmApi lastfmApi;
-	private final ArtistListImageFileStorage fileStorage;
-	private final ArtistListImageMemoryCache memoryCache;
-	private final WebClient webClient;
+	private final ArtistListImageLinkCache linkCache;
 
-	public ArtistListImageLoader(
-			WebClient webClient,
-			TestableBitmapFactory bitmapFactory,
-			LastfmApi lastfmApi,
-			ArtistListImageFileStorage fileStorage,
-			ArtistListImageMemoryCache memoryCache) {
-		this.bitmapFactory = bitmapFactory;
+	public ArtistListImageLoader(LastfmApi lastfmApi, ArtistListImageLinkCache linkCache) {
 		this.lastfmApi = lastfmApi;
-		this.fileStorage = fileStorage;
-		this.memoryCache = memoryCache;
-		this.webClient = webClient;
+		this.linkCache = linkCache;
 	}
 
 	@Nullable
-	public Bitmap getImageFromMemoryCache(String artistTitle) {
-		if (memoryCache.exists(artistTitle)) {
-			return memoryCache.get(artistTitle);
+	public String getImageLink(String artistTitle) {
+		if (linkCache.exists(artistTitle)) {
+			return linkCache.getLink(artistTitle);
 		}
 
-		return null;
+		String imageLink = lastfmApi.getArtistInfo(artistTitle).getLargeImageUrl();
+		linkCache.addLink(artistTitle, imageLink);
+		return imageLink;
 	}
 
-	@Nullable
-	public Bitmap getImageFromFileSystemOrApi(String artistTitle) {
-		try {
-			if (fileStorage.exists(artistTitle)) {
-				Bitmap image = fileStorage.load(artistTitle);
-				if (!memoryCache.exists(artistTitle)) {
-					memoryCache.put(artistTitle, image);
-				}
-				return image;
-			}
+	public boolean isCached(String artistTitle) {
+		return linkCache.exists(artistTitle);
+	}
 
-			String url = lastfmApi.getArtistInfo(artistTitle).getLargeImageUrl();
-			byte[] imageBytes = webClient.getBytes(url);
-			Bitmap image = bitmapFactory.fromByteArray(imageBytes);
-
-			memoryCache.put(artistTitle, image);
-			fileStorage.saveBytes(artistTitle, imageBytes);
-
-			return image;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
+	public String getLinkFromCache(String artistTitle) {
+		return linkCache.getLink(artistTitle);
 	}
 }

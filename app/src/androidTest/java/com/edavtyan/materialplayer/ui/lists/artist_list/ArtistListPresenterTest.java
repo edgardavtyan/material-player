@@ -55,7 +55,7 @@ public class ArtistListPresenterTest extends BaseTest {
 			ArtistListImageTask.Callback callback = (ArtistListImageTask.Callback) invocation.getArguments()[1];
 			callback.onArtLoaded(art);
 			return null;
-		}).when(model).getArtistImage(eq(0), any());
+		}).when(model).getArtistImageLink(eq(0), any());
 		doReturn(new Artist()).when(model).getArtistAtIndex(0);
 
 		presenter.onBindViewHolder(holder, 0);
