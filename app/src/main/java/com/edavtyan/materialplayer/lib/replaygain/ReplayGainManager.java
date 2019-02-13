@@ -15,21 +15,6 @@ public class ReplayGainManager implements PlayerPlugin {
 	private ReplayGainData rgData;
 	private Track currentTrack;
 
-	@SuppressWarnings("FieldCanBeLocal")
-	private final ReplayGainPrefs.OnEnabledChanged onEnabledPrefChangedListener = enabled -> {
-		if (enabled) {
-			apply();
-		} else {
-			disable();
-		}
-	};
-
-	@SuppressWarnings("FieldCanBeLocal")
-	private final ReplayGainPrefs.OnAlbumUsedChanged onAlbumPrefChangedListener = this::reapply;
-
-	@SuppressWarnings("FieldCanBeLocal")
-	private final ReplayGainPrefs.OnPreampChanged onPreampPrefChangedListener = this::reapply;
-
 	public ReplayGainManager(
 			Amplifier amplifier,
 			ReplayGainReader rgReader,
@@ -37,9 +22,25 @@ public class ReplayGainManager implements PlayerPlugin {
 		this.amplifier = amplifier;
 		this.rgReader = rgReader;
 		this.prefs = prefs;
-		this.prefs.setOnEnabledChangedListener(onEnabledPrefChangedListener);
-		this.prefs.setOnPreampChangedListener(onPreampPrefChangedListener);
-		this.prefs.setOnAlbumUsedChangedListener(onAlbumPrefChangedListener);
+		this.prefs.setOnEnabledChangedListener(this::onEnabledPrefChanged);
+		this.prefs.setOnPreampChangedListener(this::onPreampPrefChanged);
+		this.prefs.setOnAlbumUsedChangedListener(this::onAlbumPrefChanged);
+	}
+
+	private void onEnabledPrefChanged(boolean enabled) {
+		if (enabled) {
+			apply();
+		} else {
+			disable();
+		}
+	}
+
+	private void onPreampPrefChanged() {
+		reapply();
+	}
+
+	private void onAlbumPrefChanged() {
+		reapply();
 	}
 
 	@Override
