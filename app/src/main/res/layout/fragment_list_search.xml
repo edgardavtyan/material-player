@@ -5,6 +5,13 @@
 	android:layout_height="match_parent"
 	>
 
+	<View
+		android:id="@+id/background"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="?custom_background"
+		/>
+
 	<TextView
 		android:id="@+id/search_empty"
 		android:layout_width="wrap_content"
