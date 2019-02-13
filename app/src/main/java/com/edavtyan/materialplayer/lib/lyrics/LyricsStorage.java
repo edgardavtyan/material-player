@@ -3,6 +3,7 @@ package com.edavtyan.materialplayer.lib.lyrics;
 import android.content.Context;
 
 import com.edavtyan.materialplayer.lib.file_storage.StringFileStorage;
+import com.edavtyan.materialplayer.utils.StringUtils;
 
 public class LyricsStorage extends StringFileStorage {
 	public LyricsStorage(Context context) {
@@ -22,6 +23,6 @@ public class LyricsStorage extends StringFileStorage {
 	}
 
 	private String getFilename(String artist, String track) {
-		return artist + ":" + track;
+		return artist + ":" + StringUtils.encodeFilename(track);
 	}
 }
