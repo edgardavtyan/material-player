@@ -16,8 +16,8 @@ import android.widget.ImageButton;
 import com.ed.libsutils.utils.WindowUtils;
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
+import com.edavtyan.materialplayer.base.BaseActivity;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
-import com.edavtyan.materialplayer.modular.activity.ModularActivity;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityBaseMenuModule;
 import com.edavtyan.materialplayer.modular.activity.modules.ActivityToolbarModule;
 
@@ -29,7 +29,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SearchActivity extends ModularActivity {
+public class SearchActivity extends BaseActivity {
 	@BindView(R.id.back) ImageButton backButton;
 	@BindView(R.id.search) EditText searchEditText;
 	@BindView(R.id.tabs) TabLayout tabLayout;

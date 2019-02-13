@@ -11,6 +11,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:fitsSystemWindows="true"
+		android:background="?colorPrimary"
 		>
 
 		<LinearLayout
@@ -23,7 +24,7 @@
 				android:layout_width="32dp"
 				android:layout_height="32dp"
 				android:layout_margin="12dp"
-				android:src="?attr/custom_iconBackArrow"
+				android:src="?custom_iconBackArrow"
 				android:background="@drawable/ripple_primary"
 				/>
 
@@ -33,8 +34,8 @@
 				android:layout_height="56dp"
 				android:inputType="text"
 				android:hint="@string/search_hint"
-				android:textColor="?attr/custom_textColorContrastPrimary"
-				android:textColorHint="?attr/custom_textColorContrastPrimary"
+				android:textColor="?custom_textColorContrastPrimary"
+				android:textColorHint="?custom_textColorContrastPrimary"
 				android:textCursorDrawable="@null"
 				android:paddingLeft="@dimen/spacing_medium"
 				android:paddingRight="@dimen/spacing_medium"
