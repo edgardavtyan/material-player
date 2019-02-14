@@ -11,6 +11,8 @@ public class ReplayGainReader {
 	public ReplayGainData read(String path) {
 		Double trackRG = null;
 		Double albumRG = null;
+		Double trackPeak = null;
+		Double albumPeak = null;
 
 		try {
 			AudioFile f = AudioFileIO.read(new File(path));
@@ -18,35 +20,64 @@ public class ReplayGainReader {
 
 			while (fields.hasNext()) {
 				TagField field = fields.next();
-				if (field.toString().toLowerCase().contains("replaygain_track_gain")) {
-					trackRG = parseRgMp3(field.toString());
+				String fieldStr = field.toString().toLowerCase();
+				String fieldId = field.getId().toLowerCase();
+
+				if (fieldStr.contains("replaygain_track_gain")) {
+					trackRG = parseRgMp3(fieldStr);
 				}
 
-				if (field.getId().toLowerCase().contains("replaygain_track_gain")) {
-					trackRG = parseRgM4a(field.toString());
+				if (fieldStr.contains("replaygain_track_peak")) {
+					trackPeak = parsePeakMp3(fieldStr);
 				}
 
-				if (field.toString().toLowerCase().contains("replaygain_album_gain")) {
-					albumRG = parseRgMp3(field.toString());
+				if (fieldId.contains("replaygain_track_gain")) {
+					trackRG = parseRgM4a(fieldStr);
 				}
 
-				if (field.getId().toLowerCase().contains("replaygain_album_gain")) {
-					albumRG = parseRgM4a(field.toString());
+				if (fieldId.contains("replaygain_track_peak")) {
+					trackPeak = parsePeakM4a(fieldStr);
+				}
+
+				if (fieldStr.contains("replaygain_album_gain")) {
+					albumRG = parseRgMp3(fieldStr);
+				}
+
+				if (fieldStr.contains("replaygain_album_peak")) {
+					albumPeak = parsePeakMp3(fieldStr);
+				}
+
+				if (fieldId.contains("replaygain_album_gain")) {
+					albumRG = parseRgM4a(fieldStr);
+				}
+
+				if (fieldId.contains("replaygain_album_peak")) {
+					albumPeak = parsePeakM4a(fieldStr);
 				}
 			}
 		} catch (Exception ignored) {}
 
-		return new ReplayGainData(trackRG, albumRG);
+		return new ReplayGainData(trackRG, albumRG, trackPeak, albumPeak);
 	}
 
 	private double parseRgMp3(String rgRaw) {
 		int rgStart = 43;
-		int rgEnd = rgRaw.indexOf(" dB");
+		int rgEnd = rgRaw.indexOf(" db");
 		double rg = Double.parseDouble(rgRaw.substring(rgStart, rgEnd));
 		return rg;
 	}
 
 	private double parseRgM4a(String rgRaw) {
-		return Double.parseDouble(rgRaw.replace(" dB", ""));
+		return Double.parseDouble(rgRaw.replace(" db", ""));
+	}
+
+	private double parsePeakMp3(String peakRaw) {
+		int peakStart = peakRaw.indexOf("text=") + 6;
+		int peakEnd = peakStart + 8;
+		return Double.parseDouble(peakRaw.substring(peakStart, peakEnd));
+	}
+
+	private double parsePeakM4a(String peakRaw) {
+		return Double.parseDouble(peakRaw);
 	}
 }

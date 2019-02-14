@@ -72,11 +72,19 @@ public class ReplayGainManager implements PlayerPlugin {
 	private void applyGain() {
 		if (getRgGain() != null) {
 			double gainWithPreamp = getRgGain() + prefs.getPreamp();
-			if (prefs.isLimiterEnabled() && gainWithPreamp > 0) {
-				amplifier.setGain(-getRgGain());
+			if (prefs.isLimiterEnabled() && rgData.getTrackPeak() != null) {
+				amplifier.setGain(Math.min(getRgGain(), getPeakRg()));
 			} else {
 				amplifier.setGain(gainWithPreamp);
 			}
+		}
+	}
+
+	private double getPeakRg() {
+		if (rgData.getTrackPeak() != null && rgData.getTrackPeak() > 1) {
+			return (1 - rgData.getTrackPeak()) * 89 / 10;
+		} else {
+			return 0;
 		}
 	}
 
