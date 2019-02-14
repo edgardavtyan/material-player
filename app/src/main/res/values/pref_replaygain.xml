@@ -9,6 +9,10 @@
 	<string name="pref_replaygain_album_title">Use album gain</string>
 	<bool name="pref_replaygain_album_default">false</bool>
 
+	<string name="pref_replaygain_limit_key">replaygain_limit</string>
+	<string name="pref_replaygain_limit_title">Limit gain to prevent clipping</string>
+	<bool name="pref_replaygain_limit_default">true</bool>
+
 	<string name="pref_replaygain_gain_key">replaygain_gain</string>
 	<string name="pref_replaygain_gain_title">Preamp</string>
 	<string name="pref_replaygain_gain_format">%.1f dB</string>

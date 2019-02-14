@@ -25,51 +25,58 @@ public class ReplayGainManager implements PlayerPlugin {
 		this.prefs.setOnEnabledChangedListener(this::onEnabledPrefChanged);
 		this.prefs.setOnPreampChangedListener(this::onPreampPrefChanged);
 		this.prefs.setOnAlbumUsedChangedListener(this::onAlbumPrefChanged);
+		this.prefs.setOnLimitChangedListener(this::onLimitChanged);
 	}
 
 	private void onEnabledPrefChanged(boolean enabled) {
 		if (enabled) {
-			apply();
+			loadGain();
 		} else {
 			disable();
 		}
 	}
 
 	private void onPreampPrefChanged() {
-		reapply();
+		applyGain();
 	}
 
 	private void onAlbumPrefChanged() {
-		reapply();
+		applyGain();
+	}
+
+	private void onLimitChanged() {
+		applyGain();
 	}
 
 	@Override
 	public void onPlayerPluginConnected(Player player) {
 		if (player.hasData()) {
 			currentTrack = player.getCurrentTrack();
-			apply();
+			loadGain();
 		}
 	}
 
 	@Override
 	public void onNewTrack(Track track) {
 		currentTrack = track;
-		apply();
+		loadGain();
 	}
 
-	private void apply() {
+	private void loadGain() {
 		if (prefs.getEnabled()) {
 			rgData = rgReader.read(currentTrack.getPath());
-
-			if (getRgGain() != null) {
-				amplifier.setGain(getRgGain() + prefs.getPreamp());
-			}
+			applyGain();
 		}
 	}
 
-	private void reapply() {
-		if (prefs.getEnabled() && getRgGain() != null) {
-			amplifier.setGain(getRgGain() + prefs.getPreamp());
+	private void applyGain() {
+		if (getRgGain() != null) {
+			double gainWithPreamp = getRgGain() + prefs.getPreamp();
+			if (prefs.isLimiterEnabled() && gainWithPreamp > 0) {
+				amplifier.setGain(-getRgGain());
+			} else {
+				amplifier.setGain(gainWithPreamp);
+			}
 		}
 	}
 

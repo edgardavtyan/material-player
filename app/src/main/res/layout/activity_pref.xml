@@ -108,6 +108,15 @@
 					app:cp_defaultValue="@bool/pref_replaygain_album_default"
 					/>
 
+				<com.ed.androidprefs.checkbox.CheckboxPreference
+					android:id="@+id/pref_rg_limit"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:cp_key="@string/pref_replaygain_limit_key"
+					app:cp_title="@string/pref_replaygain_limit_title"
+					app:cp_defaultValue="@bool/pref_replaygain_limit_default"
+					/>
+
 				<com.ed.androidprefs.seekbar.SeekbarPreference
 					android:id="@+id/pref_rg_gain"
 					android:layout_width="match_parent"

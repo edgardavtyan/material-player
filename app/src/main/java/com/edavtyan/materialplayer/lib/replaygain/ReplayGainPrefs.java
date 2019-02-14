@@ -17,10 +17,13 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 	private final boolean rgAlbumDefault;
 	private final String rgPreampKey;
 	private final int rgPreampDefault;
+	private final String rgLimitKey;
+	private final boolean rgLimitDefault;
 
 	private @Setter OnPreampChanged onPreampChangedListener;
 	private @Setter OnEnabledChanged onEnabledChangedListener;
 	private @Setter OnAlbumUsedChanged onAlbumUsedChangedListener;
+	private @Setter OnLimitChanged onLimitChangedListener;
 
 	public interface OnPreampChanged {
 		void onPreampChanged();
@@ -34,6 +37,10 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 		void onAlbumUsedChanged();
 	}
 
+	public interface OnLimitChanged {
+		void onLimitChanged();
+	}
+
 	public ReplayGainPrefs(Context context, AdvancedSharedPrefs prefs) {
 		this.prefs = prefs;
 		this.prefs.registerOnSharedPreferenceChangeListener(this);
@@ -45,6 +52,8 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 		rgAlbumDefault = res.getBoolean(R.bool.pref_replaygain_album_default);
 		rgPreampKey = res.getString(R.string.pref_replaygain_gain_key);
 		rgPreampDefault = res.getInteger(R.integer.pref_replaygain_gain_default);
+		rgLimitKey = res.getString(R.string.pref_replaygain_limit_key);
+		rgLimitDefault = res.getBoolean(R.bool.pref_replaygain_limit_default);
 	}
 
 	public boolean getEnabled() {
@@ -53,6 +62,10 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 
 	public boolean isAlbumGainUsed() {
 		return prefs.getBoolean(rgAlbumKey, rgAlbumDefault);
+	}
+
+	public boolean isLimiterEnabled() {
+		return prefs.getBoolean(rgLimitKey, rgLimitDefault);
 	}
 
 	public double getPreamp() {
@@ -73,6 +86,11 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 
 		if (key.equals(rgPreampKey)) {
 			onPreampChangedListener.onPreampChanged();
+			return;
+		}
+
+		if (key.equals(rgLimitKey)) {
+			onLimitChangedListener.onLimitChanged();
 			return;
 		}
 	}
