@@ -20,25 +20,10 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 	private final String rgLimitKey;
 	private final boolean rgLimitDefault;
 
-	private @Setter OnPreampChanged onPreampChangedListener;
-	private @Setter OnEnabledChanged onEnabledChangedListener;
-	private @Setter OnAlbumUsedChanged onAlbumUsedChangedListener;
-	private @Setter OnLimitChanged onLimitChangedListener;
+	private @Setter OnPrefChanged onPrefChangedListener;
 
-	public interface OnPreampChanged {
-		void onPreampChanged();
-	}
-
-	public interface OnEnabledChanged {
-		void onEnabledChanged(boolean enabled);
-	}
-
-	public interface OnAlbumUsedChanged {
-		void onAlbumUsedChanged();
-	}
-
-	public interface OnLimitChanged {
-		void onLimitChanged();
+	public interface OnPrefChanged {
+		void onChanged();
 	}
 
 	public ReplayGainPrefs(Context context, AdvancedSharedPrefs prefs) {
@@ -56,7 +41,7 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 		rgLimitDefault = res.getBoolean(R.bool.pref_replaygain_limit_default);
 	}
 
-	public boolean getEnabled() {
+	public boolean isEnabled() {
 		return prefs.getBoolean(rgEnabledKey, rgEnabledDefault);
 	}
 
@@ -74,23 +59,11 @@ public class ReplayGainPrefs implements SharedPreferences.OnSharedPreferenceChan
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if (key.equals(rgEnabledKey)) {
-			onEnabledChangedListener.onEnabledChanged(getEnabled());
-			return;
-		}
-
-		if (key.equals(rgAlbumKey)) {
-			onAlbumUsedChangedListener.onAlbumUsedChanged();
-			return;
-		}
-
-		if (key.equals(rgPreampKey)) {
-			onPreampChangedListener.onPreampChanged();
-			return;
-		}
-
-		if (key.equals(rgLimitKey)) {
-			onLimitChangedListener.onLimitChanged();
+		if (key.equals(rgEnabledKey) ||
+			key.equals(rgAlbumKey) ||
+			key.equals(rgPreampKey) ||
+			key.equals(rgLimitKey)) {
+			onPrefChangedListener.onChanged();
 			return;
 		}
 	}

@@ -10,7 +10,7 @@
 	<bool name="pref_replaygain_album_default">false</bool>
 
 	<string name="pref_replaygain_limit_key">replaygain_limit</string>
-	<string name="pref_replaygain_limit_title">Prevent clipping according to peak</string>
+	<string name="pref_replaygain_limit_title">Prevent clipping</string>
 	<bool name="pref_replaygain_limit_default">true</bool>
 
 	<string name="pref_replaygain_gain_key">replaygain_gain</string>

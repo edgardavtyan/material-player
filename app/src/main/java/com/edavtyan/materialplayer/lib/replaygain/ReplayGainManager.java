@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.lib.replaygain;
 
-import android.support.annotation.Nullable;
-
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.PlayerPlugin;
@@ -22,30 +20,7 @@ public class ReplayGainManager implements PlayerPlugin {
 		this.amplifier = amplifier;
 		this.rgReader = rgReader;
 		this.prefs = prefs;
-		this.prefs.setOnEnabledChangedListener(this::onEnabledPrefChanged);
-		this.prefs.setOnPreampChangedListener(this::onPreampPrefChanged);
-		this.prefs.setOnAlbumUsedChangedListener(this::onAlbumPrefChanged);
-		this.prefs.setOnLimitChangedListener(this::onLimitChanged);
-	}
-
-	private void onEnabledPrefChanged(boolean enabled) {
-		if (enabled) {
-			loadGain();
-		} else {
-			disable();
-		}
-	}
-
-	private void onPreampPrefChanged() {
-		applyGain();
-	}
-
-	private void onAlbumPrefChanged() {
-		applyGain();
-	}
-
-	private void onLimitChanged() {
-		applyGain();
+		this.prefs.setOnPrefChangedListener(this::applyGain);
 	}
 
 	@Override
@@ -63,43 +38,35 @@ public class ReplayGainManager implements PlayerPlugin {
 	}
 
 	private void loadGain() {
-		if (prefs.getEnabled()) {
-			rgData = rgReader.read(currentTrack.getPath());
-			applyGain();
-		}
+		rgData = rgReader.read(currentTrack.getPath());
+		applyGain();
 	}
 
 	private void applyGain() {
-		if (getRgGain() != null) {
-			double gainWithPreamp = getRgGain() + prefs.getPreamp();
-			if (prefs.isLimiterEnabled() && rgData.getTrackPeak() != null) {
-				amplifier.setGain(Math.min(getRgGain(), getPeakRg()));
-			} else {
-				amplifier.setGain(gainWithPreamp);
-			}
+		if (!prefs.isEnabled()) {
+			amplifier.setGain(0);
+			return;
+		}
+
+		double gainWithPreamp = getRgGain() + prefs.getPreamp();
+		if (prefs.isLimiterEnabled()) {
+			amplifier.setGain(Math.min(gainWithPreamp, getRgPeak()));
+		} else {
+			amplifier.setGain(gainWithPreamp);
 		}
 	}
 
-	private double getPeakRg() {
-		if (rgData.getTrackPeak() != null && rgData.getTrackPeak() > 1) {
-			return (1 - rgData.getTrackPeak()) * 89 / 10;
+	private double getRgPeak() {
+		if (rgData.getTrackPeak() != null) {
+			double peakGain = (1 - rgData.getTrackPeak()) * 89 / 10;
+			return Math.min(peakGain, 0);
 		} else {
 			return 0;
 		}
 	}
 
-	private void disable() {
-		amplifier.setGain(0);
-	}
-
-	@Nullable
 	private Double getRgGain() {
-		if (prefs.isAlbumGainUsed() && rgData.getAlbumRG() != null) {
-			return rgData.getAlbumRG();
-		} else if (rgData.getTrackRG() != null) {
-			return rgData.getTrackRG();
-		} else {
-			return null;
-		}
+		Double gain = prefs.isAlbumGainUsed() ? rgData.getAlbumRG() : rgData.getTrackRG();
+		return gain == null ? 0 : gain;
 	}
 }
