@@ -11,7 +11,6 @@ public class ReplayGainManager implements PlayerPlugin {
 	private final ReplayGainPrefs prefs;
 
 	private ReplayGainData rgData;
-	private Track currentTrack;
 
 	public ReplayGainManager(
 			Amplifier amplifier,
@@ -26,29 +25,22 @@ public class ReplayGainManager implements PlayerPlugin {
 	@Override
 	public void onPlayerPluginConnected(Player player) {
 		if (player.hasData()) {
-			currentTrack = player.getCurrentTrack();
-			loadGain();
+			loadGain(player.getCurrentTrack());
 		}
 	}
 
 	@Override
 	public void onNewTrack(Track track) {
-		currentTrack = track;
-		loadGain();
+		loadGain(track);
 	}
 
-	private void loadGain() {
-		rgData = rgReader.read(currentTrack.getPath());
+	private void loadGain(Track track) {
+		rgData = rgReader.read(track.getPath());
 		applyGain();
 	}
 
 	private void applyGain() {
-		if (!prefs.isEnabled()) {
-			amplifier.setGain(0);
-			return;
-		}
-
-		double gainWithPreamp = getRgGain() + prefs.getPreamp();
+		double gainWithPreamp = getRgGain() + getPreamp();
 		if (prefs.isLimiterEnabled()) {
 			amplifier.setGain(Math.min(gainWithPreamp, getRgPeak()));
 		} else {
@@ -57,16 +49,30 @@ public class ReplayGainManager implements PlayerPlugin {
 	}
 
 	private double getRgPeak() {
-		if (rgData.getTrackPeak() != null) {
-			double peakGain = (1 - rgData.getTrackPeak()) * 89 / 10;
-			return Math.min(peakGain, 0);
+		if (!prefs.isLimiterEnabled() || rgData.getTrackPeak() == null) {
+			return 0;
+		}
+
+		double peakGain = (1 - rgData.getTrackPeak()) * 89 / 10;
+		return Math.min(peakGain, 0);
+	}
+
+	private double getRgGain() {
+		if (!prefs.isEnabled()) {
+			return 0;
+		}
+
+		if (prefs.isAlbumGainUsed()) {
+			if (rgData.getAlbumRG() != null) return rgData.getAlbumRG();
+			if (rgData.getTrackRG() != null) return rgData.getTrackRG();
+			return 0;
 		} else {
+			if (rgData.getTrackRG() != null) return rgData.getTrackRG();
 			return 0;
 		}
 	}
 
-	private Double getRgGain() {
-		Double gain = prefs.isAlbumGainUsed() ? rgData.getAlbumRG() : rgData.getTrackRG();
-		return gain == null ? 0 : gain;
+	private double getPreamp() {
+		return prefs.isEnabled() ? prefs.getPreamp() : 0;
 	}
 }
