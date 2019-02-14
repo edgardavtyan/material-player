@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
+import com.edavtyan.materialplayer.utils.StringUtils;
 
 public class AlbumArtProvider {
 	private final AlbumArtFileStorage dataStorage;
@@ -25,15 +26,15 @@ public class AlbumArtProvider {
 
 	@Nullable
 	public Bitmap load(Track track) {
-		int trackId = track.getId();
+		String albumTitle = StringUtils.encodeFilename(track.getAlbumTitle());
 
-		if (memoryCache.contains(trackId)) {
-			return memoryCache.get(trackId);
+		if (memoryCache.contains(albumTitle)) {
+			return memoryCache.get(albumTitle);
 		}
 
-		if (dataStorage.exists(trackId)) {
-			Bitmap image = dataStorage.load(trackId);
-			memoryCache.put(trackId, image);
+		if (dataStorage.exists(albumTitle)) {
+			Bitmap image = dataStorage.load(albumTitle);
+			memoryCache.put(albumTitle, image);
 			return image;
 		}
 
@@ -44,8 +45,16 @@ public class AlbumArtProvider {
 		}
 
 		Bitmap image = bitmapFactory.fromByteArray(imageBytes);
-		dataStorage.saveBytes(trackId, imageBytes);
-		memoryCache.put(trackId, image);
+		dataStorage.saveBytes(albumTitle, imageBytes);
+		memoryCache.put(albumTitle, image);
 		return image;
+	}
+
+	public String getFilename(String albumTitle) {
+		return dataStorage.getFullPath(StringUtils.encodeFilename(albumTitle));
+	}
+
+	public boolean isCached(String albumTitle) {
+		return dataStorage.exists(StringUtils.encodeFilename(albumTitle));
 	}
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
@@ -47,9 +48,10 @@ public class ArtistDetailDIModule {
 			ArtistDB artistDB,
 			AlbumDB albumDB,
 			TrackDB trackDB,
-			ArtistDetailImageLoader imageLoader) {
+			ArtistDetailImageLoader imageLoader,
+			AlbumArtProvider albumArtProvider) {
 		return new ArtistDetailModel(
-				serviceModule, artistDB, albumDB, trackDB, imageLoader, artistTitle);
+				serviceModule, artistDB, albumDB, trackDB, imageLoader, albumArtProvider, artistTitle);
 	}
 
 	@Provides

@@ -20,7 +20,7 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 		Album album = model.getAlbumAtIndex(position);
 		holder.setTitle(album.getTitle());
 		holder.setInfo(album.getTracksCount(), album.getArtistTitle());
-		holder.setArt(album.getArt());
+		holder.setArt(model.getArtFilename(position));
 	}
 
 	@Override
@@ -47,6 +47,7 @@ public class AlbumListPresenter implements ListPresenter<AlbumListViewHolder> {
 	public void onCreate() {
 		model.update();
 		model.bindService();
+		model.loadArts(view::notifyItemChanged);
 	}
 
 	@Override

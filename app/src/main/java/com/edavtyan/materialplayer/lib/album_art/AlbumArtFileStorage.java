@@ -21,4 +21,8 @@ public class AlbumArtFileStorage extends BitmapFileStorage {
 	public void saveBytes(int albumId, byte[] data) {
 		saveBytes(Integer.toString(albumId), data);
 	}
+
+	public String getFullPath(int albumId) {
+		return super.getFullPath(Integer.toString(albumId));
+	}
 }

@@ -255,4 +255,8 @@ public class ParallaxHeaderListModule extends ActivityModule {
 			}
 		}
 	}
+
+	public void notifyItemChanged(int position) {
+		adapter.notifyItemChanged(position);
+	}
 }

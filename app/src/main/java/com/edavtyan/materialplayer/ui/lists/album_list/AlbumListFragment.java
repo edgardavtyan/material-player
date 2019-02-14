@@ -44,6 +44,11 @@ public class AlbumListFragment extends ListFragment implements AlbumListView {
 		playlistPresenter.onAddToPlaylistClick(tracks);
 	}
 
+	@Override
+	public void notifyItemChanged(int position) {
+		adapter.notifyItemChanged(position);
+	}
+
 	protected AlbumListDIComponent getComponent() {
 		return DaggerAlbumListDIComponent
 				.builder()

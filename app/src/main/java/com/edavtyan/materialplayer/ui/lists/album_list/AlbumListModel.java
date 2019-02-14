@@ -4,6 +4,7 @@ import com.edavtyan.materialplayer.db.Album;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 
@@ -13,16 +14,21 @@ public class AlbumListModel extends ListModel {
 
 	private final AlbumDB albumDB;
 	private final TrackDB trackDB;
+	private final AlbumArtProvider artProvider;
 
 	private List<Album> albums;
+	private AlbumListImageTaskQueue queue;
 
 	public AlbumListModel(
 			ModelServiceModule serviceModule,
 			AlbumDB albumDB,
-			TrackDB trackDB) {
+			TrackDB trackDB,
+			AlbumArtProvider artProvider) {
 		super(serviceModule);
 		this.albumDB = albumDB;
 		this.trackDB = trackDB;
+		this.artProvider = artProvider;
+		queue = new AlbumListImageTaskQueue();
 	}
 
 	public Album getAlbumAtIndex(int index) {
@@ -56,5 +62,25 @@ public class AlbumListModel extends ListModel {
 
 	protected List<Album> queryAlbums() {
 		return albumDB.getAllAlbums();
+	}
+
+	public void loadArts(AlbumArtCallback callback) {
+		for (int i = 0; i < getAlbumsCount(); i++) {
+			if (artProvider.isCached(getAlbumAtIndex(i).getTitle())) {
+				callback.onLoaded(i);
+				continue;
+			}
+
+			Track track = getAlbumTracks(i).get(0);
+			queue.addTask(new AlbumListImageTask(artProvider, callback, queue, track, i));
+		}
+
+		if (!queue.isEmpty()) {
+			queue.run();
+		}
+	}
+
+	public String getArtFilename(int position) {
+		return artProvider.getFilename(getAlbumAtIndex(position).getTitle());
 	}
 }

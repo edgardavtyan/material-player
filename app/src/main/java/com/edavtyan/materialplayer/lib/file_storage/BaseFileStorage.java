@@ -59,4 +59,8 @@ public abstract class BaseFileStorage {
 	public void delete(int position) {
 		dir.listFiles()[position].delete();
 	}
+
+	public String getFullPath(String filename) {
+		return new File(dir, filename).getAbsolutePath();
+	}
 }
