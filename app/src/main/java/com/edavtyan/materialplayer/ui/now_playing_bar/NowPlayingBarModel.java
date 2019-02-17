@@ -17,7 +17,7 @@ import lombok.Setter;
 
 public class NowPlayingBarModel
 		implements ServiceConnection,
-				   Player.OnNewTrackListener {
+				   Player.OnNewTrackListener, Player.OnPlayPauseListener {
 
 	private final Context context;
 	private final AlbumArtProvider albumArtProvider;
@@ -26,9 +26,14 @@ public class NowPlayingBarModel
 
 	private @Setter @Nullable OnNewTrackListener onNewTrackListener;
 	private @Setter @Nullable OnServiceConnectedListener onServiceConnectedListener;
+	private @Setter @Nullable OnPlayPauseListener onPlayPauseListener;
 
 	public interface OnNewTrackListener {
 		void onNewTrack();
+	}
+
+	public interface OnPlayPauseListener {
+		void onPlayPause();
 	}
 
 	public interface OnServiceConnectedListener {
@@ -76,6 +81,7 @@ public class NowPlayingBarModel
 	public void onServiceConnected(ComponentName name, IBinder binder) {
 		service = ((PlayerService.PlayerBinder) binder).getService();
 		service.getPlayer().setOnNewTrackListener(this);
+		service.getPlayer().setOnPlayPauseListener(this);
 
 		if (onServiceConnectedListener != null) {
 			onServiceConnectedListener.onServiceConnected();
@@ -90,6 +96,13 @@ public class NowPlayingBarModel
 	public void onNewTrack() {
 		if (onNewTrackListener != null) {
 			onNewTrackListener.onNewTrack();
+		}
+	}
+
+	@Override
+	public void onPlayPause() {
+		if (onPlayPauseListener != null) {
+			onPlayPauseListener.onPlayPause();
 		}
 	}
 }

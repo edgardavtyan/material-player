@@ -4,7 +4,8 @@ import com.edavtyan.materialplayer.db.Track;
 
 public class NowPlayingBarPresenter
 		implements NowPlayingBarModel.OnNewTrackListener,
-				   NowPlayingBarModel.OnServiceConnectedListener {
+				   NowPlayingBarModel.OnServiceConnectedListener,
+				   NowPlayingBarModel.OnPlayPauseListener {
 
 	private final NowPlayingBarModel model;
 	private final NowPlayingBarFragment view;
@@ -19,6 +20,7 @@ public class NowPlayingBarPresenter
 	public void onCreate() {
 		model.bind();
 		model.setOnNewTrackListener(this);
+		model.setOnPlayPauseListener(this);
 		model.setOnServiceConnectedListener(this);
 	}
 
@@ -38,6 +40,11 @@ public class NowPlayingBarPresenter
 	@Override
 	public void onNewTrack() {
 		updateView();
+	}
+
+	@Override
+	public void onPlayPause() {
+		view.setIsPlaying(model.isPlaying());
 	}
 
 	@Override
