@@ -165,7 +165,7 @@ public class NowPlayingBarFragmentTest extends FragmentTest {
 	@Test
 	public void onPlayPauseClick_playPauseClicked_called() {
 		runOnUiThread(playPauseView::performClick);
-		verify(presenter).onPlayPauseClick();
+		verify(presenter).onPlayPauseButtonClick();
 	}
 
 	@Test

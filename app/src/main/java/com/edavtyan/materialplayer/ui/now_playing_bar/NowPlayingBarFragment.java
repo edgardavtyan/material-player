@@ -47,7 +47,7 @@ public class NowPlayingBarFragment extends ModularFragment implements View.OnCli
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.play_pause:
-			presenter.onPlayPauseClick();
+			presenter.onPlayPauseButtonClick();
 			break;
 		case R.id.art:
 		case R.id.info_wrapper:

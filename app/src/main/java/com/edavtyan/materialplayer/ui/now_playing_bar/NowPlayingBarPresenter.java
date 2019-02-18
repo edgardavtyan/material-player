@@ -2,11 +2,7 @@ package com.edavtyan.materialplayer.ui.now_playing_bar;
 
 import com.edavtyan.materialplayer.db.Track;
 
-public class NowPlayingBarPresenter
-		implements NowPlayingBarModel.OnNewTrackListener,
-				   NowPlayingBarModel.OnServiceConnectedListener,
-				   NowPlayingBarModel.OnPlayPauseListener {
-
+public class NowPlayingBarPresenter {
 	private final NowPlayingBarModel model;
 	private final NowPlayingBarFragment view;
 
@@ -19,9 +15,9 @@ public class NowPlayingBarPresenter
 
 	public void onCreate() {
 		model.bind();
-		model.setOnNewTrackListener(this);
-		model.setOnPlayPauseListener(this);
-		model.setOnServiceConnectedListener(this);
+		model.setOnNewTrackListener(this::onPlayerNewTrack);
+		model.setOnPlayPauseListener(this::onPlayerPlayPause);
+		model.setOnServiceConnectedListener(this::onServiceConnected);
 	}
 
 	public void onDestroy() {
@@ -32,22 +28,19 @@ public class NowPlayingBarPresenter
 		view.gotoNowPlaying();
 	}
 
-	public void onPlayPauseClick() {
+	public void onPlayPauseButtonClick() {
 		model.togglePlayPause();
 		view.setIsPlaying(model.isPlaying());
 	}
 
-	@Override
-	public void onNewTrack() {
+	public void onPlayerNewTrack() {
 		updateView();
 	}
 
-	@Override
-	public void onPlayPause() {
+	public void onPlayerPlayPause() {
 		view.setIsPlaying(model.isPlaying());
 	}
 
-	@Override
 	public void onServiceConnected() {
 		updateView();
 	}

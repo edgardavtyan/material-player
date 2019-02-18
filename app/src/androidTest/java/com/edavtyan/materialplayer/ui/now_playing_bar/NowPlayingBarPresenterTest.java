@@ -68,7 +68,7 @@ public class NowPlayingBarPresenterTest extends BaseTest {
 	public void onPlayPauseClick_updateModelAndView() {
 		when(model.isPlaying()).thenReturn(true);
 
-		presenter.onPlayPauseClick();
+		presenter.onPlayPauseButtonClick();
 
 		verify(model).togglePlayPause();
 		verify(view).setIsPlaying(true);
@@ -85,7 +85,7 @@ public class NowPlayingBarPresenterTest extends BaseTest {
 		when(model.isPlaying()).thenReturn(true);
 		when(model.hasData()).thenReturn(true);
 
-		presenter.onNewTrack();
+		presenter.onPlayerNewTrack();
 
 		verify(view).setTrackTitle("title");
 		verify(view).setTrackInfo("artist", "album");
