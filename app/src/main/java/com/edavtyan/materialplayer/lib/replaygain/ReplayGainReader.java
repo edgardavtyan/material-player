@@ -8,6 +8,12 @@ import java.io.File;
 import java.util.Iterator;
 
 public class ReplayGainReader {
+
+	public static final String RG_TRACK_GAIN = "replaygain_track_gain";
+	public static final String RG_TRACK_PEAK = "replaygain_track_peak";
+	public static final String RG_ALBUM_GAIN = "replaygain_album_gain";
+	public static final String RG_ALBUM_PEAK = "replaygain_album_peak";
+
 	public ReplayGainData read(String path) {
 		Double trackRG = null;
 		Double albumRG = null;
@@ -22,38 +28,14 @@ public class ReplayGainReader {
 				TagField field = fields.next();
 				String fieldStr = field.toString().toLowerCase();
 				String fieldId = field.getId().toLowerCase();
-
-				if (fieldStr.contains("replaygain_track_gain")) {
-					trackRG = parseRgMp3(fieldStr);
-				}
-
-				if (fieldStr.contains("replaygain_track_peak")) {
-					trackPeak = parsePeakMp3(fieldStr);
-				}
-
-				if (fieldId.contains("replaygain_track_gain")) {
-					trackRG = parseRgM4a(fieldStr);
-				}
-
-				if (fieldId.contains("replaygain_track_peak")) {
-					trackPeak = parsePeakM4a(fieldStr);
-				}
-
-				if (fieldStr.contains("replaygain_album_gain")) {
-					albumRG = parseRgMp3(fieldStr);
-				}
-
-				if (fieldStr.contains("replaygain_album_peak")) {
-					albumPeak = parsePeakMp3(fieldStr);
-				}
-
-				if (fieldId.contains("replaygain_album_gain")) {
-					albumRG = parseRgM4a(fieldStr);
-				}
-
-				if (fieldId.contains("replaygain_album_peak")) {
-					albumPeak = parsePeakM4a(fieldStr);
-				}
+				if (fieldStr.contains(RG_TRACK_GAIN)) trackRG = parseRgMp3(fieldStr);
+				if (fieldStr.contains(RG_TRACK_PEAK)) trackPeak = parsePeakMp3(fieldStr);
+				if (fieldId.contains(RG_TRACK_GAIN)) trackRG = parseRgM4a(fieldStr);
+				if (fieldId.contains(RG_TRACK_PEAK)) trackPeak = parsePeakM4a(fieldStr);
+				if (fieldStr.contains(RG_ALBUM_GAIN)) albumRG = parseRgMp3(fieldStr);
+				if (fieldStr.contains(RG_ALBUM_PEAK)) albumPeak = parsePeakMp3(fieldStr);
+				if (fieldId.contains(RG_ALBUM_GAIN)) albumRG = parseRgM4a(fieldStr);
+				if (fieldId.contains(RG_ALBUM_PEAK)) albumPeak = parsePeakM4a(fieldStr);
 			}
 		} catch (Exception ignored) {}
 
