@@ -3,8 +3,7 @@ package com.edavtyan.materialplayer.ui.lists.artist_list;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 
-import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -46,10 +45,9 @@ public class ArtistListDIModule {
 	@FragmentScope
 	public ArtistListModel provideModel(
 			ModelServiceModule serviceModule,
-			ArtistDB artistDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			ArtistListImageLoader imageLoader) {
-		return new ArtistListModel(serviceModule, artistDB, trackDB, imageLoader);
+		return new ArtistListModel(serviceModule, mediaDB, imageLoader);
 	}
 
 	@Provides

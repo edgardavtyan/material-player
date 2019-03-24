@@ -2,8 +2,7 @@ package com.edavtyan.materialplayer.ui.search.artist;
 
 import android.app.Activity;
 
-import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -38,10 +37,9 @@ public class SearchArtistDIModule {
 	@FragmentScope
 	public SearchArtistModel provideModel(
 			ModelServiceModule serviceModule,
-			ArtistDB artistDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			ArtistListImageLoader imageLoader) {
-		return new SearchArtistModel(serviceModule, artistDB, trackDB, imageLoader);
+		return new SearchArtistModel(serviceModule, mediaDB, imageLoader);
 	}
 
 	@Provides

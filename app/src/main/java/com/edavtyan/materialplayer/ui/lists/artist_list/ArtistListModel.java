@@ -1,9 +1,8 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import com.edavtyan.materialplayer.db.Artist;
-import com.edavtyan.materialplayer.db.ArtistDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 
@@ -11,19 +10,16 @@ import java.util.List;
 
 public class ArtistListModel extends ListModel {
 
-	private final ArtistDB db;
-	private final TrackDB trackDB;
+	private final MediaDB mediaDB;
 	private final ArtistListImageLoader imageLoader;
 	private List<Artist> artists;
 
 	public ArtistListModel(
 			ModelServiceModule serviceModule,
-			ArtistDB db,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			ArtistListImageLoader imageLoader) {
 		super(serviceModule);
-		this.db = db;
-		this.trackDB = trackDB;
+		this.mediaDB = mediaDB;
 		this.imageLoader = imageLoader;
 	}
 
@@ -32,7 +28,7 @@ public class ArtistListModel extends ListModel {
 	}
 
 	public void addToPlaylist(int artistId) {
-		getService().getPlayer().addManyTracks(trackDB.getTracksWithArtistId(artistId));
+		getService().getPlayer().addManyTracks(mediaDB.getTracksWithArtistId(artistId));
 	}
 
 	public int getArtistCount() {
@@ -49,7 +45,7 @@ public class ArtistListModel extends ListModel {
 	}
 
 	public List<Track> getArtistTracks(int position) {
-		return trackDB.getTracksWithArtistId(getArtistAtIndex(position).getId());
+		return mediaDB.getTracksWithArtistId(getArtistAtIndex(position).getId());
 	}
 
 	public void getArtistImageLink(int position, ArtistListImageTask.Callback callback) {
@@ -62,6 +58,6 @@ public class ArtistListModel extends ListModel {
 	}
 
 	protected List<Artist> queryArtists() {
-		return db.getAllArtists();
+		return mediaDB.getAllArtists();
 	}
 }

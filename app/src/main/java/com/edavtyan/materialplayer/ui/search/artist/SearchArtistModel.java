@@ -1,8 +1,7 @@
 package com.edavtyan.materialplayer.ui.search.artist;
 
 import com.edavtyan.materialplayer.db.Artist;
-import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListImageLoader;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListModel;
@@ -11,22 +10,21 @@ import com.edavtyan.materialplayer.ui.search.base.SearchModel;
 import java.util.List;
 
 public class SearchArtistModel extends ArtistListModel implements SearchModel {
-	private final ArtistDB artistDB;
+	private final MediaDB mediaDB;
 
 	private String query;
 
 	public SearchArtistModel(
 			ModelServiceModule serviceModule,
-			ArtistDB artistDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			ArtistListImageLoader imageLoader) {
-		super(serviceModule, artistDB, trackDB, imageLoader);
-		this.artistDB = artistDB;
+		super(serviceModule, mediaDB, imageLoader);
+		this.mediaDB = mediaDB;
 	}
 
 	@Override
 	protected List<Artist> queryArtists() {
-		return artistDB.searchArtists(query);
+		return mediaDB.searchArtists(query);
 	}
 
 	@Override
