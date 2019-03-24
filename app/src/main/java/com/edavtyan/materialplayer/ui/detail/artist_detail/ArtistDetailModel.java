@@ -17,6 +17,7 @@ import java.util.List;
 public class ArtistDetailModel extends AlbumListModel {
 	private final ArtistDB artistDB;
 	private final AlbumDB albumDB;
+	private final ArtistDetailPrefs prefs;
 	private final String artistTitle;
 	private final ArtistDetailImageLoader imageLoader;
 
@@ -27,17 +28,19 @@ public class ArtistDetailModel extends AlbumListModel {
 			TrackDB trackDB,
 			ArtistDetailImageLoader imageLoader,
 			AlbumArtProvider albumArtProvider,
+			ArtistDetailPrefs prefs,
 			String artistTitle) {
 		super(serviceModule, albumDB, trackDB, albumArtProvider);
 		this.artistDB = artistDB;
 		this.albumDB = albumDB;
+		this.prefs = prefs;
 		this.artistTitle = artistTitle;
 		this.imageLoader = imageLoader;
 	}
 
 	@Override
 	protected List<Album> queryAlbums() {
-		return albumDB.getAlbumsWithArtistTitle(artistTitle);
+		return albumDB.getAlbumsWithArtistTitle(artistTitle, prefs.getSort());
 	}
 
 	public Artist getArtist() {
@@ -51,5 +54,15 @@ public class ArtistDetailModel extends AlbumListModel {
 		} else {
 			new ArtistDetailImageTask(imageLoader, callback).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, artistTitle);
 		}
+	}
+
+	public void sortByName() {
+		albums = albumDB.getAlbumsWithArtistTitle(artistTitle, AlbumDB.KEY_TITLE);
+		prefs.saveSort(AlbumDB.KEY_TITLE);
+	}
+
+	public void sortByDate() {
+		albums = albumDB.getAlbumsWithArtistTitle(artistTitle, AlbumDB.KEY_DATE);
+		prefs.saveSort(AlbumDB.KEY_DATE);
 	}
 }

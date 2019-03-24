@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
@@ -28,6 +30,7 @@ public class ArtistDetailActivity
 	@Inject Navigator navigator;
 	@Inject SharedTransitionsManager transitionsManager;
 	@Inject PlaylistPresenter playlistPresenter;
+	@Inject ArtistDetailPresenter presenter;
 
 	private @Nullable SourceSharedViews sharedViews;
 
@@ -37,6 +40,27 @@ public class ArtistDetailActivity
 		super.onCreate(savedInstanceState);
 		if (sharedViews != null) {
 			transitionsManager.updateSourceViews(sharedViews);
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		boolean result = super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.menu_artist_detail, menu);
+		return result;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_sort_name:
+			presenter.onSortByName();
+			return true;
+		case R.id.menu_sort_year:
+			presenter.onSortByDate();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 

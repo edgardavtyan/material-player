@@ -11,7 +11,6 @@ import com.edavtyan.materialplayer.App;
 import com.edavtyan.materialplayer.R;
 import com.edavtyan.materialplayer.db.Track;
 import com.edavtyan.materialplayer.lib.playlist.models.PlaylistPresenter;
-import com.edavtyan.materialplayer.lib.theme.ThemeColors;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;
 import com.edavtyan.materialplayer.ui.Navigator;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListActivity;

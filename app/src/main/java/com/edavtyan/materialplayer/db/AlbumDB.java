@@ -16,11 +16,12 @@ import java.util.List;
 import lombok.Cleanup;
 
 public class AlbumDB {
-	private static final String KEY_ID = MediaStore.Audio.Albums._ID;
-	private static final String KEY_TITLE = MediaStore.Audio.Albums.ALBUM;
-	private static final String KEY_ARTIST_TITLE = MediaStore.Audio.Albums.ARTIST;
-	private static final String KEY_ART = MediaStore.Audio.Albums.ALBUM_ART;
-	private static final String KEY_TRACKS_COUNT = MediaStore.Audio.Albums.NUMBER_OF_SONGS;
+	public static final String KEY_ID = MediaStore.Audio.Albums._ID;
+	public static final String KEY_TITLE = MediaStore.Audio.Albums.ALBUM;
+	public static final String KEY_ARTIST_TITLE = MediaStore.Audio.Albums.ARTIST;
+	public static final String KEY_ART = MediaStore.Audio.Albums.ALBUM_ART;
+	public static final String KEY_TRACKS_COUNT = MediaStore.Audio.Albums.NUMBER_OF_SONGS;
+	public static final String KEY_DATE = MediaStore.Audio.Albums.FIRST_YEAR;
 
 	private static final int INDEX_ID = 0;
 	private static final int INDEX_TITLE = 1;
@@ -35,6 +36,7 @@ public class AlbumDB {
 			KEY_ARTIST_TITLE,
 			KEY_ART,
 			KEY_TRACKS_COUNT,
+			KEY_DATE
 			};
 
 	private final ContentResolver resolver;
@@ -48,9 +50,13 @@ public class AlbumDB {
 	}
 
 	public List<Album> getAlbumsWithArtistTitle(String artistTitle) {
+		return getAlbumsWithArtistTitle(artistTitle, KEY_TITLE);
+	}
+
+	public List<Album> getAlbumsWithArtistTitle(String artistTitle, String sortKey) {
 		String selection = KEY_ARTIST_TITLE + "=?";
 		String[] args = {artistTitle};
-		return getListOfAlbums(selection, args, KEY_TITLE);
+		return getListOfAlbums(selection, args, sortKey);
 	}
 
 	public Album getAlbumWithAlbumId(int albumId) {

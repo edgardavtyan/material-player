@@ -8,6 +8,7 @@ import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -49,9 +50,10 @@ public class ArtistDetailDIModule {
 			AlbumDB albumDB,
 			TrackDB trackDB,
 			ArtistDetailImageLoader imageLoader,
+			ArtistDetailPrefs prefs,
 			AlbumArtProvider albumArtProvider) {
 		return new ArtistDetailModel(
-				serviceModule, artistDB, albumDB, trackDB, imageLoader, albumArtProvider, artistTitle);
+				serviceModule, artistDB, albumDB, trackDB, imageLoader, albumArtProvider, prefs, artistTitle);
 	}
 
 	@Provides
@@ -101,5 +103,11 @@ public class ArtistDetailDIModule {
 	@ActivityScope
 	public ArtistDetailImageMemoryCache provideImageMemoryCache() {
 		return new ArtistDetailImageMemoryCache();
+	}
+
+	@Provides
+	@ActivityScope
+	public ArtistDetailPrefs provideArtistDetailPrefs(AdvancedSharedPrefs prefs) {
+		return new ArtistDetailPrefs(prefs);
 	}
 }

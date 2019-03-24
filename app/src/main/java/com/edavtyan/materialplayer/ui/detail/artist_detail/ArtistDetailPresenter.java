@@ -26,4 +26,14 @@ public class ArtistDetailPresenter
 		view.setArtistInfo(artist.getAlbumsCount(), artist.getTracksCount());
 		model.loadArtistImage(view::setArtistImage); // TODO: Unit test this
 	}
+
+	public void onSortByName() {
+		model.sortByName();
+		view.notifyDataSetChanged();
+	}
+
+	public void onSortByDate() {
+		model.sortByDate();
+		view.notifyDataSetChanged();
+	}
 }

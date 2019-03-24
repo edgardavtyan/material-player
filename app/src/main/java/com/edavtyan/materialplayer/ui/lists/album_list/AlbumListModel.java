@@ -16,7 +16,8 @@ public class AlbumListModel extends ListModel {
 	private final TrackDB trackDB;
 	private final AlbumArtProvider artProvider;
 
-	private List<Album> albums;
+	protected List<Album> albums;
+
 	private AlbumListImageTaskQueue queue;
 
 	public AlbumListModel(

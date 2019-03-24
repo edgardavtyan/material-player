@@ -58,4 +58,8 @@ public abstract class ParallaxHeaderListActivity
 	public void notifyItemChanged(int position) {
 		parallaxListModule.notifyItemChanged(position);
 	}
+
+	public void notifyDataSetChanged() {
+		parallaxListModule.notifyDataSetChanged();
+	}
 }

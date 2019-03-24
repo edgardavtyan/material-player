@@ -19,6 +19,11 @@ public class AdvancedSharedPrefsEditor {
 		baseEditor.commit();
 	}
 
+	public AdvancedSharedPrefsEditor putString(String key, String value) {
+		baseEditor.putString(key, value);
+		return this;
+	}
+
 	public AdvancedSharedPrefsEditor putInt(String key, int defValue) {
 		baseEditor.putInt(key, defValue);
 		return this;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+
+	<item
+		android:id="@+id/menu_album_sortBy"
+		android:title="Sort by"
+		>
+
+		<menu>
+
+			<item
+				android:id="@+id/menu_sort_year"
+				android:title="Year"
+				/>
+
+			<item
+				android:id="@+id/menu_sort_name"
+				android:title="Name"
+				/>
+
+		</menu>
+
+	</item>
+
+</menu>
