@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.ui.search.tracks;
 
 import android.app.Activity;
 
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -34,8 +34,8 @@ public class SearchTrackDIModule {
 
 	@Provides
 	@FragmentScope
-	public SearchTrackModel provideModel(ModelServiceModule serviceModule, TrackDB trackDB) {
-		return new SearchTrackModel(serviceModule, trackDB);
+	public SearchTrackModel provideModel(ModelServiceModule serviceModule, MediaDB mediaDB) {
+		return new SearchTrackModel(serviceModule, mediaDB);
 	}
 
 	@Provides

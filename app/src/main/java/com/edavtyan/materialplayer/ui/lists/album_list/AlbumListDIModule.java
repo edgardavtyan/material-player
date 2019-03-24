@@ -3,8 +3,7 @@ package com.edavtyan.materialplayer.ui.lists.album_list;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
@@ -45,10 +44,9 @@ public class AlbumListDIModule {
 	@FragmentScope
 	public AlbumListModel provideModel(
 			ModelServiceModule serviceModule,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			AlbumArtProvider albumArtProvider) {
-		return new AlbumListModel(serviceModule, albumDB, trackDB, albumArtProvider);
+		return new AlbumListModel(serviceModule, mediaDB, albumArtProvider);
 	}
 
 	@Provides

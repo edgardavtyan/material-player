@@ -1,9 +1,8 @@
 package com.edavtyan.materialplayer.ui.lists.album_list;
 
 import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
@@ -12,8 +11,7 @@ import java.util.List;
 
 public class AlbumListModel extends ListModel {
 
-	private final AlbumDB albumDB;
-	private final TrackDB trackDB;
+	private final MediaDB mediaDB;
 	private final AlbumArtProvider artProvider;
 
 	protected List<Album> albums;
@@ -22,12 +20,10 @@ public class AlbumListModel extends ListModel {
 
 	public AlbumListModel(
 			ModelServiceModule serviceModule,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			AlbumArtProvider artProvider) {
 		super(serviceModule);
-		this.albumDB = albumDB;
-		this.trackDB = trackDB;
+		this.mediaDB = mediaDB;
 		this.artProvider = artProvider;
 		queue = new AlbumListImageTaskQueue();
 	}
@@ -45,7 +41,7 @@ public class AlbumListModel extends ListModel {
 			throw new IllegalStateException("Albums have not been initialized");
 		}
 
-		return trackDB.getTracksWithAlbumId(albums.get(position).getId());
+		return mediaDB.getTracksWithAlbumId(albums.get(position).getId());
 	}
 
 	public int getAlbumsCount() {
@@ -54,7 +50,7 @@ public class AlbumListModel extends ListModel {
 	}
 
 	public void addToPlaylist(int albumId) {
-		getService().getPlayer().addManyTracks(trackDB.getTracksWithAlbumId(albumId));
+		getService().getPlayer().addManyTracks(mediaDB.getTracksWithAlbumId(albumId));
 	}
 
 	public void update() {
@@ -62,7 +58,7 @@ public class AlbumListModel extends ListModel {
 	}
 
 	protected List<Album> queryAlbums() {
-		return albumDB.getAllAlbums();
+		return mediaDB.getAllAlbums();
 	}
 
 	public void loadArts(AlbumArtCallback callback) {

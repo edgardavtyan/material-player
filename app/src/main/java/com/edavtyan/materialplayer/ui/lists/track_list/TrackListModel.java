@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 
@@ -11,11 +11,11 @@ public class TrackListModel extends ListModel {
 
 	protected List<Track> tracks;
 
-	private final TrackDB db;
+	private final MediaDB mediaDB;
 
-	public TrackListModel(ModelServiceModule serviceModule, TrackDB db) {
+	public TrackListModel(ModelServiceModule serviceModule, MediaDB mediaDB) {
 		super(serviceModule);
-		this.db = db;
+		this.mediaDB = mediaDB;
 	}
 
 	public Track getTrackAtIndex(int position) {
@@ -48,6 +48,6 @@ public class TrackListModel extends ListModel {
 	}
 
 	protected List<Track> queryTracks() {
-		return db.getAllTracks();
+		return mediaDB.getAllTracks();
 	}
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.edavtyan.materialplayer.db.AlbumDB;
 import com.edavtyan.materialplayer.db.ArtistDB;
 import com.edavtyan.materialplayer.db.DbDIModule;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtDIModule;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
@@ -56,6 +57,7 @@ public interface AppDIComponent {
 	ArtistDB artistDB();
 	AlbumDB albumDB();
 	TrackDB trackDB();
+	MediaDB mediaDB();
 	AlbumArtProvider albumArtProvider();
 	Gson gson();
 	SharedTransitionsManager sharedTransitionsManager();

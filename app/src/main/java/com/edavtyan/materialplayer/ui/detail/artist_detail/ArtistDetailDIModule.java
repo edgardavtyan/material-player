@@ -3,9 +3,7 @@ package com.edavtyan.materialplayer.ui.detail.artist_detail;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.ArtistDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
@@ -46,14 +44,12 @@ public class ArtistDetailDIModule {
 	@ActivityScope
 	public ArtistDetailModel provideModel(
 			ModelServiceModule serviceModule,
-			ArtistDB artistDB,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			ArtistDetailImageLoader imageLoader,
 			ArtistDetailPrefs prefs,
 			AlbumArtProvider albumArtProvider) {
 		return new ArtistDetailModel(
-				serviceModule, artistDB, albumDB, trackDB, imageLoader, albumArtProvider, prefs, artistTitle);
+				serviceModule, mediaDB, imageLoader, albumArtProvider, prefs, artistTitle);
 	}
 
 	@Provides

@@ -2,8 +2,7 @@ package com.edavtyan.materialplayer.ui.detail.album_detail;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
@@ -34,10 +33,9 @@ public class AlbumDetailDIModule {
 	@ActivityScope
 	public AlbumDetailModel provideModel(
 			ModelServiceModule serviceModule,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			AlbumArtProvider artProvider) {
-		return new AlbumDetailModel(serviceModule, albumDB, trackDB, artProvider, albumId);
+		return new AlbumDetailModel(serviceModule, mediaDB, artProvider, albumId);
 	}
 
 	@Provides

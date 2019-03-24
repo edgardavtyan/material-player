@@ -37,7 +37,7 @@ public class AlbumDB {
 			KEY_ART,
 			KEY_TRACKS_COUNT,
 			KEY_DATE
-			};
+	};
 
 	private final ContentResolver resolver;
 

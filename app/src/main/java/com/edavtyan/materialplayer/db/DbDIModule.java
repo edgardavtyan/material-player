@@ -26,4 +26,10 @@ public class DbDIModule {
 	public TrackDB provideTrackDB(Context context) {
 		return new TrackDB(context);
 	}
+
+	@Provides
+	@Singleton
+	public MediaDB provideMediaDB(ArtistDB artistDB, AlbumDB albumDB, TrackDB trackDB) {
+		return new MediaDB(artistDB, albumDB, trackDB);
+	}
 }

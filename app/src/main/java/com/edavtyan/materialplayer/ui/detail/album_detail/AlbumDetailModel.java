@@ -4,9 +4,8 @@ import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.db.Track;
-import com.edavtyan.materialplayer.db.TrackDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
@@ -16,8 +15,7 @@ import com.edavtyan.materialplayer.ui.lists.track_list.TrackListModel;
 import java.util.List;
 
 public class AlbumDetailModel extends TrackListModel {
-	private final AlbumDB albumDB;
-	private final TrackDB trackDB;
+	private final MediaDB mediaDB;
 	private final AlbumArtProvider albumArtProvider;
 	private final int albumId;
 
@@ -25,19 +23,17 @@ public class AlbumDetailModel extends TrackListModel {
 
 	public AlbumDetailModel(
 			ModelServiceModule serviceModule,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			AlbumArtProvider albumArtProvider,
 			int albumId) {
-		super(serviceModule, trackDB);
-		this.albumDB = albumDB;
-		this.trackDB = trackDB;
+		super(serviceModule, mediaDB);
+		this.mediaDB = mediaDB;
 		this.albumArtProvider = albumArtProvider;
 		this.albumId = albumId;
 	}
 
 	public Album getAlbum() {
-		return albumDB.getAlbumWithAlbumId(albumId);
+		return mediaDB.getAlbumWithAlbumId(albumId);
 	}
 
 	@Nullable
@@ -56,7 +52,7 @@ public class AlbumDetailModel extends TrackListModel {
 
 	@Override
 	protected List<Track> queryTracks() {
-		return trackDB.getTracksWithAlbumId(albumId);
+		return mediaDB.getTracksWithAlbumId(albumId);
 	}
 
 	@Override

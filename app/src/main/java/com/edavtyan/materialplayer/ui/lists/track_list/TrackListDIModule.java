@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.ui.lists.track_list;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
 import com.edavtyan.materialplayer.ui.SdkFactory;
@@ -43,8 +43,8 @@ public class TrackListDIModule {
 	@FragmentScope
 	public TrackListModel provideModel(
 			ModelServiceModule serviceModule,
-			TrackDB trackDB) {
-		return new TrackListModel(serviceModule, trackDB);
+			MediaDB mediaDB) {
+		return new TrackListModel(serviceModule, mediaDB);
 	}
 
 	@Provides

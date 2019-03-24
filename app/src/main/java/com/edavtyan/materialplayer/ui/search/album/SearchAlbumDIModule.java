@@ -2,8 +2,7 @@ package com.edavtyan.materialplayer.ui.search.album;
 
 import android.app.Activity;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
@@ -38,10 +37,9 @@ public class SearchAlbumDIModule {
 	@FragmentScope
 	public SearchAlbumModel provideModel(
 			ModelServiceModule serviceModule,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			AlbumArtProvider albumArtProvider) {
-		return new SearchAlbumModel(serviceModule, albumDB, trackDB, albumArtProvider);
+		return new SearchAlbumModel(serviceModule, mediaDB, albumArtProvider);
 	}
 
 	@Provides

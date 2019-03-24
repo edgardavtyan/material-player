@@ -1,8 +1,7 @@
 package com.edavtyan.materialplayer.ui.search.album;
 
 import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.TrackDB;
+import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.album_list.AlbumListModel;
@@ -13,22 +12,21 @@ import java.util.List;
 import lombok.Setter;
 
 public class SearchAlbumModel extends AlbumListModel implements SearchModel {
-	private final AlbumDB albumDB;
+	private final MediaDB mediaDB;
 
 	private @Setter String query;
 
 	public SearchAlbumModel(
 			ModelServiceModule serviceModule,
-			AlbumDB albumDB,
-			TrackDB trackDB,
+			MediaDB mediaDB,
 			AlbumArtProvider albumArtProvider) {
-		super(serviceModule, albumDB, trackDB, albumArtProvider);
-		this.albumDB = albumDB;
+		super(serviceModule, mediaDB, albumArtProvider);
+		this.mediaDB = mediaDB;
 	}
 
 	@Override
 	protected List<Album> queryAlbums() {
-		return albumDB.searchAlbums(query);
+		return mediaDB.searchAlbums(query);
 	}
 
 	@Override
