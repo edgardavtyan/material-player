@@ -16,12 +16,8 @@ public abstract class BaseDialog {
 	private final AlertDialog dialog;
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final DialogInterface.OnShowListener onShowListener
-			= new DialogInterface.OnShowListener() {
-		@Override
-		public void onShow(DialogInterface dialogInterface) {
-			BaseDialog.this.onShow();
-		}
+	private final DialogInterface.OnShowListener onShowListener = dialogInterface -> {
+		BaseDialog.this.onShow();
 	};
 
 	public interface OnDismissListener {

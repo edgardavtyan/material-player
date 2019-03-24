@@ -59,10 +59,6 @@ public class PlayerPrefs implements SharedPreferences.OnSharedPreferenceChangeLi
 		return prefs.getBoolean(PREF_ENGINE, DEFAULT_ENGINE);
 	}
 
-	public void saveUseAdvancedEngine(boolean use) {
-		prefs.edit().putBoolean(PREF_ENGINE, use).apply();
-	}
-
 	public void addOnUseAdvancedEngineListener(Object owner, OnUseAdvancedEngineChangedListener listener) {
 		onUseAdvancedEngineChangedListeners.put(owner, listener);
 	}

@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.lib.animation;
 import android.animation.TimeInterpolator;
 
 public class DecelerateReverseInterpolator implements TimeInterpolator {
-	private float factor;
+	private final float factor;
 
 	public DecelerateReverseInterpolator(float factor) {
 		this.factor = factor;

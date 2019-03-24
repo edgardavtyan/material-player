@@ -25,8 +25,8 @@ public class MainDIModule {
 	@Provides
 	@ActivityScope
 	public TabsAdapter provideTabsAdapter(
-			AppCompatActivity activity, FragmentManager fragmentManager) {
-		return new TabsAdapter(activity, fragmentManager);
+			FragmentManager fragmentManager) {
+		return new TabsAdapter(fragmentManager);
 	}
 
 	@Provides

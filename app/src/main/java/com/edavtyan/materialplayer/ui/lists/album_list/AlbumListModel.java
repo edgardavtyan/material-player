@@ -13,10 +13,9 @@ public class AlbumListModel extends ListModel {
 
 	private final MediaDB mediaDB;
 	private final AlbumArtProvider artProvider;
+	private final AlbumListImageTaskQueue queue;
 
 	protected List<Album> albums;
-
-	private AlbumListImageTaskQueue queue;
 
 	public AlbumListModel(
 			ModelServiceModule serviceModule,
@@ -25,7 +24,7 @@ public class AlbumListModel extends ListModel {
 		super(serviceModule);
 		this.mediaDB = mediaDB;
 		this.artProvider = artProvider;
-		queue = new AlbumListImageTaskQueue();
+		this.queue = new AlbumListImageTaskQueue();
 	}
 
 	public Album getAlbumAtIndex(int index) {

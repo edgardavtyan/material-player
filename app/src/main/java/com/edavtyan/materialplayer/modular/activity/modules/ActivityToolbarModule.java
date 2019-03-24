@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.modular.activity.modules;
 
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -58,24 +57,6 @@ public class ActivityToolbarModule extends ActivityModule {
 	public void setBackIconEnabled(boolean enabled) {
 		assert activity.getSupportActionBar() != null;
 		activity.getSupportActionBar().setDisplayHomeAsUpEnabled(enabled);
-	}
-
-	public void setToolbarBackgroundColor(int color) {
-		toolbar.setBackgroundColor(color);
-	}
-
-	public void setToolbarIconsColor(int color) {
-		if (toolbar.getOverflowIcon() != null) {
-			toolbar.getOverflowIcon().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-		}
-
-		if (toolbar.getNavigationIcon() != null) {
-			toolbar.getNavigationIcon().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-		}
-	}
-
-	public void setStatusBarColor(int color) {
-		WindowUtils.setStatusBarColor(activity, color);
 	}
 
 	@Override

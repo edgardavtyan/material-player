@@ -1,6 +1,5 @@
 package com.edavtyan.materialplayer.ui.main;
 
-import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,11 +11,9 @@ import com.edavtyan.materialplayer.ui.lists.playlist_list.PlaylistListFragment;
 import com.edavtyan.materialplayer.ui.lists.track_list.TrackListFragment;
 
 public class TabsAdapter extends FragmentPagerAdapter {
-	private final Activity activity;
 
-	public TabsAdapter(Activity activity, FragmentManager fm) {
+	public TabsAdapter(FragmentManager fm) {
 		super(fm);
-		this.activity = activity;
 	}
 
 	@Override

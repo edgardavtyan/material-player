@@ -16,11 +16,6 @@ public class App extends Application {
 
 	@Inject ThemeColors colors;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-	}
-
 	@SuppressWarnings("ConstantConditions")
 	public PlayerServiceComponent getPlayerServiceComponent() {
 		if (playerServiceComponent != null) {

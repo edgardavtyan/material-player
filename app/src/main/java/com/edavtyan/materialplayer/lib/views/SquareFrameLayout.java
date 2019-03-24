@@ -1,12 +1,9 @@
 package com.edavtyan.materialplayer.lib.views;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -26,13 +23,6 @@ public class SquareFrameLayout extends FrameLayout {
 	public SquareFrameLayout(
 			@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-	}
-
-	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public SquareFrameLayout(
-			@NonNull Context context,
-			@Nullable AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	/**
