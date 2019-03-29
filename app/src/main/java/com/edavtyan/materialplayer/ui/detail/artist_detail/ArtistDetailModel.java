@@ -3,9 +3,9 @@ package com.edavtyan.materialplayer.ui.detail.artist_detail;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
-import com.edavtyan.materialplayer.db.Album;
-import com.edavtyan.materialplayer.db.AlbumDB;
-import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.db.types.Album;
+import com.edavtyan.materialplayer.db.db.AlbumDB;
+import com.edavtyan.materialplayer.db.types.Artist;
 import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;

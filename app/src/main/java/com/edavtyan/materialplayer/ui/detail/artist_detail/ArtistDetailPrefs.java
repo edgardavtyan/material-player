@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.detail.artist_detail;
 
-import com.edavtyan.materialplayer.db.AlbumDB;
+import com.edavtyan.materialplayer.db.db.AlbumDB;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 
 public class ArtistDetailPrefs {

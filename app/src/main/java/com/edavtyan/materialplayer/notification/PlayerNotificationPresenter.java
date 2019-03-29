@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.notification;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 
 public class PlayerNotificationPresenter
 		implements PlayerNotificationModel.OnNewTrackListener,

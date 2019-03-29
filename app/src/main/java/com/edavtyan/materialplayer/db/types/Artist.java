@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.db;
+package com.edavtyan.materialplayer.db.types;
 
 import lombok.Data;
 

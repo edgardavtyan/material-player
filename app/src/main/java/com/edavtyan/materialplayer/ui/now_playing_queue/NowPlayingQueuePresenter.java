@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.now_playing_queue;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 

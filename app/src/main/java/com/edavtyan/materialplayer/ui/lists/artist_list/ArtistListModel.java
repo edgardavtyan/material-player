@@ -1,8 +1,8 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.db.types.Artist;
 import com.edavtyan.materialplayer.db.MediaDB;
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 

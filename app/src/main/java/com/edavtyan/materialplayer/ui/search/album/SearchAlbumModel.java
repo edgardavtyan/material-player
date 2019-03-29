@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.search.album;
 
-import com.edavtyan.materialplayer.db.Album;
+import com.edavtyan.materialplayer.db.types.Album;
 import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;

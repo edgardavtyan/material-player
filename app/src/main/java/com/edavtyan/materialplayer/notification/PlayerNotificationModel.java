@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.service.PlayerService;

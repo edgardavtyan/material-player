@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.db;
+package com.edavtyan.materialplayer.db.db;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 
 import com.ed.libsutils.utils.Strings;
+import com.edavtyan.materialplayer.db.CursorIsNullException;
+import com.edavtyan.materialplayer.db.types.Album;
 
 import java.util.ArrayList;
 import java.util.Collections;

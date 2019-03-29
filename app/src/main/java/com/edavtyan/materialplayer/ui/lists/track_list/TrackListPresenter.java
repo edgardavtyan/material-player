@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 
 public class TrackListPresenter implements ListPresenter<TrackListViewHolder> {

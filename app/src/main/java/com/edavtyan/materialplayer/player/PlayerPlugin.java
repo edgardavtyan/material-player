@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.player;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 
 public interface PlayerPlugin {
 	void onPlayerPluginConnected(Player player);

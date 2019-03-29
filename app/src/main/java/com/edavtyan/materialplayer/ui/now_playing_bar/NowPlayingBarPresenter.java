@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.now_playing_bar;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 
 public class NowPlayingBarPresenter {
 	private final NowPlayingBarModel model;

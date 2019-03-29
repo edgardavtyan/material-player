@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.detail.artist_detail;
 
-import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.db.types.Artist;
 import com.edavtyan.materialplayer.ui.detail.lib.ParallaxHeaderListPresenter;
 import com.edavtyan.materialplayer.ui.lists.album_list.AlbumListPresenter;
 

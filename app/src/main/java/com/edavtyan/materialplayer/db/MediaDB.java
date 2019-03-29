@@ -1,5 +1,9 @@
 package com.edavtyan.materialplayer.db;
 
+import com.edavtyan.materialplayer.db.db.AlbumDB;
+import com.edavtyan.materialplayer.db.db.ArtistDB;
+import com.edavtyan.materialplayer.db.db.TrackDB;
+
 import lombok.experimental.Delegate;
 
 public class MediaDB {

@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.lib.playlist.models;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 
 import java.util.ArrayList;

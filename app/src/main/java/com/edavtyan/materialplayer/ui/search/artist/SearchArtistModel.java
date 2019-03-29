@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.search.artist;
 
-import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.db.types.Artist;
 import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.artist_list.ArtistListImageLoader;

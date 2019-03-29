@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.player;
 
 import android.content.Context;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.lib.file_storage.GsonFileStorage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

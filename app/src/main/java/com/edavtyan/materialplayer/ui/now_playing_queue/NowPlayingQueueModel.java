@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.ui.now_playing_queue;
 
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.service.PlayerService;

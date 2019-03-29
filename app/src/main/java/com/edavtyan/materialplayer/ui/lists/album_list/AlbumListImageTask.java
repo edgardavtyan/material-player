@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.ui.lists.album_list;
 
 import android.os.AsyncTask;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
 
 public class AlbumListImageTask extends AsyncTask<Void, Void, String> {

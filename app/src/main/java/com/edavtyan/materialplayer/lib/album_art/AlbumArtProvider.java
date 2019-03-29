@@ -3,7 +3,7 @@ package com.edavtyan.materialplayer.lib.album_art;
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.StringUtils;
 

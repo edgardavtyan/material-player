@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.lib.replaygain;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.player.Player;
 import com.edavtyan.materialplayer.player.PlayerPlugin;
 import com.edavtyan.materialplayer.player.effects.amplifier.Amplifier;

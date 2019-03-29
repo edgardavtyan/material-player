@@ -1,7 +1,7 @@
 package com.edavtyan.materialplayer.ui.lists.track_list;
 
 import com.edavtyan.materialplayer.db.MediaDB;
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.lists.lib.ListModel;
 

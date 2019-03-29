@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import com.edavtyan.materialplayer.db.Artist;
+import com.edavtyan.materialplayer.db.types.Artist;
 import com.edavtyan.materialplayer.lib.transition.SourceSharedViews;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 

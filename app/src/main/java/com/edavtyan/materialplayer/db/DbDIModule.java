@@ -2,6 +2,10 @@ package com.edavtyan.materialplayer.db;
 
 import android.content.Context;
 
+import com.edavtyan.materialplayer.db.db.AlbumDB;
+import com.edavtyan.materialplayer.db.db.ArtistDB;
+import com.edavtyan.materialplayer.db.db.TrackDB;
+
 import javax.inject.Singleton;
 
 import dagger.Module;

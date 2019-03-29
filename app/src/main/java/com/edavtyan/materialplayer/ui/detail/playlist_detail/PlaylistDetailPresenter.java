@@ -1,6 +1,6 @@
 package com.edavtyan.materialplayer.ui.detail.playlist_detail;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.ui.lists.lib.ListPresenter;
 import com.edavtyan.materialplayer.lib.playlist.models.PlaylistManager;
 

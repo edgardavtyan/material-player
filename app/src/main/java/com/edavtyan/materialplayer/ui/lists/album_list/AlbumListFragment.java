@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.edavtyan.materialplayer.App;
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.lib.playlist.models.PlaylistPresenter;
 import com.edavtyan.materialplayer.lib.theme.ScreenThemeModule;
 import com.edavtyan.materialplayer.lib.transition.SharedTransitionsManager;

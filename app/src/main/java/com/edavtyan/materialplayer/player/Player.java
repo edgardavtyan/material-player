@@ -2,7 +2,7 @@ package com.edavtyan.materialplayer.player;
 
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.db.Track;
+import com.edavtyan.materialplayer.db.types.Track;
 import com.edavtyan.materialplayer.player.engines.AudioEngine;
 import com.edavtyan.materialplayer.player.engines.ExtendedAudioEngine;
 import com.edavtyan.materialplayer.player.engines.OpenSLAudioEngine;
