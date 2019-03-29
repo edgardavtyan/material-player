@@ -19,6 +19,7 @@ public abstract class BaseFileStorage {
 	}
 
 	public void saveBytes(String filename, byte[] data) {
+		filename = encode(filename);
 		File file = new File(dir, filename);
 		FileOutputStream fileOutputStream = null;
 		try {
@@ -34,6 +35,7 @@ public abstract class BaseFileStorage {
 
 	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public byte[] loadBytes(String filename) {
+		filename = encode(filename);
 		File file = new File(dir, filename);
 		byte[] data = new byte[(int) file.length()];
 		FileInputStream fileInputStream = null;
@@ -49,7 +51,7 @@ public abstract class BaseFileStorage {
 	}
 
 	public boolean exists(String filename) {
-		return new File(dir, filename).exists();
+		return new File(dir, encode(filename)).exists();
 	}
 
 	public String[] list() {
@@ -61,6 +63,10 @@ public abstract class BaseFileStorage {
 	}
 
 	public String getFullPath(String filename) {
-		return new File(dir, filename).getAbsolutePath();
+		return new File(dir, encode(filename)).getAbsolutePath();
+	}
+
+	private String encode(String filename) {
+		return filename.replace("/", "-");
 	}
 }
