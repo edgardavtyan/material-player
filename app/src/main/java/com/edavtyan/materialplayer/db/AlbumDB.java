@@ -85,16 +85,17 @@ public class AlbumDB {
 	private List<Album> getListOfAlbums(
 			@Nullable String selection,
 			@Nullable String[] args,
-			@Nullable String order) {
-		List<Album> albums = new ArrayList<>();
+			@Nullable String orderKey) {
+		String orderStr = String.format("%s, %s COLLATE LOCALIZED", orderKey, KEY_TITLE);
 
 		@Cleanup
-		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, order + " COLLATE LOCALIZED");
+		Cursor cursor = resolver.query(URI, PROJECTION, selection, args, orderStr);
 
 		if (cursor == null) {
 			throw new CursorIsNullException();
 		}
 
+		List<Album> albums = new ArrayList<>();
 		while (cursor.moveToNext()) {
 			albums.add(getAlbumFromCursor(cursor));
 		}
