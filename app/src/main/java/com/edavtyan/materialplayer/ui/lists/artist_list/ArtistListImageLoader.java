@@ -2,14 +2,14 @@ package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.music_api.MusicApi;
 
 public class ArtistListImageLoader {
-	private final LastfmApi lastfmApi;
+	private final MusicApi musicApi;
 	private final ArtistListImageLinkCache linkCache;
 
-	public ArtistListImageLoader(LastfmApi lastfmApi, ArtistListImageLinkCache linkCache) {
-		this.lastfmApi = lastfmApi;
+	public ArtistListImageLoader(MusicApi musicApi, ArtistListImageLinkCache linkCache) {
+		this.musicApi = musicApi;
 		this.linkCache = linkCache;
 	}
 
@@ -19,7 +19,7 @@ public class ArtistListImageLoader {
 			return linkCache.getLink(artistTitle);
 		}
 
-		String imageLink = lastfmApi.getArtistInfo(artistTitle).getLargeImageUrl();
+		String imageLink = musicApi.getArtistInfo(artistTitle).getImageUrl();
 		linkCache.addLink(artistTitle, imageLink);
 		return imageLink;
 	}

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 
 import com.edavtyan.materialplayer.db.MediaDB;
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.music_api.MusicApi;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 import com.edavtyan.materialplayer.modular.model.ModelServiceModule;
 import com.edavtyan.materialplayer.ui.FragmentScope;
@@ -66,9 +66,9 @@ public class ArtistListDIModule {
 	@Provides
 	@FragmentScope
 	public ArtistListImageLoader provideImageLoader(
-			LastfmApi lastfmApi,
+			MusicApi musicApi,
 			ArtistListImageLinkCache linkCache) {
-		return new ArtistListImageLoader(lastfmApi, linkCache);
+		return new ArtistListImageLoader(musicApi, linkCache);
 	}
 
 	@Provides

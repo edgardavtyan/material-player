@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.edavtyan.materialplayer.db.MediaDB;
 import com.edavtyan.materialplayer.lib.album_art.AlbumArtProvider;
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.music_api.MusicApi;
 import com.edavtyan.materialplayer.lib.prefs.AdvancedSharedPrefs;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.lib.testable.TestableRecyclerAdapter;
@@ -81,12 +81,12 @@ public class ArtistDetailDIModule {
 	@ActivityScope
 	public ArtistDetailImageLoader provideImageLoader(
 			WebClient webClient,
-			LastfmApi lastFmApi,
+			MusicApi musicApi,
 			TestableBitmapFactory bitmapFactory,
 			ArtistDetailImageFileStorage fileStorage,
 			ArtistDetailImageMemoryCache memoryCache) {
 		return new ArtistDetailImageLoader(
-				webClient, lastFmApi, bitmapFactory, fileStorage, memoryCache);
+				webClient, musicApi, bitmapFactory, fileStorage, memoryCache);
 	}
 
 	@Provides

@@ -1,4 +1,4 @@
-package com.edavtyan.materialplayer.lib.lastfm;
+package com.edavtyan.materialplayer.lib.music_api;
 
 import java.util.Locale;
 

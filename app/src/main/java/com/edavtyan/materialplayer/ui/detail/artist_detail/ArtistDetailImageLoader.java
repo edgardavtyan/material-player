@@ -3,25 +3,25 @@ package com.edavtyan.materialplayer.ui.detail.artist_detail;
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.lib.lastfm.LastfmApi;
+import com.edavtyan.materialplayer.lib.music_api.MusicApi;
 import com.edavtyan.materialplayer.lib.testable.TestableBitmapFactory;
 import com.edavtyan.materialplayer.utils.WebClient;
 
 public class ArtistDetailImageLoader {
 	private final WebClient webClient;
-	private final LastfmApi lastfmApi;
+	private final MusicApi musicApi;
 	private final TestableBitmapFactory bitmapFactory;
 	private final ArtistDetailImageFileStorage fileStorage;
 	private final ArtistDetailImageMemoryCache memoryCache;
 
 	public ArtistDetailImageLoader(
 			WebClient webClient,
-			LastfmApi lastfmApi,
+			MusicApi musicApi,
 			TestableBitmapFactory bitmapFactory,
 			ArtistDetailImageFileStorage fileStorage,
 			ArtistDetailImageMemoryCache memoryCache) {
 		this.webClient = webClient;
-		this.lastfmApi = lastfmApi;
+		this.musicApi = musicApi;
 		this.bitmapFactory = bitmapFactory;
 		this.fileStorage = fileStorage;
 		this.memoryCache = memoryCache;
@@ -30,7 +30,7 @@ public class ArtistDetailImageLoader {
 	@Nullable
 	public Bitmap getImageFromApi(String artistTitle) {
 		try {
-			String imageUrl = lastfmApi.getArtistInfo(artistTitle).getMegaImageUrl();
+			String imageUrl = musicApi.getArtistInfo(artistTitle).getImageUrl();
 			byte[] imageBytes = webClient.getBytes(imageUrl);
 			Bitmap imageFromApi = bitmapFactory.fromByteArray(imageBytes);
 			fileStorage.saveBytes(artistTitle, imageBytes);
