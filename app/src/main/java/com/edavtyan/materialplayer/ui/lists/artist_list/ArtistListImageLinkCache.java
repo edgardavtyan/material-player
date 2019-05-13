@@ -16,6 +16,9 @@ public class ArtistListImageLinkCache {
 	public ArtistListImageLinkCache(AdvancedGsonSharedPrefs prefs) {
 		this.prefs = prefs;
 		this.cacheMap = prefs.getMap(PREF_KEY);
+		if (cacheMap == null) {
+			cacheMap = new HashMap<>();
+		}
 	}
 
 	public void addLink(String artist, String link) {
