@@ -238,9 +238,9 @@ public class ParallaxHeaderListModule extends ActivityModule {
 				assert sharedArtExitView != null;
 				int artViewSize = DpConverter.dpToPixel(SCALED_ART_SIZE_DP);
 				Bitmap scaledArt = BitmapResizer.resize(art, artViewSize);
-				artView.setImageBitmap(scaledArt);
-				sharedArtView.setImageBitmap(scaledArt);
-				sharedArtExitView.setImageBitmap(scaledArt);
+				artView.setImageBitmap(art);
+				sharedArtView.setImageBitmap(art);
+				sharedArtExitView.setImageBitmap(art);
 				previewImageView.setImageBitmap(art);
 			} else {
 				sharedArtView.setImageBitmap(art);

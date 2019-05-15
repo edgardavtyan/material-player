@@ -4,31 +4,20 @@ import com.edavtyan.materialplayer.utils.WebClient;
 
 import org.json.JSONObject;
 
-public class DiscogsApi implements MusicApi {
+public class DiscogsApi extends MusicApi {
 	private final WebClient webClient;
-	private final MusicApiFileStorage fileStorage;
 	private final String key;
 	private final String secret;
 
 	public DiscogsApi(WebClient webClient, MusicApiFileStorage fileStorage, String key, String secret) {
+		super(fileStorage);
 		this.webClient = webClient;
-		this.fileStorage = fileStorage;
 		this.key = key;
 		this.secret = secret;
 	}
 
 	@Override
-	public MusicApiInfo getArtistInfo(String artistTitle) {
-		if (fileStorage.exists(artistTitle)) {
-			return MusicApiInfo.fromJson(fileStorage.load(artistTitle));
-		}
-
-		MusicApiInfo artistInfo = getInfoFromApi(artistTitle);
-		fileStorage.save(artistTitle, artistInfo.toJson());
-		return artistInfo;
-	}
-
-	private MusicApiInfo getInfoFromApi(String artist) {
+	protected MusicApiInfo getInfoFromApi(String artist) {
 		try {
 			String url = buildUrl(artist);
 			String jsonString = webClient.getString(url);
@@ -43,7 +32,7 @@ public class DiscogsApi implements MusicApi {
 	}
 
 	private String buildUrl(String artist) {
-		String url = "https://api.discogs.com/database/search?q=%s&key=%s&secret=%s";
+		String url = "https://api.discogs.com/database/search?q=%s&type=artist&key=%s&secret=%s";
 		return String.format(url, artist, key, secret);
 	}
 }

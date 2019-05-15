@@ -18,11 +18,10 @@ public class MusicApiDIModule {
 			Context context,
 			WebClient webClient,
 			MusicApiFileStorage fileStorage) {
-		return new DiscogsApi(
+		return new AudioDBApi(
 				webClient,
 				fileStorage,
-				context.getString(R.string.discogs_key),
-				context.getString(R.string.discogs_secret));
+				context.getString(R.string.audiodb_key));
 	}
 
 	@Provides
