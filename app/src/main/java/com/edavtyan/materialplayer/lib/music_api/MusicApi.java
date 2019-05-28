@@ -8,9 +8,10 @@ public abstract class MusicApi {
 	}
 
 	protected abstract MusicApiInfo getInfoFromApi(String artistTitle)
-	throws InfoNotFoundException;
+	throws InfoNotFoundException, NoConnectionException;
 
-	public MusicApiInfo getArtistInfo(String artistTitle) throws InfoNotFoundException {
+	public MusicApiInfo getArtistInfo(String artistTitle)
+	throws InfoNotFoundException, NoConnectionException {
 		if (fileStorage.exists(artistTitle)) {
 			return MusicApiInfo.fromJson(fileStorage.load(artistTitle));
 		}

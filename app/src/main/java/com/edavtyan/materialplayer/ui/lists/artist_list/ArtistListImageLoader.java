@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.ui.lists.artist_list;
 
 import android.support.annotation.Nullable;
 
-import com.edavtyan.materialplayer.lib.music_api.InfoNotFoundException;
 import com.edavtyan.materialplayer.lib.music_api.MusicApi;
 
 public class ArtistListImageLoader {
@@ -24,7 +23,7 @@ public class ArtistListImageLoader {
 			String imageLink = musicApi.getArtistInfo(artistTitle).getImageUrl();
 			linkCache.addLink(artistTitle, imageLink);
 			return imageLink;
-		} catch (InfoNotFoundException e) {
+		} catch (Exception e) {
 			return null;
 		}
 	}

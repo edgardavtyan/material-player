@@ -2,7 +2,6 @@ package com.edavtyan.materialplayer.lib.music_api;
 
 import com.edavtyan.materialplayer.utils.WebClient;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AudioDBApi extends MusicApi {
@@ -16,7 +15,8 @@ public class AudioDBApi extends MusicApi {
 	}
 
 	@Override
-	protected MusicApiInfo getInfoFromApi(String artistTitle) throws InfoNotFoundException {
+	protected MusicApiInfo getInfoFromApi(String artistTitle)
+	throws InfoNotFoundException, NoConnectionException {
 		try {
 			String url = buildUri(artistTitle);
 			String jsonString = webClient.getString(url);
@@ -30,8 +30,10 @@ public class AudioDBApi extends MusicApi {
 			JSONObject firstResult = root.getJSONArray("artists").getJSONObject(0);
 			info.setImageUrl(firstResult.getString("strArtistThumb"));
 			return info;
-		} catch (JSONException e) {
-			throw new RuntimeException(e);
+		} catch (InfoNotFoundException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new NoConnectionException();
 		}
 	}
 
