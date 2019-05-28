@@ -37,9 +37,9 @@ public class EqualizerFactory {
 	@Nullable
 	@Provides
 	@PlayerServiceScope
-	public StandardEqualizerBase provideEqualizerBase(int sessionId) {
+	public StandardEqualizerBase provideEqualizerBase(int sessionId, StandardEqualizerPrefs prefs) {
 		try {
-			return new StandardEqualizerBase(new android.media.audiofx.Equalizer(0, sessionId));
+			return new StandardEqualizerBase(new android.media.audiofx.Equalizer(0, sessionId), prefs);
 		} catch (RuntimeException e) {
 			return null;
 		}
@@ -47,8 +47,15 @@ public class EqualizerFactory {
 
 	@Provides
 	@PlayerServiceScope
-	public OpenSLEqualizerBase provideOpenSLEqualizerBase(OpenSLMediaPlayerFactory factory) {
-		return new OpenSLEqualizerBase(factory.createHQEqualizer());
+	public StandardEqualizerPrefs provideStandardEqualizerPrefs(AdvancedSharedPrefs prefs) {
+		return new StandardEqualizerPrefs(prefs);
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public OpenSLEqualizerBase provideOpenSLEqualizerBase(
+			OpenSLMediaPlayerFactory factory, OpenSLEqualizerPrefs prefs) {
+		return new OpenSLEqualizerBase(factory.createHQEqualizer(), prefs);
 	}
 
 	@Provides
@@ -67,5 +74,11 @@ public class EqualizerFactory {
 	@PlayerServiceScope
 	public OpenSLPresetsPrefs provideOpenSLPresetsPrefs(AdvancedGsonSharedPrefs prefs) {
 		return new OpenSLPresetsPrefs(prefs);
+	}
+
+	@Provides
+	@PlayerServiceScope
+	public OpenSLEqualizerPrefs provideOpenSLEqualizerPrefs(AdvancedSharedPrefs prefs) {
+		return new OpenSLEqualizerPrefs(prefs);
 	}
 }

@@ -6,21 +6,25 @@ import lombok.Getter;
 
 public class OpenSLEqualizerBase implements EqualizerBase {
 	private final IEqualizer equalizer;
+	private final OpenSLEqualizerPrefs prefs;
 
 	private final @Getter int bandsCount;
 	private final @Getter int[] frequencies;
 
 	private @Getter int[] gains;
 
-	public OpenSLEqualizerBase(IEqualizer equalizer) {
+	public OpenSLEqualizerBase(IEqualizer equalizer, OpenSLEqualizerPrefs prefs) {
 		bandsCount = equalizer.getNumberOfBands();
 		this.equalizer = equalizer;
+		this.prefs = prefs;
 
 		frequencies = new int[bandsCount];
 		for (int i = 0; i < bandsCount; i++) {
 			int reverseIndex = bandsCount - i - 1;
 			frequencies[i] = baseToKilo(equalizer.getCenterFreq((short) reverseIndex));
 		}
+
+		setGains(prefs.getGains(getBandsCount()));
 	}
 
 	@Override
@@ -40,6 +44,7 @@ public class OpenSLEqualizerBase implements EqualizerBase {
 			int reverseIndex = bandsCount - i - 1;
 			equalizer.setBandLevel((short) reverseIndex, (short) deciToMilli(gains[i]));
 		}
+		prefs.saveGains(gains);
 	}
 
 	@Override

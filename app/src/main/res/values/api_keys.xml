@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="lastfm_key">e6c503c5b989a6873e040941916eccc6</string>
+	<string name="discogs_key">BckUBifefUFZyGGguNJH</string>
+	<string name="discogs_secret">XtqMZSCoWMwFnpDnZnynxUqAPkdiUxLR</string>
+	<string name="audiodb_key">195169</string>
+
+</resources>

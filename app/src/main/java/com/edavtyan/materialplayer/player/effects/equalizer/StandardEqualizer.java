@@ -31,7 +31,6 @@ public class StandardEqualizer implements Equalizer {
 
 		setEnabled(prefs.getEnabled());
 		equalizer.setEnabled(prefs.getEnabled());
-		equalizer.setGains(prefs.getGains(equalizer.getBandsCount()));
 	}
 
 	@Override
@@ -62,7 +61,7 @@ public class StandardEqualizer implements Equalizer {
 
 	@Override
 	public void saveSettings() {
-		prefs.save(equalizer.getGains(), isEnabled());
+		prefs.save(isEnabled());
 	}
 
 	@Override

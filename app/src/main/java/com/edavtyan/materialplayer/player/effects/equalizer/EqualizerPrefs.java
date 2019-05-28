@@ -13,18 +13,11 @@ public class EqualizerPrefs {
 		this.prefs = prefs;
 	}
 
-	public int[] getGains(int bandsCount) {
-		return prefs.getIntArray(PREF_GAINS, bandsCount);
-	}
-
 	public boolean getEnabled() {
 		return prefs.getBoolean(PREF_ENABLED, DEFAULT_ENABLED);
 	}
 
-	public void save(int[] gains, boolean enabled) {
-		prefs.edit()
-			 .putIntArray(PREF_GAINS, gains)
-			 .putBoolean(PREF_ENABLED, enabled)
-			 .apply();
+	public void save(boolean enabled) {
+		prefs.edit().putBoolean(PREF_ENABLED, enabled).apply();
 	}
 }
