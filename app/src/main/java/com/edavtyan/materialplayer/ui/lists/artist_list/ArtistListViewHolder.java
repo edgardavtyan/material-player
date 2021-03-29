@@ -73,7 +73,7 @@ public class ArtistListViewHolder
 			 .apply(options)
 			 .transition(DrawableTransitionOptions.withCrossFade())
 			 .into(artView);
-		}
+	}
 
 	@Override
 	public void onClick(View v) {

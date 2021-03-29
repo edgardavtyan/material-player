@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import android.support.annotation.Nullable;
-
 import com.edavtyan.materialplayer.lib.music_api.MusicApi;
 
 public class ArtistListImageLoader {
@@ -13,8 +11,7 @@ public class ArtistListImageLoader {
 		this.linkCache = linkCache;
 	}
 
-	@Nullable
-	public String getImageLink(String artistTitle) {
+	public String getImageLink(String artistTitle) throws CouldNotLoadImageException {
 		if (linkCache.exists(artistTitle)) {
 			return linkCache.getLink(artistTitle);
 		}
@@ -24,7 +21,7 @@ public class ArtistListImageLoader {
 			linkCache.addLink(artistTitle, imageLink);
 			return imageLink;
 		} catch (Exception e) {
-			return null;
+			throw new CouldNotLoadImageException(artistTitle);
 		}
 	}
 

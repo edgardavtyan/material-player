@@ -19,7 +19,11 @@ public class ArtistListImageTask extends AsyncTask<String, Void, String> {
 	@Override
 	@Nullable
 	protected String doInBackground(String... title) {
-		return imageLoader.getImageLink(title[0]);
+		try {
+			return imageLoader.getImageLink(title[0]);
+		} catch (CouldNotLoadImageException e) {
+			return null;
+		}
 	}
 
 	@Override

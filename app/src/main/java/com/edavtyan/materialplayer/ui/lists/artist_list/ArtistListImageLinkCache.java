@@ -1,7 +1,5 @@
 package com.edavtyan.materialplayer.ui.lists.artist_list;
 
-import android.support.annotation.Nullable;
-
 import com.edavtyan.materialplayer.lib.prefs.AdvancedGsonSharedPrefs;
 
 import java.util.HashMap;
@@ -26,12 +24,11 @@ public class ArtistListImageLinkCache {
 		cacheMap = prefs.getMap(PREF_KEY);
 	}
 
-	@Nullable
 	public String getLink(String artist) {
 		return cacheMap.get(artist);
 	}
 
 	public boolean exists(String artist) {
-		return getLink(artist) != null;
+		return cacheMap.containsKey(artist);
 	}
 }
